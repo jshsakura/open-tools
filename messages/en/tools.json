@@ -1,0 +1,468 @@
+{
+    "Suno": {
+        "title": "Suno AI Downloader",
+        "description": "The fastest way to download Suno.ai MP3s.",
+        "inputPlaceholder": "Paste Suno link here (e.g., https://suno.com/song/...)",
+        "resolveButton": "Resolve",
+        "downloadButton": "Extract & Download",
+        "invalidUrl": "Please enter a valid Suno.com song URL",
+        "fetching": "Analyzing song data...",
+        "error": "Failed to fetch song data. Please check the URL.",
+        "downloadSuccess": "Download started!",
+        "errorGeneric": "An error occurred",
+        "guide": {
+            "title": "How to use",
+            "step1": "Copy the song or playlist link from Suno.ai or Mureka.ai.",
+            "step2": "Paste it into the input box above and click 'Resolve'.",
+            "step3": "Click 'Download' in the results list to save the MP3.",
+            "supported": "Supports: Suno & Mureka songs, playlists",
+            "playlist": "Playlist",
+            "share": "Mureka (Beta)"
+        }
+    },
+    "UnitConverter": {
+        "title": "Unit Converter",
+        "description": "Convert between PX, REM, and various Data units seamlessly."
+    },
+    "JsonYaml": {
+        "title": "JSON ↔ YAML Converter",
+        "description": "Seamlessly convert between JSON and YAML formats.",
+        "convert": "Convert"
+    },
+    "JwtDebugger": {
+        "title": "JWT Debugger",
+        "description": "Decode and analyze JSON Web Tokens securely.",
+        "inputPlaceholder": "Paste your JWT here..."
+    },
+    "VideoConverter": {
+        "title": "Video Editor & Converter",
+        "description": "Convert, trim, and extract audio from videos locally in your browser using WASM.",
+        "inputPlaceholder": "Drag & drop video file or click to upload",
+        "ffmpegLoading": "Initializing FFmpeg (WASM)...",
+        "processing": "Processing... {progress}%",
+        "download": "Download Result",
+        "tabs": {
+            "convert": "Convert",
+            "trim": "Trim",
+            "audio": "Audio",
+            "gif": "GIF"
+        },
+        "convert": {
+            "title": "Convert Format",
+            "format": "Target Format",
+            "quality": "Quality",
+            "action": "Convert Video"
+        },
+        "trim": {
+            "title": "Trim Video",
+            "start": "Start Time",
+            "end": "End Time",
+            "action": "Trim Video"
+        },
+        "audio": {
+            "title": "Extract Audio",
+            "format": "Format",
+            "bitrate": "Bitrate",
+            "action": "Extract Audio"
+        },
+        "gif": {
+            "title": "Create GIF",
+            "fps": "FPS",
+            "width": "Width",
+            "action": "Create GIF"
+        }
+    },
+    "RegexTester": {
+        "title": "RegEx Tester",
+        "description": "Real-time regular expression testing with highlighting."
+    },
+    "CronGenerator": {
+        "title": "Cron Generator",
+        "description": "Create and understand cron schedules easily."
+    },
+    "QrGenerator": {
+        "title": "QR Code Generator",
+        "description": "Create customizable QR codes with colors, sizes, and error correction levels. Download as PNG or SVG."
+    },
+    "BackgroundRemover": {
+        "title": "AI Background Remover",
+        "description": "Instantly remove backgrounds from images using sophisticated AI. 100% private and locally processed in your browser.",
+        "inputPlaceholder": "Drop an image here to remove the background",
+        "removeBackground": "Remove Background",
+        "download": "Save Transparent PNG"
+    },
+    "Base64Converter": {
+        "title": "Base64 Encoder/Decoder",
+        "description": "Convert between text and Base64 in real-time with clipboard support.",
+        "tabs": {
+            "encode": "Encode",
+            "decode": "Decode"
+        },
+        "input": "Input",
+        "output": "Output",
+        "encodePlaceholder": "Type text to encode...",
+        "decodePlaceholder": "Paste Base64 string to decode...",
+        "copy": "Copy",
+        "clear": "Clear",
+        "copied": "Copied to clipboard!"
+    },
+    "UrlConverter": {
+        "title": "URL Encoder/Decoder",
+        "description": "Safe and fast URL encoding/decoding for developers.",
+        "tabs": {
+            "encode": "Encode",
+            "decode": "Decode"
+        },
+        "input": "Input",
+        "output": "Output",
+        "encodePlaceholder": "Type URL or text to encode...",
+        "decodePlaceholder": "Paste URL encoded string to decode...",
+        "copy": "Copy",
+        "clear": "Clear",
+        "copied": "Copied to clipboard!"
+    },
+    "HashGenerator": {
+        "title": "Hash Generator",
+        "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes in real-time.",
+        "input": "Input Text",
+        "placeholder": "Enter text to hash...",
+        "error": "Failed to generate hash.",
+        "clear": "Clear",
+        "copied": "{algorithm} hash copied!"
+    },
+    "SecurityTools": {
+        "Hash": {
+            "title": "Hash Generator",
+            "description": "Fast and secure hash generation"
+        },
+        "BCrypt": {
+            "title": "Bcrypt Generator",
+            "description": "Password hashing and verification"
+        }
+    },
+    "ImageCompressor": {
+        "title": "Image Compressor",
+        "description": "Reduce image size while maintaining quality directly in your browser.",
+        "dropTitle": "Drag & Drop Image",
+        "dropDesc": "Supports PNG, JPG, WEBP upto 10MB",
+        "selectFile": "Select File",
+        "errorInvalidFile": "Invalid file type. Please upload an image.",
+        "errorCanvas": "Canvas API not supported.",
+        "settings": "Compression Settings",
+        "quality": "Quality",
+        "resize": "Scale",
+        "download": "Download Image",
+        "saved": "Image saved!"
+    },
+    "SqlFormatter": {
+        "title": "SQL Formatter",
+        "description": "Format and beautify your complex SQL queries with multiple dialect support.",
+        "inputPlaceholder": "Paste SQL here...",
+        "outputPlaceholder": "Formatted SQL will appear here...",
+        "errorMessage": "Format failed. Please check your SQL syntax.",
+        "clear": "Clear",
+        "format": "Format"
+    },
+    "YoutubeThumbnail": {
+        "title": "YouTube Thumbnail Extractor",
+        "description": "Get high-quality thumbnails from any YouTube video URL.",
+        "inputPlaceholder": "Paste YouTube URL here (e.g., https://youtube.com/watch?v=...)",
+        "extractButton": "Extract Thumbnails",
+        "errorInvalidUrl": "Invalid YouTube URL. Please check and try again."
+    },
+    "BoxShadowGenerator": {
+        "title": "CSS Box Shadow Generator",
+        "description": "Create beautiful, multi-layered box shadows visually.",
+        "layers": "Shadow Layers",
+        "addLayer": "Add Layer",
+        "color": "Shadow Color",
+        "copy": "Copy CSS",
+        "copied": "Copied!"
+    },
+    "GradientGenerator": {
+        "title": "CSS Gradient Generator",
+        "description": "Create stunning linear, radial, and conic gradients.",
+        "settings": "Gradient Settings",
+        "type": "Type",
+        "angle": "Angle",
+        "colors": "Color Stops",
+        "addStop": "Add Color",
+        "color": "Color",
+        "position": "Position",
+        "removeStop": "Remove Color",
+        "randomize": "Randomize",
+        "minStopsError": "A gradient needs at least 2 colors.",
+        "copy": "Copy CSS",
+        "copied": "Copied!"
+    },
+    "FaviconGenerator": {
+        "title": "Favicon Generator",
+        "description": "Generate a full set of icons for your website from a single image.",
+        "dropTitle": "Click or drag image here",
+        "dropDesc": "Recommended: 512x512 or larger",
+        "generate": "Generate & Download ZIP",
+        "generating": "Generating...",
+        "remove": "Remove",
+        "formats": "Includes: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome"
+    },
+    "BorderRadiusGenerator": {
+        "title": "CSS Border Radius Generator",
+        "description": "Visually generate CSS border-radius snippets. Supports 8-point fancy radii.",
+        "settings": "Settings",
+        "advancedMode": "8-Point Mode",
+        "topLeft": "Top Left",
+        "topRight": "Top Right",
+        "bottomLeft": "Bottom Left",
+        "bottomRight": "Bottom Right",
+        "boxSize": "Preview Size",
+        "copy": "Copy CSS",
+        "copied": "Copied!"
+    },
+    "PdfMerge": {
+        "title": "Merge PDF",
+        "description": "Combine multiple PDF files into one.",
+        "dropTitle": "Drag & drop PDF files here",
+        "dropDesc": "or click to select files",
+        "addFiles": "Add Files",
+        "merge": "Merge PDFs",
+        "clear": "Clear All",
+        "success": "PDFs merged successfully!",
+        "error": "Failed to merge PDFs.",
+        "count": "{count} files selected"
+    },
+    "PdfSplit": {
+        "title": "Split PDF",
+        "description": "Extract pages from a PDF file.",
+        "dropTitle": "Drag & drop PDF file here",
+        "pageRange": "Page Range (e.g., 1-5, 8, 11-13)",
+        "split": "Split PDF",
+        "success": "PDF split successfully!",
+        "error": "Failed to split PDF."
+    },
+    "PdfToImage": {
+        "title": "PDF to Image",
+        "description": "Convert PDF pages to JPG or PNG images.",
+        "dropTitle": "Drag & drop PDF file here",
+        "format": "Output Format",
+        "convert": "Convert to Images",
+        "success": "PDF converted successfully!",
+        "error": "Failed to convert PDF."
+    },
+    "HwpViewer": {
+        "title": "HWP Viewer",
+        "description": "View HWP files directly in your browser without installing software.",
+        "dropTitle": "Drag & drop HWP file here",
+        "view": "View HWP",
+        "copyInfo": "You can copy text from the viewer below.",
+        "error": "Failed to open HWP file."
+    },
+    "Basic3dViewer": {
+        "title": "3D Model Viewer",
+        "description": "Preview OBJ, STL, and GLTF/GLB files interactively using Three.js.",
+        "dropTitle": "Drag & drop 3D model here",
+        "dropDesc": "Supported formats: .obj, .stl, .gltf, .glb, .ply",
+        "loading": "Loading 3D Model...",
+        "controls": "Controls",
+        "resetCamera": "Reset Camera",
+        "toggleGrid": "Toggle Grid",
+        "toggleAxes": "Toggle Axes",
+        "autoRotate": "Auto Rotate",
+        "error": "Failed to load 3D model.",
+        "fileInfo": "File Info"
+    },
+    "BcryptGenerator": {
+        "title": "Bcrypt Generator",
+        "description": "Generate and verify Bcrypt password hashes securely.",
+        "generateTitle": "Generate Hash",
+        "generateDesc": "Create a secure Bcrypt hash from a password.",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter password...",
+        "roundsLabel": "Salt Rounds",
+        "roundsDesc": "Higher is slower but more secure",
+        "generateButton": "Generate Hash",
+        "verifyTitle": "Verify Hash",
+        "verifyDesc": "Check if a password matches a Bcrypt hash.",
+        "hashLabel": "Bcrypt Hash",
+        "hashPlaceholder": "Enter hash to verify...",
+        "verifyButton": "Verify Password",
+        "matchSuccess": "Password Matches!",
+        "matchFail": "Password Does NOT Match",
+        "errorEmpty": "Please enter a password",
+        "errorVerifyEmpty": "Please enter both password and hash",
+        "successGenerated": "Hash generated successfully",
+        "copied": "Copied to clipboard!"
+    },
+    "HmacGenerator": {
+        "title": "HMAC Generator",
+        "description": "Create Hash-based Message Authentication Codes using a secret key.",
+        "algoLabel": "Algorithm",
+        "secretLabel": "Secret Key",
+        "secretPlaceholder": "Enter secret key...",
+        "inputLabel": "Message Input",
+        "inputPlaceholder": "Enter message to hash...",
+        "generateButton": "Generate HMAC",
+        "outputLabel": "HMAC Output (Hex)",
+        "errorEmpty": "Please enter both secret and message",
+        "successGenerated": "HMAC generated successfully",
+        "copied": "Copied!"
+    },
+    "RsaGenerator": {
+        "title": "RSA Key Generator",
+        "description": "Generate RSA Public and Private Key pairs locally.",
+        "keySizeLabel": "Key Size",
+        "generateButton": "Generate Key Pair",
+        "generating": "Generating...",
+        "publicKeyLabel": "Public Key (PEM)",
+        "privateKeyLabel": "Private Key (PEM)",
+        "publicKeyPlaceholder": "Public key will appear here...",
+        "privateKeyPlaceholder": "Private key will appear here...",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "successGenerated": "Key pair generated successfully",
+        "error": "Failed to generate keys"
+    },
+    "AesCrypto": {
+        "title": "AES Encryption & Decryption",
+        "description": "Protect your sensitive data with military-grade AES-GCM encryption. All processing happens locally in your browser—your data never leaves your device.",
+        "encryptTab": "Encrypt",
+        "decryptTab": "Decrypt",
+        "encryptButton": "Encrypt Text",
+        "decryptButton": "Decrypt Text",
+        "inputText": "Input Text",
+        "inputPlaceholder": "Enter text to encrypt...",
+        "password": "Password / Secret Key",
+        "passwordPlaceholder": "Enter a strong password...",
+        "outputCipher": "Encrypted Output (Base64)",
+        "outputPlaceholder": "Encryption result will appear here...",
+        "securityNote": "This tool uses Web Crypto API (AES-GCM) with PBKDF2 for key derivation. Every encryption generates a unique Salt and IV.",
+        "inputCipher": "Encrypted Text",
+        "cipherPlaceholder": "Paste the encrypted text here...",
+        "outputText": "Decrypted Text",
+        "decryptedPlaceholder": "Decrypted result will appear here...",
+        "encryptSuccess": "Text encrypted successfully!",
+        "encryptError": "Encryption failed. Please check your inputs.",
+        "decryptSuccess": "Text decrypted successfully!",
+        "decryptError": "Decryption failed. Incorrect password or corrupted data.",
+        "copied": "Copied to clipboard"
+    },
+    "DataTools": {
+        "JsonConverter": {
+            "errorEmpty": "Please upload a file or enter text",
+            "successConverted": "Converted successfully",
+            "successDownload": "File downloaded successfully",
+            "errorConvert": "Conversion failed",
+            "inputsLabel": "Input",
+            "inputPlaceholder": "Paste JSON or CSV here...",
+            "outputLabel": "Output",
+            "outputPlaceholder": "Result will appear here...",
+            "uploadFile": "Upload File",
+            "convert": "Convert",
+            "itemCopied": "Copied!"
+        },
+        "SlugGenerator": {
+            "inputLabel": "Input Text",
+            "inputPlaceholder": "Enter text to slugify (e.g. My Blog Post Title)",
+            "lowercase": "Lowercase",
+            "strict": "Strict (remove special chars)",
+            "trim": "Trim",
+            "generateButton": "Generate Slug",
+            "outputLabel": "URL Slug",
+            "errorEmpty": "Please enter text",
+            "copied": "Copied!"
+        }
+    },
+    "TextTools": {
+        "OcrTool": {
+            "inputLabel": "Upload Image",
+            "outputLabel": "Extracted Text",
+            "outputPlaceholder": "Text will appear here...",
+            "dropLabel": "Drag & Drop Image",
+            "dropSub": "Supports PNG, JPG, BMP",
+            "processButton": "Extract Text",
+            "processing": "Processing...",
+            "errorNoImage": "Please select an image first",
+            "copied": "Copied!",
+            "success": "Text extracted successfully",
+            "error": "Failed to extract text"
+        },
+        "LoremGenerator": {
+            "language": "Language",
+            "en": "English",
+            "ko": "한국어 (Korean)",
+            "unit": "Unit",
+            "paragraphs": "Paragraphs",
+            "sentences": "Sentences",
+            "words": "Words",
+            "count": "Count",
+            "generateButton": "Generate",
+            "outputLabel": "Result",
+            "outputPlaceholder": "Generated text will appear here...",
+            "copied": "Copied!"
+        },
+        "HangulProcessor": {
+            "tabs": {
+                "disassemble": "Disassemble",
+                "assemble": "Assemble",
+                "josa": "Josa Checker"
+            },
+            "convert": "Convert",
+            "check": "Check",
+            "disassemble": {
+                "inputLabel": "Input Hangul",
+                "outputLabel": "Disassembled Jamo"
+            },
+            "assemble": {
+                "inputLabel": "Input Jamo",
+                "outputLabel": "Assembled Hangul"
+            },
+            "josa": {
+                "inputLabel": "Input Word",
+                "outputLabel": "Result with Josa"
+            }
+        }
+    },
+    "DevTools": {
+        "DockerConverter": {
+            "inputLabel": "Docker Run Command",
+            "outputLabel": "Docker Compose (YAML)",
+            "outputPlaceholder": "YAML output will appear here...",
+            "convertButton": "Convert to Compose",
+            "errorEmpty": "Please enter a docker run command",
+            "success": "Converted successfully",
+            "error": "Conversion failed",
+            "copied": "Copied!"
+        },
+        "ChmodCalculator": {
+            "owner": "Owner",
+            "group": "Group",
+            "public": "Public",
+            "read": "Read",
+            "write": "Write",
+            "execute": "Execute",
+            "octalLabel": "Octal (e.g. 755)",
+            "symbolicLabel": "Symbolic (e.g. -rwxr-xr-x)",
+            "copied": "Copied!"
+        },
+        "BusinessValidator": {
+            "tabs": {
+                "biz": "Business No.",
+                "res": "Resident No."
+            },
+            "bizInputLabel": "Business Registration Number",
+            "resInputLabel": "Resident Registration Number",
+            "generate": "Generate",
+            "copy": "Copy",
+            "check": "Validate",
+            "validBiz": "Valid Business Number",
+            "invalidBiz": "Invalid Business Number",
+            "errorLength": "Must be 10 digits",
+            "validRes": "Valid Format",
+            "invalidRes": "Invalid Format",
+            "errorResLength": "Must be 13 digits (YYMMDDXXXXXXX)",
+            "invalidDate": "Invalid Date",
+            "invalidGender": "Invalid Gender Digit",
+            "invalidResChecksum": "Invalid Checksum",
+            "resWarning": "This tool only checks format/checksum validity. It does not verify actual identity."
+        }
+    }
+}

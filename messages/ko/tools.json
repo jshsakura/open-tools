@@ -1,0 +1,468 @@
+{
+    "Suno": {
+        "title": "Suno AI 다운로더",
+        "description": "Suno.ai MP3를 다운로드하는 가장 빠른 방법입니다.",
+        "inputPlaceholder": "Suno 링크를 여기에 붙여넣으세요 (예: https://suno.com/song/...)",
+        "resolveButton": "분석",
+        "downloadButton": "추출 및 다운로드",
+        "invalidUrl": "유효한 Suno.com 노래 URL을 입력하세요",
+        "fetching": "노래 데이터 분석 중...",
+        "error": "노래 데이터를 가져오지 못했습니다. URL을 확인하세요.",
+        "downloadSuccess": "다운로드가 시작되었습니다!",
+        "errorGeneric": "오류가 발생했습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "Suno.ai 또는 Mureka.ai의 노래, 플레이리스트 링크를 복사하세요.",
+            "step2": "위 입력창에 붙여넣고 '분석' 버튼을 클릭하세요.",
+            "step3": "결과 목록에서 '다운로드' 버튼을 눌러 MP3를 저장하세요.",
+            "supported": "지원: Suno & Mureka 노래, 플레이리스트",
+            "playlist": "플레이리스트",
+            "share": "Mureka (Beta)"
+        }
+    },
+    "UnitConverter": {
+        "title": "단위 변환기",
+        "description": "PX, REM 및 다양한 데이터 단위를 원활하게 변환하세요."
+    },
+    "JsonYaml": {
+        "title": "JSON ↔ YAML 변환기",
+        "description": "JSON과 YAML 포맷을 손쉽게 상호 변환하세요.",
+        "convert": "변환하기"
+    },
+    "JwtDebugger": {
+        "title": "JWT 디버거",
+        "description": "JSON 웹 토큰을 안전하게 디코딩하고 분석합니다.",
+        "inputPlaceholder": "여기에 JWT를 붙여넣으세요..."
+    },
+    "VideoConverter": {
+        "title": "비디오 에디터 & 변환기",
+        "description": "브라우저에서 바로 동영상을 변환, 자르기, 오디오 추출하세요. (WASM 기반)",
+        "inputPlaceholder": "동영상 파일을 드래그하거나 클릭하여 업로드",
+        "ffmpegLoading": "FFmpeg 초기화 중 (WASM)...",
+        "processing": "처리 중... {progress}%",
+        "download": "결과 다운로드",
+        "tabs": {
+            "convert": "변환",
+            "trim": "자르기",
+            "audio": "오디오",
+            "gif": "GIF"
+        },
+        "convert": {
+            "title": "포맷 변환",
+            "format": "대상 포맷",
+            "quality": "품질",
+            "action": "변환 시작"
+        },
+        "trim": {
+            "title": "구간 자르기",
+            "start": "시작 시간",
+            "end": "종료 시간",
+            "action": "자르기 시작"
+        },
+        "audio": {
+            "title": "오디오 추출",
+            "format": "포맷",
+            "bitrate": "비트레이트",
+            "action": "추출 시작"
+        },
+        "gif": {
+            "title": "GIF 만들기",
+            "fps": "프레임(FPS)",
+            "width": "너비(px)",
+            "action": "GIF 생성"
+        }
+    },
+    "RegexTester": {
+        "title": "정규식 테스터",
+        "description": "실시간 정규식 테스트 및 하이라이팅 기능."
+    },
+    "CronGenerator": {
+        "title": "Cron 생성기",
+        "description": "Cron 스케줄을 쉽게 생성하고 이해하세요."
+    },
+    "QrGenerator": {
+        "title": "QR 코드 생성기",
+        "description": "색상, 크기, 오류 수정 레벨을 커스터마이징하여 QR 코드를 생성하세요. PNG 또는 SVG로 다운로드 가능합니다."
+    },
+    "BackgroundRemover": {
+        "title": "AI 배경 제거",
+        "description": "딥러닝 기반 AI로 이미지의 배경을 즉시 제거합니다. 100% 브라우저 로컬 처리로 개인정보를 보호합니다.",
+        "inputPlaceholder": "배경을 제거할 이미지를 여기에 놓으세요",
+        "removeBackground": "배경 제거 실행",
+        "download": "투명 배경 PNG 저장"
+    },
+    "Base64Converter": {
+        "title": "Base64 인코더/디코더",
+        "description": "텍스트와 Base64 간의 실시간 변환을 지원하며 클립보드 복사 기능을 제공합니다.",
+        "tabs": {
+            "encode": "인코딩 (암호화)",
+            "decode": "디코딩 (복호화)"
+        },
+        "input": "입력",
+        "output": "출력",
+        "encodePlaceholder": "변환할 텍스트를 입력하세요...",
+        "decodePlaceholder": "복원할 Base64 문자열을 붙여넣으세요...",
+        "copy": "복사",
+        "clear": "지우기",
+        "copied": "클립보드에 복사되었습니다!"
+    },
+    "UrlConverter": {
+        "title": "URL 인코더/디코더",
+        "description": "URL을 안전하게 인코딩하거나 디코딩합니다. 한글 및 특수문자 처리를 지원합니다.",
+        "tabs": {
+            "encode": "인코딩",
+            "decode": "디코딩"
+        },
+        "input": "입력",
+        "output": "출력",
+        "encodePlaceholder": "인코딩할 URL이나 텍스트를 입력하세요...",
+        "decodePlaceholder": "디코딩할 URL 인코딩 문자열을 입력하세요...",
+        "copy": "복사",
+        "clear": "지우기",
+        "copied": "클립보드에 복사되었습니다!"
+    },
+    "HashGenerator": {
+        "title": "해시 생성기",
+        "description": "MD5, SHA-1, SHA-256, SHA-512 해시를 실시간으로 생성합니다.",
+        "input": "텍스트 입력",
+        "placeholder": "해시 변환할 텍스트를 입력하세요...",
+        "error": "해시 생성에 실패했습니다.",
+        "clear": "지우기",
+        "copied": "{algorithm} 해시가 복사되었습니다!"
+    },
+    "SecurityTools": {
+        "Hash": {
+            "title": "해시 생성기",
+            "description": "빠르고 안전한 해시 생성"
+        },
+        "BCrypt": {
+            "title": "Bcrypt 생성기",
+            "description": "비밀번호 해싱 및 검증"
+        }
+    },
+    "ImageCompressor": {
+        "title": "이미지 압축기",
+        "description": "브라우저에서 직접 이미지 용량을 줄이고 품질을 최적화하세요.",
+        "dropTitle": "이미지를 여기에 놓으세요",
+        "dropDesc": "PNG, JPG, WEBP 파일 지원 (최대 10MB)",
+        "selectFile": "파일 선택",
+        "errorInvalidFile": "유효하지 않은 파일입니다. 이미지를 선택해주세요.",
+        "errorCanvas": "브라우저가 Canvas API를 지원하지 않습니다.",
+        "settings": "압축 설정",
+        "quality": "품질 (압축률)",
+        "resize": "크기 조절 (스케일)",
+        "download": "이미지 다운로드",
+        "saved": "이미지가 저장되었습니다!"
+    },
+    "SqlFormatter": {
+        "title": "SQL 포매터",
+        "description": "다양한 다이얼렉트 지원으로 복잡한 SQL 쿼리를 정리하고 보기 좋게 만듭니다.",
+        "inputPlaceholder": "여기에 SQL을 붙여넣으세요...",
+        "outputPlaceholder": "포맷된 SQL이 여기에 표시됩니다...",
+        "errorMessage": "포맷에 실패했습니다. SQL 구문을 확인하세요.",
+        "clear": "지우기",
+        "format": "포맷하기"
+    },
+    "YoutubeThumbnail": {
+        "title": "YouTube 썸네일 추출기",
+        "description": "YouTube 영상 URL만 있으면 고화질 썸네일을 바로 받을 수 있습니다.",
+        "inputPlaceholder": "YouTube 링크를 여기에 붙여넣으세요...",
+        "extractButton": "썸네일 추출",
+        "errorInvalidUrl": "유효하지 않은 YouTube URL입니다."
+    },
+    "BoxShadowGenerator": {
+        "title": "CSS 박스 그림자 생성기",
+        "description": "다양한 레이어의 그림자 효과를 시각적으로 만들고 코드를 복사하세요.",
+        "layers": "그림자 레이어",
+        "addLayer": "레이어 추가",
+        "color": "그림자 색상",
+        "copy": "CSS 복사",
+        "copied": "복사 완료!"
+    },
+    "GradientGenerator": {
+        "title": "CSS 그래디언트 생성기",
+        "description": "선형, 원형, 원뿔형 등 아름다운 그래디언트를 시각적으로 만드세요.",
+        "settings": "설정",
+        "type": "종류",
+        "angle": "각도",
+        "colors": "색상 단계",
+        "addStop": "색상 추가",
+        "color": "색상",
+        "position": "위치",
+        "removeStop": "삭제",
+        "randomize": "무작위 생성",
+        "minStopsError": "최소 2개의 색상이 필요합니다.",
+        "copy": "CSS 복사",
+        "copied": "복사 완료!"
+    },
+    "FaviconGenerator": {
+        "title": "파비콘 생성기",
+        "description": "이미지로부터 웹사이트용 파비콘 세트를 즉시 생성합니다.",
+        "dropTitle": "이미지를 여기에 드래그하거나 클릭하세요",
+        "dropDesc": "권장 크기: 512x512 이상",
+        "generate": "파비콘 생성 및 다운로드 (ZIP)",
+        "generating": "생성 중...",
+        "remove": "삭제",
+        "formats": "포함된 형식: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome"
+    },
+    "BorderRadiusGenerator": {
+        "title": "CSS Border Radius 생성기",
+        "description": "CSS border-radius를 시각적으로 생성하세요. 8점(Fancy) 모드를 지원합니다.",
+        "settings": "설정",
+        "advancedMode": "8점 모드 (고급)",
+        "topLeft": "좌측 상단",
+        "topRight": "우측 상단",
+        "bottomLeft": "좌측 하단",
+        "bottomRight": "우측 하단",
+        "boxSize": "미리보기 크기",
+        "copy": "CSS 복사",
+        "copied": "복사 완료!"
+    },
+    "PdfMerge": {
+        "title": "PDF 합치기",
+        "description": "여러 PDF 파일을 하나의 파일로 병합합니다.",
+        "dropTitle": "PDF 파일들을 여기에 드래그하세요",
+        "dropDesc": "또는 클릭하여 파일 선택",
+        "addFiles": "파일 추가",
+        "merge": "PDF 병합하기",
+        "clear": "모두 지우기",
+        "success": "PDF가 성공적으로 병합되었습니다!",
+        "error": "PDF 병합에 실패했습니다.",
+        "count": "{count}개 파일 선택됨"
+    },
+    "PdfSplit": {
+        "title": "PDF 나누기",
+        "description": "PDF 파일에서 특정 페이지를 추출하거나 분할합니다.",
+        "dropTitle": "PDF 파일을 여기에 드래그하세요",
+        "pageRange": "페이지 범위 (예: 1-5, 8, 11-13)",
+        "split": "PDF 분할하기",
+        "success": "PDF가 성공적으로 분할되었습니다!",
+        "error": "PDF 분할에 실패했습니다."
+    },
+    "PdfToImage": {
+        "title": "PDF 이미지 변환",
+        "description": "PDF 페이지를 고화질 JPG 또는 PNG 이미지로 변환합니다.",
+        "dropTitle": "PDF 파일을 여기에 드래그하세요",
+        "format": "저장 포맷",
+        "convert": "이미지로 변환",
+        "success": "PDF가 이미지로 변환되었습니다!",
+        "error": "변환에 실패했습니다."
+    },
+    "HwpViewer": {
+        "title": "HWP 뷰어 (한글 뷰어)",
+        "description": "별도 프로그램 설치 없이 브라우저에서 HWP 파일을 바로 확인하세요.",
+        "dropTitle": "HWP 파일을 여기에 드래그하세요",
+        "view": "HWP 열기",
+        "copyInfo": "뷰어에서 텍스트를 선택하여 복사할 수 있습니다.",
+        "error": "HWP 파일을 여는 데 실패했습니다."
+    },
+    "Basic3dViewer": {
+        "title": "3D 모델 뷰어",
+        "description": "Three.js를 사용하여 OBJ, STL, GLTF 파일을 인터랙티브하게 확인하세요.",
+        "dropTitle": "3D 모델 파일을 여기에 드래그하세요",
+        "dropDesc": "지원 포맷: .obj, .stl, .gltf, .glb, .ply",
+        "loading": "3D 모델 로딩 중...",
+        "controls": "제어",
+        "resetCamera": "카메라 초기화",
+        "toggleGrid": "그리드 켜기/끄기",
+        "toggleAxes": "축 보기/숨기기",
+        "autoRotate": "자동 회전",
+        "error": "3D 모델을 불러오는데 실패했습니다.",
+        "fileInfo": "파일 정보"
+    },
+    "BcryptGenerator": {
+        "title": "Bcrypt 생성기",
+        "description": "Bcrypt 비밀번호 해시를 안전하게 생성하고 검증하세요.",
+        "generateTitle": "해시 생성",
+        "generateDesc": "비밀번호를 안전한 Bcrypt 해시로 변환합니다.",
+        "passwordLabel": "비밀번호",
+        "passwordPlaceholder": "비밀번호 입력...",
+        "roundsLabel": "Salt 라운드",
+        "roundsDesc": "높을수록 안전하지만 느립니다",
+        "generateButton": "해시 생성하기",
+        "verifyTitle": "해시 검증",
+        "verifyDesc": "비밀번호가 해시와 일치하는지 확인합니다.",
+        "hashLabel": "Bcrypt 해시",
+        "hashPlaceholder": "검증할 해시 입력...",
+        "verifyButton": "비밀번호 검증",
+        "matchSuccess": "비밀번호가 일치합니다!",
+        "matchFail": "비밀번호가 일치하지 않습니다",
+        "errorEmpty": "비밀번호를 입력해주세요",
+        "errorVerifyEmpty": "비밀번호와 해시를 모두 입력해주세요",
+        "successGenerated": "해시가 생성되었습니다",
+        "copied": "클립보드에 복사됨!"
+    },
+    "HmacGenerator": {
+        "title": "HMAC 생성기",
+        "description": "비밀키를 사용하여 메시지 인증 코드(HMAC)를 생성합니다.",
+        "algoLabel": "알고리즘",
+        "secretLabel": "비밀키 (Secret Key)",
+        "secretPlaceholder": "비밀키 입력...",
+        "inputLabel": "메시지 입력",
+        "inputPlaceholder": "해시할 메시지를 입력하세요...",
+        "generateButton": "HMAC 생성하기",
+        "outputLabel": "HMAC 결과 (Hex)",
+        "errorEmpty": "비밀키와 메시지를 모두 입력해주세요",
+        "successGenerated": "HMAC가 생성되었습니다",
+        "copied": "복사됨!"
+    },
+    "RsaGenerator": {
+        "title": "RSA 키 생성기",
+        "description": "RSA 공개키와 개인키 쌍을 로컬에서 생성합니다.",
+        "keySizeLabel": "키 크기",
+        "generateButton": "키 쌍 생성하기",
+        "generating": "생성 중...",
+        "publicKeyLabel": "공개키 (Public Key)",
+        "privateKeyLabel": "개인키 (Private Key)",
+        "publicKeyPlaceholder": "공개키가 여기에 표시됩니다...",
+        "privateKeyPlaceholder": "개인키가 여기에 표시됩니다...",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "successGenerated": "키 쌍이 성공적으로 생성되었습니다",
+        "error": "키 생성에 실패했습니다"
+    },
+    "AesCrypto": {
+        "title": "AES 암호화 & 복호화",
+        "description": "강력한 AES-GCM 암호화로 중요한 데이터를 보호하세요. 모든 처리는 브라우저 내부에서 로컬로 수행되며, 서버로 데이터지 않습니다.",
+        "encryptTab": "암호화",
+        "decryptTab": "복호화",
+        "encryptButton": "암호화 실행",
+        "decryptButton": "복호화 실행",
+        "inputText": "입력 텍스트",
+        "inputPlaceholder": "암호화할 텍스트를 입력하세요...",
+        "password": "비밀번호 / 키",
+        "passwordPlaceholder": "강력한 비밀번호를 입력하세요...",
+        "outputCipher": "암호화 결과 (Base64)",
+        "outputPlaceholder": "암호화된 결과가 여기에 표시됩니다...",
+        "securityNote": "이 도구는 Web Crypto API (AES-GCM)와 PBKDF2 키 유도 방식을 사용합니다. 암호화할 때마다 고유한 Salt와 IV가 생성됩니다.",
+        "inputCipher": "암호문",
+        "cipherPlaceholder": "암호화된 텍스트를 여기에 붙여넣으세요...",
+        "outputText": "복호화 텍스트",
+        "decryptedPlaceholder": "복호화된 결과가 여기에 표시됩니다...",
+        "encryptSuccess": "텍스트가 성공적으로 암호화되었습니다!",
+        "encryptError": "암호화 실패. 입력을 확인해주세요.",
+        "decryptSuccess": "텍스트가 성공적으로 복호화되었습니다!",
+        "decryptError": "복호화 실패. 비밀번호가 틀렸거나 데이터가 손상되었습니다.",
+        "copied": "클립보드에 복사되었습니다"
+    },
+    "DataTools": {
+        "JsonConverter": {
+            "errorEmpty": "파일을 업로드하거나 텍스트를 입력하세요",
+            "successConverted": "변환 성공",
+            "successDownload": "파일 다운로드 완료",
+            "errorConvert": "변환 실패",
+            "inputLabel": "입력",
+            "inputPlaceholder": "JSON이나 CSV를 붙여넣으세요...",
+            "outputLabel": "결과",
+            "outputPlaceholder": "결과가 여기에 표시됩니다...",
+            "uploadFile": "파일 업로드",
+            "convert": "변환하기",
+            "copied": "복사됨!"
+        },
+        "SlugGenerator": {
+            "inputLabel": "입력 텍스트",
+            "inputPlaceholder": "슬러그로 변환할 텍스트 입력 (예: 내 블로그 글 제목)",
+            "lowercase": "소문자 변환",
+            "strict": "특수문자 제거",
+            "trim": "공백 제거",
+            "generateButton": "슬러그 생성",
+            "outputLabel": "URL 슬러그",
+            "errorEmpty": "텍스트를 입력해주세요",
+            "copied": "복사됨!"
+        }
+    },
+    "TextTools": {
+        "OcrTool": {
+            "inputLabel": "이미지 업로드",
+            "outputLabel": "추출된 텍스트",
+            "outputPlaceholder": "텍스트가 여기에 표시됩니다...",
+            "dropLabel": "이미지를 여기에 놓으세요",
+            "dropSub": "PNG, JPG, BMP 지원",
+            "processButton": "텍스트 추출하기",
+            "processing": "처리 중...",
+            "errorNoImage": "이미지를 먼저 선택해주세요",
+            "copied": "복사됨!",
+            "success": "텍스트 추출 성공",
+            "error": "텍스트 추출 실패"
+        },
+        "LoremGenerator": {
+            "language": "언어",
+            "en": "English",
+            "ko": "한국어 (Korean)",
+            "unit": "단위",
+            "paragraphs": "문단",
+            "sentences": "문장",
+            "words": "단어",
+            "count": "개수",
+            "generateButton": "생성하기",
+            "outputLabel": "결과",
+            "outputPlaceholder": "생성된 텍스트가 여기에 표시됩니다...",
+            "copied": "복사됨!"
+        },
+        "HangulProcessor": {
+            "tabs": {
+                "disassemble": "자소 분리",
+                "assemble": "자소 결합",
+                "josa": "조사 확인"
+            },
+            "convert": "변환",
+            "check": "확인",
+            "disassemble": {
+                "inputLabel": "한글 입력",
+                "outputLabel": "분리된 자소"
+            },
+            "assemble": {
+                "inputLabel": "자소 입력",
+                "outputLabel": "결합된 한글"
+            },
+            "josa": {
+                "inputLabel": "단어 입력",
+                "outputLabel": "조사 포함 결과"
+            }
+        }
+    },
+    "DevTools": {
+        "DockerConverter": {
+            "inputLabel": "Docker Run 명령어",
+            "outputLabel": "Docker Compose (YAML)",
+            "outputPlaceholder": "YAML 결과가 여기에 표시됩니다...",
+            "convertButton": "변환하기",
+            "errorEmpty": "명령어를 입력하세요",
+            "success": "변환 성공",
+            "error": "변환 실패",
+            "copied": "복사됨!"
+        },
+        "ChmodCalculator": {
+            "owner": "소유자 (Owner)",
+            "group": "그룹 (Group)",
+            "public": "전체 (Public)",
+            "read": "읽기 (R)",
+            "write": "쓰기 (W)",
+            "execute": "실행 (X)",
+            "octalLabel": "8진수 (Octal)",
+            "symbolicLabel": "기호 (Symbolic)",
+            "copied": "복사됨!"
+        },
+        "BusinessValidator": {
+            "tabs": {
+                "biz": "사업자번호",
+                "res": "주민등록번호"
+            },
+            "bizInputLabel": "사업자등록번호 (하이픈 또는 숫자만)",
+            "resInputLabel": "주민등록번호 (하이픈 또는 숫자만)",
+            "generate": "번호 생성",
+            "copy": "복사",
+            "check": "검증하기",
+            "validBiz": "유효한 사업자번호입니다",
+            "invalidBiz": "유효하지 않은 사업자번호입니다",
+            "errorLength": "10자리여야 합니다",
+            "validRes": "유효한 형식입니다",
+            "invalidRes": "유효하지 않은 형식입니다",
+            "errorResLength": "13자리여야 합니다",
+            "invalidDate": "유효하지 않은 날짜입니다",
+            "invalidGender": "성별 코드가 올바르지 않습니다",
+            "invalidResChecksum": "검증 번호가 일치하지 않습니다",
+            "resWarning": "이 도구는 형과 검증 번호의 유효성만 확인합니다. 실명 확인은 하지 않습니다."
+        }
+    }
+}

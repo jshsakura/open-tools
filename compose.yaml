@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3033:3033"
+    environment:
+      - NODE_ENV=production
+    # For development, you might want to override the command to run 'npm run dev' 
+    # and mount volumes, but this default setup is for verifying the production build.

@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# AI agent skills
+.agent/
+
 # testing
 /coverage
 

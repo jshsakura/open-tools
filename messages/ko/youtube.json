@@ -1,0 +1,34 @@
+{
+    "YouTubeDownloader": {
+        "title": "YouTube 다운로더",
+        "description": "고화질 유튜브 영상 및 음원 추출 도구. 브라우저에서 안전하고 빠르게 처리됩니다.",
+        "inputPlaceholder": "유튜브 영상 주소 (URL)를 붙여넣으세요",
+        "formatMP4": "MP4 비디오",
+        "formatMP3": "MP3 오디오",
+        "formatSRT": "자막 (SRT)",
+        "downloadBtn": "다운로드 시작",
+        "processing": "다운로드 중...",
+        "analyze": "분석",
+        "analyzing": "분석 중...",
+        "sizeUnknown": "크기 알 수 없음",
+        "emptyState": "분석 후 여기에 영상 정보가 표시됩니다.",
+        "tabs": {
+            "video": "비디오",
+            "audio": "오디오",
+            "subtitle": "자막"
+        },
+        "noFormats": "{type} 포맷이 없습니다.",
+        "steps": {
+            "extracting": "영상 정보 추출 중...",
+            "downloadingVideo": "비디오 스트림 로드 중...",
+            "downloadingAudio": "오디오 스트림 로드 중...",
+            "downloadingSubtitle": "자막 다운로드 중...",
+            "muxing": "미디어 병합 및 인코딩 중...",
+            "completed": "다운로드 완료!"
+        },
+        "noteTitle": "주의 사항:",
+        "note1": "브라우저 리소스에 따라 고화질 영상 처리에 시간이 걸릴 수 있습니다.",
+        "note2": "안정적인 인터넷 연결이 필요합니다.",
+        "note3": "저작권이 있는 콘텐츠의 무단 다운로드는 권장하지 않습니다."
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "SecurityTools": {
+        "title": "보안 & 암호화 도구",
+        "description": "AES, RSA, Bcrypt, JWT, HMAC, 해시 생성 등 보안 관련 도구 모음."
+    },
+    "PdfTools": {
+        "title": "PDF 도구 모음",
+        "description": "PDF 병합, 분할, 변환 기능을 한곳에서 편리하게 사용하세요.",
+        "tabs": {
+            "merge": "합치기",
+            "split": "나누기",
+            "toImage": "이미지로 변환"
+        }
+    },
+    "DataTools": {
+        "title": "데이터 처리 도구 모음",
+        "description": "데이터 변환, 포맷팅, 처리를 위한 도구 모음입니다.",
+        "tabs": {
+            "converter": "JSON/CSV/Excel",
+            "sql": "SQL 포매터",
+            "slug": "URL 슬러그"
+        }
+    },
+    "TextTools": {
+        "title": "텍스트 도구 모음",
+        "description": "이미지 텍스트 추출(OCR), 더미 텍스트 생성, 한글 처리를 위한 도구 모음입니다.",
+        "tabs": {
+            "ocr": "OCR (문자 인식)",
+            "lorem": "로렘 입숨 (Lorem Ipsum)",
+            "hangul": "한글 처리기 (Hangul)"
+        }
+    },
+    "DevTools": {
+        "title": "개발 & 인프라 도구",
+        "description": "Docker 변환, 권한 계산, 한국형 신원 검증 도구 모음.",
+        "tabs": {
+            "docker": "도커 컴포즈",
+            "chmod": "권한 계산기",
+            "validator": "신원 검증기 (한국)"
+        }
+    },
+    "Tools": {
+        "BcryptGenerator": {
+            "title": "Bcrypt 생성기",
+            "description": "비밀번호 보안을 위한 Bcrypt 해시를 생성하고 검증합니다."
+        },
+        "HmacGenerator": {
+            "title": "HMAC 생성기",
+            "description": "메시지 무결성 검증을 위한 키 기반 해시(HMAC)를 생성합니다."
+        },
+        "RsaGenerator": {
+            "title": "RSA 키 생성기",
+            "description": "RSA 공개키 및 개인키 쌍을 생성합니다."
+        }
+    }
+}

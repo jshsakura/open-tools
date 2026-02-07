@@ -1,0 +1,60 @@
+{
+    "SecurityTools": {
+        "title": "Security & Encryption",
+        "description": "Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing."
+    },
+    "PdfTools": {
+        "title": "PDF Tools",
+        "description": "All-in-one PDF utilities: Merge, Split, and Convert to Image.",
+        "tabs": {
+            "merge": "Merge",
+            "split": "Split",
+            "toImage": "To Image"
+        }
+    },
+    "DataTools": {
+        "title": "Data Manipulation Suite",
+        "description": "A collection of tools for data conversion, formatting, and processing.",
+        "tabs": {
+            "converter": "JSON/CSV/Excel",
+            "sql": "SQL Formatter",
+            "slug": "URL Slug"
+        }
+    },
+    "TextTools": {
+        "title": "Text & Content Suite",
+        "description": "Tools for text processing, OCR, and content generation.",
+        "tabs": {
+            "ocr": "OCR (Image to Text)",
+            "lorem": "Lorem Ipsum",
+            "hangul": "Hangul Processor"
+        }
+    },
+    "DevTools": {
+        "title": "Dev & Infra Suite",
+        "description": "Developer utilities for Docker, permissions, and validation.",
+        "tabs": {
+            "docker": "Docker Compose",
+            "chmod": "Chmod Calc",
+            "validator": "ID Validator (Korea)"
+        }
+    },
+    "Tools": {
+        "AesCrypto": {
+            "title": "AES Encryption",
+            "description": "Securely encrypt and decrypt text using AES-GCM algorithm directly in your browser."
+        },
+        "BcryptGenerator": {
+            "title": "Bcrypt Generator",
+            "description": "Generate and verify Bcrypt passwords hashes for secure authentication."
+        },
+        "HmacGenerator": {
+            "title": "HMAC Generator",
+            "description": "Create Hash-based Message Authentication Codes (MD5, SHA1, SHA256)."
+        },
+        "RsaGenerator": {
+            "title": "RSA Key Generator",
+            "description": "Generate RSA Public and Private Key pairs (PEM format)."
+        }
+    }
+}

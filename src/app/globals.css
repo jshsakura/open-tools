@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  /* Brand Blue: #3B82F6 -> HSL 217 91% 60% */
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 217 91% 60%;
+
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Catppuccin Mocha Palette */
+  /* Base: #1e1e2e -> 240 21% 15% */
+  --background: 240 21% 15%;
+  /* Text: #cdd6f4 -> 226 64% 88% */
+  --foreground: 226 64% 88%;
+
+  /* Surface0: #313244 -> 240 16% 23% */
+  --card: 240 16% 23%;
+  --card-foreground: 226 64% 88%;
+
+  /* Surface0 */
+  --popover: 240 16% 23%;
+  --popover-foreground: 226 64% 88%;
+
+  /* Blue: #89b4fa -> 217 92% 76% */
+  --primary: 217 92% 76%;
+  /* Base for contrast */
+  --primary-foreground: 240 21% 15%;
+
+  /* Surface1: #45475a -> 240 13% 31% */
+  --secondary: 240 13% 31%;
+  --secondary-foreground: 226 64% 88%;
+
+  /* Surface1 */
+  --muted: 240 13% 31%;
+  --muted-foreground: 236 14% 63%;
+  /* Subtext0 #a6adc8 */
+
+  /* Surface1 */
+  --accent: 240 13% 31%;
+  --accent-foreground: 226 64% 88%;
+
+  /* Red: #f38ba8 -> 343 81% 75% */
+  --destructive: 343 81% 75%;
+  --destructive-foreground: 240 21% 15%;
+
+  /* Surface1 */
+  --border: 240 13% 31%;
+  --input: 240 13% 31%;
+  /* Blue */
+  --ring: 217 92% 76%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-border);
+    outline-color: var(--color-ring);
+  }
+
+  /* Restore cursor on touch devices */
+  @media (pointer: coarse) {
+
+    body,
+    a,
+    button,
+    [role="button"] {
+      cursor: auto;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--muted-foreground);
+    opacity: 0.2;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+    opacity: 0.4;
+  }
+
+  .font-pixel {
+    font-family: var(--font-jost), sans-serif !important;
+  }
 }

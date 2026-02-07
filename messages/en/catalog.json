@@ -1,0 +1,242 @@
+{
+    "Catalog": {
+        "Categories": {
+            "Development": "Development",
+            "Media": "Media",
+            "Design": "Design",
+            "Security": "Security",
+            "Utilities": "Utilities"
+        },
+        "SunoDownloader": {
+            "title": "Suno AI Downloader",
+            "description": "Download Suno.com songs easily by pasting the sharing link. High-quality MP3 download."
+        },
+        "VideoConverter": {
+            "title": "Local Video Encoder (WASM)",
+            "description": "Convert video to MP4/MP3/GIF locally in your browser. Privacy focused, no uploads."
+        },
+        "YoutubeThumbnail": {
+            "title": "YouTube Thumbnail Extractor",
+            "description": "Get high-resolution thumbnails from any YouTube video URL instantly."
+        },
+        "ImageConverter": {
+            "title": "Image Format Converter",
+            "description": "Batch convert images between PNG, JPG, WebP, and AVIF with compression options."
+        },
+        "SqlConverter": {
+            "title": "SQL to JSON/CSV Converter",
+            "description": "Transform SQL INSERT statements into clean JSON or CSV data formats locally."
+        },
+        "FaviconGenerator": {
+            "title": "Favicon Generator",
+            "description": "Generate multi-format favicons (ICO, PNG) from any image or text snippet.",
+            "dropTitle": "Click or drag image to upload",
+            "dropDesc": "Support for PNG, JPG, WebP",
+            "generating": "Generating...",
+            "ready": "Image is ready",
+            "remove": "Remove",
+            "generate": "Generate Favicons ZIP",
+            "formats": "Generates a complete favicon set for modern browsers"
+        },
+        "UnitConverter": {
+            "title": "Smart Unit Converter",
+            "description": "Convert between various units including Data (MB to GB), CSS (PX to REM), and more."
+        },
+        "JsonYaml": {
+            "title": "JSON ↔ YAML Converter",
+            "description": "Fast and clean conversion between JSON and YAML formats with syntax highlighting."
+        },
+        "JwtDebugger": {
+            "title": "JWT Debugger",
+            "description": "Decode and analyze JSON Web Tokens locally. Check headers, payloads, and signatures."
+        },
+        "RegexTester": {
+            "title": "RegEx Tester",
+            "description": "Test and debug your regular expressions with real-time highlighting and group extraction."
+        },
+        "CronGenerator": {
+            "title": "Cron Expression Generator",
+            "description": "Create and verify cron jobs with human-readable descriptions and next execution times."
+        },
+        "MyIp": {
+            "title": "My IP & Location",
+            "description": "Instantly check your public IP address, ISP, and detailed geographic location."
+        },
+        "SpeedTest": {
+            "title": "Network Speed Test",
+            "description": "Measure your internet download, upload speeds, and ping latency in real-time."
+        },
+        "PortScanner": {
+            "title": "Local Port Scanner",
+            "description": "Check if specific ports on your network or local machine are open and responsive."
+        },
+        "BrowserInfo": {
+            "title": "What is my Browser?",
+            "description": "Analyze your browser version, OS, screen resolution, and user agent details."
+        },
+        "SvgToJsx": {
+            "title": "SVG to JSX Converter",
+            "description": "Transform raw SVG code into high-quality, typed React components instantly."
+        },
+        "Glassmorphism": {
+            "title": "CSS Glassmorphism Generator",
+            "description": "Design sleek frosted-glass UI elements with real-time CSS code generation."
+        },
+        "ColorPalette": {
+            "title": "Color Palette Extractor",
+            "description": "Extract harmonious color palettes from any image using the Canvas API."
+        },
+        "BorderRadiusGenerator": {
+            "title": "CSS Border Radius Generator",
+            "description": "Create complex CSS border-radius values visually with real-time feedback."
+        },
+        "BoxShadowGenerator": {
+            "title": "CSS Box Shadow Generator",
+            "description": "Design sleek CSS box shadow effects with control over intensity, color, and offset."
+        },
+        "GradientGenerator": {
+            "title": "CSS Gradient Generator",
+            "description": "Visually generate linear and radial CSS gradients and copy the resulting code."
+        },
+        "ImageCompressor": {
+            "title": "Image Compressor",
+            "description": "Reduce image file size and optimize quality directly in your browser."
+        },
+        "Base64Image": {
+            "title": "Base64 Image Viewer",
+            "description": "Safely decode, preview, and analyze base64 encoded image strings."
+        },
+        "Base64Converter": {
+            "title": "Base64 Encoder/Decoder",
+            "description": "Convert between text and Base64 in real-time with clipboard support."
+        },
+        "UrlConverter": {
+            "title": "URL Encoder/Decoder",
+            "description": "Safe and fast URL encoding/decoding for developers."
+        },
+        "QrGenerator": {
+            "title": "QR Code Generator",
+            "description": "Instantly generate high-quality QR codes with various settings and custom designs."
+        },
+        "HashGenerator": {
+            "title": "Hash Generator",
+            "description": "Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side."
+        },
+        "BackgroundRemover": {
+            "title": "AI Background Remover",
+            "description": "Experience sophisticated AI-powered background removal directly in your browser."
+        },
+        "DataTools": {
+            "title": "Data Tools Suite",
+            "description": "JSON/CSV/Excel conversion, SQL formatting, and Slug generation."
+        },
+        "TextTools": {
+            "title": "Text & Content Suite",
+            "description": "OCR, Lorem Ipsum generator, and Hangul processing tools."
+        },
+        "SqlFormatter": {
+            "title": "SQL Formatter & Beautifier",
+            "description": "Format, validate, and convert XML to JSON with real-time error detection."
+        },
+        "XmlFormatter": {
+            "title": "XML Formatter & Validator",
+            "description": "Format, validate, and convert XML to JSON with real-time error detection."
+        },
+        "BannerGenerator": {
+            "title": "Spring Boot Banner Generator",
+            "description": "Create stunning ASCII art banners with ANSI colors for your Spring Boot applications."
+        },
+        "PdfTools": {
+            "title": "PDF Tools",
+            "description": "All-in-one PDF utilities: Merge, Split, and Convert to Image."
+        },
+        "PdfMerge": {
+            "title": "Merge PDF",
+            "description": "Combine multiple PDF files into one for free. No file limits."
+        },
+        "PdfSplit": {
+            "title": "Split PDF",
+            "description": "Extract specific pages from a PDF file quickly."
+        },
+        "PdfToImage": {
+            "title": "PDF to Image",
+            "description": "Convert PDF pages to high-quality JPG or PNG images."
+        },
+        "HwpViewer": {
+            "title": "HWP Viewer",
+            "description": "View HWP (Hanword) files directly in your browser instantly."
+        },
+        "Basic3dViewer": {
+            "title": "3D Model Viewer",
+            "description": "Preview and analyze 3D models (OBJ, STL, GLTF/GLB) directly in your browser."
+        },
+        "AesCrypto": {
+            "title": "AES Encryption",
+            "description": "Securely encrypt and decrypt text using AES-GCM algorithm."
+        },
+        "BcryptGenerator": {
+            "title": "Bcrypt Generator",
+            "description": "Generate and verify Bcrypt passwords hashes for secure authentication."
+        },
+        "HmacGenerator": {
+            "title": "HMAC Generator",
+            "description": "Create Hash-based Message Authentication Codes (MD5, SHA1, SHA256)."
+        },
+        "RsaGenerator": {
+            "title": "RSA Key Generator",
+            "description": "Generate RSA Public and Private Key pairs (PEM format)."
+        },
+        "SecurityTools": {
+            "title": "Security & Encryption",
+            "description": "Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing."
+        },
+        "DevTools": {
+            "title": "Developer Tools",
+            "description": "Collection of developer utilities including Docker, permissions, and validation."
+        },
+        "YouTubeDownloader": {
+            "title": "YouTube Downloader",
+            "description": "High-quality YouTube video and audio downloader. Processed safely in your browser.",
+            "downloadBtn": "Download",
+            "advancedSettings": "Advanced Settings",
+            "inputPlaceholder": "Paste YouTube Link Here",
+            "formatMP4": "MP4 Video",
+            "formatMP3": "MP3 Audio",
+            "formatSRT": "Subtitles (SRT)",
+            "processing": "Processing...",
+            "analyze": "Analyze",
+            "analyzing": "Analyzing...",
+            "sizeUnknown": "Size unknown",
+            "emptyState": "Video details will appear here after analysis.",
+            "tabs": {
+                "video": "Video",
+                "audio": "Audio",
+                "subtitle": "Subtitle"
+            },
+            "noFormats": "No {type} formats found.",
+            "noteTitle": "Important Notes",
+            "note1": "Processing happens <strong>locally in your browser</strong>",
+            "note2": "Large videos may take time to merge",
+            "note3": "Please respect copyright laws",
+            "errors": {
+                "download": "Error downloading file.",
+                "emptyFile": "Downloaded file is empty. Please try another quality.",
+                "ffmpeg": "Failed to load FFmpeg engine.",
+                "fetch": "Fetch failed: {status}"
+            },
+            "steps": {
+                "loadingFFmpeg": "Loading FFmpeg core...",
+                "ready": "Ready",
+                "extracting": "Extracting video info...",
+                "downloadingVideo": "Downloading video track...",
+                "downloadingAudio": "Downloading audio track...",
+                "downloadingSubtitle": "Downloading subtitle...",
+                "muxing": "Merging video and audio...",
+                "completed": "Download Complete!",
+                "cancelled": "Download cancelled."
+            },
+            "cancel": "Cancel",
+            "speedNote": "Download speeds may be slow due to YouTube limitations and proxy relay."
+        }
+    }
+}
