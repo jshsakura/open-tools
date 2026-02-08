@@ -7,9 +7,21 @@
             "Security": "보안",
             "Utilities": "유틸리티"
         },
-        "SunoDownloader": {
-            "title": "Suno AI 다운로더",
-            "description": "Suno.com 공유 링크를 붙여넣어 노래를 간편하게 다운로드하세요. 고음질 MP3 지원."
+        "Suno": {
+            "title": "Suno 다운로더 AI",
+            "description": "Suno.com 공유 링크를 붙여넣어 노래를 간편하게 다운로드하세요. 고음질 MP3 지원.",
+            "errorGeneric": "노래 데이터를 가져오는 중 오류가 발생했습니다.",
+            "inputPlaceholder": "Suno 노래 또는 플레이리스트 링크를 여기에 붙여넣으세요...",
+            "resolveButton": "확인",
+            "guide": {
+                "title": "공유 링크 찾는 방법",
+                "step1": "suno.com에 접속하여 좋아하는 노래나 플레이리스트를 찾으세요.",
+                "step2": "노래 카드의 공유 아이콘(화살표)을 클릭하세요.",
+                "step3": "공유 링크를 복사하여 위에 붙여넣으세요.",
+                "supported": "지원되는 링크 유형",
+                "playlist": "노래 링크",
+                "share": "플레이리스트 링크"
+            }
         },
         "VideoConverter": {
             "title": "로컬 비디오 인코더 (WASM)",
@@ -17,7 +29,10 @@
         },
         "YoutubeThumbnail": {
             "title": "YouTube 썸네일 추출기",
-            "description": "YouTube 동영상 URL만으로 고해상도 썸네일을 즉시 추출합니다."
+            "description": "YouTube 동영상 URL만으로 고해상도 썸네일을 즉시 추출합니다.",
+            "errorInvalidUrl": "유효하지 않은 YouTube URL입니다. 올바른 YouTube 링크를 입력해주세요.",
+            "inputPlaceholder": "YouTube URL을 여기에 붙여넣으세요...",
+            "extractButton": "추출"
         },
         "ImageConverter": {
             "title": "이미지 포맷 변환기",
@@ -68,11 +83,32 @@
         },
         "PortScanner": {
             "title": "로컬 포트 스캐너",
-            "description": "내트워크 또는 로컬망의 특정 포트가 열려 있는지 여부를 확인합니다."
+            "description": "네트워크 또는 로컬망의 특정 포트가 열려 있는지 여부를 확인합니다."
         },
         "BrowserInfo": {
             "title": "브라우저 정보 확인",
-            "description": "현재 사용 중인 브라우저 버전, OS, 화면 해상도 및 User Agent 정보를 분석합니다."
+            "description": "현재 사용 중인 브라우저 버전, OS, 화면 해상도 및 User Agent 정보를 분석합니다.",
+            "browserDetection": "브라우저 감지",
+            "environmentReport": "현재 환경 보고서",
+            "liveSession": "실시간 세션",
+            "displayAnalysis": "디스플레이 분석",
+            "screenResolution": "화면 해상도",
+            "windowViewport": "창 뷰포트",
+            "internalBrowserSize": "내부 브라우저 크기",
+            "privacySettings": "개인정보 설정",
+            "cookies": "쿠키",
+            "doNotTrack": "추적 안 함",
+            "active": "활성",
+            "notSent": "전송 안 함",
+            "javascript": "자바스크립트",
+            "pdfSupport": "PDF 지원",
+            "enabled": "활성화",
+            "disabled": "비활성화",
+            "note": "참고: 이 값들은 브라우저의 navigator 객체에서 직접 추출되며 다른 곳에 저장되지 않습니다.",
+            "fullUserAgentString": "전체 사용자 에이전트 문자열",
+            "copied": "복사됨",
+            "copyString": "복사",
+            "runningOn": "{os}에서 실행 중"
         },
         "SvgToJsx": {
             "title": "SVG to JSX 변환기",
@@ -241,6 +277,18 @@
         "TorrentHistory": {
             "title": "내 토렌트 기록 확인",
             "description": "내 공인 IP에 기록된 토렌트 다운로드 흔적을 조회하고 잠재적 위험을 분석합니다."
+        },
+        "DockerComposeConverter": {
+            "title": "Docker Compose 변환기",
+            "description": "docker run 명령어를 docker-compose.yml로 자동 변환하세요."
+        },
+        "ChmodCalculator": {
+            "title": "Chmod 계산기",
+            "description": "시각적 토글로 파일 권한(Chmod)을 쉽게 계산하세요."
+        },
+        "KoreanBusinessValidator": {
+            "title": "한국 사업자등록번호 검증",
+            "description": "사업자등록번호 유효성을 검증하고 관련 정보를 확인하세요."
         }
     }
 }
