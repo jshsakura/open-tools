@@ -4,13 +4,15 @@ import { useState, useRef, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { FileUp, File, X, FileText, AlertCircle } from "lucide-react"
+import { FileUp, File as FileIcon, X, FileText, AlertCircle, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 // @ts-ignore
 // import { Viewer } from "hwp.js"
+import { renderAsync } from "docx-preview"
+import * as XLSX from "xlsx"
 
-export function HwpViewer() {
-    const t = useTranslations("HwpViewer")
+export function DocumentViewer() {
+    const t = useTranslations("HwpViewer") // Keep using HwpViewer namespace or migrate to DocumentViewer
     const [file, setFile] = useState<File | null>(null)
     const [isProcessing, setIsProcessing] = useState(false)
     const viewerRef = useRef<HTMLDivElement>(null)
@@ -29,27 +31,80 @@ export function HwpViewer() {
     }
 
     const processFile = async (selectedFile: File) => {
-        // HWP detection is tricky by mime type, so we check extension
-        if (!selectedFile.name.toLowerCase().endsWith('.hwp')) {
-            toast.error("Invalid file type", { description: "Please upload a .hwp file." })
+        const fileName = selectedFile.name.toLowerCase()
+        const isHwp = fileName.endsWith('.hwp')
+        const isDocx = fileName.endsWith('.docx')
+        const isExcel = fileName.endsWith('.xlsx') || fileName.endsWith('.xls')
+
+        if (!isHwp && !isDocx && !isExcel) {
+            toast.error("Invalid file type", { description: "Support .hwp, .docx, .xlsx, .xls files." })
             return
         }
+
         setFile(selectedFile)
         setIsProcessing(true)
 
+        // Clear previous content
+        if (viewerRef.current) {
+            viewerRef.current.innerHTML = ''
+        }
+
         try {
             const arrayBuffer = await selectedFile.arrayBuffer()
-            const data = new Uint8Array(arrayBuffer)
 
-            if (viewerRef.current) {
-                viewerRef.current.innerHTML = '' // Clear previous
-                // new Viewer(viewerRef.current, data, { type: 'array' })
-                toast.error("HWP Viewer is temporarily disabled due to a build issue.")
+            if (isHwp) {
+                // const data = new Uint8Array(arrayBuffer)
+                // if (viewerRef.current) {
+                //     // @ts-ignore
+                //     const { Viewer } = await import("hwp.js")
+                //     new Viewer(viewerRef.current, data, { type: 'array' })
+                // }
+                toast.error("HWP Viewer is temporarily disabled due to build issues.")
+            } else if (isDocx) {
+                if (viewerRef.current) {
+                    await renderAsync(arrayBuffer, viewerRef.current, viewerRef.current, {
+                        className: "docx-viewer",
+                        inWrapper: true,
+                        ignoreWidth: false,
+                        ignoreHeight: false,
+                        ignoreFonts: false,
+                        breakPages: true,
+                        ignoreLastRenderedPageBreak: true,
+                        experimental: false,
+                        trimXmlDeclaration: true,
+                        useBase64URL: false,
+
+                        debug: false,
+                    })
+                }
+            } else if (isExcel) {
+                const workbook = XLSX.read(arrayBuffer, { type: 'array' })
+                const firstSheetName = workbook.SheetNames[0]
+                const worksheet = workbook.Sheets[firstSheetName]
+                const html = XLSX.utils.sheet_to_html(worksheet, { id: "excel-table", editable: false })
+
+                if (viewerRef.current) {
+                    viewerRef.current.innerHTML = `
+                        <style>
+                            table { border-collapse: collapse; width: 100%; font-size: 14px; }
+                            td, th { border: 1px solid #e2e8f0; padding: 8px; white-space: nowrap; }
+                            tr:nth-child(even){background-color: #f8fafc;}
+                            th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #f1f5f9; color: #0f172a; font-weight: 600; }
+                            .excel-viewer { overflow-x: auto; width: 100%; height: 100%; }
+                        </style>
+                        <div class="excel-viewer">
+                            ${html}
+                        </div>
+                    `
+                }
             }
+
+            toast.success("Document loaded successfully")
         } catch (error) {
             console.error(error)
-            toast.error(t("error"), { description: "Could not parse this HWP file." })
+            toast.error("Failed to load document", { description: "Could not parse this file." })
             setFile(null)
+            if (viewerRef.current) viewerRef.current.innerHTML = ''
         } finally {
             setIsProcessing(false)
         }
@@ -62,6 +117,7 @@ export function HwpViewer() {
                     <div>
                         <CardTitle className="flex items-center gap-2">
                             <FileText className="h-5 w-5 text-blue-600" />
+                            {/* Updated title to reflect multi-format support if possible via translation update */}
                             {t("title")}
                         </CardTitle>
                         <CardDescription>{t("description")}</CardDescription>
@@ -75,25 +131,25 @@ export function HwpViewer() {
                             onDragOver={(e) => e.preventDefault()}
                             onDrop={handleDrop}
                             className="border-2 border-dashed border-muted-foreground/25 rounded-xl p-12 text-center hover:bg-muted/30 transition-colors cursor-pointer w-full max-w-lg"
-                            onClick={() => document.getElementById("hwp-upload")?.click()}
+                            onClick={() => document.getElementById("doc-upload")?.click()}
                         >
                             <input
-                                id="hwp-upload"
+                                id="doc-upload"
                                 type="file"
-                                accept=".hwp"
+                                accept=".hwp,.docx,.xlsx,.xls"
                                 className="hidden"
                                 onChange={handleFileChange}
                             />
                             <FileUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                            <p className="text-lg font-medium mb-1">{t("dropTitle")}</p>
-                            <p className="text-sm text-muted-foreground">Support .hwp files</p>
+                            <p className="text-lg font-medium mb-1">Upload Document</p>
+                            <p className="text-sm text-muted-foreground">Support .hwp, .docx, .xlsx, .xls</p>
                         </div>
                     </div>
                 ) : (
                     <div className="h-full flex flex-col">
                         <div className="shrink-0 flex items-center justify-between p-2 bg-muted/20 border-b text-sm px-4">
                             <span className="font-medium flex items-center gap-2">
-                                <File className="h-4 w-4" /> {file.name}
+                                <FileIcon className="h-4 w-4" /> {file.name}
                             </span>
                             <Button variant="ghost" size="sm" onClick={() => { setFile(null); if (viewerRef.current) viewerRef.current.innerHTML = ''; }} className="h-6 w-6 p-0">
                                 <X className="h-4 w-4" />
@@ -101,10 +157,15 @@ export function HwpViewer() {
                         </div>
 
                         <div className="flex-1 overflow-auto bg-white p-8 shadow-inner relative" >
-                            <div ref={viewerRef} className="min-h-full" />
+                            {/* Container for document content */}
+                            <div ref={viewerRef} className="min-h-full doc-container" />
+
                             {isProcessing && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-white/50 z-10">
-                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10 backdrop-blur-sm">
+                                    <div className="flex flex-col items-center gap-2">
+                                        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                                        <p className="text-sm text-muted-foreground">Rendering document...</p>
+                                    </div>
                                 </div>
                             )}
                         </div>

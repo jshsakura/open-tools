@@ -42,7 +42,7 @@ export function ToolCard({ title, description, icon: Icon, href, tags, color = "
                     {/* Footer: Tags only */}
                     <div className="mt-auto flex flex-wrap gap-1">
                         {tags?.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="px-1.5 py-0 text-[8px] rounded-full font-bold bg-primary/5 text-primary/60 border border-primary/10 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+                            <Badge key={tag} variant="secondary" className="px-1.5 py-0 text-[10px] rounded-full font-bold bg-primary/5 text-primary/60 border border-primary/10 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
                                 {tag}
                             </Badge>
                         ))}

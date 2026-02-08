@@ -3,7 +3,7 @@
 import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Github, Menu } from "lucide-react"
+import { Sparkles, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { LanguageToggle } from "@/components/language-toggle"
@@ -67,16 +67,7 @@ export function Header() {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                    <Link
-                        href="https://github.com/opencourse-kr"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <Button variant="ghost" size="sm" className="gap-2 h-9 text-muted-foreground hover:text-foreground transition-all duration-300 hover:bg-primary/5 hover:scale-105 active:scale-95 group">
-                            <Github className="h-5 w-5 transition-transform group-hover:rotate-12" />
-                            <span className="hidden md:inline-block text-xs">Star on GitHub</span>
-                        </Button>
-                    </Link>
+
 
                     <ModeToggle />
                     <LanguageToggle />

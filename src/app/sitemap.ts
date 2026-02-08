@@ -16,10 +16,11 @@ export async function generateSitemaps() {
   return sitemaps
 }
 
-export default async function sitemap({ id, params }: { id: string; params: Promise<{ locale: string }> }): Promise<MetadataRoute.Sitemap> {
-  const { locale } = await params
+export default async function sitemap({ id }: { id: string }): Promise<MetadataRoute.Sitemap> {
+  const locale = id
+  // const { locale } = await params // Previous code was incorrect
 
-  const localeTools = tools.map(tool => {
+  const localeTools = tools.map((tool) => {
     const href = `/${locale}${tool.href}`
     return {
       url: `${baseUrl}${href}`,
@@ -29,10 +30,13 @@ export default async function sitemap({ id, params }: { id: string; params: Prom
     }
   })
 
-  return [...localeTools, {
+  // Add the locale root page
+  const rootEntry = {
     url: `${baseUrl}/${locale}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 1.0,
-  }]
+  }
+
+  return [...localeTools, rootEntry]
 }

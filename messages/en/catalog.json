@@ -163,8 +163,8 @@
             "description": "Convert PDF pages to high-quality JPG or PNG images."
         },
         "HwpViewer": {
-            "title": "HWP Viewer",
-            "description": "View HWP (Hanword) files directly in your browser instantly."
+            "title": "Document Viewer",
+            "description": "Instantly view HWP and DOCX files in your browser."
         },
         "Basic3dViewer": {
             "title": "3D Model Viewer",
@@ -237,6 +237,10 @@
             },
             "cancel": "Cancel",
             "speedNote": "Download speeds may be slow due to YouTube limitations and proxy relay."
+        },
+        "TorrentHistory": {
+            "title": "IP Torrent History Check",
+            "description": "Analyze your public IP address to see torrent download traces and potential security risks."
         }
     }
 }

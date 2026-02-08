@@ -32,7 +32,8 @@ import {
     Files,
     Box,
     ScanText,
-    Layers
+    Layers,
+    Fingerprint
 } from "lucide-react"
 import { YouTubeIcon } from "@/components/icons/youtube-icon";
 import { cn } from "@/lib/utils"
@@ -42,6 +43,15 @@ export function HomeClient() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
     const tools = useMemo(() => [
+        {
+            id: 'torrent-history',
+            title: t('Catalog.TorrentHistory.title'),
+            description: t('Catalog.TorrentHistory.description'),
+            icon: Fingerprint,
+            href: "/tools/torrent-history",
+            color: "text-red-600",
+            tags: ['Security']
+        },
         {
             id: 'security-tools',
             title: t('Catalog.SecurityTools.title'),
@@ -433,24 +443,70 @@ export function HomeClient() {
                 </section>
 
                 {/* Tools Grid */}
-                <section id="catalog" className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 pb-20">
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {filteredTools.map((tool) => (
-                            <ToolCard
-                                key={tool.id}
-                                title={tool.title}
-                                description={tool.description}
-                                icon={tool.icon}
-                                href={tool.href}
-                                color={tool.color}
-                                tags={tool.tags}
-                            />
-                        ))}
-                    </div>
-                    {filteredTools.length === 0 && (
-                        <div className="py-20 text-center text-muted-foreground">
-                            No tools found for this category.
+                <section id="catalog" className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 pb-20 space-y-16">
+                    {selectedTag ? (
+                        // Filtered View (Single Grid)
+                        <div>
+                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                {filteredTools.map((tool) => (
+                                    <ToolCard
+                                        key={tool.id}
+                                        title={tool.title}
+                                        description={tool.description}
+                                        icon={tool.icon}
+                                        href={tool.href}
+                                        color={tool.color}
+                                        tags={tool.tags}
+                                    />
+                                ))}
+                            </div>
+                            {filteredTools.length === 0 && (
+                                <div className="py-20 text-center text-muted-foreground">
+                                    No tools found for this category.
+                                </div>
+                            )}
                         </div>
+                    ) : (
+                        // Categorized View (Sections)
+                        allTags.map((category) => {
+                            const categoryTools = tools.filter(tool => tool.tags.includes(category));
+                            if (categoryTools.length === 0) return null;
+
+                            // Icon mapping for categories
+                            const CategoryIcon = {
+                                Development: Terminal,
+                                Media: Video,
+                                Design: Wand2,
+                                Security: ShieldCheck,
+                                Utilities: Zap
+                            }[category] || LayoutGrid;
+
+                            return (
+                                <div key={category} className="space-y-6">
+                                    <h2 className="text-2xl font-bold flex items-center gap-2 px-1">
+                                        <CategoryIcon className="w-6 h-6 text-primary" />
+                                        {/* Localized Category Title - properly references Catalog.Categories */}
+                                        {t(`Catalog.Categories.${category}`)}
+                                        <span className="text-sm font-normal text-muted-foreground ml-2 bg-muted/50 px-2 py-0.5 rounded-full">
+                                            {categoryTools.length}
+                                        </span>
+                                    </h2>
+                                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                        {categoryTools.map((tool) => (
+                                            <ToolCard
+                                                key={tool.id}
+                                                title={tool.title}
+                                                description={tool.description}
+                                                icon={tool.icon}
+                                                href={tool.href}
+                                                color={tool.color}
+                                                tags={tool.tags}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })
                     )}
                 </section>
             </div>

@@ -26,7 +26,10 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-    title: "Open Tools - 개발자를 위한 무료 도구 모음",
+    title: {
+        template: "Open Tools - %s",
+        default: "Open Tools - 개발자를 위한 무료 도구 모음"
+    },
     description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
     icons: {
         icon: "/favicon.ico",
@@ -82,8 +85,8 @@ export default async function LocaleLayout({
                     />
                     <ThemeProvider
                         attribute="class"
-                        defaultTheme="system"
-                        enableSystem
+                        defaultTheme="light"
+                        enableSystem={false}
                         disableTransitionOnChange
                     >
                         <div className="relative flex min-h-screen flex-col">

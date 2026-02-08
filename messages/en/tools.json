@@ -249,12 +249,12 @@
         "error": "Failed to convert PDF."
     },
     "HwpViewer": {
-        "title": "HWP Viewer",
-        "description": "View HWP files directly in your browser without installing software.",
-        "dropTitle": "Drag & drop HWP file here",
-        "view": "View HWP",
-        "copyInfo": "You can copy text from the viewer below.",
-        "error": "Failed to open HWP file."
+        "title": "Document Viewer (HWP/DOCX)",
+        "description": "View HWP and DOCX documents directly in your browser without installing any software.",
+        "dropTitle": "Drag & Drop document here",
+        "view": "Open Document",
+        "copyInfo": "You can select and copy text from the viewer.",
+        "error": "Failed to open document."
     },
     "Basic3dViewer": {
         "title": "3D Model Viewer",
@@ -463,6 +463,67 @@
             "invalidGender": "Invalid Gender Digit",
             "invalidResChecksum": "Invalid Checksum",
             "resWarning": "This tool only checks format/checksum validity. It does not verify actual identity."
+        }
+    },
+    "TorrentHistory": {
+        "title": "Torrent History Check",
+        "description": "Scan your IP address for public torrent download history and security risks.",
+        "pageTitle": "Check Your <span class='text-red-500'>Torrent History</span>",
+        "subtitle": "See what traces your IP address has left on the public BitTorrent network. This tool queries public DHT databases.",
+        "badge": "IP Digital Footprint Analysis",
+        "systemReady": "System Ready",
+        "notice": "* We query public databases. No history is stored.",
+        "button": {
+            "start": "Start Full Scan",
+            "retry": "Retry in {time}",
+            "another": "Check Another Network"
+        },
+        "scanning": {
+            "label": "Scanning...",
+            "logs": [
+                "Initializing network interface...",
+                "Identifying public IP address...",
+                "Scanning DHT nodes...",
+                "Analyzing packet headers...",
+                "Querying global tracker databases...",
+                "Decrypting metadata...",
+                "Correlating download history...",
+                "Generating security report..."
+            ]
+        },
+        "results": {
+            "ipLabel": "Your IP Address",
+            "ispLabel": "ISP (Provider)",
+            "riskScore": "IP Reputation Score",
+            "riskLevel": "{level} Risk",
+            "cleanTitle": "No Public Traces Found",
+            "cleanDesc": "We couldn't find any torrent activity associated with this IP address in the public databases.",
+            "cleanWarning": "⚠️ However, dynamic IPs change frequently, so check regularly.",
+            "cached": "Results cached. Rescan available in {minutes}m {seconds}s",
+            "suspiciousFound": "{count} suspicious activities found",
+            "vpnDetected": "VPN usage detected! You are successfully hiding your location.",
+            "columns": {
+                "content": "Content",
+                "date": "Date"
+            },
+            "blocked": "Scan Blocked",
+            "blockedDesc": "Automated scan was blocked by security policy. Please check manually below.",
+            "manualCheck": "Check Manually"
+        },
+        "guide": {
+            "title": "Privacy Protection Guide",
+            "whyVpn": "Why use a VPN?",
+            "whyVpnList": [
+                "Hides your real IP address from public swarms.",
+                "Encrypts your traffic from ISP monitoring.",
+                "Prevents bandwidth throttling."
+            ],
+            "policy": "Zero-Storage Policy",
+            "policyDesc": "This tool processes data in RAM only. No logs are saved. Your search history disappears when you close this tab."
+        },
+        "disclaimer": {
+            "title": "Technical Limitations & Disclaimer",
+            "content": "This tool provides estimated data based on public P2P network DHT (Distributed Hash Table) information. Since most home internet connections (ISPs) use 'Dynamic IPs', the retrieved history might belong to a previous user of this IP address, not necessarily you. This result cannot be used as legal evidence and is for reference purposes only."
         }
     }
 }

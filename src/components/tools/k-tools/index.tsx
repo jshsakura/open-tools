@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 import { FileText, Languages, ShieldCheck } from "lucide-react"
-import { HwpViewer } from "../hwp-viewer"
+import { DocumentViewer } from "../hwp-viewer"
 import { HangulProcessor } from "../text-tools/hangul-processor"
 import { BusinessValidator } from "../dev-tools/business-validator"
 
@@ -44,7 +44,7 @@ export function KTools() {
                                 </div>
                                 {t("tabs.hwp")}
                             </h2>
-                            <HwpViewer />
+                            <DocumentViewer />
                         </CardContent>
                     </Card>
                 </TabsContent>

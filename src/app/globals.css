@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* Force class-based dark mode for v4 */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-background: hsl(var(--background));

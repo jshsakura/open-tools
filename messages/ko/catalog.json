@@ -143,7 +143,7 @@
             "description": "SQL 쿼리를 예쁘게 정렬하고 가독성을 높여주는 도구입니다."
         },
         "BannerGenerator": {
-            "title": "아스키 아트 생성기",
+            "title": "ASCII 아트 배너 생성기",
             "description": "ANSI 색상을 지원하는 멋진 ASCII 아트 배너를 생성하세요. 텍스트를 아스키 아트로 변환합니다."
         },
         "PdfTools": {
@@ -163,8 +163,8 @@
             "description": "PDF 페이지를 고화질 JPG 또는 PNG 이미지로 변환합니다."
         },
         "HwpViewer": {
-            "title": "HWP 뷰어 (한글 뷰어)",
-            "description": "별도 프로그램 없이 브라우저에서 HWP 파일을 즉시 확인하세요."
+            "title": "통합 문서 뷰어",
+            "description": "HWP, DOCX 등 다양한 문서 파일을 브라우저에서 즉시 확인하세요."
         },
         "Basic3dViewer": {
             "title": "3D 모델 뷰어",
@@ -237,6 +237,10 @@
             },
             "cancel": "취소",
             "speedNote": "유튜브 정책(속도 제한) 및 프록시 우회로 인해 다운로드 속도가 다소 느릴 수 있습니다."
+        },
+        "TorrentHistory": {
+            "title": "내 토렌트 기록 확인",
+            "description": "내 공인 IP에 기록된 토렌트 다운로드 흔적을 조회하고 잠재적 위험을 분석합니다."
         }
     }
 }

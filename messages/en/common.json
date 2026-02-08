@@ -4,6 +4,15 @@
         "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
         "allTools": "All Tools"
     },
+    "Category": {
+        "Development": "Development",
+        "Media": "Media",
+        "Design": "Design",
+        "Security": "Security",
+        "Utilities": "Utilities",
+        "AI": "AI",
+        "Korea": "Korea"
+    },
     "Hero": {
         "badge": "Collection of Free Online Tools",
         "title_1": "Essential",

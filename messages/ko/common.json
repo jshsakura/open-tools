@@ -4,6 +4,15 @@
         "description": "일상적인 모든 요구 사항을 충족하는 프리미엄 오픈 소스 유틸리티입니다. 100% 클라이언트 측에서 안전하고 빠르게 실행됩니다.",
         "allTools": "전체 도구"
     },
+    "Category": {
+        "Development": "개발 (Development)",
+        "Media": "미디어 (Media)",
+        "Design": "디자인 (Design)",
+        "Security": "보안 (Security)",
+        "Utilities": "유틸리티 (Utilities)",
+        "AI": "인공지능 (AI)",
+        "Korea": "한국 (Korea)"
+    },
     "Hero": {
         "badge": "무료 온라인 도구 모음",
         "title_1": "필수",
