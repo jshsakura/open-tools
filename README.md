@@ -331,20 +331,88 @@ Selective server endpoints for browser-restricted operations:
 
 ## 📦 Deployment
 
-### Docker Support
-- **Multi-stage Build:** Optimized production images
-- **Port:** 3033 (configurable)
-- **Environment Variables:** External API keys (optional)
+### GitHub Actions (Automated Docker Publishing)
 
-### CI/CD
-- **GitHub Actions:** Automated Docker image publishing
-- **Automated Builds:** Triggered on push to main branch
+The project uses GitHub Actions to automatically build and publish Docker images to Docker Hub with multi-architecture support (amd64 + arm64).
+
+**Setup Required:**
+
+1. **Generate Docker Hub Access Token:**
+   - Go to [Docker Hub Account Settings](https://hub.docker.com/settings/security)
+   - Navigate to **Security > Access Tokens**
+   - Click **New Access Token**
+   - Set permissions: `Read, Write, Delete`
+   - Copy the generated token
+
+2. **Configure GitHub Secrets:**
+   - Go to your repository **Settings > Secrets and variables > Actions**
+   - Add the following secrets:
+     - `DOCKERHUB_USERNAME`: Your Docker Hub username
+     - `DOCKERHUB_TOKEN`: The access token generated above
+
+**Triggering Builds:**
+
+- **Push to main:** Builds and pushes `latest` tag
+- **Push tags:** Builds versioned tags (e.g., `v1.0.0` → `1.0.0`, `1.0`, `1`)
+- **Manual:** Trigger via GitHub Actions UI
+
+**Build Features:**
+- Multi-architecture: `linux/amd64` and `linux/arm64`
+- BuildKit caching for faster builds
+- GitHub Actions cache optimization
+
+### Docker Compose
+
+Quick deployment using Docker Compose:
+
+```bash
+# Option 1: Using env file
+cp .env.example .env
+# Edit .env with your DOCKERHUB_USERNAME
+docker-compose up -d
+
+# Option 2: Override at runtime
+DOCKERHUB_USERNAME=your-username IMAGE_TAG=latest docker-compose up -d
+```
+
+**Environment Variables (Docker Compose):**
+
+```bash
+# Required for image pull
+DOCKERHUB_USERNAME=your-dockerhub-username  # Your Docker Hub username
+IMAGE_TAG=latest                             # Version tag (default: latest)
+
+# Optional: Application config
+NODE_ENV=production                         # Environment mode
+PORT=3033                                  # Application port
+```
+
+**Resource Limits (Docker Compose):**
+
+```yaml
+resources:
+  limits:
+    cpus: '2'
+    memory: 2G
+  reservations:
+    cpus: '0.5'
+    memory: 512M
+```
+
+### Manual Docker Build
+
+```bash
+# Build for current architecture
+docker build -t open-tools .
+
+# Build for multiple architectures (requires buildx)
+docker buildx build --platform linux/amd64,linux/arm64 -t open-tools .
+
+# Run container
+docker run -p 3033:3033 --env NODE_ENV=production open-tools
+```
 
 ### Environment Configuration
-```bash
-PORT=3033              # Application port
-NODE_ENV=production    # Environment mode
-```
 
 ---
 

@@ -1,18 +1,16 @@
-name: Docker Build & Publish
+name: Docker Build & Publish (Docker Hub)
 
 on:
   push:
     branches: [ "main" ]
-    # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/open-tools
 
 jobs:
   build:
@@ -20,57 +18,55 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
-      id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install the cosign tool except on PR
-      # https://github.com/sigstore/cosign-installer
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@v3.5.0
-        with:
-          cosign-release: 'v2.2.4'
-
-      # Set up QEMU for multi-arch builds (Essential for arm64 support)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      # Set up Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
 
-      - name: Log into registry ${{ env.REGISTRY }}
+      - name: Log in to Docker Hub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}
+          images: ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/open-tools
           tags: |
+            # latest tag for main branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            # Branch name as tag
             type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=sha,format=long
+            # Semantic versioning for tags (v1.0.0 -> 1.0.0, 1.0, 1)
+            type=semver,pattern={{version}},enable=${{startsWith(github.ref, 'refs/tags/')}}
+            type=semver,pattern={{major}}.{{minor}},enable=${{startsWith(github.ref, 'refs/tags/')}}
+            type=semver,pattern={{major}},enable=${{startsWith(github.ref, 'refs/tags/')}}
+            type=sha,prefix={{branch}}-
 
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
-          # Build for both amd64 and arm64
           platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          builder: ${{ steps.buildx.outputs.name }}
+
+      - name: Image digest
+        run: echo "Image pushed with digest ${{ steps.build-and-push.outputs.digest }}"
