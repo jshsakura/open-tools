@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function TorrentHistoryLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen">
             {children}
         </div>
     )

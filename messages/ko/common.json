@@ -1,6 +1,6 @@
 {
     "Home": {
-        "title": "필수 오픈 도구 플랫폼",
+        "title": "필수 오픈 소스 도구 플랫폼",
         "description": "일상적인 모든 요구 사항을 충족하는 프리미엄 오픈 소스 유틸리티입니다. 100% 클라이언트 측에서 안전하고 빠르게 실행됩니다.",
         "allTools": "전체 도구"
     },
@@ -16,12 +16,13 @@
     "Hero": {
         "badge": "무료 온라인 도구 모음",
         "title_1": "필수",
-        "title_2": "오픈 도구",
+        "title_2": "오픈 소스 도구",
         "title_3": "플랫폼",
         "description": "일상적인 모든 요구 사항을 충족하는 프리미엄 오픈 소스 유틸리티입니다.\n100% 클라이언트 측에서 실행됩니다. 안전하고 빠릅니다.",
         "description_mobile": "일상에 필요한 100% 클라이언트 사이드 프리미엄 도구 모음입니다."
     },
     "Layout": {
-        "footer": "© 2024 Open Tools Platform. Powered by <link>OpenCourse</link>."
+        "footer": "© 2024 Open Tools Platform. Powered by <link>OpenCourse</link>.",
+        "github": "Star on GitHub"
     }
 }

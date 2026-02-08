@@ -3,7 +3,7 @@
 import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Menu } from "lucide-react"
+import { Sparkles, Menu, Github } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { LanguageToggle } from "@/components/language-toggle"
@@ -67,8 +67,17 @@ export function Header() {
                 </div>
 
                 <div className="flex items-center space-x-2">
-
-
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        asChild
+                        className="h-9 w-9 rounded-full bg-background/50 hover:bg-accent transition-all duration-300 group"
+                    >
+                        <Link href="https://github.com/jshsakura/open-tools" target="_blank" rel="noreferrer">
+                            <Github className="h-[1.1rem] w-[1.1rem] transition-transform duration-300 group-hover:rotate-12" />
+                            <span className="sr-only">GitHub</span>
+                        </Link>
+                    </Button>
                     <ModeToggle />
                     <LanguageToggle />
                 </div>
@@ -90,7 +99,7 @@ export function Footer() {
                                 href="https://www.opencourse.kr/"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="font-medium underline underline-offset-4 hover:text-primary transition-colors"
+                                className="font-medium no-underline hover:text-primary transition-all opacity-70 hover:opacity-100"
                             >
                                 {chunks}
                             </Link>

@@ -1,6 +1,6 @@
 {
     "Home": {
-        "title": "Essential Open Tools Platform",
+        "title": "Essential Open Source Tools Platform",
         "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
         "allTools": "All Tools"
     },
@@ -22,6 +22,7 @@
         "description_mobile": "100% client-side premium toolset for all your daily needs."
     },
     "Layout": {
-        "footer": "© 2024 Open Tools Platform. Powered by <link>OpenCourse</link>."
+        "footer": "© 2024 Open Tools Platform. Powered by <link>OpenCourse</link>.",
+        "github": "Star on GitHub"
     }
 }

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { AlertTriangle, Fingerprint, ShieldAlert, CheckCircle, Smartphone, Wifi, Globe, Lock, Info, Server, Clock } from "lucide-react"
+import { AlertTriangle, Fingerprint, ShieldAlert, CheckCircle, Smartphone, Wifi, Globe, Lock, Info, Server, Clock, MapPin, Activity, Search, Shield } from "lucide-react"
 import { toast } from "sonner"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
@@ -14,7 +14,7 @@ export default function TorrentHistoryPage() {
     const [status, setStatus] = useState<'idle' | 'scanning' | 'result'>('idle')
     const [progress, setProgress] = useState(0)
     const [logs, setLogs] = useState<string[]>([])
-    const [data, setData] = useState<{ ip: string, isp?: string, downloads: any[], riskScore: number, riskLevel: string } | null>(null)
+    const [data, setData] = useState<{ ip: string, isp?: string, geo?: any, downloads: any[], riskScore: number, riskLevel: string } | null>(null)
     const [error, setError] = useState<string | null>(null)
     const [timeLeft, setTimeLeft] = useState(0)
 
@@ -54,15 +54,31 @@ export default function TorrentHistoryPage() {
         t("scanning.logs.3"),
         t("scanning.logs.4"),
         t("scanning.logs.5"),
-        t("scanning.logs.6"),
-        t("scanning.logs.7")
+        t("scanning.logs.6")
     ]
 
     const startScan = async () => {
-        // if (timeLeft > 0) {
-        //     toast.error(t("button.retry", { time: `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s` }))
-        //     return
-        // }
+        // 1. Check Cache (5 min cooldown)
+        if (data?.ip) {
+            const cached = localStorage.getItem(`torrent_history_${data.ip}`);
+            if (cached) {
+                const parsed = JSON.parse(cached);
+                const age = Date.now() - parsed.timestamp;
+                const COOLDOWN = 5 * 60 * 1000; // 5 minutes
+
+                if (age < COOLDOWN) {
+                    setData(parsed.data);
+                    setStatus('result');
+                    const remaining = COOLDOWN - age;
+                    setTimeLeft(Math.ceil(remaining / 1000));
+                    toast.success(t("results.cached", {
+                        minutes: Math.floor(remaining / 60000),
+                        seconds: Math.floor((remaining % 60000) / 1000)
+                    }));
+                    return;
+                }
+            }
+        }
 
         setStatus('scanning')
         setProgress(0)
@@ -154,42 +170,30 @@ export default function TorrentHistoryPage() {
     }
 
     // Check for cached data on mount/IP detection
+    // Check for cached data on mount/IP detection
     useEffect(() => {
-        const checkCache = async () => {
+        const resolveIp = async () => {
             try {
                 // Get IP first
                 const res = await fetch('https://api.ipify.org?format=json');
                 const { ip } = await res.json();
 
                 if (ip) {
-                    // Update initial state with IP
+                    // Update initial state with IP only
                     setData(prev => prev ? { ...prev, ip } : {
                         ip,
+                        isp: undefined,
+                        geo: undefined,
                         downloads: [],
                         riskScore: 0,
                         riskLevel: 'Unknown'
                     });
-
-                    // Check cache
-                    const cached = localStorage.getItem(`torrent_history_${ip}`);
-                    if (cached) {
-                        const parsed = JSON.parse(cached);
-                        const age = Date.now() - parsed.timestamp;
-                        const COOLDOWN = 5 * 60 * 1000; // 5 minutes
-
-                        if (age < COOLDOWN) {
-                            setData(parsed.data);
-                            setStatus('result');
-                            setTimeLeft(Math.ceil((COOLDOWN - age) / 1000));
-                            toast.success("최근 조회 기록을 불러왔습니다.");
-                        }
-                    }
                 }
             } catch (e) {
                 console.error("Failed to fetch initial IP", e);
             }
         };
-        checkCache();
+        resolveIp();
     }, []);
 
     // Save to cache on success
@@ -203,22 +207,22 @@ export default function TorrentHistoryPage() {
     }, [status, data, error]);
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans selection:bg-red-500/30 torrent-history-theme">
+        <div className="min-h-screen font-sans torrent-history-theme">
             <style jsx global>{`
                 .dark .torrent-history-theme {
                     --primary: 24 9.8% 10%; /* Stone-950 like */
-                    --background: 24 5.4% 6.9%; /* Stone-950 Warm */
                     --foreground: 60 9.1% 97.8%; /* Stone-50 */
-                    --card: 24 5.4% 6.9%;
-                    --popover: 24 5.4% 6.9%;
                 }
             `}</style>
 
-            {/* Background Grid - Warm & Soft */}
-            <div className="fixed inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-[0.03] dark:opacity-[0.05]" />
+            {/* Ambient Background Glows - Deep Blending */}
+            <div className="fixed inset-0 bg-[linear-gradient(to_right,#8881_1px,transparent_1px),linear-gradient(to_bottom,#8881_1px,transparent_1px)] bg-[size:16px_28px] pointer-events-none opacity-[0.03] dark:opacity-[0.05]" />
+            <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_30%,rgba(249,115,22,0.08),transparent_70%)] pointer-events-none" />
+            <div className="fixed inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(59,130,246,0.04),transparent_50%)] dark:bg-[radial-gradient(circle_at_10%_10%,rgba(249,115,22,0.04),transparent_50%)] pointer-events-none" />
+            <div className="fixed inset-0 bg-[radial-gradient(circle_at_90%_90%,rgba(59,130,246,0.04),transparent_50%)] dark:bg-[radial-gradient(circle_at_90%_90%,rgba(249,115,22,0.04),transparent_50%)] pointer-events-none" />
 
-            <div className="container mx-auto px-4 py-12 max-w-5xl relative z-10">
-                <div className="text-center mb-16 space-y-6">
+            <div className="container mx-auto px-4 py-8 max-w-5xl relative z-10">
+                <div className="text-center mb-10 space-y-6">
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -229,9 +233,7 @@ export default function TorrentHistoryPage() {
                     </motion.div>
 
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-foreground drop-shadow-sm">
-                        Check Your
-                        <br />
-                        <span className="text-blue-600 dark:!text-orange-500">Torrent History</span>
+                        {t('title')}
                     </h1>
 
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -241,11 +243,13 @@ export default function TorrentHistoryPage() {
 
                 <div className="grid gap-8">
                     {/* Main Scanner Card */}
-                    <Card className="border border-border/50 bg-card/50 dark:!bg-stone-900/50 backdrop-blur-xl shadow-sm dark:shadow-2xl overflow-hidden relative min-h-[600px] dark:!border-stone-800">
+                    <Card className="border-none bg-transparent shadow-none overflow-visible relative min-h-[400px]">
+                        {/* Glow effect behind content to avoid 'boxy' look */}
+                        <div className="absolute inset-0 bg-blue-500/5 dark:bg-orange-500/5 blur-[100px] rounded-full pointer-events-none" />
                         {/* Scanning Line Effect (Soft Warmth) */}
                         <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 dark:opacity-30 dark:shadow-[0_0_20px_#f97316]" />
 
-                        <CardContent className="p-8 md:p-12 flex flex-col items-center justify-center h-full min-h-[600px] relative z-20">
+                        <CardContent className="p-8 md:px-12 md:pb-6 md:pt-4 flex flex-col items-center min-h-[400px] relative z-20 bg-transparent">
                             <AnimatePresence mode="wait">
                                 {status === 'idle' && (
                                     <motion.div
@@ -269,7 +273,7 @@ export default function TorrentHistoryPage() {
                                             <div className="absolute inset-0 rounded-full w-full h-full animate-[spin_3s_linear_infinite] bg-gradient-to-tr from-transparent via-transparent to-blue-500/10 dark:to-orange-500/10" />
 
                                             {/* Center Button */}
-                                            <div className={`relative z-10 bg-card dark:!bg-stone-900 p-8 rounded-full border border-blue-100 dark:!border-orange-500/30 shadow-xl shadow-blue-500/5 dark:shadow-[0_0_40px_rgba(249,115,22,0.15)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-blue-500/20 dark:group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)]`}>
+                                            <div className={`relative z-10 bg-transparent dark:!bg-stone-900/10 p-8 rounded-full border border-blue-100/50 dark:!border-orange-500/30 shadow-xl shadow-blue-500/5 dark:shadow-[0_0_40px_rgba(249,115,22,0.15)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-blue-500/20 dark:group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)]`}>
                                                 <Fingerprint className="w-20 h-20 text-blue-600 dark:!text-orange-500 drop-shadow-md dark:drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
                                             </div>
 
@@ -277,22 +281,14 @@ export default function TorrentHistoryPage() {
                                                 <div className="font-mono text-sm text-blue-600/80 dark:text-orange-500/80 tracking-[0.2em] uppercase animate-pulse">
                                                     Target Detected
                                                 </div>
-                                                <div className="px-6 py-2 bg-white dark:bg-stone-900 border border-blue-100 dark:border-orange-500/20 rounded text-xl font-black tracking-widest text-foreground dark:text-stone-200 shadow-sm shadow-blue-500/5 dark:shadow-none">
-                                                    {data?.ip || "DETECTING..."}
+                                                <div className="px-6 py-2 bg-transparent dark:bg-stone-900/50 border border-blue-100/50 dark:border-orange-500/20 rounded text-xl font-black tracking-widest text-foreground dark:text-stone-200">
+                                                    {data?.ip || t("systemReady")}
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div className="text-center space-y-8 pt-12 z-20">
-                                            <Button
-                                                size="lg"
-                                                onClick={startScan}
-                                                className="font-bold text-lg px-8 h-14 rounded-md shadow-lg shadow-blue-500/20 dark:shadow-orange-500/10 transition-all hover:translate-y-[-2px] dark:bg-orange-600 dark:hover:bg-orange-500 dark:text-white"
-                                            >
-                                                {t("button.start")}
-                                            </Button>
-
-                                            <p className="text-sm text-muted-foreground font-mono tracking-tight max-w-[300px] mx-auto leading-relaxed opacity-70">
+                                            <p className="text-sm text-muted-foreground font-mono tracking-tight max-w-[600px] w-full mx-auto leading-relaxed opacity-70">
                                                 {t("notice")}
                                             </p>
                                         </div>
@@ -317,7 +313,7 @@ export default function TorrentHistoryPage() {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <div className="font-mono text-sm space-y-3 h-48 overflow-hidden border border-blue-500/20 dark:!border-stone-800 bg-slate-50 dark:!bg-stone-900/50 p-6 rounded-lg relative">
+                                            <div className="font-mono text-sm space-y-3 h-48 overflow-hidden border border-blue-500/10 dark:!border-stone-800/30 bg-transparent dark:!bg-stone-900/20 p-6 rounded-lg relative">
                                                 <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/50 dark:!bg-orange-500/50" />
                                                 <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(59,130,246,0.05)_50%,transparent_100%)] dark:bg-[linear-gradient(transparent_0%,rgba(249,115,22,0.05)_50%,transparent_100%)] animate-[scan_2s_linear_infinite]" />
 
@@ -344,7 +340,7 @@ export default function TorrentHistoryPage() {
                                         className="w-full space-y-8"
                                     >
                                         {/* Result Header */}
-                                        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-card/50 dark:!bg-stone-900/50 p-6 rounded-xl border border-border dark:!border-stone-800">
+                                        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-blue-500/5 dark:!bg-stone-900/20 p-6 rounded-xl border border-border/50 dark:!border-stone-800/50">
                                             <div className="flex items-center gap-4">
                                                 <div className="p-4 bg-blue-500/10 rounded-lg text-blue-500 border border-blue-500/20 dark:!bg-orange-500/10 dark:!text-orange-500 dark:!border-orange-500/20">
                                                     <Globe className="w-8 h-8" />
@@ -410,35 +406,73 @@ export default function TorrentHistoryPage() {
                                         {error !== "BLOCKED" && (
                                             <>
                                                 <div className="grid md:grid-cols-2 gap-6">
+                                                    {/* Network Identity Card */}
+                                                    <div className="p-8 rounded-2xl border border-border bg-transparent flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                                                        <div className="absolute inset-0 bg-grid-black/5 dark:bg-grid-white/5 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))]" />
+
+                                                        {/* Geo & Network Info */}
+                                                        <div className="w-full space-y-3 z-10">
+                                                            {data.geo && (
+                                                                <div className="flex items-center justify-between text-sm p-3 bg-transparent dark:bg-stone-900/50 rounded-lg border border-border/50">
+                                                                    <div className="flex items-center gap-2 text-muted-foreground">
+                                                                        <MapPin className="w-4 h-4" />
+                                                                        <span>{t("results.location")}</span>
+                                                                    </div>
+                                                                    <div className="font-bold flex items-center gap-2 text-foreground">
+                                                                        <span>{data.geo.city}, {data.geo.country}</span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                            {data.geo?.asn && (
+                                                                <div className="flex items-center justify-between text-sm p-3 bg-transparent dark:bg-stone-900/50 rounded-lg border border-border/50">
+                                                                    <div className="flex items-center gap-2 text-muted-foreground">
+                                                                        <Activity className="w-4 h-4" />
+                                                                        <span>ASN</span>
+                                                                    </div>
+                                                                    <div className="font-bold font-mono text-foreground">{data.geo.asn.split(' ')[0]}</div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+
+                                                        {/* External Tools */}
+                                                        <div className="flex gap-2 mt-4 w-full z-10">
+                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
+                                                                <a href={`https://www.google.com/search?q="${data.ip}"`} target="_blank" rel="noreferrer">
+                                                                    <Search className="w-3 h-3" />
+                                                                    Google {t("results.search")}
+                                                                </a>
+                                                            </Button>
+                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
+                                                                <a href={`https://www.abuseipdb.com/check/${data.ip}`} target="_blank" rel="noreferrer">
+                                                                    <Shield className="w-3 h-3" />
+                                                                    AbuseDB
+                                                                </a>
+                                                            </Button>
+                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
+                                                                <a href={`https://www.virustotal.com/gui/ip-address/${data.ip}`} target="_blank" rel="noreferrer">
+                                                                    <ShieldAlert className="w-3 h-3" />
+                                                                    VirusTotal
+                                                                </a>
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+
                                                     {/* Risk Score */}
                                                     <div className={`p-8 rounded-2xl border ${data.riskLevel === 'Safe' ? 'border-green-500/30 bg-green-500/10' : data.riskLevel === 'Low' ? 'border-yellow-500/30 bg-yellow-500/10' : 'border-red-600/50 bg-red-500/10'} flex flex-col items-center justify-center text-center relative overflow-hidden group`}>
                                                         <div className={`absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_0%,${data.riskLevel === 'Safe' ? '#22c55e' : '#dc2626'},transparent_70%)] group-hover:opacity-30 transition-opacity`} />
-                                                        <div className="text-xs uppercase tracking-[0.2em] font-bold opacity-60 mb-4 text-foreground">Risk Analysis</div>
+                                                        <div className="text-xs uppercase tracking-[0.2em] font-bold opacity-60 mb-4 text-foreground">{t("results.riskAnalysis")}</div>
                                                         <div className="text-6xl font-black mb-4 flex items-baseline gap-2 text-foreground">
                                                             {data.riskScore || 0}<span className="text-xl opacity-50 relative -top-6">/100</span>
                                                         </div>
                                                         <div className={`text-sm font-bold px-4 py-1.5 rounded-full border ${data.riskLevel === 'Safe' ? 'bg-green-500/20 border-green-500 text-green-600 dark:text-green-400' : data.riskLevel === 'Low' ? 'bg-yellow-500/20 border-yellow-500 text-yellow-600 dark:text-yellow-400' : 'bg-red-600/20 border-red-500 text-red-600 dark:text-red-500 animate-pulse'}`}>
-                                                            {t("results.riskLevel", { level: data.riskLevel })}
+                                                            {t(`results.riskLevels.${data.riskLevel}`)}
                                                         </div>
-                                                    </div>
-
-                                                    {/* Network Viz */}
-                                                    <div className="p-8 rounded-2xl border border-border bg-card flex flex-col items-center justify-center text-center relative overflow-hidden">
-                                                        <div className="absolute inset-0 bg-grid-black/5 dark:bg-grid-white/5 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))]" />
-                                                        <div className="relative z-10 p-4 bg-orange-500/10 rounded-full mb-4 ring-1 ring-orange-500/30">
-                                                            <Wifi className="w-8 h-8 text-orange-500" />
-                                                        </div>
-                                                        <div className="text-xs uppercase tracking-[0.2em] font-bold opacity-60 mb-2 z-10 text-foreground">{t('analysis.networkExposure')}</div>
-                                                        <div className="text-orange-600 dark:text-orange-400 font-bold z-10">Subnet Analysis</div>
-                                                        <p className="text-xs text-muted-foreground mt-2 max-w-[200px] z-10">
-                                                            Simulated: Metadata queries indicate activity in compatible subnets.
-                                                        </p>
                                                     </div>
                                                 </div>
 
                                                 {/* Download List */}
                                                 {data.downloads && data.downloads.length > 0 ? (
-                                                    <div className="bg-card border border-border rounded-xl overflow-hidden shadow-lg">
+                                                    <div className="bg-transparent border border-border rounded-xl overflow-hidden shadow-lg backdrop-blur-md">
                                                         <div className="bg-red-500/10 p-5 border-b border-red-500/20 flex items-center justify-between">
                                                             <div className="flex items-center gap-3 text-red-600 dark:text-red-400 font-bold">
                                                                 <ShieldAlert className="w-5 h-5" />
@@ -448,7 +482,7 @@ export default function TorrentHistoryPage() {
                                                         </div>
                                                         <div className="overflow-x-auto max-h-[400px] overflow-y-auto custom-scrollbar">
                                                             <table className="w-full text-sm text-left">
-                                                                <thead className="bg-muted text-muted-foreground font-medium border-b border-border sticky top-0 uppercase text-xs tracking-wider">
+                                                                <thead className="bg-transparent text-muted-foreground font-medium border-b border-border sticky top-0 uppercase text-xs tracking-wider">
                                                                     <tr>
                                                                         <th className="p-5 pl-6">{t("results.columns.content")}</th>
                                                                         <th className="p-5 w-32 text-right pr-6">{t("results.columns.date")}</th>
@@ -458,11 +492,11 @@ export default function TorrentHistoryPage() {
                                                                     {data.downloads.map((item: any, i: number) => (
                                                                         <tr
                                                                             key={i}
-                                                                            className={`transition-colors ${item.isSensitive ? 'bg-red-500/5 hover:bg-red-500/10' : 'hover:bg-muted/50'}`}
+                                                                            className={`transition-colors ${item.isSensitive ? 'bg-red-500/5 hover:bg-red-500/10' : 'hover:bg-blue-500/5'}`}
                                                                         >
                                                                             <td className="p-5 pl-6">
                                                                                 <div className="flex items-start gap-4">
-                                                                                    <div className={`mt-1 p-1.5 rounded ${item.isSensitive ? 'bg-red-500/20 text-red-600 dark:text-red-400' : 'bg-muted text-muted-foreground'}`}>
+                                                                                    <div className={`mt-1 p-1.5 rounded ${item.isSensitive ? 'bg-red-500/20 text-red-600 dark:text-red-400' : 'bg-blue-500/5 text-muted-foreground border border-border/50'}`}>
                                                                                         {item.isSensitive ? <AlertTriangle className="w-4 h-4" /> : <Info className="w-4 h-4" />}
                                                                                     </div>
                                                                                     <div>
@@ -470,7 +504,7 @@ export default function TorrentHistoryPage() {
                                                                                             {item.title}
                                                                                         </div>
                                                                                         <div className="flex items-center gap-2 mt-2">
-                                                                                            <span className="text-xs px-2 py-0.5 rounded bg-muted/50 text-muted-foreground border border-border font-mono">
+                                                                                            <span className="text-xs px-2 py-0.5 rounded bg-blue-500/5 text-muted-foreground border border-border font-mono">
                                                                                                 {item.size || 'N/A'}
                                                                                             </span>
                                                                                             <span className="text-xs text-muted-foreground uppercase font-bold tracking-wider">
@@ -513,17 +547,17 @@ export default function TorrentHistoryPage() {
                                         {/* Disabled "Another Network" Button logic - user requested removal of external check encouragement */}
                                         {/* We only show a reset button if they want to clear view */}
                                         {timeLeft > 0 && (
-                                            <div className="mt-8 relative overflow-hidden rounded-xl bg-slate-100 dark:bg-stone-900 border border-slate-200 dark:border-stone-800 p-4">
+                                            <div className="mt-8 relative overflow-hidden rounded-xl bg-transparent dark:bg-stone-900/50 border border-slate-200/50 dark:border-stone-800 p-4">
                                                 <div className="flex items-center justify-between relative z-10 mb-2">
                                                     <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                                                         <Clock className="w-4 h-4 text-blue-500 dark:text-orange-500" />
                                                         {t('results.cached', { minutes: Math.floor(timeLeft / 60), seconds: timeLeft % 60 })}
                                                     </span>
-                                                    <span className="text-xs font-mono font-bold text-foreground bg-white dark:bg-stone-800 px-2 py-1 rounded">
+                                                    <span className="text-xs font-mono font-bold text-foreground bg-transparent dark:bg-stone-800 px-2 py-1 rounded">
                                                         {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
                                                     </span>
                                                 </div>
-                                                <div className="h-1.5 w-full bg-slate-200 dark:bg-stone-800 rounded-full overflow-hidden">
+                                                <div className="h-1.5 w-full bg-blue-500/5 dark:bg-stone-800 rounded-full overflow-hidden">
                                                     <motion.div
                                                         className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-orange-500 dark:to-red-500"
                                                         initial={{ width: "100%" }}
@@ -538,10 +572,11 @@ export default function TorrentHistoryPage() {
                             </AnimatePresence>
                         </CardContent>
 
-                        {/* Guide & Disclaimer - Moved outside AnimatePresence to be always visible */}
-                        <div className="p-8 md:p-12 border-t border-border/50 dark:!border-stone-800 bg-slate-50/50 dark:!bg-stone-900/50">
+                        {/* Guide & Disclaimer */}
+                        <div className="p-8 md:px-12 md:py-4 border-t border-border/10 dark:!border-stone-800/30 bg-transparent relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/5 pointer-events-none" />
                             <div className="grid gap-6">
-                                <div className="bg-white dark:!bg-stone-950 border border-slate-200 dark:!border-stone-800 rounded-2xl p-8 space-y-6 text-left shadow-sm">
+                                <div className="bg-transparent dark:!bg-stone-950/30 backdrop-blur-md border border-slate-200 dark:!border-stone-800 rounded-2xl p-8 space-y-6 text-left shadow-sm">
                                     <h3 className="flex items-center gap-3 font-bold text-xl text-foreground">
                                         <Lock className="w-6 h-6 text-blue-600 dark:!text-orange-500" />
                                         {t("guide.title")}

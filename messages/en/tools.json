@@ -468,7 +468,6 @@
     "TorrentHistory": {
         "title": "Torrent History Check",
         "description": "Scan your IP address for public torrent download history and security risks.",
-        "pageTitle": "Check Your <span class='text-red-500'>Torrent History</span>",
         "subtitle": "See what traces your IP address has left on the public BitTorrent network. This tool queries public DHT databases.",
         "badge": "IP Digital Footprint Analysis",
         "systemReady": "System Ready",
@@ -481,21 +480,30 @@
         "scanning": {
             "label": "Scanning...",
             "logs": [
-                "Initializing network interface...",
-                "Identifying public IP address...",
-                "Scanning DHT nodes...",
-                "Analyzing packet headers...",
-                "Querying global tracker databases...",
-                "Decrypting metadata...",
-                "Correlating download history...",
-                "Generating security report..."
+                "Verifying external IP address...",
+                "Querying Torrent History Database...",
+                "Retrieving Geolocation Data...",
+                "Analyzing ISP and ASN...",
+                "Calculating Reputation Score...",
+                "Checking External Threat Databases...",
+                "Finalizing Report..."
             ]
         },
         "results": {
-            "ipLabel": "Your IP Address",
+            "ipLabel": "Network Identity",
             "ispLabel": "ISP (Provider)",
-            "riskScore": "IP Reputation Score",
-            "riskLevel": "{level} Risk",
+            "location": "Location",
+            "search": "Search",
+            "riskAnalysis": "Risk Analysis",
+            "riskScore": "Reputation Score",
+            "riskLevels": {
+                "Safe": "Safe",
+                "Low": "Low Risk",
+                "Moderate": "Moderate Risk",
+                "High": "High Risk",
+                "Critical": "Critical Risk",
+                "Unknown": "Unknown"
+            },
             "cleanTitle": "No Public Traces Found",
             "cleanDesc": "We couldn't find any torrent activity associated with this IP address in the public databases.",
             "cleanWarning": "⚠️ However, dynamic IPs change frequently, so check regularly.",
@@ -509,6 +517,11 @@
             "blocked": "Scan Blocked",
             "blockedDesc": "Automated scan was blocked by security policy. Please check manually below.",
             "manualCheck": "Check Manually"
+        },
+        "analysis": {
+            "networkExposure": "Network Exposure",
+            "subnetAnalysis": "Subnet Analysis",
+            "subnetDesc": "Simulated: Metadata queries indicate activity in compatible subnets."
         },
         "guide": {
             "title": "Privacy Protection Guide",
@@ -524,6 +537,35 @@
         "disclaimer": {
             "title": "Technical Limitations & Disclaimer",
             "content": "This tool provides estimated data based on public P2P network DHT (Distributed Hash Table) information. Since most home internet connections (ISPs) use 'Dynamic IPs', the retrieved history might belong to a previous user of this IP address, not necessarily you. This result cannot be used as legal evidence and is for reference purposes only."
+        }
+    },
+    "PortScanner": {
+        "title": "Port Scanner",
+        "description": "Scan common ports on a target server to check for open services.",
+        "targetTitle": "Target Configuration",
+        "targetDesc": "Enter a hostname or IP to scan common services",
+        "placeholder": "localhost or IP...",
+        "start": "Start Scan",
+        "scanning": "Scanning...",
+        "noScan": "No scan in progress",
+        "noScanDesc": "Configure a target and press Start Scan to monitor port availability.",
+        "status": {
+            "open": "Open",
+            "closed": "Closed",
+            "filtered": "Filtered",
+            "checking": "Checking"
+        },
+        "legend": {
+            "openTitle": "Open Status",
+            "openDesc": "The service responded and the connection was accepted. This usually means an application is listening on this port.",
+            "closedTitle": "Closed Status",
+            "closedDesc": "The host responded but explicitly refused the connection. No application is currently listening on this port.",
+            "filteredTitle": "Filtered / Timeout",
+            "filteredDesc": "No response was received within the timeout period. This is often caused by a firewall dropping the packets."
+        },
+        "limitation": {
+            "title": "Note",
+            "content": "This tool uses a server-side scanner to check port availability accurately."
         }
     }
 }

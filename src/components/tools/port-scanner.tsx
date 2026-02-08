@@ -42,39 +42,25 @@ const COMMON_PORTS = [
 ]
 
 export function PortScannerTool() {
-    const t = useTranslations()
+    const t = useTranslations("PortScanner")
     const [target, setTarget] = useState("localhost")
     const [scanning, setScanning] = useState(false)
     const [results, setResults] = useState<PortResult[]>([])
 
     const scanPort = async (host: string, port: number): Promise<"open" | "closed" | "filtered"> => {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 2000)
-
-        const start = performance.now()
         try {
-            // Note: Browsers block most non-HTTP ports for fetch. 
-            // This is a limited demonstration using fetch behavior.
-            // On most browsers, a blocked port will throw a specific error quickly.
-            await fetch(`http://${host}:${port}`, {
-                mode: 'no-cors',
-                signal: controller.signal,
-                cache: 'no-store'
-            })
-            clearTimeout(timeoutId)
-            return "open"
-        } catch (e: any) {
-            clearTimeout(timeoutId)
-            const duration = performance.now() - start
+            const res = await fetch('/api/port-scan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ host, port })
+            });
 
-            if (e.name === 'AbortError') {
-                return "filtered" // Target dropped request or timed out
-            }
+            if (!res.ok) throw new Error("Scan failed");
 
-            // In many browsers, if the connection is refused, it happens extremely fast (< 50ms)
-            // If it's a CORS issue but port is open, it might behave differently.
-            // This is a heuristic approach for client-side scanning.
-            return duration < 100 ? "closed" : "filtered"
+            const data = await res.json();
+            return data.status || "filtered";
+        } catch (e) {
+            return "filtered";
         }
     }
 
@@ -83,9 +69,15 @@ export function PortScannerTool() {
         const initialResults: PortResult[] = COMMON_PORTS.map(p => ({ ...p, status: "checking" }))
         setResults(initialResults)
 
-        for (let i = 0; i < initialResults.length; i++) {
-            const status = await scanPort(target, initialResults[i].port)
-            setResults(prev => prev.map((item, idx) => idx === i ? { ...item, status } : item))
+        // Scan in batches of 3 to avoid overwhelming the server or browser connection limits
+        const BATCH_SIZE = 3;
+        for (let i = 0; i < initialResults.length; i += BATCH_SIZE) {
+            const batch = initialResults.slice(i, i + BATCH_SIZE);
+            await Promise.all(batch.map(async (item, batchIdx) => {
+                const realIdx = i + batchIdx;
+                const status = await scanPort(target, item.port);
+                setResults(prev => prev.map((r, idx) => idx === realIdx ? { ...r, status } : r));
+            }));
         }
         setScanning(false)
     }
@@ -99,15 +91,15 @@ export function PortScannerTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-2xl font-black tracking-tighter flex items-center gap-2">
                                 <Search className="h-6 w-6 text-primary" />
-                                Target Configuration
+                                {t("targetTitle")}
                             </CardTitle>
-                            <CardDescription>Enter a hostname or IP to scan common services</CardDescription>
+                            <CardDescription>{t("targetDesc")}</CardDescription>
                         </div>
                         <div className="flex w-full md:w-auto gap-2">
                             <Input
                                 value={target}
                                 onChange={(e) => setTarget(e.target.value)}
-                                placeholder="localhost or IP..."
+                                placeholder={t("placeholder")}
                                 className="max-w-[200px] rounded-xl border-primary/20 bg-background/50 focus-visible:ring-primary"
                                 disabled={scanning}
                             />
@@ -117,7 +109,7 @@ export function PortScannerTool() {
                                 className="rounded-xl gap-2 font-bold shadow-lg min-w-[120px]"
                             >
                                 {scanning ? <RefreshCcw className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4 fill-current" />}
-                                {scanning ? "Scanning..." : "Start Scan"}
+                                {scanning ? t("scanning") : t("start")}
                             </Button>
                         </div>
                     </div>
@@ -156,7 +148,7 @@ export function PortScannerTool() {
                                                             "border-primary/30 text-primary"
                                             )}
                                         >
-                                            {r.status}
+                                            {t(`status.${r.status}`)}
                                         </Badge>
                                     </div>
                                 </div>
@@ -168,8 +160,8 @@ export function PortScannerTool() {
                                 <Search className="h-12 w-12 text-muted-foreground/20" />
                             </div>
                             <div className="space-y-1">
-                                <h4 className="font-bold">No scan in progress</h4>
-                                <p className="text-sm text-muted-foreground">Configure a target and press Start Scan to monitor port availability.</p>
+                                <h4 className="font-bold">{t("noScan")}</h4>
+                                <p className="text-sm text-muted-foreground">{t("noScanDesc")}</p>
                             </div>
                         </div>
                     )}
@@ -181,30 +173,30 @@ export function PortScannerTool() {
                 <Card className="p-6 space-y-3 bg-green-500/5 border-green-500/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-green-500">
                         <CheckCircle2 className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Open Status</h4>
+                        <h4 className="font-bold text-sm">{t("legend.openTitle")}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        The service responded and the connection was accepted. This usually means an application is listening on this port.
+                        {t("legend.openDesc")}
                     </p>
                 </Card>
 
                 <Card className="p-6 space-y-3 bg-secondary/20 border-border/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <XCircle className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Closed Status</h4>
+                        <h4 className="font-bold text-sm">{t("legend.closedTitle")}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        The host responded but explicitly refused the connection. No application is currently listening on this port.
+                        {t("legend.closedDesc")}
                     </p>
                 </Card>
 
                 <Card className="p-6 space-y-3 bg-orange-500/5 border-orange-500/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-orange-500">
                         <Shield className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Filtered / Timeout</h4>
+                        <h4 className="font-bold text-sm">{t("legend.filteredTitle")}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        No response was received within the timeout period. This is often caused by a firewall dropping the packets.
+                        {t("legend.filteredDesc")}
                     </p>
                 </Card>
             </div>
@@ -213,13 +205,10 @@ export function PortScannerTool() {
                 <div className="max-w-3xl space-y-4">
                     <h3 className="text-xl font-bold flex items-center gap-2">
                         <Info className="h-5 w-5 text-primary" />
-                        Important Limitation
+                        {t("limitation.title")}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        Modern browsers impose strict <strong>security restrictions</strong> on network requests.
-                        Fetching arbitrary ports is often blocked at the browser level (e.g., ports like 21, 22, 25 are restricted).
-                        This tool uses a heuristic timing approach and is best suited for scanning local development servers or publicly accessible HTTP/HTTPS ports.
-                        For a professional security audit, always use dedicated tools like <code>nmap</code>.
+                        {t("limitation.content")}
                     </p>
                 </div>
             </section>

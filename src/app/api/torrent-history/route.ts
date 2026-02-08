@@ -29,14 +29,23 @@ export async function GET(request: Request) {
         }
         debugLog.push(`Target IP: ${ip}`);
 
-        // Fetch ISP Info (Server-side)
+        // Fetch ISP & Geo Info (Server-side)
         let isp = undefined;
+        let geo = undefined;
         try {
-            const ispRes = await fetch(`http://ip-api.com/json/${ip}?fields=isp,org`);
+            const ispRes = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,country,countryCode,regionName,city,lat,lon,isp,org,as,query`);
             if (ispRes.ok) {
                 const ispData = await ispRes.json();
                 isp = ispData.isp || ispData.org;
-                debugLog.push(`Resolved ISP: ${isp}`);
+                geo = {
+                    country: ispData.country,
+                    city: ispData.city,
+                    region: ispData.regionName,
+                    lat: ispData.lat,
+                    lon: ispData.lon,
+                    asn: ispData.as
+                };
+                debugLog.push(`Resolved ISP: ${isp}, Loc: ${geo.city}, ${geo.country}`);
             }
         } catch (e) {
             console.error("ISP fetch failed", e);
@@ -89,8 +98,6 @@ export async function GET(request: Request) {
 
         // 3. Parse HTML
         const $ = cheerio.load(html);
-
-        const downloads: any[] = [];
 
         const downloads: any[] = [];
         let riskScore = 0;
@@ -160,6 +167,7 @@ export async function GET(request: Request) {
         return NextResponse.json({
             ip,
             isp,
+            geo,
             downloads,
             riskScore,
             riskLevel,
