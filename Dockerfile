@@ -8,10 +8,11 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
+# Re-sync lockfile if out of sync (fixes EUSAGE error)
 RUN if [ -f yarn.lock ]; then \
     yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then \
-    npm ci; \
+    npm ci || npm install; \
   elif [ -f pnpm-lock.yaml ]; then \
     corepack enable pnpm && pnpm i --frozen-lockfile; \
   else \
