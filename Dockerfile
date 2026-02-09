@@ -1,10 +1,8 @@
 
-FROM node:18-alpine AS base
+FROM node:18-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat python3 make g++ musl-dev
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -18,10 +16,6 @@ RUN if [ -f yarn.lock ]; then \
     corepack enable pnpm && pnpm i --frozen-lockfile; \
   else \
     echo "Lockfile not found." && exit 1; \
-  fi
-
-RUN if [ -f yarn.lock ] || [ -f package-lock.json ] || [ -f pnpm-lock.yaml ]; then \
-    npm rebuild --arch=x64 --platform=linux --libc=musl sharp; \
   fi
 
 
