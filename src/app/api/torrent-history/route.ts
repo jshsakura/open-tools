@@ -52,11 +52,12 @@ export async function GET(request: Request) {
         }
 
         // 2. Fetch via Puppeteer Script (Node.js)
-        const scriptPath = path.join(process.cwd(), 'src/scripts/torrent-scraper.js');
+        // Use a relative path to avoid Turbopack server-relative import limitations.
+        const scriptPath = path.join('src', 'scripts', 'torrent-scraper.js');
 
         // Spawn Node.js process to run the scraper
         const html = await new Promise<string>((resolve, reject) => {
-            const process = spawn('node', [scriptPath, ip]);
+            const process = spawn('node', [scriptPath, ip], { cwd: process.cwd() });
 
             let stdoutData = '';
             let stderrData = '';
