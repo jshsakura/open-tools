@@ -434,27 +434,6 @@ export default function TorrentHistoryPage() {
                                                             )}
                                                         </div>
 
-                                                        {/* External Tools */}
-                                                        <div className="flex gap-2 mt-4 w-full z-10">
-                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
-                                                                <a href={`https://www.google.com/search?q="${data.ip}"`} target="_blank" rel="noreferrer">
-                                                                    <Search className="w-3 h-3" />
-                                                                    Google {t("results.search")}
-                                                                </a>
-                                                            </Button>
-                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
-                                                                <a href={`https://www.abuseipdb.com/check/${data.ip}`} target="_blank" rel="noreferrer">
-                                                                    <Shield className="w-3 h-3" />
-                                                                    AbuseDB
-                                                                </a>
-                                                            </Button>
-                                                            <Button variant="outline" size="sm" className="flex-1 gap-2 text-xs" asChild>
-                                                                <a href={`https://www.virustotal.com/gui/ip-address/${data.ip}`} target="_blank" rel="noreferrer">
-                                                                    <ShieldAlert className="w-3 h-3" />
-                                                                    VirusTotal
-                                                                </a>
-                                                            </Button>
-                                                        </div>
                                                     </div>
 
                                                     {/* Risk Score */}

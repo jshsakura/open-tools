@@ -23,9 +23,32 @@
                 "share": "플레이리스트 링크"
             }
         },
+        "SunoDownloader": {
+            "title": "Suno AI 다운로더",
+            "description": "Suno.com 공유 링크를 붙여넣어 노래를 간편하게 다운로드하세요. 고음질 MP3 지원."
+        },
         "VideoConverter": {
             "title": "로컬 비디오 인코더 (WASM)",
-            "description": "브라우저에서 직접 비디오를 MP4/MP3/GIF로 변환하세요. 서버 업로드 없는 개인정보 보호."
+            "description": "브라우저에서 직접 비디오를 MP4/MP3/GIF로 변환하세요. 서버 업로드 없는 개인정보 보호.",
+            "inputPlaceholder": "비디오 파일 선택",
+            "audioAction": "오디오",
+            "audioBitrate": "비트레이트",
+            "audioFormat": "포맷",
+            "convertAction": "변환",
+            "convertFormat": "변환 포맷",
+            "convertQuality": "변환 품질",
+            "ffmpegLoading": "FFmpeg 로딩 중...",
+            "gifAction": "GIF",
+            "gifFps": "GIF 프레임",
+            "gifWidth": "GIF 너비",
+            "tabs": {
+                "audio": "오디오",
+                "convert": "변환",
+                "gif": "GIF",
+                "trim": "자르기"
+            },
+            "trimAction": "자르기",
+            "download": "다운로드"
         },
         "YoutubeThumbnail": {
             "title": "YouTube 썸네일 추출기",
@@ -40,7 +63,15 @@
         },
         "SqlConverter": {
             "title": "SQL to JSON/CSV 변환기",
-            "description": "SQL INSERT 문을 깨끗한 JSON 또는 CSV 데이터 형식으로 로컬에서 변환합니다."
+            "description": "SQL INSERT 문을 깨끗한 JSON 또는 CSV 데이터 형식으로 로컬에서 변환합니다.",
+            "inputLabelSql": "입력 (SQL)",
+            "inputLabelTable": "입력 (테이블)",
+            "outputLabel": "출력 ({format})",
+            "placeholderSql": "INSERT INTO users (id, name) VALUES (1, 'John');",
+            "placeholderTable": "id\tname\n1\tJohn",
+            "errorInvalidFormat": "형식을 파싱할 수 없습니다. 형식을 확인해주세요.",
+            "copied": "복사됨",
+            "copy": "복사"
         },
         "FaviconGenerator": {
             "title": "Favicon 생성기",
@@ -70,7 +101,7 @@
             "description": "실시간 하이라이팅과 그룹 추출 기능을 통해 정규표현식을 테스트하고 디버깅하세요."
         },
         "CronGenerator": {
-            "title": "Cron Generator",
+            "title": "Cron 생성기",
             "description": "사람이 읽기 쉬운 설명과 다음 실행 시간을 확인하며 크론 작업을 만들고 검증하세요."
         },
         "MyIp": {
@@ -144,19 +175,44 @@
         },
         "UrlConverter": {
             "title": "URL 인코더/디코더",
-            "description": "URL을 안전하게 인코딩하거나 디코딩합니다. 한글 및 특수문자 처리를 지원합니다."
+            "description": "URL을 안전하게 인코딩하거나 디코딩합니다. 한글 및 특수문자 처리를 지원합니다.",
+            "clear": "지우기",
+            "copied": "복사됨",
+            "copy": "복사",
+            "decodePlaceholder": "인코딩된 URL을 여기에 붙여넣으세요",
+            "encodePlaceholder": "URL을 여기에 입력하세요",
+            "input": "입력",
+            "output": "출력",
+            "tabs": {
+                "encode": "인코딩",
+                "decode": "디코딩"
+            }
         },
         "QrGenerator": {
             "title": "QR 코드 생성기",
-            "description": "다양한 설정과 맞춤 디자인이 가능한 고품질 QR 코드를 즉시 생성합니다."
+            "description": "다양한 설정과 맞춤 디자인이 가능한 고품질 QR 코드를 즉시 생성합니다.",
+            "copied": "복사됨",
+            "downloaded": "QR 코드가 PNG로 다운로드됨"
         },
         "HashGenerator": {
             "title": "해시 생성기",
-            "description": "MD5, SHA-1, SHA-256, SHA-512 해시를 실시간으로 생성합니다."
+            "description": "MD5, SHA-1, SHA-256, SHA-512 해시를 실시간으로 생성합니다.",
+            "error": "해시 생성 실패",
+            "copied": "복사됨"
         },
         "ImageCompressor": {
             "title": "이미지 압축기",
-            "description": "브라우저에서 직접 이미지 용량을 줄이고 품질을 최적화하세요."
+            "description": "브라우저에서 직접 이미지 용량을 줄이고 품질을 최적화하세요.",
+            "errorCanvas": "캔버스 생성 실패",
+            "errorInvalidFile": "유효하지 않은 파일입니다",
+            "saved": "저장됨",
+            "dropTitle": "이미지 업로드",
+            "dropDesc": "PNG, JPG, WebP 지원",
+            "selectFile": "파일 선택",
+            "settings": "설정",
+            "quality": "품질",
+            "resize": "크기 조정",
+            "download": "다운로드"
         },
         "DataTools": {
             "title": "데이터 도구 모음",
@@ -172,7 +228,9 @@
         },
         "XmlFormatter": {
             "title": "XML 포맷터/변환기",
-            "description": "실시간 오류 감지로 XML을 포매팅, 검증하고 JSON으로 변환합니다."
+            "description": "실시간 오류 감지로 XML을 포매팅, 검증하고 JSON으로 변환합니다.",
+            "copy": "복사됨",
+            "copyJson": "JSON 복사됨"
         },
         "SqlFormatter": {
             "title": "SQL Formatter",
@@ -272,7 +330,14 @@
                 "cancelled": "다운로드가 취소되었습니다."
             },
             "cancel": "취소",
-            "speedNote": "유튜브 정책(속도 제한) 및 프록시 우회로 인해 다운로드 속도가 다소 느릴 수 있습니다."
+            "speedNote": "유튜브 정책(속도 제한) 및 프록시 우회로 인해 다운로드 속도가 다소 느릴 수 있습니다.",
+            "flowTitle": "동작 방식",
+            "flowDesc": "이 도구는 브라우저에서 로컬로 실행되며 미디어를 서버에 업로드하지 않습니다.",
+            "flowStep1": "YouTube 링크를 분석해 이용 가능한 스트림과 자막을 찾습니다.",
+            "flowStep2": "선택한 영상/오디오 스트림을 프록시를 통해 다운로드합니다.",
+            "flowStep3": "FFmpeg로 브라우저에서 병합 후 파일을 내보냅니다.",
+            "limitationsTitle": "제한 사항",
+            "limitationsDesc": "스트림을 프록시로 가져오고 브라우저에서 처리하기 때문에 속도가 느릴 수 있습니다. 대용량 영상은 몇 분이 걸릴 수 있습니다."
         },
         "TorrentHistory": {
             "title": "내 토렌트 기록 확인",

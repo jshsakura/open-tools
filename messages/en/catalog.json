@@ -7,9 +7,25 @@
             "Security": "Security",
             "Utilities": "Utilities"
         },
+        "Suno": {
+            "title": "Suno AI Downloader",
+            "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download.",
+            "errorGeneric": "An error occurred while fetching song data.",
+            "inputPlaceholder": "Paste Suno song or playlist link here...",
+            "resolveButton": "Resolve",
+            "guide": {
+                "title": "How to Find Sharing Link",
+                "step1": "Go to suno.com and find your favorite song or playlist.",
+                "step2": "Click share icon (arrow) on song card.",
+                "step3": "Copy the sharing link and paste it above.",
+                "supported": "Supported Link Types",
+                "playlist": "Song Link",
+                "share": "Playlist Link"
+            }
+        },
         "SunoDownloader": {
             "title": "Suno AI Downloader",
-            "description": "Download Suno.com songs easily by pasting the sharing link. High-quality MP3 download."
+            "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download."
         },
         "VideoConverter": {
             "title": "Local Video Encoder (WASM)",
@@ -17,7 +33,10 @@
         },
         "YoutubeThumbnail": {
             "title": "YouTube Thumbnail Extractor",
-            "description": "Get high-resolution thumbnails from any YouTube video URL instantly."
+            "description": "Get high-resolution thumbnails from any YouTube video URL instantly.",
+            "errorInvalidUrl": "Invalid YouTube URL. Please enter a valid YouTube link.",
+            "inputPlaceholder": "Paste YouTube URL here...",
+            "extractButton": "Extract"
         },
         "ImageConverter": {
             "title": "Image Format Converter",
@@ -25,7 +44,15 @@
         },
         "SqlConverter": {
             "title": "SQL to JSON/CSV Converter",
-            "description": "Transform SQL INSERT statements into clean JSON or CSV data formats locally."
+            "description": "Transform SQL INSERT statements into clean JSON or CSV data formats locally.",
+            "inputLabelSql": "Input (SQL)",
+            "inputLabelTable": "Input (Table)",
+            "outputLabel": "Output ({format})",
+            "placeholderSql": "INSERT INTO users (id, name) VALUES (1, 'John');",
+            "placeholderTable": "id\\tname\\n1\\tJohn",
+            "errorInvalidFormat": "Could not parse format. Please check your input.",
+            "copied": "Copied",
+            "copy": "Copy"
         },
         "FaviconGenerator": {
             "title": "Favicon Generator",
@@ -72,7 +99,28 @@
         },
         "BrowserInfo": {
             "title": "What is my Browser?",
-            "description": "Analyze your browser version, OS, screen resolution, and user agent details."
+            "description": "Analyze your browser version, OS, screen resolution, and user agent details.",
+            "browserDetection": "Browser Detection",
+            "environmentReport": "Comprehensive report of your current environment",
+            "liveSession": "Live Session",
+            "displayAnalysis": "Display Analysis",
+            "screenResolution": "Screen Resolution",
+            "windowViewport": "Window Viewport",
+            "internalBrowserSize": "Internal Browser Size",
+            "privacySettings": "Privacy Settings",
+            "cookies": "Cookies",
+            "doNotTrack": "Do Not Track",
+            "active": "Active",
+            "notSent": "Not Sent",
+            "javascript": "Javascript",
+            "pdfSupport": "PDF Support",
+            "enabled": "Enabled",
+            "disabled": "Disabled",
+            "note": "Note: These values are extracted directly from your browser's navigator object and are not stored elsewhere.",
+            "fullUserAgentString": "Full User Agent String",
+            "copied": "Copied",
+            "copyString": "Copy string",
+            "runningOn": "Running on {os}"
         },
         "SvgToJsx": {
             "title": "SVG to JSX Converter",
@@ -116,7 +164,9 @@
         },
         "QrGenerator": {
             "title": "QR Code Generator",
-            "description": "Instantly generate high-quality QR codes with various settings and custom designs."
+            "description": "Instantly generate high-quality QR codes with various settings and custom designs.",
+            "copied": "Copied",
+            "downloaded": "QR code downloaded as PNG"
         },
         "HashGenerator": {
             "title": "Hash Generator",
@@ -140,7 +190,9 @@
         },
         "XmlFormatter": {
             "title": "XML Formatter & Validator",
-            "description": "Format, validate, and convert XML to JSON with real-time error detection."
+            "description": "Format, validate, and convert XML to JSON with real-time error detection.",
+            "copy": "Copied",
+            "copyJson": "JSON copied"
         },
         "BannerGenerator": {
             "title": "Spring Boot Banner Generator",
@@ -169,6 +221,10 @@
         "Basic3dViewer": {
             "title": "3D Model Viewer",
             "description": "Preview and analyze 3D models (OBJ, STL, GLTF/GLB) directly in your browser."
+        },
+        "QrGenerator": {
+            "title": "QR Code Generator",
+            "description": "Generate customizable QR codes for URLs, text, email, and phone numbers."
         },
         "AesCrypto": {
             "title": "AES Encryption",
@@ -237,6 +293,14 @@
             },
             "cancel": "Cancel",
             "speedNote": "Download speeds may be slow due to YouTube limitations and proxy relay."
+            ,
+            "flowTitle": "How it works",
+            "flowDesc": "This tool runs locally in your browser and does not upload your media to our servers.",
+            "flowStep1": "Analyze the YouTube link to discover available streams and subtitles.",
+            "flowStep2": "Download the selected video/audio stream through the proxy.",
+            "flowStep3": "Merge and export the file in your browser using FFmpeg.",
+            "limitationsTitle": "Limitations",
+            "limitationsDesc": "Downloads can be slow because streams are fetched through a proxy and processed locally in your browser. Large videos may take several minutes."
         },
         "TorrentHistory": {
             "title": "IP Torrent History Check",
