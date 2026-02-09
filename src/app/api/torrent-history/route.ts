@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
-import { spawn } from 'child_process';
-import path from 'path';
+import { scrapeTorrentHistory } from '@/scripts/torrent-scraper';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function GET(request: Request) {
     let debugLog: string[] = [];
@@ -51,51 +51,13 @@ export async function GET(request: Request) {
             console.error("ISP fetch failed", e);
         }
 
-        // 2. Fetch via Puppeteer Script (Node.js)
-        // Use a relative path to avoid Turbopack server-relative import limitations.
-        const scriptPath = path.join('src', 'scripts', 'torrent-scraper.js');
-
-        // Spawn Node.js process to run the scraper
-        const html = await new Promise<string>((resolve, reject) => {
-            const process = spawn('node', [scriptPath, ip], { cwd: process.cwd() });
-
-            let stdoutData = '';
-            let stderrData = '';
-
-            // Set timeout to kill process if hangs
-            const timer = setTimeout(() => {
-                process.kill();
-                reject(new Error(`Timeout after ${TIMEOUT}ms`));
-            }, TIMEOUT);
-
-            process.stdout.on('data', (data) => {
-                stdoutData += data.toString();
-            });
-
-            process.stderr.on('data', (data) => {
-                stderrData += data.toString();
-            });
-
-            process.on('close', (code) => {
-                clearTimeout(timer);
-                if (code !== 0) {
-                    // Check if stdout has content (maybe it printed HTML but exited with error code?)
-                    // Usually we reject, but if we have HTML we might want to try parsing
-                    if (stdoutData.includes('<html')) {
-                        resolve(stdoutData);
-                    } else {
-                        reject(new Error(`Scraper exited with code ${code}: ${stderrData}`));
-                    }
-                } else {
-                    resolve(stdoutData);
-                }
-            });
-
-            process.on('error', (err) => {
-                clearTimeout(timer);
-                reject(err);
-            });
-        });
+        // 2. Fetch via Puppeteer (Node.js)
+        const html = await Promise.race<string>([
+            scrapeTorrentHistory(ip),
+            new Promise<string>((_, reject) =>
+                setTimeout(() => reject(new Error(`Timeout after ${TIMEOUT}ms`)), TIMEOUT),
+            ),
+        ]);
 
         // 3. Parse HTML
         const $ = cheerio.load(html);
