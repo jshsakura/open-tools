@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { AlertCircle, CheckCircle2 } from "lucide-react"
 
 export function RegexTester() {
-    const t = useTranslations('RegexTester');
+    const t = useTranslations('RegexTester')
     const [regexStr, setRegexStr] = useState("")
     const [flags, setFlags] = useState("gm")
     const [testString, setTestString] = useState("The quick brown fox jumps over the lazy dog.\n1234567890\nuser@example.com")
@@ -89,7 +89,7 @@ export function RegexTester() {
             <GlassCard className="p-6 rounded-2xl space-y-4">
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 space-y-2">
-                        <Label>Regular Expression</Label>
+                        <Label>{t('regex')}</Label>
                         <div className="relative">
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-mono">/</span>
                             <Input
@@ -103,7 +103,7 @@ export function RegexTester() {
                     </div>
 
                     <div className="w-full md:w-32 space-y-2">
-                        <Label>Flags</Label>
+                        <Label>{t('flags')}</Label>
                         <Input
                             value={flags}
                             onChange={(e) => setFlags(e.target.value)}
@@ -123,20 +123,20 @@ export function RegexTester() {
 
             <div className="grid md:grid-cols-2 gap-6 h-[500px]">
                 <div className="flex flex-col gap-2 h-full">
-                    <Label className="text-muted-foreground ml-1">Test String</Label>
+                        <Label className="text-muted-foreground ml-1">{t('testString')}</Label>
                     <Textarea
                         value={testString}
                         onChange={(e) => setTestString(e.target.value)}
                         className="flex-1 resize-none font-mono text-sm bg-secondary/50 border-border/40 focus:ring-rose-500/50 leading-relaxed"
-                        placeholder="Enter text to test regex against..."
+                        placeholder={t('enterText')}
                     />
                 </div>
 
                 <div className="flex flex-col gap-2 h-full">
                     <div className="flex justify-between items-center">
-                        <Label className="text-muted-foreground ml-1">Matches</Label>
+                        <Label className="text-muted-foreground ml-1">{t('matches')}</Label>
                         <Badge variant="outline" className="text-muted-foreground">
-                            {processedMatches.length} matches
+                            {t('matchesCount', { count: processedMatches.length })}
                         </Badge>
                     </div>
                     <div className="flex-1 bg-secondary/50 border border-border/40 rounded-xl p-3 overflow-auto">
@@ -146,7 +146,7 @@ export function RegexTester() {
             </div>
 
             <GlassCard className="p-6 rounded-2xl">
-                <Label className="text-lg font-semibold mb-4 block">Match Details</Label>
+                <Label className="text-lg font-semibold mb-4 block">{t('matchDetails')}</Label>
                 {processedMatches.length > 0 ? (
                     <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
                         {processedMatches.map((match, i) => (
@@ -155,9 +155,11 @@ export function RegexTester() {
                                 <div className="flex-1 break-all">
                                     <span className="text-rose-500 font-bold">{match[0]}</span>
                                     {match.length > 1 && (
-                                        <div className="mt-2 text-xs text-muted-foreground">
-                                            Groups: {JSON.stringify(match.slice(1))}
-                                        </div>
+                                        <><div className="mt-2 text-xs text-muted-foreground">
+                                            {t('groups')}: {JSON.stringify(match.slice(1))}
+                                        </div><div className="text-xs text-muted-foreground">
+                                                {t('idx', { index: match.index })}
+                                            </div></>
                                     )}
                                 </div>
                                 <div className="text-xs text-muted-foreground">
@@ -168,7 +170,7 @@ export function RegexTester() {
                     </div>
                 ) : (
                     <div className="text-center py-8 text-muted-foreground">
-                        No matches found
+                        {t('noMatches')}
                     </div>
                 )}
             </GlassCard>

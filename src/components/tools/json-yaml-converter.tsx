@@ -84,7 +84,7 @@ export function JsonYamlConverter() {
                     {error && (
                         <Alert variant="destructive" className="mb-6 bg-red-500/10 border-red-500/20 text-red-500">
                             <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>Error</AlertTitle>
+                            <AlertTitle>{t('error')}</AlertTitle>
                             <AlertDescription>{error}</AlertDescription>
                         </Alert>
                     )}
@@ -93,11 +93,11 @@ export function JsonYamlConverter() {
                         {/* Editor 1: Input */}
                         <div className="flex flex-col gap-2 h-full">
                             <Label className="text-muted-foreground ml-1">
-                                {activeTab === 'json-to-yaml' ? 'JSON Input' : 'YAML Input'}
+                                {activeTab === 'json-to-yaml' ? t('jsonInput') : t('yamlInput')}
                             </Label>
                             <Textarea
                                 className="flex-1 font-mono text-sm bg-muted/20 border-border/40 resize-none focus-visible:ring-primary/50 rounded-xl leading-relaxed"
-                                placeholder={activeTab === 'json-to-yaml' ? '{"key": "value"}' : 'key: value'}
+                                placeholder={activeTab === 'json-to-yaml' ? t('jsonPlaceholder') : t('yamlPlaceholder')}
                                 value={activeTab === 'json-to-yaml' ? jsonInput : yamlInput}
                                 onChange={(e) => activeTab === 'json-to-yaml' ? setJsonInput(e.target.value) : setYamlInput(e.target.value)}
                             />
@@ -107,7 +107,7 @@ export function JsonYamlConverter() {
                         <div className="flex flex-col gap-2 h-full">
                             <div className="flex justify-between items-center">
                                 <Label className="text-muted-foreground ml-1">
-                                    {activeTab === 'json-to-yaml' ? 'YAML Output' : 'JSON Output'}
+                                    {activeTab === 'json-to-yaml' ? t('yamlOutput') : t('jsonOutput')}
                                 </Label>
                                 <Button
                                     variant="ghost"
@@ -116,14 +116,14 @@ export function JsonYamlConverter() {
                                     onClick={() => copyToClipboard(activeTab === 'json-to-yaml' ? yamlInput : jsonInput)}
                                 >
                                     <Copy className="w-3 h-3 mr-1" />
-                                    Copy
+                                    {t('copy')}
                                 </Button>
                             </div>
                             <Textarea
                                 className="flex-1 font-mono text-sm bg-muted/30 border-border/40 resize-none focus-visible:ring-primary/50 rounded-xl leading-relaxed text-muted-foreground"
                                 readOnly
                                 value={activeTab === 'json-to-yaml' ? yamlInput : jsonInput}
-                                placeholder="Result will appear here..."
+                                placeholder={t('resultPlaceholder')}
                             />
                         </div>
                     </div>

@@ -22,7 +22,21 @@
     },
     "UnitConverter": {
         "title": "Unit Converter",
-        "description": "Convert between PX, REM, and various Data units seamlessly."
+        "description": "Convert between PX, REM, and various Data units seamlessly.",
+        "badge": "Fast & precise",
+        "tabs": {
+            "pxRem": "PX ↔ REM",
+            "data": "Data Units",
+            "length": "Length",
+            "weight": "Weight",
+            "temperature": "Temperature"
+        },
+        "baseFontSize": "Base Font Size (px)",
+        "pixels": "Pixels (px)",
+        "rem": "Rem",
+        "formula": "Formula",
+        "valueToConvert": "Value to Convert",
+        "convertedResult": "Converted Result"
     },
     "JsonYaml": {
         "title": "JSON ↔ YAML Converter",
@@ -72,7 +86,21 @@
             "action": "Create GIF"
         }
     },
-    "RegexTester": {
+        "SvgToJsx": {
+        "svgSource": "SVG Source",
+        "pasteSvg": "Paste your raw SVG code here",
+        "clear": "Clear",
+        "componentName": "Component Name",
+        "convert": "Convert",
+        "jsxOutput": "JSX Output",
+        "readyForReact": "Ready for your React project",
+        "copied": "Copied!",
+        "copyCode": "Copy Code",
+        "outputPlaceholder": "Converted code will appear here...",
+        "whyUse": "Why use SVG to JSX?",
+        "whyUseDesc": "Web standards for SVG attributes are often kebab-case (e.g., stroke-width), but React components require camelCase (e.g., strokeWidth). Manually converting complex SVGs is tedious and error-prone. Our tool handles attribute mapping, removes overhead, and wraps it in a functional component structure so you can just paste it and go."
+    },
+"RegexTester": {
         "title": "RegEx Tester",
         "description": "Real-time regular expression testing with highlighting."
     },
@@ -82,7 +110,46 @@
     },
     "QrGenerator": {
         "title": "QR Code Generator",
-        "description": "Create customizable QR codes with colors, sizes, and error correction levels. Download as PNG or SVG."
+        "description": "Create customizable QR codes with colors, sizes, and error correction levels. Download as PNG or SVG.",
+        "resultPreview": "Result Preview",
+        "qrCodeReady": "Your QR code is ready",
+        "formatPng": "PNG",
+        "formatSvg": "SVG",
+        "copyClipboard": "Copy to clipboard",
+        "highResolutionOutput": "High-resolution output: {size}px",
+        "contentLabel": "Content",
+        "type": "Type",
+        "tabUrl": "URL",
+        "tabText": "Text",
+        "tabEmail": "Email",
+        "tabPhone": "Phone",
+        "content": "Content",
+        "placeholderUrl": "https://example.com",
+        "placeholderText": "Enter text to encode",
+        "placeholderEmail": "email@example.com",
+        "placeholderPhone": "+1 555 123 4567",
+        "appearance": "Appearance",
+        "foregroundColor": "Foreground",
+        "backgroundColor": "Background",
+        "resolutionScale": "Resolution",
+        "quietZone": "Quiet zone",
+        "blocks": "blocks",
+        "errorCorrectionLevel": "Error correction",
+        "levelL": "L (Low)",
+        "levelM": "M (Medium)",
+        "levelQ": "Q (Quartile)",
+        "levelH": "H (High)",
+        "levelLDesc": "Blue (Low) - 7%",
+        "levelMDesc": "Green (Medium) - 15%",
+        "levelQDesc": "Orange (Quartile) - 25%",
+        "levelHDesc": "Red (High) - 30%",
+        "higherLevelsNote": "Higher levels handle more damage but reduce capacity.",
+        "errorGenerate": "Failed to generate QR code.",
+        "downloadedPng": "QR code downloaded as PNG.",
+        "downloadedSvg": "QR code downloaded as SVG.",
+        "errorSvg": "Failed to generate SVG.",
+        "copiedClipboard": "Copied to clipboard.",
+        "errorCopy": "Failed to copy."
     },
     "BackgroundRemover": {
         "title": "AI Background Remover",
@@ -143,6 +210,15 @@
     "ImageCompressor": {
         "title": "Image Compressor",
         "description": "Reduce image size while maintaining quality directly in your browser.",
+        "introTitle": "What this tool does",
+        "introDesc": "Upload a PNG/JPG/WEBP and tune quality or scale. You'll see the estimated size savings and can download the compressed result.",
+        "statOriginal": "Original size",
+        "statCompressed": "Compressed size",
+        "statSaved": "Savings",
+        "statDims": "Dimensions",
+        "statQuality": "Quality",
+        "statScale": "Scale",
+        "statPlaceholder": "—",
         "dropTitle": "Drag & Drop Image",
         "dropDesc": "Supports PNG, JPG, WEBP upto 10MB",
         "selectFile": "Select File",
@@ -154,6 +230,60 @@
         "download": "Download Image",
         "saved": "Image saved!"
     },
+    "BrowserInfo": {
+        "title": "What is my Browser?",
+        "description": "Analyze your browser version, OS, screen resolution, and user agent details.",
+        "browserDetection": "Browser Detection",
+        "environmentReport": "Comprehensive report of your current environment",
+        "liveSession": "Live Session",
+        "displayAnalysis": "Display Analysis",
+        "screenResolution": "Screen Resolution",
+        "windowViewport": "Window Viewport",
+        "internalBrowserSize": "Internal Browser Size",
+        "gpuAcceleration": "GPU Acceleration",
+        "gpuAccelerationDesc": "WebGL availability (proxy for hardware acceleration)",
+        "hardwareThreads": "Hardware Threads",
+        "hardwareThreadsDesc": "CPU logical cores reported by the browser",
+        "unknown": "Unknown",
+        "privacySettings": "Privacy Settings",
+        "cookies": "Cookies",
+        "doNotTrack": "Do Not Track",
+        "active": "Active",
+        "notSent": "Not Sent",
+        "javascript": "Javascript",
+        "pdfSupport": "PDF Support",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "note": "Note: These values are extracted directly from your browser's navigator object and are not stored elsewhere.",
+        "fullUserAgentString": "Full User Agent String",
+        "copied": "Copied",
+        "copyString": "Copy string",
+        "runningOn": "Running on {os}"
+    },
+    "SpeedTest": {
+        "title": "Network Speed Test",
+        "performanceReport": "Performance Report",
+        "description": "Measure your download, upload, and latency in real time.",
+        "startTest": "Start Test",
+        "stop": "Stop",
+        "readyToTest": "Ready to measure your connection",
+        "readyDesc": "Start the test to measure download, upload, and latency.",
+        "download": "Download",
+        "upload": "Upload",
+        "mbps": "Mbps",
+        "stability": "Latency",
+        "ms": "ms",
+        "measuringLatency": "Measuring latency...",
+        "testingDownload": "Testing download speed...",
+        "testingUpload": "Testing upload speed...",
+        "testComplete": "Test complete",
+        "testingMethodology": "Testing methodology",
+        "testingMethodologyDesc": "Download uses a large file from Cloudflare. Upload sends a fixed payload to estimate throughput.",
+        "whatIsJitter": "What is jitter?",
+        "jitterDesc": "Jitter is variation in latency over time, which affects real-time calls and gaming.",
+        "fiberVs5g": "Fiber vs 5G",
+        "fiberVs5gDesc": "Fiber usually offers lower latency and more stable speeds. 5G can be fast but more variable."
+    },
     "SqlFormatter": {
         "title": "SQL Formatter",
         "description": "Format and beautify your complex SQL queries with multiple dialect support.",
@@ -162,6 +292,26 @@
         "errorMessage": "Format failed. Please check your SQL syntax.",
         "clear": "Clear",
         "format": "Format"
+    },
+    "XmlFormatter": {
+        "xmlInput": "XML Input",
+        "pasteXml": "Paste your XML code here",
+        "clear": "Clear",
+        "formatValidate": "Format & Validate",
+        "validationError": "Validation Error",
+        "formattedXml": "Formatted XML",
+        "copy": "Copy",
+        "copied": "Copied",
+        "xmlToJson": "XML → JSON",
+        "outputPlaceholder": "Formatted XML will appear here...",
+        "jsonPlaceholder": "JSON conversion will appear here...",
+        "validation": "Validation",
+        "validationDesc": "Automatically validates XML structure and reports syntax errors with detailed error messages.",
+        "formatting": "Formatting",
+        "formattingDesc": "Beautifies XML with proper indentation and line breaks for improved readability.",
+        "conversion": "Conversion",
+        "conversionDesc": "Converts XML to JSON format while preserving attributes and nested structures.",
+        "copyJson": "JSON copied"
     },
     "YoutubeThumbnail": {
         "title": "YouTube Thumbnail Extractor",
@@ -178,6 +328,20 @@
         "color": "Shadow Color",
         "copy": "Copy CSS",
         "copied": "Copied!"
+    },
+    "Base64Image": {
+        "base64Input": "Base64 Input",
+        "pasteDataUri": "Paste your data URI or raw string",
+        "decodePreview": "Decode & Preview",
+        "clear": "Clear",
+        "validationError": "Validation Error",
+        "invalidBase64": "Invalid Base64 string. Please ensure it follows correct format.",
+        "imagePreview": "Image Preview",
+        "visualOutput": "Visual output of encoded string",
+        "save": "Save",
+        "previewUnavailable": "Preview Unavailable",
+        "note": "Note:",
+        "noteDesc": "Data URIs often include specific mime-types (like <code>image/webp</code>). If your string doesn't include header, we'll attempt to render it as a standard PNG by default."
     },
     "GradientGenerator": {
         "title": "CSS Gradient Generator",
@@ -251,10 +415,21 @@
     "HwpViewer": {
         "title": "Document Viewer (HWP/DOCX)",
         "description": "View HWP and DOCX documents directly in your browser without installing any software.",
+        "viewerTitle": "Document Preview",
+        "viewerDescription": "Drop a file to preview it instantly. Supports HWP, DOCX, XLSX.",
         "dropTitle": "Drag & Drop document here",
         "view": "Open Document",
         "copyInfo": "You can select and copy text from the viewer.",
-        "error": "Failed to open document."
+        "error": "Failed to open document.",
+        "uploadDocument": "Upload Document",
+        "supportedFormats": "Support .hwp, .docx, .xlsx, .xls",
+        "invalidFileType": "Invalid file type",
+        "invalidFileDesc": "Support .hwp, .docx, .xlsx, .xls files.",
+        "renderingDocument": "Rendering document...",
+        "hwpDisabled": "HWP Viewer is temporarily disabled due to build issues.",
+        "documentLoaded": "Document loaded successfully",
+        "failedToLoad": "Failed to load document",
+        "couldNotParse": "Could not parse this file."
     },
     "Basic3dViewer": {
         "title": "3D Model Viewer",
@@ -557,15 +732,31 @@
         },
         "legend": {
             "openTitle": "Open Status",
-            "openDesc": "The service responded and the connection was accepted. This usually means an application is listening on this port.",
+            "openDesc": "The service responded and connection was accepted. This usually means an application is listening on this port.",
             "closedTitle": "Closed Status",
-            "closedDesc": "The host responded but explicitly refused the connection. No application is currently listening on this port.",
+            "closedDesc": "The host responded but explicitly refused connection. No application is currently listening on this port.",
             "filteredTitle": "Filtered / Timeout",
-            "filteredDesc": "No response was received within the timeout period. This is often caused by a firewall dropping the packets."
+            "filteredDesc": "No response was received within the timeout period. This is often caused by a firewall dropping packets."
         },
         "limitation": {
             "title": "Note",
             "content": "This tool uses a server-side scanner to check port availability accurately."
         }
+    },
+    "ImageConverter": {
+        "clickOrDrag": "Click or drag image to upload",
+        "dropDesc": "Supports PNG, JPG, WEBP",
+        "remove": "Remove",
+        "convertToPng": "Convert to PNG",
+        "convertToJpg": "Convert to JPG",
+        "convertToWebp": "Convert to WebP",
+        "download": "Download",
+        "introTitle": "What this tool does",
+        "introDesc": "Upload an image and convert it to PNG, JPG, or WebP format. All processing happens locally in your browser—your images never leave your device.",
+        "supportedFormats": "Supported formats: PNG, JPG, WebP",
+        "converting": "Converting...",
+        "uploadFirst": "Please upload an image first"
+    }
+}
     }
 }

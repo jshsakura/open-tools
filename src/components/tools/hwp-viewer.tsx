@@ -6,8 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { FileUp, File as FileIcon, X, FileText, AlertCircle, Loader2 } from "lucide-react"
 import { toast } from "sonner"
-// @ts-ignore
-// import { Viewer } from "hwp.js"
 import { renderAsync } from "docx-preview"
 import * as XLSX from "xlsx"
 
@@ -37,7 +35,7 @@ export function DocumentViewer() {
         const isExcel = fileName.endsWith('.xlsx') || fileName.endsWith('.xls')
 
         if (!isHwp && !isDocx && !isExcel) {
-            toast.error("Invalid file type", { description: "Support .hwp, .docx, .xlsx, .xls files." })
+            toast.error(t('invalidFileType'), { description: t('invalidFileDesc') })
             return
         }
 
@@ -52,15 +50,7 @@ export function DocumentViewer() {
         try {
             const arrayBuffer = await selectedFile.arrayBuffer()
 
-            if (isHwp) {
-                // const data = new Uint8Array(arrayBuffer)
-                // if (viewerRef.current) {
-                //     // @ts-ignore
-                //     const { Viewer } = await import("hwp.js")
-                //     new Viewer(viewerRef.current, data, { type: 'array' })
-                // }
-                toast.error("HWP Viewer is temporarily disabled due to build issues.")
-            } else if (isDocx) {
+            if (isDocx) {
                 if (viewerRef.current) {
                     await renderAsync(arrayBuffer, viewerRef.current, viewerRef.current, {
                         className: "docx-viewer",
@@ -73,10 +63,11 @@ export function DocumentViewer() {
                         experimental: false,
                         trimXmlDeclaration: true,
                         useBase64URL: false,
-
                         debug: false,
                     })
                 }
+            } else if (isHwp) {
+                toast.error(t('hwpDisabled'))
             } else if (isExcel) {
                 const workbook = XLSX.read(arrayBuffer, { type: 'array' })
                 const firstSheetName = workbook.SheetNames[0]
@@ -99,10 +90,10 @@ export function DocumentViewer() {
                 }
             }
 
-            toast.success("Document loaded successfully")
+            toast.success(t('documentLoaded'))
         } catch (error) {
             console.error(error)
-            toast.error("Failed to load document", { description: "Could not parse this file." })
+            toast.error(t('failedToLoad'), { description: t('couldNotParse') })
             setFile(null)
             if (viewerRef.current) viewerRef.current.innerHTML = ''
         } finally {
@@ -117,10 +108,9 @@ export function DocumentViewer() {
                     <div>
                         <CardTitle className="flex items-center gap-2">
                             <FileText className="h-5 w-5 text-blue-600" />
-                            {/* Updated title to reflect multi-format support if possible via translation update */}
-                            {t("title")}
+                            {t("viewerTitle")}
                         </CardTitle>
-                        <CardDescription>{t("description")}</CardDescription>
+                        <CardDescription>{t("viewerDescription")}</CardDescription>
                     </div>
                 </div>
             </CardHeader>
@@ -139,11 +129,11 @@ export function DocumentViewer() {
                                 accept=".hwp,.docx,.xlsx,.xls"
                                 className="hidden"
                                 onChange={handleFileChange}
-                            />
-                            <FileUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                            <p className="text-lg font-medium mb-1">Upload Document</p>
-                            <p className="text-sm text-muted-foreground">Support .hwp, .docx, .xlsx, .xls</p>
-                        </div>
+                             />
+                             <FileUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                             <p className="text-lg font-medium mb-1">{t('uploadDocument')}</p>
+                             <p className="text-sm text-muted-foreground">{t('supportedFormats')}</p>
+                         </div>
                     </div>
                 ) : (
                     <div className="h-full flex flex-col">
@@ -160,14 +150,14 @@ export function DocumentViewer() {
                             {/* Container for document content */}
                             <div ref={viewerRef} className="min-h-full doc-container" />
 
-                            {isProcessing && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10 backdrop-blur-sm">
-                                    <div className="flex flex-col items-center gap-2">
-                                        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                                        <p className="text-sm text-muted-foreground">Rendering document...</p>
-                                    </div>
-                                </div>
-                            )}
+                             {isProcessing && (
+                                 <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10 backdrop-blur-sm">
+                                     <div className="flex flex-col items-center gap-2">
+                                         <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                                         <p className="text-sm text-muted-foreground">{t('renderingDocument')}</p>
+                                     </div>
+                                 </div>
+                             )}
                         </div>
                     </div>
                 )}

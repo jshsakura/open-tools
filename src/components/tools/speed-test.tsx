@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils"
 
 export function SpeedTestTool() {
-    const t = useTranslations()
+    const t = useTranslations('SpeedTest')
     const [running, setRunning] = useState(false)
     const [progress, setProgress] = useState(0)
     const [status, setStatus] = useState<"idle" | "ping" | "download" | "upload" | "complete">("idle")
@@ -135,17 +135,17 @@ export function SpeedTestTool() {
                             <div className="space-y-1">
                                 <CardTitle className="text-2xl font-black tracking-tighter flex items-center gap-2">
                                     <Zap className="h-6 w-6 text-primary" />
-                                    Performance Report
+                                    {t('performanceReport')}
                                 </CardTitle>
-                                <CardDescription>Real-time network throughput and latency</CardDescription>
+                                <CardDescription>{t('description')}</CardDescription>
                             </div>
                             <div className="flex gap-2">
                                 {running ? (
-                                    <Button variant="destructive" size="sm" onClick={stopTest} className="rounded-full">Stop</Button>
+                                    <Button variant="destructive" size="sm" onClick={stopTest} className="rounded-full">{t('stop')}</Button>
                                 ) : (
                                     <Button variant="default" size="sm" onClick={startTest} className="rounded-full gap-2 px-6">
                                         <Play className="h-4 w-4 fill-current" />
-                                        Start Test
+                                        {t('startTest')}
                                     </Button>
                                 )}
                             </div>
@@ -158,8 +158,8 @@ export function SpeedTestTool() {
                                     <Gauge className="h-20 w-20 text-primary/40" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-black tracking-tight">Ready to test?</h3>
-                                    <p className="text-muted-foreground">We'll measure your download, upload, and latency across global CDNs.</p>
+                                    <h3 className="text-2xl font-black tracking-tight">{t('readyToTest')}</h3>
+                                    <p className="text-muted-foreground">{t('readyDesc')}</p>
                                 </div>
                             </div>
                         ) : (
@@ -169,29 +169,29 @@ export function SpeedTestTool() {
                                     <div className="p-8 rounded-3xl bg-secondary/30 border border-border/10 text-center space-y-2 relative overflow-hidden group">
                                         <div className={cn("absolute inset-0 bg-primary/5 transition-opacity duration-500", status === "download" ? "opacity-100" : "opacity-0")} />
                                         <ArrowDown className={cn("h-8 w-8 mx-auto mb-2 transition-all", status === "download" ? "text-primary animate-bounce" : "text-muted-foreground/30")} />
-                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest relative z-10">DOWNLOAD</p>
+                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest relative z-10">{t('download')}</p>
                                         <div className="flex items-baseline justify-center gap-1 relative z-10">
                                             <span className="text-5xl font-black tabular-nums tracking-tighter">{results.download || (status === "download" ? "..." : "0")}</span>
-                                            <span className="text-lg font-bold text-muted-foreground">Mbps</span>
+                                            <span className="text-lg font-bold text-muted-foreground">{t('mbps')}</span>
                                         </div>
                                     </div>
                                     {/* Upload */}
                                     <div className="p-8 rounded-3xl bg-secondary/30 border border-border/10 text-center space-y-2 relative overflow-hidden">
                                         <div className={cn("absolute inset-0 bg-orange-500/5 transition-opacity duration-500", status === "upload" ? "opacity-100" : "opacity-0")} />
                                         <ArrowUp className={cn("h-8 w-8 mx-auto mb-2 transition-all", status === "upload" ? "text-orange-500 animate-bounce" : "text-muted-foreground/30")} />
-                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest relative z-10">UPLOAD</p>
+                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest relative z-10">{t('upload')}</p>
                                         <div className="flex items-baseline justify-center gap-1 relative z-10">
                                             <span className="text-5xl font-black tabular-nums tracking-tighter">{results.upload || (status === "upload" ? "..." : "0")}</span>
-                                            <span className="text-lg font-bold text-muted-foreground">Mbps</span>
+                                            <span className="text-lg font-bold text-muted-foreground">{t('mbps')}</span>
                                         </div>
                                     </div>
                                     {/* Ping */}
                                     <div className="p-8 rounded-3xl bg-secondary/30 border border-border/10 text-center space-y-2">
                                         <Activity className={cn("h-8 w-8 mx-auto mb-2 transition-all", status === "ping" ? "text-green-500 animate-pulse" : "text-muted-foreground/30")} />
-                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">STABILITY (PING)</p>
+                                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{t('stability')}</p>
                                         <div className="flex items-baseline justify-center gap-1">
                                             <span className="text-5xl font-black tabular-nums tracking-tighter">{results.ping || (status === "ping" ? "..." : "0")}</span>
-                                            <span className="text-lg font-bold text-muted-foreground">ms</span>
+                                            <span className="text-lg font-bold text-muted-foreground">{t('ms')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -199,10 +199,10 @@ export function SpeedTestTool() {
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center px-1">
                                         <span className="text-xs font-bold text-primary uppercase tracking-widest">
-                                            {status === "ping" && "Measuring Latency..."}
-                                            {status === "download" && "Testing Download Speed..."}
-                                            {status === "upload" && "Testing Upload Speed..."}
-                                            {status === "complete" && "Test Complete"}
+                                            {status === "ping" && t('measuringLatency')}
+                                            {status === "download" && t('testingDownload')}
+                                            {status === "upload" && t('testingUpload')}
+                                            {status === "complete" && t('testComplete')}
                                         </span>
                                         <span className="text-xs font-bold text-muted-foreground">{Math.round(progress)}%</span>
                                     </div>
@@ -219,10 +219,10 @@ export function SpeedTestTool() {
                         <div className="p-2 rounded-lg bg-primary/10 text-primary">
                             <RefreshCcw className="h-5 w-5" />
                         </div>
-                        <h4 className="font-bold text-sm">Testing Methodology</h4>
+                        <h4 className="font-bold text-sm">{t('testingMethodology')}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        We perform multiple sequential fetch requests to global Content Delivery Networks (CDNs) like Google and Cloudflare. This ensures a realistic measurement of your line's maximum potential.
+                        {t('testingMethodologyDesc')}
                     </p>
                 </Card>
 
@@ -231,10 +231,10 @@ export function SpeedTestTool() {
                         <div className="p-2 rounded-lg bg-orange-500/10 text-orange-500">
                             <Activity className="h-5 w-5" />
                         </div>
-                        <h4 className="font-bold text-sm">What is jitter?</h4>
+                        <h4 className="font-bold text-sm">{t('whatIsJitter')}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        Jitter refers to the variance in latency over time. Low jitter (below 30ms) is critical for smooth video calls and online gaming, even if your Mbps is high.
+                        {t('jitterDesc')}
                     </p>
                 </Card>
 
@@ -243,10 +243,10 @@ export function SpeedTestTool() {
                         <div className="p-2 rounded-lg bg-green-500/10 text-green-500">
                             <Zap className="h-5 w-5" />
                         </div>
-                        <h4 className="font-bold text-sm">Fiber vs 5G</h4>
+                        <h4 className="font-bold text-sm">{t('fiberVs5g')}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        Fiber usually offers symmetrical speeds (similar download/upload), while 5G and Cable are often asymmetrical, prioritizing downloads.
+                        {t('fiberVs5gDesc')}
                     </p>
                 </Card>
             </div>

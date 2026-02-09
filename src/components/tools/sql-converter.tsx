@@ -12,6 +12,7 @@ import Papa from 'papaparse';
 
 export function SqlConverter() {
     const t = useTranslations('SqlConverter');
+    const tcatalog = useTranslations('Catalog.SqlConverter');
     const [input, setInput] = useState("");
     const [output, setOutput] = useState("");
     const [inputType, setInputType] = useState<"sql" | "table">("sql");
@@ -107,18 +108,18 @@ export function SqlConverter() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto h-[calc(100vh-300px)] min-h-[600px]">
+        <div className="max-w-6xl mx-auto h-[calc(100vh-350px)] min-h-[450px]">
             <GlassCard className="h-full flex flex-col p-6 rounded-2xl gap-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <Tabs value={inputType} onValueChange={(v) => setInputType(v as "sql" | "table")} className="w-full sm:w-auto">
                         <TabsList className="bg-muted/50 p-1 rounded-xl">
                             <TabsTrigger value="sql" className="rounded-lg px-4 py-2">
                                 <Database className="w-4 h-4 mr-2" />
-                                SQL INSERT
+                                {tcatalog('inputLabelSql')}
                             </TabsTrigger>
                             <TabsTrigger value="table" className="rounded-lg px-4 py-2">
                                 <FileSpreadsheet className="w-4 h-4 mr-2" />
-                                Table Data
+                                {tcatalog('inputLabelTable')}
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
@@ -142,12 +143,12 @@ export function SqlConverter() {
                 <div className="flex-1 grid md:grid-cols-2 gap-6 min-h-0">
                     <div className="flex flex-col gap-2 min-h-0 relative">
                         <div className="flex justify-between items-center h-8">
-                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Input ({inputType === 'sql' ? 'SQL' : 'Text'})</Label>
+                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{tcatalog('inputLabelSql')}</Label>
                         </div>
                         <Textarea
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder={inputType === 'sql' ? "INSERT INTO users (id, name) VALUES (1, 'John');" : "id\tname\n1\tJohn"}
+                            placeholder={inputType === 'sql' ? tcatalog('placeholderSql') : tcatalog('placeholderTable')}
                             className="flex-1 font-mono text-sm bg-secondary/50 border-border/40 resize-none focus-visible:ring-indigo-500/50 rounded-xl leading-relaxed p-4"
                         />
                         {error && (
@@ -159,7 +160,7 @@ export function SqlConverter() {
 
                     <div className="flex flex-col gap-2 min-h-0">
                         <div className="flex justify-between items-center h-8">
-                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Output ({outputFormat.toUpperCase()})</Label>
+                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{tcatalog('outputLabel', { format: outputFormat.toUpperCase() })}</Label>
                             <Button
                                 size="sm"
                                 variant="ghost"
@@ -168,7 +169,7 @@ export function SqlConverter() {
                                 disabled={!output}
                             >
                                 {isCopied ? <Check className="h-3.5 w-3.5 mr-1" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
-                                {isCopied ? "Copied" : "Copy"}
+                                {isCopied ? t('copied') : t('copy')}
                             </Button>
                         </div>
                         <Textarea

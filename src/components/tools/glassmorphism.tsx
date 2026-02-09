@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils"
 
 export function GlassmorphismTool() {
-    const t = useTranslations()
+    const t = useTranslations('Glassmorphism')
     const [blur, setBlur] = useState([10])
     const [opacity, setOpacity] = useState([0.2])
     const [saturation, setSaturation] = useState([100])
@@ -55,9 +55,9 @@ box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);`
                     <CardHeader className="border-b border-border/10 bg-muted/30">
                         <CardTitle className="text-xl font-bold flex items-center gap-2">
                             <Palette className="h-5 w-5 text-primary" />
-                            Style Configuration
+                            {t('styleConfiguration')}
                         </CardTitle>
-                        <CardDescription>Fine-tune your glass effect parameters</CardDescription>
+                        <CardDescription>{t('fineTune')}</CardDescription>
                     </CardHeader>
                     <CardContent className="p-8 space-y-8">
                         {/* Blur */}

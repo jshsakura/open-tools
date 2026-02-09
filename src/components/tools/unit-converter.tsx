@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useTranslations } from 'next-intl'
-import { ArrowRightLeft, Database, Ruler } from "lucide-react"
+import { ArrowRightLeft, Database, Ruler, Thermometer, Scale, Sparkles } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -22,6 +22,24 @@ export function UnitConverter() {
     const [fromUnit, setFromUnit] = useState("GB")
     const [toUnit, setToUnit] = useState("MB")
     const [dataResult, setDataResult] = useState("")
+
+    // Length state
+    const [lengthValue, setLengthValue] = useState(1)
+    const [lengthFrom, setLengthFrom] = useState("m")
+    const [lengthTo, setLengthTo] = useState("cm")
+    const [lengthResult, setLengthResult] = useState("")
+
+    // Weight state
+    const [weightValue, setWeightValue] = useState(1)
+    const [weightFrom, setWeightFrom] = useState("kg")
+    const [weightTo, setWeightTo] = useState("g")
+    const [weightResult, setWeightResult] = useState("")
+
+    // Temperature state
+    const [tempValue, setTempValue] = useState(25)
+    const [tempFrom, setTempFrom] = useState("C")
+    const [tempTo, setTempTo] = useState("F")
+    const [tempResult, setTempResult] = useState("")
 
     // Handlers for Px/Rem
     const handlePxChange = (val: string) => {
@@ -52,6 +70,9 @@ export function UnitConverter() {
         }
     }
 
+    const formatNumber = (value: number) =>
+        value.toLocaleString(undefined, { maximumFractionDigits: 6 })
+
     // Handlers for Data
     const units = ["B", "KB", "MB", "GB", "TB", "PB"]
 
@@ -73,7 +94,7 @@ export function UnitConverter() {
         const result = dataValue * multiplier
 
         // Format nicely
-        let formatted = result.toLocaleString(undefined, { maximumFractionDigits: 6 })
+        let formatted = formatNumber(result)
 
         // If it's a very small number or huge number, maybe scientific? 
         // For now simple float is fine for typical dev use.
@@ -81,18 +102,99 @@ export function UnitConverter() {
 
     }, [dataValue, fromUnit, toUnit])
 
+    // Length conversions (base: meter)
+    const lengthUnits: Record<string, number> = {
+        mm: 0.001,
+        cm: 0.01,
+        m: 1,
+        km: 1000,
+        in: 0.0254,
+        ft: 0.3048,
+        yd: 0.9144,
+        mi: 1609.344
+    }
+
+    useEffect(() => {
+        if (isNaN(lengthValue)) {
+            setLengthResult("-")
+            return
+        }
+        const base = lengthValue * lengthUnits[lengthFrom]
+        const result = base / lengthUnits[lengthTo]
+        setLengthResult(formatNumber(result))
+    }, [lengthValue, lengthFrom, lengthTo])
+
+    // Weight conversions (base: gram)
+    const weightUnits: Record<string, number> = {
+        mg: 0.001,
+        g: 1,
+        kg: 1000,
+        oz: 28.349523125,
+        lb: 453.59237
+    }
+
+    useEffect(() => {
+        if (isNaN(weightValue)) {
+            setWeightResult("-")
+            return
+        }
+        const base = weightValue * weightUnits[weightFrom]
+        const result = base / weightUnits[weightTo]
+        setWeightResult(formatNumber(result))
+    }, [weightValue, weightFrom, weightTo])
+
+    // Temperature conversions
+    const convertTemperature = (value: number, from: string, to: string) => {
+        if (isNaN(value)) return NaN
+        let celsius = value
+        if (from === "F") celsius = (value - 32) * (5 / 9)
+        if (from === "K") celsius = value - 273.15
+        if (to === "C") return celsius
+        if (to === "F") return (celsius * 9) / 5 + 32
+        if (to === "K") return celsius + 273.15
+        return value
+    }
+
+    useEffect(() => {
+        if (isNaN(tempValue)) {
+            setTempResult("-")
+            return
+        }
+        const result = convertTemperature(tempValue, tempFrom, tempTo)
+        setTempResult(isNaN(result) ? "-" : formatNumber(result))
+    }, [tempValue, tempFrom, tempTo])
+
+
+    const inputClass = "h-12 text-lg font-mono bg-secondary/50 border-border/40 rounded-xl"
+    const selectClass = "w-28 h-12 bg-secondary/50 border-border/40 rounded-xl"
 
     return (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-6">
+            <div className="hidden sm:flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-bold text-primary w-fit">
+                <Sparkles className="h-4 w-4" />
+                {t('badge')}
+            </div>
             <Tabs defaultValue="px-rem" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-8 bg-secondary/50 backdrop-blur-md p-1 rounded-xl">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-6 bg-secondary/50 backdrop-blur-md p-1 rounded-2xl">
                     <TabsTrigger value="px-rem" className="rounded-lg data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all">
                         <Ruler className="w-4 h-4 mr-2" />
-                        PX ↔ REM
+                        {t('tabs.pxRem')}
                     </TabsTrigger>
                     <TabsTrigger value="data" className="rounded-lg data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all">
                         <Database className="w-4 h-4 mr-2" />
-                        Data Units
+                        {t('tabs.data')}
+                    </TabsTrigger>
+                    <TabsTrigger value="length" className="rounded-lg data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all">
+                        <Ruler className="w-4 h-4 mr-2" />
+                        {t('tabs.length')}
+                    </TabsTrigger>
+                    <TabsTrigger value="weight" className="rounded-lg data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all">
+                        <Scale className="w-4 h-4 mr-2" />
+                        {t('tabs.weight')}
+                    </TabsTrigger>
+                    <TabsTrigger value="temperature" className="rounded-lg data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all">
+                        <Thermometer className="w-4 h-4 mr-2" />
+                        {t('tabs.temperature')}
                     </TabsTrigger>
                 </TabsList>
 
@@ -101,25 +203,25 @@ export function UnitConverter() {
                         {/* Base Size Setting */}
                         <div className="flex items-center justify-between p-4 rounded-xl bg-secondary/50 border border-border/40">
                             <Label htmlFor="base-size" className="text-muted-foreground font-medium">
-                                Base Font Size (px)
+                                {t('baseFontSize')}
                             </Label>
                             <Input
                                 id="base-size"
                                 type="number"
                                 value={baseSize}
                                 onChange={(e) => handleBaseChange(e.target.value)}
-                                className="w-24 text-right bg-transparent border-border/40 focus:ring-primary/50"
+                                className="w-24 h-10 text-right bg-transparent border-border/40 focus:ring-primary/50"
                             />
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 items-center">
                             <div className="flex-1 w-full space-y-2">
-                                <Label className="text-muted-foreground text-xs uppercase tracking-wider">Pixels (px)</Label>
+                                <Label className="text-muted-foreground text-xs uppercase tracking-wider">{t('pixels')}</Label>
                                 <Input
                                     type="number"
                                     value={pxValue || ""}
                                     onChange={(e) => handlePxChange(e.target.value)}
-                                    className="h-14 text-2xl font-mono bg-secondary/50 border-border/40 focus:ring-primary/50 rounded-xl"
+                                    className={inputClass}
                                 />
                             </div>
 
@@ -128,18 +230,18 @@ export function UnitConverter() {
                             </div>
 
                             <div className="flex-1 w-full space-y-2">
-                                <Label className="text-muted-foreground text-xs uppercase tracking-wider">Rem</Label>
+                                <Label className="text-muted-foreground text-xs uppercase tracking-wider">{t('rem')}</Label>
                                 <Input
                                     type="number"
                                     value={remValue || ""}
                                     onChange={(e) => handleRemChange(e.target.value)}
-                                    className="h-14 text-2xl font-mono bg-secondary/50 border-border/40 focus:ring-primary/50 rounded-xl"
+                                    className={inputClass}
                                 />
                             </div>
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground bg-secondary/50 p-4 rounded-xl border border-border/40">
-                            Formula: <code>{pxValue}px / {baseSize} = {remValue}rem</code>
+                            {t('formula')}: <code>{pxValue}px / {baseSize} = {remValue}rem</code>
                         </div>
                     </GlassCard>
                 </TabsContent>
@@ -148,16 +250,16 @@ export function UnitConverter() {
                     <GlassCard className="p-8 rounded-2xl space-y-8">
                         <div className="flex flex-col gap-6">
                             <div className="space-y-4">
-                                <Label className="text-muted-foreground">Value to Convert</Label>
+                                <Label className="text-muted-foreground">{t('valueToConvert')}</Label>
                                 <div className="flex gap-4">
                                     <Input
                                         type="number"
                                         value={dataValue}
                                         onChange={(e) => setDataValue(parseFloat(e.target.value))}
-                                        className="h-14 text-xl font-mono bg-secondary/50 border-border/40 flex-1 rounded-xl"
+                                        className={inputClass + " flex-1"}
                                     />
                                     <Select value={fromUnit} onValueChange={setFromUnit}>
-                                        <SelectTrigger className="w-28 h-14 bg-secondary/50 border-border/40 rounded-xl">
+                                        <SelectTrigger className={selectClass}>
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -172,17 +274,158 @@ export function UnitConverter() {
                             </div>
 
                             <div className="space-y-4">
-                                <Label className="text-muted-foreground">Converted Result</Label>
+                                <Label className="text-muted-foreground">{t('convertedResult')}</Label>
                                 <div className="flex gap-4">
                                     <div className="flex items-center px-4 h-14 text-xl font-mono bg-primary/10 border border-primary/20 text-primary flex-1 rounded-xl overflow-x-auto whitespace-nowrap">
                                         {dataResult}
                                     </div>
                                     <Select value={toUnit} onValueChange={setToUnit}>
-                                        <SelectTrigger className="w-28 h-14 bg-secondary/50 border-border/40 rounded-xl">
+                                        <SelectTrigger className={selectClass}>
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {units.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+                        </div>
+                    </GlassCard>
+                </TabsContent>
+
+                <TabsContent value="length">
+                    <GlassCard className="p-8 rounded-2xl space-y-8">
+                        <div className="flex flex-col gap-6">
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('valueToConvert')}</Label>
+                                <div className="flex gap-4">
+                                    <Input
+                                        type="number"
+                                        value={lengthValue}
+                                        onChange={(e) => setLengthValue(parseFloat(e.target.value))}
+                                        className={inputClass + " flex-1"}
+                                    />
+                                    <Select value={lengthFrom} onValueChange={setLengthFrom}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-center text-muted-foreground">
+                                <ArrowRightLeft className="w-6 h-6 rotate-90 sm:rotate-0" />
+                            </div>
+
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('convertedResult')}</Label>
+                                <div className="flex gap-4">
+                                    <div className="flex items-center px-4 h-14 text-xl font-mono bg-primary/10 border border-primary/20 text-primary flex-1 rounded-xl overflow-x-auto whitespace-nowrap">
+                                        {lengthResult}
+                                    </div>
+                                    <Select value={lengthTo} onValueChange={setLengthTo}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+                        </div>
+                    </GlassCard>
+                </TabsContent>
+
+                <TabsContent value="weight">
+                    <GlassCard className="p-8 rounded-2xl space-y-8">
+                        <div className="flex flex-col gap-6">
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('valueToConvert')}</Label>
+                                <div className="flex gap-4">
+                                    <Input
+                                        type="number"
+                                        value={weightValue}
+                                        onChange={(e) => setWeightValue(parseFloat(e.target.value))}
+                                        className={inputClass + " flex-1"}
+                                    />
+                                    <Select value={weightFrom} onValueChange={setWeightFrom}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-center text-muted-foreground">
+                                <ArrowRightLeft className="w-6 h-6 rotate-90 sm:rotate-0" />
+                            </div>
+
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('convertedResult')}</Label>
+                                <div className="flex gap-4">
+                                    <div className="flex items-center px-4 h-14 text-xl font-mono bg-primary/10 border border-primary/20 text-primary flex-1 rounded-xl overflow-x-auto whitespace-nowrap">
+                                        {weightResult}
+                                    </div>
+                                    <Select value={weightTo} onValueChange={setWeightTo}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+                        </div>
+                    </GlassCard>
+                </TabsContent>
+
+                <TabsContent value="temperature">
+                    <GlassCard className="p-8 rounded-2xl space-y-8">
+                        <div className="flex flex-col gap-6">
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('valueToConvert')}</Label>
+                                <div className="flex gap-4">
+                                    <Input
+                                        type="number"
+                                        value={tempValue}
+                                        onChange={(e) => setTempValue(parseFloat(e.target.value))}
+                                        className={inputClass + " flex-1"}
+                                    />
+                                    <Select value={tempFrom} onValueChange={setTempFrom}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {["C", "F", "K"].map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-center text-muted-foreground">
+                                <ArrowRightLeft className="w-6 h-6 rotate-90 sm:rotate-0" />
+                            </div>
+
+                            <div className="space-y-4">
+                                <Label className="text-muted-foreground">{t('convertedResult')}</Label>
+                                <div className="flex gap-4">
+                                    <div className="flex items-center px-4 h-14 text-xl font-mono bg-primary/10 border border-primary/20 text-primary flex-1 rounded-xl overflow-x-auto whitespace-nowrap">
+                                        {tempResult}
+                                    </div>
+                                    <Select value={tempTo} onValueChange={setTempTo}>
+                                        <SelectTrigger className={selectClass}>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {["C", "F", "K"].map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>

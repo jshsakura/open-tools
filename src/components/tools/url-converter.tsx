@@ -54,6 +54,11 @@ export function UrlConverter() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="text-center space-y-2">
+                <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+                <p className="text-muted-foreground">{t("description")}</p>
+            </div>
+
             <GlassCard className="p-1 rounded-2xl overflow-hidden min-h-[500px] flex flex-col">
                 <Tabs defaultValue="encode" className="w-full flex-1 flex flex-col">
                     <div className="p-4 border-b border-border/10 bg-secondary/30 backdrop-blur-md">

@@ -423,7 +423,10 @@ export function HomeClient() {
                             className="rounded-full px-4 cursor-pointer"
                         >
                             <LayoutGrid className="mr-2 h-4 w-4" />
-                            {t('Home.allTools')} ({tools.length})
+                            {t('Home.allTools')}
+                            <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary-foreground/15 text-primary-foreground ring-1 ring-primary-foreground/20">
+                                {tools.length}
+                            </span>
                         </Button>
                         {allTags.map(tag => (
                             <Button
@@ -487,7 +490,7 @@ export function HomeClient() {
                                         <CategoryIcon className="w-6 h-6 text-primary" />
                                         {/* Localized Category Title - properly references Catalog.Categories */}
                                         {t(`Catalog.Categories.${category}`)}
-                                        <span className="text-sm font-normal text-muted-foreground ml-2 bg-muted/50 px-2 py-0.5 rounded-full">
+                                        <span className="text-sm font-normal text-foreground/80 ml-2 bg-muted/70 border border-border/60 px-2 py-0.5 rounded-full">
                                             {categoryTools.length}
                                         </span>
                                     </h2>

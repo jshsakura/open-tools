@@ -19,6 +19,7 @@ interface ConvertedImage {
 
 export function ImageConverter() {
     const t = useTranslations('ImageConverter');
+    const tcatalog = useTranslations('Catalog.ImageConverter');
     const [originalImage, setOriginalImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [isConverting, setIsConverting] = useState(false);
@@ -112,13 +113,19 @@ export function ImageConverter() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
+            <div className="text-center space-y-2">
+                <h2 className="text-2xl font-bold">{t('introTitle')}</h2>
+                <p className="text-muted-foreground">{t('introDesc')}</p>
+                <p className="text-sm text-muted-foreground">{t('supportedFormats')}</p>
+            </div>
+
             <GlassCard className="p-8 rounded-2xl">
                 <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-muted-foreground/25 rounded-xl bg-secondary/50 hover:bg-secondary/70 transition-colors cursor-pointer relative">
                     <Input
                         type="file"
                         accept="image/*"
                         onChange={handleFileChange}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-0"
                     />
                     {originalImage ? (
                         <div className="text-center space-y-4">
@@ -131,51 +138,50 @@ export function ImageConverter() {
                             </div>
                             <Button variant="outline" size="sm" onClick={(e) => {
                                 e.stopPropagation();
+                                e.preventDefault();
                                 setOriginalImage(null);
                                 setPreviewUrl(null);
                                 setConvertedImages([]);
-                            }}>
+                            }} className="relative z-10 pointer-events-auto">
                                 <X className="mr-2 h-4 w-4" />
-                                Remove
+                                {t('remove')}
                             </Button>
                         </div>
                     ) : (
                         <div className="text-center space-y-2">
                             <Upload className="w-12 h-12 mx-auto text-muted-foreground" />
-                            <p className="text-lg font-medium">Click or drag image here</p>
-                            <p className="text-sm text-muted-foreground">Supports PNG, JPG, WebP</p>
+                            <p className="text-lg font-medium">{t('clickOrDrag')}</p>
+                            <p className="text-sm text-muted-foreground">{tcatalog('dropDesc')}</p>
                         </div>
                     )}
                 </div>
 
-                {originalImage && (
-                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <Button
-                            onClick={() => convertWithCanvas('image/png')}
-                            disabled={isConverting}
-                            className="bg-orange-500/10 hover:bg-orange-500/20 text-orange-500 border border-orange-500/20"
-                        >
-                            {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
-                            Convert to PNG
-                        </Button>
-                        <Button
-                            onClick={() => convertWithCanvas('image/jpeg')}
-                            disabled={isConverting}
-                            className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border border-blue-500/20"
-                        >
-                            {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
-                            Convert to JPG
-                        </Button>
-                        <Button
-                            onClick={() => convertWithCanvas('image/webp')}
-                            disabled={isConverting}
-                            className="bg-green-500/10 hover:bg-green-500/20 text-green-500 border border-green-500/20"
-                        >
-                            {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
-                            Convert to WebP
-                        </Button>
-                    </div>
-                )}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Button
+                        onClick={() => convertWithCanvas('image/png')}
+                        disabled={isConverting || !originalImage}
+                        className="bg-orange-500/10 hover:bg-orange-500/20 text-orange-500 border border-orange-500/20"
+                    >
+                        {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
+                        {t('convertToPng')}
+                    </Button>
+                    <Button
+                        onClick={() => convertWithCanvas('image/jpeg')}
+                        disabled={isConverting || !originalImage}
+                        className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border border-blue-500/20"
+                    >
+                        {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
+                        {t('convertToJpg')}
+                    </Button>
+                    <Button
+                        onClick={() => convertWithCanvas('image/webp')}
+                        disabled={isConverting || !originalImage}
+                        className="bg-green-500/10 hover:bg-green-500/20 text-green-500 border border-green-500/20"
+                    >
+                        {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
+                        {t('convertToWebp')}
+                    </Button>
+                </div>
             </GlassCard>
 
             {convertedImages.length > 0 && (
@@ -200,7 +206,7 @@ export function ImageConverter() {
                                 document.body.removeChild(link);
                             }}>
                                 <Download className="mr-2 h-4 w-4" />
-                                Download
+                                {t('download')}
                             </Button>
                         </GlassCard>
                     ))}

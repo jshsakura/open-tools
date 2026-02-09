@@ -8,10 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { jwtDecode } from "jwt-decode"
 import { AlertCircle, CheckCircle2, Key, FileJson, ShieldCheck, Database, Lock } from "lucide-react"
-import dynamic from 'next/dynamic'
-
-// Dynamically import react-json-view to avoid SSR issues
-const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
+const formatJson = (value: any) => JSON.stringify(value, null, 2)
 
 export function JwtDebugger() {
     const t = useTranslations('JwtDebugger');
@@ -108,14 +105,9 @@ export function JwtDebugger() {
                             </div>
                             <div className="bg-secondary/50 rounded-xl p-4 border border-border/50">
                                 {header ? (
-                                    <ReactJson
-                                        src={header}
-                                        theme="isotope"
-                                        style={{ backgroundColor: 'transparent', fontSize: '13px' }}
-                                        name={false}
-                                        displayDataTypes={false}
-                                        enableClipboard={false}
-                                    />
+                                    <pre className="text-xs leading-relaxed whitespace-pre-wrap break-words">
+                                        {formatJson(header)}
+                                    </pre>
                                 ) : (
                                     <span className="text-muted-foreground text-sm italic opacity-50">Waiting for token...</span>
                                 )}
@@ -130,14 +122,9 @@ export function JwtDebugger() {
                             </div>
                             <div className="bg-secondary/50 rounded-xl p-4 border border-border/50">
                                 {payload ? (
-                                    <ReactJson
-                                        src={payload}
-                                        theme="isotope"
-                                        style={{ backgroundColor: 'transparent', fontSize: '13px' }}
-                                        name={false}
-                                        displayDataTypes={false}
-                                        enableClipboard={false}
-                                    />
+                                    <pre className="text-xs leading-relaxed whitespace-pre-wrap break-words">
+                                        {formatJson(payload)}
+                                    </pre>
                                 ) : (
                                     <span className="text-muted-foreground text-sm italic opacity-50">Waiting for token...</span>
                                 )}

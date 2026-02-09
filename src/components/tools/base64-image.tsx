@@ -19,7 +19,7 @@ import {
 import { cn } from "@/lib/utils"
 
 export function Base64ImageTool() {
-    const t = useTranslations()
+    const t = useTranslations('Base64Image')
     const [input, setInput] = useState("")
     const [metadata, setMetadata] = useState<{ size: string, format: string } | null>(null)
     const [error, setError] = useState<string | null>(null)
@@ -51,7 +51,7 @@ export function Base64ImageTool() {
                 })
             }
         } catch (e) {
-            setError("Invalid Base64 string. Please ensure it follows the correct format.")
+            setError(t('invalidBase64'))
         }
     }
 
@@ -85,9 +85,9 @@ export function Base64ImageTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <ImageIcon className="h-5 w-5 text-purple-500" />
-                                Base64 Input
+                                {t('base64Input')}
                             </CardTitle>
-                            <CardDescription>Paste your data URI or raw string</CardDescription>
+                            <CardDescription>{t('pasteDataUri')}</CardDescription>
                         </div>
                         <Button variant="ghost" size="icon" onClick={clear} className="text-muted-foreground/50 hover:text-rose-500">
                             <Trash2 className="h-4 w-4" />
@@ -109,7 +109,7 @@ export function Base64ImageTool() {
                         )}
                         <Button className="w-full h-12 rounded-2xl gap-2 font-bold shadow-lg" onClick={handleProcess}>
                             <Eye className="h-4 w-4" />
-                            Decode & Preview
+                            {t('decodePreview')}
                         </Button>
                     </CardContent>
                 </Card>
@@ -120,9 +120,9 @@ export function Base64ImageTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <Maximize2 className="h-5 w-5 text-primary" />
-                                Image Preview
+                                {t('imagePreview')}
                             </CardTitle>
-                            <CardDescription>Visual output of the encoded string</CardDescription>
+                            <CardDescription>{t('visualOutput')}</CardDescription>
                         </div>
                         <Button
                             variant="secondary"
@@ -131,7 +131,7 @@ export function Base64ImageTool() {
                             onClick={downloadImage}
                         >
                             <Download className="h-4 w-4" />
-                            Save
+                            {t('save')}
                         </Button>
                     </CardHeader>
                     <CardContent className="p-8 flex-1 flex flex-col items-center justify-center relative z-10">
@@ -157,10 +157,10 @@ export function Base64ImageTool() {
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center space-y-4 opacity-30">
-                                <div className="p-6 rounded-[32px] bg-secondary border border-border/10">
-                                    <ImageIcon className="h-16 w-16 text-muted-foreground" />
-                                </div>
-                                <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Preview Unavailable</p>
+                                 <div className="p-6 rounded-[32px] bg-secondary border border-border/10">
+                                     <ImageIcon className="h-16 w-16 text-muted-foreground" />
+                                 </div>
+                                 <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">{t('previewUnavailable')}</p>
                             </div>
                         )}
                     </CardContent>
@@ -173,7 +173,9 @@ export function Base64ImageTool() {
                     <Info className="h-5 w-5" />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                    <strong>Note:</strong> Data URIs often include specific mime-types (like <code>image/webp</code>). If your string doesn't include the header, we'll attempt to render it as a standard PNG by default.
+                    {t.rich('noteDesc', {
+                        code: (chunks) => <code>{chunks}</code>
+                    })}
                 </p>
             </div>
         </div>

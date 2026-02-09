@@ -468,6 +468,37 @@ export default function YoutubeDownloaderPage() {
                 )}
             </CardContent>
         </Card>
+
+        <div className="mt-8 space-y-4">
+            <Card className="border-border/40 bg-card/20 backdrop-blur-sm">
+                <CardHeader>
+                    <CardTitle className="text-base">{t('flowTitle')}</CardTitle>
+                    <CardDescription>{t('flowDesc')}</CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-3 text-sm text-muted-foreground">
+                    <div className="flex items-start gap-3">
+                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>
+                        <p>{t('flowStep1')}</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</div>
+                        <p>{t('flowStep2')}</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</div>
+                        <p>{t('flowStep3')}</p>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Alert className="border-amber-500/30 bg-amber-500/5">
+                <AlertCircle className="h-4 w-4 text-amber-600" />
+                <AlertTitle className="text-amber-700">{t('limitationsTitle')}</AlertTitle>
+                <AlertDescription className="text-amber-700/80">
+                    {t('limitationsDesc')}
+                </AlertDescription>
+            </Alert>
+        </div>
             </div>
         );
 }

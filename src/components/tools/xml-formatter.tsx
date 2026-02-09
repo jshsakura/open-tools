@@ -19,7 +19,7 @@ import {
 import { cn } from "@/lib/utils"
 
 export function XmlFormatterTool() {
-    const t = useTranslations()
+    const t = useTranslations('XmlFormatter')
     const [input, setInput] = useState("")
     const [output, setOutput] = useState("")
     const [jsonOutput, setJsonOutput] = useState("")
@@ -170,9 +170,9 @@ export function XmlFormatterTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <Code2 className="h-5 w-5 text-primary" />
-                                XML Input
+                                {t('xmlInput')}
                             </CardTitle>
-                            <CardDescription>Paste your XML code here</CardDescription>
+                            <CardDescription>{t('pasteXml')}</CardDescription>
                         </div>
                         <Button variant="ghost" size="icon" onClick={clear} className="text-muted-foreground/50 hover:text-rose-500">
                             <Trash2 className="h-4 w-4" />
@@ -189,14 +189,14 @@ export function XmlFormatterTool() {
                             <div className="flex items-start gap-2 p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs animate-in slide-in-from-top-2">
                                 <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
                                 <div className="flex-1">
-                                    <p className="font-bold mb-1">Validation Error</p>
+                                    <p className="font-bold mb-1">{t('validationError')}</p>
                                     <p className="text-[11px] leading-relaxed opacity-90">{error}</p>
                                 </div>
                             </div>
                         )}
                         <Button className="w-full h-12 rounded-2xl gap-2 font-bold shadow-lg" onClick={handleFormat}>
                             <Sparkles className="h-4 w-4" />
-                            Format & Validate
+                            {t('formatValidate')}
                         </Button>
                     </CardContent>
                 </Card>
@@ -209,7 +209,7 @@ export function XmlFormatterTool() {
                             <div className="space-y-1">
                                 <CardTitle className="text-lg font-bold flex items-center gap-2">
                                     <FileCode className="h-4 w-4 text-green-500" />
-                                    Formatted XML
+                                    {t('formattedXml')}
                                 </CardTitle>
                             </div>
                             <Button
@@ -220,16 +220,16 @@ export function XmlFormatterTool() {
                                 onClick={() => copyToClipboard(output)}
                             >
                                 {copied ? <CheckCircle2 className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-                                {copied ? "Copied" : "Copy"}
+                                {copied ? t('copied') : t('copy')}
                             </Button>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <Textarea
-                                readOnly
-                                value={output}
-                                placeholder="Formatted XML will appear here..."
-                                className="min-h-[200px] font-mono text-[12px] bg-background/80 border-primary/10 transition-all"
-                            />
+                        <Textarea
+                            readOnly
+                            value={output}
+                            placeholder={t('outputPlaceholder')}
+                            className="min-h-[200px] font-mono text-[12px] bg-background/80 border-primary/10 transition-all"
+                        />
                         </CardContent>
                     </Card>
 
@@ -237,29 +237,29 @@ export function XmlFormatterTool() {
                     <Card className="border-indigo-500/20 bg-card/60 backdrop-blur-sm shadow-xl">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b border-border/10 bg-muted/30">
                             <div className="space-y-1">
-                                <CardTitle className="text-lg font-bold flex items-center gap-2">
-                                    <RefreshCcw className="h-4 w-4 text-indigo-500" />
-                                    XML → JSON
-                                </CardTitle>
-                            </div>
-                            <Button
-                                variant="secondary"
-                                size="sm"
-                                className="rounded-xl gap-2 font-bold h-8"
-                                disabled={!jsonOutput}
-                                onClick={() => copyToClipboard(jsonOutput, true)}
-                            >
-                                {copiedJson ? <CheckCircle2 className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-                                {copiedJson ? "Copied" : "Copy"}
-                            </Button>
+                        <CardTitle className="text-lg font-bold flex items-center gap-2">
+                            <RefreshCcw className="h-4 w-4 text-indigo-500" />
+                            {t('xmlToJson')}
+                        </CardTitle>
+                    </div>
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        className="rounded-xl gap-2 font-bold h-8"
+                        disabled={!jsonOutput}
+                        onClick={() => copyToClipboard(jsonOutput, true)}
+                    >
+                        {copiedJson ? <CheckCircle2 className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                        {copiedJson ? t('copied') : t('copy')}
+                    </Button>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <Textarea
-                                readOnly
-                                value={jsonOutput}
-                                placeholder="JSON conversion will appear here..."
-                                className="min-h-[200px] font-mono text-[12px] bg-background/80 border-indigo-500/10 transition-all"
-                            />
+                        <Textarea
+                            readOnly
+                            value={jsonOutput}
+                            placeholder={t('jsonPlaceholder')}
+                            className="min-h-[200px] font-mono text-[12px] bg-background/80 border-indigo-500/10 transition-all"
+                        />
                         </CardContent>
                     </Card>
                 </div>
@@ -270,30 +270,30 @@ export function XmlFormatterTool() {
                 <Card className="p-6 space-y-3 bg-green-500/5 border-green-500/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-green-500">
                         <CheckCircle2 className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Validation</h4>
-                    </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                        Automatically validates XML structure and reports syntax errors with detailed error messages.
-                    </p>
+                    <h4 className="font-bold text-sm">{t('validation')}</h4>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                    {t('validationDesc')}
+                </p>
                 </Card>
 
                 <Card className="p-6 space-y-3 bg-primary/5 border-primary/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-primary">
                         <Sparkles className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Formatting</h4>
+                        <h4 className="font-bold text-sm">{t('formatting')}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        Beautifies XML with proper indentation and line breaks for improved readability.
+                        {t('formattingDesc')}
                     </p>
                 </Card>
 
                 <Card className="p-6 space-y-3 bg-indigo-500/5 border-indigo-500/10 rounded-[24px]">
                     <div className="flex items-center gap-2 text-indigo-500">
                         <RefreshCcw className="h-5 w-5" />
-                        <h4 className="font-bold text-sm">Conversion</h4>
+                        <h4 className="font-bold text-sm">{t('conversion')}</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                        Converts XML to JSON format while preserving attributes and nested structures.
+                        {t('conversionDesc')}
                     </p>
                 </Card>
             </div>

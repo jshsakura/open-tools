@@ -33,7 +33,7 @@ interface IpInfo {
 }
 
 export function MyIpTool() {
-    const t = useTranslations()
+    const t = useTranslations('MyIp')
     const [loading, setLoading] = useState(true)
     const [info, setInfo] = useState<IpInfo | null>(null)
     const [copied, setCopied] = useState(false)
@@ -74,9 +74,9 @@ export function MyIpTool() {
                         <div className="space-y-1">
                             <CardTitle className="flex items-center gap-2">
                                 <Globe className="h-5 w-5 text-primary" />
-                                My IP Address
+                                {t('ipAddress')}
                             </CardTitle>
-                            <CardDescription>Your current public networking identity</CardDescription>
+                            <CardDescription>{t('ipDesc')}</CardDescription>
                         </div>
                         <Button
                             variant="outline"
@@ -93,21 +93,21 @@ export function MyIpTool() {
                         {loading ? (
                             <div className="py-12 flex flex-col items-center gap-4 text-center">
                                 <RefreshCcw className="h-8 w-8 text-muted-foreground/50 animate-spin" />
-                                <p className="text-sm text-muted-foreground animate-pulse font-medium">Detecting IP...</p>
+                                <p className="text-sm text-muted-foreground animate-pulse font-medium">{t('detecting')}</p>
                             </div>
                         ) : error ? (
                             <div className="py-12 text-center">
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/20 mb-4">
                                     <AlertCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
                                 </div>
-                                <p className="text-red-600 dark:text-red-400 font-medium">{error}</p>
+                                <p className="text-red-600 dark:text-red-400 font-medium">{t('error')}</p>
                             </div>
                         ) : info && (
                             <div className="space-y-8">
                                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-primary/10 to-transparent border border-primary/10 p-6 md:p-8">
                                     <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
                                         <div className="space-y-2 text-center md:text-left">
-                                            <p className="text-xs font-bold text-primary/80 uppercase tracking-wider">Public IPv4</p>
+                                            <p className="text-xs font-bold text-primary/80 uppercase tracking-wider">{t('publicIpv4')}</p>
                                             <h2 className="text-4xl md:text-5xl font-black tracking-tight tabular-nums text-foreground">{info.ip}</h2>
                                         </div>
                                         <Button
@@ -119,7 +119,7 @@ export function MyIpTool() {
                                             )}
                                         >
                                             {copied ? <CheckCircle2 className="h-5 w-5 mr-2" /> : <Copy className="h-5 w-5 mr-2" />}
-                                            {copied ? "Copied" : "Copy IP"}
+                                            {copied ? t('copied') : t('copyIp')}
                                         </Button>
                                     </div>
                                     <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
@@ -133,7 +133,7 @@ export function MyIpTool() {
                                             <Server className="h-5 w-5" />
                                         </div>
                                         <div className="space-y-1 min-w-0">
-                                            <p className="text-xs font-medium text-muted-foreground uppercase">ISP & Network</p>
+                                            <p className="text-xs font-medium text-muted-foreground uppercase">{t('ispNetwork')}</p>
                                             <p className="font-semibold truncate" title={info.org}>{info.org}</p>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <Badge variant="secondary" className="text-[10px] h-5">ASN: {info.asn}</Badge>
@@ -146,10 +146,10 @@ export function MyIpTool() {
                                             <Shield className="h-5 w-5" />
                                         </div>
                                         <div className="space-y-1 min-w-0">
-                                            <p className="text-xs font-medium text-muted-foreground uppercase">Connection</p>
+                                            <p className="text-xs font-medium text-muted-foreground uppercase">{t('connection')}</p>
                                             <div className="flex flex-wrap gap-2 mt-1">
-                                                <Badge variant="outline" className="text-[10px] border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/20">IPv{info.version === 'IPv6' ? '6' : '4'}</Badge>
-                                                <Badge variant="outline" className="text-[10px] border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20">Secure</Badge>
+                                                <Badge variant="outline" className="text-[10px] border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/20">{t('ipv4')}</Badge>
+                                                <Badge variant="outline" className="text-[10px] border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20">{t('secure')}</Badge>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@ export function MyIpTool() {
                             <div className="p-2 rounded-lg bg-rose-500/10">
                                 <MapPin className="h-5 w-5 text-rose-500" />
                             </div>
-                            Location
+                            {t('location')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4 pt-6">
@@ -182,21 +182,21 @@ export function MyIpTool() {
 
                                 <div className="space-y-3">
                                     <div className="flex items-center justify-between py-2 border-b border-border/10">
-                                        <span className="text-sm font-medium text-muted-foreground">City</span>
+                                        <span className="text-sm font-medium text-muted-foreground">{t('city')}</span>
                                         <span className="text-sm font-bold">{info.city}, {info.region}</span>
                                     </div>
                                     <div className="flex items-center justify-between py-2 border-b border-border/10">
-                                        <span className="text-sm font-medium text-muted-foreground">Country</span>
+                                        <span className="text-sm font-medium text-muted-foreground">{t('country')}</span>
                                         <div className="flex items-center gap-2">
                                             <span className="text-sm font-bold">{info.country_name}</span>
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between py-2 border-b border-border/10">
-                                        <span className="text-sm font-medium text-muted-foreground">Timezone</span>
+                                        <span className="text-sm font-medium text-muted-foreground">{t('timezone')}</span>
                                         <span className="text-sm font-bold">{info.timezone}</span>
                                     </div>
                                     <div className="flex items-center justify-between py-2">
-                                        <span className="text-sm font-medium text-muted-foreground">Postal Code</span>
+                                        <span className="text-sm font-medium text-muted-foreground">{t('postalCode')}</span>
                                         <span className="text-sm font-bold">{info.postal}</span>
                                     </div>
                                 </div>
@@ -204,13 +204,13 @@ export function MyIpTool() {
                                 <Button variant="secondary" className="w-full gap-2 rounded-xl text-xs font-bold" asChild>
                                     <a href={`https://www.google.com/maps?q=${info.latitude},${info.longitude}`} target="_blank" rel="noopener noreferrer">
                                         <ExternalLink className="h-3 w-3" />
-                                        View on Google Maps
+                                        {t('viewOnMaps')}
                                     </a>
                                 </Button>
                             </div>
                         ) : (
                             <div className="py-12 text-center text-muted-foreground">
-                                {loading ? "Waiting for GPS data..." : "No location data available"}
+                                {loading ? t('waitingGps') : t('noLocation')}
                             </div>
                         )}
                     </CardContent>
@@ -222,12 +222,10 @@ export function MyIpTool() {
                 <div className="max-w-3xl space-y-4">
                     <h3 className="text-xl font-bold flex items-center gap-2">
                         <Shield className="h-5 w-5 text-primary" />
-                        About Your Privacy
+                        {t('aboutPrivacy')}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        This tool uses the <strong>ipapi.co</strong> public API to detect your network coordinates.
-                        We do not store your IP address or location data on our servers. The identification process is purely client-side and ephemeral.
-                        Public IP addresses are assigned by your ISP and can be used to identify your approximate location but usually not your exact home address.
+                        {t('privacyDesc')}
                     </p>
                 </div>
             </section>

@@ -33,12 +33,12 @@ export function ModeToggle() {
         <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-primary/10"
+            className="h-9 w-9 rounded-full transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-primary/10 cursor-pointer"
             onClick={toggleTheme}
             title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
         >
-            <Sun className={`h-[1.2rem] w-[1.2rem] transition-all absolute ${isDark ? '-rotate-90 scale-0' : 'rotate-0 scale-100'}`} />
-            <Moon className={`h-[1.2rem] w-[1.2rem] transition-all absolute ${isDark ? 'rotate-0 scale-100' : 'rotate-90 scale-0'}`} />
+            <Sun className={`h-[1.2rem] w-[1.2rem] transition-all absolute ${isDark ? 'rotate-0 scale-100' : '-rotate-90 scale-0'}`} />
+            <Moon className={`h-[1.2rem] w-[1.2rem] transition-all absolute ${isDark ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`} />
             <span className="sr-only">Toggle theme</span>
         </Button>
     )

@@ -25,7 +25,7 @@ interface ColorResult {
 }
 
 export function ColorPaletteTool() {
-    const t = useTranslations()
+    const t = useTranslations('ColorPalette')
     const [mode, setMode] = useState<'image' | 'manual'>('image')
     const [image, setImage] = useState<string | null>(null)
     const [palette, setPalette] = useState<ColorResult[]>([])

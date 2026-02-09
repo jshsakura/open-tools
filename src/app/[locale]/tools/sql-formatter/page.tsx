@@ -14,7 +14,7 @@ const SqlFormatter = dynamic(
 )
 
 export default function SqlFormatterPage() {
-    const t = useTranslations('SqlFormatter')
+    const t = useTranslations('Catalog.SqlFormatter')
 
     return (
         <div className="container mx-auto px-4 py-24 min-h-screen max-w-6xl">

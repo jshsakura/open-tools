@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, Copy, QrCode, Type, Link, Mail, Phone, Settings2, Share2 } from "lucide-react"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
@@ -28,6 +27,7 @@ export function QrGenerator() {
     const [bgColor, setBgColor] = useState("#ffffff")
     const [errorLevel, setErrorLevel] = useState<ErrorCorrectionLevel>('M')
     const [margin, setMargin] = useState(4)
+    const [inputType, setInputType] = useState<'url' | 'text' | 'email' | 'phone'>('url')
 
     // Generate QR code
     useEffect(() => {
@@ -50,7 +50,7 @@ export function QrGenerator() {
             (error) => {
                 if (error) {
                     console.error('QR Code generation error:', error)
-                    toast.error('Failed to generate QR code')
+                    toast.error(t('errorGenerate'))
                 }
             }
         )
@@ -70,7 +70,7 @@ export function QrGenerator() {
             a.click()
             document.body.removeChild(a)
             URL.revokeObjectURL(url)
-            toast.success('QR code downloaded as PNG')
+            toast.success(t('downloadedPng'))
         })
     }
 
@@ -99,10 +99,10 @@ export function QrGenerator() {
             a.click()
             document.body.removeChild(a)
             URL.revokeObjectURL(url)
-            toast.success('QR code downloaded as SVG')
+            toast.success(t('downloadedSvg'))
         } catch (error) {
             console.error('SVG generation error:', error)
-            toast.error('Failed to generate SVG')
+            toast.error(t('errorSvg'))
         }
     }
 
@@ -116,11 +116,11 @@ export function QrGenerator() {
                 await navigator.clipboard.write([
                     new ClipboardItem({ 'image/png': blob })
                 ])
-                toast.success('QR code copied to clipboard')
+                toast.success(t('copiedClipboard'))
             })
         } catch (error) {
             console.error('Copy error:', error)
-            toast.error('Failed to copy to clipboard')
+            toast.error(t('errorCopy'))
         }
     }
 
@@ -134,44 +134,41 @@ export function QrGenerator() {
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
                                 <Share2 className="w-5 h-5 text-primary" />
-                                Result Preview
+                                {t('resultPreview')}
                             </CardTitle>
-                            <CardDescription>Your QR Code is ready</CardDescription>
+                            <CardDescription>{t('qrCodeReady')}</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             {/* Canvas Container */}
-                            <div className="flex items-center justify-center p-8 bg-secondary/30 rounded-2xl border border-dashed border-border">
-                                <div className="relative group">
-
-                                    <canvas
-                                        ref={canvasRef}
-                                        className="relative max-w-full h-auto rounded-md shadow-sm"
-                                        style={{ maxHeight: '300px', width: 'auto' }} // CSS limits display size, canvas has high res
-                                    />
-                                </div>
+                            <div className="flex items-center justify-center p-8 bg-secondary/30 rounded-2xl border border-dashed border-border overflow-hidden">
+                                <canvas
+                                    ref={canvasRef}
+                                    className="max-w-full h-auto rounded-md shadow-sm"
+                                    style={{ maxWidth: '300px', maxHeight: '300px' }}
+                                />
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="grid grid-cols-2 gap-3">
+                             <div className="grid grid-cols-2 gap-3">
                                 <Button onClick={downloadPNG} className="w-full h-11 shadow-lg shadow-primary/20" size="lg">
                                     <Download className="w-4 h-4 mr-2" />
-                                    PNG
+                                    {t('formatPng')}
                                 </Button>
                                 <Button onClick={downloadSVG} variant="outline" className="w-full h-11" size="lg">
                                     <Download className="w-4 h-4 mr-2" />
-                                    SVG
+                                    {t('formatSvg')}
                                 </Button>
                                 <Button onClick={copyToClipboard} variant="secondary" className="col-span-2 w-full h-11">
                                     <Copy className="w-4 h-4 mr-2" />
-                                    Copy to Clipboard
+                                    {t('copyClipboard')}
                                 </Button>
-                            </div>
-                        </CardContent>
-                    </Card>
+                             </div>
+                         </CardContent>
+                     </Card>
 
-                    <div className="hidden md:block text-center text-sm text-muted-foreground/60">
-                        <p>High resolution output ({size}x{size}px)</p>
-                    </div>
+                     <div className="hidden md:block text-center text-sm text-muted-foreground/60">
+                         <p>{t('highResolutionOutput', { size: size })}</p>
+                     </div>
                 </div>
             </div>
 
@@ -182,68 +179,49 @@ export function QrGenerator() {
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-lg">
                             <Type className="w-5 h-5 text-blue-500" />
-                            Content
+                            {t('contentLabel')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Tabs defaultValue="url" className="w-full">
-                            <TabsList className="grid w-full grid-cols-4 h-12 mb-6">
-                                <TabsTrigger value="url" className="gap-2"><Link className="w-4 h-4" /> URL</TabsTrigger>
-                                <TabsTrigger value="text" className="gap-2"><Type className="w-4 h-4" /> Text</TabsTrigger>
-                                <TabsTrigger value="email" className="gap-2"><Mail className="w-4 h-4" /> Email</TabsTrigger>
-                                <TabsTrigger value="phone" className="gap-2"><Phone className="w-4 h-4" /> Phone</TabsTrigger>
-                            </TabsList>
-
-                            <TabsContent value="url" className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label>Website URL</Label>
-                                    <Input
-                                        value={text}
-                                        onChange={(e) => setText(e.target.value)}
-                                        placeholder="https://example.com"
-                                        className="h-11 font-mono text-base"
-                                    />
-                                </div>
-                            </TabsContent>
-
-                            <TabsContent value="text" className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label>Text Content</Label>
-                                    <Input
-                                        value={text}
-                                        onChange={(e) => setText(e.target.value)}
-                                        placeholder="Enter any text..."
-                                        className="h-11 text-base"
-                                    />
-                                </div>
-                            </TabsContent>
-
-                            <TabsContent value="email" className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label>Email Address</Label>
-                                    <Input
-                                        value={text.replace('mailto:', '')}
-                                        onChange={(e) => setText(`mailto:${e.target.value}`)}
-                                        placeholder="user@example.com"
-                                        type="email"
-                                        className="h-11"
-                                    />
-                                </div>
-                            </TabsContent>
-
-                            <TabsContent value="phone" className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label>Phone Number</Label>
-                                    <Input
-                                        value={text.replace('tel:', '')}
-                                        onChange={(e) => setText(`tel:${e.target.value}`)}
-                                        placeholder="+1234567890"
-                                        type="tel"
-                                        className="h-11"
-                                    />
-                                </div>
-                            </TabsContent>
-                        </Tabs>
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label>{t('type')}</Label>
+                                <Select value={inputType} onValueChange={(value: any) => setInputType(value)}>
+                                    <SelectTrigger className="h-11">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="url">{t('tabUrl')}</SelectItem>
+                                        <SelectItem value="text">{t('tabText')}</SelectItem>
+                                        <SelectItem value="email">{t('tabEmail')}</SelectItem>
+                                        <SelectItem value="phone">{t('tabPhone')}</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="space-y-2">
+                                <Label>{t('content')}</Label>
+                                <Input
+                                    value={inputType === 'email' ? text.replace('mailto:', '') : inputType === 'phone' ? text.replace('tel:', '') : text}
+                                    onChange={(e) => {
+                                        if (inputType === 'email') {
+                                            setText(`mailto:${e.target.value}`)
+                                        } else if (inputType === 'phone') {
+                                            setText(`tel:${e.target.value}`)
+                                        } else {
+                                            setText(e.target.value)
+                                        }
+                                    }}
+                                    placeholder={
+                                        inputType === 'url' ? t('placeholderUrl') :
+                                        inputType === 'text' ? t('placeholderText') :
+                                        inputType === 'email' ? t('placeholderEmail') :
+                                        t('placeholderPhone')
+                                    }
+                                    type={inputType === 'email' ? 'email' : inputType === 'phone' ? 'tel' : 'text'}
+                                    className="h-11 font-mono text-base"
+                                />
+                            </div>
+                        </div>
                     </CardContent>
                 </Card>
 
@@ -252,14 +230,14 @@ export function QrGenerator() {
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-lg">
                             <Settings2 className="w-5 h-5 text-indigo-500" />
-                            Appearance
+                            {t('appearance')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         {/* Colors */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div className="space-y-3">
-                                <Label>Foreground Color</Label>
+                             <div className="space-y-3">
+                                <Label>{t('foregroundColor')}</Label>
                                 <div className="flex gap-2 items-center">
                                     <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-border shrink-0 shadow-sm">
                                         <Input
@@ -280,7 +258,7 @@ export function QrGenerator() {
                             </div>
 
                             <div className="space-y-3">
-                                <Label>Background Color</Label>
+                                <Label>{t('backgroundColor')}</Label>
                                 <div className="flex gap-2 items-center">
                                     <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-border shrink-0 shadow-sm">
                                         <Input
@@ -305,9 +283,9 @@ export function QrGenerator() {
 
                         {/* Dimensions */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div className="space-y-4">
+                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
-                                    <Label>Resolution Scale</Label>
+                                    <Label>{t('resolutionScale')}</Label>
                                     <span className="text-xs text-muted-foreground font-mono">{size}px</span>
                                 </div>
                                 <Slider
@@ -322,8 +300,8 @@ export function QrGenerator() {
 
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
-                                    <Label>Quiet Zone (Margin)</Label>
-                                    <span className="text-xs text-muted-foreground font-mono">{margin} blocks</span>
+                                    <Label>{t('quietZone')}</Label>
+                                    <span className="text-xs text-muted-foreground font-mono">{margin} {t('blocks')}</span>
                                 </div>
                                 <Slider
                                     value={[margin]}
@@ -341,12 +319,12 @@ export function QrGenerator() {
                         {/* Error Correction */}
                         <div className="space-y-3">
                             <Label className="flex justify-between">
-                                Error Correction Level
+                                {t('errorCorrectionLevel')}
                                 <span className="text-xs text-muted-foreground font-normal">
-                                    {errorLevel === 'L' && 'Blue (Low) - 7%'}
-                                    {errorLevel === 'M' && 'Green (Medium) - 15%'}
-                                    {errorLevel === 'Q' && 'Orange (Quartile) - 25%'}
-                                    {errorLevel === 'H' && 'Red (High) - 30%'}
+                                    {errorLevel === 'L' && t('levelLDesc')}
+                                    {errorLevel === 'M' && t('levelMDesc')}
+                                    {errorLevel === 'Q' && t('levelQDesc')}
+                                    {errorLevel === 'H' && t('levelHDesc')}
                                 </span>
                             </Label>
                             <Select value={errorLevel} onValueChange={(value) => setErrorLevel(value as ErrorCorrectionLevel)}>
@@ -354,14 +332,14 @@ export function QrGenerator() {
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="L">Level L (Simple)</SelectItem>
-                                    <SelectItem value="M">Level M (Standard)</SelectItem>
-                                    <SelectItem value="Q">Level Q (Complex)</SelectItem>
-                                    <SelectItem value="H">Level H (Robust)</SelectItem>
+                                    <SelectItem value="L">{t('levelL')}</SelectItem>
+                                    <SelectItem value="M">{t('levelM')}</SelectItem>
+                                    <SelectItem value="Q">{t('levelQ')}</SelectItem>
+                                    <SelectItem value="H">{t('levelH')}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <p className="text-xs text-muted-foreground">
-                                Higher levels allow the QR code to be scanned even if partially damaged or covered, but result in denser codes.
+                                {t('higherLevelsNote')}
                             </p>
                         </div>
                     </CardContent>

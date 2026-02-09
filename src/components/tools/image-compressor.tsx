@@ -30,6 +30,8 @@ interface ImageState {
 
 export function ImageCompressor() {
     const t = useTranslations('ImageCompressor')
+    const titleId = "image-compressor-title"
+    const descId = "image-compressor-description"
 
     // State
     const [original, setOriginal] = useState<ImageState | null>(null)
@@ -175,8 +177,60 @@ export function ImageCompressor() {
         if (fileInputRef.current) fileInputRef.current.value = ''
     }
 
+    const savedPercent =
+        original && compressed ? Math.round((1 - compressed.size / original.size) * 100) : null
+
     return (
         <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <header className="space-y-2">
+                <h1 id={titleId} className="text-3xl font-black tracking-tight">
+                    {t('title')}
+                </h1>
+                <p id={descId} className="text-muted-foreground">
+                    {t('description')}
+                </p>
+            </header>
+
+            <GlassCard className="p-6 space-y-4">
+                <div className="space-y-1">
+                    <h2 className="text-lg font-bold">{t('introTitle')}</h2>
+                    <p className="text-sm text-muted-foreground">{t('introDesc')}</p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+                    <div className="flex items-center justify-between rounded-lg border border-border/30 px-3 py-2">
+                        <span className="text-muted-foreground">{t('statOriginal')}</span>
+                        <span className="font-mono text-foreground">
+                            {original ? formatBytes(original.size) : t('statPlaceholder')}
+                        </span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-lg border border-border/30 px-3 py-2">
+                        <span className="text-muted-foreground">{t('statCompressed')}</span>
+                        <span className="font-mono text-foreground">
+                            {compressed ? formatBytes(compressed.size) : t('statPlaceholder')}
+                        </span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-lg border border-border/30 px-3 py-2">
+                        <span className="text-muted-foreground">{t('statSaved')}</span>
+                        <span className="font-mono text-foreground">
+                            {savedPercent !== null ? `-${savedPercent}%` : t('statPlaceholder')}
+                        </span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-lg border border-border/30 px-3 py-2">
+                        <span className="text-muted-foreground">{t('statDims')}</span>
+                        <span className="font-mono text-foreground">
+                            {original ? `${original.width} x ${original.height}` : t('statPlaceholder')}
+                        </span>
+                    </div>
+                </div>
+                <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                    <span className="rounded-full border border-border/40 px-3 py-1">
+                        {t('statQuality')}: {Math.round(quality * 100)}%
+                    </span>
+                    <span className="rounded-full border border-border/40 px-3 py-1">
+                        {t('statScale')}: {Math.round(scale * 100)}%
+                    </span>
+                </div>
+            </GlassCard>
 
             {/* Upload Area */}
             {!original ? (
@@ -185,12 +239,25 @@ export function ImageCompressor() {
                     onClick={() => fileInputRef.current?.click()}
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={handleDrop}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault()
+                            fileInputRef.current?.click()
+                        }
+                    }}
+                    aria-labelledby={titleId}
+                    aria-describedby={descId}
                 >
                     <input
                         type="file"
                         ref={fileInputRef}
                         className="hidden"
                         accept="image/png, image/jpeg, image/webp"
+                        onChange={handleFileSelect}
+                        aria-labelledby={titleId}
+                        aria-describedby={descId}
                     />
                     <div className="bg-primary/10 p-6 rounded-full mb-6 animate-pulse">
                         <Upload className="w-12 h-12 text-primary" />

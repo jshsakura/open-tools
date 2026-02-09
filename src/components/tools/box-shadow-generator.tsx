@@ -96,7 +96,7 @@ export function BoxShadowGenerator() {
                                             : "bg-muted hover:bg-muted/80 border-transparent hover:border-border"
                                     )}
                                 >
-                                    <span>Layer {index + 1}</span>
+                                     <span>{t('layer', { index: index + 1 })}</span>
                                     {layers.length > 1 && (
                                         <button
                                             onClick={(e) => removeLayer(layer.id, e)}
@@ -118,7 +118,7 @@ export function BoxShadowGenerator() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-3">
                                     <div className="flex justify-between">
-                                        <Label>Offset X</Label>
+                                        <Label>{t('offsetX')}</Label>
                                         <span className="text-xs text-muted-foreground tabular-nums">{selectedLayer.x}px</span>
                                     </div>
                                     <Slider
@@ -129,7 +129,7 @@ export function BoxShadowGenerator() {
                                 </div>
                                 <div className="space-y-3">
                                     <div className="flex justify-between">
-                                        <Label>Offset Y</Label>
+                                        <Label>{t('offsetY')}</Label>
                                         <span className="text-xs text-muted-foreground tabular-nums">{selectedLayer.y}px</span>
                                     </div>
                                     <Slider
@@ -143,7 +143,7 @@ export function BoxShadowGenerator() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-3">
                                     <div className="flex justify-between">
-                                        <Label>Blur Radius</Label>
+                                         <Label>{t('blurRadius')}</Label>
                                         <span className="text-xs text-muted-foreground tabular-nums">{selectedLayer.blur}px</span>
                                     </div>
                                     <Slider
@@ -154,7 +154,7 @@ export function BoxShadowGenerator() {
                                 </div>
                                 <div className="space-y-3">
                                     <div className="flex justify-between">
-                                        <Label>Spread Radius</Label>
+                                         <Label>{t('spreadRadius')}</Label>
                                         <span className="text-xs text-muted-foreground tabular-nums">{selectedLayer.spread}px</span>
                                     </div>
                                     <Slider
@@ -202,7 +202,7 @@ export function BoxShadowGenerator() {
                     <CardContent className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label>Box Color</Label>
+                                        <Label>{t('boxColor')}</Label>
                                 <div className="flex gap-2">
                                     <Input
                                         type="color"
@@ -218,7 +218,7 @@ export function BoxShadowGenerator() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label>Background Color</Label>
+                                        <Label>{t('backgroundColor')}</Label>
                                 <div className="flex gap-2">
                                     <Input
                                         type="color"
@@ -248,13 +248,13 @@ export function BoxShadowGenerator() {
                             boxShadow: boxShadowCSS
                         }}
                     >
-                        <span className="text-sm font-medium text-muted-foreground/50 select-none">Preview</span>
+                         <span className="text-sm font-medium text-muted-foreground/50 select-none">{t('preview')}</span>
                     </div>
                 </Card>
 
                 <Card className="border-border bg-muted/30">
                     <CardHeader className="flex flex-row items-center justify-between py-3">
-                        <CardTitle className="text-sm font-medium">CSS Output</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('cssOutput')}</CardTitle>
                         <Button
                             variant="ghost"
                             size="sm"

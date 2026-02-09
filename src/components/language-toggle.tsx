@@ -25,16 +25,16 @@ export function LanguageToggle() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-primary/10">
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-primary/10 cursor-pointer">
                     <Languages className="h-[1.2rem] w-[1.2rem]" />
                     <span className="sr-only">Toggle language</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onSelectChange("en")} className={locale === "en" ? "bg-accent" : ""}>
+                <DropdownMenuItem onClick={() => onSelectChange("en")} className={`cursor-pointer ${locale === "en" ? "bg-accent" : ""}`}>
                     <span className="mr-2">🇺🇸</span> English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onSelectChange("ko")} className={locale === "ko" ? "bg-accent" : ""}>
+                <DropdownMenuItem onClick={() => onSelectChange("ko")} className={`cursor-pointer ${locale === "ko" ? "bg-accent" : ""}`}>
                     <span className="mr-2">🇰🇷</span> 한국어
                 </DropdownMenuItem>
             </DropdownMenuContent>

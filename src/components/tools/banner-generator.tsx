@@ -87,7 +87,7 @@ const ANSI_COLORS = [
 ]
 
 export function BannerGeneratorTool() {
-    const t = useTranslations()
+    const t = useTranslations('BannerGenerator')
     const [text, setText] = useState("SPRING BOOT")
     const [selectedFont, setSelectedFont] = useState("Standard")
     const [selectedColor, setSelectedColor] = useState(ANSI_COLORS[0])
@@ -109,7 +109,7 @@ export function BannerGeneratorTool() {
                 generateAscii(text, selectedFont)
             } catch (err: any) {
                 console.error('❌ Figlet load failed:', err)
-                setError('Failed to load library')
+                setError(t('generatingError'))
                 setLoading(false)
             }
         }
@@ -206,12 +206,12 @@ export function BannerGeneratorTool() {
                     <div className="space-y-2">
                         <label className="text-sm font-medium flex items-center gap-2">
                             <Type className="h-4 w-4 text-blue-500" />
-                            Text Input
+                            {t('textInput')}
                         </label>
                         <Input
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                            placeholder="SPRING BOOT"
+                            placeholder={t('placeholder')}
                             className="text-lg font-mono"
                             maxLength={50}
                         />
@@ -226,7 +226,7 @@ export function BannerGeneratorTool() {
                     <CardHeader className="border-b border-border/10 px-4 pt-4 pb-2">
                         <CardTitle className="text-lg font-bold flex items-center gap-2">
                             <Terminal className="h-5 w-5 text-green-500" />
-                            Font Style
+                            {t('fontStyle')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 pt-3">
@@ -254,7 +254,7 @@ export function BannerGeneratorTool() {
                     <CardHeader className="border-b border-border/10 px-4 pt-4 pb-2">
                         <CardTitle className="text-lg font-bold flex items-center gap-2">
                             <Palette className="h-5 w-5 text-pink-500" />
-                            ANSI Color
+                            {t('ansiColor')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 pt-3">
@@ -289,9 +289,9 @@ export function BannerGeneratorTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <Sparkles className="h-5 w-5 text-yellow-500" />
-                                Preview
+                                {t('preview')}
                             </CardTitle>
-                            <CardDescription>Your generated ASCII art banner</CardDescription>
+                            <CardDescription>{t('generatedDesc')}</CardDescription>
                         </div>
                         <div className="flex gap-2">
                             <Button
@@ -302,7 +302,7 @@ export function BannerGeneratorTool() {
                                 className="gap-2"
                             >
                                 {copied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                                {copied ? "Copied!" : "Copy"}
+                                {copied ? t('copied') : t('copy')}
                             </Button>
                             <Button
                                 variant="default"
@@ -312,7 +312,7 @@ export function BannerGeneratorTool() {
                                 className="gap-2"
                             >
                                 <Download className="h-4 w-4" />
-                                Download
+                                {t('download')}
                             </Button>
                         </div>
                     </div>
@@ -327,15 +327,15 @@ export function BannerGeneratorTool() {
                                 </div>
                             ) : error ? (
                                 <div className="flex flex-col items-center justify-center py-20 gap-4">
-                                    <p className="text-destructive font-bold">⚠️ {error}</p>
-                                    <p className="text-xs text-muted-foreground">Check browser console for details</p>
+                                     <p className="text-destructive font-bold">⚠️ {error}</p>
+                                    <p className="text-xs text-muted-foreground">{t('checkConsole')}</p>
                                 </div>
                             ) : (
                                 <pre className={cn(
                                     "font-mono text-[10px] sm:text-xs leading-tight whitespace-pre",
                                     selectedColor.textClass
                                 )}>
-                                    {asciiArt || "Enter text above to generate ASCII art..."}
+                                    {asciiArt || t('errorPlaceholder')}
                                 </pre>
                             )}
                         </div>
@@ -349,7 +349,7 @@ export function BannerGeneratorTool() {
                     <Terminal className="h-5 w-5" />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                    <strong>Spring Boot Banner:</strong> Place the generated banner.txt file in your src/main/resources directory to customize your Spring Boot startup banner.
+                    <strong>{t('springBootBanner')}</strong> {t('springBootDesc')}
                 </p>
             </div>
         </div>

@@ -16,7 +16,7 @@ import {
 } from "lucide-react"
 
 export function SvgToJsxTool() {
-    const t = useTranslations()
+    const t = useTranslations('SvgToJsx')
     const [svgInput, setSvgInput] = useState("")
     const [jsxOutput, setJsxOutput] = useState("")
     const [copied, setCopied] = useState(false)
@@ -162,9 +162,9 @@ export function SvgToJsxTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <Code2 className="h-5 w-5 text-primary" />
-                                SVG Source
+                                {t('svgSource')}
                             </CardTitle>
-                            <CardDescription>Paste your raw SVG code here</CardDescription>
+                            <CardDescription>{t('pasteSvg')}</CardDescription>
                         </div>
                         <Button variant="ghost" size="icon" onClick={clearInput} className="text-muted-foreground/50 hover:text-rose-500">
                             <Trash2 className="h-4 w-4" />
@@ -179,7 +179,7 @@ export function SvgToJsxTool() {
                         />
                         <div className="flex gap-4">
                             <div className="flex-1 space-y-1.5">
-                                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">Component Name</label>
+                                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">{t('componentName')}</label>
                                 <input
                                     className="w-full h-10 px-3 rounded-xl bg-background/50 border border-primary/10 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
                                     value={componentName}
@@ -188,7 +188,7 @@ export function SvgToJsxTool() {
                             </div>
                             <Button className="h-auto px-8 rounded-2xl gap-2 font-bold self-end shadow-lg" onClick={convertToJsx}>
                                 <Sparkles className="h-4 w-4" />
-                                Convert
+                                {t('convert')}
                             </Button>
                         </div>
                     </CardContent>
@@ -200,9 +200,9 @@ export function SvgToJsxTool() {
                         <div className="space-y-1">
                             <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 <RefreshCcw className="h-5 w-5 text-orange-500" />
-                                JSX Output
+                                {t('jsxOutput')}
                             </CardTitle>
-                            <CardDescription>Ready for your React project</CardDescription>
+                            <CardDescription>{t('readyForReact')}</CardDescription>
                         </div>
                         <Button
                             className="rounded-xl gap-2 font-bold"
@@ -210,7 +210,7 @@ export function SvgToJsxTool() {
                             onClick={copyToClipboard}
                         >
                             {copied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                            {copied ? "Copied!" : "Copy Code"}
+                            {copied ? t('copied') : t('copyCode')}
                         </Button>
                     </CardHeader>
                     <CardContent className="relative z-10">
@@ -219,7 +219,7 @@ export function SvgToJsxTool() {
                             <Textarea
                                 readOnly
                                 value={jsxOutput}
-                                placeholder="Converted code will appear here..."
+                                placeholder={t('outputPlaceholder')}
                                 className="min-h-[460px] font-mono text-[13px] bg-background/80 border-primary/10 transition-all backdrop-blur-md relative"
                             />
                         </div>
@@ -234,12 +234,9 @@ export function SvgToJsxTool() {
                         <MonitorPlay className="h-8 w-8" />
                     </div>
                     <div className="space-y-2">
-                        <h3 className="text-xl font-bold">Why use SVG to JSX?</h3>
+                        <h3 className="text-xl font-bold">{t('whyUse')}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            Web standards for SVG attributes are often <strong>kebab-case</strong> (e.g., <code>stroke-width</code>),
-                            but React components require <strong>camelCase</strong> (e.g., <code>strokeWidth</code>).
-                            Manually converting complex SVGs is tedious and error-prone.
-                            Our tool handles attribute mapping, removes overhead, and wraps it in a functional component structure so you can just paste it and go.
+                            {t('whyUseDesc')}
                         </p>
                     </div>
                 </div>

@@ -12,16 +12,16 @@ import cronstrue from 'cronstrue';
 import { CronExpressionParser } from 'cron-parser';
 
 const PRESETS = [
-    { label: "Every minute", value: "* * * * *" },
-    { label: "Every 5 minutes", value: "*/5 * * * *" },
-    { label: "Every hour", value: "0 * * * *" },
-    { label: "Daily at midnight", value: "0 0 * * *" },
-    { label: "Every Monday at 9am", value: "0 9 * * 1" },
-    { label: "End of month", value: "0 0 28-31 * *" },
+    { label: "everyMinute", value: "* * * * *" },
+    { label: "every5Minutes", value: "*/5 * * * *" },
+    { label: "everyHour", value: "0 * * * *" },
+    { label: "dailyAtMidnight", value: "0 0 * * *" },
+    { label: "everyMonday9am", value: "0 9 * * 1" },
+    { label: "endOfMonth", value: "0 0 28-31 * *" },
 ]
 
 export function CronGenerator() {
-    const t = useTranslations('CronGenerator');
+    const t = useTranslations('CronGenerator')
     const [expression, setExpression] = useState("* * * * *")
     const [humanReadable, setHumanReadable] = useState("")
     const [nextRuns, setNextRuns] = useState<string[]>([])
@@ -74,7 +74,7 @@ export function CronGenerator() {
             <div className="space-y-6">
                 <GlassCard className="p-8 rounded-2xl space-y-6">
                     <div className="space-y-2">
-                        <Label>Cron Expression</Label>
+                        <Label>{t('cronExpression')}</Label>
                         <div className="flex gap-2">
                             <Input
                                 value={expression}
@@ -97,7 +97,7 @@ export function CronGenerator() {
                         </div>
                     ) : (
                         <div className="p-6 rounded-xl bg-cyan-500/5 border border-cyan-500/10 text-center space-y-2">
-                            <div className="text-sm text-cyan-500/80 font-medium uppercase tracking-wider">Schedule</div>
+                            <div className="text-sm text-cyan-500/80 font-medium uppercase tracking-wider">{t('schedule')}</div>
                             <div className="text-xl md:text-2xl font-bold text-foreground">
                                 “{humanReadable}”
                             </div>
@@ -112,7 +112,7 @@ export function CronGenerator() {
                             onClick={() => setExpression(preset.value)}
                             className="p-3 rounded-xl bg-muted/20 hover:bg-muted/40 border border-border/40 text-sm text-left transition-colors flex flex-col gap-1 group"
                         >
-                            <span className="font-medium text-foreground">{preset.label}</span>
+                            <span className="font-medium text-foreground">{t(preset.label)}</span>
                             <span className="font-mono text-xs text-muted-foreground group-hover:text-cyan-500 transition-colors">{preset.value}</span>
                         </button>
                     ))}
@@ -121,10 +121,10 @@ export function CronGenerator() {
 
             <div className="space-y-6">
                 <GlassCard className="p-8 rounded-2xl h-full">
-                    <Label className="text-lg font-semibold mb-6 block flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-cyan-500" />
-                        Next Runs
-                    </Label>
+                        <Label className="text-lg font-semibold mb-6 block flex items-center gap-2">
+                            <Clock className="w-4 h-4 text-cyan-500" />
+                            {t('nextRuns')}
+                        </Label>
 
                     {nextRuns.length > 0 ? (
                         <div className="space-y-3 relative">
@@ -133,9 +133,9 @@ export function CronGenerator() {
 
                             {nextRuns.map((run, i) => (
                                 <div key={i} className="flex gap-4 items-center relative z-10">
-                                    <div className="w-10 h-10 rounded-full bg-background border border-border/40 flex items-center justify-center shrink-0 text-xs font-mono text-muted-foreground">
+                                    <Badge className="text-[10px] h-5 px-4 py-2 rounded-full bg-border/40 flex items-center justify-center shrink-0 text-xs font-mono text-muted-foreground">
                                         {i + 1}
-                                    </div>
+                                    </Badge>
                                     <div className="flex-1 p-3 rounded-xl bg-muted/20 border border-border/40 font-mono text-sm">
                                         {run}
                                     </div>
@@ -144,7 +144,7 @@ export function CronGenerator() {
                         </div>
                     ) : (
                         <div className="text-center py-12 text-muted-foreground italic">
-                            Enter a valid cron expression to see upcoming schedule.
+                            {t('enterValidCron')}
                         </div>
                     )}
                 </GlassCard>

@@ -13,7 +13,7 @@ const XmlFormatterTool = dynamic(
 )
 
 export default function XmlFormatterPage() {
-    const t = useTranslations('XmlFormatter')
+    const t = useTranslations('Catalog.XmlFormatter')
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-5xl">
