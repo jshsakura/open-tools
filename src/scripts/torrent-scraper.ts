@@ -31,7 +31,7 @@ export async function scrapeTorrentHistory(ip: string): Promise<string> {
         }
 
         browser = await puppeteer.launch({
-            headless: 'new',
+            headless: true,
             executablePath,
             args: [
                 '--no-sandbox',
