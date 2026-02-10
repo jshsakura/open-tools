@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef, useEffect } from 'react'
 import { getToolById } from "@/lib/tools-catalog"
 import { ToolPageHeader } from "@/components/tool-page-header"
@@ -16,11 +18,11 @@ import { YouTubeIcon } from "@/components/icons/youtube-icon"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
-"use client";
 
 
 export default function YoutubeDownloaderPage() {
     const t = useTranslations('Catalog.YouTubeDownloader');
+    const tool = getToolById('youtube-downloader');
     const [url, setUrl] = useState('');
     const [proxy, setProxy] = useState('');
     const [showAdvanced, setShowAdvanced] = useState(false);
@@ -298,16 +300,17 @@ export default function YoutubeDownloaderPage() {
     };
 
     return (
-        <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t('title')}
-                    description={t('description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-5xl">
+            <div className="mb-12 space-y-4">
+                {tool && (
+                    <ToolPageHeader
+                        title={t('title')}
+                        description={t('description')}
+                        icon={tool.icon}
+                        colorClass={tool.color}
+                    />
+                )}
+            </div>
 
             <Card className="border-border/40 bg-card/20 backdrop-blur-sm shadow-xl rounded-[24px] overflow-hidden">
                 <CardContent className="space-y-6 pt-6">
@@ -504,6 +507,5 @@ export default function YoutubeDownloaderPage() {
                 </AlertDescription>
             </Alert>
         </div>
-            </div>
-        );
+    )
 }

@@ -1,5 +1,6 @@
 "use client"
 
+
 import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { ShieldCheck } from 'lucide-react'
