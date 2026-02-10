@@ -1,20 +1,23 @@
+import { useState, useRef, useEffect } from 'react'
+import { getToolById } from "@/lib/tools-catalog"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { useTranslations } from 'next-intl'
+import { FFmpeg } from '@ffmpeg/ffmpeg'
+import { fetchFile, toBlobURL } from '@ffmpeg/util'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Download, Loader2, Play, Music, Video, AlertCircle, ScanText, Settings, Captions } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { YouTubeIcon } from "@/components/icons/youtube-icon"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { fetchFile, toBlobURL } from '@ffmpeg/util';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Download, Loader2, Play, Music, Video, AlertCircle, ScanText, Settings, Captions } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { YouTubeIcon } from "@/components/icons/youtube-icon";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 
 export default function YoutubeDownloaderPage() {
     const t = useTranslations('Catalog.YouTubeDownloader');
@@ -295,14 +298,16 @@ export default function YoutubeDownloaderPage() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
-            <div className="text-center space-y-4 mb-8">
-                <div className="inline-flex p-3 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500">
-                    <YouTubeIcon className="h-8 w-8" />
-                </div>
-                <h1 className="text-4xl font-black tracking-tight">{t('title')}</h1>
-                <p className="text-muted-foreground text-lg">{t('description')}</p>
-            </div>
+        <div className="mb-12 space-y-4">
+            {tool && (
+                <ToolPageHeader
+                    title={t('title')}
+                    description={t('description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
+        </div>
 
             <Card className="border-border/40 bg-card/20 backdrop-blur-sm shadow-xl rounded-[24px] overflow-hidden">
                 <CardContent className="space-y-6 pt-6">

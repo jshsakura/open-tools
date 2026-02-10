@@ -10,6 +10,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const Base64ImageTool = dynamic(
     () => import("@/components/tools/base64-image").then(mod => ({ default: mod.Base64ImageTool })),
     {

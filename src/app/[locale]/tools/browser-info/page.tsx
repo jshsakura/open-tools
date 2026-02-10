@@ -10,6 +10,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const BrowserInfoTool = dynamic(
     () => import("@/components/tools/browser-info").then(mod => ({ default: mod.BrowserInfoTool })),
     {

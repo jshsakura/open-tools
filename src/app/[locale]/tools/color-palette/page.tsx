@@ -10,6 +10,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const ColorPaletteTool = dynamic(
     () => import("@/components/tools/color-palette").then(mod => ({ default: mod.ColorPaletteTool })),
     {

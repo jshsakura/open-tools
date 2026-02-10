@@ -11,6 +11,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const QrGenerator = dynamic(
     () => import("@/components/tools/qr-generator").then(mod => ({ default: mod.QrGenerator })),
     {

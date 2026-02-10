@@ -8,9 +8,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { AlertTriangle, Fingerprint, ShieldAlert, CheckCircle, Smartphone, Wifi, Globe, Lock, Info, Server, Clock, MapPin, Activity, Search, Shield } from "lucide-react"
 import { toast } from "sonner"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { getToolById } from "@/lib/tools-catalog"
+import { ToolPageHeader } from "@/components/tool-page-header"
+
+
 
 export default function TorrentHistoryPage() {
     const t = useTranslations("TorrentHistory")
+    const tool = getToolById('torrent-history');
     const [status, setStatus] = useState<'idle' | 'scanning' | 'result'>('idle')
     const [progress, setProgress] = useState(0)
     const [logs, setLogs] = useState<string[]>([])
@@ -207,39 +212,16 @@ export default function TorrentHistoryPage() {
     }, [status, data, error]);
 
     return (
-        <div className="min-h-screen font-sans torrent-history-theme">
-            <style jsx global>{`
-                .dark .torrent-history-theme {
-                    --primary: 24 9.8% 10%; /* Stone-950 like */
-                    --foreground: 60 9.1% 97.8%; /* Stone-50 */
-                }
-            `}</style>
-
-            {/* Ambient Background Glows - Deep Blending */}
-            <div className="fixed inset-0 bg-[linear-gradient(to_right,#8881_1px,transparent_1px),linear-gradient(to_bottom,#8881_1px,transparent_1px)] bg-[size:16px_28px] pointer-events-none opacity-[0.03] dark:opacity-[0.05]" />
-            <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_30%,rgba(249,115,22,0.08),transparent_70%)] pointer-events-none" />
-            <div className="fixed inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(59,130,246,0.04),transparent_50%)] dark:bg-[radial-gradient(circle_at_10%_10%,rgba(249,115,22,0.04),transparent_50%)] pointer-events-none" />
-            <div className="fixed inset-0 bg-[radial-gradient(circle_at_90%_90%,rgba(59,130,246,0.04),transparent_50%)] dark:bg-[radial-gradient(circle_at_90%_90%,rgba(249,115,22,0.04),transparent_50%)] pointer-events-none" />
-
-            <div className="container mx-auto px-4 py-8 max-w-5xl relative z-10">
-                <div className="text-center mb-10 space-y-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:bg-orange-500/10 dark:text-orange-400 border border-blue-500/20 dark:border-orange-500/20 text-xs font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
-                    >
-                        <ShieldAlert className="w-4 h-4" />
-                        {t("badge")}
-                    </motion.div>
-
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-foreground drop-shadow-sm">
-                        {t('title')}
-                    </h1>
-
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        {t("subtitle")}
-                    </p>
-                </div>
+        <div className="mb-12 space-y-4">
+            {tool && (
+                <ToolPageHeader
+                    title={t('title')}
+                    description={t('description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
+        </div>
 
                 <div className="grid gap-8">
                     {/* Main Scanner Card */}

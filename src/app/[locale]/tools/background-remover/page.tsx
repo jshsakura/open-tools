@@ -11,6 +11,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const BackgroundRemover = dynamic(
     () => import("@/components/tools/background-remover").then(mod => ({ default: mod.BackgroundRemover })),
     {
@@ -34,6 +36,7 @@ export default function BackgroundRemoverPage() {
                     description={t('description')}
                     icon={tool.icon}
                     colorClass={tool.color}
+                    center
                 />
             )}
         </div>

@@ -10,6 +10,8 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 
 
 
+
+
 const BannerGeneratorTool = dynamic(
     () => import("@/components/tools/banner-generator").then(mod => ({ default: mod.BannerGeneratorTool })),
     {
