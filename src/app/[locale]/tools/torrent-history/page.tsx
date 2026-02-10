@@ -272,7 +272,7 @@ export default function TorrentHistoryPage() {
                                         </div>
 
                                         <div className="text-center space-y-8 pt-12 z-20">
-                                            <p className="text-sm text-muted-foreground font-mono tracking-tight max-w-[600px] w-full mx-auto leading-relaxed opacity-70">
+                                            <p className="text-sm text-muted-foreground font-mono tracking-tight max-w-[600px] w-full mx-auto leading-relaxed opacity-70 break-keep">
                                                 {t("notice")}
                                             </p>
                                         </div>
@@ -331,7 +331,7 @@ export default function TorrentHistoryPage() {
                                                 </div>
                                                 <div className="text-left">
                                                     <div className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">{t("results.ipLabel")}</div>
-                                                    <div className="text-2xl sm:text-3xl font-mono font-black text-foreground tracking-tight break-all">{data.ip}</div>
+                                                    <div className="text-2xl sm:text-3xl font-mono font-black text-foreground tracking-tight break-words leading-tight">{data.ip}</div>
                                                 </div>
                                             </div>
 
@@ -372,7 +372,7 @@ export default function TorrentHistoryPage() {
                                                 </div>
                                                 <div className="relative z-10">
                                                     <h3 className="text-3xl font-black text-orange-600 dark:text-orange-500 mb-3 tracking-tight">{t("results.blocked")}</h3>
-                                                    <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
+                                                    <p className="text-muted-foreground max-w-md mx-auto leading-relaxed break-keep">
                                                         {t("results.blockedDesc")}
                                                     </p>
                                                 </div>
@@ -403,7 +403,7 @@ export default function TorrentHistoryPage() {
                                                                         <span>{t("results.location")}</span>
                                                                     </div>
                                                                     <div className="font-bold flex items-center gap-2 text-foreground">
-                                                                        <span>{data.geo.city}, {data.geo.country}</span>
+                                                                        <span className="break-keep">{data.geo.city}, {data.geo.country}</span>
                                                                     </div>
                                                                 </div>
                                                             )}
@@ -463,7 +463,7 @@ export default function TorrentHistoryPage() {
                                                                                         {item.isSensitive ? <AlertTriangle className="w-4 h-4" /> : <Info className="w-4 h-4" />}
                                                                                     </div>
                                                                                     <div>
-                                                                                        <div className={`font-medium line-clamp-2 md:line-clamp-none ${item.isSensitive ? 'text-red-600 dark:text-red-300' : 'text-foreground'}`} title={item.title}>
+                                                                                        <div className={`font-medium line-clamp-2 md:line-clamp-none break-keep ${item.isSensitive ? 'text-red-600 dark:text-red-300' : 'text-foreground'}`} title={item.title}>
                                                                                             {item.title}
                                                                                         </div>
                                                                                         <div className="flex items-center gap-2 mt-2">
@@ -491,7 +491,7 @@ export default function TorrentHistoryPage() {
                                                         </div>
                                                         <div>
                                                             <h3 className="text-3xl font-black text-green-600 dark:text-green-400 mb-2 tracking-tight">{t("results.cleanTitle")}</h3>
-                                                            <p className="text-muted-foreground max-w-md mx-auto">
+                                                            <p className="text-muted-foreground max-w-md mx-auto break-keep">
                                                                 {t("results.cleanDesc")}
                                                             </p>
                                                         </div>
@@ -544,7 +544,7 @@ export default function TorrentHistoryPage() {
                                         <Lock className="w-6 h-6 text-blue-600 dark:!text-orange-500" />
                                         {t("guide.title")}
                                     </h3>
-                                    <div className="grid md:grid-cols-2 gap-8 text-sm text-muted-foreground">
+                                    <div className="grid md:grid-cols-2 gap-8 text-sm text-muted-foreground break-keep">
                                         <div className="space-y-3">
                                             <p className="font-bold text-foreground">{t("guide.whyVpn")}</p>
                                             <ul className="space-y-2">
@@ -561,7 +561,7 @@ export default function TorrentHistoryPage() {
                                         </div>
                                         <div className="space-y-3">
                                             <p className="font-bold text-foreground">{t("guide.policy")}</p>
-                                            <p className="leading-relaxed">
+                                            <p className="leading-relaxed break-keep">
                                                 {t("guide.policyDesc")}
                                             </p>
                                         </div>
@@ -572,7 +572,7 @@ export default function TorrentHistoryPage() {
                                 <Alert className="bg-amber-50/50 dark:bg-amber-950/10 border border-amber-200 dark:border-amber-900/50 rounded-xl text-amber-900 dark:text-amber-500">
                                     <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-500" />
                                     <AlertTitle className="text-amber-800 dark:text-amber-500 font-bold ml-2">{t("disclaimer.title")}</AlertTitle>
-                                    <AlertDescription className="ml-2 mt-1 text-xs opacity-90 leading-relaxed">
+                                    <AlertDescription className="ml-2 mt-1 text-xs opacity-90 leading-relaxed break-keep">
                                         {t("disclaimer.content")}
                                     </AlertDescription>
                                 </Alert>
