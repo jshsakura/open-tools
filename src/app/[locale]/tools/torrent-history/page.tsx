@@ -165,7 +165,7 @@ export default function TorrentHistoryPage() {
             console.error(err)
             const errorMsg = err instanceof Error ? err.message : "Failed to retrieve data";
             setError(`${errorMsg}. Please try again.`);
-            setStatus('idle')
+            setStatus('result')
         }
     }
 
