@@ -123,7 +123,7 @@ export default async function LocaleLayout({
                                 </main>
 
                                 {/* Right Sidebar Ad */}
-                                <aside className="hidden xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
+                                <aside className="hidden md:block w-[160px] sticky top-20 h-fit self-start shrink-0">
                                     <AdsenseSlot
                                         type="skyscraper"
                                         clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
