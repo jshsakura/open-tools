@@ -32,41 +32,61 @@ const metaTags =
         })()
         : undefined;
 
-export const metadata: Metadata = {
-    metadataBase: new URL(baseUrl),
-    title: {
-        template: "Open Tools - %s",
-        default: "Open Tools - 개발자를 위한 무료 도구 모음"
-    },
-    description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
-    icons: {
-        icon: "/icon.svg",
-        shortcut: "/favicon-16x16.png",
-        apple: "/apple-touch-icon.png",
-    },
-    manifest: "/site.webmanifest",
-    openGraph: {
-        type: "website",
-        title: "Open Tools - 개발자를 위한 무료 도구 모음",
-        description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
-        url: baseUrl,
-        images: [
-            {
-                url: "/opengraph-image",
-                width: 1200,
-                height: 630,
-                alt: "Open Tools"
-            }
-        ],
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Open Tools - 개발자를 위한 무료 도구 모음",
-        description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
-        images: ["/opengraph-image"],
-    },
-    other: metaTags,
-};
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const lang = locale === "en" ? "en" : "ko";
+
+    const metaText = {
+        ko: {
+            title: "Open Tools - 사용하기 편한 무료 오픈소스 도구 모음",
+            description: "사용하기 편한 무료 오픈소스 도구 모음 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화 등",
+        },
+        en: {
+            title: "Open Tools - Easy-to-use free open-source tools",
+            description: "Easy-to-use free open-source tools collection - SQL conversion, formatter, PDF merge, image processing, encryption, and more",
+        }
+    }[lang];
+
+    return {
+        metadataBase: new URL(baseUrl),
+        title: {
+            template: "Open Tools - %s",
+            default: metaText.title
+        },
+        description: metaText.description,
+        icons: {
+            icon: "/icon.svg",
+            shortcut: "/favicon-16x16.png",
+            apple: "/apple-touch-icon.png",
+        },
+        manifest: "/site.webmanifest",
+        openGraph: {
+            type: "website",
+            title: metaText.title,
+            description: metaText.description,
+            url: baseUrl,
+            images: [
+                {
+                    url: "/opengraph-image",
+                    width: 1200,
+                    height: 630,
+                    alt: "Open Tools"
+                }
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: metaText.title,
+            description: metaText.description,
+            images: ["/opengraph-image"],
+        },
+        other: metaTags,
+    };
+}
 
 export default async function LocaleLayout({
     children,
