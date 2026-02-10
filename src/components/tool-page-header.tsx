@@ -27,7 +27,7 @@ export function ToolPageHeader({
             )}>
                 <Icon className={cn("w-7 h-7", colorClass)} />
             </div>
-            <h1 className="text-5xl font-black tracking-tighter text-foreground sm:text-6xl drop-shadow-sm">
+            <h1 className="text-3xl font-black tracking-tighter text-foreground sm:text-5xl lg:text-6xl drop-shadow-sm">
                 {title}
             </h1>
             {description && (
