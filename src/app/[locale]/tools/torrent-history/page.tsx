@@ -212,18 +212,19 @@ export default function TorrentHistoryPage() {
     }, [status, data, error]);
 
     return (
-        <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t('title')}
-                    description={t('description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-5xl">
+            <div className="mb-12 space-y-4">
+                {tool && (
+                    <ToolPageHeader
+                        title={t('title')}
+                        description={t('description')}
+                        icon={tool.icon}
+                        colorClass={tool.color}
+                    />
+                )}
+            </div>
 
-                <div className="grid gap-8">
+            <div className="grid gap-8">
                     {/* Main Scanner Card */}
                     <Card className="border-none bg-transparent shadow-none overflow-visible relative min-h-[400px]">
                         {/* Glow effect behind content to avoid 'boxy' look */}
