@@ -166,7 +166,7 @@ export function UnitConverter() {
 
 
     const inputClass = "h-12 text-lg font-mono bg-secondary/50 border-border/40 rounded-xl"
-    const selectClass = "w-28 h-12 bg-secondary/50 border-border/40 rounded-xl"
+    const selectClass = "w-28 h-12 text-lg font-mono bg-secondary/50 border-border/40 rounded-xl items-center"
 
     return (
         <div className="max-w-3xl mx-auto space-y-6">
