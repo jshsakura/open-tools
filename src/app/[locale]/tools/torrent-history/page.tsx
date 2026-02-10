@@ -233,7 +233,7 @@ export default function TorrentHistoryPage() {
                         {/* Scanning Line Effect (Soft Warmth) */}
                         <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 dark:opacity-30 dark:shadow-[0_0_20px_#f97316]" />
 
-                        <CardContent className="p-8 md:px-12 md:pb-6 md:pt-4 flex flex-col items-center min-h-[400px] relative z-20 bg-transparent">
+                        <CardContent className="p-6 md:px-8 md:pb-6 md:pt-4 flex flex-col items-center min-h-[400px] relative z-20 bg-transparent">
                             <AnimatePresence mode="wait">
                                 {status === 'idle' && (
                                     <motion.div
@@ -536,10 +536,10 @@ export default function TorrentHistoryPage() {
                         </CardContent>
 
                         {/* Guide & Disclaimer */}
-                        <div className="p-5 sm:p-6 md:px-12 md:py-4 border-t border-border/10 dark:!border-stone-800/30 bg-transparent relative overflow-hidden">
+                        <div className="p-5 sm:p-6 md:px-8 md:py-4 border-t border-border/10 dark:!border-stone-800/30 bg-transparent relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/5 pointer-events-none" />
                             <div className="grid gap-6">
-                                <div className="bg-transparent dark:!bg-stone-950/30 backdrop-blur-md border border-slate-200 dark:!border-stone-800 rounded-2xl p-5 sm:p-6 md:p-8 space-y-6 text-left shadow-sm">
+                                <div className="bg-transparent dark:!bg-stone-950/30 backdrop-blur-md border border-slate-200 dark:!border-stone-800 rounded-2xl p-5 sm:p-6 md:p-6 space-y-6 text-left shadow-sm">
                                     <h3 className="flex items-center gap-3 font-bold text-xl text-foreground">
                                         <Lock className="w-6 h-6 text-blue-600 dark:!text-orange-500" />
                                         {t("guide.title")}

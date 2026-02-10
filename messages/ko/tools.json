@@ -708,7 +708,7 @@
             },
             "cleanTitle": "기록이 깨끗합니다!",
             "cleanDesc": "현재 IP 주소에서는 공개된 토렌트 활동 기록이 발견되지 않았습니다.",
-            "cleanWarning": "⚠️ 하지만 유동 IP는 언제든 바뀔 수 있으니 정기적으로 점검하세요.",
+            "cleanWarning": "⚠️ 하지만 유동 IP는 언제든 바뀔 수 있으니 참고하세요.",
             "cached": "최근 조회 결과입니다. {minutes}분 {seconds}초 후 다시 스캔할 수 있습니다.",
             "suspiciousFound": "{count}개의 의심스러운 활동 발견",
             "vpnDetected": "VPN 사용이 감지되었습니다. 실제 위치를 성공적으로 숨기고 계시군요!",
