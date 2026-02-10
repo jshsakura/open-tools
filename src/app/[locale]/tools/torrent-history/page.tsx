@@ -18,7 +18,7 @@ export default function TorrentHistoryPage() {
     const tool = getToolById('torrent-history');
     const [status, setStatus] = useState<'idle' | 'scanning' | 'result'>('idle')
     const [progress, setProgress] = useState(0)
-    const [logs, setLogs] = useState<string[]>([])
+    const [logs, setLogs] = useState<Array<string>>([])
     const [data, setData] = useState<{ ip: string, isp?: string, geo?: any, downloads: any[], riskScore: number, riskLevel: string } | null>(null)
     const [error, setError] = useState<string | null>(null)
     const [timeLeft, setTimeLeft] = useState(0)
