@@ -4,6 +4,12 @@ import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { Database } from 'lucide-react'
 import { ToolLoadingSkeleton } from "@/components/tool-loader"
+import { getToolById } from "@/lib/tools-catalog"
+import { ToolPageHeader } from "@/components/tool-page-header"
+
+
+
+
 
 const SqlConverter = dynamic(
     () => import('@/components/tools/sql-converter').then(mod => ({ default: mod.SqlConverter })),
@@ -15,19 +21,22 @@ const SqlConverter = dynamic(
 
 export default function SqlConverterPage() {
     const t = useTranslations('Catalog.SqlConverter')
+    const tool = getToolById('sql-converter');
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-5xl">
             <div className="mb-12 space-y-4">
-                <h1 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
-                    {t.rich('title', {
+            {tool && (
+                <ToolPageHeader
+                    title={t.rich('title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                    {t('description')}
-                </p>
-            </div>
+                    description={t('description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
+        </div>
 
             <SqlConverter />
         </div>

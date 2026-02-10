@@ -394,7 +394,7 @@ export function HomeClient() {
 
                 {/* Hero Section */}
                 <section className="space-y-6 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary shadow-[0_0_15px_rgba(59,130,246,0.3)] backdrop-blur-sm animate-fade-in cursor-pointer hover:bg-primary/10 transition-colors group/badge">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary shadow-[0_0_15px_rgba(59,130,246,0.3)] backdrop-blur-sm animate-fade-in hover:bg-primary/10 transition-colors group/badge">
                         <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse group-hover/badge:scale-110 transition-transform"></span>
                         {t('Hero.badge')}
                     </div>

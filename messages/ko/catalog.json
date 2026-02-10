@@ -85,7 +85,7 @@
             "formats": "모든 브라우저와 모바일을 위한 전체 파비콘 세트 생성"
         },
         "UnitConverter": {
-            "title": "스마트 단위 변환기",
+            "title": "단위 변환기",
             "description": "데이터(MB to GB), CSS(PX to REM) 등 다양한 단위 간의 변환을 지원합니다."
         },
         "JsonYaml": {

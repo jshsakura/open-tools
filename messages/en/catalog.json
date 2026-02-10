@@ -66,7 +66,7 @@
             "formats": "Generates a complete favicon set for modern browsers"
         },
         "UnitConverter": {
-            "title": "Smart Unit Converter",
+            "title": "Unit Converter",
             "description": "Convert between various units including Data (MB to GB), CSS (PX to REM), and more."
         },
         "JsonYaml": {
