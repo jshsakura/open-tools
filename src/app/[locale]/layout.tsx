@@ -16,6 +16,8 @@ const baseUrl =
     process.env.SITE_URL ||
     "https://tools.opencourse.kr";
 
+const naverSiteVerification = process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
     title: {
@@ -49,6 +51,9 @@ export const metadata: Metadata = {
         description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
         images: ["/opengraph-image"],
     },
+    other: naverSiteVerification
+        ? { "naver-site-verification": naverSiteVerification }
+        : undefined,
 };
 
 export default async function LocaleLayout({
