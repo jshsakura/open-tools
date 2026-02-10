@@ -259,8 +259,8 @@ export function UnitConverter() {
                                         className={inputClass + " flex-1"}
                                     />
                                     <Select value={fromUnit} onValueChange={setFromUnit}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {units.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
@@ -280,8 +280,8 @@ export function UnitConverter() {
                                         {dataResult}
                                     </div>
                                     <Select value={toUnit} onValueChange={setToUnit}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {units.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
@@ -306,8 +306,8 @@ export function UnitConverter() {
                                         className={inputClass + " flex-1"}
                                     />
                                     <Select value={lengthFrom} onValueChange={setLengthFrom}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
@@ -327,8 +327,8 @@ export function UnitConverter() {
                                         {lengthResult}
                                     </div>
                                     <Select value={lengthTo} onValueChange={setLengthTo}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
@@ -353,8 +353,8 @@ export function UnitConverter() {
                                         className={inputClass + " flex-1"}
                                     />
                                     <Select value={weightFrom} onValueChange={setWeightFrom}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
@@ -374,8 +374,8 @@ export function UnitConverter() {
                                         {weightResult}
                                     </div>
                                     <Select value={weightTo} onValueChange={setWeightTo}>
-                                        <SelectTrigger className={selectClass}>
-                                            <SelectValue />
+                                    <SelectTrigger className={selectClass}>
+                                        <SelectValue className="text-lg font-mono leading-none" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
