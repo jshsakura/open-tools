@@ -17,11 +17,11 @@ import { ToolPageHeader } from "@/components/tool-page-header"
 export default function TorrentHistoryPage() {
     const t = useTranslations("TorrentHistory")
     const tool = getToolById('torrent-history');
-    const [status, setStatus] = useState<'idle' | 'scanning' | 'result'>('idle')
+    const [status, setStatus] = useState('idle' as 'idle' | 'scanning' | 'result')
     const [progress, setProgress] = useState(0)
-    const [logs, setLogs] = useState<Array<string>>([])
-    const [data, setData] = useState<{ ip: string, isp?: string, geo?: any, downloads: any[], riskScore: number, riskLevel: string } | null>(null)
-    const [error, setError] = useState<string | null>(null)
+    const [logs, setLogs] = useState([] as string[])
+    const [data, setData] = useState(null as { ip: string, isp?: string, geo?: any, downloads: any[], riskScore: number, riskLevel: string } | null)
+    const [error, setError] = useState(null as string | null)
     const [timeLeft, setTimeLeft] = useState(0)
 
     // Timer Logic - Continuous Countdown
@@ -579,7 +579,6 @@ export default function TorrentHistoryPage() {
                             </div>
                         </div>
                     </Card>
-                </div>
             </div>
         </div>
     )

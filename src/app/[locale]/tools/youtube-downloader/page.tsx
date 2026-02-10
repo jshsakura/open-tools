@@ -30,15 +30,15 @@ export default function YoutubeDownloaderPage() {
     const [analyzing, setAnalyzing] = useState(false); // New state for analysis phase
     const [progress, setProgress] = useState(0);
     const [status, setStatus] = useState('');
-    const [error, setError] = useState<string | null>(null);
-    const [metadata, setMetadata] = useState<any>(null);
-    const [qualities, setQualities] = useState<any[]>([]);
-    const [downloadingId, setDownloadingId] = useState<string | null>(null);
+    const [error, setError] = useState(null as string | null);
+    const [metadata, setMetadata] = useState(null as any);
+    const [qualities, setQualities] = useState([] as any[]);
+    const [downloadingId, setDownloadingId] = useState(null as string | null);
 
 
 
-    const ffmpegRef = useRef<FFmpeg | null>(null);
-    const abortControllerRef = useRef<AbortController | null>(null);
+    const ffmpegRef = useRef(null as FFmpeg | null);
+    const abortControllerRef = useRef(null as AbortController | null);
 
     // ... loadFFmpeg ... (Keep as is)
     const loadFFmpeg = async () => {
@@ -506,6 +506,7 @@ export default function YoutubeDownloaderPage() {
                     {t('limitationsDesc')}
                 </AlertDescription>
             </Alert>
+        </div>
         </div>
     )
 }
