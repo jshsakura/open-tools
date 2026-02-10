@@ -388,6 +388,16 @@ export function HomeClient() {
         return tools.filter(tool => tool.tags.includes(selectedTag));
     }, [tools, selectedTag]);
 
+    const tagCounts = useMemo(() => {
+        const counts: Record<string, number> = {};
+        for (const tool of tools) {
+            for (const tag of tool.tags) {
+                counts[tag] = (counts[tag] || 0) + 1;
+            }
+        }
+        return counts;
+    }, [tools]);
+
     return (
         <div className="container mx-auto px-4 pt-24 pb-12 max-w-6xl">
             <div className="flex flex-col items-center gap-12 text-center">
@@ -399,10 +409,8 @@ export function HomeClient() {
                         {t('Hero.badge')}
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground select-none drop-shadow-sm">
-                        {t('Hero.title_1')} <span className="text-primary">{t('Hero.title_2')}</span>
-                        <br />
-                        {t('Hero.title_3')}
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground select-none drop-shadow-sm break-keep">
+                        {t('Hero.title_1')} <span className="text-primary">{t('Hero.title_2')}</span> {t('Hero.title_3')}
                     </h1>
 
                     <p className="hidden sm:block text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
@@ -440,6 +448,9 @@ export function HomeClient() {
                                 )}
                             >
                                 {tag}
+                                <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                                    {tagCounts[tag] || 0}
+                                </span>
                             </Button>
                         ))}
                     </div>
