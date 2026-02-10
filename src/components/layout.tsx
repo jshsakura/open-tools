@@ -90,8 +90,8 @@ export function Footer() {
     const t = useTranslations('Layout');
 
     return (
-        <footer className="py-6 md:px-8 border-t bg-muted/20 mt-auto">
-            <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row max-w-5xl mx-auto">
+        <footer className="py-3 md:px-8 border-t bg-muted/20 mt-auto">
+            <div className="container flex flex-col items-center justify-between gap-3 md:h-12 md:flex-row max-w-5xl mx-auto">
                 <p className="text-balance text-center text-xs leading-loose text-muted-foreground md:text-left">
                     {t.rich('footer', {
                         link: (chunks) => (

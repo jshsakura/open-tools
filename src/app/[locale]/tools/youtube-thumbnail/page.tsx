@@ -35,6 +35,7 @@ export default function YoutubeThumbnailPage() {
                     description={t('description')}
                     icon={tool.icon}
                     colorClass={tool.color}
+                    center
                 />
             )}
         </div>

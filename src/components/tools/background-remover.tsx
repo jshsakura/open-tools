@@ -123,10 +123,10 @@ export function BackgroundRemover() {
                             </div>
                             <div className="space-y-2">
                                 <p className="text-2xl font-bold">{t('inputPlaceholder')}</p>
-                                <p className="text-sm text-muted-foreground">JPG, PNG, WebP supported</p>
+                                <p className="text-sm text-muted-foreground">{t('supportedFormats')}</p>
                             </div>
                             <Button variant="outline" className="mt-4 pointer-events-none">
-                                Select Image
+                                {t('selectImage')}
                             </Button>
                         </div>
                     </div>
@@ -177,13 +177,13 @@ export function BackgroundRemover() {
                                         className="absolute inset-0 w-full h-full object-contain"
                                     />
                                     <div className="absolute top-4 left-4 bg-black/60 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md border border-white/10">
-                                        Original
+                                        {t('labelOriginal')}
                                     </div>
                                 </div>
 
                                 {/* Label for Result (Right side) */}
                                 <div className="absolute top-4 right-4 bg-primary/90 text-primary-foreground text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg pointer-events-none z-0">
-                                    Removed Background
+                                    {t('labelRemoved')}
                                 </div>
 
                                 {/* Slider Handle */}
@@ -282,7 +282,7 @@ export function BackgroundRemover() {
                                         )}
                                     </Button>
                                     <p className="text-center text-xs text-muted-foreground">
-                                        Powered by AI (U-2-Net). Processing happens locally for 100% privacy.
+                                        {t.rich('poweredBy')}
                                     </p>
                                 </div>
                             )}
@@ -295,19 +295,23 @@ export function BackgroundRemover() {
                 <GlassCard className="p-6 rounded-xl space-y-3 hover:translate-y-[-2px] transition-transform">
                     <h4 className="font-bold flex items-center gap-2 text-lg">
                         <Wand2 className="w-5 h-5 text-indigo-500" />
-                        How it works
+                        {t('howItWorksTitle')}
                     </h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        This tool uses the <b>U-2-Net</b> deep learning model running directly in your browser via WebAssembly. It identifies the subject and creates a precise mask to remove the background instantly.
+                        {t.rich('howItWorksDescription', {
+                            b: (chunks) => <b>{chunks}</b>
+                        })}
                     </p>
                 </GlassCard>
                 <GlassCard className="p-6 rounded-xl space-y-3 hover:translate-y-[-2px] transition-transform">
                     <h4 className="font-bold flex items-center gap-2 text-lg">
                         <Shield className="w-5 h-5 text-green-500" />
-                        Privacy First
+                        {t('privacyTitle')}
                     </h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        Unlike other online tools, your photos are processed <b>entirely on your device</b>. We never see, store, or upload your images. It works even when offline!
+                        {t.rich('privacyDescription', {
+                            b: (chunks) => <b>{chunks}</b>
+                        })}
                     </p>
                 </GlassCard>
             </div>

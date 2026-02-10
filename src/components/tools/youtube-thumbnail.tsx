@@ -66,9 +66,9 @@ export function YoutubeThumbnail() {
     };
 
     const thumbnails = videoId ? [
-        { label: 'Max Resolution (HD)', url: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`, size: '1280x720' },
-        { label: 'High Quality', url: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, size: '480x360' },
-        { label: 'Medium Quality', url: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`, size: '320x180' },
+        { labelKey: 'labelMax', url: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`, size: '1280x720' },
+        { labelKey: 'labelHigh', url: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, size: '480x360' },
+        { labelKey: 'labelMedium', url: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`, size: '320x180' },
     ] : [];
 
     return (
@@ -105,7 +105,7 @@ export function YoutubeThumbnail() {
                                 <div className="relative w-full md:w-2/3 aspect-video rounded-xl overflow-hidden bg-muted/50 border border-border/40 shadow-lg">
                                     <Image
                                         src={thumb.url}
-                                        alt={thumb.label}
+                                        alt={t(thumb.labelKey)}
                                         fill
                                         className="object-cover"
                                         unoptimized
@@ -113,7 +113,7 @@ export function YoutubeThumbnail() {
                                 </div>
                                 <div className="flex-1 space-y-4 w-full">
                                     <div>
-                                        <h3 className="text-xl font-bold">{thumb.label}</h3>
+                                        <h3 className="text-xl font-bold">{t(thumb.labelKey)}</h3>
                                         <p className="text-muted-foreground">{thumb.size}</p>
                                     </div>
                                     <div className="flex flex-col gap-3">
@@ -122,7 +122,7 @@ export function YoutubeThumbnail() {
                                             className="w-full bg-white/10 hover:bg-white/20 text-foreground border border-white/10"
                                         >
                                             <Download className="mr-2 h-4 w-4" />
-                                            Download
+                                            {t('download')}
                                         </Button>
                                         <Button
                                             variant="ghost"
@@ -130,7 +130,7 @@ export function YoutubeThumbnail() {
                                             className="w-full"
                                         >
                                             <ExternalLink className="mr-2 h-4 w-4" />
-                                            Open in New Tab
+                                            {t('openInNewTab')}
                                         </Button>
                                     </div>
                                 </div>
@@ -139,6 +139,27 @@ export function YoutubeThumbnail() {
                     ))}
                 </div>
             )}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+                <GlassCard className="p-6 rounded-xl space-y-3">
+                    <h4 className="font-bold flex items-center gap-2 text-lg">
+                        <ImageIcon className="w-5 h-5 text-red-500" />
+                        {t('guideTitle')}
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                        {t('guideDescription')}
+                    </p>
+                </GlassCard>
+                <GlassCard className="p-6 rounded-xl space-y-3">
+                    <h4 className="font-bold flex items-center gap-2 text-lg">
+                        <ExternalLink className="w-5 h-5 text-sky-500" />
+                        {t('tipsTitle')}
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                        {t('tipsDescription')}
+                    </p>
+                </GlassCard>
+            </div>
         </div>
     )
 }
