@@ -11,7 +11,13 @@ import NextTopLoader from 'nextjs-toploader';
 import { BackgroundBlobs } from "@/components/background-blobs";
 import { GoogleAnalytics } from "@/components/google-analytics";
 
+const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    "https://tools.opencourse.kr";
+
 export const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: {
         template: "Open Tools - %s",
         default: "Open Tools - 개발자를 위한 무료 도구 모음"
@@ -23,6 +29,26 @@ export const metadata: Metadata = {
         apple: "/apple-touch-icon.png",
     },
     manifest: "/site.webmanifest",
+    openGraph: {
+        type: "website",
+        title: "Open Tools - 개발자를 위한 무료 도구 모음",
+        description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
+        url: baseUrl,
+        images: [
+            {
+                url: "/opengraph-image",
+                width: 1200,
+                height: 630,
+                alt: "Open Tools"
+            }
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Open Tools - 개발자를 위한 무료 도구 모음",
+        description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
+        images: ["/opengraph-image"],
+    },
 };
 
 export default async function LocaleLayout({
