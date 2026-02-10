@@ -3,8 +3,8 @@
 import { cn } from "@/lib/utils"
 
 interface ToolPageHeaderProps {
-    title: string
-    description?: string
+    title: React.ReactNode
+    description?: React.ReactNode
     icon: React.ComponentType<{ className?: string }>
     colorClass?: string
     center?: boolean
