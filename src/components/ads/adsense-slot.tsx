@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import { AdPlaceholder } from "@/components/ads/ad-placeholder"
 import { cn } from "@/lib/utils"
 
@@ -8,6 +8,7 @@ type AdType = "leaderboard" | "skyscraper" | "rectangle"
 
 interface AdsenseSlotProps {
     type: AdType
+    clientId?: string
     slot?: string
     className?: string
     showPlaceholder?: boolean
@@ -21,20 +22,26 @@ declare global {
 
 export function AdsenseSlot({
     type,
+    clientId,
     slot,
     className,
     showPlaceholder = true,
 }: AdsenseSlotProps) {
-    const client = process.env.NEXT_PUBLIC_ADSENSE_ID
-    const clientId = useMemo(() => {
-        if (!client) return undefined
-        return client.startsWith("ca-pub-") ? client : `ca-pub-${client}`
-    }, [client])
+    const insRef = useRef<HTMLModElement | null>(null)
+    const normalizedClientId = useMemo(() => {
+        if (!clientId) return undefined
+        return clientId.startsWith("ca-pub-") ? clientId : `ca-pub-${clientId}`
+    }, [clientId])
 
-    const enabled = Boolean(clientId && slot)
+    const enabled = Boolean(normalizedClientId && slot)
 
     useEffect(() => {
         if (!enabled) return
+        const el = insRef.current as HTMLElement | null
+        // Avoid pushing twice for the same ad slot.
+        if (el && el.getAttribute("data-adsbygoogle-status") === "done") {
+            return
+        }
         try {
             window.adsbygoogle = window.adsbygoogle || []
             window.adsbygoogle.push({})
@@ -64,8 +71,9 @@ export function AdsenseSlot({
             <ins
                 className="adsbygoogle"
                 style={style}
-                data-ad-client={clientId}
+                data-ad-client={normalizedClientId}
                 data-ad-slot={slot}
+                ref={insRef}
             />
         </div>
     )

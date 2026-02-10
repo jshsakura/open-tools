@@ -76,6 +76,7 @@ export default async function LocaleLayout({
                             <div className="w-full py-6 flex justify-center px-4">
                                 <AdsenseSlot
                                     type="leaderboard"
+                                    clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
                                     slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP}
                                 />
                             </div>
@@ -85,6 +86,7 @@ export default async function LocaleLayout({
                                 <aside className="hidden 2xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
                                     <AdsenseSlot
                                         type="skyscraper"
+                                        clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
                                         slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEFT}
                                     />
                                 </aside>
@@ -98,6 +100,7 @@ export default async function LocaleLayout({
                                 <aside className="hidden xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
                                     <AdsenseSlot
                                         type="skyscraper"
+                                        clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
                                         slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_RIGHT}
                                     />
                                 </aside>
