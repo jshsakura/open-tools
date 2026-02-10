@@ -265,7 +265,7 @@ export default function TorrentHistoryPage() {
                                                 <div className="font-mono text-sm text-blue-600/80 dark:text-orange-500/80 tracking-[0.2em] uppercase animate-pulse">
                                                     Target Detected
                                                 </div>
-                                                <div className="px-6 py-2 bg-transparent dark:bg-stone-900/50 border border-blue-100/50 dark:border-orange-500/20 rounded text-xl font-black tracking-widest text-foreground dark:text-stone-200">
+                                                <div className="px-4 sm:px-6 py-2 bg-transparent dark:bg-stone-900/50 border border-blue-100/50 dark:border-orange-500/20 rounded text-lg sm:text-xl font-black tracking-widest text-foreground dark:text-stone-200 max-w-full overflow-hidden break-all" title={data?.ip || t("systemReady")}>
                                                     {data?.ip || t("systemReady")}
                                                 </div>
                                             </div>
@@ -329,10 +329,10 @@ export default function TorrentHistoryPage() {
                                                 <div className="p-4 bg-blue-500/10 rounded-lg text-blue-500 border border-blue-500/20 dark:!bg-orange-500/10 dark:!text-orange-500 dark:!border-orange-500/20">
                                                     <Globe className="w-8 h-8" />
                                                 </div>
-                                                <div className="text-left">
-                                                    <div className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">{t("results.ipLabel")}</div>
-                                                    <div className="text-2xl sm:text-3xl font-mono font-black text-foreground tracking-tight break-words leading-tight">{data.ip}</div>
-                                                </div>
+                                                    <div className="text-left min-w-0 flex-1">
+                                                        <div className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">{t("results.ipLabel")}</div>
+                                                        <div className="text-xl sm:text-2xl md:text-3xl font-mono font-black text-foreground tracking-tight break-all leading-tight overflow-hidden text-ellipsis" title={data.ip}>{data.ip}</div>
+                                                    </div>
                                             </div>
 
                                             {data.isp && (
