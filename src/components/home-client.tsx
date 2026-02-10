@@ -448,7 +448,7 @@ export function HomeClient() {
                                 )}
                             >
                                 {tag}
-                                <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                                <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
                                     {tagCounts[tag] || 0}
                                 </span>
                             </Button>
