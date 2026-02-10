@@ -16,7 +16,21 @@ const baseUrl =
     process.env.SITE_URL ||
     "https://tools.opencourse.kr";
 
-const naverSiteVerification = process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION;
+const rawMetaTags = process.env.NEXT_PUBLIC_META_TAGS;
+const metaTags =
+    rawMetaTags
+        ? (() => {
+            try {
+                const parsed = JSON.parse(rawMetaTags);
+                if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+                    return parsed as Record<string, string>;
+                }
+            } catch {
+                // Ignore invalid JSON
+            }
+            return undefined;
+        })()
+        : undefined;
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
@@ -51,9 +65,7 @@ export const metadata: Metadata = {
         description: "50+ 개의 개발자 도구를 한 곳에서 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화, 기타",
         images: ["/opengraph-image"],
     },
-    other: naverSiteVerification
-        ? { "naver-site-verification": naverSiteVerification }
-        : undefined,
+    other: metaTags,
 };
 
 export default async function LocaleLayout({
