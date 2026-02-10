@@ -10,8 +10,15 @@ export async function GET(request: Request) {
     const TIMEOUT = 45000; // 45 seconds timeout for Puppeteer
 
     try {
-        // 1. Resolve Client IP
-        let ip = (request.headers.get('x-forwarded-for') ?? '').split(',')[0].trim();
+        // 1. Resolve Client IP (prefer IPv4 when available)
+        const forwarded = (request.headers.get('x-forwarded-for') ?? '')
+            .split(',')
+            .map((value) => value.trim())
+            .filter(Boolean);
+        const isIpv4 = (value: string) => /^(?:\d{1,3}\.){3}\d{1,3}$/.test(value);
+        const normalizeIp = (value: string) => value.replace(/^::ffff:/, '');
+        const preferredIpv4 = forwarded.map(normalizeIp).find(isIpv4);
+        let ip = preferredIpv4 ?? normalizeIp(forwarded[0] || '');
 
         // Localhost/Dev fallback: Resolve actual public IP via external service
         if (!ip || ip === '127.0.0.1' || ip === '::1') {

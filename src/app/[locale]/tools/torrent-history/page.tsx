@@ -297,7 +297,7 @@ export default function TorrentHistoryPage() {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <div className="font-mono text-sm space-y-3 h-48 overflow-hidden border border-blue-500/10 dark:!border-stone-800/30 bg-transparent dark:!bg-stone-900/20 p-6 rounded-lg relative">
+                                        <div className="font-mono text-sm space-y-3 border border-blue-500/10 dark:!border-stone-800/30 bg-transparent dark:!bg-stone-900/20 p-6 rounded-lg relative">
                                                 <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/50 dark:!bg-orange-500/50" />
                                                 <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(59,130,246,0.05)_50%,transparent_100%)] dark:bg-[linear-gradient(transparent_0%,rgba(249,115,22,0.05)_50%,transparent_100%)] animate-[scan_2s_linear_infinite]" />
 
@@ -324,14 +324,14 @@ export default function TorrentHistoryPage() {
                                         className="w-full space-y-8"
                                     >
                                         {/* Result Header */}
-                                        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-blue-500/5 dark:!bg-stone-900/20 p-6 rounded-xl border border-border/50 dark:!border-stone-800/50">
+                                        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-blue-500/5 dark:!bg-stone-900/20 p-5 sm:p-6 rounded-xl border border-border/50 dark:!border-stone-800/50">
                                             <div className="flex items-center gap-4">
                                                 <div className="p-4 bg-blue-500/10 rounded-lg text-blue-500 border border-blue-500/20 dark:!bg-orange-500/10 dark:!text-orange-500 dark:!border-orange-500/20">
                                                     <Globe className="w-8 h-8" />
                                                 </div>
                                                 <div className="text-left">
                                                     <div className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">{t("results.ipLabel")}</div>
-                                                    <div className="text-3xl font-mono font-black text-foreground tracking-tight">{data.ip}</div>
+                                                    <div className="text-2xl sm:text-3xl font-mono font-black text-foreground tracking-tight break-all">{data.ip}</div>
                                                 </div>
                                             </div>
 
