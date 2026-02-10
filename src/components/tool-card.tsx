@@ -27,7 +27,7 @@ export function ToolCard({ title, description, icon: Icon, href, tags, color = "
                             <div className={cn("shrink-0 p-1.5 rounded-xl bg-secondary/50 border border-border/20 transition-all duration-300 group-hover:bg-primary/10 group-hover:border-primary/20", color)}>
                                 <Icon className="h-5 w-5 stroke-[1.5]" />
                             </div>
-                            <h3 className="font-bold text-base tracking-tight text-foreground group-hover:text-primary transition-colors leading-tight break-words">
+                            <h3 className="font-bold text-base tracking-tight text-foreground group-hover:text-primary transition-colors leading-tight break-keep">
                                 {title}
                             </h3>
                         </div>
