@@ -1,4 +1,5 @@
 
+# syntax=docker/dockerfile:1.6
 FROM node:22-slim AS base
 
 # Install dependencies only when needed
@@ -9,7 +10,8 @@ WORKDIR /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
 # Re-sync lockfile if out of sync (fixes EUSAGE error)
-RUN if [ -f yarn.lock ]; then \
+RUN --mount=type=cache,target=/root/.npm \
+  if [ -f yarn.lock ]; then \
     yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then \
     npm ci || npm install; \
@@ -31,7 +33,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN \
+RUN --mount=type=cache,target=/app/.next/cache \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
