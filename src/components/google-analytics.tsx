@@ -10,6 +10,9 @@ export function GoogleAnalytics({ gaId, adsenseId }: GoogleAnalyticsProps) {
     return null
   }
 
+  const adsenseClient =
+    adsenseId && adsenseId.startsWith("ca-pub-") ? adsenseId : adsenseId ? `ca-pub-${adsenseId}` : undefined
+
   return (
     <>
       {gaId && (
@@ -35,19 +38,9 @@ export function GoogleAnalytics({ gaId, adsenseId }: GoogleAnalyticsProps) {
       {adsenseId && (
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${adsenseId}"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
           crossOrigin="anonymous"
           id="google-adsense"
-        />
-      )}
-      {adsenseId && (
-        <script
-          id="google-adsense-config"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            `,
-          }}
         />
       )}
     </>
