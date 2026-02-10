@@ -1,7 +1,12 @@
 import { MetadataRoute } from 'next'
 import { tools } from '@/lib/tools-data'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://opentools.example.com'
+export const dynamic = 'force-dynamic'
+
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.SITE_URL ||
+  'https://tools.opencourse.kr'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locales = ['ko', 'en']
