@@ -108,6 +108,22 @@
         "title": "Cron Expression Generator",
         "description": "Create and understand cron schedules easily."
     },
+    "BannerGenerator": {
+        "textInput": "Text",
+        "placeholder": "Type your banner text...",
+        "fontStyle": "Font Style",
+        "ansiColor": "ANSI Color",
+        "preview": "Preview",
+        "generatedDesc": "Generated ASCII art banner",
+        "copied": "Copied",
+        "copy": "Copy",
+        "download": "Download",
+        "checkConsole": "If this keeps happening, check the console for details.",
+        "errorPlaceholder": "No output yet.",
+        "springBootBanner": "Spring Boot Banner",
+        "springBootDesc": "Use this ASCII art in your Spring Boot banner.txt.",
+        "generatingError": "Failed to load the generator."
+    },
     "QrGenerator": {
         "title": "QR Code Generator",
         "description": "Create customizable QR codes with colors, sizes, and error correction levels. Download as PNG or SVG.",

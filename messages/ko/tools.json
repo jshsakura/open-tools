@@ -108,6 +108,22 @@
         "title": "Cron 생성기",
         "description": "Cron 스케줄을 쉽게 생성하고 이해하세요."
     },
+    "BannerGenerator": {
+        "textInput": "텍스트",
+        "placeholder": "배너에 넣을 텍스트를 입력하세요...",
+        "fontStyle": "폰트 스타일",
+        "ansiColor": "ANSI 색상",
+        "preview": "미리보기",
+        "generatedDesc": "생성된 ASCII 아트 배너",
+        "copied": "복사됨",
+        "copy": "복사",
+        "download": "다운로드",
+        "checkConsole": "계속 문제가 발생하면 콘솔 로그를 확인하세요.",
+        "errorPlaceholder": "아직 출력이 없습니다.",
+        "springBootBanner": "Spring Boot 배너",
+        "springBootDesc": "이 ASCII 아트를 Spring Boot의 banner.txt에 넣어 사용하세요.",
+        "generatingError": "생성기를 불러오지 못했습니다."
+    },
     "QrGenerator": {
         "title": "QR 코드 생성기",
         "description": "색상, 크기, 오류 수정 레벨을 커스터마이징하여 QR 코드를 생성하세요. PNG 또는 SVG로 다운로드 가능합니다.",
