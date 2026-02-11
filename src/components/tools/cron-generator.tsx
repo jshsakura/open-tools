@@ -42,7 +42,7 @@ export function CronGenerator() {
             setHumanReadable(desc)
             setError(null)
         } catch (e) {
-            setError("Invalid cron expression")
+            setError(t('invalidExpression'))
             setHumanReadable("")
             setNextRuns([])
             return; // Stop if invalid syntax

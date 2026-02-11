@@ -41,7 +41,16 @@
     "JsonYaml": {
         "title": "JSON ↔ YAML 변환기",
         "description": "JSON과 YAML 포맷을 손쉽게 상호 변환하세요.",
-        "convert": "변환하기"
+        "convert": "변환하기",
+        "jsonInput": "JSON 입력",
+        "jsonOutput": "JSON 출력",
+        "jsonPlaceholder": "JSON을 붙여넣으세요...",
+        "yamlInput": "YAML 입력",
+        "yamlOutput": "YAML 출력",
+        "yamlPlaceholder": "YAML을 붙여넣으세요...",
+        "resultPlaceholder": "변환 결과가 여기에 표시됩니다...",
+        "copy": "복사",
+        "error": "변환에 실패했습니다"
     },
     "JwtDebugger": {
         "title": "JWT 디버거",
@@ -102,11 +111,55 @@
     },
     "RegexTester": {
         "title": "정규식 테스터",
-        "description": "실시간 정규식 테스트 및 하이라이팅 기능."
+        "description": "실시간 정규식 테스트 및 하이라이팅 기능.",
+        "regex": "정규식",
+        "flags": "플래그",
+        "testString": "테스트 문자열",
+        "enterText": "테스트할 문자열을 입력하세요...",
+        "matches": "매칭",
+        "matchesCount": "{count}개 매칭",
+        "matchDetails": "매칭 상세",
+        "groups": "그룹",
+        "idx": "인덱스: {index}",
+        "noMatches": "매칭 결과가 없습니다"
     },
     "CronGenerator": {
         "title": "Cron 생성기",
-        "description": "Cron 스케줄을 쉽게 생성하고 이해하세요."
+        "description": "Cron 스케줄을 쉽게 생성하고 이해하세요.",
+        "cronExpression": "크론 표현식",
+        "schedule": "스케줄",
+        "nextRuns": "다음 실행",
+        "enterValidCron": "올바른 크론 표현식을 입력하면 다음 실행을 표시합니다.",
+        "invalidExpression": "잘못된 크론 표현식입니다",
+        "everyMinute": "매 분",
+        "every5Minutes": "5분마다",
+        "everyHour": "매 시간",
+        "dailyAtMidnight": "매일 자정",
+        "everyMonday9am": "매주 월요일 오전 9시",
+        "endOfMonth": "월말"
+    },
+    "MyIp": {
+        "ipAddress": "IP 주소",
+        "ipDesc": "내 공인 IP와 네트워크 정보를 표시합니다",
+        "publicIpv4": "공인 IPv4",
+        "copyIp": "IP 복사",
+        "copied": "복사됨",
+        "detecting": "IP를 확인하는 중...",
+        "error": "IP 정보를 가져오지 못했습니다.",
+        "ispNetwork": "ISP / 네트워크",
+        "connection": "연결",
+        "ipv4": "IPv4",
+        "secure": "보안 연결",
+        "location": "위치",
+        "city": "도시 / 지역",
+        "country": "국가",
+        "timezone": "시간대",
+        "postalCode": "우편번호",
+        "noLocation": "위치 정보 없음",
+        "viewOnMaps": "지도에서 보기",
+        "aboutPrivacy": "프라이버시 안내",
+        "privacyDesc": "IP 정보는 실시간으로 가져오며 저장하거나 판매하지 않습니다.",
+        "waitingGps": "위치 권한을 기다리는 중..."
     },
     "BannerGenerator": {
         "textInput": "텍스트",
@@ -366,7 +419,16 @@
         "title": "CSS 박스 그림자 생성기",
         "description": "다양한 레이어의 그림자 효과를 시각적으로 만들고 코드를 복사하세요.",
         "layers": "그림자 레이어",
+        "layer": "레이어 {index}",
         "addLayer": "레이어 추가",
+        "preview": "미리보기",
+        "offsetX": "가로 오프셋",
+        "offsetY": "세로 오프셋",
+        "blurRadius": "블러",
+        "spreadRadius": "확산",
+        "boxColor": "박스 색상",
+        "backgroundColor": "배경색",
+        "cssOutput": "CSS 출력",
         "color": "그림자 색상",
         "copy": "CSS 복사",
         "copied": "복사 완료!"
@@ -400,6 +462,10 @@
         "minStopsError": "최소 2개의 색상이 필요합니다.",
         "copy": "CSS 복사",
         "copied": "복사 완료!"
+    },
+    "Glassmorphism": {
+        "styleConfiguration": "스타일 설정",
+        "fineTune": "유리 효과를 미세 조정하세요"
     },
     "FaviconGenerator": {
         "title": "파비콘 생성기",
@@ -506,6 +572,8 @@
         "matchFail": "비밀번호가 일치하지 않습니다",
         "errorEmpty": "비밀번호를 입력해주세요",
         "errorVerifyEmpty": "비밀번호와 해시를 모두 입력해주세요",
+        "error": "해시 생성에 실패했습니다",
+        "errorVerify": "검증에 실패했습니다",
         "successGenerated": "해시가 생성되었습니다",
         "copied": "클립보드에 복사됨!"
     },
@@ -563,18 +631,26 @@
         "copied": "클립보드에 복사되었습니다"
     },
     "DataTools": {
+        "description": "JSON, SQL, 슬러그 생성 등 데이터 처리 도구 모음.",
+        "tabs": {
+            "converter": "JSON / CSV",
+            "sql": "SQL",
+            "slug": "슬러그"
+        },
         "JsonConverter": {
             "errorEmpty": "파일을 업로드하거나 텍스트를 입력하세요",
             "successConverted": "변환 성공",
             "successDownload": "파일 다운로드 완료",
             "errorConvert": "변환 실패",
             "inputLabel": "입력",
+            "inputsLabel": "입력",
             "inputPlaceholder": "JSON이나 CSV를 붙여넣으세요...",
             "outputLabel": "결과",
             "outputPlaceholder": "결과가 여기에 표시됩니다...",
             "uploadFile": "파일 업로드",
             "convert": "변환하기",
-            "copied": "복사됨!"
+            "copied": "복사됨!",
+            "itemCopied": "복사됨!"
         },
         "SlugGenerator": {
             "inputLabel": "입력 텍스트",
@@ -589,6 +665,12 @@
         }
     },
     "TextTools": {
+        "description": "OCR, 로렘 입숨, 한글 처리 도구를 한곳에서 사용하세요.",
+        "tabs": {
+            "ocr": "OCR",
+            "lorem": "로렘 입숨",
+            "hangul": "한글 도구"
+        },
         "OcrTool": {
             "inputLabel": "이미지 업로드",
             "outputLabel": "추출된 텍스트",
@@ -638,7 +720,20 @@
             }
         }
     },
+    "KTools": {
+        "description": "한글 문서 보기, 한글 도구, 국내용 검증 도구를 모았습니다.",
+        "tabs": {
+            "hwp": "HWP 뷰어",
+            "hangul": "한글 도구",
+            "validator": "검증"
+        }
+    },
     "DevTools": {
+        "tabs": {
+            "docker": "Docker",
+            "chmod": "CHMOD",
+            "validator": "검증"
+        },
         "DockerConverter": {
             "inputLabel": "Docker Run 명령어",
             "outputLabel": "Docker Compose (YAML)",
@@ -669,6 +764,7 @@
             "resInputLabel": "주민등록번호 (하이픈 또는 숫자만)",
             "generate": "번호 생성",
             "copy": "복사",
+            "copied": "복사됨!",
             "check": "검증하기",
             "validBiz": "유효한 사업자번호입니다",
             "invalidBiz": "유효하지 않은 사업자번호입니다",

@@ -23,7 +23,7 @@ const SqlConverter = dynamic(
 )
 
 export default function SqlConverterPage() {
-    const t = useTranslations('Catalog.SqlConverter')
+    const t = useTranslations('Catalog')
     const tool = getToolById('sql-converter');
 
     return (
@@ -31,10 +31,10 @@ export default function SqlConverterPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('SqlConverter.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('SqlConverter.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

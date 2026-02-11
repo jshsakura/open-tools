@@ -22,7 +22,7 @@ const Base64ImageTool = dynamic(
 )
 
 export default function Base64ImagePage() {
-    const t = useTranslations('Catalog.Base64Image')
+    const t = useTranslations('Catalog')
     const tool = getToolById('base64-image');
 
     return (
@@ -30,10 +30,10 @@ export default function Base64ImagePage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('Base64Image.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('Base64Image.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

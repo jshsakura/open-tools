@@ -16,7 +16,7 @@ type Permission = {
 }
 
 export function ChmodCalculator() {
-    const t = useTranslations("DevTools.ChmodCalculator")
+    const t = useTranslations("DevTools")
 
     const [owner, setOwner] = useState<Permission>({ read: true, write: true, execute: true })
     const [group, setGroup] = useState<Permission>({ read: true, write: false, execute: true })
@@ -50,7 +50,7 @@ export function ChmodCalculator() {
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)
         setCopied(true)
-        toast.success(t("copied"))
+        toast.success(t("ChmodCalculator.copied"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -64,7 +64,7 @@ export function ChmodCalculator() {
                         checked={state.read}
                         onCheckedChange={(checked) => setState({ ...state, read: !!checked })}
                     />
-                    <Label htmlFor={`${label}-read`} className="text-sm sm:text-base">{t("read")} (4)</Label>
+                    <Label htmlFor={`${label}-read`} className="text-sm sm:text-base">{t("ChmodCalculator.read")} (4)</Label>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                     <Checkbox
@@ -72,7 +72,7 @@ export function ChmodCalculator() {
                         checked={state.write}
                         onCheckedChange={(checked) => setState({ ...state, write: !!checked })}
                     />
-                    <Label htmlFor={`${label}-write`} className="text-sm sm:text-base">{t("write")} (2)</Label>
+                    <Label htmlFor={`${label}-write`} className="text-sm sm:text-base">{t("ChmodCalculator.write")} (2)</Label>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                     <Checkbox
@@ -80,7 +80,7 @@ export function ChmodCalculator() {
                         checked={state.execute}
                         onCheckedChange={(checked) => setState({ ...state, execute: !!checked })}
                     />
-                    <Label htmlFor={`${label}-execute`} className="text-sm sm:text-base">{t("execute")} (1)</Label>
+                    <Label htmlFor={`${label}-execute`} className="text-sm sm:text-base">{t("ChmodCalculator.execute")} (1)</Label>
                 </div>
             </div>
         </div>
@@ -89,14 +89,14 @@ export function ChmodCalculator() {
     return (
         <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <PermissionGroup label={t("owner")} state={owner} setState={setOwner} />
-                <PermissionGroup label={t("group")} state={group} setState={setGroup} />
-                <PermissionGroup label={t("public")} state={publicPerm} setState={setPublicPerm} />
+                <PermissionGroup label={t("ChmodCalculator.owner")} state={owner} setState={setOwner} />
+                <PermissionGroup label={t("ChmodCalculator.group")} state={group} setState={setGroup} />
+                <PermissionGroup label={t("ChmodCalculator.public")} state={publicPerm} setState={setPublicPerm} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <Label>{t("octalLabel")}</Label>
+                    <Label>{t("ChmodCalculator.octalLabel")}</Label>
                     <div className="relative">
                         <Input value={octal} readOnly className="text-2xl font-mono h-14 bg-muted text-center" />
                         <Button
@@ -110,7 +110,7 @@ export function ChmodCalculator() {
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <Label>{t("symbolicLabel")}</Label>
+                    <Label>{t("ChmodCalculator.symbolicLabel")}</Label>
                     <div className="relative">
                         <Input value={symbolic} readOnly className="text-2xl font-mono h-14 bg-muted text-center" />
                         <Button

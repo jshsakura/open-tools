@@ -22,7 +22,7 @@ const GlassmorphismTool = dynamic(
 )
 
 export default function GlassmorphismPage() {
-    const t = useTranslations('Catalog.Glassmorphism')
+    const t = useTranslations('Catalog')
     const tool = getToolById('glassmorphism');
 
     return (
@@ -30,10 +30,10 @@ export default function GlassmorphismPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('Glassmorphism.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('Glassmorphism.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

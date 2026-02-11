@@ -22,7 +22,7 @@ const BannerGeneratorTool = dynamic(
 )
 
 export default function BannerGeneratorPage() {
-    const t = useTranslations('Catalog.BannerGenerator')
+    const t = useTranslations('Catalog')
     const tool = getToolById('banner-generator');
 
     return (
@@ -30,10 +30,10 @@ export default function BannerGeneratorPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('BannerGenerator.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('BannerGenerator.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

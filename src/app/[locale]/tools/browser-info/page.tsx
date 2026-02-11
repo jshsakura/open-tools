@@ -22,7 +22,7 @@ const BrowserInfoTool = dynamic(
 )
 
 export default function BrowserInfoPage() {
-    const t = useTranslations('Catalog.BrowserInfo')
+    const t = useTranslations('Catalog')
     const tool = getToolById('browser-info');
 
     return (
@@ -30,10 +30,10 @@ export default function BrowserInfoPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('BrowserInfo.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('BrowserInfo.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

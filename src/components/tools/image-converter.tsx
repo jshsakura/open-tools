@@ -19,7 +19,6 @@ interface ConvertedImage {
 
 export function ImageConverter() {
     const t = useTranslations('ImageConverter');
-    const tcatalog = useTranslations('Catalog.ImageConverter');
     const [originalImage, setOriginalImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [isConverting, setIsConverting] = useState(false);
@@ -151,7 +150,7 @@ export function ImageConverter() {
                         <div className="text-center space-y-2">
                             <Upload className="w-12 h-12 mx-auto text-muted-foreground" />
                             <p className="text-lg font-medium">{t('clickOrDrag')}</p>
-                            <p className="text-sm text-muted-foreground">{tcatalog('dropDesc')}</p>
+                            <p className="text-sm text-muted-foreground">{t('dropDesc')}</p>
                         </div>
                     )}
                 </div>

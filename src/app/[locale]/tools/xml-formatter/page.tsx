@@ -22,7 +22,7 @@ const XmlFormatterTool = dynamic(
 )
 
 export default function XmlFormatterPage() {
-    const t = useTranslations('Catalog.XmlFormatter')
+    const t = useTranslations('Catalog')
     const tool = getToolById('xml-formatter');
 
     return (
@@ -30,10 +30,10 @@ export default function XmlFormatterPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('XmlFormatter.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('XmlFormatter.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

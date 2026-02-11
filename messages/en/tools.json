@@ -41,7 +41,16 @@
     "JsonYaml": {
         "title": "JSON ↔ YAML Converter",
         "description": "Seamlessly convert between JSON and YAML formats.",
-        "convert": "Convert"
+        "convert": "Convert",
+        "jsonInput": "JSON Input",
+        "jsonOutput": "JSON Output",
+        "jsonPlaceholder": "Paste JSON here...",
+        "yamlInput": "YAML Input",
+        "yamlOutput": "YAML Output",
+        "yamlPlaceholder": "Paste YAML here...",
+        "resultPlaceholder": "Converted result will appear here...",
+        "copy": "Copy",
+        "error": "Conversion failed"
     },
     "JwtDebugger": {
         "title": "JWT Debugger",
@@ -100,13 +109,57 @@
         "whyUse": "Why use SVG to JSX?",
         "whyUseDesc": "Web standards for SVG attributes are often kebab-case (e.g., stroke-width), but React components require camelCase (e.g., strokeWidth). Manually converting complex SVGs is tedious and error-prone. Our tool handles attribute mapping, removes overhead, and wraps it in a functional component structure so you can just paste it and go."
     },
-"RegexTester": {
+    "RegexTester": {
         "title": "RegEx Tester",
-        "description": "Real-time regular expression testing with highlighting."
+        "description": "Real-time regular expression testing with highlighting.",
+        "regex": "Regular Expression",
+        "flags": "Flags",
+        "testString": "Test String",
+        "enterText": "Enter text to test...",
+        "matches": "Matches",
+        "matchesCount": "{count} matches",
+        "matchDetails": "Match Details",
+        "groups": "Groups",
+        "idx": "Index: {index}",
+        "noMatches": "No matches found"
     },
     "CronGenerator": {
         "title": "Cron Expression Generator",
-        "description": "Create and understand cron schedules easily."
+        "description": "Create and understand cron schedules easily.",
+        "cronExpression": "Cron Expression",
+        "schedule": "Schedule",
+        "nextRuns": "Next Runs",
+        "enterValidCron": "Enter a valid cron expression to see upcoming runs.",
+        "invalidExpression": "Invalid cron expression",
+        "everyMinute": "Every minute",
+        "every5Minutes": "Every 5 minutes",
+        "everyHour": "Every hour",
+        "dailyAtMidnight": "Daily at midnight",
+        "everyMonday9am": "Every Monday at 9am",
+        "endOfMonth": "End of month"
+    },
+    "MyIp": {
+        "ipAddress": "IP Address",
+        "ipDesc": "Your public IP address and network details",
+        "publicIpv4": "Public IPv4",
+        "copyIp": "Copy IP",
+        "copied": "Copied",
+        "detecting": "Detecting your IP...",
+        "error": "Failed to fetch IP information.",
+        "ispNetwork": "ISP / Network",
+        "connection": "Connection",
+        "ipv4": "IPv4",
+        "secure": "Secure",
+        "location": "Location",
+        "city": "City / Region",
+        "country": "Country",
+        "timezone": "Timezone",
+        "postalCode": "Postal Code",
+        "noLocation": "Location unavailable",
+        "viewOnMaps": "View on Maps",
+        "aboutPrivacy": "About Privacy",
+        "privacyDesc": "We do not store or sell your IP data. This information is fetched in real time.",
+        "waitingGps": "Waiting for location permission..."
     },
     "BannerGenerator": {
         "textInput": "Text",
@@ -358,7 +411,16 @@
         "title": "CSS Box Shadow Generator",
         "description": "Create beautiful, multi-layered box shadows visually.",
         "layers": "Shadow Layers",
+        "layer": "Layer {index}",
         "addLayer": "Add Layer",
+        "preview": "Preview",
+        "offsetX": "Offset X",
+        "offsetY": "Offset Y",
+        "blurRadius": "Blur",
+        "spreadRadius": "Spread",
+        "boxColor": "Box Color",
+        "backgroundColor": "Background",
+        "cssOutput": "CSS Output",
         "color": "Shadow Color",
         "copy": "Copy CSS",
         "copied": "Copied!"
@@ -392,6 +454,10 @@
         "minStopsError": "A gradient needs at least 2 colors.",
         "copy": "Copy CSS",
         "copied": "Copied!"
+    },
+    "Glassmorphism": {
+        "styleConfiguration": "Style Configuration",
+        "fineTune": "Fine-tune glass settings"
     },
     "FaviconGenerator": {
         "title": "Favicon Generator",
@@ -498,6 +564,8 @@
         "matchFail": "Password Does NOT Match",
         "errorEmpty": "Please enter a password",
         "errorVerifyEmpty": "Please enter both password and hash",
+        "error": "Failed to generate hash",
+        "errorVerify": "Verification failed",
         "successGenerated": "Hash generated successfully",
         "copied": "Copied to clipboard!"
     },
@@ -555,6 +623,12 @@
         "copied": "Copied to clipboard"
     },
     "DataTools": {
+        "description": "Convert, format, and clean data with JSON, SQL, and slug tools.",
+        "tabs": {
+            "converter": "JSON / CSV",
+            "sql": "SQL",
+            "slug": "Slug"
+        },
         "JsonConverter": {
             "errorEmpty": "Please upload a file or enter text",
             "successConverted": "Converted successfully",
@@ -581,6 +655,12 @@
         }
     },
     "TextTools": {
+        "description": "OCR, lorem ipsum generator, and Korean text utilities in one place.",
+        "tabs": {
+            "ocr": "OCR",
+            "lorem": "Lorem Ipsum",
+            "hangul": "Hangul Tools"
+        },
         "OcrTool": {
             "inputLabel": "Upload Image",
             "outputLabel": "Extracted Text",
@@ -630,7 +710,20 @@
             }
         }
     },
+    "KTools": {
+        "description": "Korean document viewing, Hangul utilities, and local validation tools.",
+        "tabs": {
+            "hwp": "HWP Viewer",
+            "hangul": "Hangul Tools",
+            "validator": "Validator"
+        }
+    },
     "DevTools": {
+        "tabs": {
+            "docker": "Docker",
+            "chmod": "CHMOD",
+            "validator": "Validator"
+        },
         "DockerConverter": {
             "inputLabel": "Docker Run Command",
             "outputLabel": "Docker Compose (YAML)",
@@ -661,6 +754,7 @@
             "resInputLabel": "Resident Registration Number",
             "generate": "Generate",
             "copy": "Copy",
+            "copied": "Copied!",
             "check": "Validate",
             "validBiz": "Valid Business Number",
             "invalidBiz": "Invalid Business Number",
@@ -695,7 +789,8 @@
                 "Analyzing ISP and ASN...",
                 "Calculating Reputation Score...",
                 "Checking External Threat Databases...",
-                "Finalizing Report..."
+                "Finalizing Report...",
+                "Preparing detailed summary..."
             ]
         },
         "results": {
@@ -790,7 +885,5 @@
         "supportedFormats": "Supported formats: PNG, JPG, WebP",
         "converting": "Converting...",
         "uploadFirst": "Please upload an image first"
-    }
-}
     }
 }

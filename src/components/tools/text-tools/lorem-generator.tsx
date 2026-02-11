@@ -35,7 +35,7 @@ const KO_SENTENCES = [
 ]
 
 export function LoremGenerator() {
-    const t = useTranslations("TextTools.LoremGenerator")
+    const t = useTranslations("TextTools")
     const [count, setCount] = useState(3)
     const [unit, setUnit] = useState<"paragraphs" | "sentences" | "words">("paragraphs")
     const [lang, setLang] = useState<"en" | "ko">("en")
@@ -114,7 +114,7 @@ export function LoremGenerator() {
         if (!output) return
         navigator.clipboard.writeText(output)
         setCopied(true)
-        toast.success(t("copied"))
+        toast.success(t("LoremGenerator.copied"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -122,40 +122,40 @@ export function LoremGenerator() {
         <div className="space-y-8">
             <div className="grid sm:grid-cols-2 gap-8 bg-secondary/20 p-6 rounded-xl">
                 <div className="space-y-4">
-                    <Label>{t("language")}</Label>
+                    <Label>{t("LoremGenerator.language")}</Label>
                     <RadioGroup defaultValue="en" value={lang} onValueChange={(v: "en" | "ko") => setLang(v)} className="flex gap-4">
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="en" id="en" />
-                            <Label htmlFor="en">{t("en")}</Label>
+                            <Label htmlFor="en">{t("LoremGenerator.en")}</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="ko" id="ko" />
-                            <Label htmlFor="ko">{t("ko")}</Label>
+                            <Label htmlFor="ko">{t("LoremGenerator.ko")}</Label>
                         </div>
                     </RadioGroup>
                 </div>
 
                 <div className="space-y-4">
-                    <Label>{t("unit")}</Label>
+                    <Label>{t("LoremGenerator.unit")}</Label>
                     <RadioGroup defaultValue="paragraphs" value={unit} onValueChange={(v: any) => setUnit(v)} className="flex gap-4">
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="paragraphs" id="paragraphs" />
-                            <Label htmlFor="paragraphs">{t("paragraphs")}</Label>
+                            <Label htmlFor="paragraphs">{t("LoremGenerator.paragraphs")}</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="sentences" id="sentences" />
-                            <Label htmlFor="sentences">{t("sentences")}</Label>
+                            <Label htmlFor="sentences">{t("LoremGenerator.sentences")}</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="words" id="words" />
-                            <Label htmlFor="words">{t("words")}</Label>
+                            <Label htmlFor="words">{t("LoremGenerator.words")}</Label>
                         </div>
                     </RadioGroup>
                 </div>
 
                 <div className="space-y-4 sm:col-span-2">
                     <div className="flex justify-between">
-                        <Label>{t("count")}: {count}</Label>
+                        <Label>{t("LoremGenerator.count")}: {count}</Label>
                     </div>
                     <Slider
                         value={[count]}
@@ -170,12 +170,12 @@ export function LoremGenerator() {
 
             <Button size="lg" className="w-full" onClick={generateLorem}>
                 <RefreshCcw className="mr-2 h-4 w-4" />
-                {t("generateButton")}
+                {t("LoremGenerator.generateButton")}
             </Button>
 
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                    <Label>{t("outputLabel")}</Label>
+                    <Label>{t("LoremGenerator.outputLabel")}</Label>
                     <Button size="sm" variant="ghost" onClick={copyToClipboard} disabled={!output}>
                         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                     </Button>
@@ -184,7 +184,7 @@ export function LoremGenerator() {
                     className="min-h-[300px] font-serif text-lg leading-relaxed bg-muted/30"
                     value={output}
                     readOnly
-                    placeholder={t("outputPlaceholder")}
+                    placeholder={t("LoremGenerator.outputPlaceholder")}
                 />
             </div>
         </div>

@@ -14,7 +14,7 @@ import * as XLSX from "xlsx"
 import Papa from "papaparse"
 
 export function JsonConverter() {
-    const t = useTranslations("DataTools.JsonConverter")
+    const t = useTranslations("DataTools")
     const [input, setInput] = useState("")
     const [output, setOutput] = useState("")
     const [mode, setMode] = useState<"json-to-csv" | "csv-to-json" | "json-to-excel">("json-to-csv")
@@ -50,7 +50,7 @@ export function JsonConverter() {
 
     const convert = () => {
         if (!input) {
-            toast.error(t("errorEmpty"))
+            toast.error(t("JsonConverter.errorEmpty"))
             return
         }
 
@@ -59,12 +59,12 @@ export function JsonConverter() {
                 const jsonData = JSON.parse(input)
                 const csv = Papa.unparse(jsonData)
                 setOutput(csv)
-                toast.success(t("successConverted"))
+                toast.success(t("JsonConverter.successConverted"))
             } else if (mode === "csv-to-json") {
                 const result = Papa.parse(input, { header: true })
                 if (result.errors.length > 0) throw new Error(result.errors[0].message)
                 setOutput(JSON.stringify(result.data, null, 2))
-                toast.success(t("successConverted"))
+                toast.success(t("JsonConverter.successConverted"))
             } else if (mode === "json-to-excel") {
                 const jsonData = JSON.parse(input)
                 if (!Array.isArray(jsonData)) throw new Error("JSON must be an array of objects")
@@ -73,11 +73,11 @@ export function JsonConverter() {
                 const wb = XLSX.utils.book_new()
                 XLSX.utils.book_append_sheet(wb, ws, "Sheet1")
                 XLSX.writeFile(wb, "converted_data.xlsx")
-                toast.success(t("successDownload"))
+                toast.success(t("JsonConverter.successDownload"))
             }
         } catch (e: any) {
             console.error(e)
-            toast.error(t("errorConvert") + ": " + e.message)
+            toast.error(t("JsonConverter.errorConvert") + ": " + e.message)
         }
     }
 
@@ -85,7 +85,7 @@ export function JsonConverter() {
         if (!output) return
         navigator.clipboard.writeText(output)
         setCopied(true)
-        toast.success(t("copied"))
+        toast.success(t("JsonConverter.itemCopied"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -113,28 +113,28 @@ export function JsonConverter() {
                     />
                     <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
                         <Upload className="mr-2 h-4 w-4" />
-                        {t("uploadFile")}
+                        {t("JsonConverter.uploadFile")}
                     </Button>
                     <Button onClick={convert}>
                         <RefreshCw className="mr-2 h-4 w-4" />
-                        {t("convert")}
+                        {t("JsonConverter.convert")}
                     </Button>
                 </div>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 h-[500px]">
                 <div className="flex flex-col gap-2 h-full">
-                    <Label>{t("inputLabel")}</Label>
+                    <Label>{t("JsonConverter.inputsLabel")}</Label>
                     <Textarea
                         className="flex-1 font-mono text-xs resize-none"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder={t("inputPlaceholder")}
+                        placeholder={t("JsonConverter.inputPlaceholder")}
                     />
                 </div>
                 <div className="flex flex-col gap-2 h-full">
                     <div className="flex justify-between items-center">
-                        <Label>{t("outputLabel")}</Label>
+                        <Label>{t("JsonConverter.outputLabel")}</Label>
                         <Button size="sm" variant="ghost" onClick={copyToClipboard} disabled={!output}>
                             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                         </Button>
@@ -143,7 +143,7 @@ export function JsonConverter() {
                         className="flex-1 font-mono text-xs resize-none bg-muted"
                         value={output}
                         readOnly
-                        placeholder={t("outputPlaceholder")}
+                        placeholder={t("JsonConverter.outputPlaceholder")}
                     />
                 </div>
             </div>

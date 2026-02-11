@@ -11,7 +11,7 @@ import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
 export function BusinessValidator() {
-    const t = useTranslations("DevTools.BusinessValidator")
+    const t = useTranslations("DevTools")
 
     // Business Number State
     const [bizNum, setBizNum] = useState("")
@@ -27,7 +27,7 @@ export function BusinessValidator() {
     const validateBizNum = (val: string) => {
         const number = val.replace(/-/g, "")
         if (number.length !== 10) {
-            setBizResult({ isValid: false, message: t("errorLength") })
+            setBizResult({ isValid: false, message: t("BusinessValidator.errorLength") })
             return false
         }
 
@@ -46,7 +46,7 @@ export function BusinessValidator() {
         const isValid = last === check
         setBizResult({
             isValid,
-            message: isValid ? t("validBiz") : t("invalidBiz")
+            message: isValid ? t("BusinessValidator.validBiz") : t("BusinessValidator.invalidBiz")
         })
         return isValid
     }
@@ -74,7 +74,7 @@ export function BusinessValidator() {
     const copyToClipboard = (text: string, type: 'biz' | 'res') => {
         if (!text) return
         navigator.clipboard.writeText(text)
-        toast.success(t("copied"))
+        toast.success(t("BusinessValidator.copied"))
         if (type === 'biz') {
             setIsBizCopied(true)
             setTimeout(() => setIsBizCopied(false), 2000)
@@ -88,7 +88,7 @@ export function BusinessValidator() {
     const validateResNum = (val: string) => {
         const number = val.replace(/-/g, "")
         if (number.length !== 13) {
-            setResResult({ isValid: false, message: t("errorResLength") })
+            setResResult({ isValid: false, message: t("BusinessValidator.errorResLength") })
             return
         }
 
@@ -99,13 +99,13 @@ export function BusinessValidator() {
         const day = parseInt(front.substring(4, 6))
 
         if (month < 1 || month > 12 || day < 1 || day > 31) {
-            setResResult({ isValid: false, message: t("invalidDate") })
+            setResResult({ isValid: false, message: t("BusinessValidator.invalidDate") })
             return
         }
 
         const gender = parseInt(back[0])
         if (gender < 1 || gender > 8) {
-            setResResult({ isValid: false, message: t("invalidGender") })
+            setResResult({ isValid: false, message: t("BusinessValidator.invalidGender") })
             return
         }
 
@@ -117,11 +117,11 @@ export function BusinessValidator() {
         const check = (11 - (sum % 11)) % 10
 
         if (check !== parseInt(number[12])) {
-            setResResult({ isValid: false, message: t("invalidResChecksum") })
+            setResResult({ isValid: false, message: t("BusinessValidator.invalidResChecksum") })
             return
         }
 
-        setResResult({ isValid: true, message: t("validRes") })
+        setResResult({ isValid: true, message: t("BusinessValidator.validRes") })
     }
 
     return (
@@ -129,11 +129,11 @@ export function BusinessValidator() {
             <TabsList className="grid w-full grid-cols-2 mb-8 bg-muted/50 p-1 rounded-lg">
                 <TabsTrigger value="biz" className="rounded-md">
                     <Building2 className="w-4 h-4 mr-2" />
-                    {t("tabs.biz")}
+                    {t("BusinessValidator.tabs.biz")}
                 </TabsTrigger>
                 <TabsTrigger value="res" className="rounded-md">
                     <UserCircle className="w-4 h-4 mr-2" />
-                    {t("tabs.res")}
+                    {t("BusinessValidator.tabs.res")}
                 </TabsTrigger>
             </TabsList>
 
@@ -143,7 +143,7 @@ export function BusinessValidator() {
                         {/* Input Area */}
                         <div className="space-y-6 flex flex-col justify-center">
                             <div className="space-y-3">
-                                <Label className="text-sm font-semibold text-foreground/70 ml-1 uppercase tracking-tight">{t("bizInputLabel")}</Label>
+                                <Label className="text-sm font-semibold text-foreground/70 ml-1 uppercase tracking-tight">{t("BusinessValidator.bizInputLabel")}</Label>
                                 <div className="flex gap-2">
                                     <Input
                                         value={bizNum}
@@ -159,11 +159,11 @@ export function BusinessValidator() {
                             </div>
                             <div className="flex flex-wrap gap-2 pt-2">
                                 <Button className="flex-1 h-12 text-lg font-bold shadow-md hover:scale-[1.02] transition-transform active:scale-95" onClick={() => validateBizNum(bizNum)}>
-                                    {t("check")}
+                                    {t("BusinessValidator.check")}
                                 </Button>
                                 <Button variant="outline" className="flex-1 h-12 gap-2 border-primary/20 hover:bg-primary/5 hover:scale-[1.02] transition-transform active:scale-95" onClick={generateRandomBizNumber}>
                                     <RefreshCw className="h-4 w-4" />
-                                    {t("generate")}
+                                    {t("BusinessValidator.generate")}
                                 </Button>
                                 <Button
                                     variant="ghost"
@@ -203,7 +203,7 @@ export function BusinessValidator() {
                             ) : (
                                 <div className="text-center text-muted-foreground/40 space-y-4 relative z-10 transition-all group-hover:text-muted-foreground/60">
                                     <Building2 className="h-24 w-24 mx-auto opacity-20 transform transition-transform group-hover:scale-110 duration-500" />
-                                    <p className="text-lg font-medium tracking-tight uppercase">{t("tabs.biz")} {t("check")}</p>
+                                    <p className="text-lg font-medium tracking-tight uppercase">{t("BusinessValidator.tabs.biz")} {t("BusinessValidator.check")}</p>
                                 </div>
                             )}
                         </div>
@@ -215,10 +215,10 @@ export function BusinessValidator() {
                         {/* Input Area */}
                         <div className="space-y-6 flex flex-col justify-center">
                             <div className="bg-yellow-500/5 text-yellow-600/80 p-5 rounded-2xl text-sm border border-yellow-500/10 leading-relaxed shadow-sm">
-                                <span className="font-bold mr-1">⚠️</span> {t("resWarning")}
+                                <span className="font-bold mr-1">⚠️</span> {t("BusinessValidator.resWarning")}
                             </div>
                             <div className="space-y-3">
-                                <Label className="text-sm font-semibold text-foreground/70 ml-1 uppercase tracking-tight">{t("resInputLabel")}</Label>
+                                <Label className="text-sm font-semibold text-foreground/70 ml-1 uppercase tracking-tight">{t("BusinessValidator.resInputLabel")}</Label>
                                 <div className="flex gap-2">
                                     <Input
                                         value={resNum}
@@ -234,7 +234,7 @@ export function BusinessValidator() {
                             </div>
                             <div className="flex flex-wrap gap-2 pt-2">
                                 <Button className="flex-1 h-12 text-lg font-bold shadow-md hover:scale-[1.02] transition-transform active:scale-95" onClick={() => validateResNum(resNum)}>
-                                    {t("check")}
+                                    {t("BusinessValidator.check")}
                                 </Button>
                                 <Button
                                     variant="ghost"
@@ -274,7 +274,7 @@ export function BusinessValidator() {
                             ) : (
                                 <div className="text-center text-muted-foreground/40 space-y-4 relative z-10 transition-all group-hover:text-muted-foreground/60">
                                     <UserCircle className="h-24 w-24 mx-auto opacity-20 transform transition-transform group-hover:scale-110 duration-500" />
-                                    <p className="text-lg font-medium tracking-tight uppercase">{t("tabs.res")} {t("check")}</p>
+                                    <p className="text-lg font-medium tracking-tight uppercase">{t("BusinessValidator.tabs.res")} {t("BusinessValidator.check")}</p>
                                 </div>
                             )}
                         </div>

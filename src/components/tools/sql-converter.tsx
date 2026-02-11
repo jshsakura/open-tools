@@ -11,8 +11,7 @@ import { Copy, Check, FileJson, FileSpreadsheet, ArrowRightLeft, Database } from
 import Papa from 'papaparse';
 
 export function SqlConverter() {
-    const t = useTranslations('SqlConverter');
-    const tcatalog = useTranslations('Catalog.SqlConverter');
+    const t = useTranslations('Catalog');
     const [input, setInput] = useState("");
     const [output, setOutput] = useState("");
     const [inputType, setInputType] = useState<"sql" | "table">("sql");
@@ -115,11 +114,11 @@ export function SqlConverter() {
                         <TabsList className="bg-muted/50 p-1 rounded-xl">
                             <TabsTrigger value="sql" className="rounded-lg px-4 py-2">
                                 <Database className="w-4 h-4 mr-2" />
-                                {tcatalog('inputLabelSql')}
+                                {t('SqlConverter.inputLabelSql')}
                             </TabsTrigger>
                             <TabsTrigger value="table" className="rounded-lg px-4 py-2">
                                 <FileSpreadsheet className="w-4 h-4 mr-2" />
-                                {tcatalog('inputLabelTable')}
+                                {t('SqlConverter.inputLabelTable')}
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
@@ -143,12 +142,12 @@ export function SqlConverter() {
                 <div className="flex-1 grid md:grid-cols-2 gap-6 min-h-0">
                     <div className="flex flex-col gap-2 min-h-0 relative">
                         <div className="flex justify-between items-center h-8">
-                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{tcatalog('inputLabelSql')}</Label>
+                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{t('SqlConverter.inputLabelSql')}</Label>
                         </div>
                         <Textarea
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder={inputType === 'sql' ? tcatalog('placeholderSql') : tcatalog('placeholderTable')}
+                            placeholder={inputType === 'sql' ? t('SqlConverter.placeholderSql') : t('SqlConverter.placeholderTable')}
                             className="flex-1 font-mono text-sm bg-secondary/50 border-border/40 resize-none focus-visible:ring-indigo-500/50 rounded-xl leading-relaxed p-4"
                         />
                         {error && (
@@ -160,7 +159,7 @@ export function SqlConverter() {
 
                     <div className="flex flex-col gap-2 min-h-0">
                         <div className="flex justify-between items-center h-8">
-                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{tcatalog('outputLabel', { format: outputFormat.toUpperCase() })}</Label>
+                            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{t('SqlConverter.outputLabel', { format: outputFormat.toUpperCase() })}</Label>
                             <Button
                                 size="sm"
                                 variant="ghost"
@@ -169,7 +168,7 @@ export function SqlConverter() {
                                 disabled={!output}
                             >
                                 {isCopied ? <Check className="h-3.5 w-3.5 mr-1" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
-                                {isCopied ? t('copied') : t('copy')}
+                                {isCopied ? t('SqlConverter.copied') : t('SqlConverter.copy')}
                             </Button>
                         </div>
                         <Textarea

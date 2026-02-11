@@ -10,7 +10,7 @@ import Image from "next/image"
 import { toast } from "sonner"
 
 export function FaviconGenerator() {
-    const t = useTranslations('Catalog.FaviconGenerator');
+    const t = useTranslations('Catalog');
     const [originalImage, setOriginalImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
@@ -21,7 +21,7 @@ export function FaviconGenerator() {
             setOriginalImage(file);
             if (previewUrl) URL.revokeObjectURL(previewUrl);
             setPreviewUrl(URL.createObjectURL(file));
-            toast.success(t("ready") || "Image is ready!");
+            toast.success(t("FaviconGenerator.ready") || "Image is ready!");
         }
     }
 
@@ -29,7 +29,7 @@ export function FaviconGenerator() {
         if (!originalImage || !previewUrl) return;
 
         setIsGenerating(true);
-        const loadingToast = toast.loading(t("generating") || "Generating...");
+        const loadingToast = toast.loading(t("FaviconGenerator.generating") || "Generating...");
 
         try {
             const img = document.createElement('img');
@@ -214,8 +214,8 @@ export function FaviconGenerator() {
                             />
                             <div className="text-center space-y-2 relative z-10 text-muted-foreground">
                                 <Upload className="w-12 h-12 mx-auto" />
-                                <p className="text-lg font-medium">{t("dropTitle")}</p>
-                                <p className="text-sm">{t("dropDesc")}</p>
+                                <p className="text-lg font-medium">{t("FaviconGenerator.dropTitle")}</p>
+                                <p className="text-sm">{t("FaviconGenerator.dropDesc")}</p>
                             </div>
                         </>
                     ) : (
@@ -226,12 +226,12 @@ export function FaviconGenerator() {
                             <div>
                                 <p className="font-medium text-lg text-foreground">{originalImage.name}</p>
                                 <p className="text-muted-foreground text-sm uppercase tracking-wider font-bold">
-                                    {isGenerating ? t("generating") : (t("ready") || "READY TO GENERATE")}
+                                    {isGenerating ? t("FaviconGenerator.generating") : (t("FaviconGenerator.ready") || "READY TO GENERATE")}
                                 </p>
                             </div>
                             <Button variant="outline" size="sm" onClick={handleRemove} className="cursor-pointer hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30">
                                 <X className="mr-2 h-4 w-4" />
-                                {t("remove")}
+                                {t("FaviconGenerator.remove")}
                             </Button>
                         </div>
                     )}
@@ -259,14 +259,14 @@ export function FaviconGenerator() {
                             ) : (
                                 <FileArchive className="mr-2 h-5 w-5" />
                             )}
-                            {isGenerating ? t("generating") : (t("generate") || "Generate Favicon Set")}
+                            {isGenerating ? t("FaviconGenerator.generating") : (t("FaviconGenerator.generate") || "Generate Favicon Set")}
                         </Button>
                     </div>
                 )}
             </GlassCard>
 
             <div className="text-center text-sm text-muted-foreground bg-secondary/30 p-8 rounded-3xl border border-border/20 backdrop-blur-md">
-                <p className="font-bold text-foreground mb-4 text-base">{t("formats")}</p>
+                <p className="font-bold text-foreground mb-4 text-base">{t("FaviconGenerator.formats")}</p>
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 opacity-90 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5"><ImageIcon className="h-3.5 w-3.5" /> ICO (32x32)</span>
                     <span className="flex items-center gap-1.5"><ImageIcon className="h-3.5 w-3.5" /> PNG (16, 32, 48)</span>

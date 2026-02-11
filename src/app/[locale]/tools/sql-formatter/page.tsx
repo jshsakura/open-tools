@@ -18,7 +18,7 @@ const SqlFormatter = dynamic(
 )
 
 export default function SqlFormatterPage() {
-    const t = useTranslations('Catalog.SqlFormatter')
+    const t = useTranslations('Catalog')
     const tool = getToolById('sql-formatter');
 
     return (
@@ -26,8 +26,8 @@ export default function SqlFormatterPage() {
             <div className="mb-12 space-y-4">
                 {tool && (
                     <ToolPageHeader
-                        title={t('title')}
-                        description={t('description')}
+                        title={t('SqlFormatter.title')}
+                        description={t('SqlFormatter.description')}
                         icon={tool.icon}
                         colorClass={tool.color}
                     />

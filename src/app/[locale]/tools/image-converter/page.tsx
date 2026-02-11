@@ -23,7 +23,7 @@ const ImageConverter = dynamic(
 )
 
 export default function ImageConverterPage() {
-    const t = useTranslations('Catalog.ImageConverter')
+    const t = useTranslations('Catalog')
     const tool = getToolById('image-converter');
 
     return (
@@ -31,10 +31,10 @@ export default function ImageConverterPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('ImageConverter.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('ImageConverter.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

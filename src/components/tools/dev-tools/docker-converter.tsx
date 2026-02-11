@@ -10,14 +10,14 @@ import { toast } from "sonner"
 // import { composerize } from "composerize-ts"
 
 export function DockerConverter() {
-    const t = useTranslations("DevTools.DockerConverter")
+    const t = useTranslations("DevTools")
     const [input, setInput] = useState("")
     const [output, setOutput] = useState("")
     const [copied, setCopied] = useState(false)
 
     const convert = () => {
         if (!input) {
-            toast.error(t("errorEmpty"))
+            toast.error(t("DockerConverter.errorEmpty"))
             return
         }
 
@@ -25,11 +25,11 @@ export function DockerConverter() {
             // Trim and ensure it starts with docker run if possible, though composerize handles loose inputs
             // const result = composerize(input.trim())
             // setOutput(result.yaml)
-            // toast.success(t("success"))
+            // toast.success(t("DockerConverter.success"))
             toast.error("This feature is temporarily disabled due to a build issue.")
         } catch (e: any) {
             console.error(e)
-            toast.error(t("error") + ": " + e.message)
+            toast.error(t("DockerConverter.error") + ": " + e.message)
         }
     }
 
@@ -37,7 +37,7 @@ export function DockerConverter() {
         if (!output) return
         navigator.clipboard.writeText(output)
         setCopied(true)
-        toast.success(t("copied"))
+        toast.success(t("DockerConverter.copied"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -50,7 +50,7 @@ export function DockerConverter() {
         <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
             <div className="space-y-4 flex flex-col h-full">
                 <div className="flex justify-between items-center">
-                    <Label>{t("inputLabel")}</Label>
+                    <Label>{t("DockerConverter.inputLabel")}</Label>
                     <Button size="sm" variant="ghost" onClick={clearInput} disabled={!input}>
                         <Trash2 className="h-4 w-4" />
                     </Button>
@@ -63,13 +63,13 @@ export function DockerConverter() {
                 />
                 <Button onClick={convert} className="w-full">
                     <Container className="mr-2 h-4 w-4" />
-                    {t("convertButton")}
+                    {t("DockerConverter.convertButton")}
                 </Button>
             </div>
 
             <div className="space-y-4 flex flex-col h-full">
                 <div className="flex justify-between items-center">
-                    <Label>{t("outputLabel")}</Label>
+                    <Label>{t("DockerConverter.outputLabel")}</Label>
                     <Button size="sm" variant="ghost" onClick={copyToClipboard} disabled={!output}>
                         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                     </Button>
@@ -78,7 +78,7 @@ export function DockerConverter() {
                     className="flex-1 font-mono text-sm resize-none bg-muted min-h-[350px] w-full max-w-full overflow-x-auto"
                     value={output}
                     readOnly
-                    placeholder={t("outputPlaceholder")}
+                    placeholder={t("DockerConverter.outputPlaceholder")}
                 />
             </div>
         </div>

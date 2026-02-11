@@ -11,7 +11,7 @@ import { toast } from "sonner"
 import Tesseract from "tesseract.js"
 
 export function OcrTool() {
-    const t = useTranslations("TextTools.OcrTool")
+    const t = useTranslations("TextTools")
     const [image, setImage] = useState<string | null>(null)
     const [text, setText] = useState("")
     const [loading, setLoading] = useState(false)
@@ -35,7 +35,7 @@ export function OcrTool() {
 
     const processImage = async () => {
         if (!image) {
-            toast.error(t("errorNoImage"))
+            toast.error(t("OcrTool.errorNoImage"))
             return
         }
 
@@ -55,10 +55,10 @@ export function OcrTool() {
                 }
             )
             setText(result.data.text)
-            toast.success(t("success"))
+            toast.success(t("OcrTool.success"))
         } catch (error) {
             console.error(error)
-            toast.error(t("error"))
+            toast.error(t("OcrTool.error"))
         } finally {
             setLoading(false)
         }
@@ -68,7 +68,7 @@ export function OcrTool() {
         if (!text) return
         navigator.clipboard.writeText(text)
         setCopied(true)
-        toast.success(t("copied"))
+        toast.success(t("OcrTool.copied"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -76,7 +76,7 @@ export function OcrTool() {
         <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                    <Label>{t("inputLabel")}</Label>
+                    <Label>{t("OcrTool.inputLabel")}</Label>
                     <Select value={language} onValueChange={setLanguage}>
                         <SelectTrigger className="w-[120px]">
                             <SelectValue />
@@ -112,8 +112,8 @@ export function OcrTool() {
                     ) : (
                         <div className="text-center space-y-2">
                             <Upload className="h-12 w-12 mx-auto text-muted-foreground/50" />
-                            <p className="text-muted-foreground font-medium">{t("dropLabel")}</p>
-                            <p className="text-xs text-muted-foreground/70">{t("dropSub")}</p>
+                            <p className="text-muted-foreground font-medium">{t("OcrTool.dropLabel")}</p>
+                            <p className="text-xs text-muted-foreground/70">{t("OcrTool.dropSub")}</p>
                         </div>
                     )}
                     <input
@@ -134,12 +134,12 @@ export function OcrTool() {
                     {loading ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {t("processing")} {progress}%
+                            {t("OcrTool.processing")} {progress}%
                         </>
                     ) : (
                         <>
                             <ScanText className="mr-2 h-4 w-4" />
-                            {t("processButton")}
+                            {t("OcrTool.processButton")}
                         </>
                     )}
                 </Button>
@@ -147,7 +147,7 @@ export function OcrTool() {
 
             <div className="space-y-4 flex flex-col h-full">
                 <div className="flex justify-between items-center">
-                    <Label>{t("outputLabel")}</Label>
+                    <Label>{t("OcrTool.outputLabel")}</Label>
                     <Button size="sm" variant="ghost" onClick={copyToClipboard} disabled={!text}>
                         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                     </Button>
@@ -156,7 +156,7 @@ export function OcrTool() {
                     className="flex-1 font-mono text-sm resize-none bg-muted min-h-[350px]"
                     value={text}
                     readOnly
-                    placeholder={t("outputPlaceholder")}
+                    placeholder={t("OcrTool.outputPlaceholder")}
                 />
             </div>
         </div>

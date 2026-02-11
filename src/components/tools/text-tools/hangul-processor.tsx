@@ -12,7 +12,7 @@ import { toast } from "sonner"
 import { disassemble, assemble, josa } from "es-hangul"
 
 export function HangulProcessor() {
-    const t = useTranslations("TextTools.HangulProcessor")
+    const t = useTranslations("TextTools")
 
     // Disassemble State
     const [disInput, setDisInput] = useState("")
@@ -86,15 +86,15 @@ export function HangulProcessor() {
             <TabsList className="grid w-full grid-cols-3 mb-8 bg-muted/50 p-1 rounded-lg">
                 <TabsTrigger value="disassemble" className="rounded-md">
                     <Spline className="w-4 h-4 mr-2" />
-                    {t("tabs.disassemble")}
+                    {t("HangulProcessor.tabs.disassemble")}
                 </TabsTrigger>
                 <TabsTrigger value="assemble" className="rounded-md">
                     <ArrowRightLeft className="w-4 h-4 mr-2" />
-                    {t("tabs.assemble")}
+                    {t("HangulProcessor.tabs.assemble")}
                 </TabsTrigger>
                 <TabsTrigger value="josa" className="rounded-md">
                     <Type className="w-4 h-4 mr-2" />
-                    {t("tabs.josa")}
+                    {t("HangulProcessor.tabs.josa")}
                 </TabsTrigger>
             </TabsList>
 
@@ -102,7 +102,7 @@ export function HangulProcessor() {
             <TabsContent value="disassemble" className="space-y-6">
                 <div className="grid gap-4">
                     <div className="space-y-2">
-                        <Label>{t("disassemble.inputLabel")}</Label>
+                        <Label>{t("HangulProcessor.disassemble.inputLabel")}</Label>
                         <div className="flex gap-2">
                             <Input
                                 value={disInput}
@@ -110,11 +110,11 @@ export function HangulProcessor() {
                                 placeholder="안녕하세요"
                                 className="text-lg"
                             />
-                            <Button onClick={() => handleDisassemble(disInput)}>{t("convert")}</Button>
+                            <Button onClick={() => handleDisassemble(disInput)}>{t("HangulProcessor.convert")}</Button>
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <Label>{t("disassemble.outputLabel")}</Label>
+                        <Label>{t("HangulProcessor.disassemble.outputLabel")}</Label>
                         <div className="p-4 bg-muted rounded-lg font-mono text-lg min-h-[60px] flex items-center">
                             {disOutput}
                         </div>
@@ -126,7 +126,7 @@ export function HangulProcessor() {
             <TabsContent value="assemble" className="space-y-6">
                 <div className="grid gap-4">
                     <div className="space-y-2">
-                        <Label>{t("assemble.inputLabel")}</Label>
+                        <Label>{t("HangulProcessor.assemble.inputLabel")}</Label>
                         <div className="flex gap-2">
                             <Input
                                 value={assInput}
@@ -134,11 +134,11 @@ export function HangulProcessor() {
                                 placeholder="ㅇㅏㄴㄴㅕㅇㅎㅏㅅㅔㅇㅛ"
                                 className="text-lg"
                             />
-                            <Button onClick={handleAssemble}>{t("convert")}</Button>
+                            <Button onClick={handleAssemble}>{t("HangulProcessor.convert")}</Button>
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <Label>{t("assemble.outputLabel")}</Label>
+                        <Label>{t("HangulProcessor.assemble.outputLabel")}</Label>
                         <div className="p-4 bg-muted rounded-lg font-mono text-lg min-h-[60px] flex items-center">
                             {assOutput}
                         </div>
@@ -150,7 +150,7 @@ export function HangulProcessor() {
             <TabsContent value="josa" className="space-y-6">
                 <div className="grid gap-4">
                     <div className="space-y-2">
-                        <Label>{t("josa.inputLabel")}</Label>
+                        <Label>{t("HangulProcessor.josa.inputLabel")}</Label>
                         <div className="flex gap-2">
                             <Input
                                 value={josaInput}
@@ -168,11 +168,11 @@ export function HangulProcessor() {
                                 <option value="i/ga">이/가 (I/Ga)</option>
                                 <option value="eul/reul">을/를 (Eul/Reul)</option>
                             </select>
-                            <Button onClick={handleJosa}>{t("check")}</Button>
+                            <Button onClick={handleJosa}>{t("HangulProcessor.check")}</Button>
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <Label>{t("josa.outputLabel")}</Label>
+                        <Label>{t("HangulProcessor.josa.outputLabel")}</Label>
                         <div className="p-4 bg-muted rounded-lg font-mono text-lg min-h-[60px] flex items-center text-primary font-bold">
                             {josaOutput}
                         </div>

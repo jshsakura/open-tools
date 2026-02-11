@@ -22,7 +22,7 @@ const PortScannerTool = dynamic(
 )
 
 export default function PortScannerPage() {
-    const t = useTranslations('Catalog.PortScanner')
+    const t = useTranslations('Catalog')
     const tool = getToolById('port-scanner');
 
     return (
@@ -30,10 +30,10 @@ export default function PortScannerPage() {
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
-                    title={t.rich('title', {
+                    title={t.rich('PortScanner.title', {
                         span: (chunks) => <span className="text-primary">{chunks}</span>
                     })}
-                    description={t('description')}
+                    description={t('PortScanner.description')}
                     icon={tool.icon}
                     colorClass={tool.color}
                 />

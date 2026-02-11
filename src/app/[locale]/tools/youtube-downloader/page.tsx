@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label"
 
 
 export default function YoutubeDownloaderPage() {
-    const t = useTranslations('Catalog.YouTubeDownloader');
+    const t = useTranslations('Catalog');
     const tool = getToolById('youtube-downloader');
     const [url, setUrl] = useState('');
     const [proxy, setProxy] = useState('');
@@ -48,18 +48,18 @@ export default function YoutubeDownloaderPage() {
         const ffmpeg = ffmpegRef.current;
         if (ffmpeg.loaded) return;
 
-        setStatus(t('steps.loadingFFmpeg') || 'Loading FFmpeg core...');
+        setStatus(t('YouTubeDownloader.steps.loadingFFmpeg') || 'Loading FFmpeg core...');
         const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
         await ffmpeg.load({
             coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
-        setStatus(t('steps.ready') || 'Ready');
+        setStatus(t('YouTubeDownloader.steps.ready') || 'Ready');
     };
 
     // Helper to format bytes
     const formatBytes = (bytes: number) => {
-        if (!bytes || bytes === 0) return t('sizeUnknown');
+        if (!bytes || bytes === 0) return t('YouTubeDownloader.sizeUnknown');
         const k = 1024;
         const sizes = ['B', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -133,7 +133,7 @@ export default function YoutubeDownloaderPage() {
                 a.click();
 
                 setProgress(100);
-                setStatus(t('steps.completed'));
+                setStatus(t('YouTubeDownloader.steps.completed'));
                 setLoading(false);
                 return;
             }
@@ -186,21 +186,21 @@ export default function YoutubeDownloaderPage() {
 
             // 1. Download Video Stream
             if (quality.videoUrl) {
-                setStatus(t('steps.downloadingVideo'));
+                setStatus(t('YouTubeDownloader.steps.downloadingVideo'));
                 setProgress(10);
 
                 const videoSize = quality.videoFilesize || 0;
                 const videoData = await fetchWithProgress(getProxyUrl(quality.videoUrl), videoSize, (p, loaded, total) => {
                     setProgress(10 + Math.round(p * 0.3));
                     if (total > 0) {
-                        setStatus(`${t('steps.downloadingVideo')} (${Math.round(p)}% - ${formatBytes(loaded)} / ${formatBytes(total)})`);
+                        setStatus(`${t('YouTubeDownloader.steps.downloadingVideo')} (${Math.round(p)}% - ${formatBytes(loaded)} / ${formatBytes(total)})`);
                     } else {
-                        setStatus(`${t('steps.downloadingVideo')} (${formatBytes(loaded)})`);
+                        setStatus(`${t('YouTubeDownloader.steps.downloadingVideo')} (${formatBytes(loaded)})`);
                     }
                 });
 
                 if (videoData.byteLength === 0) {
-                    throw new Error(t('errors.emptyFile'));
+                    throw new Error(t('YouTubeDownloader.errors.emptyFile'));
                 }
 
                 await ffmpeg.writeFile('input_video.mp4', videoData);
@@ -208,16 +208,16 @@ export default function YoutubeDownloaderPage() {
 
             // 2. Download Audio Stream (if separate)
             if (quality.audioUrl) {
-                setStatus(t('steps.downloadingAudio'));
+                setStatus(t('YouTubeDownloader.steps.downloadingAudio'));
                 setProgress(40);
 
                 const audioSize = quality.audioFilesize || 0;
                 const audioData = await fetchWithProgress(getProxyUrl(quality.audioUrl), audioSize, (p, loaded, total) => {
                     setProgress(40 + Math.round(p * 0.2));
                     if (total > 0) {
-                        setStatus(`${t('steps.downloadingAudio')} (${Math.round(p)}% - ${formatBytes(loaded)} / ${formatBytes(total)})`);
+                        setStatus(`${t('YouTubeDownloader.steps.downloadingAudio')} (${Math.round(p)}% - ${formatBytes(loaded)} / ${formatBytes(total)})`);
                     } else {
-                        setStatus(`${t('steps.downloadingAudio')} (${formatBytes(loaded)})`);
+                        setStatus(`${t('YouTubeDownloader.steps.downloadingAudio')} (${formatBytes(loaded)})`);
                     }
                 });
 
@@ -230,7 +230,7 @@ export default function YoutubeDownloaderPage() {
 
             // 3. Process
             setProgress(60);
-            setStatus(t('steps.muxing'));
+            setStatus(t('YouTubeDownloader.steps.muxing'));
 
             ffmpeg.on('progress', ({ progress }) => {
                 setProgress(60 + Math.round(progress * 35));
@@ -267,14 +267,14 @@ export default function YoutubeDownloaderPage() {
             }
 
             setProgress(100);
-            setStatus(t('steps.completed'));
+            setStatus(t('YouTubeDownloader.steps.completed'));
 
         } catch (err: any) {
             if (err.name === 'AbortError') {
-                setStatus(t('steps.cancelled'));
+                setStatus(t('YouTubeDownloader.steps.cancelled'));
             } else {
                 console.error(err);
-                setError(err.message || t('errors.download'));
+                setError(err.message || t('YouTubeDownloader.errors.download'));
             }
         } finally {
             setLoading(false);
@@ -304,8 +304,8 @@ export default function YoutubeDownloaderPage() {
             <div className="mb-12 space-y-4">
                 {tool && (
                     <ToolPageHeader
-                        title={t('title')}
-                        description={t('description')}
+                        title={t('YouTubeDownloader.title')}
+                        description={t('YouTubeDownloader.description')}
                         icon={tool.icon}
                         colorClass={tool.color}
                     />
@@ -317,7 +317,7 @@ export default function YoutubeDownloaderPage() {
                     {/* Advanced Toggle */}
                     <div className="flex justify-end mb-2">
                         <div className="flex items-center gap-2">
-                            <Label htmlFor="advanced-mode" className="text-xs text-muted-foreground cursor-pointer">{t('advancedSettings')}</Label>
+                            <Label htmlFor="advanced-mode" className="text-xs text-muted-foreground cursor-pointer">{t('YouTubeDownloader.advancedSettings')}</Label>
                             <Switch id="advanced-mode" checked={showAdvanced} onCheckedChange={setShowAdvanced} />
                         </div>
                     </div>
@@ -346,7 +346,7 @@ export default function YoutubeDownloaderPage() {
                             className="h-12 px-8 rounded-xl font-bold bg-primary text-primary-foreground hover:opacity-90 transition-all"
                         >
                             {analyzing ? <Loader2 className="animate-spin mr-2" /> : <ScanText className="mr-2" />}
-                            {analyzing ? t('analyzing') : t('analyze')}
+                            {analyzing ? t('YouTubeDownloader.analyzing') : t('YouTubeDownloader.analyze')}
                         </Button>
                     </div>
 
@@ -385,15 +385,15 @@ export default function YoutubeDownloaderPage() {
                                     <TabsList className="grid w-full grid-cols-3 mb-8 bg-muted/60 p-2 rounded-2xl h-14 items-center">
                                         <TabsTrigger value="video" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
                                             <Video className="w-4 h-4" />
-                                            {t('tabs.video')}
+                                            {t('YouTubeDownloader.tabs.video')}
                                         </TabsTrigger>
                                         <TabsTrigger value="audio" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
                                             <Music className="w-4 h-4" />
-                                            {t('tabs.audio')}
+                                            {t('YouTubeDownloader.tabs.audio')}
                                         </TabsTrigger>
                                         <TabsTrigger value="subtitle" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
                                             <Captions className="w-4 h-4" />
-                                            {t('tabs.subtitle')}
+                                            {t('YouTubeDownloader.tabs.subtitle')}
                                         </TabsTrigger>
                                     </TabsList>
 
@@ -419,9 +419,9 @@ export default function YoutubeDownloaderPage() {
                                                     </div>
                                                     <Button size="sm" variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors" onClick={() => startDownload(q)} disabled={loading}>
                                                         {downloadingId === q.id ? (
-                                                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('processing')}</>
+                                                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('YouTubeDownloader.processing')}</>
                                                         ) : (
-                                                            <><Download className="mr-2 h-4 w-4" /> {t('downloadBtn')}</>
+                                                            <><Download className="mr-2 h-4 w-4" /> {t('YouTubeDownloader.downloadBtn')}</>
                                                         )}
                                                     </Button>
                                                 </div>
@@ -432,7 +432,7 @@ export default function YoutubeDownloaderPage() {
                                                 return !q.isSubtitle && q.id !== 'audio';
                                             }).length === 0 && (
                                                     <div className="text-center p-8 text-muted-foreground bg-secondary/5 rounded-xl border border-dashed border-border/30">
-                                                        {t('noFormats', { type: t(`tabs.${type}`) })}
+                                                        {t('YouTubeDownloader.noFormats', { type: t(`tabs.${type}`) })}
                                                     </div>
                                                 )}
                                         </TabsContent>
@@ -443,7 +443,7 @@ export default function YoutubeDownloaderPage() {
                             // Empty State
                             <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-border/40 rounded-2xl text-muted-foreground/40 bg-muted/5">
                                 <ScanText className="h-12 w-12 mb-3 opacity-20" />
-                                <p className="text-sm">{t('emptyState')}</p>
+                                <p className="text-sm">{t('YouTubeDownloader.emptyState')}</p>
                             </div>
                         )}
                     </div>
@@ -457,11 +457,11 @@ export default function YoutubeDownloaderPage() {
                             </div>
                             <Progress value={progress} className="h-2 rounded-full" />
                             <Button variant="ghost" size="sm" onClick={handleCancel} className="text-muted-foreground hover:text-destructive h-8 px-4 text-xs mb-2">
-                                {t('cancel')}
+                                {t('YouTubeDownloader.cancel')}
                             </Button>
                             <p className="text-xs text-muted-foreground/80 text-center max-w-[90%] flex items-center gap-1 justify-center">
                                 <AlertCircle className="w-3 h-3 inline pb-[1px]" />
-                                {t('speedNote')}
+                                {t('YouTubeDownloader.speedNote')}
                             </p>
                         </div>
                     )}
@@ -480,30 +480,30 @@ export default function YoutubeDownloaderPage() {
         <div className="mt-8 space-y-4">
             <Card className="border-border/40 bg-card/20 backdrop-blur-sm">
                 <CardHeader>
-                    <CardTitle className="text-base">{t('flowTitle')}</CardTitle>
-                    <CardDescription>{t('flowDesc')}</CardDescription>
+                    <CardTitle className="text-base">{t('YouTubeDownloader.flowTitle')}</CardTitle>
+                    <CardDescription>{t('YouTubeDownloader.flowDesc')}</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-3 text-sm text-muted-foreground">
                     <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>
-                        <p>{t('flowStep1')}</p>
+                        <p>{t('YouTubeDownloader.flowStep1')}</p>
                     </div>
                     <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</div>
-                        <p>{t('flowStep2')}</p>
+                        <p>{t('YouTubeDownloader.flowStep2')}</p>
                     </div>
                     <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</div>
-                        <p>{t('flowStep3')}</p>
+                        <p>{t('YouTubeDownloader.flowStep3')}</p>
                     </div>
                 </CardContent>
             </Card>
 
             <Alert className="border-amber-500/30 bg-amber-500/5">
                 <AlertCircle className="h-4 w-4 text-amber-600" />
-                <AlertTitle className="text-amber-700">{t('limitationsTitle')}</AlertTitle>
+                <AlertTitle className="text-amber-700">{t('YouTubeDownloader.limitationsTitle')}</AlertTitle>
                 <AlertDescription className="text-amber-700/80">
-                    {t('limitationsDesc')}
+                    {t('YouTubeDownloader.limitationsDesc')}
                 </AlertDescription>
             </Alert>
         </div>
