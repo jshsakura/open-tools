@@ -12,23 +12,17 @@ export function DevTools() {
 
     return (
         <div className="space-y-6">
-            <div className="text-center space-y-2 mb-8">
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                    {t("description")}
-                </p>
-            </div>
-
             <Tabs defaultValue="docker" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8">
-                    <TabsTrigger value="docker" className="flex items-center gap-2">
+                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 gap-2">
+                    <TabsTrigger value="docker" className="flex items-center justify-center gap-2">
                         <Container className="h-4 w-4" />
                         {t("tabs.docker")}
                     </TabsTrigger>
-                    <TabsTrigger value="chmod" className="flex items-center gap-2">
+                    <TabsTrigger value="chmod" className="flex items-center justify-center gap-2">
                         <Terminal className="h-4 w-4" />
                         {t("tabs.chmod")}
                     </TabsTrigger>
-                    <TabsTrigger value="validator" className="flex items-center gap-2">
+                    <TabsTrigger value="validator" className="flex items-center justify-center gap-2">
                         <ShieldCheck className="h-4 w-4" />
                         {t("tabs.validator")}
                     </TabsTrigger>

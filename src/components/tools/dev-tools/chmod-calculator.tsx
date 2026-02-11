@@ -55,32 +55,32 @@ export function ChmodCalculator() {
     }
 
     const PermissionGroup = ({ label, state, setState }: { label: string, state: Permission, setState: any }) => (
-        <div className="space-y-4 p-4 border rounded-lg bg-card shadow-sm">
-            <h3 className="font-semibold text-center">{label}</h3>
+        <div className="space-y-4 p-4 sm:p-6 border rounded-lg bg-card shadow-sm">
+            <h3 className="font-semibold text-center break-words">{label}</h3>
             <div className="flex flex-col gap-3">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                     <Checkbox
                         id={`${label}-read`}
                         checked={state.read}
                         onCheckedChange={(checked) => setState({ ...state, read: !!checked })}
                     />
-                    <Label htmlFor={`${label}-read`}>{t("read")} (4)</Label>
+                    <Label htmlFor={`${label}-read`} className="text-sm sm:text-base">{t("read")} (4)</Label>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                     <Checkbox
                         id={`${label}-write`}
                         checked={state.write}
                         onCheckedChange={(checked) => setState({ ...state, write: !!checked })}
                     />
-                    <Label htmlFor={`${label}-write`}>{t("write")} (2)</Label>
+                    <Label htmlFor={`${label}-write`} className="text-sm sm:text-base">{t("write")} (2)</Label>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                     <Checkbox
                         id={`${label}-execute`}
                         checked={state.execute}
                         onCheckedChange={(checked) => setState({ ...state, execute: !!checked })}
                     />
-                    <Label htmlFor={`${label}-execute`}>{t("execute")} (1)</Label>
+                    <Label htmlFor={`${label}-execute`} className="text-sm sm:text-base">{t("execute")} (1)</Label>
                 </div>
             </div>
         </div>

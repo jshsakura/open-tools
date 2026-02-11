@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Copy, Check, ArrowRightLeft, Container } from "lucide-react"
+import { Copy, Check, ArrowRightLeft, Container, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 // import { composerize } from "composerize-ts"
 
@@ -41,12 +41,22 @@ export function DockerConverter() {
         setTimeout(() => setCopied(false), 2000)
     }
 
+    const clearInput = () => {
+        setInput("")
+        setOutput("")
+    }
+
     return (
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
             <div className="space-y-4 flex flex-col h-full">
-                <Label>{t("inputLabel")}</Label>
+                <div className="flex justify-between items-center">
+                    <Label>{t("inputLabel")}</Label>
+                    <Button size="sm" variant="ghost" onClick={clearInput} disabled={!input}>
+                        <Trash2 className="h-4 w-4" />
+                    </Button>
+                </div>
                 <Textarea
-                    className="flex-1 font-mono text-sm resize-none min-h-[300px]"
+                    className="flex-1 font-mono text-sm resize-none min-h-[300px] w-full max-w-full overflow-x-auto"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="docker run -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock -d nginx"
@@ -65,7 +75,7 @@ export function DockerConverter() {
                     </Button>
                 </div>
                 <Textarea
-                    className="flex-1 font-mono text-sm resize-none bg-muted min-h-[350px]"
+                    className="flex-1 font-mono text-sm resize-none bg-muted min-h-[350px] w-full max-w-full overflow-x-auto"
                     value={output}
                     readOnly
                     placeholder={t("outputPlaceholder")}

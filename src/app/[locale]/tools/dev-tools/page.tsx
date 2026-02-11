@@ -1,4 +1,5 @@
 import { DevTools } from "@/components/tools/dev-tools"
+import { ToolPageHeader } from "@/components/tool-page-header"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -15,8 +16,12 @@ export default async function DevToolsPage({ params }: { params: Promise<{ local
     const t = await getTranslations({ locale, namespace: 'DevTools' });
 
     return (
-        <div className="container mx-auto py-12 px-4">
-            <h1 className="text-3xl font-bold text-center mb-8">{t('title')}</h1>
+        <div className="container mx-auto py-12 max-w-5xl">
+            <ToolPageHeader
+                title={t('title')}
+                description={t('description')}
+                toolId="dev-tools"
+            />
             <DevTools />
         </div>
     )
