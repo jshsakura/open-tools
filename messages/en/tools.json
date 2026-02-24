@@ -2,6 +2,7 @@
     "Suno": {
         "title": "Suno AI Downloader",
         "description": "The fastest way to download Suno.ai MP3s.",
+        "descriptionFull": "With the Suno Music Downloader, you can seamlessly explore and save AI-generated music tracks for free on mobile, PC, and other devices. Immerse yourself in the innovative world of Suno AI.",
         "inputPlaceholder": "Paste Suno link here (e.g., https://suno.com/song/...)",
         "resolveButton": "Resolve",
         "downloadButton": "Extract & Download",
@@ -18,6 +19,48 @@
             "supported": "Supports: Suno & Mureka songs, playlists",
             "playlist": "Playlist",
             "share": "Mureka (Beta)"
+        },
+        "features": {
+            "title": "Key Features",
+            "free": {
+                "title": "Completely Free",
+                "desc": "Use it for free without any payment or registration required."
+            },
+            "unlimited": {
+                "title": "Unlimited Downloads",
+                "desc": "Download as many Suno tracks as you want with no restrictions."
+            },
+            "fast": {
+                "title": "Ultra Fast",
+                "desc": "Getting download links takes only seconds depending on your internet speed."
+            },
+            "crossPlatform": {
+                "title": "All Devices Supported",
+                "desc": "Works seamlessly on mobile, tablet, PC, and all other devices."
+            }
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "free": {
+                "q": "Is Suno Music Downloader free to use?",
+                "a": "Yes, Suno Music Downloader is completely free. Use it freely without any hidden costs or registration."
+            },
+            "limit": {
+                "q": "Are there any download limits?",
+                "a": "No, there are no limits on the number of songs you can download. Download unlimited tracks."
+            },
+            "mobile": {
+                "q": "Can I use it on mobile devices?",
+                "a": "Yes, it works perfectly on mobile, tablet, PC, and all other devices."
+            },
+            "location": {
+                "q": "Where can I find downloaded songs?",
+                "a": "Downloaded files are saved to your browser's default download folder."
+            },
+            "quality": {
+                "q": "What is the download quality?",
+                "a": "You get the highest quality audio provided by Suno AI."
+            }
         }
     },
     "UnitConverter": {
