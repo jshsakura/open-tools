@@ -24,7 +24,7 @@ export function SunoDownloader() {
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState<SunoData[]>([])
     const [error, setError] = useState<string | null>(null)
-    const [downloading, setDownloading] = useState<string[]>([]) // Track downloading IDs
+    const [downloading, setDownloading] = useState<string[]>([])
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -47,7 +47,6 @@ export function SunoDownloader() {
                 throw new Error(result.error || t('errorGeneric'))
             }
 
-            // Always treat as array
             const resultsArray = Array.isArray(result) ? result : [result];
             setData(resultsArray)
         } catch (err) {
@@ -89,12 +88,10 @@ export function SunoDownloader() {
         const confirmMsg = `Download ${data.length} songs? Browsers might block multiple downloads. Please allow popups if prompted.`;
         if (!window.confirm(confirmMsg)) return;
 
-        // Sequential download to avoid overwhelming browser
         for (const item of data) {
             setDownloading(prev => [...prev, item.audioUrl]);
             await downloadTrack(item);
             setDownloading(prev => prev.filter(url => url !== item.audioUrl));
-            // Small delay
             await new Promise(r => setTimeout(r, 500));
         }
     }
@@ -108,6 +105,7 @@ export function SunoDownloader() {
                 </p>
             </div>
 
+            {/* Search Input */}
             <GlassCard className="flex flex-wrap items-center gap-4 p-4 rounded-2xl">
                 <form onSubmit={handleSearch} className="flex-1 flex flex-col sm:flex-row gap-4 w-full">
                     <div className="relative flex-1 group">
@@ -135,122 +133,7 @@ export function SunoDownloader() {
                 </form>
             </GlassCard>
 
-            {!isLoading && data.length === 0 && !error && (
-                <>
-                    <div className="grid gap-6 md:grid-cols-2 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <Card className="border-primary/20 bg-primary/5 backdrop-blur-sm shadow-lg shadow-primary/5">
-                            <CardContent className="p-6 space-y-4">
-                                <h3 className="text-xl font-bold flex items-center gap-2 text-primary">
-                                    <Info className="w-5 h-5" />
-                                    {t('guide.title')}
-                                </h3>
-                                <ul className="space-y-4">
-                                    <li className="flex gap-3 items-start">
-                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">1</span>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step1')}</p>
-                                    </li>
-                                    <li className="flex gap-3 items-start">
-                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">2</span>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step2')}</p>
-                                    </li>
-                                    <li className="flex gap-3 items-start">
-                                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">3</span>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step3')}</p>
-                                    </li>
-                                </ul>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                            <CardContent className="p-6 space-y-4">
-                                <h3 className="text-xl font-bold flex items-center gap-2">
-                                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                                    {t('guide.supported')}
-                                </h3>
-                                <div className="grid gap-3">
-                                    <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
-                                        <Music className="w-5 h-5 text-blue-500" />
-                                        <div>
-                                            <p className="font-medium text-sm">Song Link</p>
-                                            <p className="text-xs text-muted-foreground">https://suno.com/song/...</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
-                                        <ListMusic className="w-5 h-5 text-purple-500" />
-                                        <div>
-                                            <p className="font-medium text-sm">{t('guide.playlist')}</p>
-                                            <p className="text-xs text-muted-foreground">https://suno.com/playlist/...</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
-                                        <Share2 className="w-5 h-5 text-orange-500" />
-                                        <div>
-                                            <p className="font-medium text-sm">{t('guide.share')}</p>
-                                            <p className="text-xs text-muted-foreground">https://mureka.ai/...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-
-                    {/* Features Section */}
-                    <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                        <CardContent className="p-6">
-                            <h3 className="text-xl font-bold flex items-center gap-2 mb-6">
-                                <Sparkles className="w-5 h-5 text-primary" />
-                                {t('features.title')}
-                            </h3>
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
-                                    <Zap className="w-6 h-6 text-yellow-500 mb-2" />
-                                    <h4 className="font-semibold mb-1">{t('features.free.title')}</h4>
-                                    <p className="text-sm text-muted-foreground">{t('features.free.desc')}</p>
-                                </div>
-                                <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
-                                    <Infinity className="w-6 h-6 text-green-500 mb-2" />
-                                    <h4 className="font-semibold mb-1">{t('features.unlimited.title')}</h4>
-                                    <p className="text-sm text-muted-foreground">{t('features.unlimited.desc')}</p>
-                                </div>
-                                <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
-                                    <Sparkles className="w-6 h-6 text-blue-500 mb-2" />
-                                    <h4 className="font-semibold mb-1">{t('features.fast.title')}</h4>
-                                    <p className="text-sm text-muted-foreground">{t('features.fast.desc')}</p>
-                                </div>
-                                <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
-                                    <Smartphone className="w-6 h-6 text-purple-500 mb-2" />
-                                    <h4 className="font-semibold mb-1">{t('features.crossPlatform.title')}</h4>
-                                    <p className="text-sm text-muted-foreground">{t('features.crossPlatform.desc')}</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* FAQ Section */}
-                    <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                        <CardContent className="p-6">
-                            <h3 className="text-xl font-bold flex items-center gap-2 mb-6">
-                                <HelpCircle className="w-5 h-5 text-primary" />
-                                {t('faq.title')}
-                            </h3>
-                            <div className="space-y-4">
-                                {[('free'), ('limit'), ('mobile'), ('location'), ('quality')].map((key) => (
-                                    <details key={key} className="group rounded-lg bg-secondary/30 border border-border/30 overflow-hidden">
-                                        <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-secondary/50 transition-colors">
-                                            <span className="font-medium pr-4">{t(`faq.${key}.q`)}</span>
-                                            <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0 group-open:rotate-180 transition-transform" />
-                                        </summary>
-                                        <div className="px-4 pb-4 text-sm text-muted-foreground">
-                                            {t(`faq.${key}.a`)}
-                                        </div>
-                                    </details>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
-                </>
-            )}
-
+            {/* Error */}
             {error && (
                 <Alert variant="destructive" className="animate-in fade-in slide-in-from-top-2">
                     <AlertCircle className="h-4 w-4" />
@@ -259,7 +142,8 @@ export function SunoDownloader() {
                 </Alert>
             )}
 
-            {isLoading && data.length === 0 && (
+            {/* Music Results or Skeleton */}
+            {isLoading ? (
                 <div className="grid md:grid-cols-2 gap-4 animate-in fade-in zoom-in-50 duration-500">
                     {[1, 2, 3, 4].map((i) => (
                         <div key={i} className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -279,26 +163,24 @@ export function SunoDownloader() {
                         </div>
                     ))}
                 </div>
-            )}
-
-            {data.length > 0 && (
+            ) : data.length > 0 ? (
                 <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="flex justify-between items-center px-2">
                         <h3 className="font-bold text-xl flex items-center gap-2">
                             <Music className="w-5 h-5 text-primary" />
-                            {data.length} Songs Found
+                            {data.length === 1 ? t('songFound') : t('songsFound', { count: data.length })}
                         </h3>
                         {data.length > 1 && (
                             <Button onClick={handleDownloadAll} variant="default" className="gap-2">
                                 <Download className="w-4 h-4" />
-                                Download All ({data.length})
+                                {t('downloadAll', { count: data.length })}
                             </Button>
                         )}
                     </div>
 
                     <div className={`grid gap-4 ${data.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' : 'md:grid-cols-2'}`}>
                         {data.map((item, idx) => (
-                            <div key={idx} className={`overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow ${data.length === 1 ? '' : ''}`}>
+                            <div key={idx} className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex">
                                     <div className={`relative aspect-square shrink-0 ${data.length === 1 ? 'w-48' : 'w-32'}`}>
                                         {item.image ? (
@@ -343,7 +225,120 @@ export function SunoDownloader() {
                         ))}
                     </div>
                 </div>
-            )}
+            ) : null}
+
+            {/* Guide Section - Always visible */}
+            <div className="grid gap-6 md:grid-cols-2">
+                <Card className="border-primary/20 bg-primary/5 backdrop-blur-sm shadow-lg shadow-primary/5">
+                    <CardContent className="p-6 space-y-4">
+                        <h3 className="text-xl font-bold flex items-center gap-2 text-primary">
+                            <Info className="w-5 h-5" />
+                            {t('guide.title')}
+                        </h3>
+                        <ul className="space-y-4">
+                            <li className="flex gap-3 items-start">
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">1</span>
+                                <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step1')}</p>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">2</span>
+                                <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step2')}</p>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">3</span>
+                                <p className="text-muted-foreground text-sm leading-relaxed">{t('guide.step3')}</p>
+                            </li>
+                        </ul>
+                    </CardContent>
+                </Card>
+
+                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                    <CardContent className="p-6 space-y-4">
+                        <h3 className="text-xl font-bold flex items-center gap-2">
+                            <CheckCircle2 className="w-5 h-5 text-green-500" />
+                            {t('guide.supported')}
+                        </h3>
+                        <div className="grid gap-3">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
+                                <Music className="w-5 h-5 text-blue-500" />
+                                <div>
+                                    <p className="font-medium text-sm">Song Link</p>
+                                    <p className="text-xs text-muted-foreground">https://suno.com/song/...</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
+                                <ListMusic className="w-5 h-5 text-purple-500" />
+                                <div>
+                                    <p className="font-medium text-sm">{t('guide.playlist')}</p>
+                                    <p className="text-xs text-muted-foreground">https://suno.com/playlist/...</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 border border-border/50">
+                                <Share2 className="w-5 h-5 text-orange-500" />
+                                <div>
+                                    <p className="font-medium text-sm">{t('guide.share')}</p>
+                                    <p className="text-xs text-muted-foreground">https://mureka.ai/...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+
+            {/* Features Section - Always visible */}
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                    <h3 className="text-xl font-bold flex items-center gap-2 mb-6">
+                        <Sparkles className="w-5 h-5 text-primary" />
+                        {t('features.title')}
+                    </h3>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
+                            <Zap className="w-6 h-6 text-yellow-500 mb-2" />
+                            <h4 className="font-semibold mb-1">{t('features.free.title')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('features.free.desc')}</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
+                            <Infinity className="w-6 h-6 text-green-500 mb-2" />
+                            <h4 className="font-semibold mb-1">{t('features.unlimited.title')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('features.unlimited.desc')}</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
+                            <Sparkles className="w-6 h-6 text-blue-500 mb-2" />
+                            <h4 className="font-semibold mb-1">{t('features.fast.title')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('features.fast.desc')}</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-secondary/30 border border-border/30">
+                            <Smartphone className="w-6 h-6 text-purple-500 mb-2" />
+                            <h4 className="font-semibold mb-1">{t('features.crossPlatform.title')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('features.crossPlatform.desc')}</p>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* FAQ Section - Always visible */}
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                    <h3 className="text-xl font-bold flex items-center gap-2 mb-6">
+                        <HelpCircle className="w-5 h-5 text-primary" />
+                        {t('faq.title')}
+                    </h3>
+                    <div className="space-y-4">
+                        {['free', 'limit', 'mobile', 'location', 'quality'].map((key) => (
+                            <details key={key} className="group rounded-lg bg-secondary/30 border border-border/30 overflow-hidden">
+                                <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-secondary/50 transition-colors">
+                                    <span className="font-medium pr-4">{t(`faq.${key}.q`)}</span>
+                                    <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0 group-open:rotate-180 transition-transform" />
+                                </summary>
+                                <div className="px-4 pb-4 text-sm text-muted-foreground">
+                                    {t(`faq.${key}.a`)}
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     )
 }

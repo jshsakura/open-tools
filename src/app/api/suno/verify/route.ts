@@ -82,6 +82,10 @@ export async function POST(req: NextRequest) {
         const cdnAudioPattern = /https:\/\/cdn\d?\.suno\.ai\/([a-f0-9-]+)\.mp3/g;
         const cdnMatches = [...html.matchAll(cdnAudioPattern)];
         
+        // Try to get title from og:title
+        const ogTitleMatch = html.match(/<meta property="og:title" content="([^"]*)"/i);
+        const ogTitle = ogTitleMatch ? ogTitleMatch[1] : null;
+        
         if (cdnMatches.length > 0) {
             const clips: any[] = [];
             const seenIds = new Set<string>();
@@ -91,9 +95,14 @@ export async function POST(req: NextRequest) {
                 if (seenIds.has(songId)) continue;
                 seenIds.add(songId);
                 
+                // Use og:title for the first song, otherwise use song ID
+                const songTitle = clips.length === 0 && ogTitle 
+                    ? ogTitle.replace(/\s*\|\s*Suno\s*$/i, '').trim()
+                    : `Suno Song (${songId.slice(0, 8)})`;
+                
                 clips.push({
                     id: songId,
-                    title: `Suno Song (${songId.slice(0, 8)})`,
+                    title: songTitle,
                     image: `https://cdn2.suno.ai/image_${songId}.jpeg`,
                     audioUrl: `https://cdn1.suno.ai/${songId}.mp3`,
                     description: "AI-generated music from Suno"

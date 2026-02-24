@@ -2,7 +2,7 @@
     "Suno": {
         "title": "Suno AI Downloader",
         "description": "The fastest way to download Suno.ai MP3s.",
-        "descriptionFull": "With the Suno Music Downloader, you can seamlessly explore and save AI-generated music tracks for free on mobile, PC, and other devices. Immerse yourself in the innovative world of Suno AI.",
+        "descriptionFull": "Download AI-generated music for free on mobile or PC with the Suno Music Downloader. Supports both Suno.ai and Mureka.ai.",
         "inputPlaceholder": "Paste Suno link here (e.g., https://suno.com/song/...)",
         "resolveButton": "Resolve",
         "downloadButton": "Extract & Download",
@@ -11,7 +11,9 @@
         "error": "Failed to fetch song data. Please check the URL.",
         "downloadSuccess": "Download started!",
         "errorGeneric": "An error occurred",
-        "guide": {
+        "songsFound": "{count} Songs Found",
+        "songFound": "Song Found",
+        "downloadAll": "Download All ({count})",
             "title": "How to use",
             "step1": "Copy the song or playlist link from Suno.ai or Mureka.ai.",
             "step2": "Paste it into the input box above and click 'Resolve'.",
