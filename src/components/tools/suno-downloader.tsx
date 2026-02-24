@@ -98,18 +98,17 @@ export function SunoDownloader() {
 
     return (
         <div className="mx-auto max-w-5xl space-y-6">
-            {/* Title & Subtitle */}
-            <div className="text-center space-y-2">
-                <h1 className="text-2xl font-bold">{t('title')}</h1>
-                <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-                    {t('descriptionFull').split('. ').map((sentence, idx, arr) => (
-                        <span key={idx}>
-                            {sentence}{idx < arr.length - 1 ? '. ' : ''}
-                            {idx < arr.length - 1 && <br />}
-                        </span>
-                    ))}
-                </p>
-            </div>
+            {/* Subtitle */}
+            <p className="text-center text-sm text-muted-foreground max-w-xl mx-auto">
+                {t('descriptionFull').split('. ').map((sentence, idx, arr) => (
+                    <span key={idx}>
+                        {sentence}{idx < arr.length - 1 ? '. ' : ''}
+                        {idx < arr.length - 1 && <br />}
+                    </span>
+                ))}
+            </p>
+
+            {/* Search Input */}
 
             {/* Search Input */}
             <GlassCard className="flex flex-wrap items-center gap-4 p-4 rounded-2xl">
