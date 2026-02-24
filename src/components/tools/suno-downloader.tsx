@@ -109,6 +109,7 @@ export function SunoDownloader() {
             </div>
 
             <GlassCard className="flex flex-wrap items-center gap-4 p-4 rounded-2xl">
+                <form onSubmit={handleSearch} className="flex-1 flex flex-col sm:flex-row gap-4 w-full">
                     <div className="relative flex-1 group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors">
                             <LinkIcon className="h-5 w-5" />
