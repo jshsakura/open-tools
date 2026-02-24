@@ -78,6 +78,32 @@ export async function POST(req: NextRequest) {
                 console.error("Error parsing NEXT_DATA", e);
             }
         }
+        // Fallback: Extract CDN audio URLs directly (Suno CSR structure)
+        const cdnAudioPattern = /https:\/\/cdn\d?\.suno\.ai\/([a-f0-9-]+)\.mp3/g;
+        const cdnMatches = [...html.matchAll(cdnAudioPattern)];
+        
+        if (cdnMatches.length > 0) {
+            const clips: any[] = [];
+            const seenIds = new Set<string>();
+            
+            for (const match of cdnMatches) {
+                const songId = match[1];
+                if (seenIds.has(songId)) continue;
+                seenIds.add(songId);
+                
+                clips.push({
+                    id: songId,
+                    title: `Suno Song (${songId.slice(0, 8)})`,
+                    image: `https://cdn2.suno.ai/image_${songId}.jpeg`,
+                    audioUrl: `https://cdn1.suno.ai/${songId}.mp3`,
+                    description: "AI-generated music from Suno"
+                });
+            }
+            
+            if (clips.length > 0) {
+                return NextResponse.json(clips);
+            }
+        }
 
         // Fallback for Mureka or single pages simple regex if NEXT_DATA failed or empty
         if (url.includes("mureka.ai")) {
