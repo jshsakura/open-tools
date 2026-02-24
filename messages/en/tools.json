@@ -2,7 +2,7 @@
     "Suno": {
         "title": "Suno AI Downloader",
         "description": "The fastest way to download Suno.ai MP3s.",
-        "descriptionFull": "Download AI-generated music for free on mobile or PC with the Suno Music Downloader. Supports both Suno.ai and Mureka.ai.",
+        "descriptionFull": "Download AI-generated music for free on mobile or PC. Supports both Suno.ai and Mureka.ai.",
         "inputPlaceholder": "Paste Suno link here (e.g., https://suno.com/song/...)",
         "resolveButton": "Resolve",
         "downloadButton": "Extract & Download",

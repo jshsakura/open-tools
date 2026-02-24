@@ -97,11 +97,17 @@ export function SunoDownloader() {
     }
 
     return (
-        <div className="mx-auto max-w-5xl space-y-8">
-            {/* Service Description */}
-            <div className="text-center space-y-3">
-                <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                    {t('descriptionFull')}
+        <div className="mx-auto max-w-5xl space-y-6">
+            {/* Title & Subtitle */}
+            <div className="text-center space-y-2">
+                <h1 className="text-2xl font-bold">{t('title')}</h1>
+                <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+                    {t('descriptionFull').split('. ').map((sentence, idx, arr) => (
+                        <span key={idx}>
+                            {sentence}{idx < arr.length - 1 ? '. ' : ''}
+                            {idx < arr.length - 1 && <br />}
+                        </span>
+                    ))}
                 </p>
             </div>
 
@@ -331,7 +337,7 @@ export function SunoDownloader() {
                                     <span className="font-medium pr-4">{t(`faq.${key}.q`)}</span>
                                     <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0 group-open:rotate-180 transition-transform" />
                                 </summary>
-                                <div className="px-4 pb-4 text-sm text-muted-foreground">
+                                <div className="px-4 pt-3 pb-4 text-sm text-muted-foreground">
                                     {t(`faq.${key}.a`)}
                                 </div>
                             </details>
