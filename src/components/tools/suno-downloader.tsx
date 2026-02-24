@@ -65,7 +65,7 @@ export function SunoDownloader() {
             const downloadUrl = window.URL.createObjectURL(blob)
             const link = document.createElement('a')
             link.href = downloadUrl
-            link.download = `${item.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.mp3`
+            link.download = `${item.title.replace(/[\\/:*?"<>|]/g, '_').trim()}.mp3`
             document.body.appendChild(link)
             link.click()
             link.remove()
