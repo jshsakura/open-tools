@@ -27,9 +27,10 @@ export default function SunoDownloaderPage() {
                 <h1 className="text-5xl font-black tracking-tighter text-foreground sm:text-6xl drop-shadow-sm">
                     {t('title')}
                 </h1>
-                <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed">
-                    {t('description')}
-                </p>
+                <div className="text-base text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed text-center space-y-1">
+                    <p>{t('descriptionFull').split('. ').map((s, i, arr) => (
+                        <span key={i}>{s}{i < arr.length - 1 ? '.' : ''}</span>
+                    )).reduce((acc: any[], curr, i) => i === 0 ? [curr] : [...acc, <br key={i} />, curr], [])}
             </div>
 
             <SunoDownloader />
