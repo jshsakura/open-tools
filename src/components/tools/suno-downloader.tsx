@@ -296,11 +296,11 @@ export function SunoDownloader() {
                         )}
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className={`grid gap-4 ${data.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' : 'md:grid-cols-2'}`}>
                         {data.map((item, idx) => (
-                            <div key={idx} className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
+                            <div key={idx} className={`overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow ${data.length === 1 ? '' : ''}`}>
                                 <div className="flex">
-                                    <div className="relative w-32 aspect-square shrink-0">
+                                    <div className={`relative aspect-square shrink-0 ${data.length === 1 ? 'w-48' : 'w-32'}`}>
                                         {item.image ? (
                                             <Image
                                                 src={item.image}
@@ -317,22 +317,24 @@ export function SunoDownloader() {
                                     </div>
                                     <div className="flex flex-1 flex-col justify-between p-4 min-w-0">
                                         <div className="space-y-1">
-                                            <h4 className="font-semibold tracking-tight text-lg truncate" title={item.title}>{item.title}</h4>
-                                            <p className="text-xs text-muted-foreground line-clamp-2">{item.description}</p>
+                                            <h4 className={`font-semibold tracking-tight truncate ${data.length === 1 ? 'text-xl' : 'text-lg'}`} title={item.title}>{item.title}</h4>
+                                            <p className={`text-muted-foreground ${data.length === 1 ? 'line-clamp-3 text-sm' : 'line-clamp-2 text-xs'}`}>{item.description}</p>
                                         </div>
                                         <div className="flex items-center gap-2 mt-2">
-                                            <audio controls src={item.audioUrl} className="flex-1 h-8 accent-primary w-full min-w-0" />
+                                            <audio controls src={item.audioUrl} className={`flex-1 accent-primary w-full min-w-0 ${data.length === 1 ? 'h-10' : 'h-8'}`} />
                                             <Button
-                                                size="icon"
+                                                size={data.length === 1 ? 'default' : 'icon'}
                                                 variant="secondary"
                                                 onClick={() => handleDownloadSingle(item)}
                                                 disabled={downloading.includes(item.audioUrl)}
+                                                className={data.length === 1 ? 'gap-2 px-4' : ''}
                                             >
                                                 {downloading.includes(item.audioUrl) ? (
-                                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                                    <Loader2 className={`${data.length === 1 ? 'h-5 w-5' : 'h-4 w-4'} animate-spin`} />
                                                 ) : (
-                                                    <Download className="w-4 h-4" />
+                                                    <Download className={`${data.length === 1 ? 'h-5 w-5' : 'h-4 w-4'}`} />
                                                 )}
+                                                {data.length === 1 && !downloading.includes(item.audioUrl) && <span>Download</span>}
                                             </Button>
                                         </div>
                                     </div>
@@ -340,7 +342,6 @@ export function SunoDownloader() {
                             </div>
                         ))}
                     </div>
-                </div>
             )}
         </div>
     )
