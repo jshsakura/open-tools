@@ -1,28 +1,28 @@
 {
-    "Home": {
-        "title": "Essential Open Source Tools Platform",
-        "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
-        "allTools": "All Tools"
-    },
-    "Category": {
-        "Development": "Development",
-        "Media": "Media",
-        "Design": "Design",
-        "Security": "Security",
-        "Utilities": "Utilities",
-        "AI": "AI",
-        "Korea": "Korea"
-    },
-    "Hero": {
-        "badge": "Collection of Free Online Tools",
-        "title_1": "Essential",
-        "title_2": "Open Tools",
-        "title_3": "Platform",
-        "description": "Premium open-source utilities for all your daily needs.\n100% Client-side. Secure. Fast.",
-        "description_mobile": "100% client-side premium toolset for all your daily needs."
-    },
-    "Layout": {
-        "footer": "© 2024 Open Tools Platform. Powered by <link>OpenCourse</link>.",
-        "github": "Star on GitHub"
-    }
+  "Home": {
+    "title": "Essential Open Source Tools Platform",
+    "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
+    "allTools": "All Tools"
+  },
+  "Category": {
+    "Development": "Development",
+    "Media": "Media",
+    "Design": "Design",
+    "Security": "Security",
+    "Utilities": "Utilities",
+    "AI": "AI",
+    "Korea": "Korea"
+  },
+  "Hero": {
+    "badge": "Collection of Free Online Tools",
+    "title_1": "Essential",
+    "title_2": "Open Tools",
+    "title_3": "Platform",
+    "description": "Premium open-source utilities for all your daily needs.\n100% Client-side. Secure. Fast.",
+    "description_mobile": "100% client-side premium toolset for all your daily needs."
+  },
+  "Layout": {
+    "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
+    "github": "Star on GitHub"
+  }
 }
