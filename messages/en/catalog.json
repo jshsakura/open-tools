@@ -340,6 +340,90 @@
     "StringCaseConverter": {
       "title": "String Case Converter",
       "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case and 8 more formats."
+    },
+    "UuidGenerator": {
+      "title": "UUID Generator",
+      "description": "Generate UUID v4 and v7 with bulk generation and clipboard support."
+    },
+    "PasswordGenerator": {
+      "title": "Password Generator",
+      "description": "Generate secure random passwords with customizable length, characters, and strength meter."
+    },
+    "UnixTimestamp": {
+      "title": "Unix Timestamp Converter",
+      "description": "Two-way conversion between Unix timestamps and human-readable dates."
+    },
+    "MetaTagGenerator": {
+      "title": "Meta Tag Generator",
+      "description": "Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically."
+    },
+    "RobotsTxtGenerator": {
+      "title": "Robots.txt Generator",
+      "description": "Create robots.txt files for search engine crawlers with preset templates."
+    },
+    "SitemapGenerator": {
+      "title": "Sitemap Generator",
+      "description": "Add URLs and generate XML sitemap files to improve search engine indexing."
+    },
+    "ColorConverter": {
+      "title": "Color Converter",
+      "description": "Convert colors between HEX, RGB, and HSL formats with live preview and related colors."
+    },
+    "SubnetCalculator": {
+      "title": "IP Subnet Calculator",
+      "description": "Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR."
+    },
+    "CssMinifier": {
+      "title": "CSS Minifier / Beautifier",
+      "description": "Minify or beautify CSS code with size comparison and instant copy."
+    },
+    "JsonLdGenerator": {
+      "title": "JSON-LD Schema Generator",
+      "description": "Generate structured data (JSON-LD) for SEO. Supports Article, Product, FAQ, and more schema types."
+    },
+    "EnvEditor": {
+      "title": ".env File Editor",
+      "description": "Edit environment variable files (.env) and compare differences between two files side by side."
+    },
+    "TomlConverter": {
+      "title": "TOML/INI Converter",
+      "description": "Convert between TOML, INI, and JSON formats with auto-detection and live preview."
+    },
+    "HttpHeaderAnalyzer": {
+      "title": "HTTP Header Analyzer",
+      "description": "Analyze HTTP response headers from any URL and score security header configuration."
+    },
+    "WebhookTester": {
+      "title": "API Tester",
+      "description": "Send REST API requests directly from your browser and analyze responses with an HTTP client tool."
+    },
+    "GitDiffViewer": {
+      "title": "Git Diff Viewer",
+      "description": "Paste git diff or unified diff output to visualize changes with syntax highlighting."
+    },
+    "ExifViewer": {
+      "title": "Image EXIF Viewer & Remover",
+      "description": "View and remove EXIF metadata (camera, GPS, date) from images for privacy protection."
+    },
+    "ImageResizer": {
+      "title": "Image Resizer",
+      "description": "Resize images to custom or preset dimensions for social media platforms."
+    },
+    "SvgOptimizer": {
+      "title": "SVG Optimizer",
+      "description": "Optimize and minify SVG files by removing unnecessary data and reducing file size."
+    },
+    "ScreenshotBeautifier": {
+      "title": "Screenshot Beautifier",
+      "description": "Add device frames, backgrounds, and shadows to your screenshots for beautiful exports."
+    },
+    "TextToSpeech": {
+      "title": "Text to Speech (TTS)",
+      "description": "Convert text to natural speech with voice selection, speed, and pitch controls."
+    },
+    "WhoisLookup": {
+      "title": "Domain / DNS Lookup",
+      "description": "Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name."
     }
   }
 }

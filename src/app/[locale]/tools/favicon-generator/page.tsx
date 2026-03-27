@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { FaviconClientView } from "@/components/tools/favicon-client-view"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -26,6 +27,7 @@ export default async function FaviconGeneratorPage({ params }: { params: Promise
             </div>
 
             <FaviconClientView />
+            <ToolGuide ns="FaviconGenerator" />
         </div>
     )
 }

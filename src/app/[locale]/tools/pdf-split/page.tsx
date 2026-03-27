@@ -1,4 +1,5 @@
 import { PdfSplit } from "@/components/tools/pdf-split"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,6 +15,7 @@ export default function PdfSplitPage() {
     return (
         <div className="container mx-auto py-12 px-4">
             <PdfSplit />
+            <ToolGuide ns="PdfSplit" />
         </div>
     )
 }

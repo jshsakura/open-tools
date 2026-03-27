@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { SvgToJsxTool } from '@/components/tools/svg-to-jsx';
+import { ToolGuide } from "@/components/tool-guide-section";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -28,6 +29,7 @@ export default async function SvgToJsxPage({ params }: { params: Promise<{ local
             </div>
 
             <SvgToJsxTool />
+            <ToolGuide ns="SvgToJsx" />
         </div>
     );
 }

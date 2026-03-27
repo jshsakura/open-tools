@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Base64Converter } from '@/components/tools/base64-converter';
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -29,6 +30,7 @@ export default async function Base64ConverterPage({ params }: { params: Promise<
             </div>
 
             <Base64Converter />
+            <ToolGuide ns="Base64Converter" />
         </div>
     );
 }

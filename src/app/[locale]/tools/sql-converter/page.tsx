@@ -7,6 +7,7 @@ import { Database } from 'lucide-react'
 import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { getToolById } from "@/lib/tools-catalog"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 
 
@@ -42,6 +43,7 @@ export default function SqlConverterPage() {
         </div>
 
             <SqlConverter />
+            <ToolGuide ns="SqlConverter" />
         </div>
     )
 }

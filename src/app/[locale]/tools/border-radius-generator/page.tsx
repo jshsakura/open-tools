@@ -1,6 +1,7 @@
 import { BorderRadiusGenerator } from "@/components/tools/border-radius-generator"
 import { getTranslations } from "next-intl/server"
 import { useTranslations } from "next-intl"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 export async function generateMetadata() {
     const t = await getTranslations('BorderRadiusGenerator')
@@ -27,6 +28,7 @@ export default function BorderRadiusGeneratorPage() {
             </div>
 
             <BorderRadiusGenerator />
+            <ToolGuide ns="BorderRadiusGenerator" />
         </div>
     )
 }

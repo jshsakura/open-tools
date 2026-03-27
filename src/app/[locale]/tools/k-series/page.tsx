@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { KTools } from "@/components/tools/k-tools";
+import { ToolGuide } from "@/components/tool-guide-section";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'Catalog.KSeries' });
@@ -17,6 +18,7 @@ export default async function KSeriesPage({ params: { locale } }: { params: { lo
             <h1 className="text-4xl font-black tracking-tight text-center mb-4">{t('title')}</h1>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">{t('description')}</p>
             <KTools />
+            <ToolGuide ns="KTools" />
         </div>
     );
 }

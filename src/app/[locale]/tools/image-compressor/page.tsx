@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { ImageCompressor } from '@/components/tools/image-compressor';
+import { ToolGuide } from "@/components/tool-guide-section";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -11,5 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function ImageCompressorPage() {
-    return <ImageCompressor />;
+    return (
+        <div>
+            <ImageCompressor />
+            <ToolGuide ns="ImageCompressor" />
+        </div>
+    );
 }

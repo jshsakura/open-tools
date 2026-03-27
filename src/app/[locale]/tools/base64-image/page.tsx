@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl"
 import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { getToolById } from "@/lib/tools-catalog"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 
 
@@ -41,6 +42,7 @@ export default function Base64ImagePage() {
         </div>
 
             <Base64ImageTool />
+            <ToolGuide ns="Base64Image" />
         </div>
     )
 }

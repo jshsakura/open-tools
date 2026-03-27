@@ -1,4 +1,5 @@
 import { PdfToImage } from "@/components/tools/pdf-to-image"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,6 +15,7 @@ export default function PdfToImagePage() {
     return (
         <div className="container mx-auto py-12 px-4">
             <PdfToImage />
+            <ToolGuide ns="PdfToImage" />
         </div>
     )
 }

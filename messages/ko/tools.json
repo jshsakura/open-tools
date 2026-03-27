@@ -81,7 +81,13 @@
         "rem": "렘 (rem)",
         "formula": "공식",
         "valueToConvert": "변환할 값",
-        "convertedResult": "변환 결과"
+        "convertedResult": "변환 결과",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "상단 탭에서 변환할 단위 유형(PX/REM, 데이터, 길이, 무게, 온도)을 선택하세요.",
+            "step2": "왼쪽 입력 칸에 변환할 값을 입력하세요.",
+            "step3": "오른쪽에 변환 결과가 실시간으로 표시됩니다."
+        }
     },
     "JsonYaml": {
         "title": "JSON ↔ YAML 변환기",
@@ -95,12 +101,24 @@
         "yamlPlaceholder": "YAML을 붙여넣으세요...",
         "resultPlaceholder": "변환 결과가 여기에 표시됩니다...",
         "copy": "복사",
-        "error": "변환에 실패했습니다"
+        "error": "변환에 실패했습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 입력 영역에 JSON 또는 YAML 코드를 붙여넣으세요.",
+            "step2": "'변환하기' 버튼을 클릭하세요.",
+            "step3": "오른쪽에 변환된 결과가 표시되며, 복사 버튼으로 클립보드에 복사할 수 있습니다."
+        }
     },
     "JwtDebugger": {
         "title": "JWT 디버거",
         "description": "JSON 웹 토큰을 안전하게 디코딩하고 분석합니다.",
-        "inputPlaceholder": "여기에 JWT를 붙여넣으세요..."
+        "inputPlaceholder": "여기에 JWT를 붙여넣으세요...",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "JWT 토큰 문자열을 입력 영역에 붙여넣으세요.",
+            "step2": "헤더, 페이로드, 서명 정보가 자동으로 디코딩되어 표시됩니다.",
+            "step3": "만료 시간, 발급자 등 클레임 정보를 확인하세요."
+        }
     },
     "VideoConverter": {
         "title": "비디오 에디터 & 변환기",
@@ -138,9 +156,16 @@
             "fps": "프레임(FPS)",
             "width": "너비(px)",
             "action": "GIF 생성"
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "동영상 파일을 드래그하거나 클릭하여 업로드하세요.",
+            "step2": "변환, 자르기, 오디오 추출, GIF 만들기 중 원하는 작업을 선택하세요.",
+            "step3": "설정을 조정하고 실행 버튼을 누르면 브라우저에서 바로 처리됩니다."
         }
     },
     "SvgToJsx": {
+        "title": "SVG to JSX 변환기",
         "svgSource": "SVG 소스",
         "pasteSvg": "원본 SVG 코드를 여기에 붙여넣으세요",
         "clear": "지우기",
@@ -152,7 +177,14 @@
         "copyCode": "코드 복사",
         "outputPlaceholder": "변환된 코드가 여기에 표시됩니다...",
         "whyUse": "왜 SVG to JSX인가요?",
-        "whyUseDesc": "SVG 속성은 웹 표준상 보통 kebab-case(예: stroke-width)이지만, React 컴포넌트는 camelCase(예: strokeWidth)를 요구합니다. 복잡한 SVG를 수동으로 변환하는 것은 번거롭고 오류가 나기 쉽습니다. 이 도구는 속성 매핑을 처리하고, 불필요한 작업을 줄이며, 함수형 컴포넌트 형태로 감싸서 바로 붙여 넣어 사용할 수 있게 합니다."
+        "whyUseDesc": "SVG 속성은 웹 표준상 보통 kebab-case(예: stroke-width)이지만, React 컴포넌트는 camelCase(예: strokeWidth)를 요구합니다. 복잡한 SVG를 수동으로 변환하는 것은 번거롭고 오류가 나기 쉽습니다. 이 도구는 속성 매핑을 처리하고, 불필요한 작업을 줄이며, 함수형 컴포넌트 형태로 감싸서 바로 붙여 넣어 사용할 수 있게 합니다.",
+        "description": "SVG 코드를 React JSX 컴포넌트로 자동 변환합니다. 속성 매핑을 자동 처리합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 입력 영역에 SVG 코드를 붙여넣으세요.",
+            "step2": "컴포넌트 이름을 입력하고 '변환' 버튼을 클릭하세요.",
+            "step3": "생성된 JSX 코드를 복사하여 React 프로젝트에 바로 사용하세요."
+        }
     },
     "RegexTester": {
         "title": "정규식 테스터",
@@ -166,7 +198,13 @@
         "matchDetails": "매칭 상세",
         "groups": "그룹",
         "idx": "인덱스: {index}",
-        "noMatches": "매칭 결과가 없습니다"
+        "noMatches": "매칭 결과가 없습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "상단에 정규식 패턴을 입력하고 필요한 플래그(g, i, m 등)를 설정하세요.",
+            "step2": "아래 테스트 문자열 영역에 검증할 텍스트를 입력하세요.",
+            "step3": "매칭 결과가 실시간으로 하이라이팅되며, 상세 매칭 정보를 확인할 수 있습니다."
+        }
     },
     "CronGenerator": {
         "title": "Cron 생성기",
@@ -181,9 +219,16 @@
         "everyHour": "매 시간",
         "dailyAtMidnight": "매일 자정",
         "everyMonday9am": "매주 월요일 오전 9시",
-        "endOfMonth": "월말"
+        "endOfMonth": "월말",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "크론 표현식을 직접 입력하거나 프리셋(매 분, 매 시간 등)을 선택하세요.",
+            "step2": "표현식이 사람이 읽을 수 있는 스케줄 설명으로 자동 변환됩니다.",
+            "step3": "다음 실행 예정 시간 목록을 확인하여 정확성을 검증하세요."
+        }
     },
     "MyIp": {
+        "title": "내 IP 주소 확인",
         "ipAddress": "IP 주소",
         "ipDesc": "내 공인 IP와 네트워크 정보를 표시합니다",
         "publicIpv4": "공인 IPv4",
@@ -204,9 +249,17 @@
         "viewOnMaps": "지도에서 보기",
         "aboutPrivacy": "프라이버시 안내",
         "privacyDesc": "IP 정보는 실시간으로 가져오며 저장하거나 판매하지 않습니다.",
-        "waitingGps": "위치 권한을 기다리는 중..."
+        "waitingGps": "위치 권한을 기다리는 중...",
+        "description": "내 공인 IP 주소와 ISP, 위치 등 네트워크 정보를 실시간으로 확인합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "페이지에 접속하면 공인 IP 주소가 자동으로 감지됩니다.",
+            "step2": "ISP, 위치, 시간대 등 네트워크 세부 정보를 확인하세요.",
+            "step3": "IP 복사 버튼으로 클립보드에 복사하거나 지도에서 위치를 확인하세요."
+        }
     },
     "BannerGenerator": {
+        "title": "ASCII 배너 생성기",
         "textInput": "텍스트",
         "placeholder": "배너에 넣을 텍스트를 입력하세요...",
         "fontStyle": "폰트 스타일",
@@ -220,7 +273,14 @@
         "errorPlaceholder": "아직 출력이 없습니다.",
         "springBootBanner": "Spring Boot 배너",
         "springBootDesc": "이 ASCII 아트를 Spring Boot의 banner.txt에 넣어 사용하세요.",
-        "generatingError": "생성기를 불러오지 못했습니다."
+        "generatingError": "생성기를 불러오지 못했습니다.",
+        "description": "텍스트를 ASCII 아트 배너로 변환합니다. Spring Boot banner.txt에도 활용 가능합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "입력란에 배너로 만들 텍스트를 입력하세요.",
+            "step2": "폰트 스타일과 ANSI 색상을 선택하여 원하는 모양을 만드세요.",
+            "step3": "생성된 배너를 복사하거나 다운로드하세요. Spring Boot 배너로도 사용 가능합니다."
+        }
     },
     "QrGenerator": {
         "title": "QR 코드 생성기",
@@ -263,7 +323,13 @@
         "downloadedSvg": "QR 코드가 SVG로 다운로드되었습니다.",
         "errorSvg": "SVG 생성에 실패했습니다.",
         "copiedClipboard": "클립보드에 복사했습니다.",
-        "errorCopy": "복사에 실패했습니다."
+        "errorCopy": "복사에 실패했습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "URL, 텍스트, 이메일 또는 전화번호 중 QR 코드에 담을 유형을 선택하세요.",
+            "step2": "내용을 입력하고 색상, 해상도, 오류 복원 레벨 등을 설정하세요.",
+            "step3": "생성된 QR 코드를 PNG 또는 SVG로 다운로드하거나 클립보드에 복사하세요."
+        }
     },
     "BackgroundRemover": {
         "title": "AI 배경 제거",
@@ -279,7 +345,13 @@
         "howItWorksTitle": "작동 방식",
         "howItWorksDescription": "이 도구는 브라우저에서 WebAssembly로 실행되는 <b>U-2-Net</b> 딥러닝 모델을 사용합니다. 피사체를 식별해 정밀 마스크를 만들고 배경을 즉시 제거합니다.",
         "privacyTitle": "프라이버시 우선",
-        "privacyDescription": "사진은 <b>전적으로 내 기기에서만</b> 처리됩니다. 업로드하거나 저장하지 않습니다. 오프라인에서도 작동합니다."
+        "privacyDescription": "사진은 <b>전적으로 내 기기에서만</b> 처리됩니다. 업로드하거나 저장하지 않습니다. 오프라인에서도 작동합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "이미지를 드래그하거나 클릭하여 업로드하세요. JPG, PNG, WebP를 지원합니다.",
+            "step2": "'배경 제거 실행' 버튼을 클릭하면 AI가 자동으로 배경을 제거합니다.",
+            "step3": "투명 배경 이미지를 PNG로 다운로드하세요. 모든 처리는 브라우저에서 로컬로 이루어집니다."
+        }
     },
     "Base64Converter": {
         "title": "Base64 인코더/디코더",
@@ -294,7 +366,13 @@
         "decodePlaceholder": "복원할 Base64 문자열을 붙여넣으세요...",
         "copy": "복사",
         "clear": "지우기",
-        "copied": "클립보드에 복사되었습니다!"
+        "copied": "클립보드에 복사되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "인코딩 또는 디코딩 탭을 선택하세요.",
+            "step2": "변환할 텍스트나 Base64 문자열을 입력하세요.",
+            "step3": "실시간으로 변환 결과가 표시되며, 복사 버튼으로 클립보드에 저장할 수 있습니다."
+        }
     },
     "UrlConverter": {
         "title": "URL 인코더/디코더",
@@ -309,7 +387,13 @@
         "decodePlaceholder": "디코딩할 URL 인코딩 문자열을 입력하세요...",
         "copy": "복사",
         "clear": "지우기",
-        "copied": "클립보드에 복사되었습니다!"
+        "copied": "클립보드에 복사되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "인코딩 또는 디코딩 탭을 선택하세요.",
+            "step2": "인코딩할 URL이나 디코딩할 문자열을 입력하세요.",
+            "step3": "변환 결과를 확인하고 복사 버튼으로 클립보드에 저장하세요."
+        }
     },
     "HashGenerator": {
         "title": "해시 생성기",
@@ -318,9 +402,16 @@
         "placeholder": "해시 변환할 텍스트를 입력하세요...",
         "error": "해시 생성에 실패했습니다.",
         "clear": "지우기",
-        "copied": "{algorithm} 해시가 복사되었습니다!"
+        "copied": "{algorithm} 해시가 복사되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "입력 영역에 해시로 변환할 텍스트를 입력하세요.",
+            "step2": "MD5, SHA-1, SHA-256, SHA-512 해시가 실시간으로 생성됩니다.",
+            "step3": "각 해시 값 옆의 복사 버튼으로 원하는 해시를 복사하세요."
+        }
     },
     "SecurityTools": {
+        "title": "보안 도구 모음",
         "Hash": {
             "title": "해시 생성기",
             "description": "빠르고 안전한 해시 생성"
@@ -328,6 +419,13 @@
         "BCrypt": {
             "title": "Bcrypt 생성기",
             "description": "비밀번호 해싱 및 검증"
+        },
+        "description": "해시 생성, Bcrypt 비밀번호 해싱 등 보안 관련 도구를 모았습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "해시 생성기 또는 Bcrypt 생성기 중 원하는 도구를 선택하세요.",
+            "step2": "텍스트나 비밀번호를 입력하고 생성 또는 검증 버튼을 클릭하세요.",
+            "step3": "결과를 복사하여 프로젝트에 활용하세요. 모든 처리는 로컬에서 수행됩니다."
         }
     },
     "ImageCompressor": {
@@ -351,7 +449,13 @@
         "quality": "품질 (압축률)",
         "resize": "크기 조절 (스케일)",
         "download": "이미지 다운로드",
-        "saved": "이미지가 저장되었습니다!"
+        "saved": "이미지가 저장되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "이미지를 드래그하거나 파일 선택 버튼으로 업로드하세요. PNG, JPG, WEBP를 지원합니다.",
+            "step2": "품질과 크기 조절 슬라이더로 압축 설정을 조정하세요.",
+            "step3": "원본 대비 절감률을 확인하고 압축된 이미지를 다운로드하세요."
+        }
     },
     "BrowserInfo": {
         "title": "브라우저 정보 확인",
@@ -381,7 +485,13 @@
         "fullUserAgentString": "전체 사용자 에이전트 문자열",
         "copied": "복사됨",
         "copyString": "복사",
-        "runningOn": "{os}에서 실행 중"
+        "runningOn": "{os}에서 실행 중",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "페이지에 접속하면 브라우저 정보가 자동으로 분석됩니다.",
+            "step2": "브라우저, OS, 화면 해상도, GPU, 개인정보 설정 등을 확인하세요.",
+            "step3": "User Agent 문자열을 복사하여 디버깅이나 호환성 테스트에 활용하세요."
+        }
     },
     "SpeedTest": {
         "title": "인터넷 속도 테스트",
@@ -405,16 +515,31 @@
         "whatIsJitter": "지터란?",
         "jitterDesc": "지터는 지연 시간의 변동 폭으로, 통화나 게임 품질에 영향을 줍니다.",
         "fiberVs5g": "광통신 vs 5G",
-        "fiberVs5gDesc": "광통신은 보통 지연이 낮고 속도가 안정적입니다. 5G는 빠르지만 변동이 큰 편입니다."
+        "fiberVs5gDesc": "광통신은 보통 지연이 낮고 속도가 안정적입니다. 5G는 빠르지만 변동이 큰 편입니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "'테스트 시작' 버튼을 클릭하여 인터넷 속도 측정을 시작하세요.",
+            "step2": "다운로드, 업로드, 지연 시간이 순차적으로 측정됩니다.",
+            "step3": "테스트 완료 후 결과를 확인하고 네트워크 상태를 진단하세요."
+        }
     },
     "SqlFormatter": {
+        "title": "SQL 포맷터",
         "inputPlaceholder": "여기에 SQL을 붙여넣으세요...",
         "outputPlaceholder": "포맷된 SQL이 여기에 표시됩니다...",
         "errorMessage": "포맷에 실패했습니다. SQL 구문을 확인하세요.",
         "clear": "지우기",
-        "format": "포맷하기"
+        "format": "포맷하기",
+        "description": "복잡한 SQL 쿼리를 보기 좋게 포맷하고 정리합니다. 다양한 SQL 방언을 지원합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 입력 영역에 포맷할 SQL 쿼리를 붙여넣으세요.",
+            "step2": "'포맷하기' 버튼을 클릭하세요.",
+            "step3": "정리된 SQL이 오른쪽에 표시됩니다. 복사하여 사용하세요."
+        }
     },
     "SqlConverter": {
+        "title": "SQL 변환기",
         "inputLabelSql": "입력 (SQL)",
         "inputLabelTable": "입력 (테이블)",
         "outputLabel": "출력 ({format})",
@@ -422,9 +547,17 @@
         "placeholderTable": "id\\tname\\n1\\tJohn",
         "errorInvalidFormat": "형식을 파싱할 수 없습니다. 형식을 확인해주세요.",
         "copied": "복사됨",
-        "copy": "복사"
+        "copy": "복사",
+        "description": "SQL INSERT 문을 JSON 또는 CSV 형식으로 변환합니다. 로컬에서 안전하게 처리됩니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "SQL INSERT 문 또는 탭 구분 테이블 데이터를 입력하세요.",
+            "step2": "변환할 출력 형식(JSON, CSV)을 선택하세요.",
+            "step3": "변환 결과를 확인하고 복사하여 사용하세요."
+        }
     },
     "XmlFormatter": {
+        "title": "XML 포맷터 & 변환기",
         "xmlInput": "XML 입력",
         "pasteXml": "여기에 XML 코드를 붙여넣으세요",
         "clear": "지우기",
@@ -442,7 +575,14 @@
         "formattingDesc": "가독성을 높이기 위해 적절한 들여쓰기와 줄바꿈으로 XML을 예쁘게 만듭니다.",
         "conversion": "변환",
         "conversionDesc": "속성과 중첩 구조를 보존하면서 XML을 JSON 형식으로 변환합니다.",
-        "copyJson": "JSON 복사됨"
+        "copyJson": "JSON 복사됨",
+        "description": "XML 코드를 자동 검증하고 보기 좋게 포맷합니다. JSON 변환도 지원합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "입력 영역에 XML 코드를 붙여넣으세요.",
+            "step2": "'포맷 & 검증' 버튼을 클릭하면 자동으로 구조 검증과 포맷이 진행됩니다.",
+            "step3": "포맷된 XML 또는 JSON 변환 결과를 복사하여 사용하세요."
+        }
     },
     "YoutubeThumbnail": {
         "title": "YouTube 썸네일 추출기",
@@ -458,7 +598,13 @@
         "guideTitle": "사용 방법",
         "guideDescription": "YouTube 영상 URL을 붙여넣고 추출 버튼을 누르면 다양한 해상도의 썸네일을 확인할 수 있습니다.",
         "tipsTitle": "팁",
-        "tipsDescription": "일부 영상은 최대 해상도 이미지가 없을 수 있습니다. 이 경우 고화질/중간 화질을 이용하세요."
+        "tipsDescription": "일부 영상은 최대 해상도 이미지가 없을 수 있습니다. 이 경우 고화질/중간 화질을 이용하세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "YouTube 영상 URL을 입력 칸에 붙여넣으세요.",
+            "step2": "'썸네일 추출' 버튼을 클릭하세요.",
+            "step3": "다양한 해상도의 썸네일이 표시됩니다. 원하는 것을 다운로드하세요."
+        }
     },
     "BoxShadowGenerator": {
         "title": "CSS 박스 그림자 생성기",
@@ -476,9 +622,16 @@
         "cssOutput": "CSS 출력",
         "color": "그림자 색상",
         "copy": "CSS 복사",
-        "copied": "복사 완료!"
+        "copied": "복사 완료!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "그림자 레이어를 추가하고 각 레이어의 오프셋, 블러, 확산 값을 조절하세요.",
+            "step2": "미리보기에서 실시간으로 그림자 효과를 확인하세요.",
+            "step3": "'CSS 복사' 버튼으로 생성된 코드를 복사하여 프로젝트에 사용하세요."
+        }
     },
     "Base64Image": {
+        "title": "Base64 이미지 디코더",
         "base64Input": "Base64 입력",
         "pasteDataUri": "데이터 URI 또는 원시 문자열을 붙여넣으세요",
         "decodePreview": "디코딩 및 미리보기",
@@ -490,7 +643,14 @@
         "save": "저장",
         "previewUnavailable": "미리보기를 사용할 수 없음",
         "note": "참고:",
-        "noteDesc": "데이터 URI에는 종종 특정 MIME 유형(예: <code>image/webp</code>)이 포함됩니다. 문자열에 헤더가 포함되지 않은 경우 기본적으로 표준 PNG로 렌더링합니다."
+        "noteDesc": "데이터 URI에는 종종 특정 MIME 유형(예: <code>image/webp</code>)이 포함됩니다. 문자열에 헤더가 포함되지 않은 경우 기본적으로 표준 PNG로 렌더링합니다.",
+        "description": "Base64 문자열을 이미지로 디코딩하여 미리보기하고 저장합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "데이터 URI 또는 Base64 원시 문자열을 입력 영역에 붙여넣으세요.",
+            "step2": "'디코딩 및 미리보기' 버튼을 클릭하면 이미지가 표시됩니다.",
+            "step3": "'저장' 버튼으로 디코딩된 이미지를 다운로드하세요."
+        }
     },
     "GradientGenerator": {
         "title": "CSS 그래디언트 생성기",
@@ -506,11 +666,25 @@
         "randomize": "무작위 생성",
         "minStopsError": "최소 2개의 색상이 필요합니다.",
         "copy": "CSS 복사",
-        "copied": "복사 완료!"
+        "copied": "복사 완료!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "그래디언트 유형(선형, 원형, 원뿔형)을 선택하고 각도를 설정하세요.",
+            "step2": "색상 단계를 추가하고 각 색상과 위치를 조절하세요.",
+            "step3": "'CSS 복사' 버튼으로 그래디언트 코드를 복사하세요. '무작위 생성'으로 새로운 조합도 시도해보세요."
+        }
     },
     "Glassmorphism": {
+        "title": "Glassmorphism 생성기",
         "styleConfiguration": "스타일 설정",
-        "fineTune": "유리 효과를 미세 조정하세요"
+        "fineTune": "유리 효과를 미세 조정하세요",
+        "description": "유리 효과(Glassmorphism) CSS 코드를 시각적으로 생성합니다. 블러, 투명도 등을 조절하세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "슬라이더로 블러, 투명도, 배경색 등 유리 효과 속성을 조절하세요.",
+            "step2": "미리보기에서 실시간으로 유리 효과를 확인하세요.",
+            "step3": "마음에 드는 설정의 CSS 코드를 복사하여 프로젝트에 적용하세요."
+        }
     },
     "FaviconGenerator": {
         "title": "파비콘 생성기",
@@ -520,7 +694,13 @@
         "generate": "파비콘 생성 및 다운로드 (ZIP)",
         "generating": "생성 중...",
         "remove": "삭제",
-        "formats": "포함된 형식: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome"
+        "formats": "포함된 형식: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "파비콘으로 만들 이미지를 드래그하거나 클릭하여 업로드하세요 (512x512 이상 권장).",
+            "step2": "'파비콘 생성 및 다운로드' 버튼을 클릭하세요.",
+            "step3": "다양한 크기(16x16~192x192)의 파비콘이 포함된 ZIP 파일이 다운로드됩니다."
+        }
     },
     "BorderRadiusGenerator": {
         "title": "CSS Border Radius 생성기",
@@ -533,7 +713,13 @@
         "bottomRight": "우측 하단",
         "boxSize": "미리보기 크기",
         "copy": "CSS 복사",
-        "copied": "복사 완료!"
+        "copied": "복사 완료!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "각 모서리의 border-radius 값을 슬라이더로 조절하세요.",
+            "step2": "8점 모드(고급)를 활성화하면 더 복잡한 모양을 만들 수 있습니다.",
+            "step3": "'CSS 복사' 버튼으로 생성된 border-radius 코드를 복사하세요."
+        }
     },
     "PdfMerge": {
         "title": "PDF 합치기",
@@ -545,7 +731,13 @@
         "clear": "모두 지우기",
         "success": "PDF가 성공적으로 병합되었습니다!",
         "error": "PDF 병합에 실패했습니다.",
-        "count": "{count}개 파일 선택됨"
+        "count": "{count}개 파일 선택됨",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "병합할 PDF 파일들을 드래그하거나 파일 추가 버튼으로 업로드하세요.",
+            "step2": "파일 순서를 확인하고 필요하면 조정하세요.",
+            "step3": "'PDF 병합하기' 버튼을 클릭하면 하나의 PDF로 합쳐져 다운로드됩니다."
+        }
     },
     "PdfSplit": {
         "title": "PDF 나누기",
@@ -554,7 +746,13 @@
         "pageRange": "페이지 범위 (예: 1-5, 8, 11-13)",
         "split": "PDF 분할하기",
         "success": "PDF가 성공적으로 분할되었습니다!",
-        "error": "PDF 분할에 실패했습니다."
+        "error": "PDF 분할에 실패했습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "분할할 PDF 파일을 드래그하거나 클릭하여 업로드하세요.",
+            "step2": "추출할 페이지 범위를 입력하세요 (예: 1-5, 8, 11-13).",
+            "step3": "'PDF 분할하기' 버튼을 클릭하면 선택한 페이지만 추출되어 다운로드됩니다."
+        }
     },
     "PdfToImage": {
         "title": "PDF 이미지 변환",
@@ -563,7 +761,13 @@
         "format": "저장 포맷",
         "convert": "이미지로 변환",
         "success": "PDF가 이미지로 변환되었습니다!",
-        "error": "변환에 실패했습니다."
+        "error": "변환에 실패했습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "변환할 PDF 파일을 드래그하거나 클릭하여 업로드하세요.",
+            "step2": "출력 포맷(JPG 또는 PNG)을 선택하세요.",
+            "step3": "'이미지로 변환' 버튼을 클릭하면 각 페이지가 이미지로 변환되어 다운로드됩니다."
+        }
     },
     "HwpViewer": {
         "title": "통합 문서 뷰어 (HWP/DOCX)",
@@ -582,7 +786,13 @@
         "hwpDisabled": "빌드 문제로 인해 HWP 뷰어가 일시적으로 비활성화되었습니다.",
         "documentLoaded": "문서가 성공적으로 로드되었습니다",
         "failedToLoad": "문서 로드 실패",
-        "couldNotParse": "이 파일을 파싱할 수 없습니다."
+        "couldNotParse": "이 파일을 파싱할 수 없습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "HWP, DOCX, XLSX 파일을 드래그하거나 클릭하여 업로드하세요.",
+            "step2": "문서가 브라우저에서 바로 렌더링되어 표시됩니다.",
+            "step3": "뷰어에서 텍스트를 선택하여 복사할 수 있습니다."
+        }
     },
     "Basic3dViewer": {
         "title": "3D 모델 뷰어",
@@ -596,7 +806,13 @@
         "toggleAxes": "축 보기/숨기기",
         "autoRotate": "자동 회전",
         "error": "3D 모델을 불러오는데 실패했습니다.",
-        "fileInfo": "파일 정보"
+        "fileInfo": "파일 정보",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "OBJ, STL, GLTF/GLB 등 3D 모델 파일을 드래그하거나 업로드하세요.",
+            "step2": "마우스로 모델을 회전, 확대/축소하며 확인하세요.",
+            "step3": "그리드, 축 표시, 자동 회전 등 컨트롤로 뷰를 조정하세요."
+        }
     },
     "BcryptGenerator": {
         "title": "Bcrypt 생성기",
@@ -620,7 +836,13 @@
         "error": "해시 생성에 실패했습니다",
         "errorVerify": "검증에 실패했습니다",
         "successGenerated": "해시가 생성되었습니다",
-        "copied": "클립보드에 복사됨!"
+        "copied": "클립보드에 복사됨!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "해시 생성: 비밀번호를 입력하고 Salt 라운드를 설정한 후 '해시 생성하기'를 클릭하세요.",
+            "step2": "해시 검증: 비밀번호와 Bcrypt 해시를 입력하고 '비밀번호 검증'을 클릭하세요.",
+            "step3": "생성된 해시를 복사하여 데이터베이스나 설정 파일에 사용하세요."
+        }
     },
     "HmacGenerator": {
         "title": "HMAC 생성기",
@@ -634,7 +856,13 @@
         "outputLabel": "HMAC 결과 (Hex)",
         "errorEmpty": "비밀키와 메시지를 모두 입력해주세요",
         "successGenerated": "HMAC가 생성되었습니다",
-        "copied": "복사됨!"
+        "copied": "복사됨!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "알고리즘(SHA-256, SHA-512 등)을 선택하세요.",
+            "step2": "비밀키와 해시할 메시지를 입력하세요.",
+            "step3": "'HMAC 생성하기' 버튼을 클릭하고 결과를 복사하세요."
+        }
     },
     "RsaGenerator": {
         "title": "RSA 키 생성기",
@@ -649,7 +877,13 @@
         "copy": "복사",
         "copied": "복사됨!",
         "successGenerated": "키 쌍이 성공적으로 생성되었습니다",
-        "error": "키 생성에 실패했습니다"
+        "error": "키 생성에 실패했습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "키 크기(2048, 4096 등)를 선택하세요.",
+            "step2": "'키 쌍 생성하기' 버튼을 클릭하면 공개키와 개인키가 생성됩니다.",
+            "step3": "각 키를 복사하여 SSH 설정이나 암호화에 활용하세요."
+        }
     },
     "AesCrypto": {
         "title": "AES 암호화 & 복호화",
@@ -673,9 +907,16 @@
         "encryptError": "암호화 실패. 입력을 확인해주세요.",
         "decryptSuccess": "텍스트가 성공적으로 복호화되었습니다!",
         "decryptError": "복호화 실패. 비밀번호가 틀렸거나 데이터가 손상되었습니다.",
-        "copied": "클립보드에 복사되었습니다"
+        "copied": "클립보드에 복사되었습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "암호화: 텍스트와 비밀번호를 입력하고 '암호화 실행'을 클릭하세요.",
+            "step2": "복호화: 암호문과 비밀번호를 입력하고 '복호화 실행'을 클릭하세요.",
+            "step3": "결과를 복사하여 사용하세요. 모든 처리는 브라우저 내에서 로컬로 수행됩니다."
+        }
     },
     "DataTools": {
+        "title": "데이터 도구 모음",
         "description": "JSON, SQL, 슬러그 생성 등 데이터 처리 도구 모음.",
         "tabs": {
             "converter": "JSON / CSV",
@@ -707,9 +948,16 @@
             "outputLabel": "URL 슬러그",
             "errorEmpty": "텍스트를 입력해주세요",
             "copied": "복사됨!"
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "JSON/CSV, SQL, 슬러그 탭 중 필요한 도구를 선택하세요.",
+            "step2": "데이터를 입력하거나 파일을 업로드하세요.",
+            "step3": "변환 버튼을 클릭하고 결과를 복사하거나 다운로드하세요."
         }
     },
     "TextTools": {
+        "title": "텍스트 도구 모음",
         "description": "OCR, 로렘 입숨, 한글 처리 도구를 한곳에서 사용하세요.",
         "tabs": {
             "ocr": "OCR",
@@ -763,17 +1011,31 @@
                 "inputLabel": "단어 입력",
                 "outputLabel": "조사 포함 결과"
             }
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "OCR, 로렘 입숨, 한글 도구 탭 중 필요한 도구를 선택하세요.",
+            "step2": "이미지를 업로드하거나 텍스트를 입력하세요.",
+            "step3": "결과를 확인하고 복사하여 사용하세요."
         }
     },
     "KTools": {
+        "title": "한국어 도구 모음",
         "description": "한글 문서 보기, 한글 도구, 국내용 검증 도구를 모았습니다.",
         "tabs": {
             "hwp": "HWP 뷰어",
             "hangul": "한글 도구",
             "validator": "검증"
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "HWP 뷰어, 한글 도구, 검증 탭 중 필요한 도구를 선택하세요.",
+            "step2": "파일을 업로드하거나 데이터를 입력하세요.",
+            "step3": "결과를 확인하고 활용하세요."
         }
     },
     "DevTools": {
+        "title": "개발자 도구 모음",
         "tabs": {
             "docker": "Docker",
             "chmod": "CHMOD",
@@ -821,6 +1083,13 @@
             "invalidGender": "성별 코드가 올바르지 않습니다",
             "invalidResChecksum": "검증 번호가 일치하지 않습니다",
             "resWarning": "이 도구는 형과 검증 번호의 유효성만 확인합니다. 실명 확인은 하지 않습니다."
+        },
+        "description": "Docker 명령어 변환, CHMOD 계산기, 사업자번호 검증 등 개발 유틸리티 모음입니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "Docker, CHMOD, 검증 탭 중 필요한 도구를 선택하세요.",
+            "step2": "명령어, 권한 설정, 또는 번호를 입력하세요.",
+            "step3": "변환 또는 검증 결과를 확인하고 복사하여 사용하세요."
         }
     },
     "TorrentHistory": {
@@ -925,9 +1194,16 @@
         "limitation": {
             "title": "참고 사항",
             "content": "이 도구는 서버 측 스캐너를 사용하여 포트 가용성을 정확하게 확인합니다."
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "스캔할 대상 호스트네임이나 IP 주소를 입력하세요.",
+            "step2": "'스캔 시작' 버튼을 클릭하면 주요 포트를 검사합니다.",
+            "step3": "열림, 닫힘, 필터링 상태를 확인하여 서비스 가용성을 진단하세요."
         }
     },
     "ImageConverter": {
+        "title": "이미지 포맷 변환기",
         "clickOrDrag": "클릭하거나 이미지를 드래그하여 업로드",
         "dropDesc": "PNG, JPG, WEBP 지원",
         "remove": "삭제",
@@ -939,6 +1215,592 @@
         "introDesc": "이미지를 업로드하여 PNG, JPG, WebP 형식으로 변환할 수 있습니다. 모든 처리는 브라우저에서 로컬로 이루어지며 개인정보가 보호됩니다.",
         "supportedFormats": "지원 형식: PNG, JPG, WebP",
         "converting": "변환 중...",
-        "uploadFirst": "이미지를 먼저 업로드해주세요"
+        "uploadFirst": "이미지를 먼저 업로드해주세요",
+        "description": "이미지를 PNG, JPG, WebP 형식으로 일괄 변환합니다. 브라우저에서 로컬로 처리됩니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "변환할 이미지를 드래그하거나 클릭하여 업로드하세요.",
+            "step2": "PNG, JPG, WebP 중 원하는 변환 포맷 버튼을 클릭하세요.",
+            "step3": "변환된 이미지를 다운로드하세요. 모든 처리는 브라우저에서 로컬로 이루어집니다."
+        }
+    },
+    "UuidGenerator": {
+        "title": "UUID 생성기",
+        "description": "UUID v4 및 v7을 생성합니다. 대량 생성 및 클립보드 복사를 지원합니다.",
+        "version": "UUID 버전",
+        "v4Desc": "UUID v4: 완전 랜덤 기반 (crypto.randomUUID)",
+        "v7Desc": "UUID v7: 타임스탬프 기반 + 랜덤 (시간순 정렬 가능)",
+        "count": "생성 개수",
+        "countHint": "1~100개",
+        "generate": "생성",
+        "copyAll": "전체 복사",
+        "clear": "지우기",
+        "totalGenerated": "총 생성 수",
+        "currentList": "현재 목록",
+        "results": "생성된 UUID",
+        "copied": "복사됨",
+        "copiedAll": "전체 UUID가 복사됨",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "UUID v4 또는 v7 버전을 선택하세요.",
+            "step2": "생성할 개수를 입력하고 '생성' 버튼을 클릭하세요.",
+            "step3": "생성된 UUID를 개별 또는 전체 복사하여 사용하세요."
+        }
+    },
+    "PasswordGenerator": {
+        "title": "비밀번호 생성기",
+        "description": "길이, 대소문자, 숫자, 특수문자 옵션으로 안전한 랜덤 비밀번호를 생성합니다.",
+        "generatedPassword": "생성된 비밀번호",
+        "strength": "강도",
+        "weak": "약함",
+        "fair": "보통",
+        "strong": "강함",
+        "veryStrong": "매우 강함",
+        "length": "길이",
+        "options": "옵션",
+        "uppercase": "대문자 (A-Z)",
+        "lowercase": "소문자 (a-z)",
+        "numbers": "숫자 (0-9)",
+        "symbols": "특수문자 (!@#$...)",
+        "generate": "비밀번호 생성",
+        "copied": "복사됨",
+        "history": "최근 생성 기록",
+        "clearHistory": "기록 삭제",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "슬라이더로 비밀번호 길이를 설정하세요 (8~128자).",
+            "step2": "대문자, 소문자, 숫자, 특수문자 포함 여부를 선택하세요.",
+            "step3": "'비밀번호 생성' 버튼을 클릭하고 복사 버튼으로 클립보드에 복사하세요."
+        }
+    },
+    "UnixTimestamp": {
+        "title": "Unix 타임스탬프 변환기",
+        "description": "Unix 타임스탬프와 사람이 읽을 수 있는 날짜 간의 양방향 변환을 지원합니다.",
+        "currentTimestamp": "현재 타임스탬프",
+        "milliseconds": "밀리초",
+        "copy": "복사",
+        "copied": "복사됨",
+        "timestampToDate": "타임스탬프 → 날짜",
+        "dateToTimestamp": "날짜 → 타임스탬프",
+        "enterTimestamp": "타임스탬프 입력",
+        "enterDate": "날짜/시간 입력",
+        "timestampPlaceholder": "예: 1711500000",
+        "now": "현재",
+        "result": "변환 결과",
+        "invalid": "유효하지 않은 값",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "현재 Unix 타임스탬프가 실시간으로 표시됩니다.",
+            "step2": "타임스탬프를 입력하면 해당하는 날짜/시간으로 변환됩니다.",
+            "step3": "날짜/시간을 입력하면 해당하는 Unix 타임스탬프로 변환됩니다."
+        }
+    },
+    "MetaTagGenerator": {
+        "title": "메타 태그 생성기",
+        "description": "SEO에 최적화된 HTML 메타 태그, Open Graph, Twitter Card 코드를 자동으로 생성합니다.",
+        "tabs": {
+            "basic": "기본",
+            "og": "Open Graph",
+            "twitter": "Twitter Card"
+        },
+        "pageTitle": "페이지 제목",
+        "pageTitlePlaceholder": "나의 멋진 웹사이트",
+        "pageDescription": "설명",
+        "pageDescriptionPlaceholder": "검색 엔진을 위한 페이지 간략 설명",
+        "keywords": "키워드",
+        "keywordsPlaceholder": "seo, 메타 태그, 생성기",
+        "author": "저자",
+        "authorPlaceholder": "홍길동",
+        "viewport": "뷰포트",
+        "ogTitlePlaceholder": "Open Graph 제목",
+        "ogDescPlaceholder": "Open Graph 설명",
+        "twitterTitlePlaceholder": "Twitter 카드 제목",
+        "twitterDescPlaceholder": "Twitter 카드 설명",
+        "generatedCode": "생성된 메타 태그",
+        "copyAll": "전체 복사",
+        "copied": "복사됨",
+        "emptyPreview": "위 필드를 채우면 메타 태그가 생성됩니다.",
+        "googlePreview": "Google 미리보기",
+        "facebookPreview": "Facebook 미리보기",
+        "twitterPreview": "Twitter 미리보기",
+        "previewSiteTitle": "페이지 제목",
+        "previewSiteDesc": "페이지 설명이 여기에 표시됩니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "제목, 설명, 키워드 등 기본 메타 정보를 입력하세요.",
+            "step2": "Facebook 및 소셜 미디어 공유를 위한 Open Graph 태그를 추가하세요.",
+            "step3": "Twitter 공유 미리보기를 위한 Twitter Card 태그를 설정하세요.",
+            "step4": "생성된 HTML 코드를 복사하여 페이지의 head 섹션에 붙여넣으세요."
+        }
+    },
+    "RobotsTxtGenerator": {
+        "title": "Robots.txt 생성기",
+        "description": "검색 엔진 크롤러를 위한 robots.txt 파일을 프리셋과 함께 손쉽게 생성합니다.",
+        "presets": "프리셋 템플릿",
+        "presetAllowAll": "모두 허용",
+        "presetBlockAll": "모두 차단",
+        "presetBlockAI": "AI 봇 차단",
+        "presetStandard": "표준",
+        "ruleGroup": "규칙 그룹",
+        "userAgent": "User-Agent",
+        "allowPaths": "허용 경로",
+        "disallowPaths": "차단 경로",
+        "addPath": "경로 추가",
+        "addRuleGroup": "규칙 그룹 추가",
+        "sitemapUrl": "사이트맵 URL",
+        "crawlDelay": "크롤링 딜레이 (초)",
+        "preview": "미리보기",
+        "copy": "복사",
+        "copied": "복사됨",
+        "download": "다운로드",
+        "downloaded": "robots.txt 다운로드됨",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "프리셋 템플릿을 선택하거나 검색 엔진 크롤러를 위한 맞춤 규칙을 만드세요.",
+            "step2": "허용/차단 경로를 추가하여 크롤링할 페이지를 제어하세요.",
+            "step3": "선택적으로 사이트맵 URL과 크롤링 딜레이를 설정하세요.",
+            "step4": "생성된 robots.txt를 복사하거나 다운로드하여 사이트 루트에 배치하세요."
+        }
+    },
+    "SitemapGenerator": {
+        "title": "사이트맵 생성기",
+        "description": "URL을 추가하고 XML 사이트맵 파일을 생성하여 검색 엔진 최적화에 활용하세요.",
+        "url": "URL",
+        "lastmod": "최종 수정일",
+        "changefreq": "변경 빈도",
+        "priority": "우선순위",
+        "addUrl": "URL 추가",
+        "invalidUrl": "유효하지 않은 URL 형식",
+        "preview": "생성된 사이트맵 XML",
+        "copy": "복사",
+        "copied": "복사됨",
+        "download": "다운로드",
+        "downloaded": "sitemap.xml 다운로드됨",
+        "emptyPreview": "위에 유효한 URL을 추가하면 사이트맵 XML이 생성됩니다.",
+        "freq": {
+            "always": "항상",
+            "hourly": "매시간",
+            "daily": "매일",
+            "weekly": "매주",
+            "monthly": "매월",
+            "yearly": "매년",
+            "never": "없음"
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "'URL 추가' 버튼으로 웹사이트 URL을 추가하세요.",
+            "step2": "각 URL의 최종 수정일, 변경 빈도, 우선순위를 설정하세요.",
+            "step3": "생성된 XML 사이트맵 파일을 복사하거나 다운로드하세요.",
+            "step4": "sitemap.xml을 웹사이트 루트에 업로드하고 검색 엔진에 제출하세요."
+        }
+    },
+    "ColorConverter": {
+        "title": "색상 변환기",
+        "description": "HEX, RGB, HSL 형식 간 색상을 변환하고 실시간 미리보기와 관련 색상을 확인하세요.",
+        "inputLabel": "색상 값",
+        "inputPlaceholder": "#3B82F6 또는 rgb(59,130,246) 또는 hsl(217,91%,60%)",
+        "picker": "색상 선택기",
+        "preview": "실시간 미리보기",
+        "invalid": "잘못된 색상 형식입니다. HEX, RGB 또는 HSL을 사용하세요.",
+        "copied": "복사됨!",
+        "conversionResults": "변환 결과",
+        "relatedColors": "관련 색상",
+        "complementary": "보색",
+        "analogous": "유사색",
+        "rgbChannels": "RGB 채널",
+        "red": "빨강",
+        "green": "초록",
+        "blue": "파랑",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "HEX (#FF5733), RGB (rgb(255,87,51)) 또는 HSL (hsl(11,100%,60%)) 형식으로 색상을 입력하세요.",
+            "step2": "색상 선택기나 RGB 슬라이더로 시각적으로 색상을 조정하세요.",
+            "step3": "변환된 형식을 복사하고 아래에서 보색 및 유사색을 확인하세요."
+        }
+    },
+    "SubnetCalculator": {
+        "title": "IP 서브넷 계산기",
+        "description": "IP/CIDR로 네트워크 주소, 브로드캐스트, 서브넷 마스크, 사용 가능한 호스트 범위를 계산합니다.",
+        "ipLabel": "IP 주소",
+        "ipPlaceholder": "192.168.1.0",
+        "cidrLabel": "CIDR",
+        "cidrSlider": "CIDR 프리픽스 길이",
+        "invalidIp": "잘못된 IP 주소입니다. 유효한 IPv4 주소를 입력하세요.",
+        "results": "서브넷 상세 정보",
+        "networkAddress": "네트워크 주소",
+        "broadcastAddress": "브로드캐스트 주소",
+        "subnetMask": "서브넷 마스크",
+        "wildcardMask": "와일드카드 마스크",
+        "numberOfHosts": "호스트 수",
+        "firstUsable": "첫 번째 사용 가능 IP",
+        "lastUsable": "마지막 사용 가능 IP",
+        "ipClass": "IP 클래스",
+        "copied": "복사됨!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "IPv4 주소 (예: 192.168.1.0) 또는 CIDR 표기법 (예: 192.168.1.0/24)을 입력하세요.",
+            "step2": "슬라이더나 입력 필드로 CIDR 프리픽스를 조정하세요.",
+            "step3": "계산된 서브넷 상세 정보를 확인하고 값을 클립보드에 복사하세요."
+        }
+    },
+    "CssMinifier": {
+        "title": "CSS 압축 / 정리기",
+        "description": "CSS 코드를 압축하거나 정리하고 크기를 비교하며 즉시 복사할 수 있습니다.",
+        "minify": "압축",
+        "beautify": "정리",
+        "clear": "지우기",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "inputLabel": "입력 CSS",
+        "inputPlaceholder": "CSS 코드를 여기에 붙여넣으세요...",
+        "outputLabel": "출력",
+        "outputPlaceholder": "결과가 여기에 표시됩니다...",
+        "originalSize": "원본",
+        "outputSize": "출력",
+        "savings": "절감",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 입력 패널에 CSS 코드를 붙여넣으세요.",
+            "step2": "'압축'을 클릭하여 CSS를 압축하거나 '정리'를 클릭하여 포매팅하세요.",
+            "step3": "크기 비교를 확인하고 출력 패널에서 결과를 복사하세요."
+        }
+    },
+    "JsonLdGenerator": {
+        "title": "JSON-LD 스키마 생성기",
+        "description": "SEO를 위한 구조화된 데이터(JSON-LD)를 쉽게 생성합니다.",
+        "schemaType": "스키마 유형",
+        "formTitle": "필드 입력",
+        "preview": "미리보기",
+        "clear": "지우기",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "copyScript": "스크립트 복사",
+        "copyJson": "JSON 복사",
+        "valid": "유효함",
+        "types": {
+            "Article": "기사(Article)",
+            "Product": "상품(Product)",
+            "FAQ": "FAQ",
+            "Organization": "조직(Organization)",
+            "LocalBusiness": "지역 업체(LocalBusiness)",
+            "Person": "인물(Person)",
+            "Event": "이벤트(Event)",
+            "BreadcrumbList": "브레드크럼(BreadcrumbList)"
+        },
+        "errors": {
+            "missing_context": "@context 또는 @type이 누락되었습니다.",
+            "invalid_json": "유효하지 않은 JSON입니다."
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "스키마 유형(Article, Product, FAQ 등)을 선택하세요.",
+            "step2": "각 필드에 정보를 입력하면 실시간으로 JSON-LD가 생성됩니다.",
+            "step3": "생성된 스크립트 태그를 복사하여 HTML에 붙여넣으세요."
+        }
+    },
+    "EnvEditor": {
+        "title": ".env 파일 편집기",
+        "description": "환경 변수 파일(.env)을 편집하고 두 파일 간의 차이점을 비교합니다.",
+        "leftLabel": ".env.example",
+        "rightLabel": ".env.local",
+        "leftPlaceholder": ".env.example 내용을 붙여넣으세요...\n예: DATABASE_URL=postgres://...\nAPI_KEY=your-key-here",
+        "rightPlaceholder": ".env.local 내용을 붙여넣으세요...\n예: DATABASE_URL=postgres://localhost:5432/mydb\nAPI_KEY=sk-1234567890",
+        "compare": "비교",
+        "editMode": "편집 모드",
+        "clear": "지우기",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "exported": "파일이 내보내졌습니다!",
+        "addVariable": "변수 추가",
+        "diffTitle": "차이점 비교",
+        "statusAdded": "추가됨",
+        "statusRemoved": "제거됨",
+        "statusChanged": "변경됨",
+        "statusUnchanged": "동일",
+        "diffSummary": "추가: {added}개, 제거: {removed}개, 변경: {changed}개",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 패널에 .env.example 파일을, 오른쪽에 .env.local 파일을 붙여넣으세요.",
+            "step2": "'비교' 버튼을 클릭하면 두 파일의 차이점이 시각적으로 표시됩니다.",
+            "step3": "편집 모드에서 변수를 추가, 수정, 삭제하고 .env 파일로 내보낼 수 있습니다."
+        }
+    },
+    "TomlConverter": {
+        "title": "TOML/INI 변환기",
+        "description": "TOML, INI, JSON 형식 간의 변환을 지원합니다.",
+        "inputLabel": "입력",
+        "outputLabel": "출력",
+        "inputPlaceholder": "TOML, INI 또는 JSON 코드를 붙여넣으세요...\n\n예:\n[database]\nhost = \"localhost\"\nport = 5432",
+        "outputPlaceholder": "변환 결과가 여기에 표시됩니다...",
+        "detected": "감지된 형식",
+        "outputFormatLabel": "출력 형식",
+        "convert": "변환",
+        "swap": "입출력 교환",
+        "clear": "지우기",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "parseError": "입력을 파싱할 수 없습니다. 형식을 확인해주세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽 패널에 TOML, INI 또는 JSON 코드를 붙여넣으세요. 형식이 자동으로 감지됩니다.",
+            "step2": "원하는 출력 형식(TOML, INI, JSON)을 선택하고 '변환'을 클릭하세요.",
+            "step3": "변환된 결과를 복사하거나 입출력을 교환하여 역변환할 수 있습니다."
+        }
+    },
+    "HttpHeaderAnalyzer": {
+        "title": "HTTP 헤더 분석기",
+        "description": "웹사이트의 HTTP 응답 헤더를 분석하고 보안 헤더 설정 상태를 점수화합니다.",
+        "placeholder": "URL을 입력하세요 (예: https://example.com)",
+        "analyzeBtn": "분석",
+        "errorFetch": "헤더를 가져오는 데 실패했습니다. URL을 확인하세요.",
+        "status": "상태 코드",
+        "securityScore": "보안 점수",
+        "grade": "등급",
+        "securityHeaders": "보안 헤더",
+        "allHeaders": "전체 헤더",
+        "headerName": "헤더 이름",
+        "headerValue": "값",
+        "missing": "누락",
+        "copyAll": "전체 복사",
+        "copied": "복사됨!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "분석할 웹사이트의 URL을 입력하세요. https://는 자동으로 추가됩니다.",
+            "step2": "'분석' 버튼을 클릭하면 해당 URL의 HTTP 응답 헤더를 가져옵니다.",
+            "step3": "보안 헤더 설정 상태를 확인하고 점수와 등급을 통해 보안 수준을 평가하세요."
+        }
+    },
+    "WebhookTester": {
+        "title": "API 테스터",
+        "description": "REST API 요청을 브라우저에서 직접 전송하고 응답을 분석하는 HTTP 클라이언트 도구입니다.",
+        "urlPlaceholder": "URL을 입력하세요 (예: https://jsonplaceholder.typicode.com/posts)",
+        "sendBtn": "전송",
+        "headers": "헤더",
+        "addHeader": "헤더 추가",
+        "headerKey": "키",
+        "headerValue": "값",
+        "body": "요청 본문",
+        "bodyPlaceholder": "JSON 데이터를 입력하세요...\n{\n  \"key\": \"value\"\n}",
+        "response": "응답",
+        "responseBody": "본문",
+        "responseHeaders": "헤더",
+        "errorRequest": "요청을 전송하는 데 실패했습니다.",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "HTTP 메서드(GET, POST 등)를 선택하고 요청할 URL을 입력하세요.",
+            "step2": "필요한 경우 헤더와 요청 본문(JSON)을 추가하세요.",
+            "step3": "'전송' 버튼을 클릭하여 응답 상태, 헤더, 본문을 확인하세요."
+        }
+    },
+    "GitDiffViewer": {
+        "title": "Git Diff 뷰어",
+        "description": "Git diff / unified diff 출력을 붙여넣어 구문 강조와 함께 시각적으로 확인합니다.",
+        "placeholder": "git diff 또는 unified diff 출력을 여기에 붙여넣으세요...\n\n예:\ndiff --git a/file.txt b/file.txt\n--- a/file.txt\n+++ b/file.txt\n@@ -1,3 +1,3 @@\n 변경 없는 줄\n-삭제된 줄\n+추가된 줄\n 변경 없는 줄",
+        "filesChanged": "{count}개 파일 변경됨",
+        "additions": "추가",
+        "deletions": "삭제",
+        "copied": "복사됨!",
+        "noValidDiff": "유효한 diff 형식을 찾을 수 없습니다. git diff 출력을 붙여넣으세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "터미널에서 'git diff' 명령을 실행한 출력을 복사하세요.",
+            "step2": "위 텍스트 영역에 diff 출력을 붙여넣으면 자동으로 파싱됩니다.",
+            "step3": "파일별로 추가/삭제된 줄을 확인하고 개별 파일 diff를 복사할 수 있습니다."
+        }
+    },
+    "ExifViewer": {
+        "title": "이미지 EXIF 뷰어 & 제거기",
+        "description": "이미지의 EXIF 메타데이터(카메라, GPS, 날짜)를 확인하고 개인정보 보호를 위해 제거합니다.",
+        "dropTitle": "클릭하거나 이미지를 드래그하여 업로드",
+        "dropDesc": "JPG, PNG, HEIC, WebP, TIFF 지원",
+        "preview": "이미지 미리보기",
+        "reset": "초기화",
+        "exifInfo": "EXIF 정보",
+        "fileInfo": "파일 정보",
+        "fileName": "파일 이름",
+        "fileSize": "파일 크기",
+        "fileType": "파일 형식",
+        "dimensions": "해상도",
+        "lastModified": "수정일",
+        "cameraInfo": "카메라 정보",
+        "cameraMake": "카메라 제조사",
+        "cameraModel": "카메라 모델",
+        "exposure": "노출 시간",
+        "aperture": "조리개",
+        "focalLength": "초점 거리",
+        "software": "소프트웨어",
+        "dateTaken": "촬영 날짜",
+        "gpsInfo": "GPS 위치",
+        "latitude": "위도",
+        "longitude": "경도",
+        "noExifData": "이 이미지에서 상세 EXIF 데이터를 찾을 수 없습니다.",
+        "removeExif": "EXIF 데이터 제거",
+        "removeSuccess": "EXIF 데이터가 성공적으로 제거되었습니다!",
+        "downloadClean": "클린 이미지 다운로드",
+        "downloaded": "이미지가 다운로드되었습니다!",
+        "cleanedNote": "메타데이터가 제거되었습니다. 다운로드된 이미지에는 EXIF 데이터가 포함되어 있지 않습니다.",
+        "processing": "처리 중...",
+        "copied": "복사됨!",
+        "privacyTitle": "개인정보 보호 경고",
+        "privacyDesc": "사진에는 GPS 좌표, 카메라 정보, 타임스탬프 등 숨겨진 메타데이터가 포함될 수 있습니다. 온라인 공유 전 EXIF 데이터를 제거하여 개인정보를 보호하세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "클릭 또는 드래그 앤 드롭으로 이미지(JPG, PNG, HEIC)를 업로드하세요.",
+            "step2": "카메라, GPS, 날짜 등 추출된 EXIF 메타데이터를 확인하세요.",
+            "step3": "'EXIF 데이터 제거' 버튼을 클릭하여 모든 메타데이터를 제거한 후 클린 이미지를 다운로드하세요."
+        }
+    },
+    "ImageResizer": {
+        "title": "이미지 크기 변환기",
+        "description": "소셜 미디어 플랫폼에 맞는 프리셋 또는 사용자 지정 크기로 이미지를 변환합니다.",
+        "dropTitle": "클릭하거나 이미지를 드래그하여 업로드",
+        "dropDesc": "JPG, PNG, WebP 등 지원",
+        "presets": "프리셋 크기",
+        "reset": "초기화",
+        "presetInstagramPost": "인스타그램 게시물",
+        "presetInstagramStory": "인스타그램 스토리",
+        "presetFacebookCover": "페이스북 커버",
+        "presetTwitterHeader": "트위터 헤더",
+        "presetYoutubeThumbnail": "유튜브 썸네일",
+        "presetCustom": "사용자 지정",
+        "settings": "크기 조정 설정",
+        "width": "너비 (px)",
+        "height": "높이 (px)",
+        "lockAspect": "종횡비 잠금",
+        "unlockAspect": "종횡비 잠금 해제",
+        "originalSize": "원본",
+        "outputFormat": "출력 형식",
+        "quality": "품질",
+        "resizeButton": "이미지 크기 변환",
+        "processing": "처리 중...",
+        "original": "원본",
+        "resized": "변환 결과",
+        "previewPlaceholder": "처리 후 변환된 미리보기가 여기에 표시됩니다.",
+        "download": "다운로드",
+        "downloaded": "이미지가 다운로드되었습니다!",
+        "resizeSuccess": "이미지 크기가 성공적으로 변환되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "클릭 또는 드래그 앤 드롭으로 이미지를 업로드하세요.",
+            "step2": "프리셋 크기를 선택하거나 사용자 지정 너비와 높이를 입력하세요.",
+            "step3": "출력 형식과 품질을 선택한 후 '이미지 크기 변환' 버튼을 클릭하고 다운로드하세요."
+        }
+    },
+    "SvgOptimizer": {
+        "title": "SVG 최적화 도구",
+        "description": "불필요한 데이터를 제거하여 SVG 파일을 최적화하고 용량을 줄입니다.",
+        "inputLabel": "입력 SVG",
+        "inputPlaceholder": "SVG 코드를 여기에 붙여넣거나 .svg 파일을 업로드하세요...",
+        "uploadFile": ".svg 업로드",
+        "clear": "지우기",
+        "optionsLabel": "최적화 옵션",
+        "optRemoveComments": "주석 제거",
+        "optRemoveEmptyAttrs": "빈 속성 제거",
+        "optRemoveMetadata": "메타데이터 제거",
+        "optMinify": "압축 (공백 제거)",
+        "optRemoveDefaults": "기본값 제거",
+        "optShortHex": "짧은 HEX 색상",
+        "originalSize": "원본",
+        "optimizedSize": "최적화",
+        "previewLabel": "SVG 미리보기",
+        "outputLabel": "최적화된 SVG",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "download": "다운로드",
+        "downloaded": "SVG가 다운로드되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "SVG 코드를 붙여넣거나 .svg 파일을 업로드하세요.",
+            "step2": "주석 제거, 메타데이터 제거, 압축 등 최적화 옵션을 설정하세요.",
+            "step3": "전후 크기 비교를 확인하고 결과를 미리보기한 후 복사하거나 다운로드하세요."
+        }
+    },
+    "ScreenshotBeautifier": {
+        "title": "스크린샷 꾸미기",
+        "description": "스크린샷에 디바이스 프레임, 배경, 그림자를 추가하여 아름답게 꾸며 내보내세요.",
+        "dropTitle": "클릭하거나 스크린샷을 드래그하여 업로드",
+        "dropDesc": "PNG, JPG, WebP 지원. 클립보드에서 붙여넣기도 가능합니다.",
+        "settings": "설정",
+        "reset": "초기화",
+        "frame": "디바이스 프레임",
+        "frameNone": "없음",
+        "frameBrowser": "브라우저 창",
+        "frameMacos": "macOS 창",
+        "framePhone": "스마트폰",
+        "background": "배경",
+        "bgSolid": "단색",
+        "bgGradient": "그라데이션",
+        "bgTransparent": "투명",
+        "bgColorLabel": "배경 색상",
+        "bgGradientPresets": "그라데이션 프리셋",
+        "padding": "여백",
+        "borderRadius": "모서리 둥글기",
+        "shadow": "그림자 효과",
+        "preview": "미리보기",
+        "export": "PNG로 내보내기",
+        "exported": "스크린샷이 내보내기되었습니다!",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "스크린샷 이미지를 업로드하거나 붙여넣기하세요.",
+            "step2": "디바이스 프레임, 배경 스타일, 여백, 모서리 둥글기를 설정하세요.",
+            "step3": "결과를 미리보기하고 PNG 이미지로 내보내세요."
+        }
+    },
+    "TextToSpeech": {
+        "title": "텍스트 음성 변환 (TTS)",
+        "description": "텍스트를 자연스러운 음성으로 변환합니다. 속도, 피치, 음성 선택을 지원합니다.",
+        "textInput": "텍스트 입력",
+        "placeholder": "음성으로 변환할 텍스트를 입력하세요...",
+        "characters": "자",
+        "settings": "설정",
+        "voice": "음성",
+        "selectVoice": "음성을 선택하세요",
+        "speed": "속도",
+        "pitch": "피치",
+        "play": "재생",
+        "pause": "일시정지",
+        "resume": "계속",
+        "stop": "정지",
+        "emptyText": "텍스트를 먼저 입력해주세요.",
+        "notSupported": "이 브라우저에서는 음성 합성을 지원하지 않습니다. Chrome, Edge 또는 Safari를 사용해주세요.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "입력 영역에 텍스트를 입력하거나 붙여넣으세요.",
+            "step2": "음성을 선택하고 속도와 피치를 원하는 대로 조절하세요.",
+            "step3": "재생 버튼을 클릭하여 들으세요. 현재 읽고 있는 단어가 강조 표시됩니다."
+        }
+    },
+    "WhoisLookup": {
+        "title": "도메인/DNS 조회",
+        "description": "도메인의 DNS 레코드(A, AAAA, MX, NS, TXT, SOA)를 조회하고 분석합니다.",
+        "placeholder": "도메인 이름 입력 (예: example.com)",
+        "lookup": "조회",
+        "emptyDomain": "도메인 이름을 입력해주세요.",
+        "lookupError": "DNS 레코드 조회에 실패했습니다. 도메인을 확인하고 다시 시도해주세요.",
+        "copied": "복사됨!",
+        "dnsResults": "DNS 레코드",
+        "aRecords": "A 레코드 (IPv4)",
+        "aaaaRecords": "AAAA 레코드 (IPv6)",
+        "nsRecords": "NS 레코드 (네임서버)",
+        "mxRecords": "MX 레코드 (메일)",
+        "txtRecords": "TXT 레코드",
+        "soaRecord": "SOA 레코드",
+        "soaPrimaryNs": "기본 NS",
+        "soaHostmaster": "호스트마스터",
+        "soaSerial": "시리얼",
+        "soaRefresh": "갱신 주기",
+        "soaRetry": "재시도",
+        "soaExpire": "만료",
+        "soaMinTtl": "최소 TTL",
+        "priority": "우선순위",
+        "noRecords": "이 도메인에 대한 DNS 레코드를 찾을 수 없습니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "입력 필드에 도메인 이름(예: example.com)을 입력하세요.",
+            "step2": "조회 버튼을 클릭하여 도메인의 DNS 레코드를 조회하세요.",
+            "step3": "분류된 결과를 확인하고 필요한 레코드를 개별적으로 복사하세요."
+        }
     }
 }

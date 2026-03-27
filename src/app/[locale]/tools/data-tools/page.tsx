@@ -1,4 +1,5 @@
 import { DataTools } from "@/components/tools/data-tools"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -18,6 +19,7 @@ export default async function DataToolsPage({ params }: { params: Promise<{ loca
         <div className="container mx-auto py-12 px-4">
             <h1 className="text-3xl font-bold text-center mb-8">{t('title')}</h1>
             <DataTools />
+            <ToolGuide ns="DataTools" />
         </div>
     )
 }

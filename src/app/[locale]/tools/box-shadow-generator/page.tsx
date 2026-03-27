@@ -1,6 +1,7 @@
 import { BoxShadowGenerator } from "@/components/tools/box-shadow-generator"
 import { getTranslations } from "next-intl/server"
 import { useTranslations } from "next-intl"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 export async function generateMetadata() {
     const t = await getTranslations('BoxShadowGenerator')
@@ -27,6 +28,7 @@ export default function BoxShadowGeneratorPage() {
             </div>
 
             <BoxShadowGenerator />
+            <ToolGuide ns="BoxShadowGenerator" />
         </div>
     )
 }

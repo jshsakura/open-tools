@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { AesCrypto } from '@/components/tools/aes-crypto';
+import { ToolGuide } from "@/components/tool-guide-section";
 
 export const runtime = 'edge';
 
@@ -17,6 +18,7 @@ export default function AesEncryptPage() {
                 </p>
             </div>
             <AesCrypto />
+            <ToolGuide ns="AesCrypto" />
         </div>
     );
 }

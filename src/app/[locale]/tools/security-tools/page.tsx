@@ -1,5 +1,6 @@
 import { SecurityTools } from "@/components/tools/security-tools"
 import { getTranslations } from "next-intl/server"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -25,6 +26,7 @@ export default async function SecurityToolsPage({ params }: { params: Promise<{ 
                 </p>
             </div>
             <SecurityTools />
+            <ToolGuide ns="SecurityTools" />
         </div>
     )
 }

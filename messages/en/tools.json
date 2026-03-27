@@ -82,7 +82,13 @@
         "rem": "Rem",
         "formula": "Formula",
         "valueToConvert": "Value to Convert",
-        "convertedResult": "Converted Result"
+        "convertedResult": "Converted Result",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the unit type (PX/REM, Data, Length, Weight, Temperature) from the tabs.",
+            "step2": "Enter the value you want to convert in the left input field.",
+            "step3": "The converted result appears instantly on the right side."
+        }
     },
     "JsonYaml": {
         "title": "JSON ↔ YAML Converter",
@@ -96,12 +102,24 @@
         "yamlPlaceholder": "Paste YAML here...",
         "resultPlaceholder": "Converted result will appear here...",
         "copy": "Copy",
-        "error": "Conversion failed"
+        "error": "Conversion failed",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your JSON or YAML code in the left input area.",
+            "step2": "Click the 'Convert' button.",
+            "step3": "The converted result appears on the right. Use the copy button to copy to clipboard."
+        }
     },
     "JwtDebugger": {
         "title": "JWT Debugger",
         "description": "Decode and analyze JSON Web Tokens securely.",
-        "inputPlaceholder": "Paste your JWT here..."
+        "inputPlaceholder": "Paste your JWT here...",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your JWT token string into the input area.",
+            "step2": "The header, payload, and signature are automatically decoded and displayed.",
+            "step3": "Review claim details such as expiration time, issuer, and more."
+        }
     },
     "VideoConverter": {
         "title": "Video Editor & Converter",
@@ -139,9 +157,16 @@
             "fps": "FPS",
             "width": "Width",
             "action": "Create GIF"
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload a video file.",
+            "step2": "Choose an action: Convert, Trim, Extract Audio, or Create GIF.",
+            "step3": "Adjust settings and click the action button. Processing happens locally in your browser."
         }
     },
-        "SvgToJsx": {
+    "SvgToJsx": {
+        "title": "SVG to JSX Converter",
         "svgSource": "SVG Source",
         "pasteSvg": "Paste your raw SVG code here",
         "clear": "Clear",
@@ -153,7 +178,14 @@
         "copyCode": "Copy Code",
         "outputPlaceholder": "Converted code will appear here...",
         "whyUse": "Why use SVG to JSX?",
-        "whyUseDesc": "Web standards for SVG attributes are often kebab-case (e.g., stroke-width), but React components require camelCase (e.g., strokeWidth). Manually converting complex SVGs is tedious and error-prone. Our tool handles attribute mapping, removes overhead, and wraps it in a functional component structure so you can just paste it and go."
+        "whyUseDesc": "Web standards for SVG attributes are often kebab-case (e.g., stroke-width), but React components require camelCase (e.g., strokeWidth). Manually converting complex SVGs is tedious and error-prone. Our tool handles attribute mapping, removes overhead, and wraps it in a functional component structure so you can just paste it and go.",
+        "description": "Automatically convert SVG code to React JSX components with proper attribute mapping.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your SVG code in the left input area.",
+            "step2": "Enter a component name and click 'Convert'.",
+            "step3": "Copy the generated JSX code and use it directly in your React project."
+        }
     },
     "RegexTester": {
         "title": "RegEx Tester",
@@ -167,7 +199,13 @@
         "matchDetails": "Match Details",
         "groups": "Groups",
         "idx": "Index: {index}",
-        "noMatches": "No matches found"
+        "noMatches": "No matches found",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter your regex pattern at the top and set flags (g, i, m, etc.) as needed.",
+            "step2": "Type or paste the text you want to test in the test string area.",
+            "step3": "Matches are highlighted in real-time with detailed match information shown below."
+        }
     },
     "CronGenerator": {
         "title": "Cron Expression Generator",
@@ -182,9 +220,16 @@
         "everyHour": "Every hour",
         "dailyAtMidnight": "Daily at midnight",
         "everyMonday9am": "Every Monday at 9am",
-        "endOfMonth": "End of month"
+        "endOfMonth": "End of month",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter a cron expression manually or select a preset (every minute, hourly, etc.).",
+            "step2": "The expression is automatically translated into a human-readable schedule description.",
+            "step3": "Review the list of upcoming execution times to verify accuracy."
+        }
     },
     "MyIp": {
+        "title": "What is My IP",
         "ipAddress": "IP Address",
         "ipDesc": "Your public IP address and network details",
         "publicIpv4": "Public IPv4",
@@ -205,9 +250,17 @@
         "viewOnMaps": "View on Maps",
         "aboutPrivacy": "About Privacy",
         "privacyDesc": "We do not store or sell your IP data. This information is fetched in real time.",
-        "waitingGps": "Waiting for location permission..."
+        "waitingGps": "Waiting for location permission...",
+        "description": "Check your public IP address with ISP, location, and network details in real time.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Your public IP address is detected automatically when you open this page.",
+            "step2": "Review network details including ISP, location, and timezone.",
+            "step3": "Use the copy button to copy your IP or view your location on the map."
+        }
     },
     "BannerGenerator": {
+        "title": "ASCII Banner Generator",
         "textInput": "Text",
         "placeholder": "Type your banner text...",
         "fontStyle": "Font Style",
@@ -221,7 +274,14 @@
         "errorPlaceholder": "No output yet.",
         "springBootBanner": "Spring Boot Banner",
         "springBootDesc": "Use this ASCII art in your Spring Boot banner.txt.",
-        "generatingError": "Failed to load the generator."
+        "generatingError": "Failed to load the generator.",
+        "description": "Convert text into ASCII art banners. Also works as Spring Boot banner.txt.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter the text you want to convert into a banner.",
+            "step2": "Choose a font style and ANSI color to customize the look.",
+            "step3": "Copy or download the generated banner. You can also use it as a Spring Boot banner."
+        }
     },
     "QrGenerator": {
         "title": "QR Code Generator",
@@ -264,7 +324,13 @@
         "downloadedSvg": "QR code downloaded as SVG.",
         "errorSvg": "Failed to generate SVG.",
         "copiedClipboard": "Copied to clipboard.",
-        "errorCopy": "Failed to copy."
+        "errorCopy": "Failed to copy.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the content type: URL, Text, Email, or Phone number.",
+            "step2": "Enter the content and customize colors, resolution, and error correction level.",
+            "step3": "Download the generated QR code as PNG or SVG, or copy it to clipboard."
+        }
     },
     "BackgroundRemover": {
         "title": "AI Background Remover",
@@ -280,7 +346,13 @@
         "howItWorksTitle": "How it works",
         "howItWorksDescription": "This tool uses the <b>U-2-Net</b> deep learning model running directly in your browser via WebAssembly. It identifies the subject and creates a precise mask to remove the background instantly.",
         "privacyTitle": "Privacy First",
-        "privacyDescription": "Unlike other online tools, your photos are processed <b>entirely on your device</b>. We never see, store, or upload your images. It works even when offline!"
+        "privacyDescription": "Unlike other online tools, your photos are processed <b>entirely on your device</b>. We never see, store, or upload your images. It works even when offline!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload an image. Supports JPG, PNG, and WebP.",
+            "step2": "Click 'Remove Background' and the AI will automatically remove the background.",
+            "step3": "Download the transparent PNG. All processing happens locally in your browser."
+        }
     },
     "Base64Converter": {
         "title": "Base64 Encoder/Decoder",
@@ -295,7 +367,13 @@
         "decodePlaceholder": "Paste Base64 string to decode...",
         "copy": "Copy",
         "clear": "Clear",
-        "copied": "Copied to clipboard!"
+        "copied": "Copied to clipboard!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the Encode or Decode tab.",
+            "step2": "Enter the text or Base64 string you want to convert.",
+            "step3": "The result appears in real-time. Use the copy button to save to clipboard."
+        }
     },
     "UrlConverter": {
         "title": "URL Encoder/Decoder",
@@ -310,7 +388,13 @@
         "decodePlaceholder": "Paste URL encoded string to decode...",
         "copy": "Copy",
         "clear": "Clear",
-        "copied": "Copied to clipboard!"
+        "copied": "Copied to clipboard!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the Encode or Decode tab.",
+            "step2": "Enter the URL to encode or the encoded string to decode.",
+            "step3": "Review the result and use the copy button to save to clipboard."
+        }
     },
     "HashGenerator": {
         "title": "Hash Generator",
@@ -319,9 +403,16 @@
         "placeholder": "Enter text to hash...",
         "error": "Failed to generate hash.",
         "clear": "Clear",
-        "copied": "{algorithm} hash copied!"
+        "copied": "{algorithm} hash copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter the text you want to hash in the input area.",
+            "step2": "MD5, SHA-1, SHA-256, and SHA-512 hashes are generated in real-time.",
+            "step3": "Click the copy button next to any hash value to copy it to clipboard."
+        }
     },
     "SecurityTools": {
+        "title": "Security Tools",
         "Hash": {
             "title": "Hash Generator",
             "description": "Fast and secure hash generation"
@@ -329,6 +420,13 @@
         "BCrypt": {
             "title": "Bcrypt Generator",
             "description": "Password hashing and verification"
+        },
+        "description": "Collection of security tools including hash generation and Bcrypt password hashing.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Choose between the Hash Generator or Bcrypt Generator.",
+            "step2": "Enter text or password and click Generate or Verify.",
+            "step3": "Copy the result for your project. All processing happens locally."
         }
     },
     "ImageCompressor": {
@@ -352,7 +450,13 @@
         "quality": "Quality",
         "resize": "Scale",
         "download": "Download Image",
-        "saved": "Image saved!"
+        "saved": "Image saved!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or select an image file. Supports PNG, JPG, and WEBP.",
+            "step2": "Adjust quality and scale sliders to fine-tune compression settings.",
+            "step3": "Check the savings compared to the original and download the compressed image."
+        }
     },
     "BrowserInfo": {
         "title": "What is my Browser?",
@@ -382,7 +486,13 @@
         "fullUserAgentString": "Full User Agent String",
         "copied": "Copied",
         "copyString": "Copy string",
-        "runningOn": "Running on {os}"
+        "runningOn": "Running on {os}",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Your browser info is automatically analyzed when you open this page.",
+            "step2": "Review browser, OS, screen resolution, GPU, and privacy settings.",
+            "step3": "Copy the User Agent string for debugging or compatibility testing."
+        }
     },
     "SpeedTest": {
         "title": "Network Speed Test",
@@ -406,18 +516,31 @@
         "whatIsJitter": "What is jitter?",
         "jitterDesc": "Jitter is variation in latency over time, which affects real-time calls and gaming.",
         "fiberVs5g": "Fiber vs 5G",
-        "fiberVs5gDesc": "Fiber usually offers lower latency and more stable speeds. 5G can be fast but more variable."
+        "fiberVs5gDesc": "Fiber usually offers lower latency and more stable speeds. 5G can be fast but more variable.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Click 'Start Test' to begin measuring your internet speed.",
+            "step2": "Download, upload, and latency are measured sequentially.",
+            "step3": "Review the results to diagnose your network performance."
+        }
     },
     "SqlFormatter": {
         "title": "SQL Formatter",
-        "description": "Format and beautify your complex SQL queries with multiple dialect support.",
+        "description": "Format and beautify complex SQL queries with multiple dialect support.",
         "inputPlaceholder": "Paste SQL here...",
         "outputPlaceholder": "Formatted SQL will appear here...",
         "errorMessage": "Format failed. Please check your SQL syntax.",
         "clear": "Clear",
-        "format": "Format"
+        "format": "Format",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your SQL query in the left input area.",
+            "step2": "Click the 'Format' button.",
+            "step3": "The formatted SQL appears on the right. Copy it for use in your project."
+        }
     },
     "XmlFormatter": {
+        "title": "XML Formatter & Converter",
         "xmlInput": "XML Input",
         "pasteXml": "Paste your XML code here",
         "clear": "Clear",
@@ -435,7 +558,14 @@
         "formattingDesc": "Beautifies XML with proper indentation and line breaks for improved readability.",
         "conversion": "Conversion",
         "conversionDesc": "Converts XML to JSON format while preserving attributes and nested structures.",
-        "copyJson": "JSON copied"
+        "copyJson": "JSON copied",
+        "description": "Validate and format XML code automatically. Also supports XML to JSON conversion.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your XML code in the input area.",
+            "step2": "Click 'Format & Validate' to automatically validate structure and format.",
+            "step3": "Copy the formatted XML or JSON conversion result."
+        }
     },
     "YoutubeThumbnail": {
         "title": "YouTube Thumbnail Extractor",
@@ -451,7 +581,13 @@
         "guideTitle": "How it works",
         "guideDescription": "Paste a YouTube URL and click extract to get thumbnails in multiple resolutions.",
         "tipsTitle": "Tips",
-        "tipsDescription": "Some videos don’t provide a max-resolution image. Use high/medium quality in that case."
+        "tipsDescription": "Some videos don’t provide a max-resolution image. Use high/medium quality in that case.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste a YouTube video URL in the input field.",
+            "step2": "Click the 'Extract Thumbnails' button.",
+            "step3": "Thumbnails in various resolutions are displayed. Download the one you need."
+        }
     },
     "BoxShadowGenerator": {
         "title": "CSS Box Shadow Generator",
@@ -469,9 +605,16 @@
         "cssOutput": "CSS Output",
         "color": "Shadow Color",
         "copy": "Copy CSS",
-        "copied": "Copied!"
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Add shadow layers and adjust offset, blur, and spread values for each layer.",
+            "step2": "Preview the shadow effect in real-time.",
+            "step3": "Click 'Copy CSS' to copy the generated code for your project."
+        }
     },
     "Base64Image": {
+        "title": "Base64 Image Decoder",
         "base64Input": "Base64 Input",
         "pasteDataUri": "Paste your data URI or raw string",
         "decodePreview": "Decode & Preview",
@@ -483,7 +626,14 @@
         "save": "Save",
         "previewUnavailable": "Preview Unavailable",
         "note": "Note:",
-        "noteDesc": "Data URIs often include specific mime-types (like <code>image/webp</code>). If your string doesn't include header, we'll attempt to render it as a standard PNG by default."
+        "noteDesc": "Data URIs often include specific mime-types (like <code>image/webp</code>). If your string doesn't include header, we'll attempt to render it as a standard PNG by default.",
+        "description": "Decode Base64 strings to preview and save images.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste a data URI or raw Base64 string in the input area.",
+            "step2": "Click 'Decode & Preview' to display the image.",
+            "step3": "Click 'Save' to download the decoded image."
+        }
     },
     "GradientGenerator": {
         "title": "CSS Gradient Generator",
@@ -499,11 +649,25 @@
         "randomize": "Randomize",
         "minStopsError": "A gradient needs at least 2 colors.",
         "copy": "Copy CSS",
-        "copied": "Copied!"
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the gradient type (Linear, Radial, Conic) and set the angle.",
+            "step2": "Add color stops and adjust each color and position.",
+            "step3": "Click 'Copy CSS' to copy the gradient code. Try 'Randomize' for new combinations."
+        }
     },
     "Glassmorphism": {
+        "title": "Glassmorphism Generator",
         "styleConfiguration": "Style Configuration",
-        "fineTune": "Fine-tune glass settings"
+        "fineTune": "Fine-tune glass settings",
+        "description": "Visually generate glassmorphism CSS. Adjust blur, transparency, and more.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Use sliders to adjust blur, transparency, background color, and other glass effect properties.",
+            "step2": "Preview the glass effect in real-time.",
+            "step3": "Copy the CSS code of your desired settings and apply it to your project."
+        }
     },
     "FaviconGenerator": {
         "title": "Favicon Generator",
@@ -513,7 +677,13 @@
         "generate": "Generate & Download ZIP",
         "generating": "Generating...",
         "remove": "Remove",
-        "formats": "Includes: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome"
+        "formats": "Includes: 16x16, 32x32, 48x48, Apple Touch Icon, Android Chrome",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload an image (512x512 or larger recommended).",
+            "step2": "Click 'Generate & Download ZIP'.",
+            "step3": "A ZIP file containing favicons in various sizes (16x16 to 192x192) will be downloaded."
+        }
     },
     "BorderRadiusGenerator": {
         "title": "CSS Border Radius Generator",
@@ -526,7 +696,13 @@
         "bottomRight": "Bottom Right",
         "boxSize": "Preview Size",
         "copy": "Copy CSS",
-        "copied": "Copied!"
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Adjust the border-radius value for each corner using sliders.",
+            "step2": "Enable 8-point mode for more complex shapes.",
+            "step3": "Click 'Copy CSS' to copy the generated border-radius code."
+        }
     },
     "PdfMerge": {
         "title": "Merge PDF",
@@ -538,7 +714,13 @@
         "clear": "Clear All",
         "success": "PDFs merged successfully!",
         "error": "Failed to merge PDFs.",
-        "count": "{count} files selected"
+        "count": "{count} files selected",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click 'Add Files' to upload the PDF files you want to merge.",
+            "step2": "Check the file order and rearrange if needed.",
+            "step3": "Click 'Merge PDFs' to combine all files into a single PDF and download."
+        }
     },
     "PdfSplit": {
         "title": "Split PDF",
@@ -547,7 +729,13 @@
         "pageRange": "Page Range (e.g., 1-5, 8, 11-13)",
         "split": "Split PDF",
         "success": "PDF split successfully!",
-        "error": "Failed to split PDF."
+        "error": "Failed to split PDF.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload the PDF file you want to split.",
+            "step2": "Enter the page range to extract (e.g., 1-5, 8, 11-13).",
+            "step3": "Click 'Split PDF' to extract the selected pages and download."
+        }
     },
     "PdfToImage": {
         "title": "PDF to Image",
@@ -556,7 +744,13 @@
         "format": "Output Format",
         "convert": "Convert to Images",
         "success": "PDF converted successfully!",
-        "error": "Failed to convert PDF."
+        "error": "Failed to convert PDF.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload the PDF file you want to convert.",
+            "step2": "Select the output format (JPG or PNG).",
+            "step3": "Click 'Convert to Images' to convert each page to an image and download."
+        }
     },
     "HwpViewer": {
         "title": "Document Viewer (HWP/DOCX)",
@@ -575,7 +769,13 @@
         "hwpDisabled": "HWP Viewer is temporarily disabled due to build issues.",
         "documentLoaded": "Document loaded successfully",
         "failedToLoad": "Failed to load document",
-        "couldNotParse": "Could not parse this file."
+        "couldNotParse": "Could not parse this file.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload HWP, DOCX, or XLSX files.",
+            "step2": "The document is rendered and displayed directly in your browser.",
+            "step3": "You can select and copy text from the viewer."
+        }
     },
     "Basic3dViewer": {
         "title": "3D Model Viewer",
@@ -589,7 +789,13 @@
         "toggleAxes": "Toggle Axes",
         "autoRotate": "Auto Rotate",
         "error": "Failed to load 3D model.",
-        "fileInfo": "File Info"
+        "fileInfo": "File Info",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or upload a 3D model file (OBJ, STL, GLTF/GLB).",
+            "step2": "Use your mouse to rotate, zoom, and explore the model.",
+            "step3": "Adjust the view with controls like grid, axes, and auto-rotate."
+        }
     },
     "BcryptGenerator": {
         "title": "Bcrypt Generator",
@@ -613,7 +819,13 @@
         "error": "Failed to generate hash",
         "errorVerify": "Verification failed",
         "successGenerated": "Hash generated successfully",
-        "copied": "Copied to clipboard!"
+        "copied": "Copied to clipboard!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Generate: Enter a password, set salt rounds, and click 'Generate Hash'.",
+            "step2": "Verify: Enter a password and Bcrypt hash, then click 'Verify Password'.",
+            "step3": "Copy the generated hash for use in your database or configuration."
+        }
     },
     "HmacGenerator": {
         "title": "HMAC Generator",
@@ -627,7 +839,13 @@
         "outputLabel": "HMAC Output (Hex)",
         "errorEmpty": "Please enter both secret and message",
         "successGenerated": "HMAC generated successfully",
-        "copied": "Copied!"
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select an algorithm (SHA-256, SHA-512, etc.).",
+            "step2": "Enter your secret key and the message to hash.",
+            "step3": "Click 'Generate HMAC' and copy the result."
+        }
     },
     "RsaGenerator": {
         "title": "RSA Key Generator",
@@ -642,7 +860,13 @@
         "copy": "Copy",
         "copied": "Copied!",
         "successGenerated": "Key pair generated successfully",
-        "error": "Failed to generate keys"
+        "error": "Failed to generate keys",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select a key size (2048, 4096, etc.).",
+            "step2": "Click 'Generate Key Pair' to create public and private keys.",
+            "step3": "Copy each key for SSH configuration or encryption purposes."
+        }
     },
     "AesCrypto": {
         "title": "AES Encryption & Decryption",
@@ -666,9 +890,16 @@
         "encryptError": "Encryption failed. Please check your inputs.",
         "decryptSuccess": "Text decrypted successfully!",
         "decryptError": "Decryption failed. Incorrect password or corrupted data.",
-        "copied": "Copied to clipboard"
+        "copied": "Copied to clipboard",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Encrypt: Enter text and a password, then click 'Encrypt Text'.",
+            "step2": "Decrypt: Enter the encrypted text and password, then click 'Decrypt Text'.",
+            "step3": "Copy the result. All processing happens locally in your browser."
+        }
     },
     "DataTools": {
+        "title": "Data Tools",
         "description": "Convert, format, and clean data with JSON, SQL, and slug tools.",
         "tabs": {
             "converter": "JSON / CSV",
@@ -698,9 +929,16 @@
             "outputLabel": "URL Slug",
             "errorEmpty": "Please enter text",
             "copied": "Copied!"
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the tool you need from JSON/CSV, SQL, or Slug tabs.",
+            "step2": "Enter data or upload a file.",
+            "step3": "Click convert and copy or download the result."
         }
     },
     "TextTools": {
+        "title": "Text Tools",
         "description": "OCR, lorem ipsum generator, and Korean text utilities in one place.",
         "tabs": {
             "ocr": "OCR",
@@ -754,17 +992,31 @@
                 "inputLabel": "Input Word",
                 "outputLabel": "Result with Josa"
             }
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the tool you need from OCR, Lorem Ipsum, or Hangul Tools tabs.",
+            "step2": "Upload an image or enter text.",
+            "step3": "Review the result and copy it for use."
         }
     },
     "KTools": {
+        "title": "Korean Tools",
         "description": "Korean document viewing, Hangul utilities, and local validation tools.",
         "tabs": {
             "hwp": "HWP Viewer",
             "hangul": "Hangul Tools",
             "validator": "Validator"
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the tool you need from HWP Viewer, Hangul Tools, or Validator tabs.",
+            "step2": "Upload a file or enter data.",
+            "step3": "Review and use the results."
         }
     },
     "DevTools": {
+        "title": "Developer Tools",
         "tabs": {
             "docker": "Docker",
             "chmod": "CHMOD",
@@ -812,6 +1064,13 @@
             "invalidGender": "Invalid Gender Digit",
             "invalidResChecksum": "Invalid Checksum",
             "resWarning": "This tool only checks format/checksum validity. It does not verify actual identity."
+        },
+        "description": "Developer utilities including Docker command converter, CHMOD calculator, and validators.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select the tool you need from Docker, CHMOD, or Validator tabs.",
+            "step2": "Enter a command, permission settings, or a number to validate.",
+            "step3": "Review the conversion or validation result and copy it for use."
         }
     },
     "TorrentHistory": {
@@ -916,9 +1175,16 @@
         "limitation": {
             "title": "Note",
             "content": "This tool uses a server-side scanner to check port availability accurately."
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter the target hostname or IP address to scan.",
+            "step2": "Click 'Start Scan' to check common ports.",
+            "step3": "Review Open, Closed, and Filtered statuses to diagnose service availability."
         }
     },
     "ImageConverter": {
+        "title": "Image Format Converter",
         "clickOrDrag": "Click or drag image to upload",
         "dropDesc": "Supports PNG, JPG, WEBP",
         "remove": "Remove",
@@ -930,6 +1196,610 @@
         "introDesc": "Upload an image and convert it to PNG, JPG, or WebP format. All processing happens locally in your browser—your images never leave your device.",
         "supportedFormats": "Supported formats: PNG, JPG, WebP",
         "converting": "Converting...",
-        "uploadFirst": "Please upload an image first"
+        "uploadFirst": "Please upload an image first",
+        "description": "Batch convert images between PNG, JPG, and WebP formats. Processed locally in your browser.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload the image you want to convert.",
+            "step2": "Click the desired format button: PNG, JPG, or WebP.",
+            "step3": "Download the converted image. All processing happens locally in your browser."
+        }
+    },
+    "SqlConverter": {
+        "title": "SQL to JSON/CSV Converter",
+        "description": "Transform SQL INSERT statements into JSON or CSV data formats locally.",
+        "inputLabelSql": "Input (SQL)",
+        "inputLabelTable": "Input (Table)",
+        "outputLabel": "Output ({format})",
+        "placeholderSql": "INSERT INTO users (id, name) VALUES (1, 'John');",
+        "placeholderTable": "id\\tname\\n1\\tJohn",
+        "errorInvalidFormat": "Could not parse format. Please check your input.",
+        "copied": "Copied",
+        "copy": "Copy",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter SQL INSERT statements or tab-separated table data.",
+            "step2": "Choose the output format (JSON, CSV).",
+            "step3": "Review the converted result and copy it for use."
+        }
+    },
+    "UuidGenerator": {
+        "title": "UUID Generator",
+        "description": "Generate UUID v4 and v7 with bulk generation and clipboard support.",
+        "version": "UUID Version",
+        "v4Desc": "UUID v4: Fully random-based (crypto.randomUUID)",
+        "v7Desc": "UUID v7: Timestamp-based + random (sortable by time)",
+        "count": "Count",
+        "countHint": "1 to 100",
+        "generate": "Generate",
+        "copyAll": "Copy All",
+        "clear": "Clear",
+        "totalGenerated": "Total Generated",
+        "currentList": "Current List",
+        "results": "Generated UUIDs",
+        "copied": "Copied",
+        "copiedAll": "All UUIDs copied",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select UUID v4 or v7 version.",
+            "step2": "Enter the number of UUIDs to generate and click 'Generate'.",
+            "step3": "Copy individual UUIDs or use 'Copy All' to copy the entire list."
+        }
+    },
+    "PasswordGenerator": {
+        "title": "Password Generator",
+        "description": "Generate secure random passwords with customizable length, characters, and strength meter.",
+        "generatedPassword": "Generated Password",
+        "strength": "Strength",
+        "weak": "Weak",
+        "fair": "Fair",
+        "strong": "Strong",
+        "veryStrong": "Very Strong",
+        "length": "Length",
+        "options": "Options",
+        "uppercase": "Uppercase (A-Z)",
+        "lowercase": "Lowercase (a-z)",
+        "numbers": "Numbers (0-9)",
+        "symbols": "Symbols (!@#$...)",
+        "generate": "Generate Password",
+        "copied": "Copied",
+        "history": "Recent History",
+        "clearHistory": "Clear History",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Set the password length using the slider (8-128 characters).",
+            "step2": "Choose which character types to include: uppercase, lowercase, numbers, symbols.",
+            "step3": "Click 'Generate Password' and use the copy button to save to clipboard."
+        }
+    },
+    "UnixTimestamp": {
+        "title": "Unix Timestamp Converter",
+        "description": "Two-way conversion between Unix timestamps and human-readable dates.",
+        "currentTimestamp": "Current Timestamp",
+        "milliseconds": "Milliseconds",
+        "copy": "Copy",
+        "copied": "Copied",
+        "timestampToDate": "Timestamp to Date",
+        "dateToTimestamp": "Date to Timestamp",
+        "enterTimestamp": "Enter Timestamp",
+        "enterDate": "Enter Date/Time",
+        "timestampPlaceholder": "e.g. 1711500000",
+        "now": "Now",
+        "result": "Result",
+        "invalid": "Invalid value",
+        "guide": {
+            "title": "How to Use",
+            "step1": "The current Unix timestamp is displayed in real-time.",
+            "step2": "Enter a timestamp to convert it to a human-readable date.",
+            "step3": "Enter a date/time to convert it to a Unix timestamp."
+        }
+    },
+    "MetaTagGenerator": {
+        "title": "Meta Tag Generator",
+        "description": "Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically.",
+        "tabs": {
+            "basic": "Basic",
+            "og": "Open Graph",
+            "twitter": "Twitter Card"
+        },
+        "pageTitle": "Page Title",
+        "pageTitlePlaceholder": "My Awesome Website",
+        "pageDescription": "Description",
+        "pageDescriptionPlaceholder": "A brief description of your page for search engines",
+        "keywords": "Keywords",
+        "keywordsPlaceholder": "seo, meta tags, generator",
+        "author": "Author",
+        "authorPlaceholder": "John Doe",
+        "viewport": "Viewport",
+        "ogTitlePlaceholder": "Open Graph title",
+        "ogDescPlaceholder": "Open Graph description",
+        "twitterTitlePlaceholder": "Twitter card title",
+        "twitterDescPlaceholder": "Twitter card description",
+        "generatedCode": "Generated Meta Tags",
+        "copyAll": "Copy All",
+        "copied": "Copied",
+        "emptyPreview": "Fill in the fields above to generate meta tags.",
+        "googlePreview": "Google Preview",
+        "facebookPreview": "Facebook Preview",
+        "twitterPreview": "Twitter Preview",
+        "previewSiteTitle": "Your Page Title",
+        "previewSiteDesc": "Your page description will appear here.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Fill in basic meta information like title, description, and keywords.",
+            "step2": "Add Open Graph tags for Facebook and social media sharing.",
+            "step3": "Configure Twitter Card tags for Twitter sharing previews.",
+            "step4": "Copy the generated HTML code and paste it into your page's head section."
+        }
+    },
+    "RobotsTxtGenerator": {
+        "title": "Robots.txt Generator",
+        "description": "Create robots.txt files for search engine crawlers with preset templates.",
+        "presets": "Preset Templates",
+        "presetAllowAll": "Allow All",
+        "presetBlockAll": "Block All",
+        "presetBlockAI": "Block AI Bots",
+        "presetStandard": "Standard",
+        "ruleGroup": "Rule Group",
+        "userAgent": "User-Agent",
+        "allowPaths": "Allow Paths",
+        "disallowPaths": "Disallow Paths",
+        "addPath": "Add Path",
+        "addRuleGroup": "Add Rule Group",
+        "sitemapUrl": "Sitemap URL",
+        "crawlDelay": "Crawl Delay (seconds)",
+        "preview": "Preview",
+        "copy": "Copy",
+        "copied": "Copied",
+        "download": "Download",
+        "downloaded": "robots.txt downloaded",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select a preset template or create custom rules for search engine crawlers.",
+            "step2": "Add Allow/Disallow paths to control which pages can be crawled.",
+            "step3": "Optionally add your sitemap URL and crawl delay settings.",
+            "step4": "Copy or download the generated robots.txt and place it in your site root."
+        }
+    },
+    "SitemapGenerator": {
+        "title": "Sitemap Generator",
+        "description": "Add URLs and generate XML sitemap files to improve search engine indexing.",
+        "url": "URL",
+        "lastmod": "Last Modified",
+        "changefreq": "Change Frequency",
+        "priority": "Priority",
+        "addUrl": "Add URL",
+        "invalidUrl": "Invalid URL format",
+        "preview": "Generated Sitemap XML",
+        "copy": "Copy",
+        "copied": "Copied",
+        "download": "Download",
+        "downloaded": "sitemap.xml downloaded",
+        "emptyPreview": "Add valid URLs above to generate the sitemap XML.",
+        "freq": {
+            "always": "Always",
+            "hourly": "Hourly",
+            "daily": "Daily",
+            "weekly": "Weekly",
+            "monthly": "Monthly",
+            "yearly": "Yearly",
+            "never": "Never"
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Add your website URLs with the 'Add URL' button.",
+            "step2": "Set last modified date, change frequency, and priority for each URL.",
+            "step3": "Copy or download the generated XML sitemap file.",
+            "step4": "Upload sitemap.xml to your website root and submit it to search engines."
+        }
+    },
+    "ColorConverter": {
+        "title": "Color Converter",
+        "description": "Convert colors between HEX, RGB, and HSL formats with live preview and related colors.",
+        "inputLabel": "Color Value",
+        "inputPlaceholder": "#3B82F6 or rgb(59,130,246) or hsl(217,91%,60%)",
+        "picker": "Color Picker",
+        "preview": "Live Preview",
+        "invalid": "Invalid color format. Use HEX, RGB, or HSL.",
+        "copied": "Copied!",
+        "conversionResults": "Conversion Results",
+        "relatedColors": "Related Colors",
+        "complementary": "Complementary",
+        "analogous": "Analogous",
+        "rgbChannels": "RGB Channels",
+        "red": "Red",
+        "green": "Green",
+        "blue": "Blue",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter a color in HEX (#FF5733), RGB (rgb(255,87,51)), or HSL (hsl(11,100%,60%)) format.",
+            "step2": "Use the color picker or RGB sliders to adjust the color visually.",
+            "step3": "Copy any converted format and view complementary and analogous colors below."
+        }
+    },
+    "SubnetCalculator": {
+        "title": "IP Subnet Calculator",
+        "description": "Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR.",
+        "ipLabel": "IP Address",
+        "ipPlaceholder": "192.168.1.0",
+        "cidrLabel": "CIDR",
+        "cidrSlider": "CIDR Prefix Length",
+        "invalidIp": "Invalid IP address. Please enter a valid IPv4 address.",
+        "results": "Subnet Details",
+        "networkAddress": "Network Address",
+        "broadcastAddress": "Broadcast Address",
+        "subnetMask": "Subnet Mask",
+        "wildcardMask": "Wildcard Mask",
+        "numberOfHosts": "Number of Hosts",
+        "firstUsable": "First Usable IP",
+        "lastUsable": "Last Usable IP",
+        "ipClass": "IP Class",
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter an IPv4 address (e.g., 192.168.1.0) or use CIDR notation (e.g., 192.168.1.0/24).",
+            "step2": "Adjust the CIDR prefix with the slider or input field.",
+            "step3": "View calculated subnet details and copy any value to clipboard."
+        }
+    },
+    "CssMinifier": {
+        "title": "CSS Minifier / Beautifier",
+        "description": "Minify or beautify CSS code with size comparison and instant copy.",
+        "minify": "Minify",
+        "beautify": "Beautify",
+        "clear": "Clear",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "inputLabel": "Input CSS",
+        "inputPlaceholder": "Paste your CSS code here...",
+        "outputLabel": "Output",
+        "outputPlaceholder": "Result will appear here...",
+        "originalSize": "Original",
+        "outputSize": "Output",
+        "savings": "savings",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your CSS code into the input panel on the left.",
+            "step2": "Click Minify to compress or Beautify to format the CSS.",
+            "step3": "View the size comparison and copy the result from the output panel."
+        }
+    },
+    "JsonLdGenerator": {
+        "title": "JSON-LD Schema Generator",
+        "description": "Generate structured data (JSON-LD) for SEO easily.",
+        "schemaType": "Schema Type",
+        "formTitle": "Fields",
+        "preview": "Preview",
+        "clear": "Clear",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "copyScript": "Copy Script",
+        "copyJson": "Copy JSON",
+        "valid": "Valid",
+        "types": {
+            "Article": "Article",
+            "Product": "Product",
+            "FAQ": "FAQ",
+            "Organization": "Organization",
+            "LocalBusiness": "Local Business",
+            "Person": "Person",
+            "Event": "Event",
+            "BreadcrumbList": "Breadcrumb List"
+        },
+        "errors": {
+            "missing_context": "@context or @type is missing.",
+            "invalid_json": "Invalid JSON output."
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select a schema type (Article, Product, FAQ, etc.) from the buttons above.",
+            "step2": "Fill in the fields. The JSON-LD preview updates in real-time.",
+            "step3": "Copy the generated script tag and paste it into your HTML."
+        }
+    },
+    "EnvEditor": {
+        "title": ".env File Editor",
+        "description": "Edit environment variable files (.env) and compare differences between two files.",
+        "leftLabel": ".env.example",
+        "rightLabel": ".env.local",
+        "leftPlaceholder": "Paste .env.example contents here...\ne.g.: DATABASE_URL=postgres://...\nAPI_KEY=your-key-here",
+        "rightPlaceholder": "Paste .env.local contents here...\ne.g.: DATABASE_URL=postgres://localhost:5432/mydb\nAPI_KEY=sk-1234567890",
+        "compare": "Compare",
+        "editMode": "Edit Mode",
+        "clear": "Clear",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "exported": "File exported!",
+        "addVariable": "Add Variable",
+        "diffTitle": "Differences",
+        "statusAdded": "Added",
+        "statusRemoved": "Removed",
+        "statusChanged": "Changed",
+        "statusUnchanged": "Same",
+        "diffSummary": "Added: {added}, Removed: {removed}, Changed: {changed}",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste your .env.example file on the left and .env.local on the right.",
+            "step2": "Click 'Compare' to see visual differences between the two files.",
+            "step3": "In edit mode, add, modify, or remove variables and export as .env file."
+        }
+    },
+    "TomlConverter": {
+        "title": "TOML/INI Converter",
+        "description": "Convert between TOML, INI, and JSON formats.",
+        "inputLabel": "Input",
+        "outputLabel": "Output",
+        "inputPlaceholder": "Paste TOML, INI, or JSON code here...\n\nExample:\n[database]\nhost = \"localhost\"\nport = 5432",
+        "outputPlaceholder": "Converted result will appear here...",
+        "detected": "Detected",
+        "outputFormatLabel": "Output format",
+        "convert": "Convert",
+        "swap": "Swap",
+        "clear": "Clear",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "parseError": "Could not parse input. Please check the format.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste TOML, INI, or JSON code in the input panel. The format is auto-detected.",
+            "step2": "Select the desired output format (TOML, INI, JSON) and click 'Convert'.",
+            "step3": "Copy the result or use 'Swap' to reverse the conversion."
+        }
+    },
+    "HttpHeaderAnalyzer": {
+        "title": "HTTP Header Analyzer",
+        "description": "Analyze HTTP response headers from any URL and score security header configuration.",
+        "placeholder": "Enter a URL (e.g., https://example.com)",
+        "analyzeBtn": "Analyze",
+        "errorFetch": "Failed to fetch headers. Please check the URL.",
+        "status": "Status Code",
+        "securityScore": "Security Score",
+        "grade": "Grade",
+        "securityHeaders": "Security Headers",
+        "allHeaders": "All Headers",
+        "headerName": "Header Name",
+        "headerValue": "Value",
+        "missing": "Missing",
+        "copyAll": "Copy All",
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter the URL of the website you want to analyze. https:// is added automatically.",
+            "step2": "Click 'Analyze' to fetch the HTTP response headers from the URL.",
+            "step3": "Review security header status and evaluate security level through the score and grade."
+        }
+    },
+    "WebhookTester": {
+        "title": "API Tester",
+        "description": "Send REST API requests directly from your browser and analyze responses with an HTTP client tool.",
+        "urlPlaceholder": "Enter URL (e.g., https://jsonplaceholder.typicode.com/posts)",
+        "sendBtn": "Send",
+        "headers": "Headers",
+        "addHeader": "Add Header",
+        "headerKey": "Key",
+        "headerValue": "Value",
+        "body": "Request Body",
+        "bodyPlaceholder": "Enter JSON data...\n{\n  \"key\": \"value\"\n}",
+        "response": "Response",
+        "responseBody": "Body",
+        "responseHeaders": "Headers",
+        "errorRequest": "Failed to send request.",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Select an HTTP method (GET, POST, etc.) and enter the request URL.",
+            "step2": "Add headers and request body (JSON) if needed.",
+            "step3": "Click 'Send' to view the response status, headers, and body."
+        }
+    },
+    "GitDiffViewer": {
+        "title": "Git Diff Viewer",
+        "description": "Paste git diff or unified diff output to visualize changes with syntax highlighting.",
+        "placeholder": "Paste git diff or unified diff output here...\n\nExample:\ndiff --git a/file.txt b/file.txt\n--- a/file.txt\n+++ b/file.txt\n@@ -1,3 +1,3 @@\n unchanged line\n-removed line\n+added line\n unchanged line",
+        "filesChanged": "{count} file(s) changed",
+        "additions": "additions",
+        "deletions": "deletions",
+        "copied": "Copied!",
+        "noValidDiff": "No valid diff format found. Please paste git diff output.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Run 'git diff' in your terminal and copy the output.",
+            "step2": "Paste the diff output in the textarea above. It will be parsed automatically.",
+            "step3": "Review added/removed lines per file. You can copy individual file diffs."
+        }
+    },
+    "ExifViewer": {
+        "title": "Image EXIF Viewer & Remover",
+        "description": "View and remove EXIF metadata (camera, GPS, date) from images for privacy protection.",
+        "dropTitle": "Click or drag image to upload",
+        "dropDesc": "Supports JPG, PNG, HEIC, WebP, TIFF",
+        "preview": "Image Preview",
+        "reset": "Reset",
+        "exifInfo": "EXIF Information",
+        "fileInfo": "File Information",
+        "fileName": "File Name",
+        "fileSize": "File Size",
+        "fileType": "File Type",
+        "dimensions": "Dimensions",
+        "lastModified": "Last Modified",
+        "cameraInfo": "Camera Information",
+        "cameraMake": "Camera Make",
+        "cameraModel": "Camera Model",
+        "exposure": "Exposure Time",
+        "aperture": "Aperture",
+        "focalLength": "Focal Length",
+        "software": "Software",
+        "dateTaken": "Date Taken",
+        "gpsInfo": "GPS Location",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "noExifData": "No detailed EXIF data found in this image.",
+        "removeExif": "Remove EXIF Data",
+        "removeSuccess": "EXIF data removed successfully!",
+        "downloadClean": "Download Clean Image",
+        "downloaded": "Image downloaded!",
+        "cleanedNote": "Metadata has been stripped. The downloaded image contains no EXIF data.",
+        "processing": "Processing...",
+        "copied": "Copied!",
+        "privacyTitle": "Privacy Warning",
+        "privacyDesc": "Photos may contain hidden metadata like GPS coordinates, camera info, and timestamps. Remove EXIF data before sharing online to protect your privacy.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload an image (JPG, PNG, HEIC) by clicking or drag & drop.",
+            "step2": "View the extracted EXIF metadata including camera, GPS, and date information.",
+            "step3": "Click 'Remove EXIF Data' to strip all metadata, then download the clean image."
+        }
+    },
+    "ImageResizer": {
+        "title": "Image Resizer",
+        "description": "Resize images to custom or preset dimensions for social media platforms.",
+        "dropTitle": "Click or drag image to upload",
+        "dropDesc": "Supports JPG, PNG, WebP, and more",
+        "presets": "Preset Sizes",
+        "reset": "Reset",
+        "presetInstagramPost": "Instagram Post",
+        "presetInstagramStory": "Instagram Story",
+        "presetFacebookCover": "Facebook Cover",
+        "presetTwitterHeader": "Twitter Header",
+        "presetYoutubeThumbnail": "YouTube Thumbnail",
+        "presetCustom": "Custom",
+        "settings": "Resize Settings",
+        "width": "Width (px)",
+        "height": "Height (px)",
+        "lockAspect": "Lock Aspect Ratio",
+        "unlockAspect": "Unlock Aspect Ratio",
+        "originalSize": "Original",
+        "outputFormat": "Output Format",
+        "quality": "Quality",
+        "resizeButton": "Resize Image",
+        "processing": "Processing...",
+        "original": "Original",
+        "resized": "Resized",
+        "previewPlaceholder": "Resized preview will appear here after processing.",
+        "download": "Download",
+        "downloaded": "Image downloaded!",
+        "resizeSuccess": "Image resized successfully!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload an image by clicking or drag & drop.",
+            "step2": "Select a preset size or enter custom width and height dimensions.",
+            "step3": "Choose output format and quality, then click 'Resize Image' and download."
+        }
+    },
+    "SvgOptimizer": {
+        "title": "SVG Optimizer",
+        "description": "Optimize and minify SVG files by removing unnecessary data and reducing file size.",
+        "inputLabel": "Input SVG",
+        "inputPlaceholder": "Paste your SVG code here or upload a .svg file...",
+        "uploadFile": "Upload .svg",
+        "clear": "Clear",
+        "optionsLabel": "Optimization Options",
+        "optRemoveComments": "Remove Comments",
+        "optRemoveEmptyAttrs": "Remove Empty Attributes",
+        "optRemoveMetadata": "Remove Metadata",
+        "optMinify": "Minify (Collapse Whitespace)",
+        "optRemoveDefaults": "Remove Default Values",
+        "optShortHex": "Short Hex Colors",
+        "originalSize": "Original",
+        "optimizedSize": "Optimized",
+        "previewLabel": "SVG Preview",
+        "outputLabel": "Optimized SVG",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "download": "Download",
+        "downloaded": "SVG downloaded!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste SVG code or upload a .svg file into the input area.",
+            "step2": "Toggle optimization options like removing comments, metadata, or minifying.",
+            "step3": "View the before/after size comparison, preview the result, and copy or download."
+        }
+    },
+    "ScreenshotBeautifier": {
+        "title": "Screenshot Beautifier",
+        "description": "Add device frames, backgrounds, and shadows to your screenshots for beautiful exports.",
+        "dropTitle": "Click or drag screenshot to upload",
+        "dropDesc": "PNG, JPG, WebP supported. You can also paste from clipboard.",
+        "settings": "Settings",
+        "reset": "Reset",
+        "frame": "Device Frame",
+        "frameNone": "None",
+        "frameBrowser": "Browser Window",
+        "frameMacos": "macOS Window",
+        "framePhone": "Phone",
+        "background": "Background",
+        "bgSolid": "Solid Color",
+        "bgGradient": "Gradient",
+        "bgTransparent": "Transparent",
+        "bgColorLabel": "Background Color",
+        "bgGradientPresets": "Gradient Presets",
+        "padding": "Padding",
+        "borderRadius": "Border Radius",
+        "shadow": "Drop Shadow",
+        "preview": "Preview",
+        "export": "Export as PNG",
+        "exported": "Screenshot exported!",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload or paste a screenshot image.",
+            "step2": "Choose a device frame, background style, padding, and border radius.",
+            "step3": "Preview the result and export as a PNG image."
+        }
+    },
+    "TextToSpeech": {
+        "title": "Text to Speech (TTS)",
+        "description": "Convert text to natural speech with voice selection, speed, and pitch controls.",
+        "textInput": "Text Input",
+        "placeholder": "Enter text to convert to speech...",
+        "characters": "characters",
+        "settings": "Settings",
+        "voice": "Voice",
+        "selectVoice": "Select a voice",
+        "speed": "Speed",
+        "pitch": "Pitch",
+        "play": "Play",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "emptyText": "Please enter some text first.",
+        "notSupported": "Speech synthesis is not supported in your browser. Please try Chrome, Edge, or Safari.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Type or paste text into the input area.",
+            "step2": "Select a voice, adjust speed and pitch to your preference.",
+            "step3": "Click Play to listen. The current word will be highlighted as it is spoken."
+        }
+    },
+    "WhoisLookup": {
+        "title": "Domain / DNS Lookup",
+        "description": "Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name.",
+        "placeholder": "Enter domain name (e.g. example.com)",
+        "lookup": "Lookup",
+        "emptyDomain": "Please enter a domain name.",
+        "lookupError": "Failed to look up DNS records. Please check the domain and try again.",
+        "copied": "Copied!",
+        "dnsResults": "DNS Records",
+        "aRecords": "A Records (IPv4)",
+        "aaaaRecords": "AAAA Records (IPv6)",
+        "nsRecords": "NS Records (Nameservers)",
+        "mxRecords": "MX Records (Mail)",
+        "txtRecords": "TXT Records",
+        "soaRecord": "SOA Record",
+        "soaPrimaryNs": "Primary NS",
+        "soaHostmaster": "Hostmaster",
+        "soaSerial": "Serial",
+        "soaRefresh": "Refresh",
+        "soaRetry": "Retry",
+        "soaExpire": "Expire",
+        "soaMinTtl": "Min TTL",
+        "priority": "Priority",
+        "noRecords": "No DNS records found for this domain.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter a domain name (e.g. example.com) in the input field.",
+            "step2": "Click Lookup to query DNS records for the domain.",
+            "step3": "Browse the categorized results and copy individual records as needed."
+        }
     }
 }

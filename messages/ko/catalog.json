@@ -390,6 +390,90 @@
     "StringCaseConverter": {
       "title": "문자열 케이스 변환기",
       "description": "camelCase, PascalCase, snake_case, kebab-case 등 12가지 형식으로 즉시 변환합니다."
+    },
+    "UuidGenerator": {
+      "title": "UUID 생성기",
+      "description": "UUID v4 및 v7을 생성합니다. 대량 생성 및 클립보드 복사를 지원합니다."
+    },
+    "PasswordGenerator": {
+      "title": "비밀번호 생성기",
+      "description": "길이, 대소문자, 숫자, 특수문자 옵션으로 안전한 랜덤 비밀번호를 생성합니다."
+    },
+    "UnixTimestamp": {
+      "title": "Unix 타임스탬프 변환기",
+      "description": "Unix 타임스탬프와 사람이 읽을 수 있는 날짜 간의 양방향 변환을 지원합니다."
+    },
+    "MetaTagGenerator": {
+      "title": "메타 태그 생성기",
+      "description": "SEO에 최적화된 HTML 메타 태그, Open Graph, Twitter Card 코드를 자동으로 생성합니다."
+    },
+    "RobotsTxtGenerator": {
+      "title": "Robots.txt 생성기",
+      "description": "검색 엔진 크롤러를 위한 robots.txt 파일을 프리셋과 함께 손쉽게 생성합니다."
+    },
+    "SitemapGenerator": {
+      "title": "사이트맵 생성기",
+      "description": "URL을 추가하고 XML 사이트맵 파일을 생성하여 검색 엔진 최적화에 활용하세요."
+    },
+    "ColorConverter": {
+      "title": "색상 변환기",
+      "description": "HEX, RGB, HSL 형식 간 색상을 변환하고 실시간 미리보기와 관련 색상을 확인하세요."
+    },
+    "SubnetCalculator": {
+      "title": "IP 서브넷 계산기",
+      "description": "IP/CIDR로 네트워크 주소, 브로드캐스트, 서브넷 마스크, 사용 가능한 호스트 범위를 계산합니다."
+    },
+    "CssMinifier": {
+      "title": "CSS 압축 / 정리기",
+      "description": "CSS 코드를 압축하거나 정리하고 크기를 비교하며 즉시 복사할 수 있습니다."
+    },
+    "JsonLdGenerator": {
+      "title": "JSON-LD 스키마 생성기",
+      "description": "SEO를 위한 구조화된 데이터(JSON-LD)를 쉽게 생성합니다. Article, Product, FAQ 등 다양한 스키마를 지원합니다."
+    },
+    "EnvEditor": {
+      "title": ".env 파일 편집기",
+      "description": "환경 변수 파일(.env)을 편집하고 두 파일 간의 차이점을 비교합니다."
+    },
+    "TomlConverter": {
+      "title": "TOML/INI 변환기",
+      "description": "TOML, INI, JSON 형식 간의 변환을 지원합니다. 자동 형식 감지 기능을 제공합니다."
+    },
+    "HttpHeaderAnalyzer": {
+      "title": "HTTP 헤더 분석기",
+      "description": "웹사이트의 HTTP 응답 헤더를 분석하고 보안 헤더 설정 상태를 점수화합니다."
+    },
+    "WebhookTester": {
+      "title": "API 테스터",
+      "description": "REST API 요청을 브라우저에서 직접 전송하고 응답을 분석하는 HTTP 클라이언트 도구입니다."
+    },
+    "GitDiffViewer": {
+      "title": "Git Diff 뷰어",
+      "description": "Git diff / unified diff 출력을 붙여넣어 구문 강조와 함께 시각적으로 확인합니다."
+    },
+    "ExifViewer": {
+      "title": "이미지 EXIF 뷰어 & 제거기",
+      "description": "이미지의 EXIF 메타데이터(카메라, GPS, 날짜)를 확인하고 개인정보 보호를 위해 제거합니다."
+    },
+    "ImageResizer": {
+      "title": "이미지 크기 변환기",
+      "description": "소셜 미디어 플랫폼에 맞는 프리셋 또는 사용자 지정 크기로 이미지를 변환합니다."
+    },
+    "SvgOptimizer": {
+      "title": "SVG 최적화 도구",
+      "description": "불필요한 데이터를 제거하여 SVG 파일을 최적화하고 용량을 줄입니다."
+    },
+    "ScreenshotBeautifier": {
+      "title": "스크린샷 꾸미기",
+      "description": "스크린샷에 디바이스 프레임, 배경, 그림자를 추가하여 아름답게 꾸며 내보내세요."
+    },
+    "TextToSpeech": {
+      "title": "텍스트 음성 변환 (TTS)",
+      "description": "텍스트를 자연스러운 음성으로 변환합니다. 속도, 피치, 음성 선택을 지원합니다."
+    },
+    "WhoisLookup": {
+      "title": "도메인/DNS 조회",
+      "description": "도메인의 DNS 레코드(A, AAAA, MX, NS, TXT, SOA)를 조회하고 분석합니다."
     }
   }
 }

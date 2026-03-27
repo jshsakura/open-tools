@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { getToolById } from "@/lib/tools-catalog"
+import { ToolGuide } from "@/components/tool-guide-section"
 
 
 
@@ -34,6 +35,7 @@ export default function SqlFormatterPage() {
                 )}
             </div>
             <SqlFormatter />
+            <ToolGuide ns="SqlFormatter" />
         </div>
     )
 }

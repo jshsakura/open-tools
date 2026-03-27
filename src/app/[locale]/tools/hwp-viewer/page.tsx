@@ -1,4 +1,5 @@
 import { DocumentViewer } from "@/components/tools/hwp-viewer"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,6 +25,7 @@ export default async function HwpViewerPage({ params }: { params: Promise<{ loca
                 </p>
             </header>
             <DocumentViewer />
+            <ToolGuide ns="HwpViewer" />
         </div>
     )
 }

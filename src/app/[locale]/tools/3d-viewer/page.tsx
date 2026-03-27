@@ -1,4 +1,5 @@
 import { Basic3dViewer } from "@/components/tools/3d-viewer"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,6 +15,7 @@ export default function Basic3dViewerPage() {
     return (
         <div className="container mx-auto py-12 px-4">
             <Basic3dViewer />
+            <ToolGuide ns="Basic3dViewer" />
         </div>
     )
 }

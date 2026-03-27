@@ -1,4 +1,5 @@
 import { BcryptGenerator } from "@/components/tools/bcrypt-generator"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,6 +15,7 @@ export default function BcryptGeneratorPage() {
     return (
         <div className="container mx-auto py-12 px-4">
             <BcryptGenerator />
+            <ToolGuide ns="BcryptGenerator" />
         </div>
     )
 }

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { getToolById } from "@/lib/tools-catalog"
 
 
@@ -36,6 +37,7 @@ export default function UnitConverterPage() {
                 />
             )}
             <UnitConverter />
+            <ToolGuide ns="UnitConverter" />
         </div>
     )
 }

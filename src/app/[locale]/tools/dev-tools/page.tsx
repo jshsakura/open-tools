@@ -1,4 +1,5 @@
 import { DevTools } from "@/components/tools/dev-tools"
+import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { getTranslations } from "next-intl/server"
 
@@ -23,6 +24,7 @@ export default async function DevToolsPage({ params }: { params: Promise<{ local
                 toolId="dev-tools"
             />
             <DevTools />
+            <ToolGuide ns="DevTools" />
         </div>
     )
 }

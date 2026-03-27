@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { ToolLoadingSkeleton } from "@/components/tool-loader";
 import { ToolPageHeader } from "@/components/tool-page-header";
+import { ToolGuide } from "@/components/tool-guide-section";
 import { getToolById } from "@/lib/tools-catalog";
 import { Files, ShieldCheck, Infinity, SortAsc } from "lucide-react";
 
@@ -83,6 +84,7 @@ export default function PdfMergePage() {
       </div>
 
       <PdfMerge />
+      <ToolGuide ns="PdfMerge" />
     </div>
   );
 }
