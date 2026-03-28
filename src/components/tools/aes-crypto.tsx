@@ -4,20 +4,20 @@ import { useState, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import {
     Lock, Unlock, Copy, CheckCircle2, ShieldCheck, KeyRound,
-    Eye, EyeOff, Trash2, ArrowRight, Zap, RefreshCw
+    Eye, EyeOff, Trash2, ArrowDown, Zap, RefreshCw
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { encryptAES, decryptAES } from "@/lib/aes"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
 export function AesCrypto() {
     const t = useTranslations('AesCrypto')
-    const [mode, setMode] = useState<'encrypt' | 'decrypt'>('encrypt')
 
     // Encrypt
     const [eInput, setEInput] = useState("")
@@ -89,220 +89,183 @@ export function AesCrypto() {
         return { level: 4, label: t('strengthStrong'), color: "bg-green-500" }
     }
 
-    return (
-        <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Header */}
-            <header className="space-y-3">
-                <h1 className="text-3xl font-black tracking-tight">{t('title')}</h1>
-                <p className="text-muted-foreground max-w-3xl leading-relaxed">{t('description')}</p>
-            </header>
-
-            {/* Algorithm Info Bar */}
-            <GlassCard className="p-4">
-                <div className="flex flex-wrap items-center gap-4 text-sm">
-                    {[
-                        { icon: ShieldCheck, label: t('infoAlgorithm'), value: "AES-256-GCM" },
-                        { icon: KeyRound, label: t('infoKeyDerivation'), value: "PBKDF2 (100K)" },
-                        { icon: Zap, label: t('infoProcessing'), value: t('infoLocal') },
-                    ].map(({ icon: Icon, label, value }) => (
-                        <div key={label} className="flex items-center gap-2 rounded-lg border border-border/30 px-3 py-2">
-                            <Icon className="w-4 h-4 text-primary shrink-0" />
-                            <span className="text-muted-foreground">{label}</span>
-                            <span className="font-mono font-bold text-foreground">{value}</span>
-                        </div>
-                    ))}
-                </div>
-            </GlassCard>
-
-            {/* Mode Switcher */}
-            <div className="flex gap-2">
+    const PasswordInput = ({ value, onChange, show, onToggle, placeholder, strength }: {
+        value: string; onChange: (v: string) => void; show: boolean; onToggle: () => void; placeholder: string; strength?: boolean
+    }) => (
+        <div className="space-y-2">
+            <Label className="text-xs font-bold flex items-center gap-1">
+                <KeyRound className="w-3 h-3" /> {t('password')}
+            </Label>
+            <div className="relative">
+                <Input
+                    type={show ? "text" : "password"}
+                    value={value}
+                    onChange={e => onChange(e.target.value)}
+                    placeholder={placeholder}
+                    className="pr-10 font-mono"
+                />
                 <button
-                    onClick={() => setMode('encrypt')}
-                    className={cn(
-                        "flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-bold text-base transition-all duration-300",
-                        mode === 'encrypt'
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-[1.02]"
-                            : "bg-muted/50 text-muted-foreground hover:bg-muted/80 border border-border/30"
-                    )}
+                    type="button"
+                    onClick={onToggle}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
-                    <Lock className="w-5 h-5" />
-                    {t('encryptTab')}
-                </button>
-                <button
-                    onClick={() => setMode('decrypt')}
-                    className={cn(
-                        "flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-bold text-base transition-all duration-300",
-                        mode === 'decrypt'
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-[1.02]"
-                            : "bg-muted/50 text-muted-foreground hover:bg-muted/80 border border-border/30"
-                    )}
-                >
-                    <Unlock className="w-5 h-5" />
-                    {t('decryptTab')}
+                    {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
             </div>
+            {strength && value && (
+                <div className="flex items-center gap-2">
+                    <div className="flex gap-1 flex-1">
+                        {[1, 2, 3, 4].map(i => (
+                            <div key={i} className={cn("h-1.5 flex-1 rounded-full transition-colors", i <= passwordStrength(value).level ? passwordStrength(value).color : "bg-border/40")} />
+                        ))}
+                    </div>
+                    <span className="text-[10px] font-bold text-muted-foreground">{passwordStrength(value).label}</span>
+                </div>
+            )}
+        </div>
+    )
 
-            {/* Encrypt Mode */}
-            {mode === 'encrypt' && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-300">
-                    <div className="grid lg:grid-cols-2 gap-6">
-                        {/* Input Panel */}
-                        <GlassCard className="p-0 overflow-hidden">
-                            <div className="border-b border-border/10 bg-muted/30 p-4 flex items-center justify-between">
-                                <h3 className="text-sm font-bold flex items-center gap-2">
-                                    <Lock className="w-4 h-4 text-emerald-500" />
-                                    {t('inputText')}
-                                </h3>
-                                <Button variant="ghost" size="sm" onClick={clearEncrypt} className="h-7 text-xs text-muted-foreground hover:text-destructive gap-1">
-                                    <Trash2 className="w-3 h-3" /> {t('clear')}
-                                </Button>
-                            </div>
-                            <div className="p-5 space-y-5">
-                                <Textarea
-                                    value={eInput}
-                                    onChange={e => setEInput(e.target.value)}
-                                    placeholder={t('inputPlaceholder')}
-                                    className="min-h-[220px] resize-none font-mono text-sm border-0 bg-muted/20 focus-visible:ring-1"
-                                />
+    return (
+        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* Header */}
+            <div className="text-center space-y-2">
+                <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+                <p className="text-muted-foreground">{t('description')}</p>
+            </div>
 
-                                {/* Password */}
-                                <div className="space-y-2">
-                                    <Label className="text-xs font-bold flex items-center gap-1">
-                                        <KeyRound className="w-3 h-3" /> {t('password')}
-                                    </Label>
-                                    <div className="relative">
-                                        <Input
-                                            type={showEPassword ? "text" : "password"}
-                                            value={ePassword}
-                                            onChange={e => setEPassword(e.target.value)}
-                                            placeholder={t('passwordPlaceholder')}
-                                            className="pr-10 font-mono"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowEPassword(!showEPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                                        >
-                                            {showEPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                        </button>
+            {/* Algorithm Info */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
+                {[
+                    { icon: ShieldCheck, value: "AES-256-GCM" },
+                    { icon: KeyRound, value: "PBKDF2 (100K)" },
+                    { icon: Zap, value: t('infoLocal') },
+                ].map(({ icon: Icon, value }) => (
+                    <div key={value} className="flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/30 px-3 py-1.5">
+                        <Icon className="w-3.5 h-3.5 text-primary" />
+                        <span className="font-mono font-bold">{value}</span>
+                    </div>
+                ))}
+            </div>
+
+            {/* Main Card with Tabs */}
+            <GlassCard className="p-1 rounded-2xl overflow-hidden min-h-[520px] flex flex-col">
+                <Tabs defaultValue="encrypt" className="w-full flex-1 flex flex-col">
+                    <div className="p-4 border-b border-border/10 bg-secondary/30 backdrop-blur-md">
+                        <TabsList className="grid w-full grid-cols-2 h-12 bg-background/50 p-1 rounded-xl">
+                            <TabsTrigger value="encrypt" className="rounded-lg gap-2 text-base">
+                                <Lock className="w-4 h-4" />
+                                {t('encryptTab')}
+                            </TabsTrigger>
+                            <TabsTrigger value="decrypt" className="rounded-lg gap-2 text-base">
+                                <Unlock className="w-4 h-4" />
+                                {t('decryptTab')}
+                            </TabsTrigger>
+                        </TabsList>
+                    </div>
+
+                    <div className="p-6 flex-1">
+                        {/* ENCRYPT TAB */}
+                        <TabsContent value="encrypt" className="space-y-0 mt-0 h-full flex flex-col">
+                            <div className="flex-1 grid gap-4">
+                                {/* Input */}
+                                <div className="space-y-2 flex-1 flex flex-col">
+                                    <div className="flex justify-between items-center">
+                                        <Label>{t('inputText')}</Label>
+                                        <Button variant="ghost" size="sm" onClick={clearEncrypt} disabled={!eInput && !ePassword} className="h-8 text-muted-foreground hover:text-destructive">
+                                            <Trash2 className="w-4 h-4 mr-1" /> {t('clear')}
+                                        </Button>
                                     </div>
-                                    {/* Password strength */}
-                                    {ePassword && (
-                                        <div className="flex items-center gap-2">
-                                            <div className="flex gap-1 flex-1">
-                                                {[1, 2, 3, 4].map(i => (
-                                                    <div key={i} className={cn("h-1.5 flex-1 rounded-full transition-colors", i <= passwordStrength(ePassword).level ? passwordStrength(ePassword).color : "bg-border/40")} />
-                                                ))}
-                                            </div>
-                                            <span className="text-[10px] font-bold text-muted-foreground">{passwordStrength(ePassword).label}</span>
-                                        </div>
-                                    )}
+                                    <Textarea
+                                        value={eInput}
+                                        onChange={e => setEInput(e.target.value)}
+                                        placeholder={t('inputPlaceholder')}
+                                        className="flex-1 min-h-[140px] font-mono text-sm resize-none bg-background/50 focus:bg-background transition-colors"
+                                    />
                                 </div>
 
+                                {/* Password */}
+                                <PasswordInput
+                                    value={ePassword} onChange={setEPassword}
+                                    show={showEPassword} onToggle={() => setShowEPassword(!showEPassword)}
+                                    placeholder={t('passwordPlaceholder')} strength
+                                />
+
+                                {/* Encrypt Button */}
                                 <Button
-                                    className="w-full h-12 text-base font-bold gap-2 shadow-lg shadow-primary/20"
+                                    className="w-full h-11 font-bold gap-2"
                                     onClick={handleEncrypt}
                                     disabled={!eInput || !ePassword || isEncrypting}
                                 >
                                     {isEncrypting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Lock className="w-4 h-4" />}
                                     {t('encryptButton')}
                                 </Button>
-                            </div>
-                        </GlassCard>
 
-                        {/* Output Panel */}
-                        <GlassCard className="p-0 overflow-hidden border-primary/20">
-                            <div className="border-b border-border/10 bg-muted/30 p-4 flex items-center justify-between">
-                                <h3 className="text-sm font-bold flex items-center gap-2">
-                                    <ArrowRight className="w-4 h-4 text-primary" />
-                                    {t('outputCipher')}
-                                </h3>
-                                {eOutput && (
-                                    <span className="text-[10px] font-mono text-muted-foreground">{eOutput.length} chars</span>
-                                )}
-                            </div>
-                            <div className="p-5 space-y-5">
-                                <div className="relative">
+                                {/* Arrow */}
+                                <div className="flex justify-center -my-1 z-10">
+                                    <div className="bg-secondary rounded-full p-2 border border-border">
+                                        <ArrowDown className="w-4 h-4 text-muted-foreground" />
+                                    </div>
+                                </div>
+
+                                {/* Output */}
+                                <div className="space-y-2 flex-1 flex flex-col">
+                                    <div className="flex justify-between items-center">
+                                        <Label>{t('outputCipher')}</Label>
+                                        <Button
+                                            variant="ghost" size="sm"
+                                            onClick={() => copyToClipboard(eOutput, 'encrypt')}
+                                            disabled={!eOutput}
+                                            className="h-8 text-primary hover:text-primary hover:bg-primary/10"
+                                        >
+                                            {copiedField === 'encrypt' ? <CheckCircle2 className="w-4 h-4 mr-1 text-green-500" /> : <Copy className="w-4 h-4 mr-1" />}
+                                            {t('copyBtn')}
+                                        </Button>
+                                    </div>
                                     <Textarea
                                         value={eOutput}
                                         readOnly
                                         placeholder={t('outputPlaceholder')}
-                                        className="min-h-[220px] resize-none font-mono text-sm border-0 bg-muted/10 focus-visible:ring-0"
+                                        className="flex-1 min-h-[140px] font-mono text-sm resize-none bg-muted/30 text-muted-foreground"
                                     />
-                                    {eOutput && (
-                                        <Button
-                                            size="sm"
-                                            variant="secondary"
-                                            className="absolute top-3 right-3 gap-1 text-xs"
-                                            onClick={() => copyToClipboard(eOutput, 'encrypt')}
-                                        >
-                                            {copiedField === 'encrypt' ? <CheckCircle2 className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
-                                            {copiedField === 'encrypt' ? t('copied') : t('copyBtn')}
-                                        </Button>
-                                    )}
                                 </div>
 
                                 {/* Security Note */}
-                                <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15 text-sm flex gap-3">
-                                    <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
-                                    <div className="space-y-1">
-                                        <p className="font-bold text-emerald-600 dark:text-emerald-400 text-xs">{t('securityTitle')}</p>
-                                        <p className="text-muted-foreground text-xs leading-relaxed">{t('securityNote')}</p>
-                                    </div>
+                                <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15 text-xs flex gap-2.5">
+                                    <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-emerald-500" />
+                                    <p className="text-muted-foreground leading-relaxed">{t('securityNote')}</p>
                                 </div>
                             </div>
-                        </GlassCard>
-                    </div>
-                </div>
-            )}
+                        </TabsContent>
 
-            {/* Decrypt Mode */}
-            {mode === 'decrypt' && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-                    <div className="grid lg:grid-cols-2 gap-6">
-                        {/* Input Panel */}
-                        <GlassCard className="p-0 overflow-hidden">
-                            <div className="border-b border-border/10 bg-muted/30 p-4 flex items-center justify-between">
-                                <h3 className="text-sm font-bold flex items-center gap-2">
-                                    <Unlock className="w-4 h-4 text-violet-500" />
-                                    {t('inputCipher')}
-                                </h3>
-                                <Button variant="ghost" size="sm" onClick={clearDecrypt} className="h-7 text-xs text-muted-foreground hover:text-destructive gap-1">
-                                    <Trash2 className="w-3 h-3" /> {t('clear')}
-                                </Button>
-                            </div>
-                            <div className="p-5 space-y-5">
-                                <Textarea
-                                    value={dInput}
-                                    onChange={e => setDInput(e.target.value)}
-                                    placeholder={t('cipherPlaceholder')}
-                                    className="min-h-[220px] resize-none font-mono text-sm border-0 bg-muted/20 focus-visible:ring-1"
+                        {/* DECRYPT TAB */}
+                        <TabsContent value="decrypt" className="space-y-0 mt-0 h-full flex flex-col">
+                            <div className="flex-1 grid gap-4">
+                                {/* Input */}
+                                <div className="space-y-2 flex-1 flex flex-col">
+                                    <div className="flex justify-between items-center">
+                                        <Label>{t('inputCipher')}</Label>
+                                        <Button variant="ghost" size="sm" onClick={clearDecrypt} disabled={!dInput && !dPassword} className="h-8 text-muted-foreground hover:text-destructive">
+                                            <Trash2 className="w-4 h-4 mr-1" /> {t('clear')}
+                                        </Button>
+                                    </div>
+                                    <Textarea
+                                        value={dInput}
+                                        onChange={e => setDInput(e.target.value)}
+                                        placeholder={t('cipherPlaceholder')}
+                                        className="flex-1 min-h-[140px] font-mono text-sm resize-none bg-background/50 focus:bg-background transition-colors"
+                                    />
+                                </div>
+
+                                {/* Password */}
+                                <PasswordInput
+                                    value={dPassword} onChange={setDPassword}
+                                    show={showDPassword} onToggle={() => setShowDPassword(!showDPassword)}
+                                    placeholder={t('passwordPlaceholder')}
                                 />
 
-                                <div className="space-y-2">
-                                    <Label className="text-xs font-bold flex items-center gap-1">
-                                        <KeyRound className="w-3 h-3" /> {t('password')}
-                                    </Label>
-                                    <div className="relative">
-                                        <Input
-                                            type={showDPassword ? "text" : "password"}
-                                            value={dPassword}
-                                            onChange={e => setDPassword(e.target.value)}
-                                            placeholder={t('passwordPlaceholder')}
-                                            className="pr-10 font-mono"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowDPassword(!showDPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                                        >
-                                            {showDPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                        </button>
-                                    </div>
-                                </div>
-
+                                {/* Decrypt Button */}
                                 <Button
-                                    className="w-full h-12 text-base font-bold gap-2"
+                                    className="w-full h-11 font-bold gap-2"
                                     variant="outline"
                                     onClick={handleDecrypt}
                                     disabled={!dInput || !dPassword || isDecrypting}
@@ -310,49 +273,40 @@ export function AesCrypto() {
                                     {isDecrypting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Unlock className="w-4 h-4" />}
                                     {t('decryptButton')}
                                 </Button>
-                            </div>
-                        </GlassCard>
 
-                        {/* Output Panel */}
-                        <GlassCard className="p-0 overflow-hidden border-primary/20">
-                            <div className="border-b border-border/10 bg-muted/30 p-4 flex items-center justify-between">
-                                <h3 className="text-sm font-bold flex items-center gap-2">
-                                    <ArrowRight className="w-4 h-4 text-primary" />
-                                    {t('outputText')}
-                                </h3>
-                            </div>
-                            <div className="p-5 space-y-5">
-                                <div className="relative">
+                                {/* Arrow */}
+                                <div className="flex justify-center -my-1 z-10">
+                                    <div className="bg-secondary rounded-full p-2 border border-border">
+                                        <ArrowDown className="w-4 h-4 text-muted-foreground" />
+                                    </div>
+                                </div>
+
+                                {/* Output */}
+                                <div className="space-y-2 flex-1 flex flex-col">
+                                    <div className="flex justify-between items-center">
+                                        <Label>{t('outputText')}</Label>
+                                        <Button
+                                            variant="ghost" size="sm"
+                                            onClick={() => copyToClipboard(dOutput, 'decrypt')}
+                                            disabled={!dOutput}
+                                            className="h-8 text-primary hover:text-primary hover:bg-primary/10"
+                                        >
+                                            {copiedField === 'decrypt' ? <CheckCircle2 className="w-4 h-4 mr-1 text-green-500" /> : <Copy className="w-4 h-4 mr-1" />}
+                                            {t('copyBtn')}
+                                        </Button>
+                                    </div>
                                     <Textarea
                                         value={dOutput}
                                         readOnly
                                         placeholder={t('decryptedPlaceholder')}
-                                        className="min-h-[220px] resize-none font-mono text-sm border-0 bg-muted/10 focus-visible:ring-0"
+                                        className="flex-1 min-h-[140px] font-mono text-sm resize-none bg-muted/30 text-muted-foreground"
                                     />
-                                    {dOutput && (
-                                        <Button
-                                            size="sm"
-                                            variant="secondary"
-                                            className="absolute top-3 right-3 gap-1 text-xs"
-                                            onClick={() => copyToClipboard(dOutput, 'decrypt')}
-                                        >
-                                            {copiedField === 'decrypt' ? <CheckCircle2 className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
-                                            {copiedField === 'decrypt' ? t('copied') : t('copyBtn')}
-                                        </Button>
-                                    )}
                                 </div>
-
-                                {dOutput && (
-                                    <div className="p-4 rounded-xl bg-violet-500/5 border border-violet-500/15 text-sm flex gap-3">
-                                        <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5 text-violet-500" />
-                                        <p className="text-muted-foreground text-xs leading-relaxed">{t('decryptNote')}</p>
-                                    </div>
-                                )}
                             </div>
-                        </GlassCard>
+                        </TabsContent>
                     </div>
-                </div>
-            )}
+                </Tabs>
+            </GlassCard>
 
             {/* How It Works */}
             <GlassCard className="p-6">
