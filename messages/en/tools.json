@@ -1813,7 +1813,13 @@
         "controls": "Crop Controls",
         "aspectRatio": "Aspect Ratio",
         "transform": "Transform",
-        "download": "Download Cropped"
+        "download": "Download Cropped",
+        "guide": {
+            "title": "How to Use Image Cropper",
+            "step1": "Upload an image by clicking the upload area or dragging and dropping a file (PNG, JPG, WebP).",
+            "step2": "Draw a crop region by clicking and dragging on the image. Choose an aspect ratio preset (1:1, 4:3, 16:9, etc.) or use free mode. Use the transform buttons to rotate or flip.",
+            "step3": "Click 'Download Cropped' to save the cropped image as a PNG file. All processing happens locally in your browser."
+        }
     },
     "ImageWatermark": {
         "title": "Image Watermark",
@@ -1830,7 +1836,13 @@
         "color": "Color",
         "position": "Position",
         "tileRotation": "Tile Rotation",
-        "download": "Download"
+        "download": "Download",
+        "guide": {
+            "title": "How to Use Image Watermark",
+            "step1": "Upload an image by clicking the upload area or dragging and dropping a file.",
+            "step2": "Enter your watermark text and adjust font size, opacity, and color. Choose a position (corners, center) or select tile mode for a repeating pattern across the entire image.",
+            "step3": "Preview the result in real time and click 'Download' to save. The original image is never modified — a new watermarked copy is created."
+        }
     },
     "ImageFilters": {
         "title": "Image Filter & Effects",
@@ -1851,7 +1863,13 @@
         "grayscale": "Grayscale",
         "sepia": "Sepia",
         "hueRotate": "Hue Rotate",
-        "invert": "Invert"
+        "invert": "Invert",
+        "guide": {
+            "title": "How to Use Image Filters",
+            "step1": "Upload a photo by clicking the upload area or dragging and dropping. Supported formats: PNG, JPG, WebP.",
+            "step2": "Choose a one-click preset (Vintage, B&W, Warm, Cool, Dramatic, Fade, Vivid) or fine-tune individual sliders for brightness, contrast, saturation, blur, grayscale, sepia, hue rotation, and invert.",
+            "step3": "Click 'Download' to export the filtered image at full resolution. Click 'Reset' to return all adjustments to their default values."
+        }
     },
     "CollageMaker": {
         "title": "Collage Maker",
@@ -1865,7 +1883,13 @@
         "radius": "Border Radius",
         "bgColor": "Background",
         "outputSize": "Output Size",
-        "download": "Download Collage"
+        "download": "Download Collage",
+        "guide": {
+            "title": "How to Use Collage Maker",
+            "step1": "Select a grid layout (2×1, 1×2, 2×2, 3×1, 1×3, or 3×3) from the settings panel, then click 'Add Image' to upload photos for each slot.",
+            "step2": "Adjust the gap between images, border radius for rounded corners, background color, and output resolution (up to 3000px). Images are automatically cropped to fit each cell.",
+            "step3": "Click 'Download Collage' to export as a high-quality PNG. You can remove individual images by hovering and clicking the trash icon."
+        }
     },
     "MemeGenerator": {
         "title": "Meme Generator",
@@ -1884,7 +1908,13 @@
         "textColor": "Text Color",
         "strokeColor": "Stroke Color",
         "strokeWidth": "Stroke Width",
-        "download": "Download Meme"
+        "download": "Download Meme",
+        "guide": {
+            "title": "How to Use Meme Generator",
+            "step1": "Upload a base image by clicking the upload area or dragging and dropping. Any image format works.",
+            "step2": "Type your top and bottom text in the editor panel. Text is automatically displayed in uppercase Impact font. Adjust font size, text color, stroke color, and stroke width to your liking.",
+            "step3": "Click 'Download Meme' to save as a full-resolution PNG. The text is rendered with a black stroke outline for maximum readability on any background."
+        }
     },
     "ColorPicker": {
         "title": "Image Color Picker",
@@ -1896,7 +1926,13 @@
         "copied": "Copied!",
         "pickedColors": "Picked Colors",
         "clearAll": "Clear All",
-        "hint": "Click anywhere on the image to pick a color"
+        "hint": "Click anywhere on the image to pick a color",
+        "guide": {
+            "title": "How to Use Color Picker",
+            "step1": "Upload any image (PNG, JPG, WebP). A pixel-level magnifying loupe will appear in the top-right corner as you move your cursor over the image.",
+            "step2": "Click on any pixel to pick its color. The color is added to the 'Picked Colors' panel with its HEX, RGB, and HSL values. You can pick as many colors as you need.",
+            "step3": "Click any color value to copy it to your clipboard. Use 'Clear All' to reset picked colors, or the trash icon to start over with a new image."
+        }
     },
     "MarkdownToPdf": {
         "title": "Markdown to PDF",
@@ -1910,7 +1946,13 @@
         "lines": "lines",
         "edit": "Edit",
         "preview": "Preview",
-        "placeholder": "Write your Markdown here..."
+        "placeholder": "Write your Markdown here...",
+        "guide": {
+            "title": "How to Use Markdown to PDF",
+            "step1": "Write or paste Markdown in the left editor panel. Supports headings, bold, italic, lists, tables, code blocks, blockquotes, images, and links.",
+            "step2": "Preview the rendered output in real time on the right panel. On mobile, switch between Edit and Preview tabs.",
+            "step3": "Click 'Export PDF' to open a print dialog for saving as PDF. You can also click 'Copy HTML' to get the rendered HTML markup for use elsewhere."
+        }
     },
     "CsvEditor": {
         "title": "CSV Editor",
@@ -1924,7 +1966,13 @@
         "addRow": "Row",
         "rows": "Rows",
         "columns": "Columns",
-        "cells": "Cells"
+        "cells": "Cells",
+        "guide": {
+            "title": "How to Use CSV Editor",
+            "step1": "Start editing the default sample data directly, or click 'Import CSV' to load your own CSV file. The first row is treated as column headers.",
+            "step2": "Click any cell to edit its value. Use 'Column' and 'Row' buttons to add new columns and rows. Hover over row numbers or column headers to reveal delete buttons.",
+            "step3": "Export your data as CSV or JSON using the toolbar buttons. You can also click 'Copy' to copy the CSV content to your clipboard."
+        }
     },
     "CodeFormatter": {
         "title": "Code Formatter",
@@ -1941,7 +1989,13 @@
         "input": "Input",
         "output": "Output",
         "inputPlaceholder": "Paste your code here...",
-        "outputPlaceholder": "Formatted code will appear here..."
+        "outputPlaceholder": "Formatted code will appear here...",
+        "guide": {
+            "title": "How to Use Code Formatter",
+            "step1": "Select the programming language (JavaScript, TypeScript, JSON, CSS, HTML, or SQL) from the dropdown menu.",
+            "step2": "Paste your code in the left panel. Choose indent size (2 or 4 spaces) and toggle semicolons for JS/TS. Click 'Format' to beautify or 'Minify' to compress.",
+            "step3": "The formatted result appears in the right panel. Click 'Copy' to copy the output to your clipboard. Character counts are shown for both input and output."
+        }
     },
     "PomodoroTimer": {
         "title": "Pomodoro Timer",
@@ -1960,6 +2014,12 @@
         "longBreakDuration": "Long Break",
         "longBreakInterval": "Long Break Interval",
         "min": "min",
-        "resetAll": "Reset All"
+        "resetAll": "Reset All",
+        "guide": {
+            "title": "How to Use Pomodoro Timer",
+            "step1": "Click the play button to start a 25-minute focus session. The circular progress ring shows your remaining time. The browser tab title updates with a live countdown.",
+            "step2": "When the timer ends, a sound alert plays and the timer automatically switches to a break (5 min short break, or 15 min long break after every 4 pomodoros).",
+            "step3": "Open Settings to customize focus duration, short/long break lengths, and the long break interval. Track your total completed pomodoros and focus minutes in the stats panel."
+        }
     }
 }
