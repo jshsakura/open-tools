@@ -58,7 +58,7 @@ export function HmacGenerator() {
     }
 
     return (
-        <Card className="max-w-5xl mx-auto">
+        <Card className="max-w-4xl mx-auto">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <FileKey className="h-5 w-5 text-amber-500" />

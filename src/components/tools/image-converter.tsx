@@ -111,7 +111,7 @@ export function ImageConverter() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-2">
                 <h2 className="text-2xl font-bold">{t('introTitle')}</h2>
                 <p className="text-muted-foreground">{t('introDesc')}</p>
