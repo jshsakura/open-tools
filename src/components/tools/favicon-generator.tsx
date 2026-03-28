@@ -201,7 +201,7 @@ export function FaviconGenerator() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-8">
             <GlassCard className="p-8 rounded-2xl">
                 <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-muted-foreground/25 rounded-xl bg-secondary/50 hover:bg-secondary/70 transition-colors cursor-pointer relative min-h-[300px]">
                     {!originalImage ? (

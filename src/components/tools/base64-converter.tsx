@@ -54,7 +54,7 @@ export function Base64Converter() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <GlassCard className="p-1 rounded-2xl overflow-hidden min-h-[500px] flex flex-col">
                 <Tabs defaultValue="encode" className="w-full flex-1 flex flex-col">
                     <div className="p-4 border-b border-border/10 bg-secondary/30 backdrop-blur-md">

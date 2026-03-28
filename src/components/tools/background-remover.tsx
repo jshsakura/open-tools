@@ -105,7 +105,7 @@ export function BackgroundRemover() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <GlassCard className="p-8 rounded-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-center">
                 {!imageFile ? (
                     <div className={cn(

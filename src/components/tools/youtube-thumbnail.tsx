@@ -72,7 +72,7 @@ export function YoutubeThumbnail() {
     ] : [];
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-8">
             <GlassCard className="p-8 rounded-2xl">
                 <form onSubmit={handleExtract} className="flex flex-col sm:flex-row gap-4">
                     <Input
