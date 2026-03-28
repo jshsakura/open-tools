@@ -117,5 +117,28 @@ export function ToolGuide({ ns }: ToolGuideProps) {
         step3: t('guide.step3'),
     }
 
-    return <ToolGuideSection guide={guide} />
+    // Auto-detect features (feature1..featureN)
+    let features: ToolGuideSectionProps['features'] | undefined
+    try {
+        const featTitle = t('features.title')
+        if (featTitle && !featTitle.startsWith(ns)) {
+            const items: Array<{ title: string; desc: string }> = []
+            // Try reading up to 8 features
+            const keys = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8']
+            for (const key of keys) {
+                try {
+                    const title = t(`features.${key}.title`)
+                    const desc = t(`features.${key}.desc`)
+                    if (title && !title.startsWith(ns)) {
+                        items.push({ title, desc })
+                    }
+                } catch { break }
+            }
+            if (items.length > 0) {
+                features = { title: featTitle, items }
+            }
+        }
+    } catch { /* no features */ }
+
+    return <ToolGuideSection guide={guide} features={features} />
 }

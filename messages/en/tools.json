@@ -1819,6 +1819,13 @@
             "step1": "Upload an image by clicking the upload area or dragging and dropping a file (PNG, JPG, WebP).",
             "step2": "Draw a crop region by clicking and dragging on the image. Choose an aspect ratio preset (1:1, 4:3, 16:9, etc.) or use free mode. Use the transform buttons to rotate or flip.",
             "step3": "Click 'Download Cropped' to save the cropped image as a PNG file. All processing happens locally in your browser."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Aspect Ratio Presets", "desc": "6 built-in presets: Free, 1:1, 4:3, 16:9, 9:16, 3:2 for quick cropping." },
+            "f2": { "title": "Rule of Thirds Grid", "desc": "Overlay grid helps you compose shots following the rule of thirds." },
+            "f3": { "title": "Rotate & Flip", "desc": "Rotate 90° and flip horizontally or vertically with one click." },
+            "f4": { "title": "100% Local Processing", "desc": "Your images never leave your browser. No server uploads." }
         }
     },
     "ImageWatermark": {
@@ -1842,6 +1849,13 @@
             "step1": "Upload an image by clicking the upload area or dragging and dropping a file.",
             "step2": "Enter your watermark text and adjust font size, opacity, and color. Choose a position (corners, center) or select tile mode for a repeating pattern across the entire image.",
             "step3": "Preview the result in real time and click 'Download' to save. The original image is never modified — a new watermarked copy is created."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Tiled Watermark", "desc": "Repeat watermark across the entire image with adjustable rotation angle." },
+            "f2": { "title": "6 Position Options", "desc": "Place watermark at any corner, center, or use full-tile coverage." },
+            "f3": { "title": "Fine-tune Controls", "desc": "Adjust font size (12-120px), opacity (5-100%), and any color." },
+            "f4": { "title": "Non-destructive", "desc": "Original image stays untouched. A new watermarked copy is created." }
         }
     },
     "ImageFilters": {
@@ -1869,6 +1883,13 @@
             "step1": "Upload a photo by clicking the upload area or dragging and dropping. Supported formats: PNG, JPG, WebP.",
             "step2": "Choose a one-click preset (Vintage, B&W, Warm, Cool, Dramatic, Fade, Vivid) or fine-tune individual sliders for brightness, contrast, saturation, blur, grayscale, sepia, hue rotation, and invert.",
             "step3": "Click 'Download' to export the filtered image at full resolution. Click 'Reset' to return all adjustments to their default values."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "8 One-Click Presets", "desc": "Vintage, B&W, Warm, Cool, Dramatic, Fade, Vivid — apply instantly." },
+            "f2": { "title": "8 Adjustment Sliders", "desc": "Fine-tune brightness, contrast, saturation, blur, grayscale, sepia, hue, invert." },
+            "f3": { "title": "Live Preview", "desc": "See filter changes in real-time as you adjust any slider or select a preset." },
+            "f4": { "title": "Full Resolution Export", "desc": "Download the filtered image at the original resolution, not a thumbnail." }
         }
     },
     "CollageMaker": {
@@ -1889,6 +1910,13 @@
             "step1": "Select a grid layout (2×1, 1×2, 2×2, 3×1, 1×3, or 3×3) from the settings panel, then click 'Add Image' to upload photos for each slot.",
             "step2": "Adjust the gap between images, border radius for rounded corners, background color, and output resolution (up to 3000px). Images are automatically cropped to fit each cell.",
             "step3": "Click 'Download Collage' to export as a high-quality PNG. You can remove individual images by hovering and clicking the trash icon."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "6 Grid Layouts", "desc": "Choose from 2×1, 1×2, 2×2, 3×1, 1×3, or 3×3 arrangements." },
+            "f2": { "title": "Smart Crop", "desc": "Images are automatically cropped to fit each cell with cover-fit scaling." },
+            "f3": { "title": "Custom Styling", "desc": "Adjust gap, border radius, background color, and export size up to 3000px." },
+            "f4": { "title": "Drag & Drop Upload", "desc": "Add multiple images at once by dragging files into the tool." }
         }
     },
     "MemeGenerator": {
@@ -1914,6 +1942,13 @@
             "step1": "Upload a base image by clicking the upload area or dragging and dropping. Any image format works.",
             "step2": "Type your top and bottom text in the editor panel. Text is automatically displayed in uppercase Impact font. Adjust font size, text color, stroke color, and stroke width to your liking.",
             "step3": "Click 'Download Meme' to save as a full-resolution PNG. The text is rendered with a black stroke outline for maximum readability on any background."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Classic Impact Font", "desc": "Bold uppercase Impact text with configurable stroke for maximum readability." },
+            "f2": { "title": "Auto Word Wrap", "desc": "Long text automatically wraps to multiple lines within the image bounds." },
+            "f3": { "title": "Color Customization", "desc": "Choose any text fill color and stroke color with a color picker." },
+            "f4": { "title": "High Quality Export", "desc": "Download at original image resolution — no quality loss or downscaling." }
         }
     },
     "ColorPicker": {
@@ -1932,6 +1967,13 @@
             "step1": "Upload any image (PNG, JPG, WebP). A pixel-level magnifying loupe will appear in the top-right corner as you move your cursor over the image.",
             "step2": "Click on any pixel to pick its color. The color is added to the 'Picked Colors' panel with its HEX, RGB, and HSL values. You can pick as many colors as you need.",
             "step3": "Click any color value to copy it to your clipboard. Use 'Clear All' to reset picked colors, or the trash icon to start over with a new image."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Pixel-Level Loupe", "desc": "Magnifying glass shows a zoomed grid of pixels around your cursor position." },
+            "f2": { "title": "Multiple Picks", "desc": "Pick as many colors as you need — all saved in the color history panel." },
+            "f3": { "title": "3 Color Formats", "desc": "Every pick shows HEX, RGB, and HSL values ready to copy." },
+            "f4": { "title": "One-Click Copy", "desc": "Click any color value to instantly copy it to your clipboard." }
         }
     },
     "MarkdownToPdf": {
@@ -1952,6 +1994,13 @@
             "step1": "Write or paste Markdown in the left editor panel. Supports headings, bold, italic, lists, tables, code blocks, blockquotes, images, and links.",
             "step2": "Preview the rendered output in real time on the right panel. On mobile, switch between Edit and Preview tabs.",
             "step3": "Click 'Export PDF' to open a print dialog for saving as PDF. You can also click 'Copy HTML' to get the rendered HTML markup for use elsewhere."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Live Preview", "desc": "Side-by-side editor and preview update in real time as you type." },
+            "f2": { "title": "Rich Syntax Support", "desc": "Headings, bold, italic, lists, tables, code blocks, blockquotes, images, links." },
+            "f3": { "title": "PDF Export", "desc": "Print-to-PDF with beautiful typography, syntax-highlighted code, and styled tables." },
+            "f4": { "title": "Copy as HTML", "desc": "Export the rendered HTML for embedding in websites or email templates." }
         }
     },
     "CsvEditor": {
@@ -1972,6 +2021,13 @@
             "step1": "Start editing the default sample data directly, or click 'Import CSV' to load your own CSV file. The first row is treated as column headers.",
             "step2": "Click any cell to edit its value. Use 'Column' and 'Row' buttons to add new columns and rows. Hover over row numbers or column headers to reveal delete buttons.",
             "step3": "Export your data as CSV or JSON using the toolbar buttons. You can also click 'Copy' to copy the CSV content to your clipboard."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Spreadsheet UI", "desc": "Familiar table interface with click-to-edit cells, similar to Excel or Google Sheets." },
+            "f2": { "title": "Import & Export", "desc": "Load CSV files and export as CSV or JSON with proper escaping and formatting." },
+            "f3": { "title": "Dynamic Rows & Columns", "desc": "Add or remove rows and columns on the fly with toolbar buttons." },
+            "f4": { "title": "Clipboard Support", "desc": "Copy the entire CSV content to clipboard with one click." }
         }
     },
     "CodeFormatter": {
@@ -1995,6 +2051,13 @@
             "step1": "Select the programming language (JavaScript, TypeScript, JSON, CSS, HTML, or SQL) from the dropdown menu.",
             "step2": "Paste your code in the left panel. Choose indent size (2 or 4 spaces) and toggle semicolons for JS/TS. Click 'Format' to beautify or 'Minify' to compress.",
             "step3": "The formatted result appears in the right panel. Click 'Copy' to copy the output to your clipboard. Character counts are shown for both input and output."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "6 Languages", "desc": "Supports JavaScript, TypeScript, JSON, CSS, HTML, and SQL formatting." },
+            "f2": { "title": "Configurable Style", "desc": "Choose indent size (2 or 4), toggle semicolons for JS/TS code." },
+            "f3": { "title": "Format & Minify", "desc": "Beautify code for readability or minify it for production in one click." },
+            "f4": { "title": "Character Counter", "desc": "Track input and output character counts to see compression savings." }
         }
     },
     "PomodoroTimer": {
@@ -2020,6 +2083,13 @@
             "step1": "Click the play button to start a 25-minute focus session. The circular progress ring shows your remaining time. The browser tab title updates with a live countdown.",
             "step2": "When the timer ends, a sound alert plays and the timer automatically switches to a break (5 min short break, or 15 min long break after every 4 pomodoros).",
             "step3": "Open Settings to customize focus duration, short/long break lengths, and the long break interval. Track your total completed pomodoros and focus minutes in the stats panel."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Circular Progress", "desc": "Beautiful animated SVG ring shows remaining time at a glance." },
+            "f2": { "title": "Auto Phase Switching", "desc": "Automatically transitions between focus, short break, and long break." },
+            "f3": { "title": "Session Tracking", "desc": "Track completed pomodoros, total focus minutes, and progress to long break." },
+            "f4": { "title": "Sound Alerts", "desc": "Audio notification plays when each phase ends. Toggle on/off anytime." }
         }
     }
 }
