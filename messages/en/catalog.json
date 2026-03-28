@@ -424,6 +424,46 @@
     "WhoisLookup": {
       "title": "Domain / DNS Lookup",
       "description": "Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name."
+    },
+    "ImageCropper": {
+      "title": "Image Cropper",
+      "description": "Precisely crop, rotate, and flip images with 6 aspect ratio presets and rule-of-thirds grid overlay. All processing happens locally."
+    },
+    "ImageWatermark": {
+      "title": "Image Watermark",
+      "description": "Protect your images with custom text watermarks. Supports single placement, tiled patterns, adjustable opacity, font size, and color."
+    },
+    "ImageFilters": {
+      "title": "Image Filter & Effects",
+      "description": "Transform photos with 8 one-click presets (Vintage, B&W, Vivid, etc.) and fine-tune brightness, contrast, saturation, blur, sepia, and more."
+    },
+    "CollageMaker": {
+      "title": "Photo Collage Maker",
+      "description": "Combine multiple photos into stunning collages. Choose from 6 grid layouts, adjust gaps, rounded corners, background color, and export up to 3000px."
+    },
+    "MemeGenerator": {
+      "title": "Meme Generator",
+      "description": "Create viral-ready memes with classic Impact font text. Customize font size, stroke width, colors, and download as high-quality PNG."
+    },
+    "ColorPicker": {
+      "title": "Image Color Picker",
+      "description": "Extract precise colors from any image with a pixel-level magnifying loupe. Pick multiple colors and copy HEX, RGB, HSL values instantly."
+    },
+    "MarkdownToPdf": {
+      "title": "Markdown to PDF",
+      "description": "Write Markdown with a live side-by-side preview and export to beautifully styled PDF. Supports tables, code blocks, blockquotes, and more."
+    },
+    "CsvEditor": {
+      "title": "CSV Editor",
+      "description": "Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON."
+    },
+    "CodeFormatter": {
+      "title": "Code Formatter & Beautifier",
+      "description": "Instantly format and beautify JavaScript, TypeScript, JSON, CSS, HTML, and SQL. Configurable indent size, semicolons, and one-click minification."
+    },
+    "PomodoroTimer": {
+      "title": "Pomodoro Focus Timer",
+      "description": "Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking."
     }
   }
 }

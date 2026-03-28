@@ -151,7 +151,7 @@ export function HomeClient() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="도구 검색... (예: JSON, PDF, 이미지)"
+                placeholder={t("Home.searchPlaceholder")}
                 className={cn(
                   "flex-1 min-w-0 bg-transparent outline-none",
                   "text-base text-foreground placeholder:text-muted-foreground/50",
@@ -170,7 +170,7 @@ export function HomeClient() {
                     "whitespace-nowrap",
                   )}
                 >
-                  {filteredTools.length}건
+                  {t("Home.searchResultCount", { count: filteredTools.length })}
                 </span>
               )}
 
@@ -178,7 +178,7 @@ export function HomeClient() {
               {isSearching && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  aria-label="검색 지우기"
+                  aria-label={t("Home.searchClear")}
                   className={cn(
                     "shrink-0 flex items-center justify-center w-6 h-6 rounded-full",
                     "bg-muted text-muted-foreground",
@@ -231,7 +231,7 @@ export function HomeClient() {
                       selectedTag === tag && "shadow-lg shadow-primary/20",
                     )}
                   >
-                    {tag}
+                    {t(`Category.${tag}`)}
                     <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
                       {tagCounts[tag] || 0}
                     </span>
@@ -267,10 +267,10 @@ export function HomeClient() {
               <div className="py-24 flex flex-col items-center gap-4 text-muted-foreground">
                 <Search className="w-14 h-14 opacity-15" />
                 <p className="text-lg font-semibold">
-                  &ldquo;{searchQuery}&rdquo;에 대한 검색 결과가 없습니다
+                  {t("Home.searchNoResults", { query: searchQuery })}
                 </p>
                 <p className="text-sm opacity-60">
-                  다른 키워드로 검색해 보세요
+                  {t("Home.searchNoResultsHint")}
                 </p>
               </div>
             )

@@ -1,8 +1,11 @@
+"use client"
+
 import { Link } from "@/i18n/routing"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { LucideIcon, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useTranslations } from "next-intl"
 
 interface ToolCardProps {
     title: string
@@ -14,6 +17,7 @@ interface ToolCardProps {
 }
 
 export function ToolCard({ title, description, icon: Icon, href, tags, color = "text-primary" }: ToolCardProps) {
+    const t = useTranslations()
     return (
         <Link href={href} className="group block h-full cursor-pointer" prefetch={false}>
             <div className="relative h-full overflow-hidden rounded-[24px] border border-black/[0.08] dark:border-white/[0.05] bg-white/[0.7] dark:bg-card/20 p-5 transition-all duration-300 hover:border-primary/20 hover:bg-white/[0.9] dark:hover:bg-card/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:hover:shadow-xl group-hover:-translate-y-1 hover:scale-[1.01] active:scale-[0.98] shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
@@ -43,7 +47,7 @@ export function ToolCard({ title, description, icon: Icon, href, tags, color = "
                     <div className="mt-auto flex flex-wrap gap-1">
                         {tags?.map((tag) => (
                             <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-[11px] rounded-full font-bold bg-primary/5 text-primary/60 border border-primary/10 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-                                {tag}
+                                {t(`Category.${tag}`)}
                             </Badge>
                         ))}
                     </div>

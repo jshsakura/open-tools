@@ -2,7 +2,12 @@
   "Home": {
     "title": "필수 오픈 소스 도구 플랫폼",
     "description": "일상적인 모든 요구 사항을 충족하는 프리미엄 오픈 소스 유틸리티입니다. 100% 클라이언트 측에서 안전하고 빠르게 실행됩니다.",
-    "allTools": "전체 도구"
+    "allTools": "전체 도구",
+    "searchPlaceholder": "도구 검색... (예: JSON, PDF, 이미지)",
+    "searchResultCount": "{count}건",
+    "searchClear": "검색 지우기",
+    "searchNoResults": "\"{query}\"에 대한 검색 결과가 없습니다",
+    "searchNoResultsHint": "다른 키워드로 검색해 보세요"
   },
   "Category": {
     "Development": "개발 (Development)",

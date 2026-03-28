@@ -224,6 +224,56 @@ export const tools = [
         titleKey: 'Catalog.PdfToImage.title',
         href: "/tools/pdf-to-image",
     },
+    {
+        id: 'image-cropper',
+        titleKey: 'Catalog.ImageCropper.title',
+        href: "/tools/image-cropper",
+    },
+    {
+        id: 'image-watermark',
+        titleKey: 'Catalog.ImageWatermark.title',
+        href: "/tools/image-watermark",
+    },
+    {
+        id: 'image-filters',
+        titleKey: 'Catalog.ImageFilters.title',
+        href: "/tools/image-filters",
+    },
+    {
+        id: 'collage-maker',
+        titleKey: 'Catalog.CollageMaker.title',
+        href: "/tools/collage-maker",
+    },
+    {
+        id: 'meme-generator',
+        titleKey: 'Catalog.MemeGenerator.title',
+        href: "/tools/meme-generator",
+    },
+    {
+        id: 'color-picker',
+        titleKey: 'Catalog.ColorPicker.title',
+        href: "/tools/color-picker",
+    },
+    {
+        id: 'markdown-to-pdf',
+        titleKey: 'Catalog.MarkdownToPdf.title',
+        href: "/tools/markdown-to-pdf",
+    },
+    {
+        id: 'csv-editor',
+        titleKey: 'Catalog.CsvEditor.title',
+        href: "/tools/csv-editor",
+    },
+    {
+        id: 'code-formatter',
+        titleKey: 'Catalog.CodeFormatter.title',
+        href: "/tools/code-formatter",
+    },
+    {
+        id: 'pomodoro-timer',
+        titleKey: 'Catalog.PomodoroTimer.title',
+        href: "/tools/pomodoro-timer",
+    },
 ];
 
 export type Tool = typeof tools[number];

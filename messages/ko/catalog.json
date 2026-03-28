@@ -474,6 +474,46 @@
     "WhoisLookup": {
       "title": "도메인/DNS 조회",
       "description": "도메인의 DNS 레코드(A, AAAA, MX, NS, TXT, SOA)를 조회하고 분석합니다."
+    },
+    "ImageCropper": {
+      "title": "이미지 자르기",
+      "description": "6가지 비율 프리셋과 삼분할 가이드 오버레이로 이미지를 정밀하게 자르고, 회전·반전할 수 있습니다. 모든 처리는 로컬에서 수행됩니다."
+    },
+    "ImageWatermark": {
+      "title": "이미지 워터마크",
+      "description": "이미지에 커스텀 텍스트 워터마크를 추가하여 보호하세요. 단일 배치, 타일 패턴, 투명도·폰트 크기·색상 조절을 지원합니다."
+    },
+    "ImageFilters": {
+      "title": "이미지 필터 & 효과",
+      "description": "빈티지, 흑백, 비비드 등 8가지 원클릭 프리셋으로 사진을 변환하고, 밝기·대비·채도·블러·세피아 등을 세밀하게 조절하세요."
+    },
+    "CollageMaker": {
+      "title": "포토 콜라주 생성기",
+      "description": "여러 장의 사진을 멋진 콜라주로 합성합니다. 6가지 그리드 레이아웃, 간격, 둥근 모서리, 배경색을 설정하고 최대 3000px로 내보냅니다."
+    },
+    "MemeGenerator": {
+      "title": "밈 생성기",
+      "description": "클래식 Impact 폰트로 바이럴 밈을 만들어보세요. 글자 크기, 테두리 두께, 색상을 커스터마이즈하고 고화질 PNG로 다운로드합니다."
+    },
+    "ColorPicker": {
+      "title": "이미지 색상 추출기",
+      "description": "픽셀 단위 돋보기 루페로 이미지에서 정확한 색상을 추출합니다. 여러 색상을 선택하고 HEX, RGB, HSL 값을 즉시 복사하세요."
+    },
+    "MarkdownToPdf": {
+      "title": "마크다운 → PDF 변환",
+      "description": "실시간 양분할 미리보기로 마크다운을 작성하고 아름답게 스타일링된 PDF로 내보냅니다. 표, 코드 블록, 인용문 등을 지원합니다."
+    },
+    "CsvEditor": {
+      "title": "CSV 편집기",
+      "description": "직관적인 스프레드시트 형태로 CSV 데이터를 편집합니다. CSV 파일 가져오기, 행/열 추가·삭제, CSV 또는 JSON으로 내보내기를 지원합니다."
+    },
+    "CodeFormatter": {
+      "title": "코드 포맷터 & 정리기",
+      "description": "JavaScript, TypeScript, JSON, CSS, HTML, SQL을 즉시 포매팅합니다. 들여쓰기 크기, 세미콜론 설정, 원클릭 압축 기능을 제공합니다."
+    },
+    "PomodoroTimer": {
+      "title": "뽀모도로 집중 타이머",
+      "description": "뽀모도로 기법으로 생산성을 높이세요. 원형 진행 타이머, 집중/휴식 시간 커스터마이즈, 알림음, 세션 추적 기능을 제공합니다."
     }
   }
 }

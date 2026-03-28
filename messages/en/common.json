@@ -2,7 +2,12 @@
   "Home": {
     "title": "Essential Open Source Tools Platform",
     "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
-    "allTools": "All Tools"
+    "allTools": "All Tools",
+    "searchPlaceholder": "Search tools... (e.g., JSON, PDF, Image)",
+    "searchResultCount": "{count} results",
+    "searchClear": "Clear search",
+    "searchNoResults": "No results found for \"{query}\"",
+    "searchNoResultsHint": "Try a different keyword"
   },
   "Category": {
     "Development": "Development",
