@@ -231,8 +231,8 @@
       "description": "Generate customizable QR codes for URLs, text, email, and phone numbers."
     },
     "AesCrypto": {
-      "title": "AES Encryption",
-      "description": "Securely encrypt and decrypt text using AES-GCM algorithm."
+      "title": "AES-256 Encryption & Decryption",
+      "description": "Military-grade AES-256-GCM encryption with PBKDF2 key derivation. Encrypt and decrypt text 100% locally in your browser — no server uploads."
     },
     "BcryptGenerator": {
       "title": "Bcrypt Generator",
