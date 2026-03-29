@@ -290,7 +290,7 @@ export function VideoConverter() {
                 <GlassCard className="h-full rounded-2xl overflow-hidden flex flex-col">
                     <Tabs defaultValue="convert" className="w-full flex-1 flex flex-col">
                         <div className="p-4 border-b border-border/10 bg-secondary/30 backdrop-blur-md">
-                            <TabsList className="grid w-full grid-cols-4 h-12 bg-background/50 p-1 rounded-xl">
+                            <TabsList className="grid w-full grid-cols-4 h-12 bg-background/50 rounded-xl">
                                 <TabsTrigger value="convert" className="rounded-lg">{t('tabs.convert')}</TabsTrigger>
                                 <TabsTrigger value="trim" className="rounded-lg">{t('tabs.trim')}</TabsTrigger>
                                 <TabsTrigger value="audio" className="rounded-lg">{t('tabs.audio')}</TabsTrigger>

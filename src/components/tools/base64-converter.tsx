@@ -58,7 +58,7 @@ export function Base64Converter() {
             <GlassCard className="p-1 rounded-2xl overflow-hidden min-h-[500px] flex flex-col">
                 <Tabs defaultValue="encode" className="w-full flex-1 flex flex-col">
                     <div className="p-4 border-b border-border/10 bg-secondary/30 backdrop-blur-md">
-                        <TabsList className="grid w-full grid-cols-2 h-12 bg-background/50 p-1 rounded-xl">
+                        <TabsList className="grid w-full grid-cols-2 h-12 bg-background/50 rounded-xl">
                             <TabsTrigger value="encode" className="rounded-lg gap-2">
                                 <FileCode className="w-4 h-4" />
                                 {t('tabs.encode')}
