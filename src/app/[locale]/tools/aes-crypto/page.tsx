@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function AesCryptoPage() {
     return (
-        <div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <AesCrypto />
             <ToolGuide ns="AesCrypto" />
         </div>
