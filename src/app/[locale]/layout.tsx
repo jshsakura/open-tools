@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
-import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider"
 import { AdsenseSlot } from "@/components/ads/adsense-slot";
 import NextTopLoader from 'nextjs-toploader';
@@ -97,7 +96,7 @@ export default async function LocaleLayout({
 }) {
     const { locale } = await params;
 
-    if (!routing.locales.includes(locale as any)) {
+    if (!routing.locales.some((supportedLocale) => supportedLocale === locale)) {
         notFound();
     }
 
@@ -144,7 +143,7 @@ export default async function LocaleLayout({
                                 />
                             </div>
 
-                            <div className="w-full flex justify-center gap-8 px-4 pb-12">
+                            <div className="w-full flex justify-center gap-8 pb-12">
                                 {/* Left Sidebar Ad */}
                                 <aside className="hidden 2xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
                                     <AdsenseSlot
@@ -155,7 +154,7 @@ export default async function LocaleLayout({
                                 </aside>
 
                                 {/* Main Content Area */}
-                                <main className="flex-1 max-w-[1200px] min-w-0">
+                                <main className="flex-1 max-w-6xl min-w-0">
                                     {children}
                                 </main>
 

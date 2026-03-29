@@ -3,8 +3,7 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Menu, Github } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Sparkles, Github } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 
@@ -98,7 +97,7 @@ export function Footer() {
 
   return (
     <footer className="py-3 md:px-8 border-t bg-muted/20 mt-auto">
-      <div className="container flex flex-col items-center justify-between gap-3 md:h-12 md:flex-row max-w-5xl mx-auto">
+      <div className="container flex flex-col items-center justify-between gap-3 md:h-12 md:flex-row max-w-6xl mx-auto">
         <p className="text-balance text-center text-xs leading-loose text-muted-foreground md:text-left">
           {t.rich("footer", {
             year: new Date().getFullYear(),

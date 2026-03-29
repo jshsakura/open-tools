@@ -30,7 +30,7 @@ export function ToolLoadingSkeleton() {
 
 export function ToolLoader({ children }: { children: React.ReactNode }) {
     return (
-        <div className="min-h-[calc(100vh-200px)] py-8 px-4">
+        <div className="mx-auto min-h-[calc(100vh-200px)] max-w-6xl px-4 py-8">
             {children}
         </div>
     )

@@ -17,7 +17,7 @@ export default async function DevToolsPage({ params }: { params: Promise<{ local
     const t = await getTranslations({ locale, namespace: 'DevTools' });
 
     return (
-        <div className="container mx-auto py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <ToolPageHeader
                 title={t('title')}
                 description={t('description')}
