@@ -54,7 +54,7 @@ export default function PdfMergePage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-5xl">
+    <div className="container mx-auto px-4 py-12 max-w-6xl">
       <ToolPageHeader
         title={t("PdfMerge.title")}
         description={t("PdfMerge.description")}

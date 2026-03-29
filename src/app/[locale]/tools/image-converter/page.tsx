@@ -28,7 +28,7 @@ export default function ImageConverterPage() {
     const tool = getToolById('image-converter');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader

@@ -16,7 +16,7 @@ export default async function FaviconGeneratorPage({ params }: { params: Promise
     const t = await getTranslations({ locale, namespace: 'Catalog.FaviconGenerator' });
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <div className="mb-12 space-y-4">
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
                     <span className="text-primary">{t('title')}</span>

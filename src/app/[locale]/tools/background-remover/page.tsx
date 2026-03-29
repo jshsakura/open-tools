@@ -28,7 +28,7 @@ export default function BackgroundRemoverPage() {
     const tool = getToolById('background-remover');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader

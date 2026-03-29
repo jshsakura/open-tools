@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function PdfToolsPage() {
     return (
-        <div className="container mx-auto py-12 px-4">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <PdfTools />
         </div>
     )

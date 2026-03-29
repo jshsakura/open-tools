@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function HashGeneratorPage() {
     return (
-        <div className="container mx-auto py-12 px-4">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <HashGenerator />
             <ToolGuide ns="HashGenerator" />
         </div>

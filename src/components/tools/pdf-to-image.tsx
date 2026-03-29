@@ -108,7 +108,7 @@ export function PdfToImage() {
 
 
     return (
-        <Card className="max-w-4xl mx-auto">
+        <Card className="">
             <CardHeader className="border-b bg-muted/30">
                 <CardTitle className="flex items-center gap-2">
                     <ImageIcon className="h-5 w-5 text-orange-500" />

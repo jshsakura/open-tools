@@ -17,7 +17,7 @@ export default async function Base64ConverterPage({ params }: { params: Promise<
     const t = await getTranslations({ locale, namespace: 'Base64Converter' });
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <div className="mb-12 space-y-4 text-center">
                 <ToolPageHeader
                     title={t.rich('title', {

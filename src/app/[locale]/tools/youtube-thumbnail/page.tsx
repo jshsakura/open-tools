@@ -27,7 +27,7 @@ export default function YoutubeThumbnailPage() {
     const tool = getToolById('youtube-thumbnail');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <div className="mb-12 space-y-4">
             {tool && (
                 <ToolPageHeader
