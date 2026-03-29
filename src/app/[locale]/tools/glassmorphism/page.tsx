@@ -27,22 +27,20 @@ export default function GlassmorphismPage() {
     const tool = getToolById('glassmorphism');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('Glassmorphism.title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('Glassmorphism.description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
-
-            <GlassmorphismTool />
-            <ToolGuide ns="Glassmorphism" />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+        {tool && (
+            <ToolPageHeader
+                title={t.rich('Glassmorphism.title', {
+                    span: (chunks) => <span className="text-primary">{chunks}</span>
+                })}
+                description={t('Glassmorphism.description')}
+                icon={tool.icon}
+                colorClass={tool.color}
+            />
+        )}
+                </div>
+        
+        <GlassmorphismTool />
+        <ToolGuide ns="Glassmorphism" /></div>
     )
 }

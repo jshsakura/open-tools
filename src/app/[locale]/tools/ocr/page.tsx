@@ -20,14 +20,12 @@ export default function OcrPage() {
     const tool = getToolById("ocr")
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <ToolPageHeader
-                title={t("OcrTool.title")}
-                description={t("OcrTool.description")}
-                icon={tool?.icon ?? ScanText}
-                colorClass={tool?.color ?? "text-blue-500"}
-            />
-            <OcrTool />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><ToolPageHeader
+            title={t("OcrTool.title")}
+            description={t("OcrTool.description")}
+            icon={tool?.icon ?? ScanText}
+            colorClass={tool?.color ?? "text-blue-500"}
+        />
+        <OcrTool /></div>
     )
 }

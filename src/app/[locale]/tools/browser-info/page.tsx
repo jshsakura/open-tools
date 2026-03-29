@@ -27,22 +27,20 @@ export default function BrowserInfoPage() {
     const tool = getToolById('browser-info');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('BrowserInfo.title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('BrowserInfo.description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
-
-            <BrowserInfoTool />
-            <ToolGuide ns="BrowserInfo" />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+        {tool && (
+            <ToolPageHeader
+                title={t.rich('BrowserInfo.title', {
+                    span: (chunks) => <span className="text-primary">{chunks}</span>
+                })}
+                description={t('BrowserInfo.description')}
+                icon={tool.icon}
+                colorClass={tool.color}
+            />
+        )}
+                </div>
+        
+        <BrowserInfoTool />
+        <ToolGuide ns="BrowserInfo" /></div>
     )
 }

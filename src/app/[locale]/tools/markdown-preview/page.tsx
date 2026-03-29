@@ -45,35 +45,33 @@ export default function MarkdownPreviewPage() {
   const tool = getToolById("markdown-preview")
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <ToolPageHeader
-        title={t("MarkdownPreview.title")}
-        description={t("MarkdownPreview.description")}
-        icon={tool?.icon}
-        colorClass={tool?.color}
-        center
-      />
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-        {features.map((f) => (
-          <div
-            key={f.title}
-            className="flex items-start gap-3 p-4 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
-          >
-            <div className={cn("shrink-0 p-2 rounded-xl", f.bg)}>
-              <f.icon className={cn("w-5 h-5", f.color)} />
-            </div>
-            <div>
-              <p className="font-semibold text-sm text-foreground">{f.title}</p>
-              <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                {f.desc}
-              </p>
-            </div>
+    <div className="container mx-auto px-4 py-12 max-w-6xl"><ToolPageHeader
+      title={t("MarkdownPreview.title")}
+      description={t("MarkdownPreview.description")}
+      icon={tool?.icon}
+      colorClass={tool?.color}
+      center
+    />
+    
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+      {features.map((f) => (
+        <div
+          key={f.title}
+          className="flex items-start gap-3 p-4 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
+        >
+          <div className={cn("shrink-0 p-2 rounded-xl", f.bg)}>
+            <f.icon className={cn("w-5 h-5", f.color)} />
           </div>
-        ))}
-      </div>
-
-      <MarkdownPreviewTool />
+          <div>
+            <p className="font-semibold text-sm text-foreground">{f.title}</p>
+            <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+              {f.desc}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
+    
+    <MarkdownPreviewTool /></div>
   )
 }

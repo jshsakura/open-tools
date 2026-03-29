@@ -23,19 +23,17 @@ export default function RegexTesterPage() {
     const tool = getToolById('regex-tester');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-                {tool && (
-                    <ToolPageHeader
-                        title={t('title')}
-                        description={t('description')}
-                        icon={tool.icon}
-                        colorClass={tool.color}
-                    />
-                )}
-            </div>
-            <RegexTester />
-            <ToolGuide ns="RegexTester" />
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+            {tool && (
+                <ToolPageHeader
+                    title={t('title')}
+                    description={t('description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
         </div>
+        <RegexTester />
+        <ToolGuide ns="RegexTester" /></div>
     )
 }

@@ -16,12 +16,10 @@ export default function ToolPage() {
     const t = useTranslations('ExifViewer')
     const tool = getToolById('exif-viewer')
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            {tool && (
-                <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-            )}
-            <ToolComponent />
-            <ToolGuide ns="ExifViewer" />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
+            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
+        )}
+        <ToolComponent />
+        <ToolGuide ns="ExifViewer" /></div>
     )
 }

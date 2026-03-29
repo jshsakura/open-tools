@@ -27,22 +27,20 @@ export default function Base64ImagePage() {
     const tool = getToolById('base64-image');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('Base64Image.title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('Base64Image.description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
-
-            <Base64ImageTool />
-            <ToolGuide ns="Base64Image" />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+        {tool && (
+            <ToolPageHeader
+                title={t.rich('Base64Image.title', {
+                    span: (chunks) => <span className="text-primary">{chunks}</span>
+                })}
+                description={t('Base64Image.description')}
+                icon={tool.icon}
+                colorClass={tool.color}
+            />
+        )}
+                </div>
+        
+        <Base64ImageTool />
+        <ToolGuide ns="Base64Image" /></div>
     )
 }

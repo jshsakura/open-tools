@@ -28,22 +28,20 @@ export default function SqlConverterPage() {
     const tool = getToolById('sql-converter');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('SqlConverter.title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('SqlConverter.description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
-
-            <SqlConverter />
-            <ToolGuide ns="SqlConverter" />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+        {tool && (
+            <ToolPageHeader
+                title={t.rich('SqlConverter.title', {
+                    span: (chunks) => <span className="text-primary">{chunks}</span>
+                })}
+                description={t('SqlConverter.description')}
+                icon={tool.icon}
+                colorClass={tool.color}
+            />
+        )}
+                </div>
+        
+        <SqlConverter />
+        <ToolGuide ns="SqlConverter" /></div>
     )
 }

@@ -300,213 +300,211 @@ export default function YoutubeDownloaderPage() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-                {tool && (
-                    <ToolPageHeader
-                        title={t('YouTubeDownloader.title')}
-                        description={t('YouTubeDownloader.description')}
-                        icon={tool.icon}
-                        colorClass={tool.color}
-                    />
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+            {tool && (
+                <ToolPageHeader
+                    title={t('YouTubeDownloader.title')}
+                    description={t('YouTubeDownloader.description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
+        </div>
+        
+        <Card className="border-border/40 bg-card/20 backdrop-blur-sm shadow-xl rounded-[24px] overflow-hidden">
+            <CardContent className="space-y-6 pt-6">
+                {/* Advanced Toggle */}
+                <div className="flex justify-end mb-2">
+                    <div className="flex items-center gap-2">
+                        <Label htmlFor="advanced-mode" className="text-xs text-muted-foreground cursor-pointer">{t('YouTubeDownloader.advancedSettings')}</Label>
+                        <Switch id="advanced-mode" checked={showAdvanced} onCheckedChange={setShowAdvanced} />
+                    </div>
+                </div>
+        
+                {/* Proxy Input */}
+                {showAdvanced && (
+                    <div className="p-4 rounded-xl bg-secondary/30 border border-border/40 space-y-2">
+                        <Label className="text-xs font-semibold text-muted-foreground">Proxy URL</Label>
+                        <Input placeholder="http://user:pass@host:port" value={proxy} onChange={(e) => setProxy(e.target.value)} className="h-10 text-sm" />
+                    </div>
                 )}
-            </div>
-
-            <Card className="border-border/40 bg-card/20 backdrop-blur-sm shadow-xl rounded-[24px] overflow-hidden">
-                <CardContent className="space-y-6 pt-6">
-                    {/* Advanced Toggle */}
-                    <div className="flex justify-end mb-2">
-                        <div className="flex items-center gap-2">
-                            <Label htmlFor="advanced-mode" className="text-xs text-muted-foreground cursor-pointer">{t('YouTubeDownloader.advancedSettings')}</Label>
-                            <Switch id="advanced-mode" checked={showAdvanced} onCheckedChange={setShowAdvanced} />
-                        </div>
+        
+                {/* URL Input & Analyze */}
+                <div className="flex flex-col md:flex-row gap-4">
+                    <div className="flex-1">
+                        <Input
+                            placeholder="https://www.youtube.com/watch?v=..."
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            className="h-12 text-lg px-4 rounded-xl"
+                        />
                     </div>
-
-                    {/* Proxy Input */}
-                    {showAdvanced && (
-                        <div className="p-4 rounded-xl bg-secondary/30 border border-border/40 space-y-2">
-                            <Label className="text-xs font-semibold text-muted-foreground">Proxy URL</Label>
-                            <Input placeholder="http://user:pass@host:port" value={proxy} onChange={(e) => setProxy(e.target.value)} className="h-10 text-sm" />
-                        </div>
-                    )}
-
-                    {/* URL Input & Analyze */}
-                    <div className="flex flex-col md:flex-row gap-4">
-                        <div className="flex-1">
-                            <Input
-                                placeholder="https://www.youtube.com/watch?v=..."
-                                value={url}
-                                onChange={(e) => setUrl(e.target.value)}
-                                className="h-12 text-lg px-4 rounded-xl"
-                            />
-                        </div>
-                        <Button
-                            onClick={handleAnalyze}
-                            disabled={analyzing || !url || loading}
-                            className="h-12 px-8 rounded-xl font-bold bg-primary text-primary-foreground hover:opacity-90 transition-all"
-                        >
-                            {analyzing ? <Loader2 className="animate-spin mr-2" /> : <ScanText className="mr-2" />}
-                            {analyzing ? t('YouTubeDownloader.analyzing') : t('YouTubeDownloader.analyze')}
-                        </Button>
-                    </div>
-
-                    {/* Results Area */}
-                    <div className="space-y-4 min-h-[200px]">
-                        {analyzing ? (
-                            // Skeleton Loading
-                            <div className="space-y-4">
-                                <div className="flex gap-4 p-4 border border-border/40 rounded-xl bg-secondary/50">
-                                    <div className="w-32 h-20 bg-muted animate-pulse rounded-lg" />
-                                    <div className="space-y-2 flex-1 py-1">
-                                        <div className="h-6 w-3/4 bg-muted animate-pulse rounded" />
-                                        <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    {[1, 2, 3].map(i => (
-                                        <div key={i} className="h-16 bg-muted animate-pulse rounded-xl" />
-                                    ))}
+                    <Button
+                        onClick={handleAnalyze}
+                        disabled={analyzing || !url || loading}
+                        className="h-12 px-8 rounded-xl font-bold bg-primary text-primary-foreground hover:opacity-90 transition-all"
+                    >
+                        {analyzing ? <Loader2 className="animate-spin mr-2" /> : <ScanText className="mr-2" />}
+                        {analyzing ? t('YouTubeDownloader.analyzing') : t('YouTubeDownloader.analyze')}
+                    </Button>
+                </div>
+        
+                {/* Results Area */}
+                <div className="space-y-4 min-h-[200px]">
+                    {analyzing ? (
+                        // Skeleton Loading
+                        <div className="space-y-4">
+                            <div className="flex gap-4 p-4 border border-border/40 rounded-xl bg-secondary/50">
+                                <div className="w-32 h-20 bg-muted animate-pulse rounded-lg" />
+                                <div className="space-y-2 flex-1 py-1">
+                                    <div className="h-6 w-3/4 bg-muted animate-pulse rounded" />
+                                    <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
                                 </div>
                             </div>
-                        ) : metadata ? (
-                            // Actual Results
-                            <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4">
-                                <div className="flex items-start gap-4 p-4 bg-secondary/20 rounded-xl border border-border/50">
-                                    {metadata.thumbnail && (
-                                        <img src={metadata.thumbnail} alt="Ref" className="w-32 rounded-lg shadow-sm object-cover aspect-video" />
-                                    )}
-                                    <div>
-                                        <h3 className="font-bold text-lg line-clamp-2 leading-tight">{metadata.title}</h3>
-                                        <p className="text-xs text-muted-foreground mt-1">Duration: {metadata.duration}s</p>
-                                    </div>
+                            <div className="space-y-2">
+                                {[1, 2, 3].map(i => (
+                                    <div key={i} className="h-16 bg-muted animate-pulse rounded-xl" />
+                                ))}
+                            </div>
+                        </div>
+                    ) : metadata ? (
+                        // Actual Results
+                        <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4">
+                            <div className="flex items-start gap-4 p-4 bg-secondary/20 rounded-xl border border-border/50">
+                                {metadata.thumbnail && (
+                                    <img src={metadata.thumbnail} alt="Ref" className="w-32 rounded-lg shadow-sm object-cover aspect-video" />
+                                )}
+                                <div>
+                                    <h3 className="font-bold text-lg line-clamp-2 leading-tight">{metadata.title}</h3>
+                                    <p className="text-xs text-muted-foreground mt-1">Duration: {metadata.duration}s</p>
                                 </div>
-
-                                <Tabs defaultValue="video" className="w-full">
-                                    <TabsList className="grid w-full grid-cols-3 mb-8 bg-muted/60 p-2 rounded-2xl h-14 items-center">
-                                        <TabsTrigger value="video" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
-                                            <Video className="w-4 h-4" />
-                                            {t('YouTubeDownloader.tabs.video')}
-                                        </TabsTrigger>
-                                        <TabsTrigger value="audio" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
-                                            <Music className="w-4 h-4" />
-                                            {t('YouTubeDownloader.tabs.audio')}
-                                        </TabsTrigger>
-                                        <TabsTrigger value="subtitle" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
-                                            <Captions className="w-4 h-4" />
-                                            {t('YouTubeDownloader.tabs.subtitle')}
-                                        </TabsTrigger>
-                                    </TabsList>
-
-                                    {['video', 'audio', 'subtitle'].map(type => (
-                                        <TabsContent key={type} value={type} className="space-y-3 mt-0">
-                                            {qualities.filter(q => {
-                                                if (type === 'subtitle') return q.isSubtitle;
-                                                if (type === 'audio') return q.id === 'audio';
-                                                return !q.isSubtitle && q.id !== 'audio';
-                                            }).map((q) => (
-                                                <div key={q.id || q.label} className="flex items-center justify-between p-4 rounded-xl bg-background/50 border border-border/40 hover:border-primary/50 transition-colors group">
-                                                    <div className="flex items-center gap-4">
-                                                        <div className={`p-2 rounded-lg transition-colors ${q.isSubtitle ? 'bg-orange-500/10 text-orange-500 group-hover:bg-orange-500/20' :
-                                                            (q.id === 'audio' ? 'bg-violet-500/10 text-violet-500 group-hover:bg-violet-500/20' :
-                                                                'bg-red-500/10 text-red-500 group-hover:bg-red-500/20')
-                                                            }`}>
-                                                            {q.isSubtitle ? <Captions className="h-5 w-5" /> : (q.id === 'audio' ? <Music className="h-5 w-5" /> : <Video className="h-5 w-5" />)}
-                                                        </div>
-                                                        <div>
-                                                            <div className="font-bold text-sm">{q.label}</div>
-                                                            <div className="text-xs text-muted-foreground">{formatBytes(q.totalSize)}</div>
-                                                        </div>
+                            </div>
+        
+                            <Tabs defaultValue="video" className="w-full">
+                                <TabsList className="grid w-full grid-cols-3 mb-8 bg-muted/60 p-2 rounded-2xl h-14 items-center">
+                                    <TabsTrigger value="video" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
+                                        <Video className="w-4 h-4" />
+                                        {t('YouTubeDownloader.tabs.video')}
+                                    </TabsTrigger>
+                                    <TabsTrigger value="audio" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
+                                        <Music className="w-4 h-4" />
+                                        {t('YouTubeDownloader.tabs.audio')}
+                                    </TabsTrigger>
+                                    <TabsTrigger value="subtitle" className="rounded-xl h-full gap-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:bg-background/40 cursor-pointer">
+                                        <Captions className="w-4 h-4" />
+                                        {t('YouTubeDownloader.tabs.subtitle')}
+                                    </TabsTrigger>
+                                </TabsList>
+        
+                                {['video', 'audio', 'subtitle'].map(type => (
+                                    <TabsContent key={type} value={type} className="space-y-3 mt-0">
+                                        {qualities.filter(q => {
+                                            if (type === 'subtitle') return q.isSubtitle;
+                                            if (type === 'audio') return q.id === 'audio';
+                                            return !q.isSubtitle && q.id !== 'audio';
+                                        }).map((q) => (
+                                            <div key={q.id || q.label} className="flex items-center justify-between p-4 rounded-xl bg-background/50 border border-border/40 hover:border-primary/50 transition-colors group">
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`p-2 rounded-lg transition-colors ${q.isSubtitle ? 'bg-orange-500/10 text-orange-500 group-hover:bg-orange-500/20' :
+                                                        (q.id === 'audio' ? 'bg-violet-500/10 text-violet-500 group-hover:bg-violet-500/20' :
+                                                            'bg-red-500/10 text-red-500 group-hover:bg-red-500/20')
+                                                        }`}>
+                                                        {q.isSubtitle ? <Captions className="h-5 w-5" /> : (q.id === 'audio' ? <Music className="h-5 w-5" /> : <Video className="h-5 w-5" />)}
                                                     </div>
-                                                    <Button size="sm" variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors" onClick={() => startDownload(q)} disabled={loading}>
-                                                        {downloadingId === q.id ? (
-                                                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('YouTubeDownloader.processing')}</>
-                                                        ) : (
-                                                            <><Download className="mr-2 h-4 w-4" /> {t('YouTubeDownloader.downloadBtn')}</>
-                                                        )}
-                                                    </Button>
+                                                    <div>
+                                                        <div className="font-bold text-sm">{q.label}</div>
+                                                        <div className="text-xs text-muted-foreground">{formatBytes(q.totalSize)}</div>
+                                                    </div>
                                                 </div>
-                                            ))}
-                                            {qualities.filter(q => {
-                                                if (type === 'subtitle') return q.isSubtitle;
-                                                if (type === 'audio') return q.id === 'audio';
-                                                return !q.isSubtitle && q.id !== 'audio';
-                                            }).length === 0 && (
-                                                    <div className="text-center p-8 text-muted-foreground bg-secondary/5 rounded-xl border border-dashed border-border/30">
-                                                        {t('YouTubeDownloader.noFormats', { type: t(`tabs.${type}`) })}
-                                                    </div>
-                                                )}
-                                        </TabsContent>
-                                    ))}
-                                </Tabs>
-                            </div>
-                        ) : (
-                            // Empty State
-                            <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-border/40 rounded-2xl text-muted-foreground/40 bg-muted/5">
-                                <ScanText className="h-12 w-12 mb-3 opacity-20" />
-                                <p className="text-sm">{t('YouTubeDownloader.emptyState')}</p>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Loading/Progress State */}
-                    {loading && (
-                        <div className="space-y-3 p-6 bg-secondary/10 rounded-xl border border-border/20">
-                            <div className="flex justify-between text-sm font-medium">
-                                <span className="text-muted-foreground">{status}</span>
-                                <span className="text-primary font-bold">{progress}%</span>
-                            </div>
-                            <Progress value={progress} className="h-2 rounded-full" />
-                            <Button variant="ghost" size="sm" onClick={handleCancel} className="text-muted-foreground hover:text-destructive h-8 px-4 text-xs mb-2">
-                                {t('YouTubeDownloader.cancel')}
-                            </Button>
-                            <p className="text-xs text-muted-foreground/80 text-center max-w-[90%] flex items-center gap-1 justify-center">
-                                <AlertCircle className="w-3 h-3 inline pb-[1px]" />
-                                {t('YouTubeDownloader.speedNote')}
-                            </p>
+                                                <Button size="sm" variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors" onClick={() => startDownload(q)} disabled={loading}>
+                                                    {downloadingId === q.id ? (
+                                                        <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('YouTubeDownloader.processing')}</>
+                                                    ) : (
+                                                        <><Download className="mr-2 h-4 w-4" /> {t('YouTubeDownloader.downloadBtn')}</>
+                                                    )}
+                                                </Button>
+                                            </div>
+                                        ))}
+                                        {qualities.filter(q => {
+                                            if (type === 'subtitle') return q.isSubtitle;
+                                            if (type === 'audio') return q.id === 'audio';
+                                            return !q.isSubtitle && q.id !== 'audio';
+                                        }).length === 0 && (
+                                                <div className="text-center p-8 text-muted-foreground bg-secondary/5 rounded-xl border border-dashed border-border/30">
+                                                    {t('YouTubeDownloader.noFormats', { type: t(`tabs.${type}`) })}
+                                                </div>
+                                            )}
+                                    </TabsContent>
+                                ))}
+                            </Tabs>
+                        </div>
+                    ) : (
+                        // Empty State
+                        <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-border/40 rounded-2xl text-muted-foreground/40 bg-muted/5">
+                            <ScanText className="h-12 w-12 mb-3 opacity-20" />
+                            <p className="text-sm">{t('YouTubeDownloader.emptyState')}</p>
                         </div>
                     )}
-
-                {/* Error */}
-                {error && (
-                    <Alert variant="destructive">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>{error}</AlertDescription>
-                    </Alert>
+                </div>
+        
+                {/* Loading/Progress State */}
+                {loading && (
+                    <div className="space-y-3 p-6 bg-secondary/10 rounded-xl border border-border/20">
+                        <div className="flex justify-between text-sm font-medium">
+                            <span className="text-muted-foreground">{status}</span>
+                            <span className="text-primary font-bold">{progress}%</span>
+                        </div>
+                        <Progress value={progress} className="h-2 rounded-full" />
+                        <Button variant="ghost" size="sm" onClick={handleCancel} className="text-muted-foreground hover:text-destructive h-8 px-4 text-xs mb-2">
+                            {t('YouTubeDownloader.cancel')}
+                        </Button>
+                        <p className="text-xs text-muted-foreground/80 text-center max-w-[90%] flex items-center gap-1 justify-center">
+                            <AlertCircle className="w-3 h-3 inline pb-[1px]" />
+                            {t('YouTubeDownloader.speedNote')}
+                        </p>
+                    </div>
                 )}
+        
+            {/* Error */}
+            {error && (
+                <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                </Alert>
+            )}
+        </CardContent>
+                </Card>
+        
+                <div className="mt-8 space-y-4">
+        <Card className="border-border/40 bg-card/20 backdrop-blur-sm">
+            <CardHeader>
+                <CardTitle className="text-base">{t('YouTubeDownloader.flowTitle')}</CardTitle>
+                <CardDescription>{t('YouTubeDownloader.flowDesc')}</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 text-sm text-muted-foreground">
+                <div className="flex items-start gap-3">
+                    <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>
+                    <p>{t('YouTubeDownloader.flowStep1')}</p>
+                </div>
+                <div className="flex items-start gap-3">
+                    <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</div>
+                    <p>{t('YouTubeDownloader.flowStep2')}</p>
+                </div>
+                <div className="flex items-start gap-3">
+                    <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</div>
+                    <p>{t('YouTubeDownloader.flowStep3')}</p>
+                </div>
             </CardContent>
         </Card>
-
-        <div className="mt-8 space-y-4">
-            <Card className="border-border/40 bg-card/20 backdrop-blur-sm">
-                <CardHeader>
-                    <CardTitle className="text-base">{t('YouTubeDownloader.flowTitle')}</CardTitle>
-                    <CardDescription>{t('YouTubeDownloader.flowDesc')}</CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-start gap-3">
-                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>
-                        <p>{t('YouTubeDownloader.flowStep1')}</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</div>
-                        <p>{t('YouTubeDownloader.flowStep2')}</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                        <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</div>
-                        <p>{t('YouTubeDownloader.flowStep3')}</p>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Alert className="border-amber-500/30 bg-amber-500/5">
-                <AlertCircle className="h-4 w-4 text-amber-600" />
-                <AlertTitle className="text-amber-700">{t('YouTubeDownloader.limitationsTitle')}</AlertTitle>
-                <AlertDescription className="text-amber-700/80">
-                    {t('YouTubeDownloader.limitationsDesc')}
-                </AlertDescription>
-            </Alert>
-        </div>
-        </div>
+        
+        <Alert className="border-amber-500/30 bg-amber-500/5">
+            <AlertCircle className="h-4 w-4 text-amber-600" />
+            <AlertTitle className="text-amber-700">{t('YouTubeDownloader.limitationsTitle')}</AlertTitle>
+            <AlertDescription className="text-amber-700/80">
+                {t('YouTubeDownloader.limitationsDesc')}
+            </AlertDescription>
+        </Alert>
+                </div></div>
     )
 }

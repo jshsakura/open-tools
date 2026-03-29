@@ -23,19 +23,17 @@ export default function SqlFormatterPage() {
     const tool = getToolById('sql-formatter');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-                {tool && (
-                    <ToolPageHeader
-                        title={t('SqlFormatter.title')}
-                        description={t('SqlFormatter.description')}
-                        icon={tool.icon}
-                        colorClass={tool.color}
-                    />
-                )}
-            </div>
-            <SqlFormatter />
-            <ToolGuide ns="SqlFormatter" />
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+            {tool && (
+                <ToolPageHeader
+                    title={t('SqlFormatter.title')}
+                    description={t('SqlFormatter.description')}
+                    icon={tool.icon}
+                    colorClass={tool.color}
+                />
+            )}
         </div>
+        <SqlFormatter />
+        <ToolGuide ns="SqlFormatter" /></div>
     )
 }

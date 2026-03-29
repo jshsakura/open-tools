@@ -26,21 +26,19 @@ export default function ColorPalettePage() {
     const tool = getToolById('color-palette');
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('ColorPalette.title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('ColorPalette.description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                />
-            )}
-        </div>
-
-            <ColorPaletteTool />
-        </div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
+        {tool && (
+            <ToolPageHeader
+                title={t.rich('ColorPalette.title', {
+                    span: (chunks) => <span className="text-primary">{chunks}</span>
+                })}
+                description={t('ColorPalette.description')}
+                icon={tool.icon}
+                colorClass={tool.color}
+            />
+        )}
+                </div>
+        
+        <ColorPaletteTool /></div>
     )
 }
