@@ -1,19 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
+import { extractUrlishInput } from "@/lib/url-input";
 
 export const runtime = 'edge';
+
+interface SunoClip {
+    id: string;
+    title: string;
+    image: string;
+    audioUrl: string;
+    description: string;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === "object" && value !== null;
+}
+
+function getString(value: unknown): string | null {
+    return typeof value === "string" ? value : null;
+}
 
 export async function POST(req: NextRequest) {
     try {
         const { url } = await req.json();
+        const normalizedUrl = typeof url === "string" ? extractUrlishInput(url) : "";
 
-        if (!url || (!url.includes("suno.com") && !url.includes("mureka.ai"))) {
+        if (!normalizedUrl || (!normalizedUrl.includes("suno.com") && !normalizedUrl.includes("mureka.ai"))) {
             return NextResponse.json(
                 { error: "Invalid URL. Please provide a valid Suno.com or Mureka.ai link." },
                 { status: 400 }
             );
         }
 
-        const response = await fetch(url, {
+        const response = await fetch(normalizedUrl, {
             headers: {
                 "User-Agent":
                     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -35,31 +53,39 @@ export async function POST(req: NextRequest) {
 
         if (nextDataMatch) {
             try {
-                const json = JSON.parse(nextDataMatch[1]);
+                const json: unknown = JSON.parse(nextDataMatch[1]);
                 // Navigate to find clips. The structure varies but usually props.pageProps.initialState... or props.pageProps.clip...
                 // Let's search recursively or look for specific keys.
 
-                const clips: any[] = [];
+                const clips: SunoClip[] = [];
 
                 // Helper to find clips in the JSON object
-                const findClips = (obj: any) => {
-                    if (!obj || typeof obj !== 'object') return;
-
-                    if (Array.isArray(obj)) {
-                        obj.forEach(findClips);
+                const findClips = (obj: unknown) => {
+                    if (!isRecord(obj)) {
+                        if (Array.isArray(obj)) {
+                            obj.forEach(findClips);
+                        }
                         return;
                     }
 
+                    const audioUrl = getString(obj.audio_url);
+                    const title = getString(obj.title);
+                    const id = getString(obj.id);
+
                     // Suno Clip Structure usually has: id, title, audio_url, image_url (or metadata with image)
-                    if (obj.audio_url && obj.title && obj.id) {
+                    if (audioUrl && title && id) {
+                        const metadata = isRecord(obj.metadata) ? obj.metadata : null;
+                        const prompt = metadata ? getString(metadata.prompt) ?? "" : "";
+                        const image = getString(obj.image_large_url) ?? getString(obj.image_url) ?? "";
+
                         // Avoid duplicates
-                        if (!clips.find(c => c.id === obj.id)) {
+                        if (!clips.find((clip) => clip.id === id)) {
                             clips.push({
-                                id: obj.id,
-                                title: obj.title || "Untitled",
-                                image: obj.image_large_url || obj.image_url || "",
-                                audioUrl: obj.audio_url,
-                                description: obj.metadata?.prompt || ""
+                                id,
+                                title: title || "Untitled",
+                                image,
+                                audioUrl,
+                                description: prompt,
                             });
                         }
                     }
@@ -87,7 +113,7 @@ export async function POST(req: NextRequest) {
         const ogTitle = ogTitleMatch ? ogTitleMatch[1] : null;
         
         if (cdnMatches.length > 0) {
-            const clips: any[] = [];
+            const clips: SunoClip[] = [];
             const seenIds = new Set<string>();
             
             for (const match of cdnMatches) {
@@ -115,7 +141,7 @@ export async function POST(req: NextRequest) {
         }
 
         // Fallback for Mureka or single pages simple regex if NEXT_DATA failed or empty
-        if (url.includes("mureka.ai")) {
+        if (normalizedUrl.includes("mureka.ai")) {
             // ... (Existing Mureka logic)
             const murekaTitleMatch = html.match(/"title"\s*:\s*"([^"]+)"/);
             const murekaTitle = murekaTitleMatch ? murekaTitleMatch[1] : "Mureka Song";
