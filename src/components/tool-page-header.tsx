@@ -27,7 +27,7 @@ export function ToolPageHeader({
     const resolvedColor = colorClass ?? tool?.color ?? "text-primary"
 
     return (
-        <div className={cn("mb-12 space-y-4", center && "text-center", className)}>
+        <div className={cn("mx-auto mb-12 max-w-5xl space-y-4", center && "text-center", className)}>
             <div className={cn(
                 "inline-flex items-center justify-center p-3 rounded-2xl bg-muted/40 ring-1 ring-border/50",
                 center ? "mx-auto" : ""
