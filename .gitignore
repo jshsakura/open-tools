@@ -47,3 +47,7 @@ next-env.d.ts
 messages/*/merged.json
 *-after.png
 *-final.png
+
+# local workspace artifacts
+.ipynb_checkpoints/
+.sisyphus/
