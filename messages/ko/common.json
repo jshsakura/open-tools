@@ -10,14 +10,14 @@
     "searchNoResultsHint": "다른 키워드로 검색해 보세요"
   },
   "Category": {
-    "Development": "개발 (Development)",
-    "Image": "이미지 (Image)",
-    "Video": "비디오 (Video)",
-    "Design": "디자인 (Design)",
-    "Security": "보안 (Security)",
-    "Utilities": "유틸리티 (Utilities)",
-    "AI": "인공지능 (AI)",
-    "Korea": "한국 (Korea)"
+    "Development": "개발",
+    "Image": "이미지",
+    "Video": "비디오",
+    "Design": "디자인",
+    "Security": "보안",
+    "Utilities": "유틸리티",
+    "AI": "인공지능",
+    "Korea": "한국"
   },
   "Hero": {
     "badge": "무료 온라인 도구 모음",

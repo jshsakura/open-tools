@@ -1,12 +1,12 @@
 "use client"
 
+import NextImage from "next/image"
 import { useState, useRef, useCallback, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import {
   Upload,
   Download,
   X,
-  Image as ImageIcon,
   Eraser,
   Paintbrush,
   Square,
@@ -18,10 +18,8 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 
 type BrushShape = "circle" | "square"
@@ -48,9 +46,6 @@ export function ImageEraser() {
   // History for undo
   const historyRef = useRef<ImageData[]>([])
 
-  // Display scale for canvas
-  const [displayScale, setDisplayScale] = useState(1)
-
   // Calculate display scale based on container
   const calculateDisplayScale = useCallback(() => {
     if (!containerRef.current || !image) return 1
@@ -67,8 +62,6 @@ export function ImageEraser() {
     if (!canvas || !ctx || !image) return
 
     const scale = calculateDisplayScale()
-    setDisplayScale(scale)
-
     canvas.width = image.width * scale
     canvas.height = image.height * scale
 
@@ -84,7 +77,6 @@ export function ImageEraser() {
     if (maskCanvas) {
       const maskCtx = maskCanvas.getContext("2d")
       if (maskCtx) {
-        const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height)
         const tempCanvas = document.createElement("canvas")
         tempCanvas.width = canvas.width
         tempCanvas.height = canvas.height
@@ -397,7 +389,7 @@ export function ImageEraser() {
   }, [])
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="space-y-2">
         <h1
           className="text-3xl font-black tracking-tight"
@@ -454,9 +446,12 @@ export function ImageEraser() {
           <GlassCard className="p-4">
             <div ref={containerRef} className="relative">
               {resultUrl ? (
-                <img
+                <NextImage
                   src={resultUrl}
                   alt="Result"
+                  width={image.width}
+                  height={image.height}
+                  unoptimized
                   className="w-full max-h-[500px] object-contain rounded-lg"
                 />
               ) : (
