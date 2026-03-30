@@ -353,6 +353,91 @@
             "step3": "투명 배경 이미지를 PNG로 다운로드하세요. 모든 처리는 브라우저에서 로컬로 이루어집니다."
         }
     },
+    "ImageEraser": {
+        "title": "AI <span>이미지 지우개</span>",
+        "description": "작은 불필요 영역을 마스크로 표시한 뒤 브라우저 안에서 로컬 AI 인페인팅을 실행합니다. 가능하면 WebGPU를 사용하고, 더 넓은 호환성을 위해 WASM으로 폴백합니다.",
+        "inputPlaceholder": "지우고 싶은 영역을 마스킹할 이미지를 여기에 놓으세요",
+        "dropHint": "업로드, 드래그 앤 드롭, 클립보드 붙여넣기를 지원합니다. 로고, 배지, 스탬프, 작은 방해 요소 제거에 특히 적합합니다.",
+        "supportedFormats": "PNG, JPG, WebP 지원 · 최대 12MB · 모든 처리는 로컬에서만 진행됩니다",
+        "selectImage": "이미지 선택",
+        "pasteFromClipboard": "클립보드 붙여넣기",
+        "editorTitle": "지울 영역을 마스크로 칠하세요",
+        "editorSubtitle": "지우고 싶은 부분만 작게 칠할수록 결과가 더 자연스럽고 빠르게 나옵니다.",
+        "replaceImage": "이미지 바꾸기",
+        "clearImage": "이미지 지우기",
+        "controlsTitle": "로컬 지우개 설정",
+        "controlsDescription": "마스크를 어떻게 칠할지 정한 뒤, 선택한 영역에만 한 번의 인페인팅을 실행합니다.",
+        "maskModeLabel": "마스크 모드",
+        "maskMode": {
+            "paint": "마스크 칠하기",
+            "erase": "마스크 지우기"
+        },
+        "brushShapeLabel": "브러시 모양",
+        "brushShape": {
+            "circle": "원형",
+            "square": "사각형"
+        },
+        "brushSizeLabel": "브러시 크기",
+        "clearMask": "마스크 지우기",
+        "runEraser": "선택 영역 지우기",
+        "processing": "로컬 인페인팅 실행 중…",
+        "download": "결과 다운로드",
+        "preview": {
+            "original": "원본",
+            "result": "지운 결과"
+        },
+        "statusTitle": "런타임 상태",
+        "status": {
+            "idle": "로컬 지우개를 실행할 준비가 되었습니다. 첫 실행은 모델을 한 번 내려받아야 해서 더 오래 걸릴 수 있습니다.",
+            "preparing": "크롭, 마스크, 로컬 추론 런타임을 준비하는 중입니다…",
+            "completedGpu": "WebGPU 가속으로 완료되었습니다.",
+            "completedCpu": "WASM 폴백으로 완료되었습니다.",
+            "success": "이미지 지우기가 완료되었습니다.",
+            "failed": "이미지 지우기에 실패했습니다."
+        },
+        "badges": {
+            "webgpu": "WebGPU",
+            "wasm": "WASM 폴백"
+        },
+        "firstRunNote": "첫 실행에서는 인페인팅 모델을 다운로드하므로 다음 실행보다 시간이 더 걸릴 수 있습니다.",
+        "scopeNote": "이 v1은 작은~중간 크기의 마스크 영역에 가장 잘 맞습니다. 포토샵급 대형 오브젝트 제거 도구로 포지셔닝하지 않습니다.",
+        "maskCoverage": "마스크 영역: 이미지의 {percentage}%",
+        "clipboard": {
+            "pasted": "클립보드 이미지를 붙여넣었습니다.",
+            "empty": "클립보드에서 이미지를 찾지 못했습니다.",
+            "failed": "클립보드 접근에 실패했습니다.",
+            "fallback": "브라우저 권한을 허용하거나 Ctrl/Cmd+V로 직접 붙여넣어 보세요."
+        },
+        "errors": {
+            "invalidType": "이미지 파일을 선택해주세요.",
+            "fileTooLarge": "12MB보다 작은 이미지를 사용해주세요.",
+            "loadFailed": "이 이미지를 불러오지 못했습니다.",
+            "noMask": "먼저 지우고 싶은 영역 위에 마스크를 칠해주세요.",
+            "canvasUnavailable": "이 브라우저에서는 캔버스 렌더링을 사용할 수 없습니다.",
+            "generic": "지우기 작업을 준비하는 중 문제가 발생했습니다."
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "이미지를 업로드하거나 드래그 앤 드롭하거나 클립보드에서 붙여넣으세요.",
+            "step2": "지우고 싶은 로고, 스탬프, 텍스트, 작은 방해 요소 위를 촘촘하게 칠하세요.",
+            "step3": "지우기 실행 후 로컬 인페인팅이 끝나면 편집된 이미지를 다운로드하세요."
+        },
+        "features": {
+            "title": "이 도구를 이렇게 설계한 이유",
+            "f1": {
+                "title": "완전 로컬 처리",
+                "desc": "이미지, 마스크, 인페인팅이 모두 브라우저 안에서 실행됩니다. 서버로 업로드하지 않습니다."
+            },
+            "f2": {
+                "title": "WebGPU 우선",
+                "desc": "최신 Chromium 계열 브라우저에서는 WebGPU를 우선 사용하고, 더 넓은 기기 호환성을 위해 WASM으로 폴백합니다."
+            },
+            "f3": {
+                "title": "작은 마크 제거에 최적화",
+                "desc": "대형 장면 복원보다는 작은 로고, 배지, 스탬프 같은 방해 요소를 지우는 품질을 목표로 합니다."
+            }
+        }
+    },
     "Base64Converter": {
         "title": "Base64 인코더/디코더",
         "description": "텍스트와 Base64 간의 실시간 변환을 지원하며 클립보드 복사 기능을 제공합니다.",

@@ -354,6 +354,91 @@
             "step3": "Download the transparent PNG. All processing happens locally in your browser."
         }
     },
+    "ImageEraser": {
+        "title": "AI <span>Image Eraser</span>",
+        "description": "Mask a small unwanted area, then run local AI inpainting in your browser. WebGPU is used when available, with WASM fallback for broader compatibility.",
+        "inputPlaceholder": "Drop an image here to start masking the area you want to erase",
+        "dropHint": "Upload, drag and drop, or paste from your clipboard. Best for logos, badges, stamps, and other small distractions.",
+        "supportedFormats": "PNG, JPG, and WebP supported · up to 12MB · all processing stays local",
+        "selectImage": "Select Image",
+        "pasteFromClipboard": "Paste Image",
+        "editorTitle": "Mask the area to erase",
+        "editorSubtitle": "Paint over only the part you want removed. Smaller masks give cleaner and faster results.",
+        "replaceImage": "Replace image",
+        "clearImage": "Clear image",
+        "controlsTitle": "Local eraser controls",
+        "controlsDescription": "Choose how you paint the mask, then run one focused inpainting pass on the selected area.",
+        "maskModeLabel": "Mask mode",
+        "maskMode": {
+            "paint": "Paint mask",
+            "erase": "Erase mask"
+        },
+        "brushShapeLabel": "Brush shape",
+        "brushShape": {
+            "circle": "Circle",
+            "square": "Square"
+        },
+        "brushSizeLabel": "Brush size",
+        "clearMask": "Clear mask",
+        "runEraser": "Erase selected area",
+        "processing": "Running local inpainting…",
+        "download": "Download result",
+        "preview": {
+            "original": "Original",
+            "result": "Erased result"
+        },
+        "statusTitle": "Runtime status",
+        "status": {
+            "idle": "Ready for a local erase pass. First run may take longer because the model has to download once.",
+            "preparing": "Preparing crop, mask, and local inference runtime…",
+            "completedGpu": "Finished with WebGPU acceleration.",
+            "completedCpu": "Finished with WASM fallback.",
+            "success": "Image erasing completed.",
+            "failed": "Image erasing failed."
+        },
+        "badges": {
+            "webgpu": "WebGPU",
+            "wasm": "WASM fallback"
+        },
+        "firstRunNote": "First run downloads the inpainting model, so the initial erase can take noticeably longer than the next one.",
+        "scopeNote": "This v1 works best on small and medium marked regions. It is not positioned as a full Photoshop-style object removal tool.",
+        "maskCoverage": "Masked area: {percentage}% of the image",
+        "clipboard": {
+            "pasted": "Pasted image from clipboard.",
+            "empty": "No image found in your clipboard.",
+            "failed": "Clipboard access failed.",
+            "fallback": "Allow clipboard permissions or try Ctrl/Cmd+V directly."
+        },
+        "errors": {
+            "invalidType": "Please choose an image file.",
+            "fileTooLarge": "Please use an image smaller than 12MB.",
+            "loadFailed": "Unable to load this image.",
+            "noMask": "Paint a mask over the area you want to erase first.",
+            "canvasUnavailable": "Canvas rendering is unavailable in this browser.",
+            "generic": "Something went wrong while preparing the erase task."
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload, drag in, or paste an image from your clipboard.",
+            "step2": "Paint a tight mask over the unwanted logo, stamp, text, or other small distraction.",
+            "step3": "Run the eraser and download the edited image after the local inpainting pass finishes."
+        },
+        "features": {
+            "title": "Why this tool is scoped this way",
+            "f1": {
+                "title": "Local-only processing",
+                "desc": "The image, mask, and inpainting run directly in your browser. Nothing is uploaded to our server."
+            },
+            "f2": {
+                "title": "WebGPU first",
+                "desc": "Modern Chromium browsers use WebGPU when possible, with a WASM fallback for wider device support."
+            },
+            "f3": {
+                "title": "Best for small marks",
+                "desc": "The quality target is small logos, badges, stamps, and similar distractions rather than large scene reconstruction."
+            }
+        }
+    },
     "Base64Converter": {
         "title": "Base64 Encoder/Decoder",
         "description": "Convert between text and Base64 in real-time with clipboard support.",
