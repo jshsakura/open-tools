@@ -17,7 +17,7 @@ export function MemeGenerator() {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [image, setImage] = useState<HTMLImageElement | null>(null)
-    const [fileName, setFileName] = useState("")
+    const [, setFileName] = useState("")
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
     const [fontSize, setFontSize] = useState(48)
@@ -121,7 +121,7 @@ export function MemeGenerator() {
     }
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <header className="space-y-2">
                 <h1 className="text-3xl font-black tracking-tight">{t("title")}</h1>
                 <p className="text-muted-foreground">{t("description")}</p>
