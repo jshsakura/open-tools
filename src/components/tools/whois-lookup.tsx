@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
+import { extractDomainInput } from "@/lib/url-input"
 
 interface DnsResult {
     domain: string
@@ -36,11 +37,16 @@ export function WhoisLookupTool() {
     const [copiedField, setCopiedField] = useState<string | null>(null)
 
     const handleLookup = useCallback(async () => {
-        const cleaned = domain.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "")
+        const cleaned = extractDomainInput(domain)
+            .replace(/^https?:\/\//, "")
+            .replace(/\/.*$/, "")
+            .trim()
         if (!cleaned) {
             toast.error(t("emptyDomain"))
             return
         }
+
+        setDomain(cleaned)
         setLoading(true)
         setResult(null)
         try {

@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
+import { extractUrlishInput } from "@/lib/url-input"
 
 interface HeaderPair {
     id: string
@@ -79,13 +80,14 @@ export function WebhookTesterTool() {
     }, [])
 
     const sendRequest = useCallback(async () => {
-        let targetUrl = url.trim()
+        let targetUrl = extractUrlishInput(url)
         if (!targetUrl) return
 
         if (!/^https?:\/\//i.test(targetUrl)) {
             targetUrl = "https://" + targetUrl
-            setUrl(targetUrl)
         }
+
+        setUrl(targetUrl)
 
         setLoading(true)
         setError("")

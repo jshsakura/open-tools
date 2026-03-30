@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
+import { extractUrlishInput } from "@/lib/url-input"
 
 interface HeaderResult {
     status: number
@@ -69,13 +70,14 @@ export function HttpHeaderAnalyzerTool() {
     const [copied, setCopied] = useState(false)
 
     const analyze = useCallback(async () => {
-        let targetUrl = url.trim()
+        let targetUrl = extractUrlishInput(url)
         if (!targetUrl) return
 
         if (!/^https?:\/\//i.test(targetUrl)) {
             targetUrl = "https://" + targetUrl
-            setUrl(targetUrl)
         }
+
+        setUrl(targetUrl)
 
         setLoading(true)
         setError("")
@@ -205,7 +207,7 @@ export function HttpHeaderAnalyzerTool() {
                                         <span className="font-mono text-xs text-muted-foreground break-all sm:ml-auto sm:text-right max-w-full sm:max-w-[60%]">{value}</span>
                                     </div>
                                 ))}
-                                {missingSecurityHeaders.map(([key, config]) => (
+                                {missingSecurityHeaders.map(([key]) => (
                                     <div key={key} className="flex items-center gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30">
                                         <ShieldAlert className="h-4 w-4 text-red-500 shrink-0" />
                                         <span className="font-mono text-sm font-semibold text-red-700 dark:text-red-400">{key}</span>

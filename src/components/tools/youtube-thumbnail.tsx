@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search, Download, ExternalLink, ImageIcon } from "lucide-react"
 import Image from "next/image"
+import { extractUrlishInput } from "@/lib/url-input"
 
 export function YoutubeThumbnail() {
     const t = useTranslations('YoutubeThumbnail');
@@ -28,7 +29,7 @@ export function YoutubeThumbnail() {
             } else if (hostname.includes('youtu.be')) {
                 return urlObj.pathname.slice(1);
             }
-        } catch (e) {
+        } catch {
             // Check if input is just the ID
             if (inputUrl.length === 11) return inputUrl;
         }
@@ -38,8 +39,10 @@ export function YoutubeThumbnail() {
     const handleExtract = (e: React.FormEvent) => {
         e.preventDefault()
         setError(null)
-        const id = extractVideoId(url)
+        const normalizedUrl = extractUrlishInput(url)
+        const id = extractVideoId(normalizedUrl)
         if (id) {
+            setUrl(normalizedUrl)
             setVideoId(id)
         } else {
             setError(t('errorInvalidUrl'))

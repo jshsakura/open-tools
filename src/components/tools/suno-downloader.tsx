@@ -10,6 +10,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import Image from "next/image"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { extractUrlishInput } from "@/lib/url-input"
 
 interface SunoData {
     title: string
@@ -28,7 +29,10 @@ export function SunoDownloader() {
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (!url) return
+        const normalizedUrl = extractUrlishInput(url)
+        if (!normalizedUrl) return
+
+        setUrl(normalizedUrl)
 
         setIsLoading(true)
         setError(null)
@@ -38,7 +42,7 @@ export function SunoDownloader() {
             const response = await fetch("/api/suno/verify", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ url }),
+                body: JSON.stringify({ url: normalizedUrl }),
             })
 
             const result = await response.json()
@@ -106,10 +110,13 @@ export function SunoDownloader() {
                             <LinkIcon className="h-5 w-5" />
                         </div>
                         <Input
-                            type="url"
                             placeholder={t('inputPlaceholder')}
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
+                            inputMode="url"
+                            autoCapitalize="none"
+                            autoCorrect="off"
+                            spellCheck={false}
                             className="h-12 border-border/40 bg-secondary/50 pl-12 text-foreground shadow-sm focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 placeholder:text-muted-foreground/50 transition-all hover:bg-secondary/70 backdrop-blur-md rounded-xl"
                             required
                         />
