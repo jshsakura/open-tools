@@ -10,6 +10,11 @@ export const tools = [
         href: "/tools/background-remover",
     },
     {
+        id: 'image-eraser',
+        titleKey: 'Catalog.ImageEraser.title',
+        href: "/tools/image-eraser",
+    },
+    {
         id: 'banner-generator',
         titleKey: 'Catalog.BannerGenerator.title',
         href: "/tools/banner-generator",

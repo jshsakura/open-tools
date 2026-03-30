@@ -3,7 +3,6 @@ import {
   Database,
   Ruler,
   FileJson,
-  ShieldCheck,
   Regex,
   Clock,
   MonitorPlay,
@@ -56,7 +55,6 @@ import {
   MonitorSmartphone,
   Volume2,
   Globe2,
-  Crop,
   Droplets,
   SlidersHorizontal,
   LayoutGrid,
@@ -66,6 +64,7 @@ import {
   Table,
   Code2,
   TimerReset,
+  Eraser,
 } from "lucide-react";
 import { YouTubeIcon } from "@/components/icons/youtube-icon";
 
@@ -114,7 +113,7 @@ export const toolsCatalog = [
     icon: Wand2,
     href: "/tools/background-remover",
     color: "text-purple-500",
-    tags: ["Media", "AI"],
+    tags: ["Image", "AI"],
   },
   {
     id: "banner-generator",
@@ -141,7 +140,7 @@ export const toolsCatalog = [
     icon: ImageIcon,
     href: "/tools/base64-image",
     color: "text-purple-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "border-radius-generator",
@@ -222,7 +221,7 @@ export const toolsCatalog = [
     icon: Minimize2,
     href: "/tools/image-compressor",
     color: "text-purple-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "image-converter",
@@ -231,7 +230,7 @@ export const toolsCatalog = [
     icon: ImageIcon,
     href: "/tools/image-converter",
     color: "text-emerald-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "ocr",
@@ -339,7 +338,7 @@ export const toolsCatalog = [
     icon: Music,
     href: "/tools/suno-downloader",
     color: "text-pink-500",
-    tags: ["Media"],
+    tags: ["Video"],
   },
   {
     id: "svg-to-jsx",
@@ -375,7 +374,7 @@ export const toolsCatalog = [
     icon: Video,
     href: "/tools/video-converter",
     color: "text-rose-500",
-    tags: ["Media"],
+    tags: ["Video"],
   },
   {
     id: "data-tools",
@@ -457,7 +456,7 @@ export const toolsCatalog = [
     icon: Box,
     href: "/tools/3d-viewer",
     color: "text-purple-500",
-    tags: ["Media"],
+    tags: ["Video"],
   },
   {
     id: "youtube-downloader",
@@ -466,7 +465,7 @@ export const toolsCatalog = [
     icon: YouTubeIcon,
     href: "/tools/youtube-downloader",
     color: "text-red-500",
-    tags: ["Media"],
+    tags: ["Video"],
   },
   {
     id: "youtube-thumbnail",
@@ -475,7 +474,7 @@ export const toolsCatalog = [
     icon: YouTubeIcon,
     href: "/tools/youtube-thumbnail",
     color: "text-pink-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "aes-crypto",
@@ -664,7 +663,7 @@ export const toolsCatalog = [
     icon: Camera,
     href: "/tools/exif-viewer",
     color: "text-rose-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "image-resizer",
@@ -673,7 +672,7 @@ export const toolsCatalog = [
     icon: Scaling,
     href: "/tools/image-resizer",
     color: "text-indigo-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "svg-optimizer",
@@ -712,13 +711,13 @@ export const toolsCatalog = [
     tags: ["Utilities"],
   },
   {
-    id: "image-cropper",
-    titleKey: "Catalog.ImageCropper.title",
-    descriptionKey: "Catalog.ImageCropper.description",
-    icon: Crop,
-    href: "/tools/image-cropper",
-    color: "text-teal-500",
-    tags: ["Media"],
+    id: "image-eraser",
+    titleKey: "Catalog.ImageEraser.title",
+    descriptionKey: "Catalog.ImageEraser.description",
+    icon: Eraser,
+    href: "/tools/image-eraser",
+    color: "text-fuchsia-500",
+    tags: ["Image", "AI"],
   },
   {
     id: "image-watermark",
@@ -727,7 +726,7 @@ export const toolsCatalog = [
     icon: Droplets,
     href: "/tools/image-watermark",
     color: "text-cyan-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "image-filters",
@@ -736,7 +735,7 @@ export const toolsCatalog = [
     icon: SlidersHorizontal,
     href: "/tools/image-filters",
     color: "text-amber-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "collage-maker",
@@ -745,7 +744,7 @@ export const toolsCatalog = [
     icon: LayoutGrid,
     href: "/tools/collage-maker",
     color: "text-pink-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "meme-generator",
@@ -754,7 +753,7 @@ export const toolsCatalog = [
     icon: Smile,
     href: "/tools/meme-generator",
     color: "text-yellow-500",
-    tags: ["Media"],
+    tags: ["Image"],
   },
   {
     id: "color-picker",

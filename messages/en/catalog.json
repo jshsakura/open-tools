@@ -2,7 +2,8 @@
   "Catalog": {
     "Categories": {
       "Development": "Development",
-      "Media": "Media",
+      "Image": "Image",
+      "Video": "Video",
       "Design": "Design",
       "Security": "Security",
       "Utilities": "Utilities"
@@ -175,6 +176,10 @@
     "BackgroundRemover": {
       "title": "AI Background Remover",
       "description": "Experience sophisticated AI-powered background removal directly in your browser."
+    },
+    "ImageEraser": {
+      "title": "AI Image Eraser",
+      "description": "Brush over logos, stamps, or small distractions and erase them locally with WebGPU or WASM."
     },
     "DataTools": {
       "title": "Data Tools Suite",
