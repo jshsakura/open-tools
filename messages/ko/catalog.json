@@ -519,6 +519,66 @@
     "PomodoroTimer": {
       "title": "뽀모도로 집중 타이머",
       "description": "뽀모도로 기법으로 생산성을 높이세요. 원형 진행 타이머, 집중/휴식 시간 커스터마이즈, 알림음, 세션 추적 기능을 제공합니다."
+    },
+    "ListSorter": {
+      "title": "리스트 정렬 및 중복 제거",
+      "description": "텍스트 리스트를 알파벳순 정렬, 중복 제거, 공백 제거 기능을 통해 즉시 정리하세요."
+    },
+    "JsonToTypes": {
+      "title": "JSON → TypeScript/Zod",
+      "description": "JSON 데이터를 바탕으로 TypeScript 인터페이스와 Zod 스키마 코드를 자동으로 생성합니다."
+    },
+    "CurlToCode": {
+      "title": "CURL → Code 변환기",
+      "description": "CURL 명령어를 JavaScript(Fetch), Python(Requests), Go 등의 다양한 언어로 즉시 변환합니다."
+    },
+    "HtmlToJsx": {
+      "title": "HTML → JSX 변환기",
+      "description": "일반 HTML 코드를 React용 JSX 코드로 변환합니다. class를 className으로 바꾸는 등의 매핑을 자동으로 처리합니다."
+    },
+    "MorseConverter": {
+      "title": "모스 부호 변환기",
+      "description": "텍스트를 모스 부호로, 모스 부호를 텍스트로 상호 변환합니다. 사운드 재생 기능도 포함되어 있습니다."
+    },
+    "LoanCalculator": {
+      "title": "대출/할부 상환 계산기",
+      "description": "상환 방식(원리금/원금균등)에 따른 월별 상환액과 총 이자를 계산하고 상세 상환표를 확인하세요."
+    },
+    "PassphraseGenerator": {
+      "title": "다이스웨어 암호 생성기",
+      "description": "기억하기 쉽지만 보안성은 극도로 높은 무작위 단어 조합 기반의 암호를 생성합니다."
+    },
+    "PasswordStrength": {
+      "title": "비밀번호 강도 분석기",
+      "description": "비밀번호의 보안 등급과 해킹 예상 시간을 정밀하게 분석하여 안전성을 평가합니다."
+    },
+    "YamlConverter": {
+      "title": "YAML ↔ JSON 변환기",
+      "description": "YAML과 JSON 형식 간의 상호 변환을 지원합니다. 구조 분석 및 문법 오류 강조 기능을 제공합니다."
+    },
+    "TimeZoneConverter": {
+      "title": "시각적 세계 시간대 변환기",
+      "description": "전 세계 주요 도시의 시간을 한눈에 비교하세요. 슬라이더를 이용해 시간대별 변화를 시각적으로 확인합니다."
+    },
+    "TextSimilarity": {
+      "title": "문장 유사도 검사기",
+      "description": "두 개의 텍스트를 비교하여 얼마나 유사한지 백분율(%)로 계산하고 차이점을 분석합니다."
+    },
+    "IcoConverter": {
+      "title": "ICO 파비콘 변환기",
+      "description": "PNG, JPG, SVG 이미지를 웹사이트나 앱 아이콘에 사용되는 .ico 파일로 즉시 변환합니다."
+    },
+    "CssPattern": {
+      "title": "CSS 패턴 생성기",
+      "description": "복잡한 이미지 없이 CSS만으로 세련된 배경 패턴(스트라이프, 도트, 격자 등)을 만들고 코드를 복사하세요."
+    },
+    "SvgVisualizer": {
+      "title": "SVG 경로 시각화 도구",
+      "description": "SVG의 d 속성 데이터를 입력하고 실시간으로 그려지는 모습을 확인하며 좌표를 수정해 볼 수 있습니다."
+    },
+    "ColorNameFinder": {
+      "title": "색상 이름 탐색기",
+      "description": "색상을 선택하면 가장 가까운 이름과 실시간 HEX/RGB 값을 확인하고 바로 복사할 수 있습니다."
     }
   }
 }

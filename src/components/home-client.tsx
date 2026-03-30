@@ -10,6 +10,14 @@ import React, {
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
+import {
+  getToolPopularity,
+  isPopularTool,
+  readToolPopularityMap,
+  TOOL_POPULARITY_STORAGE_KEY,
+  TOOL_POPULARITY_UPDATED_EVENT,
+  type ToolPopularityMap,
+} from "@/lib/tool-popularity";
 import { toolsCatalog } from "@/lib/tools-catalog";
 import {
   Image as ImageIcon,
@@ -28,9 +36,30 @@ export function HomeClient() {
   const t = useTranslations();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [popularityMap, setPopularityMap] = useState<ToolPopularityMap>({});
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+
+  useEffect(() => {
+    const syncPopularity = () => {
+      setPopularityMap(readToolPopularityMap());
+    };
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === TOOL_POPULARITY_STORAGE_KEY) {
+        syncPopularity();
+      }
+    };
+
+    syncPopularity();
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(TOOL_POPULARITY_UPDATED_EVENT, syncPopularity);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(TOOL_POPULARITY_UPDATED_EVENT, syncPopularity);
+    };
+  }, []);
 
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
@@ -50,9 +79,14 @@ export function HomeClient() {
           ...tool,
           title: t(tool.titleKey),
           description: t(tool.descriptionKey),
+          popularity: getToolPopularity(tool.id, popularityMap),
+          isPopular: isPopularTool(tool.id, popularityMap),
         }))
-        .sort((a, b) => a.title.localeCompare(b.title)),
-    [t],
+        .sort(
+          (a, b) =>
+            b.popularity - a.popularity || a.title.localeCompare(b.title),
+        ),
+    [popularityMap, t],
   );
 
   const allTags = useMemo(() => {
@@ -264,11 +298,13 @@ export function HomeClient() {
                 {filteredTools.map((tool) => (
                   <ToolCard
                     key={tool.id}
+                    id={tool.id}
                     title={tool.title}
                     description={tool.description}
                     icon={tool.icon}
                     href={tool.href}
                     color={tool.color}
+                    isPopular={tool.isPopular}
                     tags={tool.tags}
                   />
                 ))}
@@ -291,11 +327,13 @@ export function HomeClient() {
                 {filteredTools.map((tool) => (
                   <ToolCard
                     key={tool.id}
+                    id={tool.id}
                     title={tool.title}
                     description={tool.description}
                     icon={tool.icon}
                     href={tool.href}
                     color={tool.color}
+                    isPopular={tool.isPopular}
                     tags={tool.tags}
                   />
                 ))}
@@ -339,11 +377,13 @@ export function HomeClient() {
                     {categoryTools.map((tool) => (
                       <ToolCard
                         key={tool.id}
+                        id={tool.id}
                         title={tool.title}
                         description={tool.description}
                         icon={tool.icon}
                         href={tool.href}
                         color={tool.color}
+                        isPopular={tool.isPopular}
                         tags={tool.tags}
                       />
                     ))}

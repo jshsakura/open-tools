@@ -7,6 +7,7 @@ import { LayoutGrid, Music, Image as ImageIcon, FileText, Settings, HelpCircle, 
 
 import { GlassCard } from "@/components/ui/glass-card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { VisitorCounter } from "@/components/visitor-counter"
 
 export function Sidebar({ className }: { className?: string }) {
     const pathname = usePathname()
@@ -103,6 +104,9 @@ export function Sidebar({ className }: { className?: string }) {
                         </div>
                     </div>
                 </div>
+                
+                <VisitorCounter />
+
                 <div className="grid gap-1 mt-2">
                     <Link href="#" className="group flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:bg-white/10 hover:shadow-inner hover:text-foreground hover:translate-x-1">
                         <Settings className="h-4 w-4" />

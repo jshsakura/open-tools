@@ -2204,5 +2204,369 @@
             "f3": { "title": "Session Tracking", "desc": "Track completed pomodoros, total focus minutes, and progress to long break." },
             "f4": { "title": "Sound Alerts", "desc": "Audio notification plays when each phase ends. Toggle on/off anytime." }
         }
+    },
+    "ListSorter": {
+        "title": "List Sorter & Deduplicator",
+        "description": "Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly.",
+        "input": "Input List",
+        "output": "Sorted Result",
+        "placeholder": "Enter your list here, one item per line...",
+        "sortAsc": "Sort A-Z",
+        "sortDesc": "Sort Z-A",
+        "removeDuplicates": "Remove Duplicates",
+        "trimLines": "Trim Whitespace",
+        "removeEmpty": "Remove Empty Lines",
+        "reverse": "Reverse Order",
+        "stats": {
+            "original": "Original items",
+            "current": "Current items",
+            "duplicates": "Duplicates removed"
+        },
+        "copy": "Copy List",
+        "clear": "Clear",
+        "guide": {
+            "title": "How to Use List Sorter",
+            "step1": "Enter or paste your list into the input area. Each item should be on a new line.",
+            "step2": "Use the action buttons to sort alphabetically, remove duplicate entries, or clean up whitespace.",
+            "step3": "The processed list is updated in real-time. Use the 'Copy List' button to save the result."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Smart Sorting", "desc": "Sort lists ascending (A-Z) or descending (Z-A) instantly." },
+            "f2": { "title": "Deduplication", "desc": "Identify and remove duplicate lines with a single click." },
+            "f3": { "title": "Cleaning Tools", "desc": "Trim leading/trailing whitespace and remove empty lines automatically." },
+            "f4": { "title": "Real-time Stats", "desc": "Track item counts and see how many duplicates were removed." }
+        }
+    },
+    "JsonToTypes": {
+        "title": "JSON to TypeScript/Zod",
+        "description": "Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming.",
+        "input": "JSON Input",
+        "output": "Generated Code",
+        "placeholder": "Paste your JSON here...",
+        "rootName": "Root Name",
+        "targetType": "Target Format",
+        "typescript": "TypeScript",
+        "zod": "Zod Schema",
+        "interface": "Interface",
+        "type": "Type Alias",
+        "copy": "Copy Code",
+        "clear": "Clear",
+        "invalidJson": "Invalid JSON format",
+        "guide": {
+            "title": "How to Use JSON to TypeScript",
+            "step1": "Paste your JSON object into the input panel on the left.",
+            "step2": "Choose your target format (TypeScript Interface, Type, or Zod Schema) and set a root name.",
+            "step3": "The generated code appears instantly on the right. Copy it directly into your project."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Multiple Formats", "desc": "Generate TypeScript Interfaces, Type aliases, or Zod validation schemas." },
+            "f2": { "title": "Nested Support", "desc": "Automatically handles complex nested objects and arrays." },
+            "f3": { "title": "Smart Naming", "desc": "Customizable root name and intelligent property naming." },
+            "f4": { "title": "Offline-first", "desc": "All conversion happens locally in your browser for maximum privacy." }
+        }
+    },
+    "CurlToCode": {
+        "title": "CURL to Code Converter",
+        "description": "Convert CURL commands into ready-to-use code for JavaScript Fetch, Axios, Python Requests, and more.",
+        "input": "CURL Command",
+        "output": "Generated Code",
+        "placeholder": "Paste your curl command here...\nExample: curl https://api.example.com/data -H \"Authorization: Bearer key\"",
+        "targetLanguage": "Target Language",
+        "copy": "Copy Code",
+        "clear": "Clear",
+        "invalidCurl": "Invalid or unsupported CURL command",
+        "guide": {
+            "title": "How to Use CURL to Code",
+            "step1": "Copy a CURL command from your browser's network tab or terminal.",
+            "step2": "Paste the command into the input box and select your preferred programming language.",
+            "step3": "Copy the generated code snippet and paste it into your project."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Multi-language Support", "desc": "Convert to JavaScript (Fetch/Axios), Python (Requests), PHP, and more." },
+            "f2": { "title": "Header Parsing", "desc": "Automatically extracts headers, cookies, and authentication tokens." },
+            "f3": { "title": "Data Handling", "desc": "Supports JSON payloads, form data, and query parameters." },
+            "f4": { "title": "Instant Conversion", "desc": "Real-time code generation as you paste or modify the command." }
+        }
+    },
+    "HtmlToJsx": {
+        "title": "HTML to JSX Converter",
+        "description": "Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className.",
+        "input": "HTML Source",
+        "output": "JSX Result",
+        "placeholder": "<div class=\"container\">\n  <h1 onclick=\"alert('Hello')\">Hello World</h1>\n</div>",
+        "copy": "Copy JSX",
+        "clear": "Clear",
+        "guide": {
+            "title": "How to Use HTML to JSX",
+            "step1": "Paste your standard HTML code into the input panel.",
+            "step2": "The tool automatically converts attributes (class → className, for → htmlFor) and styles.",
+            "step3": "Copy the React-ready JSX and use it in your components."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Attribute Mapping", "desc": "Automatically converts kebab-case attributes to React's camelCase." },
+            "f2": { "title": "Inline Style Conversion", "desc": "Transforms string-based styles into React style objects." },
+            "f3": { "title": "Self-closing Tags", "desc": "Ensures all tags like <img> and <br> are properly closed for JSX." },
+            "f4": { "title": "Clean Output", "desc": "Removes unnecessary HTML comments and formats the resulting code." }
+        }
+    },
+    "MorseConverter": {
+        "title": "Morse Code Converter",
+        "description": "Translate text to Morse code and vice versa. Includes audio playback and visual signal support.",
+        "input": "Text / Morse Code",
+        "output": "Result",
+        "placeholder": "Enter text or Morse code (dot . and dash -)...",
+        "toMorse": "Text to Morse",
+        "toText": "Morse to Text",
+        "play": "Play Sound",
+        "stop": "Stop",
+        "copy": "Copy Result",
+        "clear": "Clear",
+        "guide": {
+            "title": "How to Use Morse Converter",
+            "step1": "Enter English text or Morse code (using . and -) into the input area.",
+            "step2": "Select the conversion direction and the result will appear instantly.",
+            "step3": "Listen to the result using the 'Play' button or copy the translated text."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Two-way Translation", "desc": "Seamlessly switch between text-to-morse and morse-to-text." },
+            "f2": { "title": "Audio Playback", "desc": "Hear the morse code sequence with high-quality synthesized beeps." },
+            "f3": { "title": "Visual Support", "desc": "Characters are mapped according to international Morse code standards." },
+            "f4": { "title": "Real-time Processing", "desc": "Translation updates instantly as you type each character." }
+        }
+    },
+    "LoanCalculator": {
+        "title": "Loan & Mortgage Calculator",
+        "description": "Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types.",
+        "amount": "Loan Amount",
+        "rate": "Interest Rate (%)",
+        "term": "Loan Term (Months)",
+        "method": "Repayment Method",
+        "principal": "Equal Principal",
+        "equal": "Equal Principal & Interest",
+        "lump": "Lump Sum",
+        "monthlyPayment": "Monthly Payment",
+        "totalInterest": "Total Interest",
+        "totalPayment": "Total Payment",
+        "schedule": "Amortization Schedule",
+        "month": "Month",
+        "payment": "Payment",
+        "interest": "Interest",
+        "balance": "Balance",
+        "guide": {
+            "title": "How to Use Loan Calculator",
+            "step1": "Enter the total loan amount, annual interest rate, and the duration of the loan in months.",
+            "step2": "Choose your repayment method (Equal Principal, Equal Interest, or Lump Sum at maturity).",
+            "step3": "Review the calculated totals and scroll down to see the month-by-month repayment schedule."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Multiple Methods", "desc": "Supports all major repayment types used by banks and financial institutions." },
+            "f2": { "title": "Dynamic Charts", "desc": "Visual representation of principal vs. interest components over time." },
+            "f3": { "title": "Full Schedule", "desc": "Generates a complete month-by-month breakdown of every payment." },
+            "f4": { "title": "Instant Updates", "desc": "Calculates results immediately as you change any loan parameter." }
+        }
+    },
+    "PassphraseGenerator": {
+        "title": "Passphrase Generator",
+        "description": "Generate highly secure yet memorable passwords using random word combinations.",
+        "wordCount": "Number of Words",
+        "separator": "Separator",
+        "capitalize": "Capitalize Words",
+        "addNumber": "Add Number",
+        "generate": "Generate New Passphrase",
+        "copy": "Copy",
+        "strength": "Entropy Strength",
+        "guide": {
+            "title": "How to Use Passphrase Generator",
+            "step1": "Select how many random words you want to combine (4+ recommended for security).",
+            "step2": "Choose a separator like a hyphen or dot and customize with capitalization or numbers.",
+            "step3": "Click generate and copy the resulting passphrase. It's much harder for computers to crack but easier for you to remember."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "High Entropy", "desc": "Mathematically more secure than short complex passwords like 'P@ssw0rd123'." },
+            "f2": { "title": "Memorable", "desc": "Uses real English words that create a mental image, making them easier to recall." },
+            "f3": { "title": "Customizable", "desc": "Adjust separators, case, and number additions to fit any site requirements." },
+            "f4": { "title": "Local Generation", "desc": "Passwords never leave your browser, ensuring absolute privacy." }
+        }
+    },
+    "PasswordStrength": {
+        "title": "Password Strength Analyzer",
+        "description": "Evaluate the security of your passwords with entropy analysis and estimated time to crack.",
+        "input": "Enter Password",
+        "level": "Security Level",
+        "timeToCrack": "Estimated Time to Crack",
+        "suggestions": "Security Suggestions",
+        "entropy": "Entropy Bits",
+        "weak": "Weak",
+        "fair": "Fair",
+        "good": "Good",
+        "strong": "Very Strong",
+        "guide": {
+            "title": "How to Use Strength Analyzer",
+            "step1": "Type or paste a password into the input field. The analysis happens in real-time.",
+            "step2": "Check the security bar and the time-to-crack estimate (offline vs. online attacks).",
+            "step3": "Read the suggestions below the meter to learn how to improve your password security."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Crack Estimation", "desc": "Shows how long a standard PC would take to brute-force your password." },
+            "f2": { "title": "Real-time Feedback", "desc": "Visual progress bar changes color from red to green as strength increases." },
+            "f3": { "title": "Pattern Detection", "desc": "Identifies common patterns, sequences, and dictionary words." },
+            "f4": { "title": "Privacy First", "desc": "Your password is never sent to any server; all analysis is done locally." }
+        }
+    },
+    "YamlConverter": {
+        "title": "YAML / JSON Converter",
+        "description": "Convert between YAML and JSON formats with ease. Supports nested structures and error highlighting.",
+        "input": "Input (YAML or JSON)",
+        "output": "Output result",
+        "placeholder": "Paste your YAML or JSON here...",
+        "toJson": "To JSON",
+        "toYaml": "To YAML",
+        "copy": "Copy Result",
+        "clear": "Clear",
+        "guide": {
+            "title": "How to Use YAML Converter",
+            "step1": "Paste your data into the input panel. The tool automatically detects if it's YAML or JSON.",
+            "step2": "Choose the target format using the toggle buttons above the result panel.",
+            "step3": "The converted data appears instantly. Click 'Copy' to use it in your project."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Auto Detection", "desc": "Automatically recognizes input format and highlights syntax errors." },
+            "f2": { "title": "Two-way Conversion", "desc": "Seamlessly switch between YAML and JSON representations." },
+            "f3": { "title": "Smart Formatting", "desc": "Outputs clean, indented code for maximum readability." },
+            "f4": { "title": "Nested Support", "desc": "Handles deeply nested objects and arrays without data loss." }
+        }
+    },
+    "TimeZoneConverter": {
+        "title": "Visual Time Zone Converter",
+        "description": "Compare times across different cities worldwide. Visual slider to see how time shifts across zones.",
+        "searchCity": "Search City",
+        "addCity": "Add City",
+        "currentTime": "Current Local Time",
+        "baseCity": "Reference City",
+        "guide": {
+            "title": "How to Use Time Zone Converter",
+            "step1": "Add the cities you want to compare using the search box.",
+            "step2": "Use the visual timeline slider to shift the time and see how it updates across all selected cities.",
+            "step3": "Identify the best meeting times across multiple time zones instantly."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Visual Timeline", "desc": "Interactive slider shows time shifts across all cities simultaneously." },
+            "f2": { "title": "Global Database", "desc": "Support for thousands of cities and all international time zones." },
+            "f3": { "title": "Meeting Planner", "desc": "Easily find overlapping working hours between different countries." },
+            "f4": { "title": "Local Storage", "desc": "Your selected cities are remembered for your next visit." }
+        }
+    },
+    "TextSimilarity": {
+        "title": "Text Similarity Checker",
+        "description": "Compare two texts and calculate their similarity percentage using advanced string algorithms.",
+        "text1": "Original Text",
+        "text2": "Compare Text",
+        "calculate": "Check Similarity",
+        "score": "Similarity Score",
+        "guide": {
+            "title": "How to Use Similarity Checker",
+            "step1": "Paste the first text into the 'Original' box and the second into the 'Compare' box.",
+            "step2": "The similarity percentage is calculated in real-time as you type.",
+            "step3": "Review the detailed score to see how much the two texts overlap."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Levenshtein Algorithm", "desc": "Uses industry-standard algorithms to measure distance between strings." },
+            "f2": { "title": "Real-time Analysis", "desc": "See the percentage change instantly as you modify either text." },
+            "f3": { "title": "Side-by-side View", "desc": "Compare long documents easily with a synchronized layout." },
+            "f4": { "title": "Whitespace Handling", "desc": "Optionally ignore spaces and line breaks for more accurate matching." }
+        }
+    },
+    "IcoConverter": {
+        "title": "Direct ICO Converter",
+        "description": "Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app.",
+        "dropzone": "Drop your image here or click to browse",
+        "sizes": "Select Icon Sizes",
+        "download": "Download .ico",
+        "guide": {
+            "title": "How to Use ICO Converter",
+            "step1": "Upload a high-quality square image (PNG, JPG, or SVG).",
+            "step2": "Select the standard icon sizes you want to include in the generated ICO file.",
+            "step3": "Click 'Download' to get your multi-resolution favicon.ico file."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Multi-resolution", "desc": "Pack multiple sizes (16x16 to 256x256) into a single ICO file." },
+            "f2": { "title": "SVG Support", "desc": "Convert vector graphics directly to crisp icons without loss of quality." },
+            "f3": { "title": "No Uploads", "desc": "All image processing happens locally in your browser for privacy." },
+            "f4": { "title": "Transparency", "desc": "Full support for transparent backgrounds in PNG and SVG sources." }
+        }
+    },
+    "CssPattern": {
+        "title": "CSS Pattern Generator",
+        "description": "Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids.",
+        "patternType": "Pattern Type",
+        "colors": "Colors",
+        "opacity": "Opacity",
+        "spacing": "Spacing",
+        "copyCss": "Copy CSS",
+        "guide": {
+            "title": "How to Use Pattern Generator",
+            "step1": "Choose a base pattern style from the available presets (stripes, dots, etc.).",
+            "step2": "Adjust colors, spacing, and rotation to fit your design needs.",
+            "step3": "Copy the generated CSS background code and paste it into your stylesheet."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Pure CSS", "desc": "No images required; patterns are generated using standard CSS gradients." },
+            "f2": { "title": "Live Preview", "desc": "See how the pattern looks full-screen as you adjust parameters." },
+            "f3": { "title": "Infinite Variety", "desc": "Combine multiple controls to create unique geometric textures." },
+            "f4": { "title": "Lightweight", "desc": "Fast loading backgrounds that don't add weight to your website assets." }
+        }
+    },
+    "SvgVisualizer": {
+        "title": "SVG Path Visualizer",
+        "description": "Visualize and edit SVG path data (d attribute). See how changes to coordinates affect the drawing in real-time.",
+        "pathData": "SVG Path Data (d)",
+        "viewBox": "ViewBox",
+        "stroke": "Stroke Width",
+        "guide": {
+            "title": "How to Use SVG Visualizer",
+            "step1": "Paste the 'd' attribute of an SVG <path> into the input area.",
+            "step2": "The shape is rendered instantly on the canvas. Adjust points directly in the code.",
+            "step3": "Use the visual feedback to debug complex vector paths or refine coordinates."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Real-time Rendering", "desc": "Visual representation updates as soon as you type path commands." },
+            "f2": { "title": "Coordinate Mapping", "desc": "Clearly see how M, L, C, and Q commands shape the final vector." },
+            "f3": { "title": "Canvas Controls", "desc": "Zoom and pan the canvas to inspect fine details of the path." },
+            "f4": { "title": "Syntax Support", "desc": "Validates SVG path syntax and provides feedback on errors." }
+        }
+    },
+    "ColorNameFinder": {
+        "title": "Color Name Finder",
+        "description": "Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support.",
+        "inputColor": "Select Color",
+        "closestName": "Closest Match",
+        "palettes": "Color Details",
+        "guide": {
+            "title": "How to Use Color Finder",
+            "step1": "Choose a color with the system picker to preview it instantly.",
+            "step2": "The tool compares your selection against the built-in named color list and shows the closest match.",
+            "step3": "Copy the HEX value and review the live RGB readout for your selected color."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Closest Name Lookup", "desc": "Matches the selected color against the built-in named color database and surfaces the nearest name." },
+            "f2": { "title": "Live Color Readout", "desc": "See the selected swatch update instantly alongside HEX and RGB values." },
+            "f3": { "title": "Quick Selection", "desc": "Use the native color picker for fast visual exploration without leaving the page." },
+            "f4": { "title": "One-Click Copy", "desc": "Copy the current HEX value to your clipboard with a single click." }
+        }
     }
 }

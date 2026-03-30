@@ -2,273 +2,157 @@
 
 ## 📋 Overview
 
-Open Tools is a comprehensive, free-to-use developer utilities platform built with modern web technologies. It provides 45+ specialized tools organized across 5 major categories, all designed to run securely in your browser without requiring server-side processing for sensitive operations.
+Open Tools is a comprehensive, free-to-use developer utilities platform built with modern web technologies. It currently ships **103 live tool routes**, and the homepage catalog in `src/lib/tools-catalog.ts` now covers all of them across 6 primary categories with an `AI` overlay tag for browser-side AI workflows.
 
 **Tech Stack:** Next.js 16 + React 19 + TypeScript + Tailwind CSS
 **Architecture:** Client-first processing with selective server APIs
 **Internationalization:** Multi-language support (English, Korean)
 
----
-
-## 🛠️ Tool Categories & Features
-
-### 🔒 Security & Encryption (6 Tools)
-
-#### **AES Encryption**
-- **Algorithm:** AES-GCM (Galois/Counter Mode)
-- **Features:** Secure client-side encryption and decryption
-- **Use Case:** Protect sensitive text data with military-grade encryption
-
-#### **Bcrypt Generator**
-- **Algorithm:** Bcrypt with configurable cost factor
-- **Features:** Generate password hashes and verify existing hashes
-- **Use Case:** Secure password storage and authentication systems
-
-#### **HMAC Generator**
-- **Algorithms:** MD5, SHA1, SHA256
-- **Features:** Key-based message authentication codes
-- **Use Case:** API request signing and message integrity verification
-
-#### **RSA Key Generator**
-- **Format:** PEM (Privacy Enhanced Mail)
-- **Features:** Generate public/private key pairs
-- **Use Case:** Asymmetric encryption and digital signatures
-
-#### **JWT Debugger**
-- **Support:** JSON Web Token decoding and validation
-- **Features:** Parse headers, payloads, and signatures
-- **Use Case:** Analyze and debug JWT tokens for authentication systems
-
-#### **Hash Generator**
-- **Algorithms:** MD5, SHA-1, SHA-256, SHA-512
-- **Features:** Client-side hash computation
-- **Use Case:** File integrity checks and data fingerprinting
+Recent UX updates include a **personalized popular-tools ranking**: tools you use more often rise toward the front of the homepage catalog in your browser and display a small star badge on their card icon.
 
 ---
 
-### 🎬 Media Processing (8 Tools)
+## 🛠️ Current Tool Catalog
 
-#### **AI Background Remover**
-- **Technology:** @imgly/background-removal with ONNX Runtime
-- **Features:** Browser-based AI inference for precise object segmentation
-- **Use Case:** Extract objects from images for design and e-commerce
+The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 tools**, matching the full set of shipped `/tools/*` routes. The homepage uses six primary tags (`Development`, `Image`, `Video`, `Design`, `Security`, `Utilities`) plus an `AI` overlay tag for local AI workflows.
 
-#### **Image Converter**
-- **Formats:** PNG, JPG, WebP, AVIF
-- **Features:** Batch conversion with compression options
-- **Use Case:** Optimize images for web and mobile applications
+### Category Snapshot
 
-#### **Image Compressor**
-- **Technology:** browser-image-compression
-- **Features:** Reduce file size while maintaining quality
-- **Use Case:** Image optimization for faster loading times
+| Category | Count | Notes |
+|----------|-------|-------|
+| Development | 32 | Formatters, converters, generators, API tooling, SEO helpers, and developer suites |
+| Image | 13 | Conversion, cleanup, metadata, collage, crop, meme, and watermark workflows |
+| Video | 4 | Suno, YouTube, local encoding, and 3D model preview |
+| Design | 14 | CSS generators, color tooling, SVG helpers, favicon creation, and screenshot polish |
+| Security | 12 | Encryption, hashing, JWT, passwords, passphrases, ports, and torrent-risk lookup |
+| Utilities | 28 | OCR, PDFs, DNS/IP tools, timers, Korean-language helpers, and general-purpose workflows |
+| AI (overlay) | 2 | Applied to browser-side image cleanup tools |
 
-#### **Local Video Encoder (WASM)**
-- **Technology:** FFmpeg compiled to WebAssembly
-- **Formats:** MP4, MP3, GIF
-- **Features:** Browser-based video conversion without server uploads
-- **Use Case:** Privacy-focused video processing
+### Development (32)
 
-#### **YouTube Downloader**
-- **Technology:** Puppeteer + FFmpeg WASM
-- **Features:** Download video, audio, and subtitles with quality selection
-- **Processing:** Browser-side fetching and merging
-- **Use Case:** Save YouTube content for offline viewing
+- **.env File Editor** (`env-editor`): Edit environment variable files (.env) and compare differences between two files side by side.
+- **API Tester** (`webhook-tester`): Send REST API requests directly from your browser and analyze responses with an HTTP client tool.
+- **Base64 Encoder/Decoder** (`base64-converter`): Convert between text and Base64 in real-time with clipboard support.
+- **CSS Minifier / Beautifier** (`css-minifier`): Minify or beautify CSS code with size comparison and instant copy.
+- **CURL to Code Converter** (`curl-to-code`): Convert CURL commands into ready-to-use code for JavaScript Fetch, Axios, Python Requests, and more.
+- **Code Formatter & Beautifier** (`code-formatter`): Instantly format and beautify JavaScript, TypeScript, JSON, CSS, HTML, and SQL. Configurable indent size, semicolons, and one-click minification.
+- **Cron Expression Generator** (`cron-generator`): Create and verify cron jobs with human-readable descriptions and next execution times.
+- **Data Tools Suite** (`data-tools`): JSON/CSV/Excel conversion, SQL formatting, and Slug generation.
+- **Developer Tools** (`dev-tools`): Collection of developer utilities including Docker, permissions, and validation.
+- **Git Diff Viewer** (`git-diff-viewer`): Paste git diff or unified diff output to visualize changes with syntax highlighting.
+- **HTML Entity Encoder / Decoder** (`html-entity-encoder`): Encode special characters to HTML entities and decode them back instantly.
+- **HTML to JSX Converter** (`html-to-jsx`): Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className.
+- **HTTP Header Analyzer** (`http-header-analyzer`): Analyze HTTP response headers from any URL and score security header configuration.
+- **JSON Formatter & Converter** (`json-formatter`): Format, validate, and convert JSON to YAML, CSV, and TypeScript types instantly.
+- **JSON ↔ YAML Converter** (`json-yaml-converter`): Fast and clean conversion between JSON and YAML formats with syntax highlighting.
+- **JSON to TypeScript/Zod** (`json-to-types`): Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming.
+- **JSON-LD Schema Generator** (`json-ld-generator`): Generate structured data (JSON-LD) for SEO. Supports Article, Product, FAQ, and more schema types.
+- **Meta Tag Generator** (`meta-tag-generator`): Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically.
+- **Number Base Converter** (`number-base-converter`): Convert numbers between Binary, Octal, Decimal, and Hexadecimal with BigInt support.
+- **RegEx Tester** (`regex-tester`): Test and debug your regular expressions with real-time highlighting and group extraction.
+- **Robots.txt Generator** (`robots-txt-generator`): Create robots.txt files for search engine crawlers with preset templates.
+- **SQL Formatter & Beautifier** (`sql-formatter`): Format and beautify SQL queries instantly for cleaner debugging, reviews, and sharing.
+- **SQL to JSON/CSV Converter** (`sql-converter`): Transform SQL INSERT statements into clean JSON or CSV data formats locally.
+- **SVG to JSX Converter** (`svg-to-jsx`): Transform raw SVG code into high-quality, typed React components instantly.
+- **Sitemap Generator** (`sitemap-generator`): Add URLs and generate XML sitemap files to improve search engine indexing.
+- **Spring Boot Banner Generator** (`banner-generator`): Create stunning ASCII art banners with ANSI colors for your Spring Boot applications.
+- **String Case Converter** (`string-case-converter`): Convert text between camelCase, PascalCase, snake_case, kebab-case and 8 more formats.
+- **TOML/INI Converter** (`toml-converter`): Convert between TOML, INI, and JSON formats with auto-detection and live preview.
+- **UUID Generator** (`uuid-generator`): Generate UUID v4 and v7 with bulk generation and clipboard support.
+- **Unix Timestamp Converter** (`unix-timestamp`): Two-way conversion between Unix timestamps and human-readable dates.
+- **XML Formatter & Validator** (`xml-formatter`): Format, validate, and convert XML to JSON with real-time error detection.
+- **YAML / JSON Converter** (`yaml-converter`): Convert between YAML and JSON formats with ease. Supports nested structures and error highlighting.
 
-#### **YouTube Thumbnail Extractor**
-- **Features:** Extract high-res thumbnails (maxresdefault, sddefault, etc.)
-- **Use Case:** Preview and download video thumbnails
+### Image (13)
 
-#### **Suno AI Downloader**
-- **Technology:** Suno.com API integration
-- **Features:** High-quality MP3 download from sharing links
-- **Use Case:** Save AI-generated music from Suno platform
+- **AI Background Remover** (`background-remover`): Experience sophisticated AI-powered background removal directly in your browser.
+- **AI Image Eraser** (`image-eraser`): Brush over logos, stamps, or small distractions and erase them locally with WebGPU or WASM.
+- **Base64 Image Viewer** (`base64-image`): Safely decode, preview, and analyze base64 encoded image strings.
+- **Image Compressor** (`image-compressor`): Reduce image file size and optimize quality directly in your browser.
+- **Image Cropper** (`image-cropper`): Precisely crop, rotate, and flip images with 6 aspect ratio presets and rule-of-thirds grid overlay. All processing happens locally.
+- **Image EXIF Viewer & Remover** (`exif-viewer`): View and remove EXIF metadata (camera, GPS, date) from images for privacy protection.
+- **Image Filter & Effects** (`image-filters`): Transform photos with 8 one-click presets (Vintage, B&W, Vivid, etc.) and fine-tune brightness, contrast, saturation, blur, sepia, and more.
+- **Image Format Converter** (`image-converter`): Batch convert images between PNG, JPG, WebP, and AVIF with compression options.
+- **Image Resizer** (`image-resizer`): Resize images to custom or preset dimensions for social media platforms.
+- **Image Watermark** (`image-watermark`): Protect your images with custom text watermarks. Supports single placement, tiled patterns, adjustable opacity, font size, and color.
+- **Meme Generator** (`meme-generator`): Create viral-ready memes with classic Impact font text. Customize font size, stroke width, colors, and download as high-quality PNG.
+- **Photo Collage Maker** (`collage-maker`): Combine multiple photos into stunning collages. Choose from 6 grid layouts, adjust gaps, rounded corners, background color, and export up to 3000px.
+- **YouTube Thumbnail Extractor** (`youtube-thumbnail`): Get high-resolution thumbnails from any YouTube video URL instantly.
 
-#### **3D Model Viewer**
-- **Technology:** Three.js + three-stdlib
-- **Formats:** OBJ, STL, GLTF/GLB
-- **Features:** Interactive 3D rendering with camera controls
-- **Use Case:** Preview and analyze 3D models directly in browser
+### Video (4)
 
----
+- **3D Model Viewer** (`3d-viewer`): Preview and analyze 3D models (OBJ, STL, GLTF/GLB) directly in your browser.
+- **Local Video Encoder (WASM)** (`video-converter`): Convert video to MP4/MP3/GIF locally in your browser. Privacy focused, no uploads.
+- **Suno AI Downloader** (`suno-downloader`): Download Suno.com songs easily by pasting sharing link. High-quality MP3 download.
+- **YouTube Downloader** (`youtube-downloader`): High-quality YouTube video and audio downloader. Processed safely in your browser.
 
-### 🎨 Design & CSS Tools (7 Tools)
+### Design (14)
 
-#### **Border Radius Generator**
-- **Features:** Visual control for individual corner values
-- **Output:** CSS code with real-time preview
-- **Use Case:** Create complex border-radius shapes
+- **CSS Border Radius Generator** (`border-radius-generator`): Create complex CSS border-radius values visually with real-time feedback.
+- **CSS Box Shadow Generator** (`box-shadow-generator`): Design sleek CSS box shadow effects with control over intensity, color, and offset.
+- **CSS Glassmorphism Generator** (`glassmorphism`): Design sleek frosted-glass UI elements with real-time CSS code generation.
+- **CSS Gradient Generator** (`css-gradient-generator`): Visually generate linear and radial CSS gradients and copy the resulting code.
+- **Color Converter** (`color-converter`): Convert colors between HEX, RGB, and HSL formats with live preview and related colors.
+- **Color Name Finder** (`color-name-finder`): Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support.
+- **Color Palette Extractor** (`color-palette`): Extract harmonious color palettes from any image using the Canvas API.
+- **Favicon Generator** (`favicon-generator`): Generate multi-format favicons (ICO, PNG) from any image or text snippet.
+- **CSS Pattern Generator** (`css-pattern`): Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids.
+- **Direct ICO Converter** (`ico-converter`): Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app.
+- **Image Color Picker** (`color-picker`): Extract precise colors from any image with a pixel-level magnifying loupe. Pick multiple colors and copy HEX, RGB, HSL values instantly.
+- **SVG Optimizer** (`svg-optimizer`): Optimize and minify SVG files by removing unnecessary data and reducing file size.
+- **SVG Path Visualizer** (`svg-visualizer`): Visualize and edit SVG path data (d attribute). See how changes to coordinates affect the drawing in real-time.
+- **Screenshot Beautifier** (`screenshot-beautifier`): Add device frames, backgrounds, and shadows to your screenshots for beautiful exports.
 
-#### **Box Shadow Generator**
-- **Features:** Intensity, color, offset, blur, and spread controls
-- **Output:** CSS box-shadow property
-- **Use Case:** Design depth and elevation effects
+### Security (12)
 
-#### **CSS Gradient Generator**
-- **Types:** Linear and radial gradients
-- **Features:** Color stops, angle, and position controls
-- **Output:** CSS background property
-- **Use Case:** Create modern gradient backgrounds
+- **AES-256 Encryption & Decryption** (`aes-crypto`): Military-grade AES-256-GCM encryption with PBKDF2 key derivation. Encrypt and decrypt text 100% locally in your browser — no server uploads.
+- **Bcrypt Generator** (`bcrypt-generator`): Generate and verify Bcrypt passwords hashes for secure authentication.
+- **Diceware Passphrase Generator** (`passphrase-generator`): Generate highly secure yet memorable passwords using random word combinations (Diceware method).
+- **HMAC Generator** (`hmac-generator`): Create Hash-based Message Authentication Codes (MD5, SHA1, SHA256).
+- **Hash Generator** (`hash-generator`): Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side.
+- **IP Torrent History Check** (`torrent-history`): Analyze your public IP address to see torrent download traces and potential security risks.
+- **JWT Debugger** (`jwt-debugger`): Decode and analyze JSON Web Tokens locally. Check headers, payloads, and signatures.
+- **Local Port Scanner** (`port-scanner`): Check if specific ports on your network or local machine are open and responsive.
+- **Password Generator** (`password-generator`): Generate secure random passwords with customizable length, characters, and strength meter.
+- **Password Strength Analyzer** (`password-strength`): Evaluate the security of your passwords with entropy analysis and estimated time to crack.
+- **RSA Key Generator** (`rsa-generator`): Generate RSA Public and Private Key pairs (PEM format).
+- **Security & Encryption** (`security-tools`): Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing.
 
-#### **Color Palette Extractor**
-- **Technology:** Canvas API color quantization
-- **Features:** Extract dominant and complementary colors
-- **Use Case:** Design system creation and color harmony
+### Utilities (28)
 
-#### **Glassmorphism Generator**
-- **Features:** Blur, opacity, border, and background controls
-- **Output:** CSS for frosted-glass effects
-- **Use Case:** Modern UI design with glass effects
+- **CSV Editor** (`csv-editor`): Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON.
+- **Document Viewer** (`hwp-viewer`): Instantly view HWP and DOCX files in your browser.
+- **Domain / DNS Lookup** (`whois-lookup`): Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name.
+- **IP Subnet Calculator** (`subnet-calculator`): Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR.
+- **Image to Text (OCR)** (`ocr`): Extract text from images instantly using Tesseract OCR. Supports Korean, English, Japanese, and Chinese.
+- **Korean Tools Suite** (`k-series`): A collection of useful tools tailored for Korean users and services.
+- **List Sorter & Deduplicator** (`list-sorter`): Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly.
+- **Loan & Mortgage Calculator** (`loan-calculator`): Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types.
+- **Markdown Preview** (`markdown-preview`): Write Markdown and instantly preview the rendered HTML output side by side.
+- **Markdown to PDF** (`markdown-to-pdf`): Write Markdown with a live side-by-side preview and export to beautifully styled PDF. Supports tables, code blocks, blockquotes, and more.
+- **Merge PDF** (`pdf-merge`): Combine multiple PDF files into one for free. No file limits.
+- **Morse Code Converter** (`morse-converter`): Translate text to Morse code and vice versa. Includes audio playback and visual signal support.
+- **My IP & Location** (`my-ip`): Instantly check your public IP address, ISP, and detailed geographic location.
+- **Network Speed Test** (`speed-test`): Measure your internet download, upload speeds, and ping latency in real-time.
+- **PDF to Image** (`pdf-to-image`): Convert PDF pages to high-quality JPG or PNG images.
+- **PDF Tools** (`pdf-tools`): All-in-one PDF utilities: Merge, Split, and Convert to Image.
+- **Pomodoro Focus Timer** (`pomodoro-timer`): Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking.
+- **QR Code Generator** (`qr-generator`): Generate customizable QR codes for URLs, text, email, and phone numbers.
+- **Split PDF** (`pdf-split`): Extract specific pages from a PDF file quickly.
+- **Text & Content Suite** (`text-tools`): Lorem Ipsum generator and Hangul processing tools.
+- **Text Diff** (`text-diff`): Compare two texts side-by-side with line and word-level diff highlighting.
+- **Text Similarity Checker** (`text-similarity`): Compare two texts and calculate their similarity percentage using advanced string algorithms.
+- **Text to Speech (TTS)** (`text-to-speech`): Convert text to natural speech with voice selection, speed, and pitch controls.
+- **URL Encoder/Decoder** (`url-converter`): Safe and fast URL encoding/decoding for developers.
+- **Unit Converter** (`unit-converter`): Convert between various units including Data (MB to GB), CSS (PX to REM), and more.
+- **Visual Time Zone Converter** (`time-zone-converter`): Compare times across different cities worldwide. Visual slider to see how time shifts across zones.
+- **What is my Browser?** (`browser-info`): Analyze your browser version, OS, screen resolution, and user agent details.
+- **Word Counter** (`word-counter`): Count words, characters, sentences, paragraphs and estimate reading time instantly.
 
-#### **Favicon Generator**
-- **Output:** Multi-format favicons (ICO, PNG, SVG)
-- **Features:** Generate complete favicon sets for all platforms
-- **Use Case:** Web application branding
+### AI Overlay (2)
 
-#### **Banner Generator (Spring Boot)**
-- **Technology:** Figlet ASCII art library
-- **Features:** ANSI color support for terminal output
-- **Use Case:** Create colorful ASCII art banners for Spring Boot apps
-
----
-
-### 💻 Development & Utilities (15 Tools)
-
-#### **JSON ↔ YAML Converter**
-- **Technology:** js-yaml parser
-- **Features:** Two-way conversion with syntax highlighting
-- **Use Case:** Configuration file transformation
-
-#### **SQL to JSON/CSV Converter**
-- **Features:** Parse SQL INSERT statements to structured data
-- **Output:** JSON or CSV format
-- **Use Case:** Database export and data migration
-
-#### **SQL Formatter**
-- **Technology:** sql-formatter
-- **Features:** Beautify and format SQL queries
-- **Use Case:** Improve code readability
-
-#### **XML Formatter & Validator**
-- **Features:** Format XML with indentation, validate structure
-- **Output:** Clean XML with JSON conversion option
-- **Use Case:** XML processing and debugging
-
-#### **Base64 Encoder/Decoder**
-- **Features:** Real-time encoding/decoding with clipboard support
-- **Use Case:** Data encoding for URLs and APIs
-
-#### **Base64 Image Viewer**
-- **Features:** Decode and preview base64 image strings
-- **Use Case:** Debug encoded image data
-
-#### **URL Encoder/Decoder**
-- **Features:** URL-safe encoding with special character handling
-- **Use Case:** Prepare data for HTTP requests
-
-#### **SVG to JSX Converter**
-- **Features:** Transform raw SVG to React JSX components
-- **Output:** Typed React component code
-- **Use Case:** Integrate SVG assets in React applications
-
-#### **Regex Tester**
-- **Features:** Real-time matching with group extraction
-- **Highlighting:** Match highlighting and error detection
-- **Use Case:** Develop and debug regular expressions
-
-#### **Cron Expression Generator**
-- **Technology:** cronstrue for human-readable descriptions
-- **Features:** Build cron jobs with next execution time preview
-- **Use Case:** Schedule automated tasks
-
-#### **Unit Converter**
-- **Categories:** Data (MB/GB), CSS (PX/REM), and more
-- **Features:** Multi-unit conversion
-- **Use Case:** Convert measurements across different systems
-
-#### **QR Code Generator**
-- **Features:** Custom colors, sizes, and error correction levels
-- **Output:** High-quality QR code images
-- **Use Case:** Generate QR codes for links, WiFi, contact info
-
-#### **Developer Tools Suite**
-- **Docker Converter:** Convert docker run commands to docker-compose
-- **Chmod Calculator:** Calculate file permission modes
-- **Business Validator:** Korean business number validation
-
----
-
-### 🔌 Network & System Tools (7 Tools)
-
-#### **My IP & Location**
-- **Features:** Public IP detection, ISP lookup, geolocation
-- **Data Source:** IP geolocation APIs
-- **Use Case:** Network diagnostics and security checks
-
-#### **Browser Info Analyzer**
-- **Features:** Browser version, OS, screen resolution, User Agent
-- **Use Case:** Device and environment detection
-
-#### **Port Scanner**
-- **Technology:** Server-side port checking
-- **Features:** Check open ports on local network
-- **Use Case:** Network security assessment
-
-#### **Network Speed Test**
-- **Features:** Download, upload speed, and ping measurement
-- **Technology:** Browser-based network performance API
-- **Use Case:** Internet connection quality assessment
-
-#### **IP Torrent History Check**
-- **Features:** Analyze public IP for torrent traces
-- **Data Source:** Torrent tracking databases
-- **Use Case:** Privacy and security risk assessment
-
----
-
-### 📄 Document & File Tools (4 Tools)
-
-#### **PDF Tools Suite**
-
-**PDF Merge**
-- **Features:** Combine multiple PDFs into one
-- **Technology:** pdf-lib
-- **Use Case:** Document consolidation
-
-**PDF Split**
-- **Features:** Extract specific pages from PDFs
-- **Technology:** pdf-lib
-- **Use Case:** Document segmentation
-
-**PDF to Image**
-- **Features:** Convert PDF pages to JPG/PNG
-- **Technology:** pdfjs-dist
-- **Use Case:** Preview and share PDF content as images
-
-#### **Document Viewer**
-- **Formats:** HWP (Korean), DOCX
-- **Technology:** hwp.js, docx-preview
-- **Use Case:** Preview documents without desktop software
-
----
-
-### 🧩 Data & Text Processing (3 Tools)
-
-#### **Data Tools Suite**
-- **JSON/CSV/Excel Converter:** Cross-format data conversion
-- **SQL Formatter:** Query beautification
-- **URL Slug Generator:** SEO-friendly URL creation
-
-#### **Text Tools Suite**
-- **OCR Tool:** Extract text from images using Tesseract.js
-- **Lorem Ipsum Generator:** Generate placeholder text
-- **Hangul Processor:** Korean text processing (es-hangul)
-
-#### **K-Series Tools (Korean)**
-- **JSON Converter:** JSON to Korean-specific formats
-- **Slug Generator:** Korean URL slug creation with transliteration
-
----
+- **AI Background Remover** (`background-remover`): Experience sophisticated AI-powered background removal directly in your browser.
+- **AI Image Eraser** (`image-eraser`): Brush over logos, stamps, or small distractions and erase them locally with WebGPU or WASM.
 
 ## 🔧 Technical Capabilities
 
@@ -307,6 +191,7 @@ Selective server endpoints for browser-restricted operations:
 ### Privacy-First Design
 - **No Data Storage:** All client-side processing stays in browser
 - **No Tracking:** No user data collection or analytics
+- **Local Personalization Only:** Popular-tool ranking is stored in browser localStorage per user
 - **Local Processing:** Sensitive operations never leave device
 
 ### Performance Optimization
@@ -480,16 +365,19 @@ docker run -p 3033:3033 --env NODE_ENV=production open-tools
 
 ## 📊 Tool Statistics
 
-| Category | Tool Count | Primary Features |
-|----------|------------|-----------------|
-| Security & Encryption | 6 | AES, RSA, Bcrypt, JWT, HMAC, Hashing |
-| Media Processing | 8 | Video, Image, Audio, 3D, AI Background Removal |
-| Design & CSS | 7 | Border Radius, Shadows, Gradients, Colors, Favicons |
-| Development & Utilities | 15 | Converters, Generators, Formatters, Validators |
-| Network & System | 7 | IP, Port Scanner, Speed Test, Browser Info |
-| Documents & Files | 4 | PDF Merge/Split/Convert, Document Viewer |
-| Data & Text Processing | 3 | OCR, Data Conversion, Text Processing |
-| **Total** | **45+** | Comprehensive developer toolkit |
+| Group | Count | Coverage |
+|------|------:|----------|
+| Development | 32 | Formatters, converters, generators, API tooling, SEO helpers, and developer suites |
+| Utilities | 28 | OCR, PDFs, document viewing, DNS/IP/network checks, Korean-language helpers, and general workflows |
+| Image | 13 | Conversion, compression, cleanup, metadata, crop, collage, watermarking, and meme creation |
+| Design | 14 | CSS generators, palette tools, favicon creation, SVG optimization, visualization, and screenshot polish |
+| Security | 12 | Encryption, hashing, JWT, passwords, passphrases, ports, and torrent-risk inspection |
+| Video | 4 | Suno, YouTube, local encoding, and 3D model preview |
+| AI overlay* | 2 | Local AI-assisted image cleanup tools |
+| **Homepage catalog total** | **103** | Live catalog defined in `src/lib/tools-catalog.ts` |
+| **Full shipped route total** | **103** | Homepage catalog matches all live `/tools/*` routes |
+
+\* `AI` is a secondary overlay tag, so those tools are already counted in their primary category totals.
 
 ---
 
@@ -500,6 +388,7 @@ docker run -p 3033:3033 --env NODE_ENV=production open-tools
 - **AI/ML:** Background removal and OCR in browser
 - **Progressive Web App:** Fast, responsive, mobile-friendly
 - **Dark Mode:** Automatic theme detection and switching
+- **Personalized Catalog:** Frequently used tools float upward locally with a star badge
 
 ### Developer Experience
 - **Hot Reload:** Instant development feedback

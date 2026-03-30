@@ -1,4 +1,9 @@
 {
+  "Common": {
+    "visitors": "Visitors",
+    "today": "Today",
+    "total": "Total"
+  },
   "Home": {
     "title": "Essential Open Source Tools Platform",
     "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",

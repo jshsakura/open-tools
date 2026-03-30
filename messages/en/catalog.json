@@ -163,12 +163,6 @@
       "title": "URL Encoder/Decoder",
       "description": "Safe and fast URL encoding/decoding for developers."
     },
-    "QrGenerator": {
-      "title": "QR Code Generator",
-      "description": "Instantly generate high-quality QR codes with various settings and custom designs.",
-      "copied": "Copied",
-      "downloaded": "QR code downloaded as PNG"
-    },
     "HashGenerator": {
       "title": "Hash Generator",
       "description": "Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side."
@@ -469,6 +463,66 @@
     "PomodoroTimer": {
       "title": "Pomodoro Focus Timer",
       "description": "Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking."
+    },
+    "ListSorter": {
+      "title": "List Sorter & Deduplicator",
+      "description": "Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly."
+    },
+    "JsonToTypes": {
+      "title": "JSON to TypeScript/Zod",
+      "description": "Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming."
+    },
+    "CurlToCode": {
+      "title": "CURL to Code Converter",
+      "description": "Convert CURL commands into ready-to-use code for JavaScript Fetch, Axios, Python Requests, and more."
+    },
+    "HtmlToJsx": {
+      "title": "HTML to JSX Converter",
+      "description": "Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className."
+    },
+    "MorseConverter": {
+      "title": "Morse Code Converter",
+      "description": "Translate text to Morse code and vice versa. Includes audio playback and visual signal support."
+    },
+    "LoanCalculator": {
+      "title": "Loan & Mortgage Calculator",
+      "description": "Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types."
+    },
+    "PassphraseGenerator": {
+      "title": "Diceware Passphrase Generator",
+      "description": "Generate highly secure yet memorable passwords using random word combinations (Diceware method)."
+    },
+    "PasswordStrength": {
+      "title": "Password Strength Analyzer",
+      "description": "Evaluate the security of your passwords with entropy analysis and estimated time to crack."
+    },
+    "YamlConverter": {
+      "title": "YAML / JSON Converter",
+      "description": "Convert between YAML and JSON formats with ease. Supports nested structures and error highlighting."
+    },
+    "TimeZoneConverter": {
+      "title": "Visual Time Zone Converter",
+      "description": "Compare times across different cities worldwide. Visual slider to see how time shifts across zones."
+    },
+    "TextSimilarity": {
+      "title": "Text Similarity Checker",
+      "description": "Compare two texts and calculate their similarity percentage using advanced string algorithms."
+    },
+    "IcoConverter": {
+      "title": "Direct ICO Converter",
+      "description": "Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app."
+    },
+    "CssPattern": {
+      "title": "CSS Pattern Generator",
+      "description": "Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids."
+    },
+    "SvgVisualizer": {
+      "title": "SVG Path Visualizer",
+      "description": "Visualize and edit SVG path data (d attribute). See how changes to coordinates affect the drawing in real-time."
+    },
+    "ColorNameFinder": {
+      "title": "Color Name Finder",
+      "description": "Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support."
     }
   }
 }
