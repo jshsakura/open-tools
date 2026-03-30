@@ -214,37 +214,39 @@ export function HomeClient() {
               <div
                 ref={scrollRef}
                 onScroll={updateScrollState}
-                className="flex items-center gap-2 overflow-x-auto px-4 pb-1 scrollbar-hide"
+                className="overflow-x-auto pb-1 scrollbar-hide"
               >
-                <Button
-                  variant={selectedTag === null ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedTag(null)}
-                  className="rounded-full px-4 cursor-pointer shrink-0"
-                >
-                  <LayoutGrid className="mr-2 h-4 w-4" />
-                  {t("Home.allTools")}
-                  <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary-foreground/15 text-primary-foreground ring-1 ring-primary-foreground/20">
-                    {tools.length}
-                  </span>
-                </Button>
-                {allTags.map((tag) => (
+                <div className="flex min-w-full w-max items-center justify-center gap-2 px-4">
                   <Button
-                    key={tag}
-                    variant={selectedTag === tag ? "default" : "outline"}
+                    variant={selectedTag === null ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setSelectedTag(tag)}
-                    className={cn(
-                      "rounded-full px-4 transition-all duration-300 cursor-pointer shrink-0",
-                      selectedTag === tag && "shadow-lg shadow-primary/20",
-                    )}
+                    onClick={() => setSelectedTag(null)}
+                    className="rounded-full px-4 cursor-pointer shrink-0"
                   >
-                    {t(`Category.${tag}`)}
-                    <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
-                      {tagCounts[tag] || 0}
+                    <LayoutGrid className="mr-2 h-4 w-4" />
+                    {t("Home.allTools")}
+                    <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary-foreground/15 text-primary-foreground ring-1 ring-primary-foreground/20">
+                      {tools.length}
                     </span>
                   </Button>
-                ))}
+                  {allTags.map((tag) => (
+                    <Button
+                      key={tag}
+                      variant={selectedTag === tag ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedTag(tag)}
+                      className={cn(
+                        "rounded-full px-4 transition-all duration-300 cursor-pointer shrink-0",
+                        selectedTag === tag && "shadow-lg shadow-primary/20",
+                      )}
+                    >
+                      {t(`Category.${tag}`)}
+                      <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                        {tagCounts[tag] || 0}
+                      </span>
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
