@@ -14,7 +14,7 @@ export default async function KSeriesPage({ params: { locale } }: { params: { lo
     const t = await getTranslations({ locale, namespace: 'Catalog.KSeries' });
 
     return (
-        <div className="container mx-auto py-12 px-4 shadow-sm min-h-screen pt-24">
+        <div className="container mx-auto px-4 py-12 max-w-6xl shadow-sm min-h-screen pt-24">
             <h1 className="text-4xl font-black tracking-tight text-center mb-4">{t('title')}</h1>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">{t('description')}</p>
             <KTools />

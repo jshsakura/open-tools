@@ -15,7 +15,7 @@ export default async function HwpViewerPage({ params }: { params: Promise<{ loca
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'HwpViewer' })
     return (
-        <div className="container mx-auto py-12 px-4 space-y-8">
+        <div className="container mx-auto px-4 py-12 max-w-6xl space-y-8">
             <header className="space-y-3 text-center">
                 <h1 className="text-4xl sm:text-5xl font-black tracking-tighter text-foreground">
                     {t('title')}

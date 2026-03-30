@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function Basic3dViewerPage() {
     return (
-        <div className="container mx-auto py-12 px-4">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <Basic3dViewer />
             <ToolGuide ns="Basic3dViewer" />
         </div>

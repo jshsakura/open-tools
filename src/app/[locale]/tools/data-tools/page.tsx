@@ -16,7 +16,7 @@ export default async function DataToolsPage({ params }: { params: Promise<{ loca
     const t = await getTranslations({ locale, namespace: 'DataTools' });
 
     return (
-        <div className="container mx-auto py-12 px-4">
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <h1 className="text-3xl font-bold text-center mb-8">{t('title')}</h1>
             <DataTools />
             <ToolGuide ns="DataTools" />
