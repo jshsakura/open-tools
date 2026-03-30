@@ -11,7 +11,7 @@ export function DevTools() {
     const t = useTranslations("DevTools")
 
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-5xl space-y-6">
             <Tabs defaultValue="docker" className="w-full">
                 <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 gap-2">
                     <TabsTrigger value="docker" className="flex items-center justify-center gap-2">

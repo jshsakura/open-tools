@@ -132,7 +132,7 @@ export function RobotsTxtGenerator() {
   }
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Presets */}
       <Card>
         <CardContent className="pt-6">

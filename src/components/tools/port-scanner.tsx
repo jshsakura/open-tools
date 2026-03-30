@@ -83,7 +83,7 @@ export function PortScannerTool() {
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Control Panel */}
             <Card className="overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm shadow-xl">
                 <CardHeader className="border-b border-border/10 bg-muted/30">

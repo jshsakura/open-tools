@@ -125,7 +125,7 @@ export function QrGenerator() {
     }
 
     return (
-        <div className="flex flex-col md:flex-row gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl flex flex-col md:flex-row gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Left Column: Preview (Sticky on Desktop) - Order 1 on Mobile */}
             <div className="w-full md:w-1/2 lg:w-5/12 order-1 md:order-1">
                 <div className="md:sticky md:top-24 space-y-6">

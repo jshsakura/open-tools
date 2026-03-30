@@ -71,7 +71,7 @@ export function BoxShadowGenerator() {
     }
 
     return (
-        <div className="grid lg:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl grid lg:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Left Column: Controls */}
             <div className="space-y-6 order-2 lg:order-1">
                 <Card className="border-border bg-card/50 backdrop-blur-sm">

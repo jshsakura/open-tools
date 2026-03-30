@@ -209,7 +209,7 @@ export function StringCaseConverter() {
   }, [tokens, hasContent])
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Input */}
       <GlassCard className="p-5">
         <div className="flex items-center justify-between mb-3 px-1">

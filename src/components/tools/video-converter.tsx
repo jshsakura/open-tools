@@ -203,7 +203,7 @@ export function VideoConverter() {
     }
 
     return (
-        <div className="flex flex-col lg:flex-row gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Left Column: Preview / Upload */}
             <div className="w-full lg:w-1/2 space-y-6">
                 <GlassCard className="p-1 rounded-2xl relative overflow-hidden min-h-[400px] flex flex-col">

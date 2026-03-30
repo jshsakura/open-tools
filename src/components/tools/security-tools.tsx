@@ -16,7 +16,7 @@ export function SecurityTools() {
     const [activeTab, setActiveTab] = useState("aes")
 
     return (
-        <Tabs defaultValue="aes" className="w-full space-y-8" onValueChange={setActiveTab}>
+        <Tabs defaultValue="aes" className="w-full max-w-5xl mx-auto space-y-8" onValueChange={setActiveTab}>
             <div className="flex justify-center">
                 <TabsList className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-muted/50 rounded-xl">
                     <TabsTrigger value="aes" className="py-3 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg transition-all">

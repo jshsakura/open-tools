@@ -286,7 +286,7 @@ export function GitDiffViewerTool() {
     const totalDeletions = files.reduce((a, f) => a + f.deletions, 0)
 
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-5xl space-y-6">
             {/* Input */}
             <Card>
                 <CardContent className="p-6">

@@ -154,7 +154,7 @@ export function SvgToJsxTool() {
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid gap-6 lg:grid-cols-2">
                 {/* Input Panel */}
                 <Card className="border-primary/20 bg-card/60 backdrop-blur-sm shadow-xl">

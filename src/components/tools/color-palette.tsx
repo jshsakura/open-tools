@@ -113,7 +113,7 @@ export function ColorPaletteTool() {
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Mode Tabs */}
             <div className="flex gap-2 p-1 bg-secondary/30 rounded-[20px] border border-border/10">
                 <Button

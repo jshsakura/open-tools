@@ -83,7 +83,7 @@ export function HashGenerator() {
     const clear = () => setInput("")
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <GlassCard className="p-6 rounded-2xl overflow-hidden min-h-[500px] flex flex-col gap-6">
 
                 {/* Input Section */}

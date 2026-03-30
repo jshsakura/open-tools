@@ -10,7 +10,7 @@ export function TextTools() {
   const t = useTranslations("TextTools");
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-5xl space-y-6">
       <div className="text-center space-y-2 mb-8">
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {t("description")}

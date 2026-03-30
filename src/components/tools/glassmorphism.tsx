@@ -48,7 +48,7 @@ box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);`
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid gap-8 lg:grid-cols-2">
                 {/* Control Panel */}
                 <Card className="border-primary/20 bg-card/60 backdrop-blur-sm shadow-xl shrink-0">

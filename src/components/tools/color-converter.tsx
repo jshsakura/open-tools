@@ -174,7 +174,7 @@ export function ColorConverterTool() {
     })
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Input Section */}
             <div className="grid gap-6 lg:grid-cols-5">
                 {/* Color Picker + Preview */}

@@ -379,7 +379,7 @@ export function ExifViewerTool() {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-5xl space-y-6">
             {/* Privacy Warning */}
             <GlassCard className="p-4 border-amber-500/30 bg-amber-500/5">
                 <div className="flex items-start gap-3">

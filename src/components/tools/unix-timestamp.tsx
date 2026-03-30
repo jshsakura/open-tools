@@ -90,7 +90,7 @@ export function UnixTimestamp() {
     }, [])
 
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-5xl space-y-6">
             {/* Current timestamp */}
             <GlassCard className="p-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -126,7 +126,7 @@ export function SpeedTestTool() {
     }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid gap-6 md:grid-cols-3">
                 {/* Results Overview */}
                 <Card className="md:col-span-3 overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm shadow-xl">

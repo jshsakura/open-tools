@@ -255,7 +255,7 @@ export function HtmlEntityEncoder() {
   const decodeOutput = decodeInput ? decodeHtmlEntities(decodeInput) : ""
 
   return (
-    <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="mx-auto max-w-5xl space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <Tabs defaultValue="encode" className="w-full">
         <TabsList className="grid w-full grid-cols-2 h-11 bg-muted/50 p-1 rounded-xl max-w-xs">
           <TabsTrigger value="encode" className="rounded-lg gap-1.5 text-sm">
