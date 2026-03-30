@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function ImageCompressorPage() {
     return (
-        <div>
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
             <ImageCompressor />
             <ToolGuide ns="ImageCompressor" />
         </div>
