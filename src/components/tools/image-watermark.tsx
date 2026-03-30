@@ -2,13 +2,12 @@
 
 import { useState, useRef, useCallback, useEffect } from "react"
 import { useTranslations } from "next-intl"
-import { Upload, Download, Type, Image as ImageIcon, Trash2, Move } from "lucide-react"
+import { Upload, Download, Type, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "sonner"
 
 type WatermarkPosition = "center" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "tile"
@@ -153,7 +152,7 @@ export function ImageWatermark() {
     }
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <header className="space-y-2">
                 <h1 className="text-3xl font-black tracking-tight">{t("title")}</h1>
                 <p className="text-muted-foreground">{t("description")}</p>

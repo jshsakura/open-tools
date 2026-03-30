@@ -6,9 +6,7 @@ import { Upload, Download, RotateCw, FlipHorizontal, FlipVertical, Crop, Trash2,
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
-import { cn } from "@/lib/utils"
 
 type AspectRatio = "free" | "1:1" | "4:3" | "16:9" | "9:16" | "3:2"
 
@@ -227,7 +225,7 @@ export function ImageCropper() {
     }
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <header className="space-y-2">
                 <h1 className="text-3xl font-black tracking-tight">{t("title")}</h1>
                 <p className="text-muted-foreground">{t("description")}</p>
