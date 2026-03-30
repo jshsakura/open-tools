@@ -30,7 +30,7 @@ interface ToolGuideSectionProps {
 
 export function ToolGuideSection({ guide, features, faq }: ToolGuideSectionProps) {
     return (
-        <div className="mt-12 space-y-6">
+        <div className="mt-12 mx-auto max-w-5xl space-y-6">
             {/* Guide Section */}
             <Card className="border-primary/20 bg-primary/5 backdrop-blur-sm shadow-lg shadow-primary/5">
                 <CardContent className="p-6 space-y-4">
