@@ -11,7 +11,8 @@
   },
   "Category": {
     "Development": "개발 (Development)",
-    "Media": "미디어 (Media)",
+    "Image": "이미지 (Image)",
+    "Video": "비디오 (Video)",
     "Design": "디자인 (Design)",
     "Security": "보안 (Security)",
     "Utilities": "유틸리티 (Utilities)",
