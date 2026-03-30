@@ -151,7 +151,7 @@ export function WebhookTesterTool() {
         : ""
 
     return (
-        <div className="space-y-6">
+        <div className="mx-auto max-w-5xl space-y-6">
             {/* Request */}
             <Card>
                 <CardContent className="p-6 space-y-4">
