@@ -110,7 +110,7 @@ export function CssMinifierTool() {
     }, [])
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 justify-center">
                 <Button onClick={handleMinify} className="gap-2">

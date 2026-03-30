@@ -107,7 +107,7 @@ export function SqlConverter() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto h-[calc(100vh-350px)] min-h-[450px]">
+        <div className="max-w-5xl mx-auto h-[calc(100vh-350px)] min-h-[450px]">
             <GlassCard className="h-full flex flex-col p-6 rounded-2xl gap-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <Tabs value={inputType} onValueChange={(v) => setInputType(v as "sql" | "table")} className="w-full sm:w-auto">

@@ -85,7 +85,7 @@ export function RegexTester() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-6">
             <GlassCard className="p-6 rounded-2xl space-y-4">
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 space-y-2">

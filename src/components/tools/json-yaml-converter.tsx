@@ -55,7 +55,7 @@ export function JsonYamlConverter() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
             <GlassCard className="p-6 rounded-2xl">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">

@@ -48,7 +48,7 @@ export function JwtDebugger() {
     }, [token])
 
     return (
-        <div className="max-w-6xl mx-auto h-[calc(100vh-200px)] min-h-[600px] grid lg:grid-cols-2 gap-6 pb-12">
+        <div className="max-w-5xl mx-auto h-[calc(100vh-200px)] min-h-[600px] grid lg:grid-cols-2 gap-6 pb-12">
             {/* Input Section */}
             <div className="flex flex-col h-full gap-4">
                 <div className="flex items-center gap-2 px-1">

@@ -295,7 +295,7 @@ export function JsonLdGeneratorTool() {
     }, [])
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Schema Type Selector */}
             <GlassCard className="p-4">
                 <Label className="text-sm font-semibold mb-3 block">{t("schemaType")}</Label>

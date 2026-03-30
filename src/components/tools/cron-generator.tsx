@@ -70,7 +70,7 @@ export function CronGenerator() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8">
             <div className="space-y-6">
                 <GlassCard className="p-8 rounded-2xl space-y-6">
                     <div className="space-y-2">
