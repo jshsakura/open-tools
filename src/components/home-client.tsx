@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
 import { toolsCatalog } from "@/lib/tools-catalog";
 import {
+  Image as ImageIcon,
   Video,
   ShieldCheck,
   Zap,
@@ -55,7 +56,14 @@ export function HomeClient() {
   );
 
   const allTags = useMemo(() => {
-    return ["Development", "Media", "Design", "Security", "Utilities"];
+    return [
+      "Development",
+      "Image",
+      "Video",
+      "Design",
+      "Security",
+      "Utilities",
+    ];
   }, []);
 
   const isSearching = searchQuery.trim().length > 0;
@@ -308,7 +316,8 @@ export function HomeClient() {
                 (
                   {
                     Development: Terminal,
-                    Media: Video,
+                    Image: ImageIcon,
+                    Video,
                     Design: Wand2,
                     Security: ShieldCheck,
                     Utilities: Zap,
