@@ -253,11 +253,11 @@ Quick deployment using Docker Compose:
 ```bash
 # Option 1: Using env file
 cp .env.example .env
-# Edit .env with your DOCKERHUB_USERNAME
+# Edit .env with your DOCKERHUB_USERNAME and local DATABASE_VOLUME_PATH if needed
 docker-compose up -d
 
 # Option 2: Override at runtime
-DOCKERHUB_USERNAME=your-username IMAGE_TAG=latest docker-compose up -d
+DOCKERHUB_USERNAME=your-username IMAGE_TAG=latest DATABASE_VOLUME_PATH=./data docker-compose up -d
 ```
 
 **Environment Variables (Docker Compose):**
@@ -270,7 +270,15 @@ IMAGE_TAG=latest                             # Version tag (default: latest)
 # Optional: Application config
 NODE_ENV=production                         # Environment mode
 PORT=3033                                  # Application port
+DATABASE_PATH=/app/data/database.db        # SQLite database file path for persistent app data
+DATABASE_VOLUME_PATH=./data                # Local host directory mounted into /app/data
 ```
+
+**SQLite data persistence:**
+
+- The app stores server-side SQLite data in a local database file.
+- In Docker Compose, the app stores that file at `/app/data/database.db` and bind-mounts a local host directory such as `./data` into `/app/data`.
+- Keep `DATABASE_PATH=/app/data/database.db` and set `DATABASE_VOLUME_PATH=./data` (or another local path) when you want that database to survive container recreation or image updates.
 
 **Resource Limits (Docker Compose):**
 
@@ -293,11 +301,19 @@ docker build -t open-tools .
 # Build for multiple architectures (requires buildx)
 docker buildx build --platform linux/amd64,linux/arm64 -t open-tools .
 
-# Run container
-docker run -p 3033:3033 --env NODE_ENV=production open-tools
+# Run container with persistent app database
+docker run -p 3033:3033 \
+  --env NODE_ENV=production \
+  --env DATABASE_PATH=/app/data/database.db \
+  --volume "$(pwd)/data:/app/data" \
+  open-tools
 ```
 
 ### Environment Configuration
+
+- `DATABASE_PATH` is optional in local development. If unset, the app falls back to `database.db` in the project root.
+- In Docker Compose, `DATABASE_VOLUME_PATH` controls which local host directory is mounted into `/app/data`.
+- For Docker deployments, set `DATABASE_PATH=/app/data/database.db` and `DATABASE_VOLUME_PATH=./data` (or your preferred local path) to persist the SQLite file.
 
 ---
 
@@ -433,7 +449,10 @@ npm start
 
 ```bash
 docker build -t open-tools .
-docker run -p 3033:3033 open-tools
+docker run -p 3033:3033 \
+  --env DATABASE_PATH=/app/data/database.db \
+  --volume "$(pwd)/data:/app/data" \
+  open-tools
 ```
 
 Or use Docker Compose:

@@ -9,10 +9,12 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3033
-      - FLARESOLVERR_URL=http://host.docker.internal:8191
+      - DATABASE_PATH=/app/data/database.db
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+    volumes:
+      - ${DATABASE_VOLUME_PATH:-./data}:/app/data
     extra_hosts:
       - "host.docker.internal:host-gateway"
-      - FLARESOLVERR_URL=http://flaresolverr:8191
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3033"]
       interval: 30s

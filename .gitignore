@@ -51,3 +51,8 @@ messages/*/merged.json
 # local workspace artifacts
 .ipynb_checkpoints/
 .sisyphus/
+
+# local sqlite data
+/database.db
+/visitors.db
+/data/

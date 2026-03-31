@@ -3,7 +3,12 @@ import path from "path";
 import fs from "fs";
 
 // 데이터베이스 파일 경로 설정
-const DB_PATH = path.join(process.cwd(), "visitors.db");
+const DB_PATH = process.env.DATABASE_PATH?.trim() || path.join(process.cwd(), "database.db");
+const DB_DIR = path.dirname(DB_PATH);
+
+if (!fs.existsSync(DB_DIR)) {
+  fs.mkdirSync(DB_DIR, { recursive: true });
+}
 
 // DB 연결 (파일이 없으면 자동 생성)
 const db = new Database(DB_PATH);
