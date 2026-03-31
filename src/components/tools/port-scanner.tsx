@@ -202,7 +202,7 @@ export function PortScannerTool() {
             </div>
 
             <section className="p-8 rounded-[32px] bg-secondary/20 border border-border/20 backdrop-blur-md">
-                <div className="max-w-3xl space-y-4">
+                <div className="w-full space-y-4">
                     <h3 className="text-xl font-bold flex items-center gap-2">
                         <Info className="h-5 w-5 text-primary" />
                         {t("limitation.title")}

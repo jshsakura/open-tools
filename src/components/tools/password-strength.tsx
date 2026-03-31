@@ -82,7 +82,7 @@ export function PasswordStrength() {
   }, [password])
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-8">
         <div className="space-y-6">
           <div className="space-y-2">
@@ -118,12 +118,12 @@ export function PasswordStrength() {
                   <span className="text-xs text-muted-foreground">{analysis.entropy} bits</span>
                 </div>
                 <div className="h-3 bg-muted rounded-full overflow-hidden flex gap-1 p-0.5">
-                  {[...Array(4)].map((_, i) => (
+                  {[0, 1, 2, 3].map((segment) => (
                     <div 
-                      key={i}
+                      key={segment}
                       className={cn(
                         "h-full flex-1 rounded-sm transition-all duration-500",
-                        i <= (analysis.level === "strong" ? 3 : analysis.level === "good" ? 2 : analysis.level === "fair" ? 1 : 0) ? analysis.color : "bg-muted-foreground/10"
+                        segment <= (analysis.level === "strong" ? 3 : analysis.level === "good" ? 2 : analysis.level === "fair" ? 1 : 0) ? analysis.color : "bg-muted-foreground/10"
                       )}
                     />
                   ))}
@@ -188,6 +188,8 @@ export function PasswordStrength() {
 function Check({ className }: { className?: string }) {
   return (
     <svg 
+      aria-hidden="true"
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg" 
       width="24" 
       height="24" 

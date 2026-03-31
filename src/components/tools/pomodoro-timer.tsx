@@ -146,7 +146,7 @@ export function PomodoroTimer() {
     const strokeDashoffset = circumference * (1 - progress)
 
     return (
-        <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <header className="space-y-2 text-center">
                 <h1 className="text-3xl font-black tracking-tight">{t("title")}</h1>
                 <p className="text-muted-foreground">{t("description")}</p>
@@ -175,7 +175,7 @@ export function PomodoroTimer() {
             {/* Timer */}
             <GlassCard className="p-10 flex flex-col items-center">
                 <div className="relative w-[320px] h-[320px]">
-                    <svg className="w-full h-full -rotate-90" viewBox="0 0 320 320">
+                    <svg aria-hidden="true" focusable="false" className="w-full h-full -rotate-90" viewBox="0 0 320 320">
                         {/* Background circle */}
                         <circle cx="160" cy="160" r={radius} fill="none" strokeWidth="8" className="stroke-border/20" />
                         {/* Progress circle */}
@@ -226,12 +226,12 @@ export function PomodoroTimer() {
                 </GlassCard>
                 <GlassCard className="p-4 text-center">
                     <div className="text-3xl font-black flex items-center justify-center gap-1">
-                        {Array.from({ length: longBreakInterval }).map((_, i) => (
+                        {Array.from({ length: longBreakInterval }, (_, index) => index + 1).map((step) => (
                             <div
-                                key={i}
+                                key={step}
                                 className={cn(
                                     "w-3 h-3 rounded-full transition-colors",
-                                    i < (completedPomodoros % longBreakInterval) ? "bg-rose-500" : "bg-border/40"
+                                    step <= (completedPomodoros % longBreakInterval) ? "bg-rose-500" : "bg-border/40"
                                 )}
                             />
                         ))}
@@ -243,6 +243,7 @@ export function PomodoroTimer() {
             {/* Settings */}
             <GlassCard className="p-6 space-y-6">
                 <button
+                    type="button"
                     onClick={() => setShowSettings(!showSettings)}
                     className="flex items-center gap-2 text-sm font-bold w-full"
                 >

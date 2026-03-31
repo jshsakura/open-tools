@@ -90,7 +90,7 @@ export function ColorNameFinder() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-8">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Picker */}

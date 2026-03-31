@@ -76,7 +76,7 @@ export function PassphraseGenerator() {
   const entropy = Math.round(wordCount * Math.log2(WORD_LIST.length) + (includeNumber ? Math.log2(100) : 0))
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-8">
         <div className="space-y-8">
           {/* Output Display */}

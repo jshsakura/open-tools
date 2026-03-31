@@ -6,7 +6,7 @@ import { ToolLoadingSkeleton } from "@/components/tool-loader";
 import { ToolPageHeader } from "@/components/tool-page-header";
 import { ToolGuide } from "@/components/tool-guide-section";
 import { getToolById } from "@/lib/tools-catalog";
-import { Files, ShieldCheck, Infinity, SortAsc } from "lucide-react";
+import { Files, ShieldCheck, Infinity as InfinityIcon, SortAsc } from "lucide-react";
 
 const PdfMerge = dynamic(
   () =>
@@ -25,7 +25,7 @@ export default function PdfMergePage() {
 
   const features = [
     {
-      icon: Infinity,
+      icon: InfinityIcon,
       color: "text-red-500",
       bg: "bg-red-500/10",
       title: "파일 수 제한 없음",
@@ -64,7 +64,7 @@ export default function PdfMergePage() {
       />
 
       {/* Feature Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+      <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map((f) => (
           <div
             key={f.titleEn}

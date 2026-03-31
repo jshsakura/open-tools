@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import { 
   FileCode, 
@@ -22,15 +22,7 @@ export function HtmlToJsx() {
   const [jsx, setJsx] = useState("")
   const [copied, setCopied] = useState(false)
 
-  useEffect(() => {
-    if (!html.trim()) {
-      setJsx("")
-      return
-    }
-    setJsx(convertHtmlToJsx(html))
-  }, [html])
-
-  const convertHtmlToJsx = (input: string): string => {
+  const convertHtmlToJsx = useCallback((input: string): string => {
     let result = input
 
     // 1. Attributes mapping
@@ -84,7 +76,15 @@ export function HtmlToJsx() {
     result = result.replace(/<!--[\s\S]*?-->/g, "")
 
     return result
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!html.trim()) {
+      setJsx("")
+      return
+    }
+    setJsx(convertHtmlToJsx(html))
+  }, [html, convertHtmlToJsx])
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(jsx)
@@ -93,7 +93,7 @@ export function HtmlToJsx() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input */}

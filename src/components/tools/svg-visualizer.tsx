@@ -31,7 +31,7 @@ export function SvgVisualizer() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Editor */}

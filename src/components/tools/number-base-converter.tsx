@@ -204,7 +204,7 @@ export function NumberBaseConverter() {
   const hasValue = Object.values(fields).some((f) => f.raw !== "")
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Toolbar */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -351,6 +351,7 @@ export function NumberBaseConverter() {
               { label: "1024", bin: "10000000000",oct:"2000",dec: "1024",hex: "400"},
             ].map((row) => (
               <button
+                type="button"
                 key={row.label}
                 onClick={() => handleChange(10, row.dec)}
                 className={cn(

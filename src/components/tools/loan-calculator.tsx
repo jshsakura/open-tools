@@ -105,7 +105,7 @@ export function LoanCalculator() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Controls */}
         <GlassCard className="p-6 space-y-6 lg:col-span-1">

@@ -68,12 +68,12 @@ export function TimeZoneConverter() {
         }
     }
 
-    const removeCity = (index: number) => {
-        setSelectedCities(selectedCities.filter((_, i) => i !== index))
+    const removeCity = (zone: string) => {
+        setSelectedCities(selectedCities.filter((city) => city.zone !== zone))
     }
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-8">
             <GlassCard className="p-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
                     <div className="space-y-1 text-center md:text-left">
@@ -126,8 +126,8 @@ export function TimeZoneConverter() {
                 </div>
 
                 <div className="grid gap-4">
-                    {selectedCities.map((city, index) => (
-                        <div key={index} className="flex items-center justify-between p-4 rounded-xl bg-muted/20 border border-border/40 group hover:bg-muted/30 transition-colors">
+                    {selectedCities.map((city) => (
+                        <div key={city.zone} className="flex items-center justify-between p-4 rounded-xl bg-muted/20 border border-border/40 group hover:bg-muted/30 transition-colors">
                             <div className="flex items-center gap-4">
                                 <Globe className="w-5 h-5 text-primary/60" />
                                 <div>
@@ -148,7 +148,7 @@ export function TimeZoneConverter() {
                                     variant="ghost"
                                     size="icon"
                                     className="opacity-0 group-hover:opacity-100 transition-opacity text-destructive hover:text-destructive hover:bg-destructive/10"
-                                    onClick={() => removeCity(index)}
+                                    onClick={() => removeCity(city.zone)}
                                 >
                                     <Trash2 className="w-4 h-4" />
                                 </Button>

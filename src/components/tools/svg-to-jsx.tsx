@@ -21,6 +21,7 @@ export function SvgToJsxTool() {
     const [jsxOutput, setJsxOutput] = useState("")
     const [copied, setCopied] = useState(false)
     const [componentName, setComponentName] = useState("IconComponent")
+    const componentNameInputId = "svg-to-jsx-component-name"
 
     const convertToJsx = () => {
         if (!svgInput) return
@@ -154,7 +155,7 @@ export function SvgToJsxTool() {
     }
 
     return (
-        <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid gap-6 lg:grid-cols-2">
                 {/* Input Panel */}
                 <Card className="border-primary/20 bg-card/60 backdrop-blur-sm shadow-xl">
@@ -179,8 +180,9 @@ export function SvgToJsxTool() {
                         />
                         <div className="flex gap-4">
                             <div className="flex-1 space-y-1.5">
-                                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">{t('componentName')}</label>
+                                <label htmlFor={componentNameInputId} className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">{t('componentName')}</label>
                                 <input
+                                    id={componentNameInputId}
                                     className="w-full h-10 px-3 rounded-xl bg-background/50 border border-primary/10 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
                                     value={componentName}
                                     onChange={(e) => setComponentName(e.target.value)}
@@ -228,7 +230,7 @@ export function SvgToJsxTool() {
             </div>
 
             {/* Help / Info */}
-            <section className="p-8 rounded-[32px] bg-secondary/20 border border-border/20 backdrop-blur-md max-w-4xl">
+            <section className="w-full rounded-[32px] border border-border/20 bg-secondary/20 p-8 backdrop-blur-md">
                 <div className="flex gap-6 items-start">
                     <div className="p-4 rounded-2xl bg-orange-500/10 text-orange-500 shrink-0">
                         <MonitorPlay className="h-8 w-8" />

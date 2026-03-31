@@ -9,6 +9,40 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+const DATA_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"]
+
+const LENGTH_UNITS: Record<string, number> = {
+    mm: 0.001,
+    cm: 0.01,
+    m: 1,
+    km: 1000,
+    in: 0.0254,
+    ft: 0.3048,
+    yd: 0.9144,
+    mi: 1609.344,
+}
+
+const WEIGHT_UNITS: Record<string, number> = {
+    mg: 0.001,
+    g: 1,
+    kg: 1000,
+    oz: 28.349523125,
+    lb: 453.59237,
+}
+
+const formatNumber = (value: number) => value.toLocaleString(undefined, { maximumFractionDigits: 6 })
+
+const convertTemperature = (value: number, from: string, to: string) => {
+    if (isNaN(value)) return NaN
+    let celsius = value
+    if (from === "F") celsius = (value - 32) * (5 / 9)
+    if (from === "K") celsius = value - 273.15
+    if (to === "C") return celsius
+    if (to === "F") return (celsius * 9) / 5 + 32
+    if (to === "K") return celsius + 273.15
+    return value
+}
+
 export function UnitConverter() {
     const t = useTranslations('UnitConverter');
 
@@ -70,20 +104,14 @@ export function UnitConverter() {
         }
     }
 
-    const formatNumber = (value: number) =>
-        value.toLocaleString(undefined, { maximumFractionDigits: 6 })
-
-    // Handlers for Data
-    const units = ["B", "KB", "MB", "GB", "TB", "PB"]
-
     useEffect(() => {
         if (isNaN(dataValue)) {
             setDataResult("-")
             return
         }
 
-        const fromIndex = units.indexOf(fromUnit)
-        const toIndex = units.indexOf(toUnit)
+        const fromIndex = DATA_UNITS.indexOf(fromUnit)
+        const toIndex = DATA_UNITS.indexOf(toUnit)
 
         // Calculate power difference
         // e.g. GB (3) -> MB (2) = diff -1.  1 GB = 1024 MB.  
@@ -102,58 +130,25 @@ export function UnitConverter() {
 
     }, [dataValue, fromUnit, toUnit])
 
-    // Length conversions (base: meter)
-    const lengthUnits: Record<string, number> = {
-        mm: 0.001,
-        cm: 0.01,
-        m: 1,
-        km: 1000,
-        in: 0.0254,
-        ft: 0.3048,
-        yd: 0.9144,
-        mi: 1609.344
-    }
-
     useEffect(() => {
         if (isNaN(lengthValue)) {
             setLengthResult("-")
             return
         }
-        const base = lengthValue * lengthUnits[lengthFrom]
-        const result = base / lengthUnits[lengthTo]
+        const base = lengthValue * LENGTH_UNITS[lengthFrom]
+        const result = base / LENGTH_UNITS[lengthTo]
         setLengthResult(formatNumber(result))
     }, [lengthValue, lengthFrom, lengthTo])
-
-    // Weight conversions (base: gram)
-    const weightUnits: Record<string, number> = {
-        mg: 0.001,
-        g: 1,
-        kg: 1000,
-        oz: 28.349523125,
-        lb: 453.59237
-    }
 
     useEffect(() => {
         if (isNaN(weightValue)) {
             setWeightResult("-")
             return
         }
-        const base = weightValue * weightUnits[weightFrom]
-        const result = base / weightUnits[weightTo]
+        const base = weightValue * WEIGHT_UNITS[weightFrom]
+        const result = base / WEIGHT_UNITS[weightTo]
         setWeightResult(formatNumber(result))
     }, [weightValue, weightFrom, weightTo])
-
-    // Temperature conversions
-    const convertTemperature = (value: number, from: string, to: string) => {
-        if (isNaN(value)) return NaN
-        let celsius = value
-        if (from === "F") celsius = (value - 32) * (5 / 9)
-        if (from === "K") celsius = value - 273.15
-        if (to === "C") return celsius
-        if (to === "F") return (celsius * 9) / 5 + 32
-        if (to === "K") return celsius + 273.15
-        return value
-    }
 
     useEffect(() => {
         if (isNaN(tempValue)) {
@@ -170,7 +165,7 @@ export function UnitConverter() {
     const selectValueClass = "text-lg font-mono leading-none"
 
     return (
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-6">
             <div className="hidden sm:flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-bold text-primary w-fit">
                 <Sparkles className="h-4 w-4" />
                 {t('badge')}
@@ -264,7 +259,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {units.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {DATA_UNITS.map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -285,7 +280,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {units.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {DATA_UNITS.map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -311,7 +306,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {Object.keys(LENGTH_UNITS).map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -332,7 +327,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {Object.keys(lengthUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {Object.keys(LENGTH_UNITS).map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -358,7 +353,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {Object.keys(WEIGHT_UNITS).map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -379,7 +374,7 @@ export function UnitConverter() {
                                         <SelectValue className={selectValueClass} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {Object.keys(weightUnits).map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
+                                            {Object.keys(WEIGHT_UNITS).map((u) => <SelectItem key={u} value={u}>{u}</SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>

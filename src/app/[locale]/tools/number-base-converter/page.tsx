@@ -45,33 +45,37 @@ export default function NumberBaseConverterPage() {
   const tool = getToolById("number-base-converter")
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl"><ToolPageHeader
-      title={t("NumberBaseConverter.title")}
-      description={t("NumberBaseConverter.description")}
-      icon={tool?.icon}
-      colorClass={tool?.color}
-      center
-    />
-    
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-      {features.map((f) => (
-        <div
-          key={f.title}
-          className="flex items-start gap-3 p-4 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
-        >
-          <div className={cn("shrink-0 p-2 rounded-xl", f.bg)}>
-            <f.icon className={cn("w-5 h-5", f.color)} />
-          </div>
-          <div>
-            <p className="font-semibold text-sm text-foreground">{f.title}</p>
-            <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-              {f.desc}
-            </p>
-          </div>
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <ToolPageHeader
+        title={t("NumberBaseConverter.title")}
+        description={t("NumberBaseConverter.description")}
+        icon={tool?.icon}
+        colorClass={tool?.color}
+        center
+      />
+
+      <div className="mx-auto max-w-5xl space-y-12">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {features.map((f) => (
+            <div
+              key={f.title}
+              className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card/60 p-4 backdrop-blur-sm"
+            >
+              <div className={cn("shrink-0 rounded-xl p-2", f.bg)}>
+                <f.icon className={cn("h-5 w-5", f.color)} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">{f.title}</p>
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                  {f.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+
+        <NumberBaseConverterTool />
+      </div>
     </div>
-    
-    <NumberBaseConverterTool /></div>
   )
 }

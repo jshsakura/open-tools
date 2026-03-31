@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import { 
   FileJson, 
@@ -37,36 +37,11 @@ export function JsonToTypes() {
   const [copied, setCopied] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (!json.trim()) {
-      setOutput("")
-      setError(null)
-      return
-    }
-
-    try {
-      const parsed = JSON.parse(json)
-      const generated = generateTypes(parsed, rootName, targetType)
-      setOutput(generated)
-      setError(null)
-    } catch (e) {
-      setError(t("invalidJson"))
-      setOutput("")
-    }
-  }, [json, rootName, targetType, t])
-
-  const generateTypes = (obj: any, name: string, type: TargetType): string => {
-    if (type === "zod") {
-      return generateZodSchema(obj, name)
-    }
-    return generateTs(obj, name, type === "interface")
-  }
-
-  const toPascalCase = (str: string) => {
+  const toPascalCase = useCallback((str: string) => {
     return str.replace(/(\w)(\w*)/g, (_, g1, g2) => g1.toUpperCase() + g2.toLowerCase()).replace(/[^\w]/g, "")
-  }
+  }, [])
 
-  const generateTs = (obj: any, name: string, isInterface: boolean): string => {
+  const generateTs = useCallback((obj: any, name: string, isInterface: boolean): string => {
     let result = ""
     const subTypes: string[] = []
 
@@ -105,10 +80,10 @@ export function JsonToTypes() {
 
     result = processObject(obj, name)
     return [...subTypes, result].join("\n\n")
-  }
+  }, [toPascalCase])
 
-  const generateZodSchema = (obj: any, name: string): string => {
-    let result = `import { z } from "zod";\n\n`
+  const generateZodSchema = useCallback((obj: any, name: string): string => {
+    const result = `import { z } from "zod";\n\n`
     const subSchemas: string[] = []
 
     const processObject = (o: any, n: string): string => {
@@ -145,7 +120,32 @@ export function JsonToTypes() {
 
     const mainSchema = processObject(obj, name)
     return result + [...subSchemas, mainSchema].join("\n\n")
-  }
+  }, [toPascalCase])
+
+  const generateTypes = useCallback((obj: any, name: string, type: TargetType): string => {
+    if (type === "zod") {
+      return generateZodSchema(obj, name)
+    }
+    return generateTs(obj, name, type === "interface")
+  }, [generateTs, generateZodSchema])
+
+  useEffect(() => {
+    if (!json.trim()) {
+      setOutput("")
+      setError(null)
+      return
+    }
+
+    try {
+      const parsed = JSON.parse(json)
+      const generated = generateTypes(parsed, rootName, targetType)
+      setOutput(generated)
+      setError(null)
+    } catch (e) {
+      setError(t("invalidJson"))
+      setOutput("")
+    }
+  }, [json, rootName, targetType, generateTypes, t])
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(output)
@@ -154,7 +154,7 @@ export function JsonToTypes() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="space-y-2">

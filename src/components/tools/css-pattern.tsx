@@ -51,7 +51,7 @@ export function CssPattern() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+        <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-2">
             <GlassCard className="p-8 space-y-8">
                 <div className="space-y-4">
                     <Label className="text-lg font-semibold">{t('patternType')}</Label>

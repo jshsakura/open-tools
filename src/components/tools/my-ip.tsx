@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -39,7 +39,7 @@ export function MyIpTool() {
     const [copied, setCopied] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
-    const fetchIpInfo = async () => {
+    const fetchIpInfo = useCallback(async () => {
         setLoading(true)
         setError(null)
         try {
@@ -53,11 +53,11 @@ export function MyIpTool() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [])
 
     useEffect(() => {
         fetchIpInfo()
-    }, [])
+    }, [fetchIpInfo])
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)
@@ -219,7 +219,7 @@ export function MyIpTool() {
 
             {/* Info Section */}
             <section className="p-8 rounded-[32px] bg-secondary/20 border border-border/20 backdrop-blur-md">
-                <div className="max-w-3xl space-y-4">
+                <div className="w-full space-y-4">
                     <h3 className="text-xl font-bold flex items-center gap-2">
                         <Shield className="h-5 w-5 text-primary" />
                         {t('aboutPrivacy')}

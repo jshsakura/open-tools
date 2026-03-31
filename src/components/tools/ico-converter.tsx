@@ -105,13 +105,14 @@ export function IcoConverter() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-8">
             <GlassCard className="p-8">
-                <div 
-                    className="border-2 border-dashed border-border/60 rounded-2xl p-12 text-center hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer group mb-8"
-                    onClick={() => fileInputRef.current?.click()}
+                <label 
+                    htmlFor="ico-upload-input"
+                    className="block border-2 border-dashed border-border/60 rounded-2xl p-12 text-center hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer group mb-8"
                 >
                     <input 
+                        id="ico-upload-input"
                         type="file" 
                         className="hidden" 
                         ref={fileInputRef} 
@@ -134,13 +135,14 @@ export function IcoConverter() {
                             </div>
                         </div>
                     )}
-                </div>
+                </label>
 
                 <div className="space-y-6">
                     <Label className="text-lg font-semibold">{t('sizes')}</Label>
                     <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                         {ICON_SIZES.map(size => (
-                            <div 
+                            <button 
+                                type="button"
                                 key={size}
                                 className={`flex flex-col items-center p-3 rounded-xl border transition-all cursor-pointer ${
                                     selectedSizes.includes(size) 
@@ -151,7 +153,7 @@ export function IcoConverter() {
                             >
                                 <span className="text-sm font-medium mb-2">{size}x{size}</span>
                                 <Checkbox checked={selectedSizes.includes(size)} />
-                            </div>
+                            </button>
                         ))}
                     </div>
 

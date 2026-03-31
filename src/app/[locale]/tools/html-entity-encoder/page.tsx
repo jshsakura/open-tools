@@ -53,7 +53,7 @@ export default function HtmlEntityEncoderPage() {
       center
     />
     
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+      <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
       {features.map((f) => (
         <div
           key={f.title}

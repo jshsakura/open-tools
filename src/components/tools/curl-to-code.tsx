@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import { 
   Terminal, 
@@ -34,25 +34,7 @@ export function CurlToCode() {
   const [copied, setCopied] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (!curl.trim()) {
-      setOutput("")
-      setError(null)
-      return
-    }
-
-    try {
-      const parsed = parseCurl(curl)
-      const generated = generateCode(parsed, language)
-      setOutput(generated)
-      setError(null)
-    } catch (e) {
-      setError(t("invalidCurl"))
-      setOutput("")
-    }
-  }, [curl, language, t])
-
-  const parseCurl = (curl: string) => {
+  const parseCurl = useCallback((curl: string) => {
     const args = curl.trim().replace(/^curl\s+/, "").split(/\s+(?=(?:[^'"]*['"][^'"]*['"])*[^'"]*$)/)
     const result: any = {
       url: "",
@@ -83,9 +65,9 @@ export function CurlToCode() {
     }
 
     return result
-  }
+  }, [])
 
-  const generateCode = (parsed: any, lang: Language): string => {
+  const generateCode = useCallback((parsed: any, lang: Language): string => {
     const { url, method, headers, data } = parsed
     
     switch (lang) {
@@ -150,7 +132,25 @@ func main() {
       default:
         return ""
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!curl.trim()) {
+      setOutput("")
+      setError(null)
+      return
+    }
+
+    try {
+      const parsed = parseCurl(curl)
+      const generated = generateCode(parsed, language)
+      setOutput(generated)
+      setError(null)
+    } catch (e) {
+      setError(t("invalidCurl"))
+      setOutput("")
+    }
+  }, [curl, language, parseCurl, generateCode, t])
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(output)
@@ -159,7 +159,7 @@ func main() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">

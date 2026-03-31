@@ -81,7 +81,7 @@ export function YamlConverter() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-6">
             <GlassCard className="p-6">
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
