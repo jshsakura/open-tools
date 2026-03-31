@@ -16,18 +16,22 @@ export default async function SvgToJsxPage({ params }: { params: Promise<{ local
     const t = await getTranslations({ locale, namespace: 'Catalog.SvgToJsx' });
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4 text-center">
-            <h1 className="text-4xl font-black tracking-tighter sm:text-6xl text-foreground">
-                {t.rich('title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mx-auto text-center">
-                {t('description')}
-            </p>
+        <div className="container mx-auto max-w-6xl px-4 py-12">
+            <div className="mb-12 space-y-4 text-center">
+                <h1 className="text-4xl font-black tracking-tighter text-foreground sm:text-6xl">
+                    {t.rich('title', {
+                        span: (chunks) => <span className="text-primary">{chunks}</span>
+                    })}
+                </h1>
+                <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+                    {t('description')}
+                </p>
+            </div>
+
+            <div className="space-y-12">
+                <SvgToJsxTool />
+                <ToolGuide ns="SvgToJsx" />
+            </div>
         </div>
-        
-        <SvgToJsxTool />
-        <ToolGuide ns="SvgToJsx" /></div>
     );
 }

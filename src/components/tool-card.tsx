@@ -37,21 +37,24 @@ export function ToolCard({
     <Link
       href={href}
       data-tool-id={id}
-      className="group block h-full cursor-pointer"
+      className="group relative block h-full cursor-pointer"
       prefetch={false}
       onClick={() => onNavigate?.(id)}
     >
+      {isRecent && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-1 rounded-[28px] bg-[radial-gradient(circle_at_top,_hsl(var(--primary)/0.3),_transparent_65%)] opacity-80 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+        />
+      )}
       <div
         className={cn(
-          "relative h-full overflow-hidden rounded-[24px] border border-black/[0.08] bg-white/[0.7] p-5 shadow-[0_4px_15px_rgb(0,0,0,0.05)] transition-all duration-300 hover:scale-[1.01] hover:border-primary/20 hover:bg-white/[0.9] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] active:scale-[0.98] group-hover:-translate-y-1 dark:border-white/[0.05] dark:bg-card/20 dark:hover:bg-card/40 dark:hover:shadow-xl",
+          "relative z-10 h-full overflow-hidden rounded-[24px] border border-black/[0.08] bg-white/[0.7] p-5 shadow-[0_4px_15px_rgb(0,0,0,0.05)] transition-all duration-300 hover:scale-[1.01] hover:border-primary/20 hover:bg-white/[0.9] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] active:scale-[0.98] group-hover:-translate-y-1 dark:border-white/[0.05] dark:bg-card/20 dark:hover:bg-card/40 dark:hover:shadow-xl",
           isRecent &&
-            "border-primary/40 bg-primary/[0.06] shadow-[0_0_0_1px_hsl(var(--primary)/0.15),0_16px_40px_hsl(var(--primary)/0.18)]",
+            "border-primary/40 bg-primary/[0.06] shadow-[0_0_0_1px_hsl(var(--primary)/0.15),0_18px_48px_hsl(var(--primary)/0.16)]",
         )}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        {isRecent && (
-          <div className="absolute inset-x-5 top-3 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-        )}
 
         <div className="relative z-10 flex h-full flex-col gap-3">
           <div className="flex items-center justify-between gap-2">

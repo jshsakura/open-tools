@@ -230,14 +230,16 @@ export function SvgToJsxTool() {
             </div>
 
             {/* Help / Info */}
-            <section className="w-full rounded-[32px] border border-border/20 bg-secondary/20 p-8 backdrop-blur-md">
+            <section className="w-full rounded-[32px] border border-border/20 bg-secondary/20 p-8 backdrop-blur-md sm:p-10">
                 <div className="flex gap-6 items-start">
                     <div className="p-4 rounded-2xl bg-orange-500/10 text-orange-500 shrink-0">
                         <MonitorPlay className="h-8 w-8" />
                     </div>
-                    <div className="space-y-2">
-                        <h3 className="text-xl font-bold">{t('whyUse')}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                    <div className="max-w-3xl space-y-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-500/80">
+                            {t('whyUse')}
+                        </p>
+                        <p className="text-base leading-7 text-foreground/90 sm:text-[17px]">
                             {t('whyUseDesc')}
                         </p>
                     </div>
