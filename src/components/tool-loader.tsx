@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react"
 
 export function ToolLoadingSkeleton() {
     return (
-        <div className="mx-auto max-w-6xl space-y-6 animate-in fade-in duration-500">
+        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in duration-500">
             {/* Header Skeleton */}
             <div className="space-y-3">
                 <div className="h-8 w-64 bg-secondary/50 rounded-lg animate-pulse" />
@@ -30,7 +30,7 @@ export function ToolLoadingSkeleton() {
 
 export function ToolLoader({ children }: { children: React.ReactNode }) {
     return (
-        <div className="mx-auto min-h-[calc(100vh-200px)] max-w-6xl px-4 py-8">
+        <div className="mx-auto min-h-[calc(100vh-200px)] max-w-5xl px-4 py-8">
             {children}
         </div>
     )
