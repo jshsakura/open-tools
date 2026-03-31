@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Github } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { VisitorCounter } from "@/components/visitor-counter";
 
 export function Header() {
   const pathname = usePathname();
@@ -113,16 +114,19 @@ export function Footer() {
             ),
           })}
         </p>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium">
-          <Link
-            href="/privacy"
-            className="hover:text-primary transition-colors"
-          >
-            Privacy
-          </Link>
-          <Link href="/terms" className="hover:text-primary transition-colors">
-            Terms
-          </Link>
+        <div className="flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-4">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium order-1">
+            <Link
+              href="/privacy"
+              className="hover:text-primary transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">
+              Terms
+            </Link>
+          </div>
+          <VisitorCounter className="order-2 mt-0 w-full min-w-[220px] max-w-sm border-border/60 bg-background/70 px-3 py-2 md:w-auto md:max-w-none" />
         </div>
       </div>
     </footer>

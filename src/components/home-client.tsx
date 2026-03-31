@@ -11,12 +11,16 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
 import {
+  clearHomeReturnState,
   getToolPopularity,
   isPopularTool,
+  readHomeReturnState,
   readToolPopularityMap,
   TOOL_POPULARITY_STORAGE_KEY,
   TOOL_POPULARITY_UPDATED_EVENT,
   type ToolPopularityMap,
+  writeHomeReturnState,
+  incrementToolPopularity,
 } from "@/lib/tool-popularity";
 import { toolsCatalog } from "@/lib/tools-catalog";
 import {
@@ -37,9 +41,11 @@ export function HomeClient() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [popularityMap, setPopularityMap] = useState<ToolPopularityMap>({});
+  const [highlightedToolId, setHighlightedToolId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const pendingReturnStateRef = useRef<ReturnType<typeof readHomeReturnState>>(null);
 
   useEffect(() => {
     const syncPopularity = () => {
@@ -61,6 +67,33 @@ export function HomeClient() {
     };
   }, []);
 
+  useEffect(() => {
+    const returnState = readHomeReturnState();
+    if (!returnState || returnState.pathname !== window.location.pathname) {
+      return;
+    }
+
+    pendingReturnStateRef.current = returnState;
+    setSelectedTag(returnState.selectedTag);
+    setSearchQuery(returnState.searchQuery);
+    setHighlightedToolId(returnState.toolId);
+    clearHomeReturnState();
+  }, []);
+
+  useEffect(() => {
+    if (!highlightedToolId) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setHighlightedToolId(null);
+    }, 4000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [highlightedToolId]);
+
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -69,6 +102,11 @@ export function HomeClient() {
   }, []);
 
   useEffect(() => {
+    if (selectedTag) {
+      updateScrollState();
+      return;
+    }
+
     updateScrollState();
   }, [updateScrollState, selectedTag]);
 
@@ -124,6 +162,64 @@ export function HomeClient() {
     }
     return counts;
   }, [tools]);
+
+  useEffect(() => {
+    const returnState = pendingReturnStateRef.current;
+    if (!returnState) {
+      return;
+    }
+
+    const hasRestoredViewState =
+      returnState.selectedTag === selectedTag &&
+      returnState.searchQuery === searchQuery;
+    if (!hasRestoredViewState) {
+      return;
+    }
+
+    const hasRenderedTool = filteredTools.some(
+      (tool) => tool.id === returnState.toolId,
+    );
+    if (!hasRenderedTool) {
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const nestedFrameId = window.requestAnimationFrame(() => {
+        const maxScrollY = Math.max(
+          document.documentElement.scrollHeight - window.innerHeight,
+          0,
+        );
+
+        window.scrollTo({
+          top: Math.min(returnState.scrollY, maxScrollY),
+          behavior: "auto",
+        });
+        pendingReturnStateRef.current = null;
+      });
+
+      return () => {
+        window.cancelAnimationFrame(nestedFrameId);
+      };
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
+  }, [filteredTools, selectedTag, searchQuery]);
+
+  const handleToolNavigate = useCallback(
+    (toolId: string) => {
+      writeHomeReturnState({
+        pathname: window.location.pathname,
+        scrollY: window.scrollY,
+        selectedTag,
+        searchQuery,
+        toolId,
+      });
+      incrementToolPopularity(toolId);
+    },
+    [searchQuery, selectedTag],
+  );
 
   return (
     <div className="container mx-auto px-4 pt-24 pb-12 max-w-6xl">
@@ -219,6 +315,7 @@ export function HomeClient() {
               {/* Clear button */}
               {isSearching && (
                 <button
+                  type="button"
                   onClick={() => setSearchQuery("")}
                   aria-label={t("Home.searchClear")}
                   className={cn(
@@ -305,7 +402,9 @@ export function HomeClient() {
                     href={tool.href}
                     color={tool.color}
                     isPopular={tool.isPopular}
+                    isRecent={highlightedToolId === tool.id}
                     tags={tool.tags}
+                    onNavigate={handleToolNavigate}
                   />
                 ))}
               </div>
@@ -334,13 +433,15 @@ export function HomeClient() {
                     href={tool.href}
                     color={tool.color}
                     isPopular={tool.isPopular}
+                    isRecent={highlightedToolId === tool.id}
                     tags={tool.tags}
+                    onNavigate={handleToolNavigate}
                   />
                 ))}
               </div>
               {filteredTools.length === 0 && (
                 <div className="py-20 text-center text-muted-foreground">
-                  No tools found for this category.
+                  {t("Home.noToolsInCategory")}
                 </div>
               )}
             </div>
@@ -384,7 +485,9 @@ export function HomeClient() {
                         href={tool.href}
                         color={tool.color}
                         isPopular={tool.isPopular}
+                        isRecent={highlightedToolId === tool.id}
                         tags={tool.tags}
+                        onNavigate={handleToolNavigate}
                       />
                     ))}
                   </div>

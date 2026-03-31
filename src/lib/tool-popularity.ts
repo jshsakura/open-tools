@@ -1,8 +1,16 @@
 export const TOOL_POPULARITY_STORAGE_KEY = "open-tools-popularity";
 export const TOOL_POPULARITY_UPDATED_EVENT = "open-tools-popularity-updated";
 export const POPULAR_TOOL_THRESHOLD = 3;
+export const HOME_RETURN_STATE_STORAGE_KEY = "open-tools-home-return-state";
 
 export type ToolPopularityMap = Record<string, number>;
+export interface HomeReturnState {
+  pathname: string;
+  scrollY: number;
+  selectedTag: string | null;
+  searchQuery: string;
+  toolId: string;
+}
 
 function isBrowser() {
   return typeof window !== "undefined";
@@ -71,4 +79,77 @@ export function incrementToolPopularity(toolId: string) {
 
 export function isPopularTool(toolId: string, popularityMap?: ToolPopularityMap) {
   return getToolPopularity(toolId, popularityMap) >= POPULAR_TOOL_THRESHOLD;
+}
+
+export function readHomeReturnState(): HomeReturnState | null {
+  if (!isBrowser()) {
+    return null;
+  }
+
+  try {
+    const raw = window.sessionStorage.getItem(HOME_RETURN_STATE_STORAGE_KEY);
+    if (!raw) {
+      return null;
+    }
+
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== "object") {
+      return null;
+    }
+
+    const {
+      pathname,
+      scrollY,
+      selectedTag,
+      searchQuery,
+      toolId,
+    } = parsed as Partial<HomeReturnState>;
+
+    if (
+      typeof pathname !== "string" ||
+      typeof scrollY !== "number" ||
+      (selectedTag !== null && typeof selectedTag !== "string") ||
+      typeof searchQuery !== "string" ||
+      typeof toolId !== "string"
+    ) {
+      return null;
+    }
+
+    return {
+      pathname,
+      scrollY,
+      selectedTag,
+      searchQuery,
+      toolId,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function writeHomeReturnState(state: HomeReturnState) {
+  if (!isBrowser()) {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(
+      HOME_RETURN_STATE_STORAGE_KEY,
+      JSON.stringify(state),
+    );
+  } catch {
+    return;
+  }
+}
+
+export function clearHomeReturnState() {
+  if (!isBrowser()) {
+    return;
+  }
+
+  try {
+    window.sessionStorage.removeItem(HOME_RETURN_STATE_STORAGE_KEY);
+  } catch {
+    return;
+  }
 }

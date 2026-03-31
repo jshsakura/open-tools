@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { Users, BarChart } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export function VisitorCounter() {
+export function VisitorCounter({ className }: { className?: string }) {
   const t = useTranslations("Common")
   const [stats, setStats] = useState<{ today: number; total: number } | null>(null)
 
@@ -26,7 +26,10 @@ export function VisitorCounter() {
   if (!stats) return null
 
   return (
-    <div className="mt-4 px-2 py-3 rounded-xl bg-white/5 border border-white/10 space-y-2 animate-in fade-in duration-1000">
+    <div className={cn(
+      "mt-4 px-2 py-3 rounded-xl bg-white/5 border border-white/10 space-y-2 animate-in fade-in duration-1000",
+      className,
+    )}>
       <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
         <Users className="h-3 w-3 text-primary/70" />
         {t("visitors") || "Visitors"}

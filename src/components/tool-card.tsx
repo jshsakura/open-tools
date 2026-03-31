@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { incrementToolPopularity } from "@/lib/tool-popularity";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Star } from "lucide-react";
@@ -16,6 +15,8 @@ interface ToolCardProps {
   tags?: string[];
   color?: string;
   isPopular?: boolean;
+  isRecent?: boolean;
+  onNavigate?: (toolId: string) => void;
 }
 
 export function ToolCard({
@@ -27,18 +28,30 @@ export function ToolCard({
   tags,
   color = "text-primary",
   isPopular = false,
+  isRecent = false,
+  onNavigate,
 }: ToolCardProps) {
   const t = useTranslations();
 
   return (
     <Link
       href={href}
+      data-tool-id={id}
       className="group block h-full cursor-pointer"
       prefetch={false}
-      onClick={() => incrementToolPopularity(id)}
+      onClick={() => onNavigate?.(id)}
     >
-      <div className="relative h-full overflow-hidden rounded-[24px] border border-black/[0.08] bg-white/[0.7] p-5 shadow-[0_4px_15px_rgb(0,0,0,0.05)] transition-all duration-300 hover:scale-[1.01] hover:border-primary/20 hover:bg-white/[0.9] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] active:scale-[0.98] group-hover:-translate-y-1 dark:border-white/[0.05] dark:bg-card/20 dark:hover:bg-card/40 dark:hover:shadow-xl">
+      <div
+        className={cn(
+          "relative h-full overflow-hidden rounded-[24px] border border-black/[0.08] bg-white/[0.7] p-5 shadow-[0_4px_15px_rgb(0,0,0,0.05)] transition-all duration-300 hover:scale-[1.01] hover:border-primary/20 hover:bg-white/[0.9] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] active:scale-[0.98] group-hover:-translate-y-1 dark:border-white/[0.05] dark:bg-card/20 dark:hover:bg-card/40 dark:hover:shadow-xl",
+          isRecent &&
+            "border-primary/40 bg-primary/[0.06] shadow-[0_0_0_1px_hsl(var(--primary)/0.15),0_16px_40px_hsl(var(--primary)/0.18)]",
+        )}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {isRecent && (
+          <div className="absolute inset-x-5 top-3 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+        )}
 
         <div className="relative z-10 flex h-full flex-col gap-3">
           <div className="flex items-center justify-between gap-2">

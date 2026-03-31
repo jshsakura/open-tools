@@ -11,6 +11,7 @@
     "searchPlaceholder": "도구 검색... (예: JSON, PDF, 이미지)",
     "searchResultCount": "{count}건",
     "searchClear": "검색 지우기",
+    "noToolsInCategory": "이 카테고리에는 도구가 없습니다.",
     "searchNoResults": "\"{query}\"에 대한 검색 결과가 없습니다",
     "searchNoResultsHint": "다른 키워드로 검색해 보세요"
   },

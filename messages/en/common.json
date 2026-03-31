@@ -11,6 +11,7 @@
     "searchPlaceholder": "Search tools... (e.g., JSON, PDF, Image)",
     "searchResultCount": "{count} results",
     "searchClear": "Clear search",
+    "noToolsInCategory": "No tools found for this category.",
     "searchNoResults": "No results found for \"{query}\"",
     "searchNoResultsHint": "Try a different keyword"
   },
