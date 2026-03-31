@@ -10,6 +10,22 @@ import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
 
+const KOREAN_FONT_FALLBACK = [
+    '"Noto Sans KR"',
+    '"Apple SD Gothic Neo"',
+    '"Malgun Gothic"',
+    '"Segoe UI"',
+    'sans-serif',
+].join(", ")
+
+const MEME_FONT_FALLBACK = [
+    'Impact',
+    '"Arial Black"',
+    KOREAN_FONT_FALLBACK,
+].join(", ")
+
+const KOREAN_REGEX = /[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/
+
 export function MemeGenerator() {
     const t = useTranslations("MemeGenerator")
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -17,7 +33,8 @@ export function MemeGenerator() {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [image, setImage] = useState<HTMLImageElement | null>(null)
-    const [, setFileName] = useState("")
+    const [fileName, setFileName] = useState("meme-image")
+    const [fileType, setFileType] = useState("image/png")
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
     const [fontSize, setFontSize] = useState(48)
@@ -25,31 +42,48 @@ export function MemeGenerator() {
     const [strokeColor, setStrokeColor] = useState("#000000")
     const [strokeWidth, setStrokeWidth] = useState(3)
 
+    const buildTextLines = useCallback((ctx: CanvasRenderingContext2D, text: string, maxWidth: number) => {
+        const normalizedText = text.trim()
+        if (!normalizedText) return []
+
+        const tokens = normalizedText.includes(" ")
+            ? normalizedText.split(/\s+/)
+            : Array.from(normalizedText)
+
+        const lines: string[] = []
+        let line = ""
+
+        for (const token of tokens) {
+            const separator = line && normalizedText.includes(" ") ? " " : ""
+            const testLine = `${line}${separator}${token}`
+
+            if (line && ctx.measureText(testLine).width > maxWidth * 0.9) {
+                lines.push(line)
+                line = token
+            } else {
+                line = testLine
+            }
+        }
+
+        if (line) lines.push(line)
+        return lines
+    }, [])
+
     const drawMemeText = useCallback((ctx: CanvasRenderingContext2D, text: string, y: number, maxWidth: number, scale: number) => {
-        if (!text) return
+        if (!text.trim()) return
         ctx.save()
-        ctx.font = `900 ${fontSize * scale}px Impact, 'Arial Black', sans-serif`
+        const fontWeight = KOREAN_REGEX.test(text) ? 800 : 900
+        ctx.font = `${fontWeight} ${fontSize * scale}px ${MEME_FONT_FALLBACK}`
         ctx.textAlign = "center"
         ctx.textBaseline = y < ctx.canvas.height / 2 ? "top" : "bottom"
         ctx.fillStyle = textColor
         ctx.strokeStyle = strokeColor
         ctx.lineWidth = strokeWidth * scale
         ctx.lineJoin = "round"
+        ctx.miterLimit = 2
 
-        // Word wrap
-        const words = text.toUpperCase().split(" ")
-        const lines: string[] = []
-        let line = ""
-        for (const word of words) {
-            const test = line ? line + " " + word : word
-            if (ctx.measureText(test).width > maxWidth * 0.9) {
-                if (line) lines.push(line)
-                line = word
-            } else {
-                line = test
-            }
-        }
-        if (line) lines.push(line)
+        const normalizedText = KOREAN_REGEX.test(text) ? text.trim() : text.trim().toUpperCase()
+        const lines = buildTextLines(ctx, normalizedText, maxWidth)
 
         const lineHeight = fontSize * scale * 1.2
         const startY = y < ctx.canvas.height / 2
@@ -62,7 +96,7 @@ export function MemeGenerator() {
             ctx.fillText(l, ctx.canvas.width / 2, ly)
         })
         ctx.restore()
-    }, [fontSize, textColor, strokeColor, strokeWidth])
+    }, [buildTextLines, fontSize, textColor, strokeColor, strokeWidth])
 
     const drawCanvas = useCallback(() => {
         const canvas = canvasRef.current
@@ -77,44 +111,71 @@ export function MemeGenerator() {
 
         canvas.width = image.width * scale
         canvas.height = image.height * scale
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
 
         drawMemeText(ctx, topText, 0, canvas.width, scale)
         drawMemeText(ctx, bottomText, canvas.height, canvas.width, scale)
     }, [image, topText, bottomText, drawMemeText])
 
-    useEffect(() => { drawCanvas() }, [drawCanvas])
+    useEffect(() => {
+        if (!image) return
+
+        let cancelled = false
+
+        const render = async () => {
+            await document.fonts.ready
+            if (!cancelled) drawCanvas()
+        }
+
+        render()
+
+        return () => {
+            cancelled = true
+        }
+    }, [drawCanvas, image])
 
     const handleFile = (file: File) => {
         if (!file.type.startsWith("image/")) { toast.error(t("errorInvalid")); return }
         setFileName(file.name)
+        setFileType(file.type || "image/png")
         const img = new Image()
         img.onload = () => setImage(img)
         img.src = URL.createObjectURL(file)
     }
 
-    const exportMeme = () => {
+    const exportMeme = async () => {
         if (!image) return
+        await document.fonts.ready
+
         const c = document.createElement("canvas")
         c.width = image.width
         c.height = image.height
         const ctx = c.getContext("2d")!
+        ctx.clearRect(0, 0, c.width, c.height)
         ctx.drawImage(image, 0, 0)
         drawMemeText(ctx, topText, 0, c.width, 1)
         drawMemeText(ctx, bottomText, c.height, c.width, 1)
 
+        const exportType = fileType === "image/png" ? "image/png" : "image/jpeg"
+        const outputName = fileName.replace(/\.[^.]+$/, "") || `meme_${Date.now()}`
+
         c.toBlob(blob => {
             if (!blob) return
             const a = document.createElement("a")
-            a.href = URL.createObjectURL(blob)
-            a.download = `meme_${Date.now()}.png`
+            const objectUrl = URL.createObjectURL(blob)
+            a.href = objectUrl
+            a.download = `${outputName}.${exportType === "image/png" ? "png" : "jpg"}`
             a.click()
+            URL.revokeObjectURL(objectUrl)
             toast.success(t("downloaded"))
-        }, "image/png")
+        }, exportType, exportType === "image/png" ? undefined : 0.92)
     }
 
     const clear = () => {
         setImage(null)
+        setFileName("meme-image")
+        setFileType("image/png")
         setTopText("")
         setBottomText("")
         if (fileInputRef.current) fileInputRef.current.value = ""
