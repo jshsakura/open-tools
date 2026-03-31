@@ -63,28 +63,30 @@ export default function PdfMergePage() {
         center
       />
 
-      {/* Feature Cards */}
-      <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
-        {features.map((f) => (
-          <div
-            key={f.titleEn}
-            className="flex items-start gap-3 p-4 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
-          >
-            <div className={`shrink-0 p-2 rounded-xl ${f.bg}`}>
-              <f.icon className={`w-5 h-5 ${f.color}`} />
+      <div className="mx-auto max-w-5xl space-y-12">
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {features.map((f) => (
+            <div
+              key={f.titleEn}
+              className="flex items-start gap-3 p-4 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
+            >
+              <div className={`shrink-0 p-2 rounded-xl ${f.bg}`}>
+                <f.icon className={`w-5 h-5 ${f.color}`} />
+              </div>
+              <div>
+                <p className="font-semibold text-sm text-foreground">{f.title}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                  {f.desc}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-sm text-foreground">{f.title}</p>
-              <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                {f.desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <PdfMerge />
-      <ToolGuide ns="PdfMerge" />
+        <PdfMerge />
+        <ToolGuide ns="PdfMerge" />
+      </div>
     </div>
   );
 }

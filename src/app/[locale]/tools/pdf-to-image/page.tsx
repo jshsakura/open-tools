@@ -14,8 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default function PdfToImagePage() {
     return (
         <div className="container mx-auto px-4 py-12 max-w-6xl">
-            <PdfToImage />
-            <ToolGuide ns="PdfToImage" />
+            <div className="mx-auto max-w-5xl space-y-12">
+                <PdfToImage />
+                <ToolGuide ns="PdfToImage" />
+            </div>
         </div>
     )
 }

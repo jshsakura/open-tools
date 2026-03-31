@@ -14,8 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default function PdfSplitPage() {
     return (
         <div className="container mx-auto px-4 py-12 max-w-6xl">
-            <PdfSplit />
-            <ToolGuide ns="PdfSplit" />
+            <div className="mx-auto max-w-5xl space-y-12">
+                <PdfSplit />
+                <ToolGuide ns="PdfSplit" />
+            </div>
         </div>
     )
 }
