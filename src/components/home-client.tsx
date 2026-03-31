@@ -12,15 +12,16 @@ import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
 import {
   clearHomeReturnState,
+  flushQueuedToolPopularity,
   getToolPopularity,
   isPopularTool,
   readHomeReturnState,
   readToolPopularityMap,
+  queueToolPopularityIncrement,
   TOOL_POPULARITY_STORAGE_KEY,
   TOOL_POPULARITY_UPDATED_EVENT,
   type ToolPopularityMap,
   writeHomeReturnState,
-  incrementToolPopularity,
 } from "@/lib/tool-popularity";
 import { toolsCatalog } from "@/lib/tools-catalog";
 import {
@@ -78,6 +79,17 @@ export function HomeClient() {
     setSearchQuery(returnState.searchQuery);
     setHighlightedToolId(returnState.toolId);
     clearHomeReturnState();
+  }, []);
+
+  useEffect(() => {
+    const returnState = pendingReturnStateRef.current;
+    if (returnState) {
+      return;
+    }
+
+    if (flushQueuedToolPopularity()) {
+      setPopularityMap(readToolPopularityMap());
+    }
   }, []);
 
   useEffect(() => {
@@ -216,7 +228,7 @@ export function HomeClient() {
         searchQuery,
         toolId,
       });
-      incrementToolPopularity(toolId);
+      queueToolPopularityIncrement(toolId);
     },
     [searchQuery, selectedTag],
   );
