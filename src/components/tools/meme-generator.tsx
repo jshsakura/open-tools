@@ -31,6 +31,7 @@ export function MemeGenerator() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
+    const objectUrlRef = useRef<string | null>(null)
 
     const [image, setImage] = useState<HTMLImageElement | null>(null)
     const [fileName, setFileName] = useState("meme-image")
@@ -105,9 +106,11 @@ export function MemeGenerator() {
 
         const container = containerRef.current
         if (!container) return
-        const maxW = container.clientWidth
+        const maxW = container.clientWidth || container.parentElement?.clientWidth || image.width
         const maxH = 600
         const scale = Math.min(maxW / image.width, maxH / image.height, 1)
+
+        if (!Number.isFinite(scale) || scale <= 0) return
 
         canvas.width = image.width * scale
         canvas.height = image.height * scale
@@ -119,29 +122,75 @@ export function MemeGenerator() {
     }, [image, topText, bottomText, drawMemeText])
 
     useEffect(() => {
-        if (!image) return
+        drawCanvas()
 
-        let cancelled = false
+        if (!("fonts" in document)) return
 
-        const render = async () => {
-            await document.fonts.ready
-            if (!cancelled) drawCanvas()
-        }
+        let active = true
 
-        render()
+        document.fonts.ready.then(() => {
+            if (active) {
+                drawCanvas()
+            }
+        })
 
         return () => {
-            cancelled = true
+            active = false
+        }
+    }, [drawCanvas])
+
+    useEffect(() => {
+        const container = containerRef.current
+        if (!container || !image) return
+
+        const observer = new ResizeObserver(() => {
+            drawCanvas()
+        })
+
+        observer.observe(container)
+
+        return () => {
+            observer.disconnect()
         }
     }, [drawCanvas, image])
 
-    const handleFile = (file: File) => {
+    useEffect(() => {
+        return () => {
+            if (objectUrlRef.current) {
+                URL.revokeObjectURL(objectUrlRef.current)
+            }
+        }
+    }, [])
+
+    const handleFile = async (file: File) => {
         if (!file.type.startsWith("image/")) { toast.error(t("errorInvalid")); return }
         setFileName(file.name)
         setFileType(file.type || "image/png")
+
+        if (objectUrlRef.current) {
+            URL.revokeObjectURL(objectUrlRef.current)
+        }
+
+        const objectUrl = URL.createObjectURL(file)
+        objectUrlRef.current = objectUrl
+
         const img = new Image()
+        img.decoding = "async"
         img.onload = () => setImage(img)
-        img.src = URL.createObjectURL(file)
+        img.onerror = () => {
+            if (objectUrlRef.current === objectUrl) {
+                URL.revokeObjectURL(objectUrl)
+                objectUrlRef.current = null
+            }
+            toast.error(t("errorInvalid"))
+        }
+        img.src = objectUrl
+
+        try {
+            await img.decode()
+            setImage(img)
+        } catch {
+        }
     }
 
     const exportMeme = async () => {
@@ -178,6 +227,10 @@ export function MemeGenerator() {
         setFileType("image/png")
         setTopText("")
         setBottomText("")
+        if (objectUrlRef.current) {
+            URL.revokeObjectURL(objectUrlRef.current)
+            objectUrlRef.current = null
+        }
         if (fileInputRef.current) fileInputRef.current.value = ""
     }
 
@@ -207,7 +260,7 @@ export function MemeGenerator() {
                 <div className="grid lg:grid-cols-[1fr_300px] gap-8">
                     <GlassCard className="p-4">
                         <div ref={containerRef}>
-                            <canvas ref={canvasRef} className="w-full rounded-lg" />
+                            <canvas ref={canvasRef} className="block w-full h-auto rounded-lg" />
                         </div>
                     </GlassCard>
 
