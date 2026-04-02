@@ -1,12 +1,20 @@
 import { NextResponse } from "next/server";
-import { incrementVisitorCount, getVisitorStats } from "@/lib/db";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type VisitorStats = {
+  total: number;
+  today: number;
+};
 
 export async function GET(request: Request) {
   try {
+    const { incrementVisitorCount, getVisitorStats } = await import("@/lib/db");
     const { searchParams } = new URL(request.url);
     const hit = searchParams.get("hit") === "true";
     
-    let stats;
+    let stats: VisitorStats;
     if (hit) {
       stats = incrementVisitorCount();
     } else {
