@@ -13,30 +13,30 @@ const WordCounter = dynamic(
   { loading: () => <ToolLoadingSkeleton />, ssr: false }
 )
 
-const features = [
-  {
-    icon: Type,
-    iconColor: "text-emerald-500",
-    title: "8 Statistics",
-    description: "Characters, words, sentences, paragraphs and more",
-  },
-  {
-    icon: Clock,
-    iconColor: "text-teal-500",
-    title: "Reading Time",
-    description: "Estimated reading and speaking time",
-  },
-  {
-    icon: Zap,
-    iconColor: "text-green-500",
-    title: "Real-time",
-    description: "Statistics update instantly as you type",
-  },
-]
-
 export default function WordCounterPage() {
   const t = useTranslations("Catalog")
   const tool = getToolById("word-counter")
+
+  const features = [
+    {
+      icon: Type,
+      iconColor: "text-emerald-500",
+      title: t("WordCounter.featureStats"),
+      description: t("WordCounter.featureStatsDesc"),
+    },
+    {
+      icon: Clock,
+      iconColor: "text-teal-500",
+      title: t("WordCounter.featureReadingTime"),
+      description: t("WordCounter.featureReadingTimeDesc"),
+    },
+    {
+      icon: Zap,
+      iconColor: "text-green-500",
+      title: t("WordCounter.featureRealtime"),
+      description: t("WordCounter.featureRealtimeDesc"),
+    },
+  ]
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl"><ToolPageHeader

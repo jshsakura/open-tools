@@ -334,7 +334,13 @@
     },
     "WordCounter": {
       "title": "Word Counter",
-      "description": "Count words, characters, sentences, paragraphs and estimate reading time instantly."
+      "description": "Count words, characters, sentences, paragraphs and estimate reading time instantly.",
+      "featureStats": "8 Statistics",
+      "featureStatsDesc": "Characters, words, sentences, paragraphs and more",
+      "featureReadingTime": "Reading Time",
+      "featureReadingTimeDesc": "Estimated reading and speaking time",
+      "featureRealtime": "Real-time",
+      "featureRealtimeDesc": "Statistics update instantly as you type"
     },
     "StringCaseConverter": {
       "title": "String Case Converter",
