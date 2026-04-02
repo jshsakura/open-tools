@@ -2569,5 +2569,21 @@
             "f3": { "title": "빠른 색상 선택", "desc": "브라우저 기본 색상 선택기를 이용해 손쉽게 색을 탐색할 수 있습니다." },
             "f4": { "title": "원클릭 복사", "desc": "현재 HEX 값을 클릭 한 번으로 클립보드에 복사합니다." }
         }
+    },
+    "WordCounter": {
+        "yourText": "텍스트 입력",
+        "clear": "지우기",
+        "placeholder": "텍스트를 입력하거나 붙여넣으세요...",
+        "characters": "문자",
+        "inclSpaces": "공백 포함",
+        "exclSpaces": "공백 제외",
+        "words": "단어",
+        "sentences": "문장",
+        "paragraphs": "단락",
+        "lines": "줄",
+        "readingTime": "읽기 시간",
+        "readingSpeed": "분당 200단어",
+        "speakingTime": "말하기 시간",
+        "speakingSpeed": "분당 130단어"
     }
 }

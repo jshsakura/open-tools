@@ -2568,5 +2568,21 @@
             "f3": { "title": "Quick Selection", "desc": "Use the native color picker for fast visual exploration without leaving the page." },
             "f4": { "title": "One-Click Copy", "desc": "Copy the current HEX value to your clipboard with a single click." }
         }
+    },
+    "WordCounter": {
+        "yourText": "Your Text",
+        "clear": "Clear",
+        "placeholder": "Start typing or paste your text here...",
+        "characters": "Characters",
+        "inclSpaces": "incl. spaces",
+        "exclSpaces": "excl. spaces",
+        "words": "Words",
+        "sentences": "Sentences",
+        "paragraphs": "Paragraphs",
+        "lines": "Lines",
+        "readingTime": "Reading Time",
+        "readingSpeed": "@ 200 wpm",
+        "speakingTime": "Speaking Time",
+        "speakingSpeed": "@ 130 wpm"
     }
 }
