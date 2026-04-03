@@ -454,6 +454,10 @@
       "title": "HTTP 헤더 분석기",
       "description": "웹사이트의 HTTP 응답 헤더를 분석하고 보안 헤더 설정 상태를 점수화합니다."
     },
+    "SeoAnalyzer": {
+      "title": "SEO 분석기",
+      "description": "공개 페이지의 메타데이터, 색인 가능성, 헤딩 구조, 소셜 태그, 구조화 데이터, 링크 상태를 점검합니다."
+    },
     "WebhookTester": {
       "title": "API 테스터",
       "description": "REST API 요청을 브라우저에서 직접 전송하고 응답을 분석하는 HTTP 클라이언트 도구입니다."

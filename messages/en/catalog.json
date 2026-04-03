@@ -398,6 +398,10 @@
       "title": "HTTP Header Analyzer",
       "description": "Analyze HTTP response headers from any URL and score security header configuration."
     },
+    "SeoAnalyzer": {
+      "title": "SEO Analyzer",
+      "description": "Audit any public page for metadata, indexability, headings, social tags, structured data, and link health."
+    },
     "WebhookTester": {
       "title": "API Tester",
       "description": "Send REST API requests directly from your browser and analyze responses with an HTTP client tool."

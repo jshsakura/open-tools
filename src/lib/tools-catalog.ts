@@ -835,6 +835,15 @@ export const toolsCatalog = [
     tags: ["Development"],
   },
   {
+    id: "seo-analyzer",
+    titleKey: "Catalog.SeoAnalyzer.title",
+    descriptionKey: "Catalog.SeoAnalyzer.description",
+    icon: Search,
+    href: "/tools/seo-analyzer",
+    color: "text-emerald-500",
+    tags: ["Development"],
+  },
+  {
     id: "webhook-tester",
     titleKey: "Catalog.WebhookTester.title",
     descriptionKey: "Catalog.WebhookTester.description",
