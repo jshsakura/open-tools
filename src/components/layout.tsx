@@ -97,8 +97,8 @@ export function Footer() {
   const t = useTranslations("Layout");
 
   return (
-    <footer className="py-3 md:px-8 border-t bg-muted/20 mt-auto">
-      <div className="container flex flex-col items-center justify-between gap-3 md:h-12 md:flex-row max-w-6xl mx-auto">
+    <footer className="mt-auto border-t bg-muted/20 py-3 md:px-8">
+      <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 md:flex-row md:items-center">
         <p className="text-balance text-center text-xs leading-loose text-muted-foreground md:text-left">
           {t.rich("footer", {
             year: new Date().getFullYear(),
@@ -114,8 +114,8 @@ export function Footer() {
             ),
           })}
         </p>
-        <div className="flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-4">
-          <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium order-1">
+        <div className="flex w-full flex-col items-center gap-2 md:w-auto md:flex-row md:items-center md:gap-3">
+          <div className="order-1 flex items-center gap-4 text-xs font-medium text-muted-foreground">
             <Link
               href="/privacy"
               className="hover:text-primary transition-colors"
@@ -126,7 +126,7 @@ export function Footer() {
               Terms
             </Link>
           </div>
-          <VisitorCounter className="order-2 mt-0 w-full min-w-[220px] max-w-sm border-border/60 bg-background/70 px-3 py-2 md:w-auto md:max-w-none" />
+          <VisitorCounter className="order-2 mt-0 w-full max-w-[320px] border-border/60 bg-background/70 md:w-auto md:max-w-none" />
         </div>
       </div>
     </footer>

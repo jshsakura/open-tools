@@ -10,15 +10,16 @@ export function VisitorCounter({ className }: { className?: string }) {
   const [stats, setStats] = useState<{ today: number; total: number } | null>(null)
 
   useEffect(() => {
-    // 세션당 한 번만 카운트 올림 (단순화된 세션 체크)
-    const hasVisited = sessionStorage.getItem("has_visited_today")
+    const todayKey = new Date().toISOString().split("T")[0]
+    const sessionKey = `has_visited_${todayKey}`
+    const hasVisited = sessionStorage.getItem(sessionKey)
     const url = hasVisited ? "/api/visitors" : "/api/visitors?hit=true"
 
     fetch(url)
       .then(res => res.json())
       .then(data => {
         setStats(data)
-        if (!hasVisited) sessionStorage.setItem("has_visited_today", "true")
+        if (!hasVisited) sessionStorage.setItem(sessionKey, "true")
       })
       .catch(err => console.error("Visitor count fetch failed:", err))
   }, [])
@@ -27,27 +28,24 @@ export function VisitorCounter({ className }: { className?: string }) {
 
   return (
     <div className={cn(
-      "mt-4 px-2 py-3 rounded-xl bg-white/5 border border-white/10 space-y-2 animate-in fade-in duration-1000",
+      "mt-4 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 animate-in fade-in duration-1000",
       className,
     )}>
-      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-        <Users className="h-3 w-3 text-primary/70" />
-        {t("visitors") || "Visitors"}
-      </div>
-      
-      <div className="grid grid-cols-2 gap-2">
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] text-muted-foreground/60">{t("today") || "Today"}</span>
-          <span className="text-sm font-mono font-bold text-foreground">{stats.today.toLocaleString()}</span>
+      <div className="flex flex-wrap items-center gap-2">
+        <div className="mr-auto flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+          <Users className="h-3.5 w-3.5 text-primary/70" />
+          {t("visitors") || "Visitors"}
         </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] text-muted-foreground/60">{t("total") || "Total"}</span>
-          <span className="text-sm font-mono font-bold text-foreground">{stats.total.toLocaleString()}</span>
+
+        <div className="inline-flex min-w-[88px] items-center justify-between gap-2 rounded-full border border-white/10 bg-background/70 px-3 py-1.5">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">{t("today") || "Today"}</span>
+          <span className="text-sm font-mono font-bold tabular-nums text-foreground">{stats.today.toLocaleString()}</span>
         </div>
-      </div>
-      
-      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-        <div className="h-full bg-primary/30 w-full animate-pulse" />
+
+        <div className="inline-flex min-w-[88px] items-center justify-between gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1.5">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary/70">{t("total") || "Total"}</span>
+          <span className="text-sm font-mono font-bold tabular-nums text-foreground">{stats.total.toLocaleString()}</span>
+        </div>
       </div>
     </div>
   )
