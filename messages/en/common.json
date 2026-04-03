@@ -1,6 +1,7 @@
 {
   "Common": {
     "visitors": "Visitors",
+    "visitorsShort": "Visits",
     "today": "Today",
     "total": "Total"
   },

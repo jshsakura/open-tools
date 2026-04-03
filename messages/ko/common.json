@@ -1,6 +1,7 @@
 {
   "Common": {
     "visitors": "방문자 수",
+    "visitorsShort": "방문",
     "today": "오늘",
     "total": "전체"
   },
