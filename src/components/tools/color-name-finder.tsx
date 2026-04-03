@@ -136,10 +136,10 @@ export function ColorNameFinder() {
                   </span>
                 </div>
                 <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase block mb-1">Status</span>
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase block mb-1">{t("status")}</span>
                   <span className="flex items-center gap-1.5 text-sm font-semibold text-emerald-600">
                     <Zap className="w-3.5 h-3.5" />
-                    Identified
+                    {t("identified")}
                   </span>
                 </div>
               </div>

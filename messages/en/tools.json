@@ -2554,6 +2554,8 @@
         "description": "Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support.",
         "inputColor": "Select Color",
         "closestName": "Closest Match",
+        "status": "Status",
+        "identified": "Identified",
         "palettes": "Color Details",
         "guide": {
             "title": "How to Use Color Finder",

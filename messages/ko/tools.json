@@ -2555,6 +2555,8 @@
         "description": "색상을 선택하면 가장 가까운 이름과 실시간 HEX/RGB 값을 확인하고 바로 복사할 수 있습니다.",
         "inputColor": "색상 선택",
         "closestName": "가장 가까운 색상명",
+        "status": "상태",
+        "identified": "식별됨",
         "palettes": "색상 정보",
         "guide": {
             "title": "색상 이름 탐색기 사용법",
