@@ -1,4 +1,5 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 
 type VisitorStats = {
@@ -34,10 +35,13 @@ type VisitorBackend = {
 
 const DB_PATH = process.env.DATABASE_PATH?.trim() || path.join(process.cwd(), "database.db");
 const DB_DIR = path.dirname(DB_PATH);
-const VISITOR_STORE_PATH = process.env.VISITOR_STORE_PATH?.trim() || path.join(DB_DIR, "visitor-stats.json");
+const PREFERRED_VISITOR_STORE_PATH = process.env.VISITOR_STORE_PATH?.trim() || path.join(DB_DIR, "visitor-stats.json");
+const FALLBACK_VISITOR_STORE_PATH = path.join(os.tmpdir(), "open-tools", "visitor-stats.json");
 
 let backend: VisitorBackend | null = null;
 let warnedAboutFallback = false;
+let warnedAboutStorePathFallback = false;
+let resolvedVisitorStorePath: string | null = null;
 
 function ensureStorageDir() {
   if (!fs.existsSync(DB_DIR)) {
@@ -45,19 +49,62 @@ function ensureStorageDir() {
   }
 }
 
+function canUseStorePath(filePath: string) {
+  const dir = path.dirname(filePath);
+
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+  } catch {
+    return false;
+  }
+
+  try {
+    if (fs.existsSync(filePath)) {
+      fs.accessSync(filePath, fs.constants.R_OK | fs.constants.W_OK);
+      return true;
+    }
+
+    fs.accessSync(dir, fs.constants.R_OK | fs.constants.W_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getVisitorStorePath() {
+  if (resolvedVisitorStorePath && canUseStorePath(resolvedVisitorStorePath)) {
+    return resolvedVisitorStorePath;
+  }
+
+  for (const candidate of [PREFERRED_VISITOR_STORE_PATH, FALLBACK_VISITOR_STORE_PATH]) {
+    if (canUseStorePath(candidate)) {
+      if (candidate !== PREFERRED_VISITOR_STORE_PATH && !warnedAboutStorePathFallback) {
+        warnedAboutStorePathFallback = true;
+        console.warn(`visitor store path is not writable, using fallback path: ${candidate}`);
+      }
+
+      resolvedVisitorStorePath = candidate;
+      return candidate;
+    }
+  }
+
+  resolvedVisitorStorePath = FALLBACK_VISITOR_STORE_PATH;
+  return FALLBACK_VISITOR_STORE_PATH;
+}
+
 function getToday() {
   return new Date().toISOString().split("T")[0];
 }
 
 function readFileStore(): VisitorStore {
-  ensureStorageDir();
+  const storePath = getVisitorStorePath();
 
-  if (!fs.existsSync(VISITOR_STORE_PATH)) {
+  if (!fs.existsSync(storePath)) {
     return { total: 0, daily: {} };
   }
 
   try {
-    const raw = fs.readFileSync(VISITOR_STORE_PATH, "utf8");
+    const raw = fs.readFileSync(storePath, "utf8");
     const parsed = JSON.parse(raw) as Partial<VisitorStore>;
 
     return {
@@ -70,8 +117,20 @@ function readFileStore(): VisitorStore {
 }
 
 function writeFileStore(store: VisitorStore) {
-  ensureStorageDir();
-  fs.writeFileSync(VISITOR_STORE_PATH, JSON.stringify(store), "utf8");
+  const storePath = getVisitorStorePath();
+
+  try {
+    fs.writeFileSync(storePath, JSON.stringify(store), "utf8");
+  } catch {
+    if (storePath !== FALLBACK_VISITOR_STORE_PATH) {
+      resolvedVisitorStorePath = FALLBACK_VISITOR_STORE_PATH;
+      fs.mkdirSync(path.dirname(FALLBACK_VISITOR_STORE_PATH), { recursive: true });
+      fs.writeFileSync(FALLBACK_VISITOR_STORE_PATH, JSON.stringify(store), "utf8");
+      return;
+    }
+
+    throw new Error(`Unable to persist visitor stats at ${storePath}`);
+  }
 }
 
 function createFileBackend(): VisitorBackend {
