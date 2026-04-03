@@ -65,6 +65,9 @@ export function MyIpTool() {
         setTimeout(() => setCopied(false), 2000)
     }
 
+    const ipVersion = info?.version?.toUpperCase() === 'IPV6' ? 'IPv6' : 'IPv4'
+    const isIpv6 = ipVersion === 'IPv6'
+
     return (
         <div className="mx-auto max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -107,7 +110,7 @@ export function MyIpTool() {
                                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-primary/10 to-transparent border border-primary/10 p-6 md:p-8">
                                     <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
                                         <div className="space-y-2 text-center md:text-left">
-                                            <p className="text-xs font-bold text-primary/80 uppercase tracking-wider">{t('publicIpv4')}</p>
+                                            <p className="text-xs font-bold text-primary/80 uppercase tracking-wider">{t('publicIp')}</p>
                                             <h2 className="text-4xl md:text-5xl font-black tracking-tight tabular-nums text-foreground">{info.ip}</h2>
                                         </div>
                                         <Button
@@ -148,7 +151,12 @@ export function MyIpTool() {
                                         <div className="space-y-1 min-w-0">
                                             <p className="text-xs font-medium text-muted-foreground uppercase">{t('connection')}</p>
                                             <div className="flex flex-wrap gap-2 mt-1">
-                                                <Badge variant="outline" className="text-[10px] border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/20">{t('ipv4')}</Badge>
+                                                <Badge variant="outline" className={cn(
+                                                    "text-[10px]",
+                                                    isIpv6
+                                                        ? "border-violet-200 bg-violet-50 text-violet-600 dark:border-violet-800 dark:bg-violet-950/20 dark:text-violet-400"
+                                                        : "border-orange-200 bg-orange-50 text-orange-600 dark:border-orange-800 dark:bg-orange-950/20 dark:text-orange-400"
+                                                )}>{isIpv6 ? t('ipv6') : t('ipv4')}</Badge>
                                                 <Badge variant="outline" className="text-[10px] border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20">{t('secure')}</Badge>
                                             </div>
                                         </div>
