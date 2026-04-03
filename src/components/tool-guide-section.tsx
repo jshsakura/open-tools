@@ -1,7 +1,7 @@
 "use client"
 
 import { Info, ChevronDown } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useMessages, useTranslations } from "next-intl"
 import { Card, CardContent } from "@/components/ui/card"
 
 interface ToolGuideSectionProps {
@@ -40,7 +40,7 @@ export function ToolGuideSection({ guide, features, faq }: ToolGuideSectionProps
                     </h3>
                     <ul className="space-y-4">
                         {[guide.step1, guide.step2, guide.step3].map((step, i) => (
-                            <li key={i} className="flex gap-3 items-start">
+                            <li key={step} className="flex gap-3 items-start">
                                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary mt-0.5">
                                     {i + 1}
                                 </span>
@@ -59,8 +59,8 @@ export function ToolGuideSection({ guide, features, faq }: ToolGuideSectionProps
                             {features.title}
                         </h3>
                         <div className={`grid gap-4 ${features.items.length >= 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : features.items.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
-                            {features.items.map((item, i) => (
-                                <div key={i} className="p-4 rounded-xl bg-secondary/30 border border-border/30">
+                            {features.items.map((item) => (
+                                <div key={item.title} className="p-4 rounded-xl bg-secondary/30 border border-border/30">
                                     {item.icon && <div className="mb-2">{item.icon}</div>}
                                     <h4 className="font-semibold mb-1">{item.title}</h4>
                                     <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -79,8 +79,8 @@ export function ToolGuideSection({ guide, features, faq }: ToolGuideSectionProps
                             {faq.title}
                         </h3>
                         <div className="space-y-4">
-                            {faq.items.map((item, i) => (
-                                <details key={i} className="group rounded-lg bg-secondary/30 border border-border/30 overflow-hidden">
+                            {faq.items.map((item) => (
+                                <details key={item.q} className="group rounded-lg bg-secondary/30 border border-border/30 overflow-hidden">
                                     <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-secondary/50 transition-colors">
                                         <span className="font-medium pr-4">{item.q}</span>
                                         <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0 group-open:rotate-180 transition-transform" />
@@ -109,6 +109,21 @@ interface ToolGuideProps {
 
 export function ToolGuide({ ns }: ToolGuideProps) {
     const t = useTranslations(ns)
+    const messages = useMessages()
+
+    const getMessage = (path: string[]): string | undefined => {
+        let current: unknown = messages
+
+        for (const segment of [ns, ...path]) {
+            if (!current || typeof current !== 'object' || !(segment in current)) {
+                return undefined
+            }
+
+            current = (current as Record<string, unknown>)[segment]
+        }
+
+        return typeof current === 'string' ? current : undefined
+    }
 
     const guide = {
         title: t('guide.title'),
@@ -119,26 +134,26 @@ export function ToolGuide({ ns }: ToolGuideProps) {
 
     // Auto-detect features (feature1..featureN)
     let features: ToolGuideSectionProps['features'] | undefined
-    try {
-        const featTitle = t('features.title')
-        if (featTitle && !featTitle.startsWith(ns)) {
-            const items: Array<{ title: string; desc: string }> = []
-            // Try reading up to 8 features
-            const keys = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8']
-            for (const key of keys) {
-                try {
-                    const title = t(`features.${key}.title`)
-                    const desc = t(`features.${key}.desc`)
-                    if (title && !title.startsWith(ns)) {
-                        items.push({ title, desc })
-                    }
-                } catch { break }
+    const featTitle = getMessage(['features', 'title'])
+    if (featTitle) {
+        const items: Array<{ title: string; desc: string }> = []
+        const keys = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8']
+
+        for (const key of keys) {
+            const title = getMessage(['features', key, 'title'])
+            const desc = getMessage(['features', key, 'desc'])
+
+            if (!title || !desc) {
+                break
             }
-            if (items.length > 0) {
-                features = { title: featTitle, items }
-            }
+
+            items.push({ title, desc })
         }
-    } catch { /* no features */ }
+
+        if (items.length > 0) {
+            features = { title: featTitle, items }
+        }
+    }
 
     return <ToolGuideSection guide={guide} features={features} />
 }

@@ -5,9 +5,10 @@ import { ToolGuide } from "@/components/tool-guide-section";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale });
+    const toolT = await getTranslations({ locale, namespace: 'CodeFormatter' });
     return {
-        title: `${t('CodeFormatter.title')} | ${t('Hero.title_1')} ${t('Hero.title_2')}`,
-        description: t('CodeFormatter.description'),
+        title: `${toolT('title')} | ${t('Hero.title_1')} ${t('Hero.title_2')}`,
+        description: toolT('description'),
     };
 }
 
