@@ -2669,5 +2669,120 @@
             "f3": { "title": "Content structure", "desc": "Review heading hierarchy, image alt coverage, and internal vs external link balance." },
             "f4": { "title": "Social & schema", "desc": "Check Open Graph, Twitter cards, and structured data presence without browser extensions." }
         }
+    },
+    "AgeCalculator": {
+        "title": "Age Calculator",
+        "description": "See exact age, total days lived, and how long until the next birthday from any birth date.",
+        "birthDate": "Birth date",
+        "targetDate": "Calculate age on",
+        "hint": "Choose a birth date and, if needed, a future or past target date to measure exact age at that moment.",
+        "ageNow": "Exact age",
+        "totalDays": "Total days lived",
+        "nextBirthday": "Next birthday",
+        "daysUntil": "days remaining",
+        "lifeSnapshot": "Life snapshot",
+        "snapshotValue": "{years} years, {months} months, {days} days old — about {totalDays} days in total.",
+        "invalidRange": "Select a target date on or after the birth date.",
+        "yearsUnit": "y",
+        "monthsUnit": "m",
+        "daysUnit": "d",
+        "weeks": "weeks",
+        "guide": {
+            "title": "How to use the Age Calculator",
+            "step1": "Enter a birth date.",
+            "step2": "Choose today or any other target date you want to measure against.",
+            "step3": "Review the exact age, total days lived, and the countdown to the next birthday."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Exact age breakdown", "desc": "Calculates years, months, and days instead of giving only a rough age." },
+            "f2": { "title": "Future or past dates", "desc": "Measure age on a future event date or any earlier milestone date." },
+            "f3": { "title": "Birthday countdown", "desc": "See how many days remain until the next birthday." },
+            "f4": { "title": "Life totals", "desc": "Summarizes total days and weeks for a more tangible snapshot of time lived." }
+        }
+    },
+    "TipCalculator": {
+        "title": "Tip Calculator",
+        "description": "Adjust the tip percentage, split the bill, and instantly see what each person should pay.",
+        "billAmount": "Bill amount",
+        "tipPercent": "Tip percentage",
+        "splitBetween": "Split between",
+        "tipAmount": "Tip amount",
+        "totalWithTip": "Total with tip",
+        "perPerson": "Per person",
+        "splitSummary": "Split across {people} people with a {tip}% tip.",
+        "guide": {
+            "title": "How to use the Tip Calculator",
+            "step1": "Enter the bill amount.",
+            "step2": "Adjust the tip percentage to match the service level you want.",
+            "step3": "Choose how many people are splitting the bill and read the per-person total."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Quick tip slider", "desc": "Adjust the tip percentage with a simple slider for faster decisions." },
+            "f2": { "title": "Split bills fairly", "desc": "See exactly how much each person owes after the tip is included." },
+            "f3": { "title": "Live totals", "desc": "Watch the tip amount and final total update instantly as inputs change." },
+            "f4": { "title": "Simple restaurant math", "desc": "Perfect for dinner, coffee, taxis, and any small shared payments." }
+        }
+    },
+    "DateCalculator": {
+        "title": "Date Calculator",
+        "description": "Measure the distance between dates or add an offset to find a future or past date quickly.",
+        "differenceTitle": "Date difference",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "daysBetween": "Days",
+        "weeksBetween": "Weeks",
+        "monthsApprox": "Approx. months",
+        "offsetTitle": "Add or subtract time",
+        "baseDate": "Base date",
+        "amount": "Amount",
+        "unit": "Unit",
+        "resultDate": "Result date",
+        "offsetSummary": "Using an offset of {amount} {unit}.",
+        "units": {
+            "days": "days",
+            "weeks": "weeks",
+            "months": "months"
+        },
+        "guide": {
+            "title": "How to use the Date Calculator",
+            "step1": "Use the first section to compare two dates.",
+            "step2": "Use the second section when you need a date after or before a fixed offset.",
+            "step3": "Check the day, week, and approximate month view to plan schedules and deadlines."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Date difference", "desc": "See the gap between two dates in days, weeks, and approximate months." },
+            "f2": { "title": "Offset calculator", "desc": "Add or subtract days, weeks, or months from any base date." },
+            "f3": { "title": "Planning helper", "desc": "Useful for travel, deadlines, subscriptions, and countdown planning." },
+            "f4": { "title": "Instant results", "desc": "All calculations update immediately as soon as the input changes." }
+        }
+    },
+    "RandomPicker": {
+        "title": "Random Picker",
+        "description": "Paste any list of options and randomly choose one or more picks for decisions, teams, or giveaways.",
+        "items": "Choices",
+        "placeholder": "Pizza\nSushi\nBurgers\nTacos",
+        "pickCount": "How many picks",
+        "pickNow": "Pick now",
+        "totalItems": "Choices",
+        "selectedCount": "Picked",
+        "results": "Results",
+        "reroll": "Pick again",
+        "emptyState": "Add a few choices and let the picker decide for you.",
+        "guide": {
+            "title": "How to use the Random Picker",
+            "step1": "Enter one choice per line.",
+            "step2": "Choose how many winners or results you want.",
+            "step3": "Run the picker and reroll whenever you want a fresh outcome."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Fast decision making", "desc": "Great for picking meals, winners, tasks, or team members in seconds." },
+            "f2": { "title": "Multiple results", "desc": "Choose one option or several at once depending on your need." },
+            "f3": { "title": "Simple text input", "desc": "Paste any list directly without needing structured formatting." },
+            "f4": { "title": "One-click reroll", "desc": "Run the random selection again instantly when you want another outcome." }
+        }
     }
 }

@@ -514,6 +514,22 @@
       "title": "Visual Time Zone Converter",
       "description": "Compare times across different cities worldwide. Visual slider to see how time shifts across zones."
     },
+    "AgeCalculator": {
+      "title": "Age Calculator",
+      "description": "Calculate exact age in years, months, days, and see how long until the next birthday."
+    },
+    "TipCalculator": {
+      "title": "Tip Calculator",
+      "description": "Split restaurant bills, adjust the tip percentage, and see the per-person total instantly."
+    },
+    "DateCalculator": {
+      "title": "Date Calculator",
+      "description": "Measure the gap between two dates or add days, weeks, and months to any starting date."
+    },
+    "RandomPicker": {
+      "title": "Random Picker",
+      "description": "Paste choices and let the tool pick one or several winners for meals, teams, or decisions."
+    },
     "TextSimilarity": {
       "title": "Text Similarity Checker",
       "description": "Compare two texts and calculate their similarity percentage using advanced string algorithms."
