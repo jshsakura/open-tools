@@ -129,6 +129,15 @@ export function HomeClient() {
           ...tool,
           title: t(tool.titleKey),
           description: t(tool.descriptionKey),
+          searchText: [
+            t(tool.titleKey),
+            t(tool.descriptionKey),
+            tool.id.replaceAll("-", " "),
+            ...tool.tags,
+            ...tool.tags.map((tag) => t(`Category.${tag}`)),
+          ]
+            .join(" ")
+            .toLowerCase(),
           popularity: getToolPopularity(tool.id, popularityMap),
           isPopular: isPopularTool(tool.id, popularityMap),
         }))
@@ -156,9 +165,7 @@ export function HomeClient() {
     if (isSearching) {
       const q = searchQuery.trim().toLowerCase();
       return tools.filter(
-        (tool) =>
-          tool.title.toLowerCase().includes(q) ||
-          tool.description.toLowerCase().includes(q),
+        (tool) => tool.searchText.includes(q),
       );
     }
     if (!selectedTag) return tools;

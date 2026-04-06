@@ -6,10 +6,10 @@
     "total": "Total"
   },
   "Home": {
-    "title": "Essential Open Source Tools Platform",
-    "description": "Premium open-source utilities for all your daily needs. 100% Client-side. Secure. Fast.",
+    "title": "Free online tools for shopping, health, time, PDFs, images, and more",
+    "description": "Find practical online tools for discounts, split bills, water intake, sleep planning, BMI checks, PDFs, image work, and everyday tasks.",
     "allTools": "All Tools",
-    "searchPlaceholder": "Search tools... (e.g., JSON, PDF, Image)",
+    "searchPlaceholder": "Search tools... (e.g., discount, sleep, BMI, PDF)",
     "searchResultCount": "{count} results",
     "searchClear": "Clear search",
     "noToolsInCategory": "No tools found for this category.",
@@ -36,8 +36,8 @@
     "title_1": "Essential",
     "title_2": "Open Tools",
     "title_3": "Platform",
-    "description": "Premium open-source utilities for all your daily needs.\n100% Client-side. Secure. Fast.",
-    "description_mobile": "100% client-side premium toolset for all your daily needs."
+    "description": "Everyday online tools for shopping, health, schedules, PDFs, images, and quick work tasks.\n100% client-side where possible. Secure. Fast.",
+    "description_mobile": "Practical tools for discounts, sleep, PDFs, images, and everyday tasks."
   },
   "Layout": {
     "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",

@@ -1,23 +1,37 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { TipCalculatorTool } from "@/components/tools/tip-calculator"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const TipCalculatorTool = dynamic(
-  () => import("@/components/tools/tip-calculator").then((m) => ({ default: m.TipCalculatorTool })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false },
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function TipCalculatorPage() {
-  const t = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("TipCalculator.title"),
+    description: t("TipCalculator.description"),
+    path: "/tools/tip-calculator",
+  })
+}
+
+export default async function TipCalculatorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("tip-calculator")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("TipCalculator.title"),
+    description: t("TipCalculator.description"),
+    path: "/tools/tip-calculator",
+    category: "FinanceApplication",
+  })
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader title={t("TipCalculator.title")} description={t("TipCalculator.description")} icon={tool?.icon} colorClass={tool?.color} center />
       <TipCalculatorTool />
       <ToolGuide ns="TipCalculator" />

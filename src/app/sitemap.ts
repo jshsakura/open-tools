@@ -13,12 +13,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const entries = locales.flatMap((locale) => {
     const localeTools = tools.map((tool) => {
-      const href = `/${locale}${tool.href}`
+      const path = tool.href
+      const href = `/${locale}${path}`
       return {
         url: `${baseUrl}${href}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en${path}`,
+            ko: `${baseUrl}/ko${path}`,
+          },
+        },
       }
     })
 
@@ -27,6 +34,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 1.0,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en`,
+          ko: `${baseUrl}/ko`,
+        },
+      },
     }
 
     return [...localeTools, rootEntry]

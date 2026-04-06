@@ -41,12 +41,12 @@ export async function generateMetadata({
 
     const metaText = {
         ko: {
-            title: "Open Tools - 사용하기 편한 무료 오픈소스 도구 모음",
-            description: "사용하기 편한 무료 오픈소스 도구 모음 - SQL 변환, 포맷터, PDF 병합, 이미지 처리, 암호화 등",
+            title: "Open Tools - 일상 · 업무 · 개발에 바로 쓰는 무료 온라인 도구",
+            description: "할인 계산, 더치페이, 수분 섭취, 수면, BMI, PDF, 이미지, 개발 도구까지 한곳에서 빠르게 찾는 무료 온라인 도구 모음",
         },
         en: {
-            title: "Open Tools - Easy-to-use free open-source tools",
-            description: "Easy-to-use free open-source tools collection - SQL conversion, formatter, PDF merge, image processing, encryption, and more",
+            title: "Open Tools - Free online tools for everyday life, work, and development",
+            description: "Browse free online tools for discounts, split bills, hydration, sleep, BMI, PDF work, image editing, and practical developer tasks.",
         }
     }[lang];
 
@@ -57,6 +57,13 @@ export async function generateMetadata({
             default: metaText.title
         },
         description: metaText.description,
+        alternates: {
+            canonical: `${baseUrl}/${locale}`,
+            languages: {
+                en: `${baseUrl}/en`,
+                ko: `${baseUrl}/ko`,
+            },
+        },
         icons: {
             icon: "/icon.svg",
             shortcut: "/favicon-16x16.png",
