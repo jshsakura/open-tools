@@ -11,6 +11,13 @@ interface SunoClip {
     description: string;
 }
 
+type SourcePlatform = "suno" | "mureka";
+
+const BROWSER_HEADERS = {
+    "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+};
+
 function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === "object" && value !== null;
 }
@@ -19,10 +26,222 @@ function getString(value: unknown): string | null {
     return typeof value === "string" ? value : null;
 }
 
+function normalizeMediaUrl(value: string, source: SourcePlatform): string {
+    const cleaned = value.replace(/\\u002F/g, "/").replace(/\\\//g, "/").trim();
+
+    if (!cleaned) {
+        return "";
+    }
+
+    if (cleaned.startsWith("https://") || cleaned.startsWith("http://")) {
+        return cleaned;
+    }
+
+    if (cleaned.startsWith("//")) {
+        return `https:${cleaned}`;
+    }
+
+    if (source === "mureka") {
+        if (cleaned.startsWith("/")) {
+            return `https://www.mureka.ai${cleaned}`;
+        }
+
+        return `https://static-cos.mureka.ai/${cleaned.replace(/^\/+/, "")}`;
+    }
+
+    return cleaned;
+}
+
+function isLikelyAudioUrl(value: string, source: SourcePlatform): boolean {
+    const normalized = normalizeMediaUrl(value, source).toLowerCase();
+
+    if (!normalized) {
+        return false;
+    }
+
+    return /\.(mp3|m4a|wav|ogg)(\?|$)/.test(normalized) || normalized.includes("audio") || normalized.includes("stream");
+}
+
+function extractIdFromAudioUrl(audioUrl: string): string {
+    const normalized = audioUrl.split("?")[0] ?? audioUrl;
+    const segments = normalized.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1] ?? "track";
+    return lastSegment.replace(/\.[a-z0-9]+$/i, "") || "track";
+}
+
+function isNonEmptyString(value: string | null): value is string {
+    return typeof value === "string" && value.length > 0;
+}
+
+function parseJsonSafely(value: string): unknown | null {
+    try {
+        return JSON.parse(value) as unknown;
+    } catch {
+        return null;
+    }
+}
+
+function extractAssignedJson(html: string, variableName: string): unknown[] {
+    const escapedName = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`${escapedName}\\s*=\\s*([\\s\\S]*?)<\\/script>`, "gi");
+    const results: unknown[] = [];
+
+    for (const match of html.matchAll(regex)) {
+        const assignedValue = match[1]?.trim() ?? "";
+        const normalizedValue = assignedValue.replace(/;\s*$/, "").trim();
+        const parsed = parseJsonSafely(normalizedValue);
+
+        if (parsed !== null) {
+            results.push(parsed);
+        }
+    }
+
+    return results;
+}
+
+function getMurekaPlaylistIdentifier(url: string): string | null {
+    try {
+        const pathname = new URL(url).pathname;
+        const segments = pathname.split("/").filter(Boolean);
+        const playlistIndex = segments.findIndex((segment) => segment === "playlist");
+
+        if (playlistIndex === -1) {
+            return null;
+        }
+
+        return segments[playlistIndex + 1] ?? null;
+    } catch {
+        return null;
+    }
+}
+
+async function fetchMurekaPlaylistClips(url: string): Promise<SunoClip[]> {
+    const playlistIdentifier = getMurekaPlaylistIdentifier(url);
+
+    if (!playlistIdentifier) {
+        return [];
+    }
+
+    const apiUrl = new URL("https://www.mureka.ai/api/pgc/playlist/detail");
+    if (/^\d+$/.test(playlistIdentifier)) {
+        apiUrl.searchParams.set("playlist_id", playlistIdentifier);
+    } else {
+        apiUrl.searchParams.set("share_key", playlistIdentifier);
+    }
+
+    const response = await fetch(apiUrl.toString(), {
+        headers: {
+            ...BROWSER_HEADERS,
+            Referer: url,
+            Accept: "application/json, text/plain, */*",
+        },
+    });
+
+    if (!response.ok) {
+        return [];
+    }
+
+    const payload = (await response.json()) as unknown;
+    const clips = extractClipsFromObject(payload, "mureka");
+
+    return clips;
+}
+
+function extractClipsFromObject(root: unknown, source: SourcePlatform): SunoClip[] {
+    const clips: SunoClip[] = [];
+    const seen = new Set<string>();
+
+    const visit = (value: unknown) => {
+        if (Array.isArray(value)) {
+            value.forEach(visit);
+            return;
+        }
+
+        if (!isRecord(value)) {
+            return;
+        }
+
+        const metadata = isRecord(value.metadata) ? value.metadata : null;
+        const rawAudioUrl = [
+            getString(value.audio_url),
+            getString(value.audioUrl),
+            getString(value.mp3_url),
+            getString(value.mp3Url),
+            getString(value.media_url),
+            getString(value.mediaUrl),
+            getString(value.song_path),
+            getString(value.stream_url),
+            getString(value.streamUrl),
+            getString(value.url),
+        ].filter(isNonEmptyString).find((candidate) => isLikelyAudioUrl(candidate, source));
+
+        if (rawAudioUrl) {
+            const audioUrl = normalizeMediaUrl(rawAudioUrl, source);
+            const rawId = [
+                getString(value.id),
+                getString(value.clip_id),
+                getString(value.audio_id),
+                getString(value.song_id),
+                getString(value.track_id),
+            ].filter(isNonEmptyString)[0];
+            const id = rawId ?? extractIdFromAudioUrl(audioUrl);
+
+            if (!seen.has(id)) {
+                const title = [
+                    getString(value.title),
+                    getString(value.name),
+                    getString(value.song_title),
+                    metadata ? getString(metadata.title) : null,
+                ].filter(isNonEmptyString)[0] ?? `Track ${clips.length + 1}`;
+
+                const image = [
+                    getString(value.image_large_url),
+                    getString(value.image_url),
+                    getString(value.image),
+                    getString(value.cover),
+                    getString(value.cover_url),
+                    getString(value.thumbnail_url),
+                    metadata ? getString(metadata.image_url) : null,
+                ].filter(isNonEmptyString)[0] ?? "";
+
+                const description = [
+                    getString(value.description),
+                    metadata ? getString(metadata.prompt) : null,
+                    metadata ? getString(metadata.description) : null,
+                    getString(value.prompt),
+                ].filter(isNonEmptyString)[0] ?? "";
+
+                seen.add(id);
+                clips.push({
+                    id,
+                    title,
+                    image: image ? normalizeMediaUrl(image, source) : "",
+                    audioUrl,
+                    description,
+                });
+            }
+        }
+
+        Object.values(value).forEach(visit);
+    };
+
+    visit(root);
+    return clips;
+}
+
+function extractJsonScriptContents(html: string): string[] {
+    const matches = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)];
+
+    return matches
+        .map((match) => match[1]?.trim() ?? "")
+        .filter((content) => content.startsWith("{") || content.startsWith("["));
+}
+
 export async function POST(req: NextRequest) {
     try {
         const { url } = await req.json();
         const normalizedUrl = typeof url === "string" ? extractUrlishInput(url) : "";
+        const source: SourcePlatform = normalizedUrl.includes("mureka.ai") ? "mureka" : "suno";
 
         if (!normalizedUrl || (!normalizedUrl.includes("suno.com") && !normalizedUrl.includes("mureka.ai"))) {
             return NextResponse.json(
@@ -32,10 +251,7 @@ export async function POST(req: NextRequest) {
         }
 
         const response = await fetch(normalizedUrl, {
-            headers: {
-                "User-Agent":
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            },
+            headers: BROWSER_HEADERS,
         });
 
         if (!response.ok) {
@@ -47,68 +263,41 @@ export async function POST(req: NextRequest) {
 
         const html = await response.text();
 
-        // Check if it's a playlist or multiple songs page
-        // Suno stores data in <script id="__NEXT_DATA__" type="application/json">...</script>
         const nextDataMatch = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.+?)<\/script>/);
 
         if (nextDataMatch) {
-            try {
-                const json: unknown = JSON.parse(nextDataMatch[1]);
-                // Navigate to find clips. The structure varies but usually props.pageProps.initialState... or props.pageProps.clip...
-                // Let's search recursively or look for specific keys.
-
-                const clips: SunoClip[] = [];
-
-                // Helper to find clips in the JSON object
-                const findClips = (obj: unknown) => {
-                    if (!isRecord(obj)) {
-                        if (Array.isArray(obj)) {
-                            obj.forEach(findClips);
-                        }
-                        return;
-                    }
-
-                    const audioUrl = getString(obj.audio_url);
-                    const title = getString(obj.title);
-                    const id = getString(obj.id);
-
-                    // Suno Clip Structure usually has: id, title, audio_url, image_url (or metadata with image)
-                    if (audioUrl && title && id) {
-                        const metadata = isRecord(obj.metadata) ? obj.metadata : null;
-                        const prompt = metadata ? getString(metadata.prompt) ?? "" : "";
-                        const image = getString(obj.image_large_url) ?? getString(obj.image_url) ?? "";
-
-                        // Avoid duplicates
-                        if (!clips.find((clip) => clip.id === id)) {
-                            clips.push({
-                                id,
-                                title: title || "Untitled",
-                                image,
-                                audioUrl,
-                                description: prompt,
-                            });
-                        }
-                    }
-
-                    // Recursive search
-                    Object.values(obj).forEach(findClips);
-                };
-
-                findClips(json);
+            const json = parseJsonSafely(nextDataMatch[1]);
+            if (json !== null) {
+                const clips = extractClipsFromObject(json, source);
 
                 if (clips.length > 0) {
                     return NextResponse.json(clips);
                 }
-
-            } catch (e) {
-                console.error("Error parsing NEXT_DATA", e);
             }
         }
-        // Fallback: Extract CDN audio URLs directly (Suno CSR structure)
+
+        for (const parsed of extractAssignedJson(html, "window.__INITIAL_STATE__")) {
+            const clips = extractClipsFromObject(parsed, source);
+
+            if (clips.length > 0) {
+                return NextResponse.json(clips);
+            }
+        }
+
+        for (const scriptContent of extractJsonScriptContents(html)) {
+            const parsed = parseJsonSafely(scriptContent);
+            if (parsed !== null) {
+                const clips = extractClipsFromObject(parsed, source);
+
+                if (clips.length > 0) {
+                    return NextResponse.json(clips);
+                }
+            }
+        }
+
         const cdnAudioPattern = /https:\/\/cdn\d?\.suno\.ai\/([a-f0-9-]+)\.mp3/g;
         const cdnMatches = [...html.matchAll(cdnAudioPattern)];
         
-        // Try to get title from og:title
         const ogTitleMatch = html.match(/<meta property="og:title" content="([^"]*)"/i);
         const ogTitle = ogTitleMatch ? ogTitleMatch[1] : null;
         
@@ -121,7 +310,6 @@ export async function POST(req: NextRequest) {
                 if (seenIds.has(songId)) continue;
                 seenIds.add(songId);
                 
-                // Use og:title for the first song, otherwise use song ID
                 const songTitle = clips.length === 0 && ogTitle 
                     ? ogTitle.replace(/\s*\|\s*Suno\s*$/i, '').trim()
                     : `Suno Song (${songId.slice(0, 8)})`;
@@ -140,36 +328,34 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        // Fallback for Mureka or single pages simple regex if NEXT_DATA failed or empty
         if (normalizedUrl.includes("mureka.ai")) {
-            // ... (Existing Mureka logic)
-            const murekaTitleMatch = html.match(/"title"\s*:\s*"([^"]+)"/);
-            const murekaTitle = murekaTitleMatch ? murekaTitleMatch[1] : "Mureka Song";
+            if (normalizedUrl.includes("/playlist/")) {
+                const playlistClips = await fetchMurekaPlaylistClips(normalizedUrl);
 
-            const murekaImageMatch = html.match(/"cover"\s*:\s*"([^"]+)"/);
-            let murekaImage = murekaImageMatch ? murekaImageMatch[1] : "";
-            if (murekaImage && !murekaImage.startsWith("http")) {
-                murekaImage = `https://static-cos.mureka.ai/${murekaImage}`;
+                if (playlistClips.length > 0) {
+                    return NextResponse.json(playlistClips);
+                }
             }
 
-            const murekaAudioMatch = html.match(/"mp3_url"\s*:\s*"([^"]+)"/);
-            let murekaAudio = murekaAudioMatch ? murekaAudioMatch[1] : "";
+            const mp3UrlMatches = [...html.matchAll(/"mp3_url"\s*:\s*"([^"]+)"/g)];
 
-            if (murekaAudio) {
-                if (!murekaAudio.startsWith("http")) {
-                    murekaAudio = `https://static-cos.mureka.ai/${murekaAudio}`;
-                }
+            if (mp3UrlMatches.length > 0) {
+                const clips = mp3UrlMatches.map((match, index) => {
+                    const audioUrl = normalizeMediaUrl(match[1], "mureka");
+                    const id = extractIdFromAudioUrl(audioUrl);
+                    return {
+                        id,
+                        title: `Mureka Track ${index + 1}`,
+                        image: "",
+                        audioUrl,
+                        description: "Downloaded from Mureka.ai",
+                    } satisfies SunoClip;
+                });
 
-                return NextResponse.json([{
-                    title: murekaTitle,
-                    image: murekaImage,
-                    audioUrl: murekaAudio,
-                    description: "Downloaded from Mureka.ai"
-                }]);
+                return NextResponse.json(clips);
             }
         }
 
-        // Fallback OG Meta Extraction (Single Song)
         const titleMatch = html.match(/<meta property="og:title" content="([^"]*)"/i);
         const title = titleMatch ? titleMatch[1] : "Unknown Title";
 
@@ -196,6 +382,7 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json([{
+            id: extractIdFromAudioUrl(audioUrl),
             title,
             image,
             audioUrl,
