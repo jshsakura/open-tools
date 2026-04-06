@@ -2701,6 +2701,83 @@
             "f4": { "title": "Life totals", "desc": "Summarizes total days and weeks for a more tangible snapshot of time lived." }
         }
     },
+    "OvulationCalculator": {
+        "title": "Ovulation & Fertile Window Calculator",
+        "description": "Estimate your next ovulation day, fertile window, and next period using your recent cycle dates.",
+        "disclaimer": "This tool gives calendar-based estimates only. It is not medical advice and it cannot confirm ovulation, fertility, or pregnancy.",
+        "lastPeriodDate": "Last period start date",
+        "cycleLength": "Average cycle length",
+        "periodLength": "Average period length",
+        "cycleLengthHint": "Most cycles fall somewhere between 21 and 40 days.",
+        "periodLengthHint": "Most periods last between 2 and 7 days.",
+        "hint": "Use your usual cycle pattern for a more useful estimate. If your cycle is very irregular, results may vary more.",
+        "ovulationDate": "Estimated ovulation date",
+        "ovulationHint": "This is the day ovulation may happen in a typical cycle.",
+        "fertileWindow": "Estimated fertile window",
+        "to": "to",
+        "fertileWindowHint": "This is the range often considered the most fertile part of the cycle.",
+        "nextPeriod": "Estimated next period",
+        "nextPeriodHint": "Calculated from your average {days}-day cycle.",
+        "currentCycleDay": "Current cycle day",
+        "day": "Day",
+        "currentCycleHint": "Shown only when today falls within the current {cycle}-day cycle estimate.",
+        "invalidInput": "Enter a valid date and cycle range to see your estimate.",
+        "understandingTitle": "What these estimates mean",
+        "ovulationLabel": "Ovulation day",
+        "ovulationDescription": "Often estimated around 14 days before the next period in a regular cycle.",
+        "fertileWindowLabel": "Fertile window",
+        "fertileWindowDescription": "Usually includes the days leading up to ovulation and the ovulation day itself.",
+        "cycleLabel": "Cycle length",
+        "cycleDescription": "A longer or shorter cycle shifts the expected ovulation and next period dates.",
+        "variationLabel": "Natural variation",
+        "variationDescription": "Stress, travel, sleep, illness, and other factors can shift your cycle from month to month.",
+        "guide": {
+            "title": "How to use the Ovulation Calculator",
+            "step1": "Enter the start date of your last period.",
+            "step2": "Adjust your usual cycle length and average period length.",
+            "step3": "Review the estimated ovulation day, fertile window, and next period date."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Private local estimates", "desc": "All calculations happen in your browser without sending cycle details to a server." },
+            "f2": { "title": "Fertile window view", "desc": "See the likely fertile range as a simple date window instead of guessing day by day." },
+            "f3": { "title": "Next period planning", "desc": "Get a quick estimate of when the next period may begin based on your average cycle." },
+            "f4": { "title": "Careful wording", "desc": "Designed for personal planning with estimate-focused language instead of medical claims." }
+        }
+    },
+    "BmiCalculator": {
+        "title": "BMI Calculator",
+        "description": "Check your body mass index, current category, and a practical healthy weight range based on your height.",
+        "height": "Height (cm)",
+        "heightHint": "Enter your height in centimeters.",
+        "weight": "Weight (kg)",
+        "weightHint": "Enter your current weight in kilograms.",
+        "hint": "BMI is a quick screening number, not a diagnosis. It is most useful as a general check-in alongside your overall health picture.",
+        "bmiScore": "BMI score",
+        "category": "Weight category",
+        "healthyRange": "Healthy weight range",
+        "healthyRangeSummary": "For this height, a common healthy-weight estimate falls around {min} kg to {max} kg.",
+        "dailyNoteTitle": "Quick takeaway",
+        "dailyNoteSummary": "Your current BMI falls into the {category} range. Use it as a rough guide, not a final health judgment.",
+        "invalidInput": "Enter a valid height and weight to see your result.",
+        "underweight": "Underweight",
+        "normal": "Normal range",
+        "overweight": "Overweight",
+        "obesity": "Obesity range",
+        "guide": {
+            "title": "How to use the BMI Calculator",
+            "step1": "Enter your height in centimeters and your weight in kilograms.",
+            "step2": "Review the BMI score and weight category that appear instantly.",
+            "step3": "Use the healthy range card as a simple planning reference, not a medical diagnosis."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Fast BMI check", "desc": "Get your BMI score immediately from just two numbers." },
+            "f2": { "title": "Clear category label", "desc": "See whether your result lands in a lower, typical, or higher range." },
+            "f3": { "title": "Healthy range estimate", "desc": "View a practical weight range based on your height for quick context." },
+            "f4": { "title": "Everyday friendly", "desc": "Useful for routine check-ins, fitness goals, and simple self-tracking." }
+        }
+    },
     "TipCalculator": {
         "title": "Tip Calculator",
         "description": "Adjust the tip percentage, split the bill, and instantly see what each person should pay.",
@@ -2757,6 +2834,187 @@
             "f2": { "title": "Offset calculator", "desc": "Add or subtract days, weeks, or months from any base date." },
             "f3": { "title": "Planning helper", "desc": "Useful for travel, deadlines, subscriptions, and countdown planning." },
             "f4": { "title": "Instant results", "desc": "All calculations update immediately as soon as the input changes." }
+        }
+    },
+    "DDayCalculator": {
+        "title": "D-Day Countdown Calculator",
+        "description": "Count down to an event date or check how many days have passed since an important moment.",
+        "targetDateTitle": "Choose your target date",
+        "targetDate": "Target date",
+        "countFromToday": "Count from today",
+        "startDate": "Custom start date",
+        "daysRemaining": "Days",
+        "daysUntilTarget": "days until the target date",
+        "daysSinceTarget": "days since the target date",
+        "weeksApprox": "Approx. weeks",
+        "weeksHint": "A quick week-based view for longer countdowns.",
+        "monthsApprox": "Approx. months",
+        "monthsHint": "Useful when you want a broader planning horizon.",
+        "statusSummary": "Status summary",
+        "summaryValue": "{status} Target date: {targetDate}.",
+        "statusToday": "Your selected date is today.",
+        "statusTomorrow": "Your selected date is tomorrow.",
+        "statusThisWeek": "Your date is coming up within the next week.",
+        "statusThisMonth": "Your date is coming up in about {weeks} week(s).",
+        "statusFuture": "About {days} days remain, or roughly {weeks} week(s).",
+        "statusJustPassed": "Your selected date is today, so the countdown has just ended.",
+        "statusRecent": "Your date passed about {weeks} week(s) ago.",
+        "statusPast": "About {days} days have passed since that date, or roughly {weeks} week(s).",
+        "guide": {
+            "title": "How to use the D-Day Calculator",
+            "step1": "Pick the event or milestone date you want to track.",
+            "step2": "Keep ‘Count from today’ on, or switch it off to compare from another start date.",
+            "step3": "Review the remaining or elapsed days, plus the week and month estimate."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Countdown or count-up", "desc": "See days remaining for future events or days passed since a past milestone." },
+            "f2": { "title": "Custom start date", "desc": "Compare two dates directly when you do not want to count from today." },
+            "f3": { "title": "Quick planning view", "desc": "Weeks and approximate months make long countdowns easier to scan." },
+            "f4": { "title": "Everyday friendly", "desc": "Useful for birthdays, exams, anniversaries, trips, launches, and personal goals." }
+        }
+    },
+    "PercentageCalculator": {
+        "title": "Percentage Calculator",
+        "description": "Solve common percentage questions quickly, including simple percentage values and change rates.",
+        "basicTitle": "Basic percentage",
+        "percent": "Percentage",
+        "baseValue": "Base value",
+        "result": "Result",
+        "basicSummary": "This calculates {percent}% of {value}.",
+        "changeTitle": "Percentage change",
+        "oldValue": "Starting value",
+        "newValue": "New value",
+        "difference": "Difference",
+        "percentChange": "Percent change",
+        "changeSummaryTitle": "Quick summary",
+        "changeSummary": "This is a {direction} of about {percent}%.",
+        "increase": "increase",
+        "decrease": "decrease",
+        "invalidInput": "Enter valid numbers to see the calculation.",
+        "guide": {
+            "title": "How to use the Percentage Calculator",
+            "step1": "Use the first section when you want to know what a percentage of a number is.",
+            "step2": "Use the second section to compare an old value and a new value.",
+            "step3": "Check the result cards to understand the amount difference and percent change together."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Simple percent math", "desc": "Quickly find values like 15% of a bill, budget, or discount price." },
+            "f2": { "title": "Change tracking", "desc": "Compare two numbers to see how much something increased or decreased." },
+            "f3": { "title": "Dual-use layout", "desc": "Covers both one-off percentage questions and before-vs-after comparisons." },
+            "f4": { "title": "Daily practical use", "desc": "Helpful for discounts, savings, score changes, reports, and routine money math." }
+        }
+    },
+    "DiscountCalculator": {
+        "title": "Discount Calculator",
+        "description": "Check the discount amount, coupon savings, and final checkout price before you buy.",
+        "originalPrice": "Original price",
+        "discountPercent": "Discount percentage",
+        "extraCoupon": "Extra coupon amount",
+        "couponHint": "Use 0 if you do not have an extra coupon or instant discount.",
+        "hint": "This works well for sale prices, loyalty coupons, app-only discounts, and quick price comparisons between stores.",
+        "discountAmount": "Discount amount",
+        "priceAfterDiscount": "Price after percent discount",
+        "finalPrice": "Final price",
+        "totalSaved": "Total saved",
+        "summaryTitle": "Quick savings summary",
+        "summary": "You save about {saved} in total, which is roughly {percent}% off the original price.",
+        "invalidInput": "Enter a valid price and discount to see the result.",
+        "guide": {
+            "title": "How to use the Discount Calculator",
+            "step1": "Enter the original price of the item you are checking.",
+            "step2": "Add the sale percentage and any extra coupon amount if you have one.",
+            "step3": "Review the savings cards to compare the discount amount, final price, and total money saved."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Sale price math", "desc": "Instantly calculate how much a percentage discount removes from the original price." },
+            "f2": { "title": "Coupon-friendly", "desc": "Subtract an extra fixed coupon or promo amount after the main discount." },
+            "f3": { "title": "Shopping comparison", "desc": "Use the final price and total saved cards to compare deals between stores or apps." },
+            "f4": { "title": "Everyday checkout help", "desc": "Useful for online shopping, grocery apps, memberships, and seasonal sale events." }
+        }
+    },
+    "SplitBillCalculator": {
+        "title": "Split Bill Calculator",
+        "description": "Split a shared bill fairly with tax and tip included, then see how much each person should pay.",
+        "billAmount": "Bill amount",
+        "people": "Number of people",
+        "taxPercent": "Tax percentage",
+        "tipPercent": "Tip percentage",
+        "hint": "Great for dinners, café visits, taxi rides, delivery orders, or any shared payment where you want a fast per-person total.",
+        "taxAmount": "Tax amount",
+        "tipAmount": "Tip amount",
+        "total": "Grand total",
+        "perPerson": "Per person",
+        "summaryTitle": "Split summary",
+        "summary": "The full bill comes to {total}, split evenly across {people} people.",
+        "invalidInput": "Enter a valid bill amount to see the split.",
+        "guide": {
+            "title": "How to use the Split Bill Calculator",
+            "step1": "Enter the total bill amount before tax and tip, or use the amount on the receipt.",
+            "step2": "Set the number of people plus any tax and tip percentages you want to include.",
+            "step3": "Check the total, tax, tip, and per-person amount to settle the bill quickly."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Tax and tip included", "desc": "See the full shared payment instead of doing tax and gratuity separately." },
+            "f2": { "title": "Fair per-person total", "desc": "Get a simple evenly split amount for each person in the group." },
+            "f3": { "title": "Restaurant and travel friendly", "desc": "Useful for meals, ride shares, drinks, and small group expenses." },
+            "f4": { "title": "Fast group math", "desc": "Change the number of people or percentages and watch the totals update immediately." }
+        }
+    },
+    "SleepCalculator": {
+        "title": "Sleep Calculator",
+        "description": "Plan bedtimes and wake-up times around 90-minute sleep cycles for gentler mornings and steadier routines.",
+        "hint": "These suggestions are based on typical 90-minute sleep cycles plus the time it takes to fall asleep. They are planning aids, not medical advice.",
+        "wakeTitle": "If you want to wake up at...",
+        "wakeTime": "Wake-up time",
+        "fallAsleepMinutes": "Minutes to fall asleep",
+        "cycleSummary": "{cycles} cycles · about {hours} hours of sleep",
+        "bedTitle": "If you go to bed at...",
+        "bedTime": "Bedtime",
+        "guide": {
+            "title": "How to use the Sleep Calculator",
+            "step1": "Enter the time you want to wake up, or the time you expect to go to bed.",
+            "step2": "Adjust the fall-asleep time if you usually need more or less than 15 minutes.",
+            "step3": "Use the suggested times as a realistic routine guide built around full sleep cycles."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Wake-up planning", "desc": "See bedtime suggestions that line up with common sleep cycle lengths." },
+            "f2": { "title": "Bedtime planning", "desc": "Start from the time you lie down and check good wake-up options." },
+            "f3": { "title": "Sleep latency included", "desc": "Adds time to fall asleep so the recommendations feel more realistic." },
+            "f4": { "title": "Routine friendly", "desc": "Useful for workdays, school nights, travel recovery, and general sleep planning." }
+        }
+    },
+    "WaterIntakeCalculator": {
+        "title": "Water Intake Calculator",
+        "description": "Estimate a realistic daily hydration target from your body weight and activity level.",
+        "weightKg": "Body weight (kg)",
+        "activityMinutes": "Active minutes today",
+        "activityHint": "Use the minutes you expect to walk, exercise, or stay noticeably active.",
+        "cupSizeMl": "Cup size (ml)",
+        "hint": "This is a planning estimate for everyday hydration, not medical advice. Your needs may change with weather, meals, health conditions, or exercise intensity.",
+        "dailyTargetLiters": "Daily target (liters)",
+        "cupsPerDay": "Cups per day",
+        "baseAmount": "Base hydration amount (ml)",
+        "activityBoost": "Extra for activity (ml)",
+        "summaryTitle": "Hydration pace",
+        "summary": "Aim for about {total} ml today, or roughly {hourly} ml each waking hour if you spread it out through the day.",
+        "invalidInput": "Enter a valid weight and cup size to see your water target.",
+        "guide": {
+            "title": "How to use the Water Intake Calculator",
+            "step1": "Enter your current body weight in kilograms.",
+            "step2": "Add your expected active minutes and the cup size you usually drink from.",
+            "step3": "Use the liters, cups, and hourly pace cards to plan your hydration more comfortably."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Weight-based estimate", "desc": "Starts with a simple body-weight formula for a practical baseline target." },
+            "f2": { "title": "Activity adjustment", "desc": "Adds extra water when your day includes more walking, workouts, or active time." },
+            "f3": { "title": "Cup-friendly planning", "desc": "Turns the total into an easy daily cup count based on your usual glass or bottle size." },
+            "f4": { "title": "Steady routine support", "desc": "Helps you space water intake through the day instead of trying to catch up late." }
         }
     },
     "RandomPicker": {

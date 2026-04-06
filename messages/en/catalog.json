@@ -518,6 +518,14 @@
       "title": "Age Calculator",
       "description": "Calculate exact age in years, months, days, and see how long until the next birthday."
     },
+    "OvulationCalculator": {
+      "title": "Ovulation & Fertile Window Calculator",
+      "description": "Estimate your next ovulation day, fertile window, and expected next period from your cycle dates."
+    },
+    "BmiCalculator": {
+      "title": "BMI Calculator",
+      "description": "Check your body mass index, weight category, and healthy weight range with a quick height and weight estimate."
+    },
     "TipCalculator": {
       "title": "Tip Calculator",
       "description": "Split restaurant bills, adjust the tip percentage, and see the per-person total instantly."
@@ -525,6 +533,30 @@
     "DateCalculator": {
       "title": "Date Calculator",
       "description": "Measure the gap between two dates or add days, weeks, and months to any starting date."
+    },
+    "DDayCalculator": {
+      "title": "D-Day Countdown Calculator",
+      "description": "Count down to an important date or see how many days have passed since a milestone."
+    },
+    "PercentageCalculator": {
+      "title": "Percentage Calculator",
+      "description": "Handle everyday percentage math fast, from simple ratios to percentage increase or decrease."
+    },
+    "DiscountCalculator": {
+      "title": "Discount Calculator",
+      "description": "Calculate sale prices, coupon savings, and final checkout totals in seconds while you shop."
+    },
+    "SplitBillCalculator": {
+      "title": "Split Bill Calculator",
+      "description": "Split a meal or group payment with tax and tip included so everyone sees a fair per-person total."
+    },
+    "SleepCalculator": {
+      "title": "Sleep Calculator",
+      "description": "Plan better bedtimes and wake-up times around natural sleep cycles for a more rested routine."
+    },
+    "WaterIntakeCalculator": {
+      "title": "Water Intake Calculator",
+      "description": "Estimate a practical daily water target based on your weight, activity level, and preferred cup size."
     },
     "RandomPicker": {
       "title": "Random Picker",

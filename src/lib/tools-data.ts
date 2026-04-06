@@ -140,6 +140,46 @@ export const tools = [
         href: "/tools/unit-converter",
     },
     {
+        id: 'bmi-calculator',
+        titleKey: 'Catalog.BmiCalculator.title',
+        href: "/tools/bmi-calculator",
+    },
+    {
+        id: 'd-day-calculator',
+        titleKey: 'Catalog.DDayCalculator.title',
+        href: "/tools/d-day-calculator",
+    },
+    {
+        id: 'ovulation-calculator',
+        titleKey: 'Catalog.OvulationCalculator.title',
+        href: "/tools/ovulation-calculator",
+    },
+    {
+        id: 'percentage-calculator',
+        titleKey: 'Catalog.PercentageCalculator.title',
+        href: "/tools/percentage-calculator",
+    },
+    {
+        id: 'discount-calculator',
+        titleKey: 'Catalog.DiscountCalculator.title',
+        href: "/tools/discount-calculator",
+    },
+    {
+        id: 'split-bill-calculator',
+        titleKey: 'Catalog.SplitBillCalculator.title',
+        href: "/tools/split-bill-calculator",
+    },
+    {
+        id: 'sleep-calculator',
+        titleKey: 'Catalog.SleepCalculator.title',
+        href: "/tools/sleep-calculator",
+    },
+    {
+        id: 'water-intake-calculator',
+        titleKey: 'Catalog.WaterIntakeCalculator.title',
+        href: "/tools/water-intake-calculator",
+    },
+    {
         id: 'url-converter',
         titleKey: 'Catalog.UrlConverter.title',
         href: "/tools/url-converter",
