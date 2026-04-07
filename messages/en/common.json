@@ -6,8 +6,8 @@
     "total": "Total"
   },
   "Home": {
-    "title": "Free online tools for shopping, health, time, PDFs, images, and more",
-    "description": "Find practical online tools for discounts, split bills, water intake, sleep planning, BMI checks, PDFs, image work, and everyday tasks.",
+    "title": "Free online tools for everyday tasks and work",
+    "description": "Use practical online tools for calculations, documents, image editing, and everyday work in one place.",
     "allTools": "All Tools",
     "searchPlaceholder": "Search tools... (e.g., discount, sleep, BMI, PDF)",
     "searchResultCount": "{count} results",
@@ -36,8 +36,8 @@
     "title_1": "Essential",
     "title_2": "Open Tools",
     "title_3": "Platform",
-    "description": "Everyday online tools for shopping, health, schedules, PDFs, images, and quick work tasks.\n100% client-side where possible. Secure. Fast.",
-    "description_mobile": "Practical tools for discounts, sleep, PDFs, images, and everyday tasks."
+    "description": "A curated set of online tools for everyday tasks and work.\nRuns client-side where possible for a faster and safer experience.",
+    "description_mobile": "Find online tools for everyday tasks and work quickly and easily."
   },
   "Layout": {
     "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
