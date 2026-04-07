@@ -1,46 +1,51 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from "next-intl"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { XmlFormatterTool } from "@/components/tools/xml-formatter"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("XmlFormatter.title"),
+    description: t("XmlFormatter.description"),
+    path: "/tools/xml-formatter",
+  })
+}
 
+export default async function XmlFormatterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("xml-formatter")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("XmlFormatter.title"),
+    description: t("XmlFormatter.description"),
+    path: "/tools/xml-formatter",
+    category: "DeveloperApplication",
+  })
 
-
-
-
-const XmlFormatterTool = dynamic(
-    () => import("@/components/tools/xml-formatter").then(mod => ({ default: mod.XmlFormatterTool })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function XmlFormatterPage() {
-    const t = useTranslations('Catalog')
-    const tool = getToolById('xml-formatter');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('XmlFormatter.title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('XmlFormatter.description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <XmlFormatterTool />
-        <ToolGuide ns="XmlFormatter" /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        {tool ? (
+          <ToolPageHeader
+            title={t.rich("XmlFormatter.title", {
+              span: (chunks) => <span className="text-primary">{chunks}</span>,
+            })}
+            description={t("XmlFormatter.description")}
+            icon={tool.icon}
+            colorClass={tool.color}
+          />
+        ) : null}
+      </div>
+      <XmlFormatterTool />
+      <ToolGuide ns="XmlFormatter" />
+    </div>
+  )
 }

@@ -1,25 +1,42 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { ImageResizerTool } from "@/components/tools/image-resizer"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/image-resizer').then(mod => ({ default: mod.ImageResizerTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('ImageResizer')
-    const tool = getToolById('image-resizer')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <ToolComponent />
-        <ToolGuide ns="ImageResizer" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("ImageResizer.title"),
+    description: t("ImageResizer.description"),
+    path: "/tools/image-resizer",
+  })
+}
+
+export default async function ImageResizerPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("image-resizer")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("ImageResizer.title"),
+    description: t("ImageResizer.description"),
+    path: "/tools/image-resizer",
+    category: "UtilitiesApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader title={t("ImageResizer.title")} description={t("ImageResizer.description")} icon={tool?.icon} colorClass={tool?.color} />
+      </div>
+      <ImageResizerTool />
+      <ToolGuide ns="ImageResizer" />
+    </div>
+  )
 }

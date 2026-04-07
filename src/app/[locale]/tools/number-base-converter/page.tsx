@@ -1,51 +1,63 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { Hash, ArrowLeftRight, Zap } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { NumberBaseConverter } from "@/components/tools/number-base-converter"
 import { getToolById } from "@/lib/tools-catalog"
 import { cn } from "@/lib/utils"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const NumberBaseConverterTool = dynamic(
-  () =>
-    import("@/components/tools/number-base-converter").then((m) => ({
-      default: m.NumberBaseConverter,
-    })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-const features = [
-  {
-    icon: Hash,
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
-    title: "4 Number Bases",
-    desc: "Binary, Octal, Decimal, Hexadecimal",
-  },
-  {
-    icon: ArrowLeftRight,
-    color: "text-violet-500",
-    bg: "bg-violet-500/10",
-    title: "Any Direction",
-    desc: "Edit any field to convert all others instantly",
-  },
-  {
-    icon: Zap,
-    color: "text-indigo-500",
-    bg: "bg-indigo-500/10",
-    title: "BigInt Support",
-    desc: "Handles large 64-bit integers accurately",
-  },
-]
+  return createToolMetadata({
+    locale,
+    title: t("NumberBaseConverter.title"),
+    description: t("NumberBaseConverter.description"),
+    path: "/tools/number-base-converter",
+  })
+}
 
-export default function NumberBaseConverterPage() {
-  const t = useTranslations("Catalog")
+export default async function NumberBaseConverterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const ui = await getTranslations({ locale, namespace: "NumberBaseConverter" })
   const tool = getToolById("number-base-converter")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("NumberBaseConverter.title"),
+    description: t("NumberBaseConverter.description"),
+    path: "/tools/number-base-converter",
+    category: "DeveloperApplication",
+  })
+
+  const features = [
+    {
+      icon: Hash,
+      color: "text-purple-500",
+      bg: "bg-purple-500/10",
+      title: ui("features.f1.title"),
+      desc: ui("features.f1.desc"),
+    },
+    {
+      icon: ArrowLeftRight,
+      color: "text-violet-500",
+      bg: "bg-violet-500/10",
+      title: ui("features.f2.title"),
+      desc: ui("features.f2.desc"),
+    },
+    {
+      icon: Zap,
+      color: "text-indigo-500",
+      bg: "bg-indigo-500/10",
+      title: ui("features.f3.title"),
+      desc: ui("features.f3.desc"),
+    },
+  ]
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader
         title={t("NumberBaseConverter.title")}
         description={t("NumberBaseConverter.description")}
@@ -56,25 +68,25 @@ export default function NumberBaseConverterPage() {
 
       <div className="mx-auto max-w-5xl space-y-12">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {features.map((f) => (
+          {features.map((feature) => (
             <div
-              key={f.title}
+              key={feature.title}
               className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card/60 p-4 backdrop-blur-sm"
             >
-              <div className={cn("shrink-0 rounded-xl p-2", f.bg)}>
-                <f.icon className={cn("h-5 w-5", f.color)} />
+              <div className={cn("shrink-0 rounded-xl p-2", feature.bg)}>
+                <feature.icon className={cn("h-5 w-5", feature.color)} />
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">{f.title}</p>
+                <p className="text-sm font-semibold text-foreground">{feature.title}</p>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                  {f.desc}
+                  {feature.desc}
                 </p>
               </div>
             </div>
           ))}
         </div>
 
-        <NumberBaseConverterTool />
+        <NumberBaseConverter />
       </div>
     </div>
   )

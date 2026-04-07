@@ -345,6 +345,11 @@
       "flowStep1": "YouTube 링크를 분석해 이용 가능한 스트림과 자막을 찾습니다.",
       "flowStep2": "선택한 영상/오디오 스트림을 프록시를 통해 다운로드합니다.",
       "flowStep3": "FFmpeg로 브라우저에서 병합 후 파일을 내보냅니다.",
+      "proxyLabel": "프록시 URL",
+      "thumbnailAlt": "영상 썸네일 미리보기",
+      "durationLabel": "재생 시간: {duration}초",
+      "subtitleLabel": "자막 ({lang})",
+      "errorTitle": "오류",
       "limitationsTitle": "제한 사항",
       "limitationsDesc": "스트림을 프록시로 가져오고 브라우저에서 처리하기 때문에 속도가 느릴 수 있습니다. 대용량 영상은 몇 분이 걸릴 수 있습니다."
     },

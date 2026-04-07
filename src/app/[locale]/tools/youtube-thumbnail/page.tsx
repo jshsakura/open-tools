@@ -1,49 +1,53 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { YoutubeThumbnail } from "@/components/tools/youtube-thumbnail"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("YoutubeThumbnail.title"),
+    description: t("YoutubeThumbnail.description"),
+    path: "/tools/youtube-thumbnail",
+  })
+}
 
+export default async function YoutubeThumbnailPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const catalog = await getTranslations({ locale, namespace: "Catalog" })
+  const t = await getTranslations({ locale, namespace: "YoutubeThumbnail" })
+  const tool = getToolById("youtube-thumbnail")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catalog("YoutubeThumbnail.title"),
+    description: catalog("YoutubeThumbnail.description"),
+    path: "/tools/youtube-thumbnail",
+    category: "UtilitiesApplication",
+  })
 
-
-
-
-const YoutubeThumbnail = dynamic(
-    () => import('@/components/tools/youtube-thumbnail').then(mod => ({ default: mod.YoutubeThumbnail })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function YoutubeThumbnailPage() {
-    const t = useTranslations('YoutubeThumbnail')
-    const tool = getToolById('youtube-thumbnail');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">
-            <div className="mb-12 space-y-4">
-            {tool && (
-                <ToolPageHeader
-                    title={t.rich('title', {
-                        span: (chunks) => <span className="text-primary">{chunks}</span>
-                    })}
-                    description={t('description')}
-                    icon={tool.icon}
-                    colorClass={tool.color}
-                    center
-                />
-            )}
-        </div>
-
-            <YoutubeThumbnail />
-            <ToolGuide ns="YoutubeThumbnail" />
-        </div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        {tool ? (
+          <ToolPageHeader
+            title={t.rich("title", {
+              span: (chunks) => <span className="text-primary">{chunks}</span>,
+            })}
+            description={t("description")}
+            icon={tool.icon}
+            colorClass={tool.color}
+            center
+          />
+        ) : null}
+      </div>
+      <YoutubeThumbnail />
+      <ToolGuide ns="YoutubeThumbnail" />
+    </div>
+  )
 }

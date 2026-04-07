@@ -1,47 +1,50 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { QrCode } from 'lucide-react'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { QrGenerator } from "@/components/tools/qr-generator"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("QrGenerator.title"),
+    description: t("QrGenerator.description"),
+    path: "/tools/qr-generator",
+  })
+}
 
+export default async function QrGeneratorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "QrGenerator" })
+  const catalog = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("qr-generator")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catalog("QrGenerator.title"),
+    description: catalog("QrGenerator.description"),
+    path: "/tools/qr-generator",
+    category: "UtilitiesApplication",
+  })
 
-
-
-
-const QrGenerator = dynamic(
-    () => import("@/components/tools/qr-generator").then(mod => ({ default: mod.QrGenerator })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function QrGeneratorPage() {
-    const t = useTranslations('QrGenerator')
-    const tool = getToolById('qr-generator');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <QrGenerator />
-        <ToolGuide ns="QrGenerator" /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader
+          title={t.rich("title", {
+            span: (chunks) => <span className="text-primary">{chunks}</span>,
+          })}
+          description={t("description")}
+          icon={tool?.icon}
+          colorClass={tool?.color}
+        />
+      </div>
+      <QrGenerator />
+      <ToolGuide ns="QrGenerator" />
+    </div>
+  )
 }

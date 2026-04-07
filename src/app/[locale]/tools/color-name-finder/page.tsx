@@ -1,22 +1,35 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
-import { Palette, Zap, Check } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
+import { getTranslations } from "next-intl/server"
+import { Check, Palette, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
-import { getToolById } from "@/lib/tools-catalog"
+import { ColorNameFinder } from "@/components/tools/color-name-finder"
 import { Card, CardContent } from "@/components/ui/card"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ColorNameFinder = dynamic(
-  () => import("@/components/tools/color-name-finder").then((m) => ({ default: m.ColorNameFinder })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ColorNameFinderPage() {
-  const t = useTranslations("ColorNameFinder")
-  const catT = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("ColorNameFinder.title"),
+    description: t("ColorNameFinder.description"),
+    path: "/tools/color-name-finder",
+  })
+}
+
+export default async function ColorNameFinderPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "ColorNameFinder" })
+  const catT = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("color-name-finder")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catT("ColorNameFinder.title"),
+    description: catT("ColorNameFinder.description"),
+    path: "/tools/color-name-finder",
+    category: "DesignApplication",
+  })
 
   const features = [
     {
@@ -41,6 +54,7 @@ export default function ColorNameFinderPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader
         title={catT("ColorNameFinder.title")}
         description={catT("ColorNameFinder.description")}
@@ -48,7 +62,7 @@ export default function ColorNameFinderPage() {
         colorClass={tool?.color}
         center
       />
-      
+
       <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map((feature) => {
           const Icon = feature.icon
@@ -61,9 +75,7 @@ export default function ColorNameFinderPage() {
                   </div>
                   <div className="space-y-1">
                     <h3 className="font-semibold text-sm">{feature.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               </CardContent>
@@ -71,7 +83,7 @@ export default function ColorNameFinderPage() {
           )
         })}
       </div>
-      
+
       <ColorNameFinder />
     </div>
   )

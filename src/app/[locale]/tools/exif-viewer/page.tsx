@@ -1,25 +1,40 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { ExifViewerTool } from "@/components/tools/exif-viewer"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/exif-viewer').then(mod => ({ default: mod.ExifViewerTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('ExifViewer')
-    const tool = getToolById('exif-viewer')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <ToolComponent />
-        <ToolGuide ns="ExifViewer" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("ExifViewer.title"),
+    description: t("ExifViewer.description"),
+    path: "/tools/exif-viewer",
+  })
+}
+
+export default async function ExifViewerPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("exif-viewer")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("ExifViewer.title"),
+    description: t("ExifViewer.description"),
+    path: "/tools/exif-viewer",
+    category: "UtilitiesApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader title={t("ExifViewer.title")} description={t("ExifViewer.description")} icon={tool?.icon} colorClass={tool?.color} />
+      <ExifViewerTool />
+      <ToolGuide ns="ExifViewer" />
+    </div>
+  )
 }

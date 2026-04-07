@@ -1,22 +1,35 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { Palette, Layers, Zap } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
-import { getToolById } from "@/lib/tools-catalog"
+import { CssPattern } from "@/components/tools/css-pattern"
 import { Card, CardContent } from "@/components/ui/card"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const CssPattern = dynamic(
-  () => import("@/components/tools/css-pattern").then((m) => ({ default: m.CssPattern })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function CssPatternPage() {
-  const t = useTranslations("CssPattern")
-  const catT = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("CssPattern.title"),
+    description: t("CssPattern.description"),
+    path: "/tools/css-pattern",
+  })
+}
+
+export default async function CssPatternPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "CssPattern" })
+  const catT = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("css-pattern")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catT("CssPattern.title"),
+    description: catT("CssPattern.description"),
+    path: "/tools/css-pattern",
+    category: "DesignApplication",
+  })
 
   const features = [
     {
@@ -41,6 +54,7 @@ export default function CssPatternPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader
         title={catT("CssPattern.title")}
         description={catT("CssPattern.description")}
@@ -48,7 +62,7 @@ export default function CssPatternPage() {
         colorClass={tool?.color}
         center
       />
-      
+
       <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map((feature) => {
           const Icon = feature.icon
@@ -71,7 +85,7 @@ export default function CssPatternPage() {
           )
         })}
       </div>
-      
+
       <CssPattern />
     </div>
   )

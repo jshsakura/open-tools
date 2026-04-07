@@ -1,25 +1,40 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { CssMinifierTool } from "@/components/tools/css-minifier"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/css-minifier').then(mod => ({ default: mod.CssMinifierTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('CssMinifier')
-    const tool = getToolById('css-minifier')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <ToolComponent />
-        <ToolGuide ns="CssMinifier" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("CssMinifier.title"),
+    description: t("CssMinifier.description"),
+    path: "/tools/css-minifier",
+  })
+}
+
+export default async function CssMinifierPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("css-minifier")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("CssMinifier.title"),
+    description: t("CssMinifier.description"),
+    path: "/tools/css-minifier",
+    category: "DeveloperApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader title={t("CssMinifier.title")} description={t("CssMinifier.description")} icon={tool?.icon} colorClass={tool?.color} />
+      <CssMinifierTool />
+      <ToolGuide ns="CssMinifier" />
+    </div>
+  )
 }

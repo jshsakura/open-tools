@@ -1,27 +1,43 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { SubnetCalculatorTool } from "@/components/tools/subnet-calculator"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/subnet-calculator').then(mod => ({ default: mod.SubnetCalculatorTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('SubnetCalculator')
-    const tool = getToolById('subnet-calculator')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">
-            {tool && (
-                <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-            )}
-            <ToolComponent />
-            <ToolGuide ns="SubnetCalculator" />
-        </div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("SubnetCalculator.title"),
+    description: t("SubnetCalculator.description"),
+    path: "/tools/subnet-calculator",
+  })
+}
+
+export default async function SubnetCalculatorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "SubnetCalculator" })
+  const catT = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("subnet-calculator")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catT("SubnetCalculator.title"),
+    description: catT("SubnetCalculator.description"),
+    path: "/tools/subnet-calculator",
+    category: "DeveloperApplication",
+  })
+
+  return (
+    <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      {tool && (
+        <ToolPageHeader title={t("title")} description={t("description")} icon={tool.icon} colorClass={tool.color} />
+      )}
+      <SubnetCalculatorTool />
+      <ToolGuide ns="SubnetCalculator" />
+    </div>
+  )
 }

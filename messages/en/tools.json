@@ -207,6 +207,38 @@
             "step3": "Matches are highlighted in real-time with detailed match information shown below."
         }
     },
+    "NumberBaseConverter": {
+        "features": {
+            "f1": {
+                "title": "4 Number Bases",
+                "desc": "Convert across binary, octal, decimal, and hexadecimal in one view."
+            },
+            "f2": {
+                "title": "Any Direction",
+                "desc": "Edit any input field and instantly recalculate all of the other bases."
+            },
+            "f3": {
+                "title": "BigInt Support",
+                "desc": "Handle large integer values accurately without losing precision during conversion."
+            }
+        }
+    },
+    "TextDiff": {
+        "features": {
+            "f1": {
+                "title": "Line & Word Diff",
+                "desc": "Switch between line-level and word-level comparison depending on the detail you need."
+            },
+            "f2": {
+                "title": "Visual Highlights",
+                "desc": "See additions and removals immediately with clear side-by-side color cues."
+            },
+            "f3": {
+                "title": "Change Stats",
+                "desc": "Quickly understand the size of an edit by checking how many lines changed."
+            }
+        }
+    },
     "CronGenerator": {
         "title": "Cron Expression Generator",
         "description": "Create and understand cron schedules easily.",
@@ -259,6 +291,38 @@
             "step1": "Your public IP address is detected automatically when you open this page.",
             "step2": "Review network details including ISP, location, and timezone.",
             "step3": "Use the copy button to copy your IP or view your location on the map."
+        }
+    },
+    "MarkdownPreview": {
+        "features": {
+            "f1": {
+                "title": "Live Preview",
+                "desc": "See the rendered result update instantly while you write Markdown."
+            },
+            "f2": {
+                "title": "Core Syntax Support",
+                "desc": "Work with headings, emphasis, lists, links, and code blocks in one flow."
+            },
+            "f3": {
+                "title": "Export HTML",
+                "desc": "Copy rendered HTML directly when you need to reuse the output elsewhere."
+            }
+        }
+    },
+    "StringCaseConverter": {
+        "features": {
+            "f1": {
+                "title": "12 Case Formats",
+                "desc": "Convert text across the naming styles developers use most often in one place."
+            },
+            "f2": {
+                "title": "Instant Convert",
+                "desc": "Generate every supported case variation the moment you type or paste text."
+            },
+            "f3": {
+                "title": "One-click Copy",
+                "desc": "Copy the exact output format you need without any manual cleanup."
+            }
         }
     },
     "BannerGenerator": {
@@ -807,6 +871,11 @@
             "step1": "Drag & drop or click 'Add Files' to upload the PDF files you want to merge.",
             "step2": "Check the file order and rearrange if needed.",
             "step3": "Click 'Merge PDFs' to combine all files into a single PDF and download."
+        },
+        "features": {
+            "f1": { "title": "No File Limit", "desc": "Merge as many PDF files as you need at once." },
+            "f2": { "title": "Reorder Pages", "desc": "Drag and drop to reorder files before merging." },
+            "f3": { "title": "100% Local", "desc": "Files never leave your browser. Private and secure." }
         }
     },
     "PdfSplit": {
@@ -1245,7 +1314,10 @@
         "analysis": {
             "networkExposure": "Network Exposure",
             "subnetAnalysis": "Subnet Analysis",
-            "subnetDesc": "Simulated: Metadata queries indicate activity in compatible subnets."
+            "subnetDesc": "Simulated: Metadata queries indicate activity in compatible subnets.",
+            "targetDetected": "Target Detected",
+            "vpnDetectedTitle": "VPN Detected",
+            "asn": "ASN"
         },
         "guide": {
             "title": "Privacy Protection Guide",
@@ -2313,6 +2385,13 @@
             "f2": { "title": "Inline Style Conversion", "desc": "Transforms string-based styles into React style objects." },
             "f3": { "title": "Self-closing Tags", "desc": "Ensures all tags like <img> and <br> are properly closed for JSX." },
             "f4": { "title": "Clean Output", "desc": "Removes unnecessary HTML comments and formats the resulting code." }
+        }
+    },
+    "HtmlEntityEncoder": {
+        "features": {
+            "f1": { "title": "Encode & Decode", "desc": "Switch between plain text and HTML entities without leaving the page." },
+            "f2": { "title": "Safer Rendering", "desc": "Prepare untrusted snippets for display by escaping risky characters first." },
+            "f3": { "title": "Named & Numeric", "desc": "Work with common named entities and numeric references in the same flow." }
         }
     },
     "MorseConverter": {

@@ -1,46 +1,42 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from "next-intl"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { PortScannerTool } from "@/components/tools/port-scanner"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("PortScanner.title"),
+    description: t("PortScanner.description"),
+    path: "/tools/port-scanner",
+  })
+}
 
+export default async function PortScannerPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("port-scanner")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("PortScanner.title"),
+    description: t("PortScanner.description"),
+    path: "/tools/port-scanner",
+    category: "DeveloperApplication",
+  })
 
-
-
-
-const PortScannerTool = dynamic(
-    () => import("@/components/tools/port-scanner").then(mod => ({ default: mod.PortScannerTool })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function PortScannerPage() {
-    const t = useTranslations('Catalog')
-    const tool = getToolById('port-scanner');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('PortScanner.title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('PortScanner.description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <PortScannerTool />
-        <ToolGuide ns="PortScanner" /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader title={t("PortScanner.title")} description={t("PortScanner.description")} icon={tool?.icon} colorClass={tool?.color} />
+      </div>
+      <PortScannerTool />
+      <ToolGuide ns="PortScanner" />
+    </div>
+  )
 }

@@ -301,6 +301,11 @@
       "flowStep1": "Analyze the YouTube link to discover available streams and subtitles.",
       "flowStep2": "Download the selected video/audio stream through the proxy.",
       "flowStep3": "Merge and export the file in your browser using FFmpeg.",
+      "proxyLabel": "Proxy URL",
+      "thumbnailAlt": "Video thumbnail preview",
+      "durationLabel": "Duration: {duration}s",
+      "subtitleLabel": "Subtitle ({lang})",
+      "errorTitle": "Error",
       "limitationsTitle": "Limitations",
       "limitationsDesc": "Downloads can be slow because streams are fetched through a proxy and processed locally in your browser. Large videos may take several minutes."
     },

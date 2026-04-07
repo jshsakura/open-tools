@@ -1,46 +1,42 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from "next-intl"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { Base64ImageTool } from "@/components/tools/base64-image"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("Base64Image.title"),
+    description: t("Base64Image.description"),
+    path: "/tools/base64-image",
+  })
+}
 
+export default async function Base64ImagePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("base64-image")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("Base64Image.title"),
+    description: t("Base64Image.description"),
+    path: "/tools/base64-image",
+    category: "UtilitiesApplication",
+  })
 
-
-
-
-const Base64ImageTool = dynamic(
-    () => import("@/components/tools/base64-image").then(mod => ({ default: mod.Base64ImageTool })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function Base64ImagePage() {
-    const t = useTranslations('Catalog')
-    const tool = getToolById('base64-image');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('Base64Image.title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('Base64Image.description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <Base64ImageTool />
-        <ToolGuide ns="Base64Image" /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader title={t("Base64Image.title")} description={t("Base64Image.description")} icon={tool?.icon} colorClass={tool?.color} />
+      </div>
+      <Base64ImageTool />
+      <ToolGuide ns="Base64Image" />
+    </div>
+  )
 }

@@ -1,25 +1,40 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { WhoisLookupTool } from "@/components/tools/whois-lookup"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/whois-lookup').then(mod => ({ default: mod.WhoisLookupTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('WhoisLookup')
-    const tool = getToolById('whois-lookup')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <ToolComponent />
-        <ToolGuide ns="WhoisLookup" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("WhoisLookup.title"),
+    description: t("WhoisLookup.description"),
+    path: "/tools/whois-lookup",
+  })
+}
+
+export default async function WhoisLookupPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("whois-lookup")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("WhoisLookup.title"),
+    description: t("WhoisLookup.description"),
+    path: "/tools/whois-lookup",
+    category: "UtilitiesApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader title={t("WhoisLookup.title")} description={t("WhoisLookup.description")} icon={tool?.icon} colorClass={tool?.color} />
+      <WhoisLookupTool />
+      <ToolGuide ns="WhoisLookup" />
+    </div>
+  )
 }

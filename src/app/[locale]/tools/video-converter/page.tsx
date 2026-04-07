@@ -1,24 +1,36 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { VideoConverter } from "@/components/tools/video-converter"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const VideoConverter = dynamic(
-    () => import("@/components/tools/video-converter").then(mod => ({ default: mod.VideoConverter })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function VideoConverterPage() {
-    return (
-        <div className="container mx-auto py-10">
-            <VideoConverter />
-            <ToolGuide ns="VideoConverter" />
-        </div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("VideoConverter.title"),
+    description: t("VideoConverter.description"),
+    path: "/tools/video-converter",
+  })
+}
+
+export default async function VideoConverterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("VideoConverter.title"),
+    description: t("VideoConverter.description"),
+    path: "/tools/video-converter",
+    category: "UtilitiesApplication",
+  })
+
+  return (
+    <div className="container mx-auto py-10">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <VideoConverter />
+      <ToolGuide ns="VideoConverter" />
+    </div>
+  )
 }

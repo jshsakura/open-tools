@@ -1,22 +1,35 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { Terminal, Code2, Zap } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
-import { getToolById } from "@/lib/tools-catalog"
+import { CurlToCode } from "@/components/tools/curl-to-code"
 import { Card, CardContent } from "@/components/ui/card"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const CurlToCode = dynamic(
-  () => import("@/components/tools/curl-to-code").then((m) => ({ default: m.CurlToCode })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function CurlToCodePage() {
-  const t = useTranslations("CurlToCode")
-  const catT = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("CurlToCode.title"),
+    description: t("CurlToCode.description"),
+    path: "/tools/curl-to-code",
+  })
+}
+
+export default async function CurlToCodePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "CurlToCode" })
+  const catT = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("curl-to-code")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catT("CurlToCode.title"),
+    description: catT("CurlToCode.description"),
+    path: "/tools/curl-to-code",
+    category: "DeveloperApplication",
+  })
 
   const features = [
     {
@@ -41,6 +54,7 @@ export default function CurlToCodePage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader
         title={catT("CurlToCode.title")}
         description={catT("CurlToCode.description")}
@@ -48,7 +62,7 @@ export default function CurlToCodePage() {
         colorClass={tool?.color}
         center
       />
-      
+
       <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map((feature) => {
           const Icon = feature.icon
@@ -71,7 +85,7 @@ export default function CurlToCodePage() {
           )
         })}
       </div>
-      
+
       <CurlToCode />
     </div>
   )

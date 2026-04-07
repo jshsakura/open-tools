@@ -1,25 +1,40 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { WebhookTesterTool } from "@/components/tools/webhook-tester"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const ToolComponent = dynamic(
-    () => import('@/components/tools/webhook-tester').then(mod => ({ default: mod.WebhookTesterTool })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function ToolPage() {
-    const t = useTranslations('WebhookTester')
-    const tool = getToolById('webhook-tester')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <ToolComponent />
-        <ToolGuide ns="WebhookTester" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("WebhookTester.title"),
+    description: t("WebhookTester.description"),
+    path: "/tools/webhook-tester",
+  })
+}
+
+export default async function WebhookTesterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("webhook-tester")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("WebhookTester.title"),
+    description: t("WebhookTester.description"),
+    path: "/tools/webhook-tester",
+    category: "DeveloperApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader title={t("WebhookTester.title")} description={t("WebhookTester.description")} icon={tool?.icon} colorClass={tool?.color} />
+      <WebhookTesterTool />
+      <ToolGuide ns="WebhookTester" />
+    </div>
+  )
 }

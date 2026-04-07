@@ -1,22 +1,35 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { PenTool, Move, Zap } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { getToolById } from "@/lib/tools-catalog"
 import { Card, CardContent } from "@/components/ui/card"
+import { SvgVisualizer } from "@/components/tools/svg-visualizer"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const SvgVisualizer = dynamic(
-  () => import("@/components/tools/svg-visualizer").then((m) => ({ default: m.SvgVisualizer })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function SvgVisualizerPage() {
-  const t = useTranslations("SvgVisualizer")
-  const catT = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("SvgVisualizer.title"),
+    description: t("SvgVisualizer.description"),
+    path: "/tools/svg-visualizer",
+  })
+}
+
+export default async function SvgVisualizerPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "SvgVisualizer" })
+  const catT = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("svg-visualizer")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catT("SvgVisualizer.title"),
+    description: catT("SvgVisualizer.description"),
+    path: "/tools/svg-visualizer",
+    category: "DesignApplication",
+  })
 
   const features = [
     {
@@ -40,7 +53,8 @@ export default function SvgVisualizerPage() {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl">
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader
         title={catT("SvgVisualizer.title")}
         description={catT("SvgVisualizer.description")}
@@ -48,22 +62,20 @@ export default function SvgVisualizerPage() {
         colorClass={tool?.color}
         center
       />
-      
+
       <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
         {features.map((feature) => {
           const Icon = feature.icon
           return (
             <Card key={feature.title} className="border-border/50 bg-card/50">
               <CardContent className="pt-6 pb-5">
-                <div className="flex flex-col items-center text-center gap-3">
-                  <div className="p-2 rounded-xl bg-muted/50">
-                    <Icon className={`w-6 h-6 ${feature.iconColor}`} />
+                <div className="flex flex-col items-center gap-3 text-center">
+                  <div className="rounded-xl bg-muted/50 p-2">
+                    <Icon className={`h-6 w-6 ${feature.iconColor}`} />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-semibold text-sm">{feature.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <h3 className="text-sm font-semibold">{feature.title}</h3>
+                    <p className="text-xs leading-relaxed text-muted-foreground">{feature.description}</p>
                   </div>
                 </div>
               </CardContent>
@@ -71,7 +83,7 @@ export default function SvgVisualizerPage() {
           )
         })}
       </div>
-      
+
       <SvgVisualizer />
     </div>
   )

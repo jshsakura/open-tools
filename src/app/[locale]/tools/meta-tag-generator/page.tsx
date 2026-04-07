@@ -1,25 +1,40 @@
-"use client"
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from 'next-intl'
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { MetaTagGenerator } from "@/components/tools/meta-tag-generator"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const MetaTagGenerator = dynamic(
-    () => import('@/components/tools/meta-tag-generator').then(mod => ({ default: mod.MetaTagGenerator })),
-    { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function MetaTagGeneratorPage() {
-    const t = useTranslations('MetaTagGenerator')
-    const tool = getToolById('meta-tag-generator')
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl">{tool && (
-            <ToolPageHeader title={t('title')} description={t('description')} icon={tool.icon} colorClass={tool.color} />
-        )}
-        <MetaTagGenerator />
-        <ToolGuide ns="MetaTagGenerator" /></div>
-    )
+  return createToolMetadata({
+    locale,
+    title: t("MetaTagGenerator.title"),
+    description: t("MetaTagGenerator.description"),
+    path: "/tools/meta-tag-generator",
+  })
+}
+
+export default async function MetaTagGeneratorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("meta-tag-generator")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("MetaTagGenerator.title"),
+    description: t("MetaTagGenerator.description"),
+    path: "/tools/meta-tag-generator",
+    category: "DeveloperApplication",
+  })
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader title={t("MetaTagGenerator.title")} description={t("MetaTagGenerator.description")} icon={tool?.icon} colorClass={tool?.color} />
+      <MetaTagGenerator />
+      <ToolGuide ns="MetaTagGenerator" />
+    </div>
+  )
 }

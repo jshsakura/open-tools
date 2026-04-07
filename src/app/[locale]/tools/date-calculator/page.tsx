@@ -1,23 +1,37 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { DateCalculatorTool } from "@/components/tools/date-calculator"
 import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const DateCalculatorTool = dynamic(
-  () => import("@/components/tools/date-calculator").then((m) => ({ default: m.DateCalculatorTool })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false },
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function DateCalculatorPage() {
-  const t = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("DateCalculator.title"),
+    description: t("DateCalculator.description"),
+    path: "/tools/date-calculator",
+  })
+}
+
+export default async function DateCalculatorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("date-calculator")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("DateCalculator.title"),
+    description: t("DateCalculator.description"),
+    path: "/tools/date-calculator",
+    category: "UtilitiesApplication",
+  })
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <ToolPageHeader title={t("DateCalculator.title")} description={t("DateCalculator.description")} icon={tool?.icon} colorClass={tool?.color} center />
       <DateCalculatorTool />
       <ToolGuide ns="DateCalculator" />

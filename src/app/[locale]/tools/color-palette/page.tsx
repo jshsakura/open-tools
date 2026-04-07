@@ -1,44 +1,40 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from "next-intl"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
+import { getTranslations } from "next-intl/server"
 import { ToolPageHeader } from "@/components/tool-page-header"
+import { ColorPaletteTool } from "@/components/tools/color-palette"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("ColorPalette.title"),
+    description: t("ColorPalette.description"),
+    path: "/tools/color-palette",
+  })
+}
 
+export default async function ColorPalettePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("color-palette")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("ColorPalette.title"),
+    description: t("ColorPalette.description"),
+    path: "/tools/color-palette",
+    category: "DesignApplication",
+  })
 
-
-
-
-const ColorPaletteTool = dynamic(
-    () => import("@/components/tools/color-palette").then(mod => ({ default: mod.ColorPaletteTool })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function ColorPalettePage() {
-    const t = useTranslations('Catalog')
-    const tool = getToolById('color-palette');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('ColorPalette.title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('ColorPalette.description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <ColorPaletteTool /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader title={t("ColorPalette.title")} description={t("ColorPalette.description")} icon={tool?.icon} colorClass={tool?.color} />
+      </div>
+      <ColorPaletteTool />
+    </div>
+  )
 }

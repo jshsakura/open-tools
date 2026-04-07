@@ -1,33 +1,41 @@
-"use client";
+import { getTranslations } from "next-intl/server"
+import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { SeoAnalyzerTool } from "@/components/tools/seo-analyzer"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
-import { ToolGuide } from "@/components/tool-guide-section";
-import { ToolLoadingSkeleton } from "@/components/tool-loader";
-import { ToolPageHeader } from "@/components/tool-page-header";
-import { getToolById } from "@/lib/tools-catalog";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-const SeoAnalyzerTool = dynamic(
-  () => import("@/components/tools/seo-analyzer").then((mod) => ({ default: mod.SeoAnalyzerTool })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false },
-);
+  return createToolMetadata({
+    locale,
+    title: t("SeoAnalyzer.title"),
+    description: t("SeoAnalyzer.description"),
+    path: "/tools/seo-analyzer",
+  })
+}
 
-export default function SeoAnalyzerPage() {
-  const t = useTranslations("SeoAnalyzer");
-  const tool = getToolById("seo-analyzer");
+export default async function SeoAnalyzerPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const catalog = await getTranslations({ locale, namespace: "Catalog" })
+  const ui = await getTranslations({ locale, namespace: "SeoAnalyzer" })
+  const tool = getToolById("seo-analyzer")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: catalog("SeoAnalyzer.title"),
+    description: catalog("SeoAnalyzer.description"),
+    path: "/tools/seo-analyzer",
+    category: "DeveloperApplication",
+  })
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
-      {tool ? (
-        <ToolPageHeader
-          title={t("title")}
-          description={t("description")}
-          icon={tool.icon}
-          colorClass={tool.color}
-        />
-      ) : null}
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      {tool ? <ToolPageHeader title={ui("title")} description={ui("description")} icon={tool.icon} colorClass={tool.color} /> : null}
       <SeoAnalyzerTool />
       <ToolGuide ns="SeoAnalyzer" />
     </div>
-  );
+  )
 }

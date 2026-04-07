@@ -1,21 +1,34 @@
-"use client"
-
-import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { Type, Clock, Zap } from "lucide-react"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
 import { ToolPageHeader } from "@/components/tool-page-header"
-import { getToolById } from "@/lib/tools-catalog"
+import { WordCounter } from "@/components/tools/word-counter"
 import { Card, CardContent } from "@/components/ui/card"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
-const WordCounter = dynamic(
-  () => import("@/components/tools/word-counter").then((m) => ({ default: m.WordCounter })),
-  { loading: () => <ToolLoadingSkeleton />, ssr: false }
-)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
-export default function WordCounterPage() {
-  const t = useTranslations("Catalog")
+  return createToolMetadata({
+    locale,
+    title: t("WordCounter.title"),
+    description: t("WordCounter.description"),
+    path: "/tools/word-counter",
+  })
+}
+
+export default async function WordCounterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
   const tool = getToolById("word-counter")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("WordCounter.title"),
+    description: t("WordCounter.description"),
+    path: "/tools/word-counter",
+    category: "UtilitiesApplication",
+  })
 
   const features = [
     {
@@ -39,37 +52,40 @@ export default function WordCounterPage() {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl"><ToolPageHeader
-      title={t("WordCounter.title")}
-      description={t("WordCounter.description")}
-      icon={tool?.icon}
-      colorClass={tool?.color}
-      center
-    />
-    
+    <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ToolPageHeader
+        title={t("WordCounter.title")}
+        description={t("WordCounter.description")}
+        icon={tool?.icon}
+        colorClass={tool?.color}
+        center
+      />
+
       <div className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
-      {features.map((feature) => {
-        const Icon = feature.icon
-        return (
-          <Card key={feature.title} className="border-border/50 bg-card/50">
-            <CardContent className="pt-6 pb-5">
-              <div className="flex flex-col items-center text-center gap-3">
-                <div className="p-2 rounded-xl bg-muted/50">
-                  <Icon className={`w-6 h-6 ${feature.iconColor}`} />
+        {features.map((feature) => {
+          const Icon = feature.icon
+          return (
+            <Card key={feature.title} className="border-border/50 bg-card/50">
+              <CardContent className="pt-6 pb-5">
+                <div className="flex flex-col items-center text-center gap-3">
+                  <div className="p-2 rounded-xl bg-muted/50">
+                    <Icon className={`w-6 h-6 ${feature.iconColor}`} />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-semibold text-sm">{feature.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <h3 className="font-semibold text-sm">{feature.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )
-      })}
+              </CardContent>
+            </Card>
+          )
+        })}
+      </div>
+
+      <WordCounter />
     </div>
-    
-    <WordCounter /></div>
   )
 }

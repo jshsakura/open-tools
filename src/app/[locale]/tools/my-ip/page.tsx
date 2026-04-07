@@ -1,46 +1,42 @@
-"use client"
-
-
-import dynamic from 'next/dynamic'
-import { useTranslations } from "next-intl"
-import { ToolLoadingSkeleton } from "@/components/tool-loader"
-import { getToolById } from "@/lib/tools-catalog"
-import { ToolPageHeader } from "@/components/tool-page-header"
+import { getTranslations } from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
+import { ToolPageHeader } from "@/components/tool-page-header"
+import { MyIpTool } from "@/components/tools/my-ip"
+import { getToolById } from "@/lib/tools-catalog"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
 
+  return createToolMetadata({
+    locale,
+    title: t("MyIp.title"),
+    description: t("MyIp.description"),
+    path: "/tools/my-ip",
+  })
+}
 
+export default async function MyIpPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "Catalog" })
+  const tool = getToolById("my-ip")
+  const jsonLd = createToolJsonLd({
+    locale,
+    title: t("MyIp.title"),
+    description: t("MyIp.description"),
+    path: "/tools/my-ip",
+    category: "UtilitiesApplication",
+  })
 
-
-
-
-const MyIpTool = dynamic(
-    () => import("@/components/tools/my-ip").then(mod => ({ default: mod.MyIpTool })),
-    {
-        loading: () => <ToolLoadingSkeleton />,
-        ssr: false
-    }
-)
-
-export default function MyIpPage() {
-    const t = useTranslations('Catalog')
-    const tool = getToolById('my-ip');
-
-    return (
-        <div className="container mx-auto px-4 py-12 max-w-6xl"><div className="mb-12 space-y-4">
-        {tool && (
-            <ToolPageHeader
-                title={t.rich('MyIp.title', {
-                    span: (chunks) => <span className="text-primary">{chunks}</span>
-                })}
-                description={t('MyIp.description')}
-                icon={tool.icon}
-                colorClass={tool.color}
-            />
-        )}
-                </div>
-        
-        <MyIpTool />
-        <ToolGuide ns="MyIp" /></div>
-    )
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-12">
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <div className="mb-12 space-y-4">
+        <ToolPageHeader title={t("MyIp.title")} description={t("MyIp.description")} icon={tool?.icon} colorClass={tool?.color} />
+      </div>
+      <MyIpTool />
+      <ToolGuide ns="MyIp" />
+    </div>
+  )
 }
