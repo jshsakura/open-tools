@@ -155,5 +155,45 @@ export function ToolGuide({ ns }: ToolGuideProps) {
         }
     }
 
-    return <ToolGuideSection guide={guide} features={features} />
+    let faq: ToolGuideSectionProps['faq'] | undefined
+    const faqTitle = getMessage(['faq', 'title'])
+
+    if (faqTitle) {
+        let current: unknown = messages
+
+        for (const segment of [ns, 'faq']) {
+            if (!current || typeof current !== 'object' || !(segment in current)) {
+                current = undefined
+                break
+            }
+
+            current = (current as Record<string, unknown>)[segment]
+        }
+
+        if (current && typeof current === 'object') {
+            const items = Object.entries(current as Record<string, unknown>)
+                .filter(([key]) => key !== 'title')
+                .map(([, value]) => {
+                    if (!value || typeof value !== 'object') {
+                        return null
+                    }
+
+                    const question = (value as Record<string, unknown>).q
+                    const answer = (value as Record<string, unknown>).a
+
+                    if (typeof question !== 'string' || typeof answer !== 'string') {
+                        return null
+                    }
+
+                    return { q: question, a: answer }
+                })
+                .filter((item): item is { q: string; a: string } => item !== null)
+
+            if (items.length > 0) {
+                faq = { title: faqTitle, items }
+            }
+        }
+    }
+
+    return <ToolGuideSection guide={guide} features={features} faq={faq} />
 }

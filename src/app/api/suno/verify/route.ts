@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { extractUrlishInput } from "@/lib/url-input";
 
-export const runtime = 'edge';
-
 interface SunoClip {
     id: string;
     title: string;

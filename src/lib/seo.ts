@@ -9,6 +9,10 @@ export function getBaseUrl() {
   return baseUrl
 }
 
+export function createSeoTitle(title: string) {
+  return `${title} | Open Tools`
+}
+
 export function createToolMetadata({
   locale,
   title,
@@ -21,7 +25,7 @@ export function createToolMetadata({
   path: string
 }): Metadata {
   const canonical = `${baseUrl}/${locale}${path}`
-  const fullTitle = `${title} - Open Tools`
+  const fullTitle = createSeoTitle(title)
   const localeCode = locale === "en" ? "en_US" : "ko_KR"
   const alternateLocale = locale === "en" ? ["ko_KR"] : ["en_US"]
 

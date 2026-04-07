@@ -1,4 +1,4 @@
-import { tools } from '@/lib/tools-data';
+import { toolsCatalog } from '@/lib/tools-catalog';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://opentools.example.com';
 
@@ -11,8 +11,14 @@ function escapeXml(value: string) {
         .replace(/'/g, '&apos;');
 }
 
-function getByPath(obj: Record<string, any>, path: string) {
-    return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+function getByPath(obj: Record<string, unknown>, path: string): unknown {
+    return path.split('.').reduce<unknown>((acc, key) => {
+        if (acc && typeof acc === 'object' && key in acc) {
+            return (acc as Record<string, unknown>)[key];
+        }
+
+        return undefined;
+    }, obj);
 }
 
 export async function GET(request: Request) {
@@ -20,7 +26,7 @@ export async function GET(request: Request) {
     const localeParam = url.searchParams.get('locale') || 'ko';
     const locale = localeParam === 'en' || localeParam === 'ko' ? localeParam : 'ko';
 
-    const catalog = (await import(`../../../messages/${locale}/catalog.json`)).default as Record<string, any>;
+    const catalog = (await import(`../../../messages/${locale}/catalog.json`)).default as Record<string, unknown>;
 
     const now = new Date().toUTCString();
     const channelTitle = locale === 'ko' ? 'OpenTools 도구 목록' : 'OpenTools Tool List';
@@ -29,7 +35,7 @@ export async function GET(request: Request) {
             ? 'OpenTools의 모든 도구 목록과 제목'
             : 'All tools and titles from OpenTools';
 
-    const items = tools
+    const items = toolsCatalog
         .map((tool) => {
             const title = getByPath(catalog, tool.titleKey) || tool.id;
             const link = `${baseUrl}/${locale}${tool.href}`;

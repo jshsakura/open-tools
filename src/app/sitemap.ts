@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { tools } from '@/lib/tools-data'
+import { toolsCatalog } from '@/lib/tools-catalog'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,9 +10,10 @@ const baseUrl =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locales = ['ko', 'en']
+  const indexedTools = toolsCatalog.map((tool) => ({ href: tool.href }))
 
   const entries = locales.flatMap((locale) => {
-    const localeTools = tools.map((tool) => {
+    const localeTools = indexedTools.map((tool) => {
       const path = tool.href
       const href = `/${locale}${path}`
       return {
