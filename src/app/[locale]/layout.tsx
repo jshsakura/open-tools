@@ -1,14 +1,28 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
+import { Noto_Sans_KR, Jost } from "next/font/google";
+import { cn } from "@/lib/utils";
 import { Header, Footer } from "@/components/layout";
 import { ThemeProvider } from "@/components/theme-provider"
 import { AdsenseSlot } from "@/components/ads/adsense-slot";
 import NextTopLoader from 'nextjs-toploader';
 import { BackgroundBlobs } from "@/components/background-blobs";
 import { GoogleAnalytics } from "@/components/google-analytics";
+
+const notoTabsKR = Noto_Sans_KR({
+    weight: ["100", "300", "400", "500", "700", "900"],
+    variable: "--font-noto-sans-kr",
+    subsets: ["latin"],
+});
+
+const jost = Jost({
+    subsets: ["latin"],
+    variable: "--font-jost",
+    weight: ["400", "500"],
+});
 
 const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
@@ -60,6 +74,7 @@ export async function generateMetadata({
         alternates: {
             canonical: `${baseUrl}/${locale}`,
             languages: {
+                "x-default": `${baseUrl}/ko`,
                 en: `${baseUrl}/en`,
                 ko: `${baseUrl}/ko`,
             },
@@ -102,6 +117,7 @@ export default async function LocaleLayout({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
+    setRequestLocale(locale);
 
     if (!routing.locales.some((supportedLocale) => supportedLocale === locale)) {
         notFound();
@@ -110,75 +126,84 @@ export default async function LocaleLayout({
     const messages = await getMessages();
 
     return (
-        <>
-            <NextTopLoader
-                color="hsl(var(--primary))"
-                initialPosition={0.08}
-                crawlSpeed={200}
-                height={3}
-                crawl={true}
-                showSpinner={false}
-                easing="ease"
-                speed={200}
-                shadow="0 0 10px hsl(var(--primary)),0 0 5px hsl(var(--primary))"
-            />
-
-            <BackgroundBlobs />
-
-            <NextIntlClientProvider messages={messages}>
-                <GoogleAnalytics
-                    gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-                    adsenseId={process.env.NEXT_PUBLIC_ADSENSE_ID}
+        <html lang={locale} suppressHydrationWarning>
+            <body
+                className={cn(
+                    "min-h-screen bg-background font-sans antialiased relative overflow-x-hidden pt-14",
+                    notoTabsKR.variable,
+                    jost.variable
+                )}
+                suppressHydrationWarning
+            >
+                <NextTopLoader
+                    color="hsl(var(--primary))"
+                    initialPosition={0.08}
+                    crawlSpeed={200}
+                    height={3}
+                    crawl={true}
+                    showSpinner={false}
+                    easing="ease"
+                    speed={200}
+                    shadow="0 0 10px hsl(var(--primary)),0 0 5px hsl(var(--primary))"
                 />
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem={true}
-                    disableTransitionOnChange
-                >
-                    <div className="relative flex min-h-screen flex-col">
-                        <Header />
 
-                        {/* Main Layout with Ad Spaces */}
-                        <div className="flex-1 w-full max-w-[1700px] mx-auto flex flex-col items-center">
-                            {/* Top Ad Area */}
-                            <div className="w-full py-6 flex justify-center px-4">
-                                <AdsenseSlot
-                                    type="leaderboard"
-                                    clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
-                                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP}
-                                />
-                            </div>
+                <BackgroundBlobs />
 
-                            <div className="w-full flex justify-center gap-8 pb-12">
-                                {/* Left Sidebar Ad */}
-                                <aside className="hidden 2xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
+                <NextIntlClientProvider messages={messages}>
+                    <GoogleAnalytics
+                        gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+                        adsenseId={process.env.NEXT_PUBLIC_ADSENSE_ID}
+                    />
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem={true}
+                        disableTransitionOnChange
+                    >
+                        <div className="relative flex min-h-screen flex-col">
+                            <Header />
+
+                            {/* Main Layout with Ad Spaces */}
+                            <div className="flex-1 w-full max-w-[1700px] mx-auto flex flex-col items-center">
+                                {/* Top Ad Area */}
+                                <div className="w-full py-6 flex justify-center px-4">
                                     <AdsenseSlot
-                                        type="skyscraper"
+                                        type="leaderboard"
                                         clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
-                                        slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEFT}
+                                        slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP}
                                     />
-                                </aside>
+                                </div>
 
-                                {/* Main Content Area */}
-                                <main className="flex-1 max-w-6xl min-w-0">
-                                    {children}
-                                </main>
+                                <div className="w-full flex justify-center gap-8 pb-12">
+                                    {/* Left Sidebar Ad */}
+                                    <aside className="hidden 2xl:block w-[160px] sticky top-20 h-fit self-start shrink-0">
+                                        <AdsenseSlot
+                                            type="skyscraper"
+                                            clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
+                                            slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LEFT}
+                                        />
+                                    </aside>
 
-                                {/* Right Sidebar Ad */}
-                                <aside className="hidden md:block w-[160px] sticky top-20 h-fit self-start shrink-0">
-                                    <AdsenseSlot
-                                        type="skyscraper"
-                                        clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
-                                        slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_RIGHT}
-                                    />
-                                </aside>
+                                    {/* Main Content Area */}
+                                    <main className="flex-1 max-w-6xl min-w-0">
+                                        {children}
+                                    </main>
+
+                                    {/* Right Sidebar Ad */}
+                                    <aside className="hidden md:block w-[160px] sticky top-20 h-fit self-start shrink-0">
+                                        <AdsenseSlot
+                                            type="skyscraper"
+                                            clientId={process.env.NEXT_PUBLIC_ADSENSE_ID}
+                                            slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_RIGHT}
+                                        />
+                                    </aside>
+                                </div>
                             </div>
+                            <Footer />
                         </div>
-                        <Footer />
-                    </div>
-                </ThemeProvider>
-            </NextIntlClientProvider>
-        </>
+                    </ThemeProvider>
+                </NextIntlClientProvider>
+            </body>
+        </html>
     );
 }

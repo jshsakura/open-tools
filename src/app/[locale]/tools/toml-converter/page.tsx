@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { TomlConverterTool } from "@/components/tools/toml-converter"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -17,12 +18,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function TomlConverterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("toml-converter")
   const t = await getTranslations({ locale, namespace: "TomlConverter" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("toml-converter")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("TomlConverter.title"),
     description: catT("TomlConverter.description"),
@@ -33,9 +39,7 @@ export default async function TomlConverterPage({ params }: { params: Promise<{ 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      {tool && (
-        <ToolPageHeader title={t("title")} description={t("description")} icon={tool.icon} colorClass={tool.color} />
-      )}
+      <ToolPageHeader title={t("title")} description={t("description")} toolId="toml-converter" />
       <TomlConverterTool />
       <ToolGuide ns="TomlConverter" />
     </div>

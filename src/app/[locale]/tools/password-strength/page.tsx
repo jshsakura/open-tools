@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Activity, ShieldCheck, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { PasswordStrength } from "@/components/tools/password-strength"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function PasswordStrengthPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("password-strength")
   const t = await getTranslations({ locale, namespace: "PasswordStrength" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("password-strength")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("PasswordStrength.title"),
     description: catT("PasswordStrength.description"),
@@ -58,7 +64,7 @@ export default async function PasswordStrengthPage({ params }: { params: Promise
       <ToolPageHeader
         title={catT("PasswordStrength.title")}
         description={catT("PasswordStrength.description")}
-        icon={tool?.icon}
+        toolId="password-strength"
         colorClass={tool?.color}
         center
       />

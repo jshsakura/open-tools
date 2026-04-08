@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Calculator, Table, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { LoanCalculator } from "@/components/tools/loan-calculator"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function LoanCalculatorPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("loan-calculator")
   const t = await getTranslations({ locale, namespace: "LoanCalculator" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("loan-calculator")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("LoanCalculator.title"),
     description: catT("LoanCalculator.description"),
@@ -58,7 +64,7 @@ export default async function LoanCalculatorPage({ params }: { params: Promise<{
       <ToolPageHeader
         title={catT("LoanCalculator.title")}
         description={catT("LoanCalculator.description")}
-        icon={tool?.icon}
+        toolId="loan-calculator"
         colorClass={tool?.color}
         center
       />

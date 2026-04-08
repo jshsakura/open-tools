@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { ShieldCheck, Infinity as InfinityIcon, SortAsc, Files } from "lucide-react"
 import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function PdfMergePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("pdf-merge")
   const t = await getTranslations({ locale, namespace: "PdfMerge" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("pdf-merge")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("PdfMerge.title"),
     description: catT("PdfMerge.description"),
@@ -61,7 +67,7 @@ export default async function PdfMergePage({ params }: { params: Promise<{ local
       <ToolPageHeader
         title={catT("PdfMerge.title")}
         description={catT("PdfMerge.description")}
-        icon={tool?.icon ?? Files}
+        toolId="pdf-merge"
         colorClass={tool?.color ?? "text-red-500"}
         center
       />

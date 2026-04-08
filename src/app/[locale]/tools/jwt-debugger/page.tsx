@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { JwtDebugger } from "@/components/tools/jwt-debugger"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -17,12 +18,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function JwtDebuggerPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("jwt-debugger")
   const t = await getTranslations({ locale, namespace: "JwtDebugger" })
   const catalog = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("jwt-debugger")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catalog("JwtDebugger.title"),
     description: catalog("JwtDebugger.description"),
@@ -39,7 +45,7 @@ export default async function JwtDebuggerPage({ params }: { params: Promise<{ lo
             span: (chunks) => <span className="text-primary">{chunks}</span>,
           })}
           description={t("description")}
-          icon={tool?.icon}
+          toolId="jwt-debugger"
           colorClass={tool?.color}
         />
       </div>

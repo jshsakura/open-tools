@@ -1,6 +1,10 @@
 {
   "Catalog": {
     "Categories": {
+      "Finance": "금융",
+      "Health": "건강",
+      "Documents": "문서",
+      "Network": "네트워크",
       "Development": "개발",
       "Image": "이미지",
       "Video": "비디오",
@@ -618,6 +622,30 @@
     "WaterIntakeCalculator": {
       "title": "수분 섭취 계산기",
       "description": "몸무게와 활동량을 기준으로 하루 물 섭취 목표와 컵 수를 실용적으로 계산해 보세요."
+    },
+    "CalorieCalculator": {
+      "title": "칼로리 계산기",
+      "description": "기초 정보와 활동량을 바탕으로 유지 칼로리와 감량·증량 목표를 실용적으로 계산해 보세요."
+    },
+    "CompoundInterestCalculator": {
+      "title": "복리 계산기",
+      "description": "초기 금액, 월 적립액, 이율, 기간을 입력해 장기 저축이 얼마나 불어날지 확인하세요."
+    },
+    "TemperatureConverter": {
+      "title": "온도 변환기",
+      "description": "섭씨, 화씨, 켈빈을 빠르게 변환하고 어는점·끓는점 기준도 함께 확인할 수 있습니다."
+    },
+    "BodyFatCalculator": {
+      "title": "체지방률 계산기",
+      "description": "기본 신체 치수를 바탕으로 체지방률을 추정하고 일반적인 범위와 비교해 보세요."
+    },
+    "FuelCostCalculator": {
+      "title": "연료비 계산기",
+      "description": "거리, 연비, 유가를 입력해 이동 전에 예상 주유비를 빠르게 계산해 보세요."
+    },
+    "FileSizeConverter": {
+      "title": "파일 크기 변환기",
+      "description": "바이트, KB, MB, GB, TB 단위를 변환하고 저장 용량 감각을 빠르게 맞춰 보세요."
     },
     "RandomPicker": {
       "title": "랜덤 선택기",

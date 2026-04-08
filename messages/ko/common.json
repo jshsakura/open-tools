@@ -17,6 +17,10 @@
     "searchNoResultsHint": "다른 키워드로 검색해 보세요"
   },
   "Category": {
+    "Finance": "금융",
+    "Health": "건강",
+    "Documents": "문서",
+    "Network": "네트워크",
     "Development": "개발",
     "Image": "이미지",
     "Video": "비디오",

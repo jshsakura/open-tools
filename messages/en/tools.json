@@ -3096,6 +3096,214 @@
             "f4": { "title": "Steady routine support", "desc": "Helps you space water intake through the day instead of trying to catch up late." }
         }
     },
+    "CalorieCalculator": {
+        "title": "Calorie Calculator",
+        "description": "Estimate daily calories for maintenance, a mild cut, or a gradual gain target.",
+        "sex": "Sex",
+        "male": "Male",
+        "female": "Female",
+        "age": "Age",
+        "heightCm": "Height (cm)",
+        "weightKg": "Weight (kg)",
+        "activityLevel": "Activity level",
+        "activityHint": "Pick the option that best matches your typical weekly routine.",
+        "activity": {
+            "low": "Mostly sedentary",
+            "light": "Light activity",
+            "moderate": "Moderate activity",
+            "high": "High activity"
+        },
+        "hint": "This is a practical planning estimate, not medical advice. Real needs vary with body composition, training, and health conditions.",
+        "maintenanceCalories": "Maintenance calories",
+        "mildCutCalories": "Mild cut target",
+        "mildGainCalories": "Mild gain target",
+        "proteinRange": "Protein range",
+        "summaryTitle": "Daily planning summary",
+        "summary": "A practical daily range is about {cut}–{gain} kcal, with maintenance around {maintenance} kcal.",
+        "invalidInput": "Enter valid age, height, and weight values to see your calorie estimate.",
+        "guide": {
+            "title": "How to use the Calorie Calculator",
+            "step1": "Enter your sex, age, height, weight, and the activity level that best matches your routine.",
+            "step2": "Use the maintenance number as your baseline, then compare the mild cut and mild gain targets.",
+            "step3": "Check the protein range and summary card to set a practical daily nutrition target."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Maintenance estimate", "desc": "Get a realistic baseline calorie target based on your body size and activity." },
+            "f2": { "title": "Mild cut and gain targets", "desc": "See practical numbers for a small deficit or surplus without extreme assumptions." },
+            "f3": { "title": "Protein range", "desc": "Use the suggested protein range to plan meals around recovery and satiety." },
+            "f4": { "title": "Simple daily planning", "desc": "Helpful for dieting, maintaining weight, or gradually increasing intake." }
+        }
+    },
+    "CompoundInterestCalculator": {
+        "title": "Compound Interest Calculator",
+        "description": "Project how your savings can grow over time with regular contributions and compounding.",
+        "startingAmount": "Starting amount",
+        "monthlyContribution": "Monthly contribution",
+        "annualRate": "Annual interest rate (%)",
+        "years": "Years",
+        "compoundFrequency": "Compounding frequency",
+        "frequency": {
+            "yearly": "Yearly",
+            "quarterly": "Quarterly",
+            "monthly": "Monthly"
+        },
+        "hint": "This projection is for planning only. Actual returns vary with fees, taxes, and market performance.",
+        "futureValue": "Future value",
+        "totalContributions": "Total contributions",
+        "investmentGrowth": "Investment growth",
+        "summaryTitle": "Growth summary",
+        "summary": "Your balance could grow to about {futureValue}, including {contributions} contributed and {growth} earned in growth.",
+        "invalidInput": "Enter valid amounts, rate, and years to see the projection.",
+        "guide": {
+            "title": "How to use the Compound Interest Calculator",
+            "step1": "Enter your starting balance, monthly contribution, expected annual rate, and investment period.",
+            "step2": "Choose how often the balance compounds so the estimate matches your product or plan.",
+            "step3": "Compare total contributions with investment growth to understand where the ending balance comes from."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Long-term projection", "desc": "Estimate how savings can grow over years, not just a single month or year." },
+            "f2": { "title": "Contribution tracking", "desc": "See how much of the ending balance comes from deposits versus growth." },
+            "f3": { "title": "Flexible compounding", "desc": "Switch between yearly, quarterly, and monthly compounding assumptions." },
+            "f4": { "title": "Savings planning", "desc": "Useful for emergency funds, retirement prep, education savings, or general investing." }
+        }
+    },
+    "TemperatureConverter": {
+        "title": "Temperature Converter",
+        "description": "Convert Celsius, Fahrenheit, and Kelvin instantly with common reference points.",
+        "value": "Temperature value",
+        "fromUnit": "From",
+        "toUnit": "To",
+        "units": {
+            "C": "Celsius (°C)",
+            "F": "Fahrenheit (°F)",
+            "K": "Kelvin (K)"
+        },
+        "hint": "Useful for weather, cooking, schoolwork, lab references, or quick travel conversions.",
+        "convertedValue": "Converted value",
+        "freezingPoint": "Water freezing point",
+        "boilingPoint": "Water boiling point",
+        "summaryTitle": "Quick reference",
+        "summary": "The converted temperature is {value} {unit}, with freezing and boiling points shown for context.",
+        "invalidInput": "Enter a valid temperature to see the conversion.",
+        "guide": {
+            "title": "How to use the Temperature Converter",
+            "step1": "Enter the temperature value you want to convert.",
+            "step2": "Choose the original unit and the unit you want to convert into.",
+            "step3": "Use the result and the freezing/boiling reference cards to interpret the number more easily."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Three temperature scales", "desc": "Switch between Celsius, Fahrenheit, and Kelvin in one place." },
+            "f2": { "title": "Reference points", "desc": "See water freezing and boiling points in the selected scale for quick context." },
+            "f3": { "title": "Instant conversion", "desc": "Update values and units immediately without extra steps." },
+            "f4": { "title": "Practical daily use", "desc": "Helpful for travel, recipes, schoolwork, experiments, and weather checks." }
+        }
+    },
+    "BodyFatCalculator": {
+        "title": "Body Fat Calculator",
+        "description": "Estimate body fat percentage from body measurements and compare it with common fitness ranges.",
+        "sex": "Sex",
+        "male": "Male",
+        "female": "Female",
+        "age": "Age",
+        "heightCm": "Height (cm)",
+        "weightKg": "Weight (kg)",
+        "waistCm": "Waist (cm)",
+        "neckCm": "Neck (cm)",
+        "hipCm": "Hip (cm, women)",
+        "hint": "This estimate is for practical fitness planning, not medical diagnosis. Measure consistently for more useful comparisons over time.",
+        "bodyFat": "Estimated body fat",
+        "fatMass": "Estimated fat mass",
+        "leanMass": "Estimated lean mass",
+        "category": "Range",
+        "categories": {
+            "essential": "Essential",
+            "athletic": "Athletic",
+            "fit": "Fit",
+            "average": "Average",
+            "high": "Higher range"
+        },
+        "summaryTitle": "Body composition summary",
+        "summary": "Your estimated body fat is {bodyFat}% with about {fatMass} kg of fat mass and {leanMass} kg of lean mass.",
+        "invalidInput": "Enter valid measurements to estimate body fat percentage.",
+        "guide": {
+            "title": "How to use the Body Fat Calculator",
+            "step1": "Choose your sex and enter age, height, weight, waist, and neck measurements. Women can also add hip circumference.",
+            "step2": "Use a tape measure in centimeters and keep the tape level for a more consistent estimate.",
+            "step3": "Check the body fat percentage, lean mass, and range label together instead of focusing on one number alone."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Measurement-based estimate", "desc": "Uses practical body measurements instead of requiring special devices." },
+            "f2": { "title": "Lean and fat mass", "desc": "Shows estimated fat mass and lean mass for clearer body-composition context." },
+            "f3": { "title": "Range guidance", "desc": "Places the estimate into a simple body-fat range for faster interpretation." },
+            "f4": { "title": "Fitness planning", "desc": "Helpful for tracking body composition trends alongside training and nutrition goals." }
+        }
+    },
+    "FuelCostCalculator": {
+        "title": "Fuel Cost Calculator",
+        "description": "Estimate total fuel cost for a drive from trip distance, efficiency, and local fuel price.",
+        "distanceKm": "Trip distance (km)",
+        "efficiency": "Fuel efficiency (km/L)",
+        "fuelPrice": "Fuel price per liter",
+        "passengers": "Passengers (optional)",
+        "hint": "Use your usual real-world efficiency rather than brochure numbers for a more practical estimate.",
+        "fuelNeeded": "Fuel needed",
+        "totalCost": "Estimated fuel cost",
+        "costPerPerson": "Cost per person",
+        "summaryTitle": "Trip estimate",
+        "summary": "For a {distance} km trip, you may need about {fuel} L of fuel for an estimated cost of {cost}.",
+        "invalidInput": "Enter valid distance, fuel efficiency, and fuel price values to estimate the trip cost.",
+        "guide": {
+            "title": "How to use the Fuel Cost Calculator",
+            "step1": "Enter the planned trip distance, your vehicle's usual fuel efficiency, and the local fuel price.",
+            "step2": "Add passenger count if you also want a simple split estimate per person.",
+            "step3": "Use the fuel-needed and total-cost cards to budget the trip before you leave."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Trip fuel estimate", "desc": "Shows roughly how many liters you may use for the planned drive." },
+            "f2": { "title": "Budget before departure", "desc": "Helps you estimate travel cost before refueling or starting the trip." },
+            "f3": { "title": "Per-person split", "desc": "Adds a quick shared-cost view when you travel with friends or coworkers." },
+            "f4": { "title": "Everyday driving use", "desc": "Useful for commuting, road trips, weekend drives, and delivery planning." }
+        }
+    },
+    "FileSizeConverter": {
+        "title": "File Size Converter",
+        "description": "Convert storage sizes between bytes, KB, MB, GB, and TB instantly.",
+        "value": "File size value",
+        "fromUnit": "From",
+        "toUnit": "To",
+        "units": {
+            "B": "Bytes (B)",
+            "KB": "Kilobytes (KB)",
+            "MB": "Megabytes (MB)",
+            "GB": "Gigabytes (GB)",
+            "TB": "Terabytes (TB)"
+        },
+        "hint": "Helpful for uploads, cloud storage limits, attachments, and comparing plan sizes quickly.",
+        "convertedValue": "Converted size",
+        "binaryReference": "Binary reference",
+        "decimalReference": "Decimal reference",
+        "summaryTitle": "Storage summary",
+        "summary": "{value} {fromUnit} is about {converted} {toUnit} using decimal storage units.",
+        "invalidInput": "Enter a valid file size to see the conversion result.",
+        "guide": {
+            "title": "How to use the File Size Converter",
+            "step1": "Enter the file size value you want to convert.",
+            "step2": "Choose the current unit and the unit you want to compare against.",
+            "step3": "Use the converted result and reference cards to understand storage size more clearly."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": { "title": "Five storage units", "desc": "Convert between bytes, KB, MB, GB, and TB in one place." },
+            "f2": { "title": "Upload planning", "desc": "Quickly compare file size against attachment, upload, or storage limits." },
+            "f3": { "title": "Simple references", "desc": "Shows binary and decimal reference values for easier storage understanding." },
+            "f4": { "title": "Practical workflow help", "desc": "Useful for files, cloud plans, archives, media exports, and device storage checks." }
+        }
+    },
     "RandomPicker": {
         "title": "Random Picker",
         "description": "Paste any list of options and randomly choose one or more picks for decisions, teams, or giveaways.",

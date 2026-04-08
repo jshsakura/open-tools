@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { BackgroundRemover } from "@/components/tools/background-remover"
 import { getToolById } from "@/lib/tools-catalog"
 import { ToolPageHeader } from "@/components/tool-page-header"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
+
     const t = await getTranslations({ locale, namespace: 'Catalog' })
 
     return createToolMetadata({
@@ -17,11 +18,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function BackgroundRemoverPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("background-remover")
     const t = await getTranslations({ locale, namespace: 'Catalog' })
-    const tool = getToolById('background-remover')
-    const jsonLd = createToolJsonLd({
+        const jsonLd = createToolJsonLd({
         locale,
         title: t('BackgroundRemover.title'),
         description: t('BackgroundRemover.description'),
@@ -33,15 +39,12 @@ export default async function BackgroundRemoverPage({ params }: { params: Promis
         <div className="container mx-auto px-4 py-12 max-w-6xl">
             <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
             <div className="mb-12 space-y-4">
-                {tool && (
-                    <ToolPageHeader
+                <ToolPageHeader
                         title={t('BackgroundRemover.title')}
                         description={t('BackgroundRemover.description')}
-                        icon={tool.icon}
-                        colorClass={tool.color}
+                        toolId="background-remover"
                         center
                     />
-                )}
             </div>
 
             <BackgroundRemover />

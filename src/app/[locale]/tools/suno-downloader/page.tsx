@@ -1,10 +1,11 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Music } from "lucide-react"
 import { SunoDownloader } from "@/components/tools/suno-downloader"
 import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -15,8 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function SunoDownloaderPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
   const catalog = await getTranslations({ locale, namespace: "Catalog" })
   const ui = await getTranslations({ locale, namespace: "Suno" })
   const jsonLd = createToolJsonLd({

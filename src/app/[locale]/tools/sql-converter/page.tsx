@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { getToolById } from "@/lib/tools-catalog"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { ToolGuide } from "@/components/tool-guide-section"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -17,11 +18,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function SqlConverterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("sql-converter")
   const t = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("sql-converter")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: t("SqlConverter.title"),
     description: t("SqlConverter.description"),
@@ -39,8 +45,7 @@ export default async function SqlConverterPage({ params }: { params: Promise<{ l
               span: (chunks) => <span className="text-primary">{chunks}</span>,
             })}
             description={t("SqlConverter.description")}
-            icon={tool.icon}
-            colorClass={tool.color}
+            toolId="sql-converter"
           />
         )}
       </div>

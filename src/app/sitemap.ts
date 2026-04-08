@@ -1,8 +1,6 @@
 import { MetadataRoute } from 'next'
 import { toolsCatalog } from '@/lib/tools-catalog'
 
-export const dynamic = 'force-dynamic'
-
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.SITE_URL ||
@@ -18,11 +16,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const href = `/${locale}${path}`
       return {
         url: `${baseUrl}${href}`,
-        lastModified: new Date(),
+        lastModified: new Date("2025-01-01"),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
         alternates: {
           languages: {
+            "x-default": `${baseUrl}/ko${path}`,
             en: `${baseUrl}/en${path}`,
             ko: `${baseUrl}/ko${path}`,
           },
@@ -32,11 +31,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const rootEntry = {
       url: `${baseUrl}/${locale}`,
-      lastModified: new Date(),
+      lastModified: new Date("2025-01-01"),
       changeFrequency: 'daily' as const,
       priority: 1.0,
       alternates: {
         languages: {
+          "x-default": `${baseUrl}/ko`,
           en: `${baseUrl}/en`,
           ko: `${baseUrl}/ko`,
         },

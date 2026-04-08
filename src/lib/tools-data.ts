@@ -180,6 +180,36 @@ export const tools = [
         href: "/tools/water-intake-calculator",
     },
     {
+        id: 'calorie-calculator',
+        titleKey: 'Catalog.CalorieCalculator.title',
+        href: "/tools/calorie-calculator",
+    },
+    {
+        id: 'compound-interest-calculator',
+        titleKey: 'Catalog.CompoundInterestCalculator.title',
+        href: "/tools/compound-interest-calculator",
+    },
+    {
+        id: 'temperature-converter',
+        titleKey: 'Catalog.TemperatureConverter.title',
+        href: "/tools/temperature-converter",
+    },
+    {
+        id: 'body-fat-calculator',
+        titleKey: 'Catalog.BodyFatCalculator.title',
+        href: "/tools/body-fat-calculator",
+    },
+    {
+        id: 'fuel-cost-calculator',
+        titleKey: 'Catalog.FuelCostCalculator.title',
+        href: "/tools/fuel-cost-calculator",
+    },
+    {
+        id: 'file-size-converter',
+        titleKey: 'Catalog.FileSizeConverter.title',
+        href: "/tools/file-size-converter",
+    },
+    {
         id: 'url-converter',
         titleKey: 'Catalog.UrlConverter.title',
         href: "/tools/url-converter",

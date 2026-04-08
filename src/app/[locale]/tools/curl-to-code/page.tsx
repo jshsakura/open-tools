@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Terminal, Code2, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { CurlToCode } from "@/components/tools/curl-to-code"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function CurlToCodePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("curl-to-code")
   const t = await getTranslations({ locale, namespace: "CurlToCode" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("curl-to-code")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("CurlToCode.title"),
     description: catT("CurlToCode.description"),
@@ -58,7 +64,7 @@ export default async function CurlToCodePage({ params }: { params: Promise<{ loc
       <ToolPageHeader
         title={catT("CurlToCode.title")}
         description={catT("CurlToCode.description")}
-        icon={tool?.icon}
+        toolId="curl-to-code"
         colorClass={tool?.color}
         center
       />

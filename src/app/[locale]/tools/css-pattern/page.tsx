@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Palette, Layers, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { CssPattern } from "@/components/tools/css-pattern"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function CssPatternPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("css-pattern")
   const t = await getTranslations({ locale, namespace: "CssPattern" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("css-pattern")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("CssPattern.title"),
     description: catT("CssPattern.description"),
@@ -58,7 +64,7 @@ export default async function CssPatternPage({ params }: { params: Promise<{ loc
       <ToolPageHeader
         title={catT("CssPattern.title")}
         description={catT("CssPattern.description")}
-        icon={tool?.icon}
+        toolId="css-pattern"
         colorClass={tool?.color}
         center
       />

@@ -1,8 +1,8 @@
 {
   "name": "Open Tools",
   "short_name": "OpenTools",
-  "description": "Free developer utilities platform with 45+ tools",
-  "start_url": "/",
+  "description": "Free online tools platform with 120+ tools for everyday life, work, and development",
+  "start_url": "/ko",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

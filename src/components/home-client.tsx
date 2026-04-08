@@ -34,8 +34,105 @@ import {
   Terminal,
   Wand2,
   X,
+  Calculator,
+  Activity,
+  FileText,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+type HomeDisplayCategory =
+  | "Finance"
+  | "Health"
+  | "Documents"
+  | "Network"
+  | "Development"
+  | "Image"
+  | "Video"
+  | "Design"
+  | "Security"
+  | "Utilities";
+
+const DISPLAY_CATEGORY_ORDER: HomeDisplayCategory[] = [
+  "Finance",
+  "Health",
+  "Documents",
+  "Network",
+  "Development",
+  "Image",
+  "Video",
+  "Design",
+  "Security",
+  "Utilities",
+];
+
+const FINANCE_TOOL_IDS = new Set([
+  "loan-calculator",
+  "tip-calculator",
+  "percentage-calculator",
+  "discount-calculator",
+  "split-bill-calculator",
+  "compound-interest-calculator",
+  "fuel-cost-calculator",
+]);
+
+const HEALTH_TOOL_IDS = new Set([
+  "ovulation-calculator",
+  "bmi-calculator",
+  "water-intake-calculator",
+  "sleep-calculator",
+  "calorie-calculator",
+  "body-fat-calculator",
+]);
+
+const DOCUMENT_TOOL_IDS = new Set([
+  "hwp-viewer",
+  "ocr",
+  "markdown-preview",
+  "markdown-to-pdf",
+  "pdf-merge",
+  "pdf-split",
+  "pdf-to-image",
+  "pdf-tools",
+  "csv-editor",
+  "file-size-converter",
+]);
+
+const NETWORK_TOOL_IDS = new Set([
+  "browser-info",
+  "my-ip",
+  "port-scanner",
+  "subnet-calculator",
+  "speed-test",
+  "whois-lookup",
+  "webhook-tester",
+  "http-header-analyzer",
+  "seo-analyzer",
+]);
+
+function getPrimaryCategory(tool: (typeof toolsCatalog)[number]): HomeDisplayCategory {
+  if (FINANCE_TOOL_IDS.has(tool.id)) return "Finance";
+  if (HEALTH_TOOL_IDS.has(tool.id)) return "Health";
+  if (DOCUMENT_TOOL_IDS.has(tool.id)) return "Documents";
+  if (NETWORK_TOOL_IDS.has(tool.id)) return "Network";
+
+  for (const category of DISPLAY_CATEGORY_ORDER) {
+    if (tool.tags.includes(category)) {
+      return category;
+    }
+  }
+
+  return "Utilities";
+}
+
+function getDisplayTags(tool: (typeof toolsCatalog)[number], primaryCategory: HomeDisplayCategory) {
+  return Array.from(
+    new Set([
+      primaryCategory,
+      ...tool.tags.filter((tag) => tag === "AI" || tag === "Korea"),
+    ]),
+  );
+}
 
 export function HomeClient() {
   const t = useTranslations();
@@ -126,20 +223,27 @@ export function HomeClient() {
     () =>
       toolsCatalog
         .map((tool) => ({
+          primaryCategory: getPrimaryCategory(tool),
+          displayTags: getDisplayTags(tool, getPrimaryCategory(tool)),
           ...tool,
           title: t(tool.titleKey),
           description: t(tool.descriptionKey),
+          popularity: getToolPopularity(tool.id, popularityMap),
+          isPopular: isPopularTool(tool.id, popularityMap),
+        }))
+        .map((tool) => ({
+          ...tool,
           searchText: [
-            t(tool.titleKey),
-            t(tool.descriptionKey),
+            tool.title,
+            tool.description,
             tool.id.replaceAll("-", " "),
+            ...tool.displayTags,
+            ...tool.displayTags.map((tag) => t(`Category.${tag}`)),
             ...tool.tags,
             ...tool.tags.map((tag) => t(`Category.${tag}`)),
           ]
             .join(" ")
             .toLowerCase(),
-          popularity: getToolPopularity(tool.id, popularityMap),
-          isPopular: isPopularTool(tool.id, popularityMap),
         }))
         .sort(
           (a, b) =>
@@ -149,14 +253,7 @@ export function HomeClient() {
   );
 
   const allTags = useMemo(() => {
-    return [
-      "Development",
-      "Image",
-      "Video",
-      "Design",
-      "Security",
-      "Utilities",
-    ];
+    return DISPLAY_CATEGORY_ORDER;
   }, []);
 
   const isSearching = searchQuery.trim().length > 0;
@@ -169,15 +266,13 @@ export function HomeClient() {
       );
     }
     if (!selectedTag) return tools;
-    return tools.filter((tool) => tool.tags.includes(selectedTag));
+    return tools.filter((tool) => tool.primaryCategory === selectedTag);
   }, [tools, selectedTag, searchQuery, isSearching]);
 
   const tagCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const tool of tools) {
-      for (const tag of tool.tags) {
-        counts[tag] = (counts[tag] || 0) + 1;
-      }
+      counts[tool.primaryCategory] = (counts[tool.primaryCategory] || 0) + 1;
     }
     return counts;
   }, [tools]);
@@ -401,7 +496,7 @@ export function HomeClient() {
                         selectedTag === tag && "shadow-lg shadow-primary/20",
                       )}
                     >
-                      {t(`Category.${tag}`)}
+                    {t(`Category.${tag}`)}
                       <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
                         {tagCounts[tag] || 0}
                       </span>
@@ -433,7 +528,7 @@ export function HomeClient() {
                     color={tool.color}
                     isPopular={tool.isPopular}
                     isRecent={highlightedToolId === tool.id}
-                    tags={tool.tags}
+                         tags={tool.displayTags}
                     onNavigate={handleToolNavigate}
                   />
                 ))}
@@ -464,7 +559,7 @@ export function HomeClient() {
                     color={tool.color}
                     isPopular={tool.isPopular}
                     isRecent={highlightedToolId === tool.id}
-                    tags={tool.tags}
+                         tags={tool.displayTags}
                     onNavigate={handleToolNavigate}
                   />
                 ))}
@@ -478,17 +573,19 @@ export function HomeClient() {
           ) : (
             /* ── Categorized View (Sections) ── */
             allTags.map((category) => {
-              const categoryTools = tools.filter((tool) =>
-                tool.tags.includes(category),
-              );
-              if (categoryTools.length === 0) return null;
+               const categoryTools = tools.filter((tool) => tool.primaryCategory === category);
+               if (categoryTools.length === 0) return null;
 
-              const CategoryIcon =
-                (
-                  {
-                    Development: Terminal,
-                    Image: ImageIcon,
-                    Video,
+               const CategoryIcon =
+                 (
+                   {
+                     Finance: Calculator,
+                     Health: Activity,
+                     Documents: FileText,
+                     Network: Globe,
+                     Development: Terminal,
+                     Image: ImageIcon,
+                     Video,
                     Design: Wand2,
                     Security: ShieldCheck,
                     Utilities: Zap,
@@ -516,7 +613,7 @@ export function HomeClient() {
                         color={tool.color}
                         isPopular={tool.isPopular}
                         isRecent={highlightedToolId === tool.id}
-                        tags={tool.tags}
+                         tags={tool.displayTags}
                         onNavigate={handleToolNavigate}
                       />
                     ))}

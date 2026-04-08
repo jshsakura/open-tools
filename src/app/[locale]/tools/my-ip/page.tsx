@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { MyIpTool } from "@/components/tools/my-ip"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -17,11 +18,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function MyIpPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("my-ip")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: t("MyIp.title"),
     description: t("MyIp.description"),
@@ -33,7 +38,7 @@ export default async function MyIpPage({ params }: { params: Promise<{ locale: s
     <div className="container mx-auto max-w-6xl px-4 py-12">
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       <div className="mb-12 space-y-4">
-        <ToolPageHeader title={t("MyIp.title")} description={t("MyIp.description")} icon={tool?.icon} colorClass={tool?.color} />
+        <ToolPageHeader title={t("MyIp.title")} description={t("MyIp.description")} toolId="my-ip" />
       </div>
       <MyIpTool />
       <ToolGuide ns="MyIp" />

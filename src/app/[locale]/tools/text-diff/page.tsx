@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { GitCompareArrows, Plus, BarChart2 } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { TextDiff } from "@/components/tools/text-diff"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function TextDiffPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("text-diff")
   const t = await getTranslations({ locale, namespace: "Catalog" })
   const ui = await getTranslations({ locale, namespace: "TextDiff" })
-  const tool = getToolById("text-diff")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: t("TextDiff.title"),
     description: t("TextDiff.description"),
@@ -58,7 +64,7 @@ export default async function TextDiffPage({ params }: { params: Promise<{ local
       <ToolPageHeader
         title={t("TextDiff.title")}
         description={t("TextDiff.description")}
-        icon={tool?.icon}
+        toolId="text-diff"
         colorClass={tool?.color}
         center
       />

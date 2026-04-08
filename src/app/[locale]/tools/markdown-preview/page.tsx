@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Eye, Code2, Copy } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { MarkdownPreview } from "@/components/tools/markdown-preview"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function MarkdownPreviewPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("markdown-preview")
   const t = await getTranslations({ locale, namespace: "Catalog" })
   const ui = await getTranslations({ locale, namespace: "MarkdownPreview" })
-  const tool = getToolById("markdown-preview")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: t("MarkdownPreview.title"),
     description: t("MarkdownPreview.description"),
@@ -61,7 +67,7 @@ export default async function MarkdownPreviewPage({ params }: { params: Promise<
       <ToolPageHeader
         title={t("MarkdownPreview.title")}
         description={t("MarkdownPreview.description")}
-        icon={tool?.icon}
+        toolId="markdown-preview"
         colorClass={tool?.color}
         center
       />

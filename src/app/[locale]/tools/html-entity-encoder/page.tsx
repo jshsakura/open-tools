@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Braces, Code2, ShieldCheck } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { HtmlEntityEncoder } from "@/components/tools/html-entity-encoder"
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -19,12 +20,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function HtmlEntityEncoderPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("html-entity-encoder")
   const t = await getTranslations({ locale, namespace: "HtmlEntityEncoder" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("html-entity-encoder")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("HtmlEntityEncoder.title"),
     description: catT("HtmlEntityEncoder.description"),
@@ -62,7 +68,7 @@ export default async function HtmlEntityEncoderPage({ params }: { params: Promis
       <ToolPageHeader
         title={catT("HtmlEntityEncoder.title")}
         description={catT("HtmlEntityEncoder.description")}
-        icon={tool?.icon}
+        toolId="html-entity-encoder"
         colorClass={tool?.color}
         center
       />

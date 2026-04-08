@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { ToolGuide } from "@/components/tool-guide-section"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { HttpHeaderAnalyzerTool } from "@/components/tools/http-header-analyzer"
@@ -7,6 +7,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -17,12 +18,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function HttpHeaderAnalyzerPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("http-header-analyzer")
   const t = await getTranslations({ locale, namespace: "HttpHeaderAnalyzer" })
   const catalog = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("http-header-analyzer")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catalog("HttpHeaderAnalyzer.title"),
     description: catalog("HttpHeaderAnalyzer.description"),
@@ -33,7 +39,7 @@ export default async function HttpHeaderAnalyzerPage({ params }: { params: Promi
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      {tool && <ToolPageHeader title={t("title")} description={t("description")} icon={tool.icon} colorClass={tool.color} />}
+      {tool && <ToolPageHeader title={t("title")} description={t("description")} toolId="http-header-analyzer" />}
       <HttpHeaderAnalyzerTool />
       <ToolGuide ns="HttpHeaderAnalyzer" />
     </div>

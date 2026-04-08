@@ -39,7 +39,7 @@ export default function OpenGraphImage() {
                         opacity: 0.9,
                     }}
                 >
-                    50+ 개의 개발자 도구를 한 곳에서
+                    120+ 개의 무료 온라인 도구를 한 곳에서
                 </div>
             </div>
         ),

@@ -17,6 +17,10 @@
     "searchNoResultsHint": "Try a different keyword"
   },
   "Category": {
+    "Finance": "Finance",
+    "Health": "Health",
+    "Documents": "Documents",
+    "Network": "Network",
     "Development": "Development",
     "Image": "Image",
     "Video": "Video",

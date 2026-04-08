@@ -1,6 +1,6 @@
 import { toolsCatalog } from '@/lib/tools-catalog';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://opentools.example.com';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://tools.opencourse.kr';
 
 function escapeXml(value: string) {
     return value

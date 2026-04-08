@@ -1,6 +1,10 @@
 {
   "Catalog": {
     "Categories": {
+      "Finance": "Finance",
+      "Health": "Health",
+      "Documents": "Documents",
+      "Network": "Network",
       "Development": "Development",
       "Image": "Image",
       "Video": "Video",
@@ -562,6 +566,30 @@
     "WaterIntakeCalculator": {
       "title": "Water Intake Calculator",
       "description": "Estimate a practical daily water target based on your weight, activity level, and preferred cup size."
+    },
+    "CalorieCalculator": {
+      "title": "Calorie Calculator",
+      "description": "Estimate daily calories for maintenance, mild fat loss, or gradual weight gain based on your body and activity." 
+    },
+    "CompoundInterestCalculator": {
+      "title": "Compound Interest Calculator",
+      "description": "Project long-term savings growth with regular contributions, interest rate assumptions, and compounding frequency."
+    },
+    "TemperatureConverter": {
+      "title": "Temperature Converter",
+      "description": "Convert Celsius, Fahrenheit, and Kelvin instantly with quick reference points for freezing and boiling." 
+    },
+    "BodyFatCalculator": {
+      "title": "Body Fat Calculator",
+      "description": "Estimate body fat percentage from practical body measurements and compare it with common fitness ranges."
+    },
+    "FuelCostCalculator": {
+      "title": "Fuel Cost Calculator",
+      "description": "Estimate trip fuel cost from distance, efficiency, and fuel price before you drive."
+    },
+    "FileSizeConverter": {
+      "title": "File Size Converter",
+      "description": "Convert file sizes between bytes, KB, MB, GB, and TB with quick storage references."
     },
     "RandomPicker": {
       "title": "Random Picker",

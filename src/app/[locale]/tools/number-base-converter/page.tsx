@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { Hash, ArrowLeftRight, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { NumberBaseConverter } from "@/components/tools/number-base-converter"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function NumberBaseConverterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("number-base-converter")
   const t = await getTranslations({ locale, namespace: "Catalog" })
   const ui = await getTranslations({ locale, namespace: "NumberBaseConverter" })
-  const tool = getToolById("number-base-converter")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: t("NumberBaseConverter.title"),
     description: t("NumberBaseConverter.description"),
@@ -61,7 +67,7 @@ export default async function NumberBaseConverterPage({ params }: { params: Prom
       <ToolPageHeader
         title={t("NumberBaseConverter.title")}
         description={t("NumberBaseConverter.description")}
-        icon={tool?.icon}
+        toolId="number-base-converter"
         colorClass={tool?.color}
         center
       />

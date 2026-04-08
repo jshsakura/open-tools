@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { PenTool, Move, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { getToolById } from "@/lib/tools-catalog"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function SvgVisualizerPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("svg-visualizer")
   const t = await getTranslations({ locale, namespace: "SvgVisualizer" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("svg-visualizer")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("SvgVisualizer.title"),
     description: catT("SvgVisualizer.description"),
@@ -58,7 +64,7 @@ export default async function SvgVisualizerPage({ params }: { params: Promise<{ 
       <ToolPageHeader
         title={catT("SvgVisualizer.title")}
         description={catT("SvgVisualizer.description")}
-        icon={tool?.icon}
+        toolId="svg-visualizer"
         colorClass={tool?.color}
         center
       />

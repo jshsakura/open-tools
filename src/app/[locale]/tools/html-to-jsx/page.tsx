@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations , setRequestLocale} from "next-intl/server"
 import { FileCode, Wand2, Zap } from "lucide-react"
 import { ToolPageHeader } from "@/components/tool-page-header"
 import { HtmlToJsx } from "@/components/tools/html-to-jsx"
@@ -8,6 +8,7 @@ import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: "Catalog" })
 
   return createToolMetadata({
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ko" }, { locale: "en" }];
+}
+
 export default async function HtmlToJsxPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+  setRequestLocale(locale);
+    const tool = getToolById("html-to-jsx")
   const t = await getTranslations({ locale, namespace: "HtmlToJsx" })
   const catT = await getTranslations({ locale, namespace: "Catalog" })
-  const tool = getToolById("html-to-jsx")
-  const jsonLd = createToolJsonLd({
+    const jsonLd = createToolJsonLd({
     locale,
     title: catT("HtmlToJsx.title"),
     description: catT("HtmlToJsx.description"),
@@ -58,7 +64,7 @@ export default async function HtmlToJsxPage({ params }: { params: Promise<{ loca
       <ToolPageHeader
         title={catT("HtmlToJsx.title")}
         description={catT("HtmlToJsx.description")}
-        icon={tool?.icon}
+        toolId="html-to-jsx"
         colorClass={tool?.color}
         center
       />
