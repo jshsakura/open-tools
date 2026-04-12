@@ -7,6 +7,7 @@ import { NextConfig } from 'next';
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
     output: 'standalone',
+    serverExternalPackages: ['better-sqlite3'],
     webpack: (config: any, { isServer }: { isServer: boolean }) => {
         if (!isServer) {
             config.resolve.fallback = {
