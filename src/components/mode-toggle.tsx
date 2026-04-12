@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button"
 export function ModeToggle() {
     const { setTheme, theme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
-    console.log("ModeToggle rendered")
 
     React.useEffect(() => {
         setMounted(true)

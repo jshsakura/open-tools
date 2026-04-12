@@ -1,5 +1,7 @@
 "use client"
 
+import Script from "next/script"
+
 interface GoogleAnalyticsProps {
   gaId?: string
   adsenseId?: string
@@ -16,31 +18,31 @@ export function GoogleAnalytics({ gaId, adsenseId }: GoogleAnalyticsProps) {
   return (
     <>
       {gaId && (
-        <script
+        <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
           id="google-analytics"
+          strategy="afterInteractive"
         />
       )}
       {gaId && (
-        <script
+        <Script
           id="google-analytics-config"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaId}');
-            `,
-          }}
-        />
+          strategy="afterInteractive"
+        >{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaId}');
+        `}</Script>
       )}
       {adsenseId && (
-        <script
+        <Script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
           crossOrigin="anonymous"
           id="google-adsense"
+          strategy="afterInteractive"
         />
       )}
     </>

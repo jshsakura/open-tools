@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { AdPlaceholder } from "@/components/ads/ad-placeholder"
 import { cn } from "@/lib/utils"
 
@@ -28,6 +28,7 @@ export function AdsenseSlot({
     showPlaceholder = true,
 }: AdsenseSlotProps) {
     const insRef = useRef<HTMLModElement | null>(null)
+    const [mounted, setMounted] = useState(false)
     const normalizedClientId = useMemo(() => {
         if (!clientId) return undefined
         return clientId.startsWith("ca-pub-") ? clientId : `ca-pub-${clientId}`
@@ -36,7 +37,11 @@ export function AdsenseSlot({
     const enabled = Boolean(normalizedClientId && slot)
 
     useEffect(() => {
-        if (!enabled) return
+        setMounted(true)
+    }, [])
+
+    useEffect(() => {
+        if (!mounted || !enabled) return
         const el = insRef.current as HTMLElement | null
         // Avoid pushing twice for the same ad slot.
         if (el && el.getAttribute("data-adsbygoogle-status") === "done") {
@@ -48,7 +53,7 @@ export function AdsenseSlot({
         } catch {
             // Ignore client-side ad init errors (blocked scripts, etc.)
         }
-    }, [enabled, slot])
+    }, [enabled, mounted])
 
     const sizeClass = {
         leaderboard: "w-full max-w-[728px] h-[90px]",
@@ -56,7 +61,7 @@ export function AdsenseSlot({
         rectangle: "w-[300px] h-[250px]",
     }[type]
 
-    if (!enabled) {
+    if (!mounted || !enabled) {
         return showPlaceholder ? <AdPlaceholder type={type} className={className} /> : null
     }
 
