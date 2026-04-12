@@ -87,7 +87,7 @@ export const toolsCatalog = [
     icon: GitCompareArrows,
     href: "/tools/text-diff",
     color: "text-orange-500",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "word-counter",
@@ -96,7 +96,7 @@ export const toolsCatalog = [
     icon: Type,
     href: "/tools/word-counter",
     color: "text-emerald-500",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "list-sorter",
@@ -105,7 +105,7 @@ export const toolsCatalog = [
     icon: ListFilter,
     href: "/tools/list-sorter",
     color: "text-sky-500",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "morse-converter",
@@ -114,7 +114,7 @@ export const toolsCatalog = [
     icon: Radio,
     href: "/tools/morse-converter",
     color: "text-rose-500",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "loan-calculator",
@@ -132,7 +132,7 @@ export const toolsCatalog = [
     icon: GitCompareArrows,
     href: "/tools/text-similarity",
     color: "text-indigo-500",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "time-zone-converter",
@@ -312,7 +312,7 @@ export const toolsCatalog = [
     icon: CaseSensitive,
     href: "/tools/string-case-converter",
     color: "text-indigo-500",
-    tags: ["Development"],
+    tags: ["Text"],
   },
   {
     id: "json-to-types",
@@ -321,7 +321,7 @@ export const toolsCatalog = [
     icon: FileJson,
     href: "/tools/json-to-types",
     color: "text-amber-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "curl-to-code",
@@ -348,7 +348,7 @@ export const toolsCatalog = [
     icon: Braces,
     href: "/tools/html-entity-encoder",
     color: "text-rose-500",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "number-base-converter",
@@ -357,7 +357,7 @@ export const toolsCatalog = [
     icon: Hash,
     href: "/tools/number-base-converter",
     color: "text-violet-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "yaml-converter",
@@ -366,7 +366,7 @@ export const toolsCatalog = [
     icon: FileJson,
     href: "/tools/yaml-converter",
     color: "text-teal-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "torrent-history",
@@ -421,7 +421,7 @@ export const toolsCatalog = [
     icon: Terminal,
     href: "/tools/banner-generator",
     color: "text-orange-500",
-    tags: ["Development"],
+    tags: ["Text"],
   },
   {
     id: "base64-converter",
@@ -430,7 +430,7 @@ export const toolsCatalog = [
     icon: FileCode,
     href: "/tools/base64-converter",
     color: "text-emerald-600",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "base64-image",
@@ -583,7 +583,7 @@ export const toolsCatalog = [
     icon: FileJson,
     href: "/tools/json-yaml-converter",
     color: "text-emerald-600",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "json-formatter",
@@ -592,7 +592,7 @@ export const toolsCatalog = [
     icon: Braces,
     href: "/tools/json-formatter",
     color: "text-amber-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "jwt-debugger",
@@ -646,7 +646,7 @@ export const toolsCatalog = [
     icon: Database,
     href: "/tools/sql-converter",
     color: "text-blue-600",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "sql-formatter",
@@ -655,7 +655,7 @@ export const toolsCatalog = [
     icon: Database,
     href: "/tools/sql-formatter",
     color: "text-blue-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "speed-test",
@@ -673,7 +673,7 @@ export const toolsCatalog = [
     icon: Music,
     href: "/tools/suno-downloader",
     color: "text-pink-500",
-    tags: ["Video"],
+    tags: ["Audio"],
   },
   {
     id: "svg-to-jsx",
@@ -700,7 +700,7 @@ export const toolsCatalog = [
     icon: Link,
     href: "/tools/url-converter",
     color: "text-cyan-500",
-    tags: ["Utilities"],
+    tags: ["Web"],
   },
   {
     id: "video-converter",
@@ -718,7 +718,7 @@ export const toolsCatalog = [
     icon: Database,
     href: "/tools/data-tools",
     color: "text-blue-600",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "text-tools",
@@ -727,7 +727,7 @@ export const toolsCatalog = [
     icon: ScanText,
     href: "/tools/text-tools",
     color: "text-emerald-600",
-    tags: ["Utilities"],
+    tags: ["Text"],
   },
   {
     id: "k-series",
@@ -736,7 +736,7 @@ export const toolsCatalog = [
     icon: Languages,
     href: "/tools/k-series",
     color: "text-blue-600",
-    tags: ["Utilities"],
+    tags: ["Text", "Korea"],
   },
   {
     id: "dev-tools",
@@ -772,7 +772,7 @@ export const toolsCatalog = [
     icon: FileCode,
     href: "/tools/xml-formatter",
     color: "text-indigo-500",
-    tags: ["Development"],
+    tags: ["Data"],
   },
 
   {
@@ -917,7 +917,7 @@ export const toolsCatalog = [
     icon: Tags,
     href: "/tools/meta-tag-generator",
     color: "text-blue-600",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "robots-txt-generator",
@@ -926,7 +926,7 @@ export const toolsCatalog = [
     icon: Bot,
     href: "/tools/robots-txt-generator",
     color: "text-gray-600",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "sitemap-generator",
@@ -935,7 +935,7 @@ export const toolsCatalog = [
     icon: MapIcon,
     href: "/tools/sitemap-generator",
     color: "text-green-600",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "color-converter",
@@ -971,7 +971,7 @@ export const toolsCatalog = [
     icon: Braces,
     href: "/tools/json-ld-generator",
     color: "text-amber-600",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "env-editor",
@@ -989,7 +989,7 @@ export const toolsCatalog = [
     icon: FileJson,
     href: "/tools/toml-converter",
     color: "text-orange-600",
-    tags: ["Development"],
+    tags: ["Data"],
   },
   {
     id: "http-header-analyzer",
@@ -998,7 +998,7 @@ export const toolsCatalog = [
     icon: Activity,
     href: "/tools/http-header-analyzer",
     color: "text-blue-500",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "seo-analyzer",
@@ -1007,7 +1007,7 @@ export const toolsCatalog = [
     icon: Search,
     href: "/tools/seo-analyzer",
     color: "text-emerald-500",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "webhook-tester",
@@ -1016,7 +1016,7 @@ export const toolsCatalog = [
     icon: Webhook,
     href: "/tools/webhook-tester",
     color: "text-purple-600",
-    tags: ["Development"],
+    tags: ["Web"],
   },
   {
     id: "git-diff-viewer",
@@ -1079,7 +1079,7 @@ export const toolsCatalog = [
     icon: Volume2,
     href: "/tools/text-to-speech",
     color: "text-blue-600",
-    tags: ["Utilities"],
+    tags: ["Audio"],
   },
   {
     id: "whois-lookup",

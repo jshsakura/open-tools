@@ -25,19 +25,23 @@ import {
 } from "@/lib/tool-popularity";
 import { toolsCatalog } from "@/lib/tools-catalog";
 import {
+  Database,
   Image as ImageIcon,
+  Music,
   Video,
   ShieldCheck,
   Zap,
   LayoutGrid,
   Search,
   Terminal,
+  Type,
   Wand2,
   X,
   Calculator,
   Activity,
   FileText,
   Globe,
+  Globe2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -45,11 +49,15 @@ type HomeDisplayCategory =
   | "Finance"
   | "Health"
   | "Documents"
+  | "Text"
+  | "Data"
+  | "Web"
   | "Network"
-  | "Development"
   | "Image"
   | "Video"
+  | "Audio"
   | "Design"
+  | "Development"
   | "Security"
   | "Utilities";
 
@@ -57,11 +65,15 @@ const DISPLAY_CATEGORY_ORDER: HomeDisplayCategory[] = [
   "Finance",
   "Health",
   "Documents",
-  "Network",
-  "Development",
+  "Text",
+  "Data",
+  "Web",
   "Image",
   "Video",
+  "Audio",
   "Design",
+  "Network",
+  "Development",
   "Security",
   "Utilities",
 ];
@@ -98,6 +110,43 @@ const DOCUMENT_TOOL_IDS = new Set([
   "file-size-converter",
 ]);
 
+const TEXT_TOOL_IDS = new Set([
+  "banner-generator",
+  "k-series",
+  "list-sorter",
+  "morse-converter",
+  "string-case-converter",
+  "text-diff",
+  "text-similarity",
+  "text-tools",
+  "word-counter",
+]);
+
+const DATA_TOOL_IDS = new Set([
+  "base64-converter",
+  "data-tools",
+  "json-formatter",
+  "json-to-types",
+  "json-yaml-converter",
+  "number-base-converter",
+  "sql-converter",
+  "sql-formatter",
+  "toml-converter",
+  "xml-formatter",
+  "yaml-converter",
+]);
+
+const WEB_TOOL_IDS = new Set([
+  "http-header-analyzer",
+  "json-ld-generator",
+  "meta-tag-generator",
+  "robots-txt-generator",
+  "seo-analyzer",
+  "sitemap-generator",
+  "url-converter",
+  "webhook-tester",
+]);
+
 const NETWORK_TOOL_IDS = new Set([
   "browser-info",
   "my-ip",
@@ -105,16 +154,22 @@ const NETWORK_TOOL_IDS = new Set([
   "subnet-calculator",
   "speed-test",
   "whois-lookup",
-  "webhook-tester",
-  "http-header-analyzer",
-  "seo-analyzer",
+]);
+
+const AUDIO_TOOL_IDS = new Set([
+  "suno-downloader",
+  "text-to-speech",
 ]);
 
 function getPrimaryCategory(tool: (typeof toolsCatalog)[number]): HomeDisplayCategory {
   if (FINANCE_TOOL_IDS.has(tool.id)) return "Finance";
   if (HEALTH_TOOL_IDS.has(tool.id)) return "Health";
   if (DOCUMENT_TOOL_IDS.has(tool.id)) return "Documents";
+  if (TEXT_TOOL_IDS.has(tool.id)) return "Text";
+  if (DATA_TOOL_IDS.has(tool.id)) return "Data";
+  if (WEB_TOOL_IDS.has(tool.id)) return "Web";
   if (NETWORK_TOOL_IDS.has(tool.id)) return "Network";
+  if (AUDIO_TOOL_IDS.has(tool.id)) return "Audio";
 
   for (const category of DISPLAY_CATEGORY_ORDER) {
     if (tool.tags.includes(category)) {
@@ -582,13 +637,17 @@ export function HomeClient() {
                      Finance: Calculator,
                      Health: Activity,
                      Documents: FileText,
+                     Text: Type,
+                     Data: Database,
+                     Web: Globe2,
                      Network: Globe,
-                     Development: Terminal,
                      Image: ImageIcon,
                      Video,
-                    Design: Wand2,
-                    Security: ShieldCheck,
-                    Utilities: Zap,
+                     Audio: Music,
+                     Design: Wand2,
+                     Development: Terminal,
+                     Security: ShieldCheck,
+                     Utilities: Zap,
                   } as Record<string, React.ElementType>
                 )[category] ?? LayoutGrid;
 
