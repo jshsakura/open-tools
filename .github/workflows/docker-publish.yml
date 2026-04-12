@@ -79,6 +79,14 @@ jobs:
           cache-from: type=gha,scope=buildx
           cache-to: type=gha,mode=max,scope=buildx
           builder: ${{ steps.buildx.outputs.name }}
+          build-args: |
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_GA_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+            NEXT_PUBLIC_ADSENSE_ID=${{ secrets.NEXT_PUBLIC_ADSENSE_ID }}
+            NEXT_PUBLIC_ADSENSE_SLOT_TOP=${{ secrets.NEXT_PUBLIC_ADSENSE_SLOT_TOP }}
+            NEXT_PUBLIC_ADSENSE_SLOT_LEFT=${{ secrets.NEXT_PUBLIC_ADSENSE_SLOT_LEFT }}
+            NEXT_PUBLIC_ADSENSE_SLOT_RIGHT=${{ secrets.NEXT_PUBLIC_ADSENSE_SLOT_RIGHT }}
+            NEXT_PUBLIC_META_TAGS=${{ secrets.NEXT_PUBLIC_META_TAGS }}
 
       - name: Image digest
         run: echo "Image pushed with digest ${{ steps.build-and-push.outputs.digest }}"
