@@ -1,623 +1,723 @@
 {
-  "Catalog": {
-    "Categories": {
-      "Finance": "Finance",
-      "Health": "Health",
-      "Documents": "Documents",
-      "Text": "Text",
-      "Data": "Data",
-      "Web": "Web",
-      "Network": "Network",
-      "Development": "Development",
-      "Image": "Image",
-      "Video": "Video",
-      "Audio": "Audio",
-      "Design": "Design",
-      "Security": "Security",
-      "Utilities": "Utilities"
-    },
-    "Suno": {
-      "title": "Suno AI Downloader",
-      "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download.",
-      "errorGeneric": "An error occurred while fetching song data.",
-      "inputPlaceholder": "Paste Suno song or playlist link here...",
-      "resolveButton": "Resolve",
-      "guide": {
-        "title": "How to Find Sharing Link",
-        "step1": "Go to suno.com and find your favorite song or playlist.",
-        "step2": "Click share icon (arrow) on song card.",
-        "step3": "Copy the sharing link and paste it above.",
-        "supported": "Supported Link Types",
-        "playlist": "Song Link",
-        "share": "Playlist Link"
-      }
-    },
-    "SunoDownloader": {
-      "title": "Suno AI Downloader",
-      "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download."
-    },
-    "VideoConverter": {
-      "title": "Local Video Encoder (WASM)",
-      "description": "Convert video to MP4/MP3/GIF locally in your browser. Privacy focused, no uploads."
-    },
-    "YoutubeThumbnail": {
-      "title": "YouTube Thumbnail Extractor",
-      "description": "Get high-resolution thumbnails from any YouTube video URL instantly.",
-      "errorInvalidUrl": "Invalid YouTube URL. Please enter a valid YouTube link.",
-      "inputPlaceholder": "Paste YouTube URL here...",
-      "extractButton": "Extract"
-    },
-    "ImageConverter": {
-      "title": "Image Format Converter",
-      "description": "Batch convert images between PNG, JPG, WebP, and AVIF with compression options."
-    },
-    "SqlConverter": {
-      "title": "SQL to JSON/CSV Converter",
-      "description": "Transform SQL INSERT statements into clean JSON or CSV data formats locally.",
-      "inputLabelSql": "Input (SQL)",
-      "inputLabelTable": "Input (Table)",
-      "outputLabel": "Output ({format})",
-      "placeholderSql": "INSERT INTO users (id, name) VALUES (1, 'John');",
-      "placeholderTable": "id\\tname\\n1\\tJohn",
-      "errorInvalidFormat": "Could not parse format. Please check your input.",
-      "copied": "Copied",
-      "copy": "Copy"
-    },
-    "FaviconGenerator": {
-      "title": "Favicon Generator",
-      "description": "Generate multi-format favicons (ICO, PNG) from any image or text snippet.",
-      "dropTitle": "Click or drag image to upload",
-      "dropDesc": "Support for PNG, JPG, WebP",
-      "generating": "Generating...",
-      "ready": "Image is ready",
-      "remove": "Remove",
-      "generate": "Generate Favicons ZIP",
-      "formats": "Generates a complete favicon set for modern browsers"
-    },
-    "UnitConverter": {
-      "title": "Unit Converter",
-      "description": "Convert between various units including Data (MB to GB), CSS (PX to REM), and more."
-    },
-    "JsonYaml": {
-      "title": "JSON ↔ YAML Converter",
-      "description": "Fast and clean conversion between JSON and YAML formats with syntax highlighting."
-    },
-    "JwtDebugger": {
-      "title": "JWT Debugger",
-      "description": "Decode and analyze JSON Web Tokens locally. Check headers, payloads, and signatures."
-    },
-    "RegexTester": {
-      "title": "RegEx Tester",
-      "description": "Test and debug your regular expressions with real-time highlighting and group extraction."
-    },
-    "CronGenerator": {
-      "title": "Cron Expression Generator",
-      "description": "Create and verify cron jobs with human-readable descriptions and next execution times."
-    },
-    "MyIp": {
-      "title": "My IP & Location",
-      "description": "Instantly check your public IP address, ISP, and detailed geographic location."
-    },
-    "SpeedTest": {
-      "title": "Network Speed Test",
-      "description": "Measure your internet download, upload speeds, and ping latency in real-time."
-    },
-    "PortScanner": {
-      "title": "Local Port Scanner",
-      "description": "Check if specific ports on your network or local machine are open and responsive."
-    },
-    "BrowserInfo": {
-      "title": "What is my Browser?",
-      "description": "Analyze your browser version, OS, screen resolution, and user agent details.",
-      "browserDetection": "Browser Detection",
-      "environmentReport": "Comprehensive report of your current environment",
-      "liveSession": "Live Session",
-      "displayAnalysis": "Display Analysis",
-      "screenResolution": "Screen Resolution",
-      "windowViewport": "Window Viewport",
-      "internalBrowserSize": "Internal Browser Size",
-      "privacySettings": "Privacy Settings",
-      "cookies": "Cookies",
-      "doNotTrack": "Do Not Track",
-      "active": "Active",
-      "notSent": "Not Sent",
-      "javascript": "Javascript",
-      "pdfSupport": "PDF Support",
-      "enabled": "Enabled",
-      "disabled": "Disabled",
-      "note": "Note: These values are extracted directly from your browser's navigator object and are not stored elsewhere.",
-      "fullUserAgentString": "Full User Agent String",
-      "copied": "Copied",
-      "copyString": "Copy string",
-      "runningOn": "Running on {os}"
-    },
-    "SvgToJsx": {
-      "title": "SVG to JSX Converter",
-      "description": "Transform raw SVG code into high-quality, typed React components instantly."
-    },
-    "Glassmorphism": {
-      "title": "CSS Glassmorphism Generator",
-      "description": "Design sleek frosted-glass UI elements with real-time CSS code generation."
-    },
-    "ColorPalette": {
-      "title": "Color Palette Extractor",
-      "description": "Extract harmonious color palettes from any image using the Canvas API."
-    },
-    "BorderRadiusGenerator": {
-      "title": "CSS Border Radius Generator",
-      "description": "Create complex CSS border-radius values visually with real-time feedback."
-    },
-    "BoxShadowGenerator": {
-      "title": "CSS Box Shadow Generator",
-      "description": "Design sleek CSS box shadow effects with control over intensity, color, and offset."
-    },
-    "GradientGenerator": {
-      "title": "CSS Gradient Generator",
-      "description": "Visually generate linear and radial CSS gradients and copy the resulting code."
-    },
-    "ImageCompressor": {
-      "title": "Image Compressor",
-      "description": "Reduce image file size and optimize quality directly in your browser."
-    },
-    "Base64Image": {
-      "title": "Base64 Image Viewer",
-      "description": "Safely decode, preview, and analyze base64 encoded image strings."
-    },
-    "Base64Converter": {
-      "title": "Base64 Encoder/Decoder",
-      "description": "Convert between text and Base64 in real-time with clipboard support."
-    },
-    "UrlConverter": {
-      "title": "URL Encoder/Decoder",
-      "description": "Safe and fast URL encoding/decoding for developers."
-    },
-    "HashGenerator": {
-      "title": "Hash Generator",
-      "description": "Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side."
-    },
-    "BackgroundRemover": {
-      "title": "AI Background Remover",
-      "description": "Experience sophisticated AI-powered background removal directly in your browser."
-    },
-    "ImageEraser": {
-      "title": "AI Image Eraser",
-      "description": "Brush over logos, stamps, or small distractions and erase them locally with WebGPU or WASM."
-    },
-    "DataTools": {
-      "title": "Data Tools Suite",
-      "description": "JSON/CSV/Excel conversion, SQL formatting, and Slug generation."
-    },
-    "TextTools": {
-      "title": "Text & Content Suite",
-      "description": "Lorem Ipsum generator and Hangul processing tools."
-    },
-    "OcrTool": {
-      "title": "Image to Text (OCR)",
-      "description": "Extract text from images instantly using Tesseract OCR. Supports Korean, English, Japanese, and Chinese."
-    },
-    "SqlFormatter": {
-      "title": "SQL Formatter & Beautifier",
-      "description": "Format, validate, and convert XML to JSON with real-time error detection."
-    },
-    "XmlFormatter": {
-      "title": "XML Formatter & Validator",
-      "description": "Format, validate, and convert XML to JSON with real-time error detection.",
-      "copy": "Copied",
-      "copyJson": "JSON copied"
-    },
-    "BannerGenerator": {
-      "title": "Spring Boot Banner Generator",
-      "description": "Create stunning ASCII art banners with ANSI colors for your Spring Boot applications."
-    },
-    "PdfTools": {
-      "title": "PDF Tools",
-      "description": "All-in-one PDF utilities: Merge, Split, and Convert to Image."
-    },
-    "PdfMerge": {
-      "title": "Merge PDF",
-      "description": "Combine multiple PDF files into one for free. No file limits."
-    },
-    "PdfSplit": {
-      "title": "Split PDF",
-      "description": "Extract specific pages from a PDF file quickly."
-    },
-    "PdfToImage": {
-      "title": "PDF to Image",
-      "description": "Convert PDF pages to high-quality JPG or PNG images."
-    },
-    "HwpViewer": {
-      "title": "Document Viewer",
-      "description": "Instantly view HWP and DOCX files in your browser."
-    },
-    "Basic3dViewer": {
-      "title": "3D Model Viewer",
-      "description": "Preview and analyze 3D models (OBJ, STL, GLTF/GLB) directly in your browser."
-    },
-    "QrGenerator": {
-      "title": "QR Code Generator",
-      "description": "Generate customizable QR codes for URLs, text, email, and phone numbers."
-    },
-    "AesCrypto": {
-      "title": "AES-256 Encryption & Decryption",
-      "description": "Military-grade AES-256-GCM encryption with PBKDF2 key derivation. Encrypt and decrypt text 100% locally in your browser — no server uploads."
-    },
-    "BcryptGenerator": {
-      "title": "Bcrypt Generator",
-      "description": "Generate and verify Bcrypt passwords hashes for secure authentication."
-    },
-    "HmacGenerator": {
-      "title": "HMAC Generator",
-      "description": "Create Hash-based Message Authentication Codes (MD5, SHA1, SHA256)."
-    },
-    "RsaGenerator": {
-      "title": "RSA Key Generator",
-      "description": "Generate RSA Public and Private Key pairs (PEM format)."
-    },
-    "SecurityTools": {
-      "title": "Security & Encryption",
-      "description": "Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing."
-    },
-    "DevTools": {
-      "title": "Developer Tools",
-      "description": "Collection of developer utilities including Docker, permissions, and validation."
-    },
-    "YouTubeDownloader": {
-      "title": "YouTube Downloader",
-      "description": "High-quality YouTube video and audio downloader. Processed safely in your browser.",
-      "downloadBtn": "Download",
-      "advancedSettings": "Advanced Settings",
-      "inputPlaceholder": "Paste YouTube Link Here",
-      "formatMP4": "MP4 Video",
-      "formatMP3": "MP3 Audio",
-      "formatSRT": "Subtitles (SRT)",
-      "processing": "Processing...",
-      "analyze": "Analyze",
-      "analyzing": "Analyzing...",
-      "sizeUnknown": "Size unknown",
-      "emptyState": "Video details will appear here after analysis.",
-      "tabs": {
-        "video": "Video",
-        "audio": "Audio",
-        "subtitle": "Subtitle"
-      },
-      "noFormats": "No {type} formats found.",
-      "noteTitle": "Important Notes",
-      "note1": "Processing happens <strong>locally in your browser</strong>",
-      "note2": "Large videos may take time to merge",
-      "note3": "Please respect copyright laws",
-      "errors": {
-        "download": "Error downloading file.",
-        "emptyFile": "Downloaded file is empty. Please try another quality.",
-        "ffmpeg": "Failed to load FFmpeg engine.",
-        "fetch": "Fetch failed: {status}"
-      },
-      "steps": {
-        "loadingFFmpeg": "Loading FFmpeg core...",
-        "ready": "Ready",
-        "extracting": "Extracting video info...",
-        "downloadingVideo": "Downloading video track...",
-        "downloadingAudio": "Downloading audio track...",
-        "downloadingSubtitle": "Downloading subtitle...",
-        "muxing": "Merging video and audio...",
-        "completed": "Download Complete!",
-        "cancelled": "Download cancelled."
-      },
-      "cancel": "Cancel",
-      "speedNote": "Download speeds may be slow due to YouTube limitations and proxy relay.",
-      "flowTitle": "How it works",
-      "flowDesc": "This tool runs locally in your browser and does not upload your media to our servers.",
-      "flowStep1": "Analyze the YouTube link to discover available streams and subtitles.",
-      "flowStep2": "Download the selected video/audio stream through the proxy.",
-      "flowStep3": "Merge and export the file in your browser using FFmpeg.",
-      "proxyLabel": "Proxy URL",
-      "thumbnailAlt": "Video thumbnail preview",
-      "durationLabel": "Duration: {duration}s",
-      "subtitleLabel": "Subtitle ({lang})",
-      "errorTitle": "Error",
-      "limitationsTitle": "Limitations",
-      "limitationsDesc": "Downloads can be slow because streams are fetched through a proxy and processed locally in your browser. Large videos may take several minutes."
-    },
-    "TorrentHistory": {
-      "title": "IP Torrent History Check",
-      "description": "Analyze your public IP address to see torrent download traces and potential security risks."
-    },
-    "KSeries": {
-      "title": "Korean Tools Suite",
-      "description": "A collection of useful tools tailored for Korean users and services."
-    },
-    "JsonFormatter": {
-      "title": "JSON Formatter & Converter",
-      "description": "Format, validate, and convert JSON to YAML, CSV, and TypeScript types instantly."
-    },
-    "MarkdownPreview": {
-      "title": "Markdown Preview",
-      "description": "Write Markdown and instantly preview the rendered HTML output side by side."
-    },
-    "HtmlEntityEncoder": {
-      "title": "HTML Entity Encoder / Decoder",
-      "description": "Encode special characters to HTML entities and decode them back instantly."
-    },
-    "NumberBaseConverter": {
-      "title": "Number Base Converter",
-      "description": "Convert numbers between Binary, Octal, Decimal, and Hexadecimal with BigInt support."
-    },
-    "TextDiff": {
-      "title": "Text Diff",
-      "description": "Compare two texts side-by-side with line and word-level diff highlighting."
-    },
-    "WordCounter": {
-      "title": "Word Counter",
-      "description": "Count words, characters, sentences, paragraphs and estimate reading time instantly.",
-      "featureStats": "8 Statistics",
-      "featureStatsDesc": "Characters, words, sentences, paragraphs and more",
-      "featureReadingTime": "Reading Time",
-      "featureReadingTimeDesc": "Estimated reading and speaking time",
-      "featureRealtime": "Real-time",
-      "featureRealtimeDesc": "Statistics update instantly as you type"
-    },
-    "StringCaseConverter": {
-      "title": "String Case Converter",
-      "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case and 8 more formats."
-    },
-    "UuidGenerator": {
-      "title": "UUID Generator",
-      "description": "Generate UUID v4 and v7 with bulk generation and clipboard support."
-    },
-    "PasswordGenerator": {
-      "title": "Password Generator",
-      "description": "Generate secure random passwords with customizable length, characters, and strength meter."
-    },
-    "UnixTimestamp": {
-      "title": "Unix Timestamp Converter",
-      "description": "Two-way conversion between Unix timestamps and human-readable dates."
-    },
-    "MetaTagGenerator": {
-      "title": "Meta Tag Generator",
-      "description": "Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically."
-    },
-    "RobotsTxtGenerator": {
-      "title": "Robots.txt Generator",
-      "description": "Create robots.txt files for search engine crawlers with preset templates."
-    },
-    "SitemapGenerator": {
-      "title": "Sitemap Generator",
-      "description": "Add URLs and generate XML sitemap files to improve search engine indexing."
-    },
-    "ColorConverter": {
-      "title": "Color Converter",
-      "description": "Convert colors between HEX, RGB, and HSL formats with live preview and related colors."
-    },
-    "SubnetCalculator": {
-      "title": "IP Subnet Calculator",
-      "description": "Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR."
-    },
-    "CssMinifier": {
-      "title": "CSS Minifier / Beautifier",
-      "description": "Minify or beautify CSS code with size comparison and instant copy."
-    },
-    "JsonLdGenerator": {
-      "title": "JSON-LD Schema Generator",
-      "description": "Generate structured data (JSON-LD) for SEO. Supports Article, Product, FAQ, and more schema types."
-    },
-    "EnvEditor": {
-      "title": ".env File Editor",
-      "description": "Edit environment variable files (.env) and compare differences between two files side by side."
-    },
-    "TomlConverter": {
-      "title": "TOML/INI Converter",
-      "description": "Convert between TOML, INI, and JSON formats with auto-detection and live preview."
-    },
-    "HttpHeaderAnalyzer": {
-      "title": "HTTP Header Analyzer",
-      "description": "Analyze HTTP response headers from any URL and score security header configuration."
-    },
-    "SeoAnalyzer": {
-      "title": "SEO Analyzer",
-      "description": "Audit any public page for metadata, indexability, headings, social tags, structured data, and link health."
-    },
-    "WebhookTester": {
-      "title": "API Tester",
-      "description": "Send REST API requests directly from your browser and analyze responses with an HTTP client tool."
-    },
-    "GitDiffViewer": {
-      "title": "Git Diff Viewer",
-      "description": "Paste git diff or unified diff output to visualize changes with syntax highlighting."
-    },
-    "ExifViewer": {
-      "title": "Image EXIF Viewer & Remover",
-      "description": "View and remove EXIF metadata (camera, GPS, date) from images for privacy protection."
-    },
-    "ImageResizer": {
-      "title": "Image Resizer",
-      "description": "Resize images to custom or preset dimensions for social media platforms."
-    },
-    "SvgOptimizer": {
-      "title": "SVG Optimizer",
-      "description": "Optimize and minify SVG files by removing unnecessary data and reducing file size."
-    },
-    "ScreenshotBeautifier": {
-      "title": "Screenshot Beautifier",
-      "description": "Add device frames, backgrounds, and shadows to your screenshots for beautiful exports."
-    },
-    "TextToSpeech": {
-      "title": "Text to Speech (TTS)",
-      "description": "Convert text to natural speech with voice selection, speed, and pitch controls."
-    },
-    "WhoisLookup": {
-      "title": "Domain / DNS Lookup",
-      "description": "Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name."
-    },
-    "ImageCropper": {
-      "title": "Image Cropper",
-      "description": "Precisely crop, rotate, and flip images with 6 aspect ratio presets and rule-of-thirds grid overlay. All processing happens locally."
-    },
-    "ImageWatermark": {
-      "title": "Image Watermark",
-      "description": "Protect your images with custom text watermarks. Supports single placement, tiled patterns, adjustable opacity, font size, and color."
-    },
-    "ImageFilters": {
-      "title": "Image Filter & Effects",
-      "description": "Transform photos with 8 one-click presets (Vintage, B&W, Vivid, etc.) and fine-tune brightness, contrast, saturation, blur, sepia, and more."
-    },
-    "CollageMaker": {
-      "title": "Photo Collage Maker",
-      "description": "Combine multiple photos into stunning collages. Choose from 6 grid layouts, adjust gaps, rounded corners, background color, and export up to 3000px."
-    },
-    "MemeGenerator": {
-      "title": "Meme Generator",
-      "description": "Create viral-ready memes with classic Impact font text. Customize font size, stroke width, colors, and download as high-quality PNG."
-    },
-    "ColorPicker": {
-      "title": "Image Color Picker",
-      "description": "Extract precise colors from any image with a pixel-level magnifying loupe. Pick multiple colors and copy HEX, RGB, HSL values instantly."
-    },
-    "MarkdownToPdf": {
-      "title": "Markdown to PDF",
-      "description": "Write Markdown with a live side-by-side preview and export to beautifully styled PDF. Supports tables, code blocks, blockquotes, and more."
-    },
-    "CsvEditor": {
-      "title": "CSV Editor",
-      "description": "Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON."
-    },
-    "CodeFormatter": {
-      "title": "Code Formatter & Beautifier",
-      "description": "Instantly format and beautify JavaScript, TypeScript, JSON, CSS, HTML, and SQL. Configurable indent size, semicolons, and one-click minification."
-    },
-    "PomodoroTimer": {
-      "title": "Pomodoro Focus Timer",
-      "description": "Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking."
-    },
-    "ListSorter": {
-      "title": "List Sorter & Deduplicator",
-      "description": "Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly."
-    },
-    "JsonToTypes": {
-      "title": "JSON to TypeScript/Zod",
-      "description": "Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming."
-    },
-    "CurlToCode": {
-      "title": "CURL to Code Converter",
-      "description": "Convert CURL commands into ready-to-use code for JavaScript Fetch, Axios, Python Requests, and more."
-    },
-    "HtmlToJsx": {
-      "title": "HTML to JSX Converter",
-      "description": "Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className."
-    },
-    "MorseConverter": {
-      "title": "Morse Code Converter",
-      "description": "Translate text to Morse code and vice versa. Includes audio playback and visual signal support."
-    },
-    "LoanCalculator": {
-      "title": "Loan & Mortgage Calculator",
-      "description": "Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types."
-    },
-    "PassphraseGenerator": {
-      "title": "Diceware Passphrase Generator",
-      "description": "Generate highly secure yet memorable passwords using random word combinations (Diceware method)."
-    },
-    "PasswordStrength": {
-      "title": "Password Strength Analyzer",
-      "description": "Evaluate the security of your passwords with entropy analysis and estimated time to crack."
-    },
-    "YamlConverter": {
-      "title": "YAML / JSON Converter",
-      "description": "Convert between YAML and JSON formats with ease. Supports nested structures and error highlighting."
-    },
-    "TimeZoneConverter": {
-      "title": "Visual Time Zone Converter",
-      "description": "Compare times across different cities worldwide. Visual slider to see how time shifts across zones."
-    },
-    "AgeCalculator": {
-      "title": "Age Calculator",
-      "description": "Calculate exact age in years, months, days, and see how long until the next birthday."
-    },
-    "OvulationCalculator": {
-      "title": "Ovulation & Fertile Window Calculator",
-      "description": "Estimate your next ovulation day, fertile window, and expected next period from your cycle dates."
-    },
-    "BmiCalculator": {
-      "title": "BMI Calculator",
-      "description": "Check your body mass index, weight category, and healthy weight range with a quick height and weight estimate."
-    },
-    "TipCalculator": {
-      "title": "Tip Calculator",
-      "description": "Split restaurant bills, adjust the tip percentage, and see the per-person total instantly."
-    },
-    "DateCalculator": {
-      "title": "Date Calculator",
-      "description": "Measure the gap between two dates or add days, weeks, and months to any starting date."
-    },
-    "DDayCalculator": {
-      "title": "D-Day Countdown Calculator",
-      "description": "Count down to an important date or see how many days have passed since a milestone."
-    },
-    "PercentageCalculator": {
-      "title": "Percentage Calculator",
-      "description": "Handle everyday percentage math fast, from simple ratios to percentage increase or decrease."
-    },
-    "DiscountCalculator": {
-      "title": "Discount Calculator",
-      "description": "Calculate sale prices, coupon savings, and final checkout totals in seconds while you shop."
-    },
-    "SplitBillCalculator": {
-      "title": "Split Bill Calculator",
-      "description": "Split a meal or group payment with tax and tip included so everyone sees a fair per-person total."
-    },
-    "SleepCalculator": {
-      "title": "Sleep Calculator",
-      "description": "Plan better bedtimes and wake-up times around natural sleep cycles for a more rested routine."
-    },
-    "WaterIntakeCalculator": {
-      "title": "Water Intake Calculator",
-      "description": "Estimate a practical daily water target based on your weight, activity level, and preferred cup size."
-    },
-    "CalorieCalculator": {
-      "title": "Calorie Calculator",
-      "description": "Estimate daily calories for maintenance, mild fat loss, or gradual weight gain based on your body and activity." 
-    },
-    "CompoundInterestCalculator": {
-      "title": "Compound Interest Calculator",
-      "description": "Project long-term savings growth with regular contributions, interest rate assumptions, and compounding frequency."
-    },
-    "TemperatureConverter": {
-      "title": "Temperature Converter",
-      "description": "Convert Celsius, Fahrenheit, and Kelvin instantly with quick reference points for freezing and boiling." 
-    },
-    "BodyFatCalculator": {
-      "title": "Body Fat Calculator",
-      "description": "Estimate body fat percentage from practical body measurements and compare it with common fitness ranges."
-    },
-    "FuelCostCalculator": {
-      "title": "Fuel Cost Calculator",
-      "description": "Estimate trip fuel cost from distance, efficiency, and fuel price before you drive."
-    },
-    "FileSizeConverter": {
-      "title": "File Size Converter",
-      "description": "Convert file sizes between bytes, KB, MB, GB, and TB with quick storage references."
-    },
-    "RandomPicker": {
-      "title": "Random Picker",
-      "description": "Paste choices and let the tool pick one or several winners for meals, teams, or decisions."
-    },
-    "TextSimilarity": {
-      "title": "Text Similarity Checker",
-      "description": "Compare two texts and calculate their similarity percentage using advanced string algorithms."
-    },
-    "IcoConverter": {
-      "title": "Direct ICO Converter",
-      "description": "Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app."
-    },
-    "CssPattern": {
-      "title": "CSS Pattern Generator",
-      "description": "Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids."
-    },
-    "SvgVisualizer": {
-      "title": "SVG Path Visualizer",
-      "description": "Visualize and edit SVG path data (d attribute). See how changes to coordinates affect the drawing in real-time."
-    },
-    "ColorNameFinder": {
-      "title": "Color Name Finder",
-      "description": "Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support."
+    "Catalog": {
+        "Categories": {
+            "Finance": "Finance",
+            "Health": "Health",
+            "Documents": "Documents",
+            "Text": "Text",
+            "Data": "Data",
+            "Web": "Web",
+            "Network": "Network",
+            "Development": "Development",
+            "Image": "Image",
+            "Video": "Video",
+            "Audio": "Audio",
+            "Design": "Design",
+            "Security": "Security",
+            "Utilities": "Utilities"
+        },
+        "Suno": {
+            "title": "Suno AI Downloader",
+            "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download.",
+            "errorGeneric": "An error occurred while fetching song data.",
+            "inputPlaceholder": "Paste Suno song or playlist link here...",
+            "resolveButton": "Resolve",
+            "guide": {
+                "title": "How to Find Sharing Link",
+                "step1": "Go to suno.com and find your favorite song or playlist.",
+                "step2": "Click share icon (arrow) on song card.",
+                "step3": "Copy the sharing link and paste it above.",
+                "supported": "Supported Link Types",
+                "playlist": "Song Link",
+                "share": "Playlist Link"
+            }
+        },
+        "SunoDownloader": {
+            "title": "Suno AI Downloader",
+            "description": "Download Suno.com songs easily by pasting sharing link. High-quality MP3 download."
+        },
+        "VideoConverter": {
+            "title": "Local Video Encoder (WASM)",
+            "description": "Convert video to MP4/MP3/GIF locally in your browser. Privacy focused, no uploads."
+        },
+        "YoutubeThumbnail": {
+            "title": "YouTube Thumbnail Extractor",
+            "description": "Get high-resolution thumbnails from any YouTube video URL instantly.",
+            "errorInvalidUrl": "Invalid YouTube URL. Please enter a valid YouTube link.",
+            "inputPlaceholder": "Paste YouTube URL here...",
+            "extractButton": "Extract"
+        },
+        "ImageConverter": {
+            "title": "Image Format Converter",
+            "description": "Batch convert images between PNG, JPG, WebP, and AVIF with compression options."
+        },
+        "SqlConverter": {
+            "title": "SQL to JSON/CSV Converter",
+            "description": "Transform SQL INSERT statements into clean JSON or CSV data formats locally.",
+            "inputLabelSql": "Input (SQL)",
+            "inputLabelTable": "Input (Table)",
+            "outputLabel": "Output ({format})",
+            "placeholderSql": "INSERT INTO users (id, name) VALUES (1, 'John');",
+            "placeholderTable": "id\\tname\\n1\\tJohn",
+            "errorInvalidFormat": "Could not parse format. Please check your input.",
+            "copied": "Copied",
+            "copy": "Copy"
+        },
+        "FaviconGenerator": {
+            "title": "Favicon Generator",
+            "description": "Generate multi-format favicons (ICO, PNG) from any image or text snippet.",
+            "dropTitle": "Click or drag image to upload",
+            "dropDesc": "Support for PNG, JPG, WebP",
+            "generating": "Generating...",
+            "ready": "Image is ready",
+            "remove": "Remove",
+            "generate": "Generate Favicons ZIP",
+            "formats": "Generates a complete favicon set for modern browsers"
+        },
+        "UnitConverter": {
+            "title": "Unit Converter",
+            "description": "Convert between various units including Data (MB to GB), CSS (PX to REM), and more."
+        },
+        "JsonYaml": {
+            "title": "JSON ↔ YAML Converter",
+            "description": "Fast and clean conversion between JSON and YAML formats with syntax highlighting."
+        },
+        "JwtDebugger": {
+            "title": "JWT Debugger",
+            "description": "Decode and analyze JSON Web Tokens locally. Check headers, payloads, and signatures."
+        },
+        "RegexTester": {
+            "title": "RegEx Tester",
+            "description": "Test and debug your regular expressions with real-time highlighting and group extraction."
+        },
+        "CronGenerator": {
+            "title": "Cron Expression Generator",
+            "description": "Create and verify cron jobs with human-readable descriptions and next execution times."
+        },
+        "MyIp": {
+            "title": "My IP & Location",
+            "description": "Instantly check your public IP address, ISP, and detailed geographic location."
+        },
+        "SpeedTest": {
+            "title": "Network Speed Test",
+            "description": "Measure your internet download, upload speeds, and ping latency in real-time."
+        },
+        "PortScanner": {
+            "title": "Local Port Scanner",
+            "description": "Check if specific ports on your network or local machine are open and responsive."
+        },
+        "BrowserInfo": {
+            "title": "What is my Browser?",
+            "description": "Analyze your browser version, OS, screen resolution, and user agent details.",
+            "browserDetection": "Browser Detection",
+            "environmentReport": "Comprehensive report of your current environment",
+            "liveSession": "Live Session",
+            "displayAnalysis": "Display Analysis",
+            "screenResolution": "Screen Resolution",
+            "windowViewport": "Window Viewport",
+            "internalBrowserSize": "Internal Browser Size",
+            "privacySettings": "Privacy Settings",
+            "cookies": "Cookies",
+            "doNotTrack": "Do Not Track",
+            "active": "Active",
+            "notSent": "Not Sent",
+            "javascript": "Javascript",
+            "pdfSupport": "PDF Support",
+            "enabled": "Enabled",
+            "disabled": "Disabled",
+            "note": "Note: These values are extracted directly from your browser's navigator object and are not stored elsewhere.",
+            "fullUserAgentString": "Full User Agent String",
+            "copied": "Copied",
+            "copyString": "Copy string",
+            "runningOn": "Running on {os}"
+        },
+        "SvgToJsx": {
+            "title": "SVG to JSX Converter",
+            "description": "Transform raw SVG code into high-quality, typed React components instantly."
+        },
+        "Glassmorphism": {
+            "title": "CSS Glassmorphism Generator",
+            "description": "Design sleek frosted-glass UI elements with real-time CSS code generation."
+        },
+        "ColorPalette": {
+            "title": "Color Palette Extractor",
+            "description": "Extract harmonious color palettes from any image using the Canvas API."
+        },
+        "BorderRadiusGenerator": {
+            "title": "CSS Border Radius Generator",
+            "description": "Create complex CSS border-radius values visually with real-time feedback."
+        },
+        "BoxShadowGenerator": {
+            "title": "CSS Box Shadow Generator",
+            "description": "Design sleek CSS box shadow effects with control over intensity, color, and offset."
+        },
+        "GradientGenerator": {
+            "title": "CSS Gradient Generator",
+            "description": "Visually generate linear and radial CSS gradients and copy the resulting code."
+        },
+        "ImageCompressor": {
+            "title": "Image Compressor",
+            "description": "Reduce image file size and optimize quality directly in your browser."
+        },
+        "Base64Image": {
+            "title": "Base64 Image Viewer",
+            "description": "Safely decode, preview, and analyze base64 encoded image strings."
+        },
+        "Base64Converter": {
+            "title": "Base64 Encoder/Decoder",
+            "description": "Convert between text and Base64 in real-time with clipboard support."
+        },
+        "UrlConverter": {
+            "title": "URL Encoder/Decoder",
+            "description": "Safe and fast URL encoding/decoding for developers."
+        },
+        "HashGenerator": {
+            "title": "Hash Generator",
+            "description": "Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side."
+        },
+        "BackgroundRemover": {
+            "title": "AI Background Remover",
+            "description": "Experience sophisticated AI-powered background removal directly in your browser."
+        },
+        "ImageEraser": {
+            "title": "AI Image Eraser",
+            "description": "Brush over logos, stamps, or small distractions and erase them locally with WebGPU or WASM."
+        },
+        "DataTools": {
+            "title": "Data Tools Suite",
+            "description": "JSON/CSV/Excel conversion, SQL formatting, and Slug generation."
+        },
+        "TextTools": {
+            "title": "Text & Content Suite",
+            "description": "Lorem Ipsum generator and Hangul processing tools."
+        },
+        "OcrTool": {
+            "title": "Image to Text (OCR)",
+            "description": "Extract text from images instantly using Tesseract OCR. Supports Korean, English, Japanese, and Chinese."
+        },
+        "SqlFormatter": {
+            "title": "SQL Formatter & Beautifier",
+            "description": "Format, validate, and convert XML to JSON with real-time error detection."
+        },
+        "XmlFormatter": {
+            "title": "XML Formatter & Validator",
+            "description": "Format, validate, and convert XML to JSON with real-time error detection.",
+            "copy": "Copied",
+            "copyJson": "JSON copied"
+        },
+        "BannerGenerator": {
+            "title": "Spring Boot Banner Generator",
+            "description": "Create stunning ASCII art banners with ANSI colors for your Spring Boot applications."
+        },
+        "PdfTools": {
+            "title": "PDF Tools",
+            "description": "All-in-one PDF utilities: Merge, Split, and Convert to Image."
+        },
+        "PdfMerge": {
+            "title": "Merge PDF",
+            "description": "Combine multiple PDF files into one for free. No file limits."
+        },
+        "PdfSplit": {
+            "title": "Split PDF",
+            "description": "Extract specific pages from a PDF file quickly."
+        },
+        "PdfToImage": {
+            "title": "PDF to Image",
+            "description": "Convert PDF pages to high-quality JPG or PNG images."
+        },
+        "HwpViewer": {
+            "title": "Document Viewer",
+            "description": "Instantly view HWP and DOCX files in your browser."
+        },
+        "Basic3dViewer": {
+            "title": "3D Model Viewer",
+            "description": "Preview and analyze 3D models (OBJ, STL, GLTF/GLB) directly in your browser."
+        },
+        "QrGenerator": {
+            "title": "QR Code Generator",
+            "description": "Generate customizable QR codes for URLs, text, email, and phone numbers."
+        },
+        "AesCrypto": {
+            "title": "AES-256 Encryption & Decryption",
+            "description": "Military-grade AES-256-GCM encryption with PBKDF2 key derivation. Encrypt and decrypt text 100% locally in your browser — no server uploads."
+        },
+        "BcryptGenerator": {
+            "title": "Bcrypt Generator",
+            "description": "Generate and verify Bcrypt passwords hashes for secure authentication."
+        },
+        "HmacGenerator": {
+            "title": "HMAC Generator",
+            "description": "Create Hash-based Message Authentication Codes (MD5, SHA1, SHA256)."
+        },
+        "RsaGenerator": {
+            "title": "RSA Key Generator",
+            "description": "Generate RSA Public and Private Key pairs (PEM format)."
+        },
+        "SecurityTools": {
+            "title": "Security & Encryption",
+            "description": "Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing."
+        },
+        "DevTools": {
+            "title": "Developer Tools",
+            "description": "Collection of developer utilities including Docker, permissions, and validation."
+        },
+        "YouTubeDownloader": {
+            "title": "YouTube Downloader",
+            "description": "High-quality YouTube video and audio downloader. Processed safely in your browser.",
+            "downloadBtn": "Download",
+            "advancedSettings": "Advanced Settings",
+            "inputPlaceholder": "Paste YouTube Link Here",
+            "formatMP4": "MP4 Video",
+            "formatMP3": "MP3 Audio",
+            "formatSRT": "Subtitles (SRT)",
+            "processing": "Processing...",
+            "analyze": "Analyze",
+            "analyzing": "Analyzing...",
+            "sizeUnknown": "Size unknown",
+            "emptyState": "Video details will appear here after analysis.",
+            "tabs": {
+                "video": "Video",
+                "audio": "Audio",
+                "subtitle": "Subtitle"
+            },
+            "noFormats": "No {type} formats found.",
+            "noteTitle": "Important Notes",
+            "note1": "Processing happens <strong>locally in your browser</strong>",
+            "note2": "Large videos may take time to merge",
+            "note3": "Please respect copyright laws",
+            "errors": {
+                "download": "Error downloading file.",
+                "emptyFile": "Downloaded file is empty. Please try another quality.",
+                "ffmpeg": "Failed to load FFmpeg engine.",
+                "fetch": "Fetch failed: {status}"
+            },
+            "steps": {
+                "loadingFFmpeg": "Loading FFmpeg core...",
+                "ready": "Ready",
+                "extracting": "Extracting video info...",
+                "downloadingVideo": "Downloading video track...",
+                "downloadingAudio": "Downloading audio track...",
+                "downloadingSubtitle": "Downloading subtitle...",
+                "muxing": "Merging video and audio...",
+                "completed": "Download Complete!",
+                "cancelled": "Download cancelled."
+            },
+            "cancel": "Cancel",
+            "speedNote": "Download speeds may be slow due to YouTube limitations and proxy relay.",
+            "flowTitle": "How it works",
+            "flowDesc": "This tool runs locally in your browser and does not upload your media to our servers.",
+            "flowStep1": "Analyze the YouTube link to discover available streams and subtitles.",
+            "flowStep2": "Download the selected video/audio stream through the proxy.",
+            "flowStep3": "Merge and export the file in your browser using FFmpeg.",
+            "proxyLabel": "Proxy URL",
+            "thumbnailAlt": "Video thumbnail preview",
+            "durationLabel": "Duration: {duration}s",
+            "subtitleLabel": "Subtitle ({lang})",
+            "errorTitle": "Error",
+            "limitationsTitle": "Limitations",
+            "limitationsDesc": "Downloads can be slow because streams are fetched through a proxy and processed locally in your browser. Large videos may take several minutes."
+        },
+        "TorrentHistory": {
+            "title": "IP Torrent History Check",
+            "description": "Analyze your public IP address to see torrent download traces and potential security risks."
+        },
+        "KSeries": {
+            "title": "Korean Tools Suite",
+            "description": "A collection of useful tools tailored for Korean users and services."
+        },
+        "JsonFormatter": {
+            "title": "JSON Formatter & Converter",
+            "description": "Format, validate, and convert JSON to YAML, CSV, and TypeScript types instantly."
+        },
+        "MarkdownPreview": {
+            "title": "Markdown Preview",
+            "description": "Write Markdown and instantly preview the rendered HTML output side by side."
+        },
+        "HtmlEntityEncoder": {
+            "title": "HTML Entity Encoder / Decoder",
+            "description": "Encode special characters to HTML entities and decode them back instantly."
+        },
+        "NumberBaseConverter": {
+            "title": "Number Base Converter",
+            "description": "Convert numbers between Binary, Octal, Decimal, and Hexadecimal with BigInt support."
+        },
+        "TextDiff": {
+            "title": "Text Diff",
+            "description": "Compare two texts side-by-side with line and word-level diff highlighting."
+        },
+        "WordCounter": {
+            "title": "Word Counter",
+            "description": "Count words, characters, sentences, paragraphs and estimate reading time instantly.",
+            "featureStats": "8 Statistics",
+            "featureStatsDesc": "Characters, words, sentences, paragraphs and more",
+            "featureReadingTime": "Reading Time",
+            "featureReadingTimeDesc": "Estimated reading and speaking time",
+            "featureRealtime": "Real-time",
+            "featureRealtimeDesc": "Statistics update instantly as you type"
+        },
+        "StringCaseConverter": {
+            "title": "String Case Converter",
+            "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case and 8 more formats."
+        },
+        "UuidGenerator": {
+            "title": "UUID Generator",
+            "description": "Generate UUID v4 and v7 with bulk generation and clipboard support."
+        },
+        "PasswordGenerator": {
+            "title": "Password Generator",
+            "description": "Generate secure random passwords with customizable length, characters, and strength meter."
+        },
+        "UnixTimestamp": {
+            "title": "Unix Timestamp Converter",
+            "description": "Two-way conversion between Unix timestamps and human-readable dates."
+        },
+        "MetaTagGenerator": {
+            "title": "Meta Tag Generator",
+            "description": "Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically."
+        },
+        "RobotsTxtGenerator": {
+            "title": "Robots.txt Generator",
+            "description": "Create robots.txt files for search engine crawlers with preset templates."
+        },
+        "SitemapGenerator": {
+            "title": "Sitemap Generator",
+            "description": "Add URLs and generate XML sitemap files to improve search engine indexing."
+        },
+        "ColorConverter": {
+            "title": "Color Converter",
+            "description": "Convert colors between HEX, RGB, and HSL formats with live preview and related colors."
+        },
+        "SubnetCalculator": {
+            "title": "IP Subnet Calculator",
+            "description": "Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR."
+        },
+        "CssMinifier": {
+            "title": "CSS Minifier / Beautifier",
+            "description": "Minify or beautify CSS code with size comparison and instant copy."
+        },
+        "JsonLdGenerator": {
+            "title": "JSON-LD Schema Generator",
+            "description": "Generate structured data (JSON-LD) for SEO. Supports Article, Product, FAQ, and more schema types."
+        },
+        "EnvEditor": {
+            "title": ".env File Editor",
+            "description": "Edit environment variable files (.env) and compare differences between two files side by side."
+        },
+        "TomlConverter": {
+            "title": "TOML/INI Converter",
+            "description": "Convert between TOML, INI, and JSON formats with auto-detection and live preview."
+        },
+        "HttpHeaderAnalyzer": {
+            "title": "HTTP Header Analyzer",
+            "description": "Analyze HTTP response headers from any URL and score security header configuration."
+        },
+        "SeoAnalyzer": {
+            "title": "SEO Analyzer",
+            "description": "Audit any public page for metadata, indexability, headings, social tags, structured data, and link health."
+        },
+        "WebhookTester": {
+            "title": "API Tester",
+            "description": "Send REST API requests directly from your browser and analyze responses with an HTTP client tool."
+        },
+        "GitDiffViewer": {
+            "title": "Git Diff Viewer",
+            "description": "Paste git diff or unified diff output to visualize changes with syntax highlighting."
+        },
+        "ExifViewer": {
+            "title": "Image EXIF Viewer & Remover",
+            "description": "View and remove EXIF metadata (camera, GPS, date) from images for privacy protection."
+        },
+        "ImageResizer": {
+            "title": "Image Resizer",
+            "description": "Resize images to custom or preset dimensions for social media platforms."
+        },
+        "SvgOptimizer": {
+            "title": "SVG Optimizer",
+            "description": "Optimize and minify SVG files by removing unnecessary data and reducing file size."
+        },
+        "ScreenshotBeautifier": {
+            "title": "Screenshot Beautifier",
+            "description": "Add device frames, backgrounds, and shadows to your screenshots for beautiful exports."
+        },
+        "TextToSpeech": {
+            "title": "Text to Speech (TTS)",
+            "description": "Convert text to natural speech with voice selection, speed, and pitch controls."
+        },
+        "WhoisLookup": {
+            "title": "Domain / DNS Lookup",
+            "description": "Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name."
+        },
+        "ImageCropper": {
+            "title": "Image Cropper",
+            "description": "Precisely crop, rotate, and flip images with 6 aspect ratio presets and rule-of-thirds grid overlay. All processing happens locally."
+        },
+        "ImageWatermark": {
+            "title": "Image Watermark",
+            "description": "Protect your images with custom text watermarks. Supports single placement, tiled patterns, adjustable opacity, font size, and color."
+        },
+        "ImageFilters": {
+            "title": "Image Filter & Effects",
+            "description": "Transform photos with 8 one-click presets (Vintage, B&W, Vivid, etc.) and fine-tune brightness, contrast, saturation, blur, sepia, and more."
+        },
+        "CollageMaker": {
+            "title": "Photo Collage Maker",
+            "description": "Combine multiple photos into stunning collages. Choose from 6 grid layouts, adjust gaps, rounded corners, background color, and export up to 3000px."
+        },
+        "MemeGenerator": {
+            "title": "Meme Generator",
+            "description": "Create viral-ready memes with classic Impact font text. Customize font size, stroke width, colors, and download as high-quality PNG."
+        },
+        "ColorPicker": {
+            "title": "Image Color Picker",
+            "description": "Extract precise colors from any image with a pixel-level magnifying loupe. Pick multiple colors and copy HEX, RGB, HSL values instantly."
+        },
+        "MarkdownToPdf": {
+            "title": "Markdown to PDF",
+            "description": "Write Markdown with a live side-by-side preview and export to beautifully styled PDF. Supports tables, code blocks, blockquotes, and more."
+        },
+        "CsvEditor": {
+            "title": "CSV Editor",
+            "description": "Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON."
+        },
+        "CodeFormatter": {
+            "title": "Code Formatter & Beautifier",
+            "description": "Instantly format and beautify JavaScript, TypeScript, JSON, CSS, HTML, and SQL. Configurable indent size, semicolons, and one-click minification."
+        },
+        "PomodoroTimer": {
+            "title": "Pomodoro Focus Timer",
+            "description": "Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking."
+        },
+        "ListSorter": {
+            "title": "List Sorter & Deduplicator",
+            "description": "Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly."
+        },
+        "JsonToTypes": {
+            "title": "JSON to TypeScript/Zod",
+            "description": "Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming."
+        },
+        "CurlToCode": {
+            "title": "CURL to Code Converter",
+            "description": "Convert CURL commands into ready-to-use code for JavaScript Fetch, Axios, Python Requests, and more."
+        },
+        "HtmlToJsx": {
+            "title": "HTML to JSX Converter",
+            "description": "Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className."
+        },
+        "MorseConverter": {
+            "title": "Morse Code Converter",
+            "description": "Translate text to Morse code and vice versa. Includes audio playback and visual signal support."
+        },
+        "LoanCalculator": {
+            "title": "Loan & Mortgage Calculator",
+            "description": "Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types."
+        },
+        "PassphraseGenerator": {
+            "title": "Diceware Passphrase Generator",
+            "description": "Generate highly secure yet memorable passwords using random word combinations (Diceware method)."
+        },
+        "PasswordStrength": {
+            "title": "Password Strength Analyzer",
+            "description": "Evaluate the security of your passwords with entropy analysis and estimated time to crack."
+        },
+        "YamlConverter": {
+            "title": "YAML / JSON Converter",
+            "description": "Convert between YAML and JSON formats with ease. Supports nested structures and error highlighting."
+        },
+        "TimeZoneConverter": {
+            "title": "Visual Time Zone Converter",
+            "description": "Compare times across different cities worldwide. Visual slider to see how time shifts across zones."
+        },
+        "AgeCalculator": {
+            "title": "Age Calculator",
+            "description": "Calculate exact age in years, months, days, and see how long until the next birthday."
+        },
+        "OvulationCalculator": {
+            "title": "Ovulation & Fertile Window Calculator",
+            "description": "Estimate your next ovulation day, fertile window, and expected next period from your cycle dates."
+        },
+        "BmiCalculator": {
+            "title": "BMI Calculator",
+            "description": "Check your body mass index, weight category, and healthy weight range with a quick height and weight estimate."
+        },
+        "TipCalculator": {
+            "title": "Tip Calculator",
+            "description": "Split restaurant bills, adjust the tip percentage, and see the per-person total instantly."
+        },
+        "DateCalculator": {
+            "title": "Date Calculator",
+            "description": "Measure the gap between two dates or add days, weeks, and months to any starting date."
+        },
+        "DDayCalculator": {
+            "title": "D-Day Countdown Calculator",
+            "description": "Count down to an important date or see how many days have passed since a milestone."
+        },
+        "PercentageCalculator": {
+            "title": "Percentage Calculator",
+            "description": "Handle everyday percentage math fast, from simple ratios to percentage increase or decrease."
+        },
+        "DiscountCalculator": {
+            "title": "Discount Calculator",
+            "description": "Calculate sale prices, coupon savings, and final checkout totals in seconds while you shop."
+        },
+        "SplitBillCalculator": {
+            "title": "Split Bill Calculator",
+            "description": "Split a meal or group payment with tax and tip included so everyone sees a fair per-person total."
+        },
+        "SleepCalculator": {
+            "title": "Sleep Calculator",
+            "description": "Plan better bedtimes and wake-up times around natural sleep cycles for a more rested routine."
+        },
+        "WaterIntakeCalculator": {
+            "title": "Water Intake Calculator",
+            "description": "Estimate a practical daily water target based on your weight, activity level, and preferred cup size."
+        },
+        "CalorieCalculator": {
+            "title": "Calorie Calculator",
+            "description": "Estimate daily calories for maintenance, mild fat loss, or gradual weight gain based on your body and activity."
+        },
+        "CompoundInterestCalculator": {
+            "title": "Compound Interest Calculator",
+            "description": "Project long-term savings growth with regular contributions, interest rate assumptions, and compounding frequency."
+        },
+        "TemperatureConverter": {
+            "title": "Temperature Converter",
+            "description": "Convert Celsius, Fahrenheit, and Kelvin instantly with quick reference points for freezing and boiling."
+        },
+        "BodyFatCalculator": {
+            "title": "Body Fat Calculator",
+            "description": "Estimate body fat percentage from practical body measurements and compare it with common fitness ranges."
+        },
+        "FuelCostCalculator": {
+            "title": "Fuel Cost Calculator",
+            "description": "Estimate trip fuel cost from distance, efficiency, and fuel price before you drive."
+        },
+        "FileSizeConverter": {
+            "title": "File Size Converter",
+            "description": "Convert file sizes between bytes, KB, MB, GB, and TB with quick storage references."
+        },
+        "RandomPicker": {
+            "title": "Random Picker",
+            "description": "Paste choices and let the tool pick one or several winners for meals, teams, or decisions."
+        },
+        "TextSimilarity": {
+            "title": "Text Similarity Checker",
+            "description": "Compare two texts and calculate their similarity percentage using advanced string algorithms."
+        },
+        "IcoConverter": {
+            "title": "Direct ICO Converter",
+            "description": "Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app."
+        },
+        "CssPattern": {
+            "title": "CSS Pattern Generator",
+            "description": "Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids."
+        },
+        "SvgVisualizer": {
+            "title": "SVG Path Visualizer",
+            "description": "Visualize and edit SVG path data (d attribute). See how changes to coordinates affect the drawing in real-time."
+        },
+        "ColorNameFinder": {
+            "title": "Color Name Finder",
+            "description": "Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support."
+        },
+        "LoremIpsum": {
+            "title": "Lorem Ipsum Generator",
+            "description": "Instantly generate and copy placeholder text by paragraphs, sentences, or words.",
+            "featureFlexible": "Flexible Options",
+            "featureFlexibleDesc": "Choose paragraphs, sentences, or words and set the amount",
+            "featureClassic": "Classic Lorem Ipsum",
+            "featureClassicDesc": "Optionally start with the traditional 'Lorem ipsum dolor sit amet'",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Generated entirely in your browser, never sent to a server"
+        },
+        "GitignoreGenerator": {
+            "title": ".gitignore Generator",
+            "description": "Pick languages, frameworks, and tools to build and download a .gitignore file instantly.",
+            "featureTemplates": "Many Templates",
+            "featureTemplatesDesc": "Node, Python, Java, macOS and other common stacks built in",
+            "featureCombine": "Combine Stacks",
+            "featureCombineDesc": "Select multiple templates and merge them into one file",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Generated entirely in your browser, never sent to a server"
+        },
+        "CubicBezier": {
+            "title": "Cubic Bezier Easing Generator",
+            "description": "Drag the curve to craft CSS cubic-bezier() easing values with a live animation preview.",
+            "featureVisual": "Visual Editing",
+            "featureVisualDesc": "Drag the handles to shape the curve directly",
+            "featurePreview": "Live Preview",
+            "featurePreviewDesc": "See the easing result instantly as an animation",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Runs entirely in your browser, never sent to a server"
+        },
+        "ColorContrastChecker": {
+            "title": "Color Contrast Checker",
+            "description": "Calculate the contrast ratio between text and background and check WCAG AA/AAA compliance instantly.",
+            "featureWcag": "WCAG Levels",
+            "featureWcagDesc": "Shows AA and AAA pass for normal and large text",
+            "featurePreview": "Live Preview",
+            "featurePreviewDesc": "Preview your color combination instantly",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Calculated entirely in your browser, never sent to a server"
+        },
+        "AspectRatioCalculator": {
+            "title": "Aspect Ratio Calculator",
+            "description": "Lock an aspect ratio and auto-calculate width and height, with the ratio simplified.",
+            "featureRatio": "Locked Ratio",
+            "featureRatioDesc": "Keep any ratio such as 16:9",
+            "featureInstant": "Instant Math",
+            "featureInstantDesc": "Change one value and the rest update automatically",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Calculated entirely in your browser, never sent to a server"
+        },
+        "CssClampGenerator": {
+            "title": "CSS clamp() Generator",
+            "description": "Generate responsive font sizes that scale smoothly with the viewport using clamp().",
+            "featureFluid": "Fluid Typography",
+            "featureFluidDesc": "Sizes interpolate linearly with the viewport",
+            "featureControl": "Fine Control",
+            "featureControlDesc": "Set min/max viewport and sizes precisely",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Calculated entirely in your browser, never sent to a server"
+        },
+        "RomanNumeralConverter": {
+            "title": "Roman Numeral Converter",
+            "description": "Convert between Arabic numbers and Roman numerals in both directions (1–3999).",
+            "featureBidirectional": "Two-Way",
+            "featureBidirectionalDesc": "Convert number ↔ Roman numeral instantly",
+            "featureRange": "1–3999 Range",
+            "featureRangeDesc": "Validates the standard Roman numeral range",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Converted entirely in your browser, never sent to a server"
+        },
+        "TextRepeater": {
+            "title": "Text Repeater",
+            "description": "Repeat any text a chosen number of times with a configurable separator.",
+            "featureCount": "Set Count",
+            "featureCountDesc": "Repeat up to 10,000 times",
+            "featureSeparator": "Separators",
+            "featureSeparatorDesc": "Choose newline, space, comma, or none",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Generated entirely in your browser, never sent to a server"
+        },
+        "MockDataGenerator": {
+            "title": "Mock Data Generator",
+            "description": "Pick fields like name, email, and phone to generate fake test data as JSON or CSV.",
+            "featureFields": "Pick Fields",
+            "featureFieldsDesc": "Combine fields like name, email, and UUID",
+            "featureFormat": "JSON & CSV",
+            "featureFormatDesc": "Export and download in both formats",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Generated entirely in your browser, never sent to a server"
+        },
+        "HtmlMinifier": {
+            "title": "HTML Minifier",
+            "description": "Shrink HTML by removing comments and extra whitespace, with a live size-saving readout.",
+            "featureMinify": "Safe Minify",
+            "featureMinifyDesc": "Preserves pre, script, and style contents",
+            "featureSavings": "Size Savings",
+            "featureSavingsDesc": "Shows the reduction versus the original in real time",
+            "featurePrivate": "Fully Local",
+            "featurePrivateDesc": "Processed entirely in your browser, never sent to a server"
+        }
     }
-  }
 }

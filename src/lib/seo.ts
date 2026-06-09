@@ -18,11 +18,13 @@ export function createToolMetadata({
   title,
   description,
   path,
+  keywords,
 }: {
   locale: string
   title: string
   description: string
   path: string
+  keywords?: string[]
 }): Metadata {
   const canonical = `${baseUrl}/${locale}${path}`
   const fullTitle = createSeoTitle(title)
@@ -32,6 +34,7 @@ export function createToolMetadata({
   return {
     title: fullTitle,
     description,
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
     robots: {
       index: true,
       follow: true,
