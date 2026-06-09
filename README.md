@@ -2,7 +2,7 @@
 
 ## 📋 Overview
 
-Open Tools is a comprehensive, free-to-use developer utilities platform built with modern web technologies. It currently ships **103 live tool routes**, and the homepage catalog in `src/lib/tools-catalog.ts` now covers all of them across 6 primary categories with an `AI` overlay tag for browser-side AI workflows.
+Open Tools is a comprehensive, free-to-use developer utilities platform built with modern web technologies. It currently ships **132 live tool routes**, and the homepage catalog in `src/lib/tools-catalog.ts` now covers all of them across 14 primary categories with `AI` and `Korea` overlay tags for specialized workflows.
 
 **Tech Stack:** Next.js 16 + React 19 + TypeScript + Tailwind CSS
 **Architecture:** Client-first processing with selective server APIs
@@ -14,23 +14,33 @@ Recent UX updates include a **personalized popular-tools ranking**: tools you us
 
 ## 🛠️ Current Tool Catalog
 
-The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 tools**, matching the full set of shipped `/tools/*` routes. The homepage uses six primary tags (`Development`, `Image`, `Video`, `Design`, `Security`, `Utilities`) plus an `AI` overlay tag for local AI workflows.
+The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 tools**, matching the full set of shipped `/tools/*` routes. The homepage groups them into 14 primary categories (`Finance`, `Health`, `Documents`, `Text`, `Data`, `Web`, `Network`, `Image`, `Video`, `Audio`, `Design`, `Development`, `Security`, `Utilities`) plus `AI` and `Korea` overlay tags for specialized workflows.
 
 ### Category Snapshot
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Development | 32 | Formatters, converters, generators, API tooling, SEO helpers, and developer suites |
+| Design | 18 | CSS generators, color/contrast tooling, SVG helpers, bezier easing, clamp, favicon, and screenshot polish |
+| Development | 15 | Formatters, converters, generators, .gitignore, mock data, HTML minify, and developer suites |
 | Image | 13 | Conversion, cleanup, metadata, collage, crop, meme, and watermark workflows |
-| Video | 4 | Suno, YouTube, local encoding, and 3D model preview |
-| Design | 14 | CSS generators, color tooling, SVG helpers, favicon creation, and screenshot polish |
-| Security | 12 | Encryption, hashing, JWT, passwords, passphrases, ports, and torrent-risk lookup |
-| Utilities | 28 | OCR, PDFs, DNS/IP tools, timers, Korean-language helpers, and general-purpose workflows |
+| Text | 11 | Diff, similarity, counters, case/morse/banner, repeater, and Lorem Ipsum |
+| Data | 11 | JSON/YAML/XML/TOML/SQL conversion, Base64, and number-base tooling |
+| Documents | 10 | OCR, PDFs, HWP/Markdown viewers, CSV, and file-size conversion |
+| Utilities | 10 | Timers, pickers, unit/timezone/roman conversion, and general-purpose helpers |
+| Web | 9 | SEO, meta/JSON-LD, robots/sitemap, headers, URL, and webhook tooling |
+| Finance | 7 | Loan, tip, discount, split-bill, interest, and fuel-cost calculators |
+| Health | 6 | BMI, body-fat, calorie, sleep, water-intake, and ovulation calculators |
+| Network | 6 | IP, subnet, port scan, WHOIS, speed test, and browser info |
+| Security | 11 | Encryption, hashing, JWT, passwords, passphrases, and torrent-risk lookup |
+| Video | 3 | Suno/YouTube downloaders and 3D model preview |
+| Audio | 2 | Suno downloader and text-to-speech |
 | AI (overlay) | 2 | Applied to browser-side image cleanup tools |
+| Korea (overlay) | 1 | Applied to Korean-specific tooling |
 
-### Development (32)
+### Development (36)
 
 - **.env File Editor** (`env-editor`): Edit environment variable files (.env) and compare differences between two files side by side.
+- **.gitignore Generator** (`gitignore-generator`): Pick languages, frameworks, and tools to build and download a combined .gitignore instantly.
 - **API Tester** (`webhook-tester`): Send REST API requests directly from your browser and analyze responses with an HTTP client tool.
 - **Base64 Encoder/Decoder** (`base64-converter`): Convert between text and Base64 in real-time with clipboard support.
 - **CSS Minifier / Beautifier** (`css-minifier`): Minify or beautify CSS code with size comparison and instant copy.
@@ -41,13 +51,16 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 
 - **Developer Tools** (`dev-tools`): Collection of developer utilities including Docker, permissions, and validation.
 - **Git Diff Viewer** (`git-diff-viewer`): Paste git diff or unified diff output to visualize changes with syntax highlighting.
 - **HTML Entity Encoder / Decoder** (`html-entity-encoder`): Encode special characters to HTML entities and decode them back instantly.
+- **HTML Minifier** (`html-minifier`): Shrink HTML by removing comments and whitespace while preserving pre, script, and style contents.
 - **HTML to JSX Converter** (`html-to-jsx`): Transform standard HTML code into React-compatible JSX. Automatically handles attribute mapping like class to className.
 - **HTTP Header Analyzer** (`http-header-analyzer`): Analyze HTTP response headers from any URL and score security header configuration.
 - **JSON Formatter & Converter** (`json-formatter`): Format, validate, and convert JSON to YAML, CSV, and TypeScript types instantly.
 - **JSON ↔ YAML Converter** (`json-yaml-converter`): Fast and clean conversion between JSON and YAML formats with syntax highlighting.
 - **JSON to TypeScript/Zod** (`json-to-types`): Automatically generate TypeScript interfaces and Zod schemas from your JSON data with custom naming.
 - **JSON-LD Schema Generator** (`json-ld-generator`): Generate structured data (JSON-LD) for SEO. Supports Article, Product, FAQ, and more schema types.
+- **Lorem Ipsum Generator** (`lorem-ipsum`): Generate placeholder text by paragraphs, sentences, or words, with an optional classic "Lorem ipsum" start.
 - **Meta Tag Generator** (`meta-tag-generator`): Generate SEO-optimized HTML meta tags, Open Graph, and Twitter Card code automatically.
+- **Mock Data Generator** (`mock-data-generator`): Pick fields like name, email, and phone to generate fake test data as JSON or CSV.
 - **Number Base Converter** (`number-base-converter`): Convert numbers between Binary, Octal, Decimal, and Hexadecimal with BigInt support.
 - **RegEx Tester** (`regex-tester`): Test and debug your regular expressions with real-time highlighting and group extraction.
 - **Robots.txt Generator** (`robots-txt-generator`): Create robots.txt files for search engine crawlers with preset templates.
@@ -86,15 +99,19 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 
 - **Suno AI Downloader** (`suno-downloader`): Download Suno.com songs easily by pasting sharing link. High-quality MP3 download.
 - **YouTube Downloader** (`youtube-downloader`): High-quality YouTube video and audio downloader. Processed safely in your browser.
 
-### Design (14)
+### Design (18)
 
+- **Aspect Ratio Calculator** (`aspect-ratio-calculator`): Lock an aspect ratio and auto-calculate width and height, with the ratio simplified.
 - **CSS Border Radius Generator** (`border-radius-generator`): Create complex CSS border-radius values visually with real-time feedback.
 - **CSS Box Shadow Generator** (`box-shadow-generator`): Design sleek CSS box shadow effects with control over intensity, color, and offset.
+- **CSS clamp() Generator** (`css-clamp-generator`): Generate responsive font sizes that scale smoothly with the viewport using clamp().
 - **CSS Glassmorphism Generator** (`glassmorphism`): Design sleek frosted-glass UI elements with real-time CSS code generation.
 - **CSS Gradient Generator** (`css-gradient-generator`): Visually generate linear and radial CSS gradients and copy the resulting code.
+- **Color Contrast Checker** (`color-contrast-checker`): Calculate text/background contrast ratio and check WCAG AA/AAA compliance instantly.
 - **Color Converter** (`color-converter`): Convert colors between HEX, RGB, and HSL formats with live preview and related colors.
 - **Color Name Finder** (`color-name-finder`): Pick any color to see its closest named match, live HEX/RGB values, and one-click copy support.
 - **Color Palette Extractor** (`color-palette`): Extract harmonious color palettes from any image using the Canvas API.
+- **Cubic Bezier Easing Generator** (`cubic-bezier`): Drag the curve to craft CSS cubic-bezier() easing values with a live animation preview.
 - **Favicon Generator** (`favicon-generator`): Generate multi-format favicons (ICO, PNG) from any image or text snippet.
 - **CSS Pattern Generator** (`css-pattern`): Create beautiful geometric background patterns using only CSS. Copy code for stripes, dots, and grids.
 - **Direct ICO Converter** (`ico-converter`): Convert PNG, JPG, or SVG images directly into .ico favicon files for your website or app.
@@ -118,7 +135,7 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 
 - **RSA Key Generator** (`rsa-generator`): Generate RSA Public and Private Key pairs (PEM format).
 - **Security & Encryption** (`security-tools`): Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing.
 
-### Utilities (28)
+### Utilities (30)
 
 - **CSV Editor** (`csv-editor`): Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON.
 - **Document Viewer** (`hwp-viewer`): Instantly view HWP and DOCX files in your browser.
@@ -138,9 +155,11 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **103 
 - **PDF Tools** (`pdf-tools`): All-in-one PDF utilities: Merge, Split, and Convert to Image.
 - **Pomodoro Focus Timer** (`pomodoro-timer`): Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking.
 - **QR Code Generator** (`qr-generator`): Generate customizable QR codes for URLs, text, email, and phone numbers.
+- **Roman Numeral Converter** (`roman-numeral-converter`): Convert between Arabic numbers and Roman numerals in both directions (1–3999).
 - **Split PDF** (`pdf-split`): Extract specific pages from a PDF file quickly.
 - **Text & Content Suite** (`text-tools`): Lorem Ipsum generator and Hangul processing tools.
 - **Text Diff** (`text-diff`): Compare two texts side-by-side with line and word-level diff highlighting.
+- **Text Repeater** (`text-repeater`): Repeat any text a chosen number of times with a configurable separator.
 - **Text Similarity Checker** (`text-similarity`): Compare two texts and calculate their similarity percentage using advanced string algorithms.
 - **Text to Speech (TTS)** (`text-to-speech`): Convert text to natural speech with voice selection, speed, and pitch controls.
 - **URL Encoder/Decoder** (`url-converter`): Safe and fast URL encoding/decoding for developers.
@@ -383,17 +402,26 @@ docker run -p 3033:3033 \
 
 | Group | Count | Coverage |
 |------|------:|----------|
-| Development | 32 | Formatters, converters, generators, API tooling, SEO helpers, and developer suites |
-| Utilities | 28 | OCR, PDFs, document viewing, DNS/IP/network checks, Korean-language helpers, and general workflows |
+| Design | 18 | CSS generators, color/contrast, SVG, bezier easing, clamp, favicon, and screenshot polish |
+| Development | 15 | Formatters, converters, generators, .gitignore, mock data, HTML minify, and developer suites |
 | Image | 13 | Conversion, compression, cleanup, metadata, crop, collage, watermarking, and meme creation |
-| Design | 14 | CSS generators, palette tools, favicon creation, SVG optimization, visualization, and screenshot polish |
-| Security | 12 | Encryption, hashing, JWT, passwords, passphrases, ports, and torrent-risk inspection |
-| Video | 4 | Suno, YouTube, local encoding, and 3D model preview |
+| Text | 11 | Diff, similarity, counters, case/morse/banner, repeater, and Lorem Ipsum |
+| Data | 11 | JSON/YAML/XML/TOML/SQL conversion, Base64, and number-base tooling |
+| Documents | 10 | OCR, PDFs, HWP/Markdown viewing, CSV, and file-size conversion |
+| Utilities | 10 | Timers, pickers, unit/timezone/roman conversion, and general workflows |
+| Web | 9 | SEO, meta/JSON-LD, robots/sitemap, headers, URL, and webhook tooling |
+| Finance | 7 | Loan, tip, discount, split-bill, interest, and fuel-cost calculators |
+| Health | 6 | BMI, body-fat, calorie, sleep, water-intake, and ovulation calculators |
+| Network | 6 | IP, subnet, port scan, WHOIS, speed test, and browser info |
+| Security | 11 | Encryption, hashing, JWT, passwords, passphrases, and torrent-risk inspection |
+| Video | 3 | Suno/YouTube downloaders and 3D model preview |
+| Audio | 2 | Suno downloader and text-to-speech |
 | AI overlay* | 2 | Local AI-assisted image cleanup tools |
-| **Homepage catalog total** | **103** | Live catalog defined in `src/lib/tools-catalog.ts` |
-| **Full shipped route total** | **103** | Homepage catalog matches all live `/tools/*` routes |
+| Korea overlay* | 1 | Korean-specific tooling |
+| **Homepage catalog total** | **132** | Live catalog defined in `src/lib/tools-catalog.ts` |
+| **Full shipped route total** | **132** | Homepage catalog matches all live `/tools/*` routes |
 
-\* `AI` is a secondary overlay tag, so those tools are already counted in their primary category totals.
+\* `AI` and `Korea` are secondary overlay tags, so those tools are already counted in their primary category totals.
 
 ---
 
