@@ -873,9 +873,18 @@
             "step3": "Click 'Merge PDFs' to combine all files into a single PDF and download."
         },
         "features": {
-            "f1": { "title": "No File Limit", "desc": "Merge as many PDF files as you need at once." },
-            "f2": { "title": "Reorder Pages", "desc": "Drag and drop to reorder files before merging." },
-            "f3": { "title": "100% Local", "desc": "Files never leave your browser. Private and secure." }
+            "f1": {
+                "title": "No File Limit",
+                "desc": "Merge as many PDF files as you need at once."
+            },
+            "f2": {
+                "title": "Reorder Pages",
+                "desc": "Drag and drop to reorder files before merging."
+            },
+            "f3": {
+                "title": "100% Local",
+                "desc": "Files never leave your browser. Private and secure."
+            }
         }
     },
     "PdfSplit": {
@@ -1074,12 +1083,30 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "AES-256-GCM", "desc": "Military-grade encryption standard used by governments and financial institutions worldwide." },
-            "f2": { "title": "PBKDF2 Key Derivation", "desc": "100,000 iterations of PBKDF2-SHA256 make brute-force attacks computationally infeasible." },
-            "f3": { "title": "Unique Salt & IV", "desc": "Every encryption generates random Salt and IV, so the same text always produces different output." },
-            "f4": { "title": "100% Browser-Based", "desc": "Uses the native Web Crypto API. No data is ever sent to any server — everything runs locally." },
-            "f5": { "title": "Password Strength Meter", "desc": "Real-time feedback on password strength helps you choose a secure key." },
-            "f6": { "title": "Base64 Output", "desc": "Encrypted output is a single Base64 string — easy to copy, paste, and share via any channel." }
+            "f1": {
+                "title": "AES-256-GCM",
+                "desc": "Military-grade encryption standard used by governments and financial institutions worldwide."
+            },
+            "f2": {
+                "title": "PBKDF2 Key Derivation",
+                "desc": "100,000 iterations of PBKDF2-SHA256 make brute-force attacks computationally infeasible."
+            },
+            "f3": {
+                "title": "Unique Salt & IV",
+                "desc": "Every encryption generates random Salt and IV, so the same text always produces different output."
+            },
+            "f4": {
+                "title": "100% Browser-Based",
+                "desc": "Uses the native Web Crypto API. No data is ever sent to any server — everything runs locally."
+            },
+            "f5": {
+                "title": "Password Strength Meter",
+                "desc": "Real-time feedback on password strength helps you choose a secure key."
+            },
+            "f6": {
+                "title": "Base64 Output",
+                "desc": "Encrypted output is a single Base64 string — easy to copy, paste, and share via any channel."
+            }
         }
     },
     "DataTools": {
@@ -2009,10 +2036,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Aspect Ratio Presets", "desc": "6 built-in presets: Free, 1:1, 4:3, 16:9, 9:16, 3:2 for quick cropping." },
-            "f2": { "title": "Rule of Thirds Grid", "desc": "Overlay grid helps you compose shots following the rule of thirds." },
-            "f3": { "title": "Rotate & Flip", "desc": "Rotate 90° and flip horizontally or vertically with one click." },
-            "f4": { "title": "100% Local Processing", "desc": "Your images never leave your browser. No server uploads." }
+            "f1": {
+                "title": "Aspect Ratio Presets",
+                "desc": "6 built-in presets: Free, 1:1, 4:3, 16:9, 9:16, 3:2 for quick cropping."
+            },
+            "f2": {
+                "title": "Rule of Thirds Grid",
+                "desc": "Overlay grid helps you compose shots following the rule of thirds."
+            },
+            "f3": {
+                "title": "Rotate & Flip",
+                "desc": "Rotate 90° and flip horizontally or vertically with one click."
+            },
+            "f4": {
+                "title": "100% Local Processing",
+                "desc": "Your images never leave your browser. No server uploads."
+            }
         }
     },
     "ImageWatermark": {
@@ -2039,10 +2078,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Tiled Watermark", "desc": "Repeat watermark across the entire image with adjustable rotation angle." },
-            "f2": { "title": "6 Position Options", "desc": "Place watermark at any corner, center, or use full-tile coverage." },
-            "f3": { "title": "Fine-tune Controls", "desc": "Adjust font size (12-120px), opacity (5-100%), and any color." },
-            "f4": { "title": "Non-destructive", "desc": "Original image stays untouched. A new watermarked copy is created." }
+            "f1": {
+                "title": "Tiled Watermark",
+                "desc": "Repeat watermark across the entire image with adjustable rotation angle."
+            },
+            "f2": {
+                "title": "6 Position Options",
+                "desc": "Place watermark at any corner, center, or use full-tile coverage."
+            },
+            "f3": {
+                "title": "Fine-tune Controls",
+                "desc": "Adjust font size (12-120px), opacity (5-100%), and any color."
+            },
+            "f4": {
+                "title": "Non-destructive",
+                "desc": "Original image stays untouched. A new watermarked copy is created."
+            }
         }
     },
     "ImageFilters": {
@@ -2073,10 +2124,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "8 One-Click Presets", "desc": "Vintage, B&W, Warm, Cool, Dramatic, Fade, Vivid — apply instantly." },
-            "f2": { "title": "8 Adjustment Sliders", "desc": "Fine-tune brightness, contrast, saturation, blur, grayscale, sepia, hue, invert." },
-            "f3": { "title": "Live Preview", "desc": "See filter changes in real-time as you adjust any slider or select a preset." },
-            "f4": { "title": "Full Resolution Export", "desc": "Download the filtered image at the original resolution, not a thumbnail." }
+            "f1": {
+                "title": "8 One-Click Presets",
+                "desc": "Vintage, B&W, Warm, Cool, Dramatic, Fade, Vivid — apply instantly."
+            },
+            "f2": {
+                "title": "8 Adjustment Sliders",
+                "desc": "Fine-tune brightness, contrast, saturation, blur, grayscale, sepia, hue, invert."
+            },
+            "f3": {
+                "title": "Live Preview",
+                "desc": "See filter changes in real-time as you adjust any slider or select a preset."
+            },
+            "f4": {
+                "title": "Full Resolution Export",
+                "desc": "Download the filtered image at the original resolution, not a thumbnail."
+            }
         }
     },
     "CollageMaker": {
@@ -2100,10 +2163,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "6 Grid Layouts", "desc": "Choose from 2×1, 1×2, 2×2, 3×1, 1×3, or 3×3 arrangements." },
-            "f2": { "title": "Smart Crop", "desc": "Images are automatically cropped to fit each cell with cover-fit scaling." },
-            "f3": { "title": "Custom Styling", "desc": "Adjust gap, border radius, background color, and export size up to 3000px." },
-            "f4": { "title": "Drag & Drop Upload", "desc": "Add multiple images at once by dragging files into the tool." }
+            "f1": {
+                "title": "6 Grid Layouts",
+                "desc": "Choose from 2×1, 1×2, 2×2, 3×1, 1×3, or 3×3 arrangements."
+            },
+            "f2": {
+                "title": "Smart Crop",
+                "desc": "Images are automatically cropped to fit each cell with cover-fit scaling."
+            },
+            "f3": {
+                "title": "Custom Styling",
+                "desc": "Adjust gap, border radius, background color, and export size up to 3000px."
+            },
+            "f4": {
+                "title": "Drag & Drop Upload",
+                "desc": "Add multiple images at once by dragging files into the tool."
+            }
         }
     },
     "MemeGenerator": {
@@ -2132,10 +2207,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Classic Impact Font", "desc": "Bold uppercase Impact text with configurable stroke for maximum readability." },
-            "f2": { "title": "Auto Word Wrap", "desc": "Long text automatically wraps to multiple lines within the image bounds." },
-            "f3": { "title": "Color Customization", "desc": "Choose any text fill color and stroke color with a color picker." },
-            "f4": { "title": "High Quality Export", "desc": "Download at original image resolution — no quality loss or downscaling." }
+            "f1": {
+                "title": "Classic Impact Font",
+                "desc": "Bold uppercase Impact text with configurable stroke for maximum readability."
+            },
+            "f2": {
+                "title": "Auto Word Wrap",
+                "desc": "Long text automatically wraps to multiple lines within the image bounds."
+            },
+            "f3": {
+                "title": "Color Customization",
+                "desc": "Choose any text fill color and stroke color with a color picker."
+            },
+            "f4": {
+                "title": "High Quality Export",
+                "desc": "Download at original image resolution — no quality loss or downscaling."
+            }
         }
     },
     "ColorPicker": {
@@ -2157,10 +2244,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Pixel-Level Loupe", "desc": "Magnifying glass shows a zoomed grid of pixels around your cursor position." },
-            "f2": { "title": "Multiple Picks", "desc": "Pick as many colors as you need — all saved in the color history panel." },
-            "f3": { "title": "3 Color Formats", "desc": "Every pick shows HEX, RGB, and HSL values ready to copy." },
-            "f4": { "title": "One-Click Copy", "desc": "Click any color value to instantly copy it to your clipboard." }
+            "f1": {
+                "title": "Pixel-Level Loupe",
+                "desc": "Magnifying glass shows a zoomed grid of pixels around your cursor position."
+            },
+            "f2": {
+                "title": "Multiple Picks",
+                "desc": "Pick as many colors as you need — all saved in the color history panel."
+            },
+            "f3": {
+                "title": "3 Color Formats",
+                "desc": "Every pick shows HEX, RGB, and HSL values ready to copy."
+            },
+            "f4": {
+                "title": "One-Click Copy",
+                "desc": "Click any color value to instantly copy it to your clipboard."
+            }
         }
     },
     "MarkdownToPdf": {
@@ -2184,10 +2283,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Live Preview", "desc": "Side-by-side editor and preview update in real time as you type." },
-            "f2": { "title": "Rich Syntax Support", "desc": "Headings, bold, italic, lists, tables, code blocks, blockquotes, images, links." },
-            "f3": { "title": "PDF Export", "desc": "Print-to-PDF with beautiful typography, syntax-highlighted code, and styled tables." },
-            "f4": { "title": "Copy as HTML", "desc": "Export the rendered HTML for embedding in websites or email templates." }
+            "f1": {
+                "title": "Live Preview",
+                "desc": "Side-by-side editor and preview update in real time as you type."
+            },
+            "f2": {
+                "title": "Rich Syntax Support",
+                "desc": "Headings, bold, italic, lists, tables, code blocks, blockquotes, images, links."
+            },
+            "f3": {
+                "title": "PDF Export",
+                "desc": "Print-to-PDF with beautiful typography, syntax-highlighted code, and styled tables."
+            },
+            "f4": {
+                "title": "Copy as HTML",
+                "desc": "Export the rendered HTML for embedding in websites or email templates."
+            }
         }
     },
     "CsvEditor": {
@@ -2211,10 +2322,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Spreadsheet UI", "desc": "Familiar table interface with click-to-edit cells, similar to Excel or Google Sheets." },
-            "f2": { "title": "Import & Export", "desc": "Load CSV files and export as CSV or JSON with proper escaping and formatting." },
-            "f3": { "title": "Dynamic Rows & Columns", "desc": "Add or remove rows and columns on the fly with toolbar buttons." },
-            "f4": { "title": "Clipboard Support", "desc": "Copy the entire CSV content to clipboard with one click." }
+            "f1": {
+                "title": "Spreadsheet UI",
+                "desc": "Familiar table interface with click-to-edit cells, similar to Excel or Google Sheets."
+            },
+            "f2": {
+                "title": "Import & Export",
+                "desc": "Load CSV files and export as CSV or JSON with proper escaping and formatting."
+            },
+            "f3": {
+                "title": "Dynamic Rows & Columns",
+                "desc": "Add or remove rows and columns on the fly with toolbar buttons."
+            },
+            "f4": {
+                "title": "Clipboard Support",
+                "desc": "Copy the entire CSV content to clipboard with one click."
+            }
         }
     },
     "CodeFormatter": {
@@ -2241,10 +2364,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "6 Languages", "desc": "Supports JavaScript, TypeScript, JSON, CSS, HTML, and SQL formatting." },
-            "f2": { "title": "Configurable Style", "desc": "Choose indent size (2 or 4), toggle semicolons for JS/TS code." },
-            "f3": { "title": "Format & Minify", "desc": "Beautify code for readability or minify it for production in one click." },
-            "f4": { "title": "Character Counter", "desc": "Track input and output character counts to see compression savings." }
+            "f1": {
+                "title": "6 Languages",
+                "desc": "Supports JavaScript, TypeScript, JSON, CSS, HTML, and SQL formatting."
+            },
+            "f2": {
+                "title": "Configurable Style",
+                "desc": "Choose indent size (2 or 4), toggle semicolons for JS/TS code."
+            },
+            "f3": {
+                "title": "Format & Minify",
+                "desc": "Beautify code for readability or minify it for production in one click."
+            },
+            "f4": {
+                "title": "Character Counter",
+                "desc": "Track input and output character counts to see compression savings."
+            }
         }
     },
     "PomodoroTimer": {
@@ -2273,10 +2408,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Circular Progress", "desc": "Beautiful animated SVG ring shows remaining time at a glance." },
-            "f2": { "title": "Auto Phase Switching", "desc": "Automatically transitions between focus, short break, and long break." },
-            "f3": { "title": "Session Tracking", "desc": "Track completed pomodoros, total focus minutes, and progress to long break." },
-            "f4": { "title": "Sound Alerts", "desc": "Audio notification plays when each phase ends. Toggle on/off anytime." }
+            "f1": {
+                "title": "Circular Progress",
+                "desc": "Beautiful animated SVG ring shows remaining time at a glance."
+            },
+            "f2": {
+                "title": "Auto Phase Switching",
+                "desc": "Automatically transitions between focus, short break, and long break."
+            },
+            "f3": {
+                "title": "Session Tracking",
+                "desc": "Track completed pomodoros, total focus minutes, and progress to long break."
+            },
+            "f4": {
+                "title": "Sound Alerts",
+                "desc": "Audio notification plays when each phase ends. Toggle on/off anytime."
+            }
         }
     },
     "ListSorter": {
@@ -2306,10 +2453,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Smart Sorting", "desc": "Sort lists ascending (A-Z) or descending (Z-A) instantly." },
-            "f2": { "title": "Deduplication", "desc": "Identify and remove duplicate lines with a single click." },
-            "f3": { "title": "Cleaning Tools", "desc": "Trim leading/trailing whitespace and remove empty lines automatically." },
-            "f4": { "title": "Real-time Stats", "desc": "Track item counts and see how many duplicates were removed." }
+            "f1": {
+                "title": "Smart Sorting",
+                "desc": "Sort lists ascending (A-Z) or descending (Z-A) instantly."
+            },
+            "f2": {
+                "title": "Deduplication",
+                "desc": "Identify and remove duplicate lines with a single click."
+            },
+            "f3": {
+                "title": "Cleaning Tools",
+                "desc": "Trim leading/trailing whitespace and remove empty lines automatically."
+            },
+            "f4": {
+                "title": "Real-time Stats",
+                "desc": "Track item counts and see how many duplicates were removed."
+            }
         }
     },
     "JsonToTypes": {
@@ -2335,11 +2494,24 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Multiple Formats", "desc": "Generate TypeScript Interfaces, Type aliases, or Zod validation schemas." },
-            "f2": { "title": "Nested Support", "desc": "Automatically handles complex nested objects and arrays." },
-            "f3": { "title": "Smart Naming", "desc": "Customizable root name and intelligent property naming." },
-            "f4": { "title": "Offline-first", "desc": "All conversion happens locally in your browser for maximum privacy." }
-        }
+            "f1": {
+                "title": "Multiple Formats",
+                "desc": "Generate TypeScript Interfaces, Type aliases, or Zod validation schemas."
+            },
+            "f2": {
+                "title": "Nested Support",
+                "desc": "Automatically handles complex nested objects and arrays."
+            },
+            "f3": {
+                "title": "Smart Naming",
+                "desc": "Customizable root name and intelligent property naming."
+            },
+            "f4": {
+                "title": "Offline-first",
+                "desc": "All conversion happens locally in your browser for maximum privacy."
+            }
+        },
+        "outputPlaceholder": "Generated code will appear here..."
     },
     "CurlToCode": {
         "title": "CURL to Code Converter",
@@ -2359,10 +2531,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Multi-language Support", "desc": "Convert to JavaScript (Fetch/Axios), Python (Requests), PHP, and more." },
-            "f2": { "title": "Header Parsing", "desc": "Automatically extracts headers, cookies, and authentication tokens." },
-            "f3": { "title": "Data Handling", "desc": "Supports JSON payloads, form data, and query parameters." },
-            "f4": { "title": "Instant Conversion", "desc": "Real-time code generation as you paste or modify the command." }
+            "f1": {
+                "title": "Multi-language Support",
+                "desc": "Convert to JavaScript (Fetch/Axios), Python (Requests), PHP, and more."
+            },
+            "f2": {
+                "title": "Header Parsing",
+                "desc": "Automatically extracts headers, cookies, and authentication tokens."
+            },
+            "f3": {
+                "title": "Data Handling",
+                "desc": "Supports JSON payloads, form data, and query parameters."
+            },
+            "f4": {
+                "title": "Instant Conversion",
+                "desc": "Real-time code generation as you paste or modify the command."
+            }
         }
     },
     "HtmlToJsx": {
@@ -2381,17 +2565,38 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Attribute Mapping", "desc": "Automatically converts kebab-case attributes to React's camelCase." },
-            "f2": { "title": "Inline Style Conversion", "desc": "Transforms string-based styles into React style objects." },
-            "f3": { "title": "Self-closing Tags", "desc": "Ensures all tags like <img> and <br> are properly closed for JSX." },
-            "f4": { "title": "Clean Output", "desc": "Removes unnecessary HTML comments and formats the resulting code." }
+            "f1": {
+                "title": "Attribute Mapping",
+                "desc": "Automatically converts kebab-case attributes to React's camelCase."
+            },
+            "f2": {
+                "title": "Inline Style Conversion",
+                "desc": "Transforms string-based styles into React style objects."
+            },
+            "f3": {
+                "title": "Self-closing Tags",
+                "desc": "Ensures all tags like <img> and <br> are properly closed for JSX."
+            },
+            "f4": {
+                "title": "Clean Output",
+                "desc": "Removes unnecessary HTML comments and formats the resulting code."
+            }
         }
     },
     "HtmlEntityEncoder": {
         "features": {
-            "f1": { "title": "Encode & Decode", "desc": "Switch between plain text and HTML entities without leaving the page." },
-            "f2": { "title": "Safer Rendering", "desc": "Prepare untrusted snippets for display by escaping risky characters first." },
-            "f3": { "title": "Named & Numeric", "desc": "Work with common named entities and numeric references in the same flow." }
+            "f1": {
+                "title": "Encode & Decode",
+                "desc": "Switch between plain text and HTML entities without leaving the page."
+            },
+            "f2": {
+                "title": "Safer Rendering",
+                "desc": "Prepare untrusted snippets for display by escaping risky characters first."
+            },
+            "f3": {
+                "title": "Named & Numeric",
+                "desc": "Work with common named entities and numeric references in the same flow."
+            }
         }
     },
     "MorseConverter": {
@@ -2414,10 +2619,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Two-way Translation", "desc": "Seamlessly switch between text-to-morse and morse-to-text." },
-            "f2": { "title": "Audio Playback", "desc": "Hear the morse code sequence with high-quality synthesized beeps." },
-            "f3": { "title": "Visual Support", "desc": "Characters are mapped according to international Morse code standards." },
-            "f4": { "title": "Real-time Processing", "desc": "Translation updates instantly as you type each character." }
+            "f1": {
+                "title": "Two-way Translation",
+                "desc": "Seamlessly switch between text-to-morse and morse-to-text."
+            },
+            "f2": {
+                "title": "Audio Playback",
+                "desc": "Hear the morse code sequence with high-quality synthesized beeps."
+            },
+            "f3": {
+                "title": "Visual Support",
+                "desc": "Characters are mapped according to international Morse code standards."
+            },
+            "f4": {
+                "title": "Real-time Processing",
+                "desc": "Translation updates instantly as you type each character."
+            }
         }
     },
     "LoanCalculator": {
@@ -2446,10 +2663,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Multiple Methods", "desc": "Supports all major repayment types used by banks and financial institutions." },
-            "f2": { "title": "Dynamic Charts", "desc": "Visual representation of principal vs. interest components over time." },
-            "f3": { "title": "Full Schedule", "desc": "Generates a complete month-by-month breakdown of every payment." },
-            "f4": { "title": "Instant Updates", "desc": "Calculates results immediately as you change any loan parameter." }
+            "f1": {
+                "title": "Multiple Methods",
+                "desc": "Supports all major repayment types used by banks and financial institutions."
+            },
+            "f2": {
+                "title": "Dynamic Charts",
+                "desc": "Visual representation of principal vs. interest components over time."
+            },
+            "f3": {
+                "title": "Full Schedule",
+                "desc": "Generates a complete month-by-month breakdown of every payment."
+            },
+            "f4": {
+                "title": "Instant Updates",
+                "desc": "Calculates results immediately as you change any loan parameter."
+            }
         }
     },
     "PassphraseGenerator": {
@@ -2470,11 +2699,25 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "High Entropy", "desc": "Mathematically more secure than short complex passwords like 'P@ssw0rd123'." },
-            "f2": { "title": "Memorable", "desc": "Uses real English words that create a mental image, making them easier to recall." },
-            "f3": { "title": "Customizable", "desc": "Adjust separators, case, and number additions to fit any site requirements." },
-            "f4": { "title": "Local Generation", "desc": "Passwords never leave your browser, ensuring absolute privacy." }
-        }
+            "f1": {
+                "title": "High Entropy",
+                "desc": "Mathematically more secure than short complex passwords like 'P@ssw0rd123'."
+            },
+            "f2": {
+                "title": "Memorable",
+                "desc": "Uses real English words that create a mental image, making them easier to recall."
+            },
+            "f3": {
+                "title": "Customizable",
+                "desc": "Adjust separators, case, and number additions to fit any site requirements."
+            },
+            "f4": {
+                "title": "Local Generation",
+                "desc": "Passwords never leave your browser, ensuring absolute privacy."
+            }
+        },
+        "settings": "Settings",
+        "entropy": "Estimated Entropy"
     },
     "PasswordStrength": {
         "title": "Password Strength Analyzer",
@@ -2496,10 +2739,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Crack Estimation", "desc": "Shows how long a standard PC would take to brute-force your password." },
-            "f2": { "title": "Real-time Feedback", "desc": "Visual progress bar changes color from red to green as strength increases." },
-            "f3": { "title": "Pattern Detection", "desc": "Identifies common patterns, sequences, and dictionary words." },
-            "f4": { "title": "Privacy First", "desc": "Your password is never sent to any server; all analysis is done locally." }
+            "f1": {
+                "title": "Crack Estimation",
+                "desc": "Shows how long a standard PC would take to brute-force your password."
+            },
+            "f2": {
+                "title": "Real-time Feedback",
+                "desc": "Visual progress bar changes color from red to green as strength increases."
+            },
+            "f3": {
+                "title": "Pattern Detection",
+                "desc": "Identifies common patterns, sequences, and dictionary words."
+            },
+            "f4": {
+                "title": "Privacy First",
+                "desc": "Your password is never sent to any server; all analysis is done locally."
+            }
         }
     },
     "YamlConverter": {
@@ -2520,10 +2775,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Auto Detection", "desc": "Automatically recognizes input format and highlights syntax errors." },
-            "f2": { "title": "Two-way Conversion", "desc": "Seamlessly switch between YAML and JSON representations." },
-            "f3": { "title": "Smart Formatting", "desc": "Outputs clean, indented code for maximum readability." },
-            "f4": { "title": "Nested Support", "desc": "Handles deeply nested objects and arrays without data loss." }
+            "f1": {
+                "title": "Auto Detection",
+                "desc": "Automatically recognizes input format and highlights syntax errors."
+            },
+            "f2": {
+                "title": "Two-way Conversion",
+                "desc": "Seamlessly switch between YAML and JSON representations."
+            },
+            "f3": {
+                "title": "Smart Formatting",
+                "desc": "Outputs clean, indented code for maximum readability."
+            },
+            "f4": {
+                "title": "Nested Support",
+                "desc": "Handles deeply nested objects and arrays without data loss."
+            }
         }
     },
     "TimeZoneConverter": {
@@ -2541,10 +2808,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Visual Timeline", "desc": "Interactive slider shows time shifts across all cities simultaneously." },
-            "f2": { "title": "Global Database", "desc": "Support for thousands of cities and all international time zones." },
-            "f3": { "title": "Meeting Planner", "desc": "Easily find overlapping working hours between different countries." },
-            "f4": { "title": "Local Storage", "desc": "Your selected cities are remembered for your next visit." }
+            "f1": {
+                "title": "Visual Timeline",
+                "desc": "Interactive slider shows time shifts across all cities simultaneously."
+            },
+            "f2": {
+                "title": "Global Database",
+                "desc": "Support for thousands of cities and all international time zones."
+            },
+            "f3": {
+                "title": "Meeting Planner",
+                "desc": "Easily find overlapping working hours between different countries."
+            },
+            "f4": {
+                "title": "Local Storage",
+                "desc": "Your selected cities are remembered for your next visit."
+            }
         }
     },
     "TextSimilarity": {
@@ -2562,10 +2841,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Levenshtein Algorithm", "desc": "Uses industry-standard algorithms to measure distance between strings." },
-            "f2": { "title": "Real-time Analysis", "desc": "See the percentage change instantly as you modify either text." },
-            "f3": { "title": "Side-by-side View", "desc": "Compare long documents easily with a synchronized layout." },
-            "f4": { "title": "Whitespace Handling", "desc": "Optionally ignore spaces and line breaks for more accurate matching." }
+            "f1": {
+                "title": "Levenshtein Algorithm",
+                "desc": "Uses industry-standard algorithms to measure distance between strings."
+            },
+            "f2": {
+                "title": "Real-time Analysis",
+                "desc": "See the percentage change instantly as you modify either text."
+            },
+            "f3": {
+                "title": "Side-by-side View",
+                "desc": "Compare long documents easily with a synchronized layout."
+            },
+            "f4": {
+                "title": "Whitespace Handling",
+                "desc": "Optionally ignore spaces and line breaks for more accurate matching."
+            }
         }
     },
     "IcoConverter": {
@@ -2582,10 +2873,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Multi-resolution", "desc": "Pack multiple sizes (16x16 to 256x256) into a single ICO file." },
-            "f2": { "title": "SVG Support", "desc": "Convert vector graphics directly to crisp icons without loss of quality." },
-            "f3": { "title": "No Uploads", "desc": "All image processing happens locally in your browser for privacy." },
-            "f4": { "title": "Transparency", "desc": "Full support for transparent backgrounds in PNG and SVG sources." }
+            "f1": {
+                "title": "Multi-resolution",
+                "desc": "Pack multiple sizes (16x16 to 256x256) into a single ICO file."
+            },
+            "f2": {
+                "title": "SVG Support",
+                "desc": "Convert vector graphics directly to crisp icons without loss of quality."
+            },
+            "f3": {
+                "title": "No Uploads",
+                "desc": "All image processing happens locally in your browser for privacy."
+            },
+            "f4": {
+                "title": "Transparency",
+                "desc": "Full support for transparent backgrounds in PNG and SVG sources."
+            }
         }
     },
     "CssPattern": {
@@ -2604,10 +2907,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Pure CSS", "desc": "No images required; patterns are generated using standard CSS gradients." },
-            "f2": { "title": "Live Preview", "desc": "See how the pattern looks full-screen as you adjust parameters." },
-            "f3": { "title": "Infinite Variety", "desc": "Combine multiple controls to create unique geometric textures." },
-            "f4": { "title": "Lightweight", "desc": "Fast loading backgrounds that don't add weight to your website assets." }
+            "f1": {
+                "title": "Pure CSS",
+                "desc": "No images required; patterns are generated using standard CSS gradients."
+            },
+            "f2": {
+                "title": "Live Preview",
+                "desc": "See how the pattern looks full-screen as you adjust parameters."
+            },
+            "f3": {
+                "title": "Infinite Variety",
+                "desc": "Combine multiple controls to create unique geometric textures."
+            },
+            "f4": {
+                "title": "Lightweight",
+                "desc": "Fast loading backgrounds that don't add weight to your website assets."
+            }
         }
     },
     "SvgVisualizer": {
@@ -2624,11 +2939,25 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Real-time Rendering", "desc": "Visual representation updates as soon as you type path commands." },
-            "f2": { "title": "Coordinate Mapping", "desc": "Clearly see how M, L, C, and Q commands shape the final vector." },
-            "f3": { "title": "Canvas Controls", "desc": "Zoom and pan the canvas to inspect fine details of the path." },
-            "f4": { "title": "Syntax Support", "desc": "Validates SVG path syntax and provides feedback on errors." }
-        }
+            "f1": {
+                "title": "Real-time Rendering",
+                "desc": "Visual representation updates as soon as you type path commands."
+            },
+            "f2": {
+                "title": "Coordinate Mapping",
+                "desc": "Clearly see how M, L, C, and Q commands shape the final vector."
+            },
+            "f3": {
+                "title": "Canvas Controls",
+                "desc": "Zoom and pan the canvas to inspect fine details of the path."
+            },
+            "f4": {
+                "title": "Syntax Support",
+                "desc": "Validates SVG path syntax and provides feedback on errors."
+            }
+        },
+        "copy": "Copy",
+        "clear": "Clear"
     },
     "ColorNameFinder": {
         "title": "Color Name Finder",
@@ -2646,10 +2975,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Closest Name Lookup", "desc": "Matches the selected color against the built-in named color database and surfaces the nearest name." },
-            "f2": { "title": "Live Color Readout", "desc": "See the selected swatch update instantly alongside HEX and RGB values." },
-            "f3": { "title": "Quick Selection", "desc": "Use the native color picker for fast visual exploration without leaving the page." },
-            "f4": { "title": "One-Click Copy", "desc": "Copy the current HEX value to your clipboard with a single click." }
+            "f1": {
+                "title": "Closest Name Lookup",
+                "desc": "Matches the selected color against the built-in named color database and surfaces the nearest name."
+            },
+            "f2": {
+                "title": "Live Color Readout",
+                "desc": "See the selected swatch update instantly alongside HEX and RGB values."
+            },
+            "f3": {
+                "title": "Quick Selection",
+                "desc": "Use the native color picker for fast visual exploration without leaving the page."
+            },
+            "f4": {
+                "title": "One-Click Copy",
+                "desc": "Copy the current HEX value to your clipboard with a single click."
+            }
         }
     },
     "WordCounter": {
@@ -2743,10 +3084,22 @@
         },
         "features": {
             "title": "What this tool checks",
-            "f1": { "title": "Metadata health", "desc": "Inspect title tags, meta descriptions, canonical URLs, robots directives, language, and viewport settings." },
-            "f2": { "title": "Indexability signals", "desc": "Surface noindex directives, redirects, HTTP status issues, and other crawl blockers quickly." },
-            "f3": { "title": "Content structure", "desc": "Review heading hierarchy, image alt coverage, and internal vs external link balance." },
-            "f4": { "title": "Social & schema", "desc": "Check Open Graph, Twitter cards, and structured data presence without browser extensions." }
+            "f1": {
+                "title": "Metadata health",
+                "desc": "Inspect title tags, meta descriptions, canonical URLs, robots directives, language, and viewport settings."
+            },
+            "f2": {
+                "title": "Indexability signals",
+                "desc": "Surface noindex directives, redirects, HTTP status issues, and other crawl blockers quickly."
+            },
+            "f3": {
+                "title": "Content structure",
+                "desc": "Review heading hierarchy, image alt coverage, and internal vs external link balance."
+            },
+            "f4": {
+                "title": "Social & schema",
+                "desc": "Check Open Graph, Twitter cards, and structured data presence without browser extensions."
+            }
         }
     },
     "AgeCalculator": {
@@ -2774,10 +3127,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Exact age breakdown", "desc": "Calculates years, months, and days instead of giving only a rough age." },
-            "f2": { "title": "Future or past dates", "desc": "Measure age on a future event date or any earlier milestone date." },
-            "f3": { "title": "Birthday countdown", "desc": "See how many days remain until the next birthday." },
-            "f4": { "title": "Life totals", "desc": "Summarizes total days and weeks for a more tangible snapshot of time lived." }
+            "f1": {
+                "title": "Exact age breakdown",
+                "desc": "Calculates years, months, and days instead of giving only a rough age."
+            },
+            "f2": {
+                "title": "Future or past dates",
+                "desc": "Measure age on a future event date or any earlier milestone date."
+            },
+            "f3": {
+                "title": "Birthday countdown",
+                "desc": "See how many days remain until the next birthday."
+            },
+            "f4": {
+                "title": "Life totals",
+                "desc": "Summarizes total days and weeks for a more tangible snapshot of time lived."
+            }
         }
     },
     "OvulationCalculator": {
@@ -2818,10 +3183,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Private local estimates", "desc": "All calculations happen in your browser without sending cycle details to a server." },
-            "f2": { "title": "Fertile window view", "desc": "See the likely fertile range as a simple date window instead of guessing day by day." },
-            "f3": { "title": "Next period planning", "desc": "Get a quick estimate of when the next period may begin based on your average cycle." },
-            "f4": { "title": "Careful wording", "desc": "Designed for personal planning with estimate-focused language instead of medical claims." }
+            "f1": {
+                "title": "Private local estimates",
+                "desc": "All calculations happen in your browser without sending cycle details to a server."
+            },
+            "f2": {
+                "title": "Fertile window view",
+                "desc": "See the likely fertile range as a simple date window instead of guessing day by day."
+            },
+            "f3": {
+                "title": "Next period planning",
+                "desc": "Get a quick estimate of when the next period may begin based on your average cycle."
+            },
+            "f4": {
+                "title": "Careful wording",
+                "desc": "Designed for personal planning with estimate-focused language instead of medical claims."
+            }
         }
     },
     "BmiCalculator": {
@@ -2851,10 +3228,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Fast BMI check", "desc": "Get your BMI score immediately from just two numbers." },
-            "f2": { "title": "Clear category label", "desc": "See whether your result lands in a lower, typical, or higher range." },
-            "f3": { "title": "Healthy range estimate", "desc": "View a practical weight range based on your height for quick context." },
-            "f4": { "title": "Everyday friendly", "desc": "Useful for routine check-ins, fitness goals, and simple self-tracking." }
+            "f1": {
+                "title": "Fast BMI check",
+                "desc": "Get your BMI score immediately from just two numbers."
+            },
+            "f2": {
+                "title": "Clear category label",
+                "desc": "See whether your result lands in a lower, typical, or higher range."
+            },
+            "f3": {
+                "title": "Healthy range estimate",
+                "desc": "View a practical weight range based on your height for quick context."
+            },
+            "f4": {
+                "title": "Everyday friendly",
+                "desc": "Useful for routine check-ins, fitness goals, and simple self-tracking."
+            }
         }
     },
     "TipCalculator": {
@@ -2875,10 +3264,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Quick tip slider", "desc": "Adjust the tip percentage with a simple slider for faster decisions." },
-            "f2": { "title": "Split bills fairly", "desc": "See exactly how much each person owes after the tip is included." },
-            "f3": { "title": "Live totals", "desc": "Watch the tip amount and final total update instantly as inputs change." },
-            "f4": { "title": "Simple restaurant math", "desc": "Perfect for dinner, coffee, taxis, and any small shared payments." }
+            "f1": {
+                "title": "Quick tip slider",
+                "desc": "Adjust the tip percentage with a simple slider for faster decisions."
+            },
+            "f2": {
+                "title": "Split bills fairly",
+                "desc": "See exactly how much each person owes after the tip is included."
+            },
+            "f3": {
+                "title": "Live totals",
+                "desc": "Watch the tip amount and final total update instantly as inputs change."
+            },
+            "f4": {
+                "title": "Simple restaurant math",
+                "desc": "Perfect for dinner, coffee, taxis, and any small shared payments."
+            }
         }
     },
     "DateCalculator": {
@@ -2909,10 +3310,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Date difference", "desc": "See the gap between two dates in days, weeks, and approximate months." },
-            "f2": { "title": "Offset calculator", "desc": "Add or subtract days, weeks, or months from any base date." },
-            "f3": { "title": "Planning helper", "desc": "Useful for travel, deadlines, subscriptions, and countdown planning." },
-            "f4": { "title": "Instant results", "desc": "All calculations update immediately as soon as the input changes." }
+            "f1": {
+                "title": "Date difference",
+                "desc": "See the gap between two dates in days, weeks, and approximate months."
+            },
+            "f2": {
+                "title": "Offset calculator",
+                "desc": "Add or subtract days, weeks, or months from any base date."
+            },
+            "f3": {
+                "title": "Planning helper",
+                "desc": "Useful for travel, deadlines, subscriptions, and countdown planning."
+            },
+            "f4": {
+                "title": "Instant results",
+                "desc": "All calculations update immediately as soon as the input changes."
+            }
         }
     },
     "DDayCalculator": {
@@ -2947,10 +3360,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Countdown or count-up", "desc": "See days remaining for future events or days passed since a past milestone." },
-            "f2": { "title": "Custom start date", "desc": "Compare two dates directly when you do not want to count from today." },
-            "f3": { "title": "Quick planning view", "desc": "Weeks and approximate months make long countdowns easier to scan." },
-            "f4": { "title": "Everyday friendly", "desc": "Useful for birthdays, exams, anniversaries, trips, launches, and personal goals." }
+            "f1": {
+                "title": "Countdown or count-up",
+                "desc": "See days remaining for future events or days passed since a past milestone."
+            },
+            "f2": {
+                "title": "Custom start date",
+                "desc": "Compare two dates directly when you do not want to count from today."
+            },
+            "f3": {
+                "title": "Quick planning view",
+                "desc": "Weeks and approximate months make long countdowns easier to scan."
+            },
+            "f4": {
+                "title": "Everyday friendly",
+                "desc": "Useful for birthdays, exams, anniversaries, trips, launches, and personal goals."
+            }
         }
     },
     "PercentageCalculator": {
@@ -2979,10 +3404,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Simple percent math", "desc": "Quickly find values like 15% of a bill, budget, or discount price." },
-            "f2": { "title": "Change tracking", "desc": "Compare two numbers to see how much something increased or decreased." },
-            "f3": { "title": "Dual-use layout", "desc": "Covers both one-off percentage questions and before-vs-after comparisons." },
-            "f4": { "title": "Daily practical use", "desc": "Helpful for discounts, savings, score changes, reports, and routine money math." }
+            "f1": {
+                "title": "Simple percent math",
+                "desc": "Quickly find values like 15% of a bill, budget, or discount price."
+            },
+            "f2": {
+                "title": "Change tracking",
+                "desc": "Compare two numbers to see how much something increased or decreased."
+            },
+            "f3": {
+                "title": "Dual-use layout",
+                "desc": "Covers both one-off percentage questions and before-vs-after comparisons."
+            },
+            "f4": {
+                "title": "Daily practical use",
+                "desc": "Helpful for discounts, savings, score changes, reports, and routine money math."
+            }
         }
     },
     "DiscountCalculator": {
@@ -3008,10 +3445,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Sale price math", "desc": "Instantly calculate how much a percentage discount removes from the original price." },
-            "f2": { "title": "Coupon-friendly", "desc": "Subtract an extra fixed coupon or promo amount after the main discount." },
-            "f3": { "title": "Shopping comparison", "desc": "Use the final price and total saved cards to compare deals between stores or apps." },
-            "f4": { "title": "Everyday checkout help", "desc": "Useful for online shopping, grocery apps, memberships, and seasonal sale events." }
+            "f1": {
+                "title": "Sale price math",
+                "desc": "Instantly calculate how much a percentage discount removes from the original price."
+            },
+            "f2": {
+                "title": "Coupon-friendly",
+                "desc": "Subtract an extra fixed coupon or promo amount after the main discount."
+            },
+            "f3": {
+                "title": "Shopping comparison",
+                "desc": "Use the final price and total saved cards to compare deals between stores or apps."
+            },
+            "f4": {
+                "title": "Everyday checkout help",
+                "desc": "Useful for online shopping, grocery apps, memberships, and seasonal sale events."
+            }
         }
     },
     "SplitBillCalculator": {
@@ -3037,10 +3486,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Tax and tip included", "desc": "See the full shared payment instead of doing tax and gratuity separately." },
-            "f2": { "title": "Fair per-person total", "desc": "Get a simple evenly split amount for each person in the group." },
-            "f3": { "title": "Restaurant and travel friendly", "desc": "Useful for meals, ride shares, drinks, and small group expenses." },
-            "f4": { "title": "Fast group math", "desc": "Change the number of people or percentages and watch the totals update immediately." }
+            "f1": {
+                "title": "Tax and tip included",
+                "desc": "See the full shared payment instead of doing tax and gratuity separately."
+            },
+            "f2": {
+                "title": "Fair per-person total",
+                "desc": "Get a simple evenly split amount for each person in the group."
+            },
+            "f3": {
+                "title": "Restaurant and travel friendly",
+                "desc": "Useful for meals, ride shares, drinks, and small group expenses."
+            },
+            "f4": {
+                "title": "Fast group math",
+                "desc": "Change the number of people or percentages and watch the totals update immediately."
+            }
         }
     },
     "SleepCalculator": {
@@ -3061,10 +3522,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Wake-up planning", "desc": "See bedtime suggestions that line up with common sleep cycle lengths." },
-            "f2": { "title": "Bedtime planning", "desc": "Start from the time you lie down and check good wake-up options." },
-            "f3": { "title": "Sleep latency included", "desc": "Adds time to fall asleep so the recommendations feel more realistic." },
-            "f4": { "title": "Routine friendly", "desc": "Useful for workdays, school nights, travel recovery, and general sleep planning." }
+            "f1": {
+                "title": "Wake-up planning",
+                "desc": "See bedtime suggestions that line up with common sleep cycle lengths."
+            },
+            "f2": {
+                "title": "Bedtime planning",
+                "desc": "Start from the time you lie down and check good wake-up options."
+            },
+            "f3": {
+                "title": "Sleep latency included",
+                "desc": "Adds time to fall asleep so the recommendations feel more realistic."
+            },
+            "f4": {
+                "title": "Routine friendly",
+                "desc": "Useful for workdays, school nights, travel recovery, and general sleep planning."
+            }
         }
     },
     "WaterIntakeCalculator": {
@@ -3090,10 +3563,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Weight-based estimate", "desc": "Starts with a simple body-weight formula for a practical baseline target." },
-            "f2": { "title": "Activity adjustment", "desc": "Adds extra water when your day includes more walking, workouts, or active time." },
-            "f3": { "title": "Cup-friendly planning", "desc": "Turns the total into an easy daily cup count based on your usual glass or bottle size." },
-            "f4": { "title": "Steady routine support", "desc": "Helps you space water intake through the day instead of trying to catch up late." }
+            "f1": {
+                "title": "Weight-based estimate",
+                "desc": "Starts with a simple body-weight formula for a practical baseline target."
+            },
+            "f2": {
+                "title": "Activity adjustment",
+                "desc": "Adds extra water when your day includes more walking, workouts, or active time."
+            },
+            "f3": {
+                "title": "Cup-friendly planning",
+                "desc": "Turns the total into an easy daily cup count based on your usual glass or bottle size."
+            },
+            "f4": {
+                "title": "Steady routine support",
+                "desc": "Helps you space water intake through the day instead of trying to catch up late."
+            }
         }
     },
     "CalorieCalculator": {
@@ -3129,10 +3614,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Maintenance estimate", "desc": "Get a realistic baseline calorie target based on your body size and activity." },
-            "f2": { "title": "Mild cut and gain targets", "desc": "See practical numbers for a small deficit or surplus without extreme assumptions." },
-            "f3": { "title": "Protein range", "desc": "Use the suggested protein range to plan meals around recovery and satiety." },
-            "f4": { "title": "Simple daily planning", "desc": "Helpful for dieting, maintaining weight, or gradually increasing intake." }
+            "f1": {
+                "title": "Maintenance estimate",
+                "desc": "Get a realistic baseline calorie target based on your body size and activity."
+            },
+            "f2": {
+                "title": "Mild cut and gain targets",
+                "desc": "See practical numbers for a small deficit or surplus without extreme assumptions."
+            },
+            "f3": {
+                "title": "Protein range",
+                "desc": "Use the suggested protein range to plan meals around recovery and satiety."
+            },
+            "f4": {
+                "title": "Simple daily planning",
+                "desc": "Helpful for dieting, maintaining weight, or gradually increasing intake."
+            }
         }
     },
     "CompoundInterestCalculator": {
@@ -3163,10 +3660,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Long-term projection", "desc": "Estimate how savings can grow over years, not just a single month or year." },
-            "f2": { "title": "Contribution tracking", "desc": "See how much of the ending balance comes from deposits versus growth." },
-            "f3": { "title": "Flexible compounding", "desc": "Switch between yearly, quarterly, and monthly compounding assumptions." },
-            "f4": { "title": "Savings planning", "desc": "Useful for emergency funds, retirement prep, education savings, or general investing." }
+            "f1": {
+                "title": "Long-term projection",
+                "desc": "Estimate how savings can grow over years, not just a single month or year."
+            },
+            "f2": {
+                "title": "Contribution tracking",
+                "desc": "See how much of the ending balance comes from deposits versus growth."
+            },
+            "f3": {
+                "title": "Flexible compounding",
+                "desc": "Switch between yearly, quarterly, and monthly compounding assumptions."
+            },
+            "f4": {
+                "title": "Savings planning",
+                "desc": "Useful for emergency funds, retirement prep, education savings, or general investing."
+            }
         }
     },
     "TemperatureConverter": {
@@ -3195,10 +3704,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Three temperature scales", "desc": "Switch between Celsius, Fahrenheit, and Kelvin in one place." },
-            "f2": { "title": "Reference points", "desc": "See water freezing and boiling points in the selected scale for quick context." },
-            "f3": { "title": "Instant conversion", "desc": "Update values and units immediately without extra steps." },
-            "f4": { "title": "Practical daily use", "desc": "Helpful for travel, recipes, schoolwork, experiments, and weather checks." }
+            "f1": {
+                "title": "Three temperature scales",
+                "desc": "Switch between Celsius, Fahrenheit, and Kelvin in one place."
+            },
+            "f2": {
+                "title": "Reference points",
+                "desc": "See water freezing and boiling points in the selected scale for quick context."
+            },
+            "f3": {
+                "title": "Instant conversion",
+                "desc": "Update values and units immediately without extra steps."
+            },
+            "f4": {
+                "title": "Practical daily use",
+                "desc": "Helpful for travel, recipes, schoolwork, experiments, and weather checks."
+            }
         }
     },
     "BodyFatCalculator": {
@@ -3236,10 +3757,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Measurement-based estimate", "desc": "Uses practical body measurements instead of requiring special devices." },
-            "f2": { "title": "Lean and fat mass", "desc": "Shows estimated fat mass and lean mass for clearer body-composition context." },
-            "f3": { "title": "Range guidance", "desc": "Places the estimate into a simple body-fat range for faster interpretation." },
-            "f4": { "title": "Fitness planning", "desc": "Helpful for tracking body composition trends alongside training and nutrition goals." }
+            "f1": {
+                "title": "Measurement-based estimate",
+                "desc": "Uses practical body measurements instead of requiring special devices."
+            },
+            "f2": {
+                "title": "Lean and fat mass",
+                "desc": "Shows estimated fat mass and lean mass for clearer body-composition context."
+            },
+            "f3": {
+                "title": "Range guidance",
+                "desc": "Places the estimate into a simple body-fat range for faster interpretation."
+            },
+            "f4": {
+                "title": "Fitness planning",
+                "desc": "Helpful for tracking body composition trends alongside training and nutrition goals."
+            }
         }
     },
     "FuelCostCalculator": {
@@ -3264,10 +3797,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Trip fuel estimate", "desc": "Shows roughly how many liters you may use for the planned drive." },
-            "f2": { "title": "Budget before departure", "desc": "Helps you estimate travel cost before refueling or starting the trip." },
-            "f3": { "title": "Per-person split", "desc": "Adds a quick shared-cost view when you travel with friends or coworkers." },
-            "f4": { "title": "Everyday driving use", "desc": "Useful for commuting, road trips, weekend drives, and delivery planning." }
+            "f1": {
+                "title": "Trip fuel estimate",
+                "desc": "Shows roughly how many liters you may use for the planned drive."
+            },
+            "f2": {
+                "title": "Budget before departure",
+                "desc": "Helps you estimate travel cost before refueling or starting the trip."
+            },
+            "f3": {
+                "title": "Per-person split",
+                "desc": "Adds a quick shared-cost view when you travel with friends or coworkers."
+            },
+            "f4": {
+                "title": "Everyday driving use",
+                "desc": "Useful for commuting, road trips, weekend drives, and delivery planning."
+            }
         }
     },
     "FileSizeConverter": {
@@ -3298,10 +3843,22 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Five storage units", "desc": "Convert between bytes, KB, MB, GB, and TB in one place." },
-            "f2": { "title": "Upload planning", "desc": "Quickly compare file size against attachment, upload, or storage limits." },
-            "f3": { "title": "Simple references", "desc": "Shows binary and decimal reference values for easier storage understanding." },
-            "f4": { "title": "Practical workflow help", "desc": "Useful for files, cloud plans, archives, media exports, and device storage checks." }
+            "f1": {
+                "title": "Five storage units",
+                "desc": "Convert between bytes, KB, MB, GB, and TB in one place."
+            },
+            "f2": {
+                "title": "Upload planning",
+                "desc": "Quickly compare file size against attachment, upload, or storage limits."
+            },
+            "f3": {
+                "title": "Simple references",
+                "desc": "Shows binary and decimal reference values for easier storage understanding."
+            },
+            "f4": {
+                "title": "Practical workflow help",
+                "desc": "Useful for files, cloud plans, archives, media exports, and device storage checks."
+            }
         }
     },
     "RandomPicker": {
@@ -3324,10 +3881,128 @@
         },
         "features": {
             "title": "Key Features",
-            "f1": { "title": "Fast decision making", "desc": "Great for picking meals, winners, tasks, or team members in seconds." },
-            "f2": { "title": "Multiple results", "desc": "Choose one option or several at once depending on your need." },
-            "f3": { "title": "Simple text input", "desc": "Paste any list directly without needing structured formatting." },
-            "f4": { "title": "One-click reroll", "desc": "Run the random selection again instantly when you want another outcome." }
+            "f1": {
+                "title": "Fast decision making",
+                "desc": "Great for picking meals, winners, tasks, or team members in seconds."
+            },
+            "f2": {
+                "title": "Multiple results",
+                "desc": "Choose one option or several at once depending on your need."
+            },
+            "f3": {
+                "title": "Simple text input",
+                "desc": "Paste any list directly without needing structured formatting."
+            },
+            "f4": {
+                "title": "One-click reroll",
+                "desc": "Run the random selection again instantly when you want another outcome."
+            }
         }
+    },
+    "LoremIpsum": {
+        "unit_paragraphs": "Paragraphs",
+        "unit_sentences": "Sentences",
+        "unit_words": "Words",
+        "amount": "Amount",
+        "startWithLorem": "Start with 'Lorem ipsum'",
+        "regenerate": "Regenerate",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "wordsLabel": "Words",
+        "charsLabel": "Characters",
+        "outputLabel": "Generated text",
+        "privacyNote": "All text is generated entirely in your browser."
+    },
+    "CubicBezier": {
+        "preset": "Presets",
+        "previewLabel": "Preview",
+        "duration": "Duration",
+        "play": "Play",
+        "copy": "Copy CSS",
+        "copied": "Copied!",
+        "privacyNote": "All calculation happens entirely in your browser."
+    },
+    "GitignoreGenerator": {
+        "selectLabel": "Select your stacks (you can pick several)",
+        "selectedCount": "{count} selected",
+        "emptyHint": "Select one or more above to generate a .gitignore.",
+        "download": "Download",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "outputLabel": "Generated .gitignore",
+        "privacyNote": "All files are generated entirely in your browser."
+    },
+    "ColorContrastChecker": {
+        "foreground": "Foreground (text)",
+        "background": "Background",
+        "previewLarge": "Large text preview",
+        "previewNormal": "Normal text preview",
+        "ratio": "Contrast ratio",
+        "aaNormal": "AA Normal",
+        "aaLarge": "AA Large",
+        "aaaNormal": "AAA Normal",
+        "aaaLarge": "AAA Large",
+        "invalid": "Enter valid HEX colors (e.g. #1f2937)"
+    },
+    "AspectRatioCalculator": {
+        "ratio": "Ratio",
+        "width": "Width",
+        "height": "Height",
+        "simplified": "Simplified ratio"
+    },
+    "CssClampGenerator": {
+        "minViewport": "Min viewport",
+        "maxViewport": "Max viewport",
+        "minSize": "Min size",
+        "maxSize": "Max size",
+        "result": "Result",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "invalid": "Check your values"
+    },
+    "RomanNumeralConverter": {
+        "number": "Number",
+        "roman": "Roman numeral",
+        "rangeNote": "Supports conversion from 1 to 3999."
+    },
+    "TextRepeater": {
+        "text": "Text",
+        "placeholder": "Enter text to repeat...",
+        "count": "Repeat count",
+        "separator": "Separator",
+        "sep_newline": "Newline",
+        "sep_space": "Space",
+        "sep_comma": "Comma",
+        "sep_none": "None",
+        "result": "Result",
+        "copy": "Copy",
+        "copied": "Copied!"
+    },
+    "MockDataGenerator": {
+        "fields": "Select fields",
+        "field_id": "ID",
+        "field_name": "Name",
+        "field_email": "Email",
+        "field_phone": "Phone",
+        "field_city": "City",
+        "field_company": "Company",
+        "field_uuid": "UUID",
+        "field_boolean": "Boolean",
+        "rows": "Rows",
+        "format": "Format",
+        "generate": "Generate",
+        "result": "Result",
+        "download": "Download",
+        "copy": "Copy",
+        "copied": "Copied!"
+    },
+    "HtmlMinifier": {
+        "input": "Input HTML",
+        "placeholder": "Paste the HTML to minify...",
+        "saved": "{percent}% smaller ({from} → {to} bytes)",
+        "hint": "Enter HTML above to minify it.",
+        "output": "Minified HTML",
+        "copy": "Copy",
+        "copied": "Copied!"
     }
 }

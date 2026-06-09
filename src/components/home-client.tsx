@@ -403,12 +403,6 @@ export function HomeClient() {
             <span className="inline-flex items-center rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 shadow-sm dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
               {t("Hero.pills.free")}
             </span>
-            <span className="inline-flex items-center rounded-full border border-sky-200/80 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700 shadow-sm dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300">
-              {t("Hero.pills.private")}
-            </span>
-            <span className="inline-flex items-center rounded-full border border-violet-200/80 bg-violet-50 px-3 py-1 text-xs font-bold text-violet-700 shadow-sm dark:border-violet-900 dark:bg-violet-950/30 dark:text-violet-300">
-              {t("Hero.pills.fast")}
-            </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground select-none drop-shadow-sm break-keep">
