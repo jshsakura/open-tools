@@ -37,7 +37,7 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 
 | AI (overlay) | 2 | Applied to browser-side image cleanup tools |
 | Korea (overlay) | 1 | Applied to Korean-specific tooling |
 
-### Development (36)
+### Development (37)
 
 - **.env File Editor** (`env-editor`): Edit environment variable files (.env) and compare differences between two files side by side.
 - **.gitignore Generator** (`gitignore-generator`): Pick languages, frameworks, and tools to build and download a combined .gitignore instantly.
@@ -64,6 +64,7 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 
 - **Number Base Converter** (`number-base-converter`): Convert numbers between Binary, Octal, Decimal, and Hexadecimal with BigInt support.
 - **RegEx Tester** (`regex-tester`): Test and debug your regular expressions with real-time highlighting and group extraction.
 - **Robots.txt Generator** (`robots-txt-generator`): Create robots.txt files for search engine crawlers with preset templates.
+- **SEO Analyzer** (`seo-analyzer`): Audit any public page for metadata, indexability, headings, social tags, structured data, and link health.
 - **SQL Formatter & Beautifier** (`sql-formatter`): Format and beautify SQL queries instantly for cleaner debugging, reviews, and sharing.
 - **SQL to JSON/CSV Converter** (`sql-converter`): Transform SQL INSERT statements into clean JSON or CSV data formats locally.
 - **SVG to JSX Converter** (`svg-to-jsx`): Transform raw SVG code into high-quality, typed React components instantly.
@@ -135,16 +136,19 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 
 - **RSA Key Generator** (`rsa-generator`): Generate RSA Public and Private Key pairs (PEM format).
 - **Security & Encryption** (`security-tools`): Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing.
 
-### Utilities (30)
+### Utilities (35)
 
+- **Age Calculator** (`age-calculator`): Calculate exact age in years, months, days, and see how long until the next birthday.
 - **CSV Editor** (`csv-editor`): Edit CSV data in an intuitive spreadsheet-like table. Import CSV files, add/remove rows and columns, and export as CSV or JSON.
+- **D-Day Countdown Calculator** (`d-day-calculator`): Count down to an important date or see how many days have passed since a milestone.
+- **Date Calculator** (`date-calculator`): Measure the gap between two dates or add days, weeks, and months to any starting date.
 - **Document Viewer** (`hwp-viewer`): Instantly view HWP and DOCX files in your browser.
 - **Domain / DNS Lookup** (`whois-lookup`): Look up DNS records (A, AAAA, MX, NS, TXT, SOA) for any domain name.
+- **File Size Converter** (`file-size-converter`): Convert file sizes between bytes, KB, MB, GB, and TB with quick storage references.
 - **IP Subnet Calculator** (`subnet-calculator`): Calculate network address, broadcast, subnet mask, and usable host range from IP/CIDR.
 - **Image to Text (OCR)** (`ocr`): Extract text from images instantly using Tesseract OCR. Supports Korean, English, Japanese, and Chinese.
 - **Korean Tools Suite** (`k-series`): A collection of useful tools tailored for Korean users and services.
 - **List Sorter & Deduplicator** (`list-sorter`): Organize text lists by sorting alphabetically, removing duplicates, and cleaning whitespace instantly.
-- **Loan & Mortgage Calculator** (`loan-calculator`): Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types.
 - **Markdown Preview** (`markdown-preview`): Write Markdown and instantly preview the rendered HTML output side by side.
 - **Markdown to PDF** (`markdown-to-pdf`): Write Markdown with a live side-by-side preview and export to beautifully styled PDF. Supports tables, code blocks, blockquotes, and more.
 - **Merge PDF** (`pdf-merge`): Combine multiple PDF files into one for free. No file limits.
@@ -155,8 +159,10 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 
 - **PDF Tools** (`pdf-tools`): All-in-one PDF utilities: Merge, Split, and Convert to Image.
 - **Pomodoro Focus Timer** (`pomodoro-timer`): Boost productivity with the Pomodoro technique. Circular progress timer, customizable work/break durations, sound alerts, and session tracking.
 - **QR Code Generator** (`qr-generator`): Generate customizable QR codes for URLs, text, email, and phone numbers.
+- **Random Picker** (`random-picker`): Paste choices and let the tool pick one or several winners for meals, teams, or decisions.
 - **Roman Numeral Converter** (`roman-numeral-converter`): Convert between Arabic numbers and Roman numerals in both directions (1–3999).
 - **Split PDF** (`pdf-split`): Extract specific pages from a PDF file quickly.
+- **Temperature Converter** (`temperature-converter`): Convert Celsius, Fahrenheit, and Kelvin instantly with quick reference points for freezing and boiling.
 - **Text & Content Suite** (`text-tools`): Lorem Ipsum generator and Hangul processing tools.
 - **Text Diff** (`text-diff`): Compare two texts side-by-side with line and word-level diff highlighting.
 - **Text Repeater** (`text-repeater`): Repeat any text a chosen number of times with a configurable separator.
@@ -167,6 +173,25 @@ The live homepage catalog in `src/lib/tools-catalog.ts` currently defines **132 
 - **Visual Time Zone Converter** (`time-zone-converter`): Compare times across different cities worldwide. Visual slider to see how time shifts across zones.
 - **What is my Browser?** (`browser-info`): Analyze your browser version, OS, screen resolution, and user agent details.
 - **Word Counter** (`word-counter`): Count words, characters, sentences, paragraphs and estimate reading time instantly.
+
+### Finance (7)
+
+- **Compound Interest Calculator** (`compound-interest-calculator`): Project long-term savings growth with regular contributions, interest rate assumptions, and compounding frequency.
+- **Discount Calculator** (`discount-calculator`): Calculate sale prices, coupon savings, and final checkout totals in seconds while you shop.
+- **Fuel Cost Calculator** (`fuel-cost-calculator`): Estimate trip fuel cost from distance, efficiency, and fuel price before you drive.
+- **Loan & Mortgage Calculator** (`loan-calculator`): Calculate monthly payments, total interest, and view a detailed amortization schedule for different repayment types.
+- **Percentage Calculator** (`percentage-calculator`): Handle everyday percentage math fast, from simple ratios to percentage increase or decrease.
+- **Split Bill Calculator** (`split-bill-calculator`): Split a meal or group payment with tax and tip included so everyone sees a fair per-person total.
+- **Tip Calculator** (`tip-calculator`): Split restaurant bills, adjust the tip percentage, and see the per-person total instantly.
+
+### Health (6)
+
+- **BMI Calculator** (`bmi-calculator`): Check your body mass index, weight category, and healthy weight range with a quick height and weight estimate.
+- **Body Fat Calculator** (`body-fat-calculator`): Estimate body fat percentage from practical body measurements and compare it with common fitness ranges.
+- **Calorie Calculator** (`calorie-calculator`): Estimate daily calories for maintenance, mild fat loss, or gradual weight gain based on your body and activity.
+- **Ovulation & Fertile Window Calculator** (`ovulation-calculator`): Estimate your next ovulation day, fertile window, and expected next period from your cycle dates.
+- **Sleep Calculator** (`sleep-calculator`): Plan better bedtimes and wake-up times around natural sleep cycles for a more rested routine.
+- **Water Intake Calculator** (`water-intake-calculator`): Estimate a practical daily water target based on your weight, activity level, and preferred cup size.
 
 ### AI Overlay (2)
 
