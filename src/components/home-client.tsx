@@ -400,9 +400,6 @@ export function HomeClient() {
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse transition-transform group-hover/badge:scale-110"></span>
               {t("Hero.badge")}
             </div>
-            <span className="inline-flex items-center rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 shadow-sm dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
-              {t("Hero.pills.free")}
-            </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground select-none drop-shadow-sm break-keep">
