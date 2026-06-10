@@ -36,11 +36,6 @@
   },
   "Hero": {
     "badge": "Collection of Free Online Tools",
-    "pills": {
-      "free": "100% Free",
-      "private": "Privacy First",
-      "fast": "Lightning Fast"
-    },
     "title_1": "Essential",
     "title_2": "Open Tools",
     "title_3": "Platform",
