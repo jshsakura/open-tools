@@ -4006,5 +4006,62 @@
         "output": "압축된 HTML",
         "copy": "복사",
         "copied": "복사됨!"
+    },
+    "JsonDiff": {
+        "title": "JSON 비교기",
+        "description": "두 개의 JSON 문서의 차이점(추가, 삭제, 수정)을 의미론적으로 분석하고 색상으로 구분하여 시각화합니다.",
+        "originalPlaceholder": "원본 JSON을 여기에 붙여넣으세요...",
+        "modifiedPlaceholder": "변경할 JSON을 여기에 붙여넣으세요...",
+        "originalLabel": "원본 JSON (Original)",
+        "modifiedLabel": "변경본 JSON (Modified)",
+        "compare": "비교하기",
+        "clear": "초기화",
+        "errorInvalidJson": "잘못된 JSON 형식입니다: {error}",
+        "viewMode": "보기 모드",
+        "splitView": "나란히 보기 (Side-by-Side)",
+        "unifiedView": "통합 보기 (Unified)",
+        "ignoreKeyOrder": "키 순서 무시 (의미론적 비교)",
+        "formatJson": "입력값 자동 정렬",
+        "stats": "차이 통계",
+        "added": "추가된 라인",
+        "removed": "제거된 라인",
+        "unchanged": "동일한 라인",
+        "copied": "클립보드에 복사되었습니다!",
+        "copyDiff": "Diff 복사",
+        "noDiff": "두 JSON 문서는 의미론적으로 완전히 동일합니다.",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "왼쪽(Original) 텍스트 창에 비교할 원본 JSON 데이터를 입력합니다.",
+            "step2": "오른쪽(Modified) 텍스트 창에 변경된 JSON 데이터를 입력합니다.",
+            "step3": "'키 순서 무시' 옵션을 체크하면 JSON 객체의 키 순서가 다르더라도 실제 데이터 값이 일치하면 차이점으로 표기하지 않습니다.",
+            "step4": "'나란히 보기' 또는 '통합 보기' 모드를 선택하여 라인/값 단위 변경 사항을 시각적으로 확인합니다."
+        }
+    },
+    "TotpGenerator": {
+        "title": "TOTP 생성기",
+        "description": "2차 인증(2FA)용 일회용 비밀번호(구글 OTP) 번호를 브라우저에서 안전하게 로컬로 생성합니다.",
+        "secretKey": "비밀키 (Base32 Secret Key)",
+        "secretKeyPlaceholder": "예: JBSWY3DPEHPK3PXP",
+        "algorithm": "해시 알고리즘 (HMAC)",
+        "digits": "코드 자릿수",
+        "period": "갱신 주기 (초)",
+        "currentCode": "현재 인증 번호 (OTP)",
+        "nextCodeIn": "인증 번호 갱신까지 {time}초 남음",
+        "copyCode": "인증 번호 복사",
+        "invalidSecret": "잘못된 Base32 형식입니다. (A-Z 및 2-7 문자만 사용 가능)",
+        "copied": "인증 번호가 복사되었습니다!",
+        "qrScanner": "QR 코드 스캔",
+        "stopScanner": "스캔 중지",
+        "qrScannerPlaceholder": "또는 QR 코드 이미지를 업로드하세요",
+        "details": "키 세부 정보",
+        "issuer": "서비스 제공자 (Issuer)",
+        "account": "계정 (Account)",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "Base32로 인코딩된 OTP 비밀키(Secret Key)를 입력란에 입력합니다.",
+            "step2": "대상 서비스에 설정된 해시 알고리즘(일반적으로 SHA-1)과 갱신 주기(일반적으로 30초)를 맞추어 선택합니다.",
+            "step3": "입력이 완료되면 진행률 원형 타이머와 함께 실시간으로 6자리 인증번호가 표시되며, 코드를 누르면 클립보드로 자동 복사됩니다.",
+            "step4": "'otpauth://' URL 포맷이 담긴 QR 코드 이미지가 있다면 해당 이미지를 업로드하여 설정을 자동으로 채울 수 있습니다."
+        }
     }
 }

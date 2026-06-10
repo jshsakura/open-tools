@@ -718,6 +718,14 @@
             "featureSavingsDesc": "Shows the reduction versus the original in real time",
             "featurePrivate": "Fully Local",
             "featurePrivateDesc": "Processed entirely in your browser, never sent to a server"
+        },
+        "JsonDiff": {
+            "title": "JSON Diff Viewer",
+            "description": "Compare two JSON documents semantically, highlighting additions, deletions, and modifications of keys and values."
+        },
+        "TotpGenerator": {
+            "title": "TOTP Generator",
+            "description": "Generate standard TOTP (2FA Google Authenticator) codes client-side with visual countdown timers."
         }
     }
 }

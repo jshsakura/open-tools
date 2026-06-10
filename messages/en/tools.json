@@ -4004,5 +4004,62 @@
         "output": "Minified HTML",
         "copy": "Copy",
         "copied": "Copied!"
+    },
+    "JsonDiff": {
+        "title": "JSON Diff Viewer",
+        "description": "Compare two JSON documents semantically, highlighting additions, deletions, and modifications of keys and values.",
+        "originalPlaceholder": "Paste original JSON here...",
+        "modifiedPlaceholder": "Paste modified JSON here...",
+        "originalLabel": "Original JSON",
+        "modifiedLabel": "Modified JSON",
+        "compare": "Compare",
+        "clear": "Clear",
+        "errorInvalidJson": "Invalid JSON format: {error}",
+        "viewMode": "View Mode",
+        "splitView": "Side-by-Side",
+        "unifiedView": "Unified",
+        "ignoreKeyOrder": "Ignore Key Order",
+        "formatJson": "Format Inputs",
+        "stats": "Differences Stats",
+        "added": "Added Lines",
+        "removed": "Removed Lines",
+        "unchanged": "Unchanged Lines",
+        "copied": "Copied to clipboard!",
+        "copyDiff": "Copy Diff",
+        "noDiff": "Both JSON documents are semantically identical.",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Paste the original JSON in the left (Original) textarea.",
+            "step2": "Paste the modified JSON in the right (Modified) textarea.",
+            "step3": "Check 'Ignore Key Order' to compare key-value pairs semantically rather than textually.",
+            "step4": "Toggle between 'Side-by-Side' and 'Unified' view modes to inspect details."
+        }
+    },
+    "TotpGenerator": {
+        "title": "TOTP Generator",
+        "description": "Generate 2FA verification codes locally in your browser.",
+        "secretKey": "Secret Key (Base32)",
+        "secretKeyPlaceholder": "e.g., JBSWY3DPEHPK3PXP",
+        "algorithm": "HMAC Algorithm",
+        "digits": "Code Length",
+        "period": "Period (seconds)",
+        "currentCode": "Current Verification Code",
+        "nextCodeIn": "Next code in {time}s",
+        "copyCode": "Copy OTP",
+        "invalidSecret": "Invalid Base32 secret key. Key must contain only A-Z and 2-7.",
+        "copied": "OTP code copied!",
+        "qrScanner": "Scan QR Code",
+        "stopScanner": "Stop Scanner",
+        "qrScannerPlaceholder": "Or upload a QR code image",
+        "details": "Key Details",
+        "issuer": "Issuer",
+        "account": "Account",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Enter your Base32 encoded 2FA secret key in the input field.",
+            "step2": "Select the hashing algorithm (typically SHA-1) and period (typically 30s) matching your service requirements.",
+            "step3": "The 6-digit code will calculate and update automatically with the progress circle. Click the code or copy button to copy to clipboard.",
+            "step4": "You can also upload a QR code image containing an 'otpauth://' URL to auto-configure all settings."
+        }
     }
 }

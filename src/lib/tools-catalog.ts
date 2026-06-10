@@ -601,6 +601,15 @@ export const toolsCatalog = [
     tags: ["Data"],
   },
   {
+    id: "json-diff",
+    titleKey: "Catalog.JsonDiff.title",
+    descriptionKey: "Catalog.JsonDiff.description",
+    icon: FileJson,
+    href: "/tools/json-diff",
+    color: "text-rose-500",
+    tags: ["Data"],
+  },
+  {
     id: "jwt-debugger",
     titleKey: "Catalog.JwtDebugger.title",
     descriptionKey: "Catalog.JwtDebugger.description",
@@ -905,6 +914,15 @@ export const toolsCatalog = [
     icon: Shield,
     href: "/tools/password-generator",
     color: "text-green-600",
+    tags: ["Security"],
+  },
+  {
+    id: "totp-generator",
+    titleKey: "Catalog.TotpGenerator.title",
+    descriptionKey: "Catalog.TotpGenerator.description",
+    icon: Fingerprint,
+    href: "/tools/totp-generator",
+    color: "text-blue-600",
     tags: ["Security"],
   },
   {

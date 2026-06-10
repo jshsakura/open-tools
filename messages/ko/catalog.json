@@ -774,6 +774,14 @@
             "featureSavingsDesc": "원본 대비 용량 감소를 실시간 표시",
             "featurePrivate": "완전 로컬 처리",
             "featurePrivateDesc": "브라우저에서만 처리되어 서버로 전송되지 않음"
+        },
+        "JsonDiff": {
+            "title": "JSON 비교기",
+            "description": "두 개의 JSON 문서의 차이점(추가, 삭제, 수정)을 의미론적으로 분석하고 색상으로 구분하여 시각화합니다."
+        },
+        "TotpGenerator": {
+            "title": "TOTP 생성기",
+            "description": "표준 TOTP (구글 OTP 2차 인증) 코드를 브라우저에서 직접 생성하고 남은 시간을 시각적으로 제공합니다."
         }
     }
 }
