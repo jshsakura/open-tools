@@ -1,26 +1,78 @@
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { NextResponse } from 'next/server';
 
-const execPromise = promisify(exec);
+const execFilePromise = promisify(execFile);
+
+// yt-dlp -j metadata for format-rich videos can be several MB; the default
+// 1MB exec buffer truncates it and fails the parse.
+const YT_DLP_MAX_BUFFER = 32 * 1024 * 1024;
+const YT_DLP_TIMEOUT_MS = 60_000;
+
+const USER_AGENT =
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
+
+// Restrict extraction to YouTube hosts. Arguments are passed to execFile as an
+// array (no shell), so there is no command-injection surface — this check is a
+// defense-in-depth guard against pointing yt-dlp at arbitrary SSRF targets.
+const ALLOWED_HOSTS = new Set([
+    'youtube.com',
+    'www.youtube.com',
+    'm.youtube.com',
+    'music.youtube.com',
+    'youtu.be',
+    'www.youtu.be',
+    'youtube-nocookie.com',
+    'www.youtube-nocookie.com',
+]);
+
+function isValidYoutubeUrl(raw: string): boolean {
+    try {
+        const parsed = new URL(raw);
+        if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return false;
+        return ALLOWED_HOSTS.has(parsed.hostname.toLowerCase());
+    } catch {
+        return false;
+    }
+}
+
+function isValidProxy(raw: string): boolean {
+    try {
+        const parsed = new URL(raw);
+        return ['http:', 'https:', 'socks4:', 'socks5:', 'socks5h:'].includes(parsed.protocol);
+    } catch {
+        return false;
+    }
+}
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const videoUrl = searchParams.get('url');
+    const proxy = searchParams.get('proxy');
 
     if (!videoUrl) {
         return NextResponse.json({ error: 'URL is required' }, { status: 400 });
     }
 
+    if (!isValidYoutubeUrl(videoUrl)) {
+        return NextResponse.json({ error: 'A valid YouTube URL is required' }, { status: 400 });
+    }
+
+    if (proxy && !isValidProxy(proxy)) {
+        return NextResponse.json({ error: 'Invalid proxy URL' }, { status: 400 });
+    }
+
     try {
-        // Use -j (JSON) to get all metadata including subtitles
-        const proxy = searchParams.get('proxy');
-        const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
-        let command = `yt-dlp -j --user-agent "${userAgent}" "${videoUrl}"`;
-        if (proxy) {
-            command += ` --proxy "${proxy}"`;
-        }
-        const { stdout } = await execPromise(command);
+        // Args passed as an array → executed without a shell, so user input is
+        // never interpreted as shell syntax.
+        const args = ['-j', '--no-warnings', '--user-agent', USER_AGENT];
+        if (proxy) args.push('--proxy', proxy);
+        args.push(videoUrl);
+
+        const { stdout } = await execFilePromise('yt-dlp', args, {
+            maxBuffer: YT_DLP_MAX_BUFFER,
+            timeout: YT_DLP_TIMEOUT_MS,
+        });
         const metadata = JSON.parse(stdout);
 
         const formats = metadata.formats || [];
@@ -103,7 +155,7 @@ export async function GET(request: Request) {
                 };
             });
 
-        // Add Audio Only option
+        // Add Audio Only option (downloaded as MP3 client-side via ffmpeg.wasm)
         if (bestAudio) {
             qualities.push({
                 id: 'audio',
@@ -127,9 +179,12 @@ export async function GET(request: Request) {
         });
     } catch (error: any) {
         console.error('yt-dlp extraction error:', error);
+        const notInstalled = error?.code === 'ENOENT';
         return NextResponse.json({
-            error: 'Failed to extract YouTube URL. Make sure yt-dlp is installed on the server.',
-            details: error.message
+            error: notInstalled
+                ? 'yt-dlp is not installed on the server.'
+                : 'Failed to extract YouTube URL. The video may be unavailable or restricted.',
+            details: error.message,
         }, { status: 500 });
     }
 }

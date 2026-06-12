@@ -66,6 +66,19 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 --ingroup nodejs nextjs
 
+# yt-dlp powers the YouTube extractor API (/api/youtube/extract). It is only
+# used for metadata extraction (-j); video/audio muxing happens client-side via
+# ffmpeg.wasm, so no server-side ffmpeg is required. The *_linux build is a
+# self-contained binary (no system Python needed). ca-certificates is required
+# for yt-dlp's TLS connections to YouTube.
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ca-certificates wget \
+  && wget -q https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux -O /usr/local/bin/yt-dlp \
+  && chmod a+rx /usr/local/bin/yt-dlp \
+  && apt-get purge -y wget \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /app/public ./public
 
 # Set the correct permission for prerender cache

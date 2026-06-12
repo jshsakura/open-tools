@@ -417,7 +417,7 @@ export function YoutubeDownloaderPageClient() {
                         return !q.isSubtitle && q.id !== 'audio'
                       }).length === 0 && (
                         <div className="text-center p-8 text-muted-foreground bg-secondary/5 rounded-xl border border-dashed border-border/30">
-                          {t('YouTubeDownloader.noFormats', { type: t(`tabs.${type}`) })}
+                          {t('YouTubeDownloader.noFormats', { type: t(`YouTubeDownloader.tabs.${type}`) })}
                         </div>
                       )}
                     </TabsContent>
