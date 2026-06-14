@@ -843,6 +843,10 @@ export const toolsCatalog = [
     href: "/tools/youtube-downloader",
     color: "text-red-500",
     tags: ["Video"],
+    // Hidden from public listings: server-side yt-dlp extraction is blocked by
+    // YouTube's bot check on this datacenter IP (no free, low-risk workaround).
+    // Code/route kept intact — delete this flag to re-list if a proxy is added.
+    hidden: true,
   },
   {
     id: "youtube-thumbnail",

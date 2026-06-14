@@ -36,6 +36,7 @@ export async function GET(request: Request) {
             : 'All tools and titles from OpenTools';
 
     const items = toolsCatalog
+        .filter((tool) => !(tool as { hidden?: boolean }).hidden)
         .map((tool) => {
             const title = getByPath(catalog, tool.titleKey) || tool.id;
             const link = `${baseUrl}/${locale}${tool.href}`;

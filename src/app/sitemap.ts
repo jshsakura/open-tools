@@ -8,7 +8,9 @@ const baseUrl =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locales = ['ko', 'en']
-  const indexedTools = toolsCatalog.map((tool) => ({ href: tool.href }))
+  const indexedTools = toolsCatalog
+    .filter((tool) => !(tool as { hidden?: boolean }).hidden)
+    .map((tool) => ({ href: tool.href }))
 
   const entries = locales.flatMap((locale) => {
     const localeTools = indexedTools.map((tool) => {

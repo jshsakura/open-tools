@@ -277,6 +277,7 @@ export function HomeClient() {
   const tools = useMemo(
     () =>
       toolsCatalog
+        .filter((tool) => !(tool as { hidden?: boolean }).hidden)
         .map((tool) => ({
           primaryCategory: getPrimaryCategory(tool),
           displayTags: getDisplayTags(tool, getPrimaryCategory(tool)),
