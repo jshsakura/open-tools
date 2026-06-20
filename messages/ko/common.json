@@ -1,49 +1,59 @@
 {
-  "Common": {
-    "visitors": "방문자 수",
-    "visitorsShort": "방문",
-    "today": "오늘",
-    "total": "전체"
-  },
-  "Home": {
-    "title": "일상과 업무에 필요한 무료 온라인 도구",
-    "description": "계산, 문서 작업, 이미지 편집, 변환처럼 자주 찾게 되는 도구를 한곳에서 간편하게 이용할 수 있습니다.",
-    "allTools": "전체 도구",
-    "searchPlaceholder": "도구 검색... (예: 할인, 수면, BMI, PDF)",
-    "searchResultCount": "{count}건",
-    "searchClear": "검색 지우기",
-    "noToolsInCategory": "이 카테고리에는 도구가 없습니다.",
-    "searchNoResults": "\"{query}\"에 대한 검색 결과가 없습니다",
-    "searchNoResultsHint": "다른 키워드로 검색해 보세요"
-  },
-  "Category": {
-    "Finance": "금융",
-    "Health": "건강",
-    "Documents": "문서",
-    "Text": "텍스트",
-    "Data": "데이터",
-    "Web": "웹",
-    "Network": "네트워크",
-    "Development": "개발",
-    "Image": "이미지",
-    "Video": "비디오",
-    "Audio": "오디오",
-    "Design": "디자인",
-    "Security": "보안",
-    "Utilities": "유틸리티",
-    "AI": "인공지능",
-    "Korea": "한국"
-  },
-  "Hero": {
-    "badge": "무료 온라인 도구 모음",
-    "title_1": "필수",
-    "title_2": "오픈 소스 도구",
-    "title_3": "플랫폼",
-    "description": "일상과 업무에 자주 필요한 온라인 도구를 한곳에서 정리해 제공합니다.\n가능한 한 클라이언트 사이드에서 빠르고 안전하게 동작합니다.",
-    "description_mobile": "일상과 업무에 필요한 온라인 도구를 쉽고 빠르게 찾을 수 있습니다."
-  },
-  "Layout": {
-    "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
-    "github": "Star on GitHub"
-  }
+    "Common": {
+        "visitors": "방문자 수",
+        "visitorsShort": "방문",
+        "today": "오늘",
+        "total": "전체"
+    },
+    "Home": {
+        "title": "일상과 업무에 필요한 무료 온라인 도구",
+        "description": "계산, 문서 작업, 이미지 편집, 변환처럼 자주 찾게 되는 도구를 한곳에서 간편하게 이용할 수 있습니다.",
+        "allTools": "전체 도구",
+        "searchPlaceholder": "도구 검색... (예: 할인, 수면, BMI, PDF)",
+        "searchResultCount": "{count}건",
+        "searchClear": "검색 지우기",
+        "noToolsInCategory": "이 카테고리에는 도구가 없습니다.",
+        "searchNoResults": "\"{query}\"에 대한 검색 결과가 없습니다",
+        "searchNoResultsHint": "다른 키워드로 검색해 보세요"
+    },
+    "Category": {
+        "Finance": "금융",
+        "Health": "건강",
+        "Documents": "문서",
+        "Text": "텍스트",
+        "Data": "데이터",
+        "Web": "웹",
+        "Network": "네트워크",
+        "Development": "개발",
+        "Image": "이미지",
+        "Video": "비디오",
+        "Audio": "오디오",
+        "Design": "디자인",
+        "Security": "보안",
+        "Utilities": "유틸리티",
+        "AI": "인공지능",
+        "Korea": "한국"
+    },
+    "Hero": {
+        "badge": "무료 온라인 도구 모음",
+        "title_1": "필수",
+        "title_2": "오픈 소스 도구",
+        "title_3": "플랫폼",
+        "description": "일상과 업무에 자주 필요한 온라인 도구를 한곳에서 정리해 제공합니다.\n가능한 한 클라이언트 사이드에서 빠르고 안전하게 동작합니다.",
+        "description_mobile": "일상과 업무에 필요한 온라인 도구를 쉽고 빠르게 찾을 수 있습니다."
+    },
+    "Layout": {
+        "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
+        "github": "Star on GitHub"
+    },
+    "CommandPalette": {
+        "title": "도구 검색",
+        "placeholder": "도구 검색… (예: jpg, pdf 합치기, 정규식)",
+        "recent": "자주 쓰는 도구",
+        "noResults": "'{query}'에 대한 도구가 없어요",
+        "hintNav": "이동",
+        "hintOpen": "열기",
+        "hintClose": "닫기",
+        "triggerLabel": "도구 검색"
+    }
 }

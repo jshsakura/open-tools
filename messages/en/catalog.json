@@ -726,6 +726,18 @@
         "ImagesToPpt": {
             "title": "Images to PPT",
             "description": "Turn images into a PowerPoint (.pptx) slideshow — one full-bleed slide per image, generated entirely in your browser."
+        },
+        "ImageToPdf": {
+            "title": "Image to PDF",
+            "description": "Combine multiple images into a single PDF, one image per page. A4, Letter, or fit-to-image sizes — generated right in your browser."
+        },
+        "GpaCalculator": {
+            "title": "GPA Calculator",
+            "description": "Calculate your grade point average from each course grade and credit. Supports 4.5 and 4.0 scales."
+        },
+        "VatCalculator": {
+            "title": "VAT Calculator",
+            "description": "Add VAT to a net amount, or extract VAT from a gross total. Adjustable tax rate."
         }
     }
 }

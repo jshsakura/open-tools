@@ -86,6 +86,7 @@ const FINANCE_TOOL_IDS = new Set([
   "split-bill-calculator",
   "compound-interest-calculator",
   "fuel-cost-calculator",
+  "vat-calculator",
 ]);
 
 const HEALTH_TOOL_IDS = new Set([
@@ -105,6 +106,7 @@ const DOCUMENT_TOOL_IDS = new Set([
   "pdf-merge",
   "pdf-split",
   "pdf-to-image",
+  "image-to-pdf",
   "csv-editor",
   "file-size-converter",
 ]);

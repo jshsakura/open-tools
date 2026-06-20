@@ -782,6 +782,18 @@
         "ImagesToPpt": {
             "title": "이미지 PPT 변환",
             "description": "이미지를 PowerPoint(.pptx) 슬라이드쇼로 변환합니다. 이미지 한 장이 슬라이드 한 장이 되며, 브라우저에서 바로 생성됩니다."
+        },
+        "ImageToPdf": {
+            "title": "이미지 PDF 변환",
+            "description": "여러 이미지를 한 장씩 페이지로 담은 PDF로 만듭니다. A4·레터·이미지맞춤 크기 지원, 브라우저에서 바로 생성됩니다."
+        },
+        "GpaCalculator": {
+            "title": "학점 계산기",
+            "description": "과목별 성적과 학점을 입력해 평점(GPA)을 계산합니다. 4.5/4.0 기준을 지원합니다."
+        },
+        "VatCalculator": {
+            "title": "부가세 계산기",
+            "description": "공급가액에서 부가세를 더하거나, 합계금액에서 부가세를 역산합니다. 세율 조절 가능."
         }
     }
 }

@@ -4127,5 +4127,134 @@
                 "a": "Auto sets the slide shape to match your first image's aspect ratio, so it fills the slide perfectly with no cropping or bars."
             }
         }
+    },
+    "ImageToPdf": {
+        "title": "Image to PDF",
+        "description": "Drop in images and get a PDF with one image per page.",
+        "dropTitle": "Drop images here or click to upload",
+        "dropHint": "Add multiple at once · PNG, JPG, WebP, GIF",
+        "pages": "Pages",
+        "clearAll": "Clear all",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove",
+        "settings": "Settings",
+        "pageSize": "Page size",
+        "size_a4": "A4",
+        "size_letter": "Letter",
+        "size_fit": "Fit",
+        "sizeFitHint": "Each page matches the image ratio exactly (no borders).",
+        "sizeFixedHint": "Images are centered and fit onto fixed-size pages.",
+        "margin": "Margin",
+        "generate": "Generate PDF",
+        "generating": "Generating...",
+        "generated": "PDF with {count} pages downloaded",
+        "errorNoImage": "No image files found.",
+        "errorLoad": "Failed to load one or more images.",
+        "errorGenerate": "Failed to generate the PDF.",
+        "guide": {
+            "title": "How to Use Image to PDF",
+            "step1": "Drag images onto the upload area or click to select several. Each image becomes one page, in the order you add them.",
+            "step2": "Reorder with the up/down arrows, then pick a page size (A4, Letter, or Fit) and a margin.",
+            "step3": "Click 'Generate PDF' to download a printable PDF. Everything runs in your browser — nothing is uploaded."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "One Page per Image",
+                "desc": "Images become PDF pages in the order you add them."
+            },
+            "f2": {
+                "title": "A4 · Letter · Fit",
+                "desc": "Standard paper or a page that matches the image exactly."
+            },
+            "f3": {
+                "title": "Reorder & Margin",
+                "desc": "Arrange page order and control the margin."
+            },
+            "f4": {
+                "title": "100% Private",
+                "desc": "Built client-side; your images never leave your device."
+            }
+        },
+        "faq": {
+            "title": "FAQ",
+            "q1": {
+                "q": "Which image formats are supported?",
+                "a": "PNG and JPG plus WebP, GIF and more, auto-converted as needed."
+            },
+            "q2": {
+                "q": "Are my images uploaded?",
+                "a": "No. The PDF is built entirely in your browser."
+            }
+        }
+    },
+    "GpaCalculator": {
+        "title": "GPA Calculator",
+        "description": "Compute your GPA from course grades and credits.",
+        "scale": "Scale",
+        "course": "Course",
+        "grade": "Grade",
+        "credits": "Credits",
+        "coursePlaceholder": "Course {n}",
+        "addCourse": "Add course",
+        "remove": "Remove",
+        "gpa": "GPA",
+        "totalCredits": "Total credits",
+        "guide": {
+            "title": "How to Use the GPA Calculator",
+            "step1": "Pick a scale (4.5 or 4.0). Korean universities typically use 4.5.",
+            "step2": "Enter each course name, grade (A+ to F), and credits. Add as many courses as you need.",
+            "step3": "Your credit-weighted GPA and total credits update instantly as you type."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "4.5 / 4.0 Scales",
+                "desc": "Supports both Korean and standard grading scales."
+            },
+            "f2": {
+                "title": "Live Calculation",
+                "desc": "GPA and total credits recompute as you type."
+            },
+            "f3": {
+                "title": "Credit-Weighted",
+                "desc": "Higher-credit courses count more, for an accurate GPA."
+            }
+        }
+    },
+    "VatCalculator": {
+        "title": "VAT Calculator",
+        "description": "Work out net, VAT, and gross amounts at once.",
+        "addVat": "Add VAT",
+        "extractVat": "Extract VAT",
+        "inputNet": "Net amount",
+        "inputGross": "Gross amount (VAT incl.)",
+        "rate": "Rate",
+        "result": "Result",
+        "net": "Net",
+        "vat": "VAT ({rate}%)",
+        "gross": "Gross",
+        "guide": {
+            "title": "How to Use the VAT Calculator",
+            "step1": "'Add VAT' adds tax to a net amount; 'Extract VAT' works backward from a gross total.",
+            "step2": "Enter the amount and adjust the rate if needed (default 10%).",
+            "step3": "Net, VAT, and gross amounts are shown instantly."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Add or Extract",
+                "desc": "Calculate from a net amount or back out of a gross total."
+            },
+            "f2": {
+                "title": "Adjustable Rate",
+                "desc": "Use the default 10% or any custom VAT rate."
+            },
+            "f3": {
+                "title": "Live Results",
+                "desc": "All three amounts update as you type."
+            }
+        }
     }
 }

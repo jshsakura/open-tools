@@ -3,14 +3,17 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Github } from "lucide-react";
+import { Sparkles, Github, Search } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { VisitorCounter } from "@/components/visitor-counter";
+import { CommandPalette } from "@/components/command-palette";
+import { useCommandPalette } from "@/lib/command-palette-store";
 
 export function Header() {
   const pathname = usePathname();
   const t = useTranslations();
+  const openPalette = useCommandPalette((s) => s.setOpen);
 
   // Map URL slugs to translation keys (using the top-level tool keys which usually have the specific title)
   // or Catalog keys if preferred. Let's use the top-level tool namespace titles for page headers.
@@ -70,6 +73,18 @@ export function Header() {
         </div>
 
         <div className="flex items-center space-x-2">
+          <button
+            type="button"
+            onClick={() => openPalette(true)}
+            className="group flex h-9 items-center gap-2 rounded-full border border-border/60 bg-background/50 px-3 text-sm text-muted-foreground transition-all duration-300 hover:bg-accent"
+            aria-label={t("CommandPalette.triggerLabel")}
+          >
+            <Search className="h-4 w-4" />
+            <span className="hidden sm:inline">{t("CommandPalette.triggerLabel")}</span>
+            <kbd className="hidden items-center gap-0.5 rounded border border-border/60 bg-muted/60 px-1.5 font-mono text-[10px] font-semibold sm:inline-flex">
+              ⌘K
+            </kbd>
+          </button>
           <Button
             variant="ghost"
             size="icon"
@@ -88,6 +103,7 @@ export function Header() {
           <ModeToggle />
           <LanguageToggle />
         </div>
+        <CommandPalette />
       </div>
     </header>
   );

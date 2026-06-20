@@ -1,49 +1,59 @@
 {
-  "Common": {
-    "visitors": "Visitors",
-    "visitorsShort": "Visits",
-    "today": "Today",
-    "total": "Total"
-  },
-  "Home": {
-    "title": "Free online tools for everyday tasks and work",
-    "description": "Use practical online tools for calculations, documents, image editing, and everyday work in one place.",
-    "allTools": "All Tools",
-    "searchPlaceholder": "Search tools... (e.g., discount, sleep, BMI, PDF)",
-    "searchResultCount": "{count} results",
-    "searchClear": "Clear search",
-    "noToolsInCategory": "No tools found for this category.",
-    "searchNoResults": "No results found for \"{query}\"",
-    "searchNoResultsHint": "Try a different keyword"
-  },
-  "Category": {
-    "Finance": "Finance",
-    "Health": "Health",
-    "Documents": "Documents",
-    "Text": "Text",
-    "Data": "Data",
-    "Web": "Web",
-    "Network": "Network",
-    "Development": "Development",
-    "Image": "Image",
-    "Video": "Video",
-    "Audio": "Audio",
-    "Design": "Design",
-    "Security": "Security",
-    "Utilities": "Utilities",
-    "AI": "AI",
-    "Korea": "Korea"
-  },
-  "Hero": {
-    "badge": "Collection of Free Online Tools",
-    "title_1": "Essential",
-    "title_2": "Open Tools",
-    "title_3": "Platform",
-    "description": "A curated set of online tools for everyday tasks and work.\nRuns client-side where possible for a faster and safer experience.",
-    "description_mobile": "Find online tools for everyday tasks and work quickly and easily."
-  },
-  "Layout": {
-    "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
-    "github": "Star on GitHub"
-  }
+    "Common": {
+        "visitors": "Visitors",
+        "visitorsShort": "Visits",
+        "today": "Today",
+        "total": "Total"
+    },
+    "Home": {
+        "title": "Free online tools for everyday tasks and work",
+        "description": "Use practical online tools for calculations, documents, image editing, and everyday work in one place.",
+        "allTools": "All Tools",
+        "searchPlaceholder": "Search tools... (e.g., discount, sleep, BMI, PDF)",
+        "searchResultCount": "{count} results",
+        "searchClear": "Clear search",
+        "noToolsInCategory": "No tools found for this category.",
+        "searchNoResults": "No results found for \"{query}\"",
+        "searchNoResultsHint": "Try a different keyword"
+    },
+    "Category": {
+        "Finance": "Finance",
+        "Health": "Health",
+        "Documents": "Documents",
+        "Text": "Text",
+        "Data": "Data",
+        "Web": "Web",
+        "Network": "Network",
+        "Development": "Development",
+        "Image": "Image",
+        "Video": "Video",
+        "Audio": "Audio",
+        "Design": "Design",
+        "Security": "Security",
+        "Utilities": "Utilities",
+        "AI": "AI",
+        "Korea": "Korea"
+    },
+    "Hero": {
+        "badge": "Collection of Free Online Tools",
+        "title_1": "Essential",
+        "title_2": "Open Tools",
+        "title_3": "Platform",
+        "description": "A curated set of online tools for everyday tasks and work.\nRuns client-side where possible for a faster and safer experience.",
+        "description_mobile": "Find online tools for everyday tasks and work quickly and easily."
+    },
+    "Layout": {
+        "footer": "© {year} Open Tools Platform. Powered by <link>OpenCourse</link>.",
+        "github": "Star on GitHub"
+    },
+    "CommandPalette": {
+        "title": "Search tools",
+        "placeholder": "Search tools… (e.g. jpg, merge pdf, regex)",
+        "recent": "Frequently used",
+        "noResults": "No tools found for \"{query}\"",
+        "hintNav": "navigate",
+        "hintOpen": "open",
+        "hintClose": "close",
+        "triggerLabel": "Search tools"
+    }
 }
