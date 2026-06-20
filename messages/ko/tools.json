@@ -4307,7 +4307,12 @@
             "roleLabel": "역할 (Role)",
             "formatLabel": "출력 포맷 (Format)",
             "optimizeBtn": "프롬프트 최적화",
-            "outputLabel": "최적화된 프롬프트 결과"
+            "outputLabel": "최적화된 프롬프트 결과",
+            "roleDefault": "전문가 소프트웨어 엔지니어",
+            "formatDefault": "Markdown 코드 블록과 단계별 설명",
+            "copy": "복사",
+            "copied": "클립보드에 복사되었습니다",
+            "template": "# [SYSTEM ROLE]\n당신은 {role}입니다. 다음 지침에 따라 전문적인 답변을 제시하세요.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\n출력은 반드시 {format} 형태로 작성하세요. 간결하면서도 깊이 있는 세부 사항을 빠짐없이 기술하세요."
         }
     },
     "TailwindConfigBuilder": {

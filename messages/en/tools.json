@@ -4305,7 +4305,12 @@
             "roleLabel": "Role",
             "formatLabel": "Output Format",
             "optimizeBtn": "Optimize Prompt",
-            "outputLabel": "Optimized Prompt Result"
+            "outputLabel": "Optimized Prompt Result",
+            "roleDefault": "an expert software engineer",
+            "formatDefault": "Markdown code blocks with step-by-step explanation",
+            "copy": "Copy",
+            "copied": "Copied to clipboard",
+            "template": "# [SYSTEM ROLE]\nYou are {role}. Follow these guidelines to provide an expert answer.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\nWrite the output strictly in the form of {format}. Be concise yet thorough, covering every important detail."
         }
     },
     "TailwindConfigBuilder": {

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
+import { toast } from "sonner"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,14 +12,18 @@ import { Clipboard } from "lucide-react"
 export function PromptOptimizer() {
   const t = useTranslations("PromptOptimizer.ui")
   const [prompt, setPrompt] = useState("")
-  const [role, setRole] = useState("전문가 소프트웨어 엔지니어")
-  const [format, setFormat] = useState("Markdown 코드 블록과 단계별 설명")
+  const [role, setRole] = useState(() => t("roleDefault"))
+  const [format, setFormat] = useState(() => t("formatDefault"))
   const [result, setResult] = useState("")
 
   const handleOptimize = () => {
     if (!prompt.trim()) return
-    const optimized = `# [SYSTEM ROLE]\n당신은 ${role}입니다. 다음 지침에 따라 전문적인 답변을 제시하세요.\n\n# [USER QUESTION]\n${prompt}\n\n# [OUTPUT SPECIFICATION]\n출력은 반드시 '${format}' 형태로 작성하십시오. 또한, 간결하면서도 깊이 있는 세부 사항을 빠짐없이 기술하세요.`
-    setResult(optimized)
+    setResult(t("template", { role, prompt, format }))
+  }
+
+  const copyResult = () => {
+    navigator.clipboard.writeText(result)
+    toast.success(t("copied"))
   }
 
   return (
@@ -51,11 +56,11 @@ export function PromptOptimizer() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => navigator.clipboard.writeText(result)}
+                onClick={copyResult}
                 className="h-8 gap-1.5"
               >
                 <Clipboard className="w-3.5 h-3.5" />
-                Copy
+                {t("copy")}
               </Button>
             </div>
             <pre className="p-4 rounded-lg bg-muted text-xs font-mono whitespace-pre-wrap select-all max-h-[300px] overflow-y-auto">
