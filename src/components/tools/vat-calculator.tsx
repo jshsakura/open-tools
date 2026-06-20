@@ -7,8 +7,9 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { computeVat, type VatMode } from "./vat-calculator.utils"
 
-type Mode = "addVat" | "extractVat"
+type Mode = VatMode
 
 const formatNumber = (n: number) =>
     Number.isFinite(n) ? Math.round(n).toLocaleString() : "0"
@@ -23,23 +24,9 @@ export function VatCalculator() {
     const ratePct = parseFloat(rate)
     const hasInput = Number.isFinite(value) && value > 0 && Number.isFinite(ratePct)
 
-    let net = 0
-    let vat = 0
-    let gross = 0
-    if (hasInput) {
-        const r = ratePct / 100
-        if (mode === "addVat") {
-            // Input is the net (supply) amount.
-            net = value
-            vat = value * r
-            gross = net + vat
-        } else {
-            // Input is the gross (VAT-inclusive) amount.
-            gross = value
-            net = value / (1 + r)
-            vat = gross - net
-        }
-    }
+    const { net, vat, gross } = hasInput
+        ? computeVat(value, ratePct, mode)
+        : { net: 0, vat: 0, gross: 0 }
 
     const rows: { label: string; value: number; highlight?: boolean }[] = [
         { label: t("net"), value: net, highlight: mode === "extractVat" },

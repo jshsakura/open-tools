@@ -4258,5 +4258,477 @@
                 "desc": "입력 즉시 세 금액이 자동 계산됩니다."
             }
         }
+    },
+    "AiTokenCounter": {
+        "title": "AI 토큰 카운터",
+        "description": "텍스트의 AI 토큰 수와 비용을 OpenAI/Claude 모델별로 계산합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "inputPlaceholder": "여기에 텍스트를 입력하여 토큰을 계산하세요...",
+            "charCount": "글자 수",
+            "tokenCount": "예상 토큰 수",
+            "costEstimate": "예상 비용",
+            "modelSelect": "AI 모델 선택",
+            "estimateNote": "추정치입니다"
+        }
+    },
+    "PromptOptimizer": {
+        "title": "AI 프롬프트 최적화 도구",
+        "description": "구조화 템플릿을 사용하여 프롬프트를 LLM에 맞게 최적화합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "inputLabel": "기본 프롬프트 입력",
+            "roleLabel": "역할 (Role)",
+            "formatLabel": "출력 포맷 (Format)",
+            "optimizeBtn": "프롬프트 최적화",
+            "outputLabel": "최적화된 프롬프트 결과"
+        }
+    },
+    "TailwindConfigBuilder": {
+        "title": "Tailwind CSS 설정 빌더",
+        "description": "테마 컬러, 폰트 등을 시각적으로 커스텀하고 tailwind.config.js를 생성합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "themeColor": "기본 테마 색상",
+            "spacing": "기본 스페이싱 배수",
+            "exportBtn": "설정 파일 복사",
+            "previewText": "Tailwind 컴포넌트 실시간 프리뷰",
+            "darkMode": "다크 모드 방식"
+        }
+    },
+    "CssGridGenerator": {
+        "title": "CSS 그리드 생성기",
+        "description": "행, 열, 갭을 조절하여 직관적으로 CSS Grid 레이아웃 코드를 빌드합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "rows": "행 개수 (Rows)",
+            "cols": "열 개수 (Cols)",
+            "gap": "간격 (Gap)",
+            "codeExport": "CSS 코드 복사"
+        }
+    },
+    "SvgShapesGenerator": {
+        "title": "SVG Wave 및 Blob 생성기",
+        "description": "배경 디자인에 활용할 랜덤 SVG 파도와 Blob 그래픽을 생성합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "complexity": "곡선 복잡도",
+            "colorSelect": "색상 그라데이션",
+            "randomize": "새로운 모양 생성",
+            "copySvg": "SVG 코드 복사"
+        }
+    },
+    "MeshGradientGenerator": {
+        "title": "메시 그라데이션 생성기",
+        "description": "컬러 조절점들을 드래그하여 환상적인 메시 그라데이션 CSS를 만듭니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "pointCount": "그라데이션 조절점 수",
+            "animate": "그라데이션 애니메이션",
+            "copyCss": "CSS 스타일 복사"
+        }
+    },
+    "FontPairer": {
+        "title": "폰트 조합 어시스턴트",
+        "description": "구글 폰트 중 최적의 제목-본문 폰트 조합을 고르고 스타일을 미리 봅니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "presetSelect": "폰트 프리셋 조합",
+            "sampleTitle": "멋진 제목 예시입니다",
+            "sampleBody": "이곳은 본문 텍스트 예시입니다. 폰트의 가독성과 조화를 미리 확인해보세요.",
+            "copyImport": "임포트 코드 복사",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "DockerComposeGenerator": {
+        "title": "Docker Compose 생성기",
+        "description": "서버 스택을 골라 즉시 실행 가능한 docker-compose.yml 파일을 생성합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "selectServices": "서비스 추가 선택",
+            "dbSetup": "데이터베이스 설정",
+            "copyYml": "docker-compose.yml 복사",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "GitCommitHelper": {
+        "title": "Git 커밋 메시지 빌더",
+        "description": "Conventional Commits 규격에 맞추어 깔끔한 커밋 메시지를 작성합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "commitType": "커밋 타입 (Type)",
+            "scope": "작업 영역 (Scope)",
+            "subject": "제목 (Subject)",
+            "body": "본문 설명 (Body)",
+            "copyCommit": "커밋 명령어 복사",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "JsonSchemaGenerator": {
+        "title": "JSON 스키마 생성기",
+        "description": "JSON 객체를 입력하여 JSON Schema Draft 규격 스키마를 추출합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "jsonInput": "원본 JSON 입력",
+            "schemaOutput": "생성된 JSON Schema",
+            "copySchema": "스키마 복사"
+        }
+    },
+    "UrlParser": {
+        "title": "URL 쿼리 파서 & 빌더",
+        "description": "복잡한 URL 매개변수를 해체하여 편리한 키-값 표로 편집합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "urlInput": "전체 URL 입력",
+            "queryTable": "쿼리 파라미터 테이블",
+            "paramKey": "매개변수 키",
+            "paramVal": "매개변수 값",
+            "buildUrl": "재구성된 URL 복사"
+        }
+    },
+    "HttpStatusCodes": {
+        "title": "HTTP 상태 코드 도감",
+        "description": "1xx부터 5xx까지 HTTP 상태 코드의 정확한 RFC 스펙과 해결법을 찾아봅니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "searchCode": "상태 코드 검색...",
+            "codeSpec": "RFC 명세 정보",
+            "codeFix": "문제 해결 가이드"
+        }
+    },
+    "CorsConfigurator": {
+        "title": "CORS 설정 빌더",
+        "description": "백엔드 프레임워크(Express, Spring 등)별 CORS 응답 헤더 설정을 빌드합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "allowedOrigins": "허용할 Origin 도메인",
+            "allowedMethods": "허용할 HTTP 메소드",
+            "exportConfig": "설정 코드 복사",
+            "framework": "프레임워크 / 생성된 설정",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "MarkdownTableBuilder": {
+        "title": "마크다운 표 생성기",
+        "description": "스프레드시트 레이아웃 그리드를 이용해 손쉽게 마크다운 Table 코드를 땁니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "gridSize": "테이블 행렬 크기",
+            "alignOption": "텍스트 정렬",
+            "copyMarkdown": "마크다운 복사",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "AsciiArtDiagram": {
+        "title": "ASCII 플로우 다이어그램",
+        "description": "텍스트 상자와 화살표로 소스코드 주석에 넣을 텍스트 다이어그램을 그립니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "drawMode": "그리기 도구",
+            "canvasArea": "다이어그램 캔버스 영역",
+            "copyText": "텍스트 다이어그램 복사",
+            "copied": "클립보드에 복사되었습니다"
+        }
+    },
+    "BudgetPlanner": {
+        "title": "브라우저 자산 예산 계획기",
+        "description": "로컬 브라우저에 가계 지출 내역을 안전하게 기록하고 차트로 시뮬레이션합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "addExpense": "소비 내역 추가",
+            "category": "분류",
+            "amount": "금액",
+            "totalStatus": "자산 잔고 상태",
+            "income": "수입",
+            "expense": "지출",
+            "balance": "잔액",
+            "delete": "삭제"
+        }
+    },
+    "KrWordCounter": {
+        "title": "자기소개서 글자수/바이트 계산기",
+        "description": "공백 여부와 한국 채용 표준 바이트(한글 2/3바이트 등)를 정밀 계산합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "inputPlaceholder": "자기소개서 텍스트를 입력하세요...",
+            "spaceInc": "공백 포함 글자수",
+            "spaceExc": "공백 제외 글자수",
+            "byteCount": "총 바이트 수",
+            "byteRule": "바이트 계산 규격",
+            "wordCount": "단어 수",
+            "lineCount": "줄 수"
+        }
+    },
+    "KrIdValidator": {
+        "title": "한국 주요 등록번호 검증기",
+        "description": "주민등록번호, 사업자등록번호 등의 체크섬 알고리즘 유효성을 로컬에서 검증합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "juminLabel": "주민등록번호 검증",
+            "businessLabel": "사업자등록번호 검증",
+            "validateBtn": "유효성 확인",
+            "validResult": "올바른 번호입니다.",
+            "invalidResult": "유효하지 않은 번호입니다."
+        }
+    },
+    "KrRealEstate": {
+        "title": "부동산 평수/세금 계산기",
+        "description": "공급면적(㎡)의 평형 변환과 매매 시 부동산 중개수수료, 취득세를 계산합니다.",
+        "features": {
+            "f1": {
+                "title": "실시간 반응형",
+                "desc": "로컬 브라우저에서 입력을 즉시 처리하여 딜레이가 없습니다."
+            },
+            "f2": {
+                "title": "보안 & 프라이버시",
+                "desc": "데이터가 외부 서버로 전송되지 않고 기기 내부에서 작동합니다."
+            },
+            "f3": {
+                "title": "원클릭 복사",
+                "desc": "결과물을 즉시 클립보드에 복사하여 생산성을 높입니다."
+            }
+        },
+        "ui": {
+            "areaSize": "전용 면적 (㎡)",
+            "pyungCount": "평수 환산 결과",
+            "dealAmount": "거래 금액 (원)",
+            "commission": "예상 중개수수료",
+            "acquisitionTax": "취득세 (예상)",
+            "taxNote": "전용 85㎡ 이하 주택 기준 간이 계산이며 실제 금액과 다를 수 있습니다."
+        }
     }
 }

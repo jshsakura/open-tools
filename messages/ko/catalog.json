@@ -794,6 +794,82 @@
         "VatCalculator": {
             "title": "부가세 계산기",
             "description": "공급가액에서 부가세를 더하거나, 합계금액에서 부가세를 역산합니다. 세율 조절 가능."
+        },
+        "AiTokenCounter": {
+            "title": "AI 토큰 카운터",
+            "description": "텍스트의 AI 토큰 수와 비용을 OpenAI/Claude 모델별로 계산합니다."
+        },
+        "PromptOptimizer": {
+            "title": "AI 프롬프트 최적화 도구",
+            "description": "구조화 템플릿을 사용하여 프롬프트를 LLM에 맞게 최적화합니다."
+        },
+        "TailwindConfigBuilder": {
+            "title": "Tailwind CSS 설정 빌더",
+            "description": "테마 컬러, 폰트 등을 시각적으로 커스텀하고 tailwind.config.js를 생성합니다."
+        },
+        "CssGridGenerator": {
+            "title": "CSS 그리드 생성기",
+            "description": "행, 열, 갭을 조절하여 직관적으로 CSS Grid 레이아웃 코드를 빌드합니다."
+        },
+        "SvgShapesGenerator": {
+            "title": "SVG Wave 및 Blob 생성기",
+            "description": "배경 디자인에 활용할 랜덤 SVG 파도와 Blob 그래픽을 생성합니다."
+        },
+        "MeshGradientGenerator": {
+            "title": "메시 그라데이션 생성기",
+            "description": "컬러 조절점들을 드래그하여 환상적인 메시 그라데이션 CSS를 만듭니다."
+        },
+        "FontPairer": {
+            "title": "폰트 조합 어시스턴트",
+            "description": "구글 폰트 중 최적의 제목-본문 폰트 조합을 고르고 스타일을 미리 봅니다."
+        },
+        "DockerComposeGenerator": {
+            "title": "Docker Compose 생성기",
+            "description": "서버 스택을 골라 즉시 실행 가능한 docker-compose.yml 파일을 생성합니다."
+        },
+        "GitCommitHelper": {
+            "title": "Git 커밋 메시지 빌더",
+            "description": "Conventional Commits 규격에 맞추어 깔끔한 커밋 메시지를 작성합니다."
+        },
+        "JsonSchemaGenerator": {
+            "title": "JSON 스키마 생성기",
+            "description": "JSON 객체를 입력하여 JSON Schema Draft 규격 스키마를 추출합니다."
+        },
+        "UrlParser": {
+            "title": "URL 쿼리 파서 & 빌더",
+            "description": "복잡한 URL 매개변수를 해체하여 편리한 키-값 표로 편집합니다."
+        },
+        "HttpStatusCodes": {
+            "title": "HTTP 상태 코드 도감",
+            "description": "1xx부터 5xx까지 HTTP 상태 코드의 정확한 RFC 스펙과 해결법을 찾아봅니다."
+        },
+        "CorsConfigurator": {
+            "title": "CORS 설정 빌더",
+            "description": "백엔드 프레임워크(Express, Spring 등)별 CORS 응답 헤더 설정을 빌드합니다."
+        },
+        "MarkdownTableBuilder": {
+            "title": "마크다운 표 생성기",
+            "description": "스프레드시트 레이아웃 그리드를 이용해 손쉽게 마크다운 Table 코드를 땁니다."
+        },
+        "AsciiArtDiagram": {
+            "title": "ASCII 플로우 다이어그램",
+            "description": "텍스트 상자와 화살표로 소스코드 주석에 넣을 텍스트 다이어그램을 그립니다."
+        },
+        "BudgetPlanner": {
+            "title": "브라우저 자산 예산 계획기",
+            "description": "로컬 브라우저에 가계 지출 내역을 안전하게 기록하고 차트로 시뮬레이션합니다."
+        },
+        "KrWordCounter": {
+            "title": "자기소개서 글자수/바이트 계산기",
+            "description": "공백 여부와 한국 채용 표준 바이트(한글 2/3바이트 등)를 정밀 계산합니다."
+        },
+        "KrIdValidator": {
+            "title": "한국 주요 등록번호 검증기",
+            "description": "주민등록번호, 사업자등록번호 등의 체크섬 알고리즘 유효성을 로컬에서 검증합니다."
+        },
+        "KrRealEstate": {
+            "title": "부동산 평수/세금 계산기",
+            "description": "공급면적(㎡)의 평형 변환과 매매 시 부동산 중개수수료, 취득세를 계산합니다."
         }
     }
 }

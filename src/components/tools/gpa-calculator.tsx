@@ -7,14 +7,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
-type Scale = "4.5" | "4.0"
-
-// Grade -> grade point per scale (Korean 4.5 and standard 4.0).
-const GRADE_POINTS: Record<Scale, Record<string, number>> = {
-    "4.5": { "A+": 4.5, A: 4.0, "B+": 3.5, B: 3.0, "C+": 2.5, C: 2.0, "D+": 1.5, D: 1.0, F: 0 },
-    "4.0": { "A+": 4.0, A: 4.0, "B+": 3.5, B: 3.0, "C+": 2.5, C: 2.0, "D+": 1.5, D: 1.0, F: 0 },
-}
+import { computeGpa, GRADE_POINTS, type Scale } from "./gpa-calculator.utils"
 
 interface Course {
     id: string
@@ -36,18 +29,14 @@ export function GpaCalculator() {
         setCourses((prev) => prev.map((c) => (c.id === id ? { ...c, ...patch } : c)))
     const remove = (id: string) => setCourses((prev) => prev.filter((c) => c.id !== id))
 
-    const { gpa, totalCredits } = useMemo(() => {
-        let points = 0
-        let credits = 0
-        for (const c of courses) {
-            const credit = parseFloat(c.credits)
-            if (!Number.isFinite(credit) || credit <= 0) continue
-            const gp = GRADE_POINTS[scale][c.grade] ?? 0
-            points += gp * credit
-            credits += credit
-        }
-        return { gpa: credits > 0 ? points / credits : 0, totalCredits: credits }
-    }, [courses, scale])
+    const { gpa, totalCredits } = useMemo(
+        () =>
+            computeGpa(
+                courses.map((c) => ({ grade: c.grade, credits: parseFloat(c.credits) })),
+                scale,
+            ),
+        [courses, scale],
+    )
 
     return (
         <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">

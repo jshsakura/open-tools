@@ -738,6 +738,82 @@
         "VatCalculator": {
             "title": "VAT Calculator",
             "description": "Add VAT to a net amount, or extract VAT from a gross total. Adjustable tax rate."
+        },
+        "AiTokenCounter": {
+            "title": "AI Token Counter",
+            "description": "Calculate AI token count and cost for OpenAI/Claude models."
+        },
+        "PromptOptimizer": {
+            "title": "AI Prompt Optimizer",
+            "description": "Structure and optimize your prompt configurations for LLMs."
+        },
+        "TailwindConfigBuilder": {
+            "title": "Tailwind Config Builder",
+            "description": "Visually configure colors, typography, and export tailwind.config.js."
+        },
+        "CssGridGenerator": {
+            "title": "CSS Grid Generator",
+            "description": "Generate CSS Grid layout codes visually by customizing grid items."
+        },
+        "SvgShapesGenerator": {
+            "title": "SVG Wave & Blob Generator",
+            "description": "Generate customized smooth SVG waves and blob shapes for backgrounds."
+        },
+        "MeshGradientGenerator": {
+            "title": "Mesh Gradient Generator",
+            "description": "Create dynamic multi-point mesh gradients and export CSS styles."
+        },
+        "FontPairer": {
+            "title": "Font Pairing Assistant",
+            "description": "Match and preview beautiful Google Font pairs for websites."
+        },
+        "DockerComposeGenerator": {
+            "title": "Docker Compose Generator",
+            "description": "Configure web servers, databases, and export docker-compose.yml files."
+        },
+        "GitCommitHelper": {
+            "title": "Git Commit Helper",
+            "description": "Format clean commit messages matching Conventional Commits rules."
+        },
+        "JsonSchemaGenerator": {
+            "title": "JSON Schema Generator",
+            "description": "Parse JSON data object and extract valid JSON Schema structures."
+        },
+        "UrlParser": {
+            "title": "URL Query Parser & Builder",
+            "description": "Deconstruct complex URLs and edit parameters in key-value tables."
+        },
+        "HttpStatusCodes": {
+            "title": "HTTP Status Codes Guide",
+            "description": "Browse HTTP status codes (1xx-5xx), RFC specs, and debugging tips."
+        },
+        "CorsConfigurator": {
+            "title": "CORS Configuration Builder",
+            "description": "Build optimal CORS response headers config for express, spring, nginx."
+        },
+        "MarkdownTableBuilder": {
+            "title": "Markdown Table Builder",
+            "description": "Build markdown tables using an interactive spreadsheet grid editor."
+        },
+        "AsciiArtDiagram": {
+            "title": "ASCII Flow Diagram Builder",
+            "description": "Draw text diagrams using boxes, arrows, lines for source code comments."
+        },
+        "BudgetPlanner": {
+            "title": "Personal Budget Planner",
+            "description": "Locally plan budget inputs/expenses and simulate savings trends."
+        },
+        "KrWordCounter": {
+            "title": "Korean Resume Character Counter",
+            "description": "Calculate characters and exact Korean bytes (2/3-byte options)."
+        },
+        "KrIdValidator": {
+            "title": "Korean ID & Business Reg Validator",
+            "description": "Verify Korean resident registration and business numbers locally."
+        },
+        "KrRealEstate": {
+            "title": "Korean Real Estate Pyung & Tax Calc",
+            "description": "Convert square meters to Pyung and estimate acquisition taxes & fees."
         }
     }
 }

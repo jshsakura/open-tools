@@ -4256,5 +4256,477 @@
                 "desc": "All three amounts update as you type."
             }
         }
+    },
+    "AiTokenCounter": {
+        "title": "AI Token Counter",
+        "description": "Calculate AI token count and cost for OpenAI/Claude models.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "inputPlaceholder": "Enter text here to calculate tokens...",
+            "charCount": "Characters",
+            "tokenCount": "Est. Tokens",
+            "costEstimate": "Est. Cost",
+            "modelSelect": "Select AI Model",
+            "estimateNote": "Estimate only"
+        }
+    },
+    "PromptOptimizer": {
+        "title": "AI Prompt Optimizer",
+        "description": "Structure and optimize your prompt configurations for LLMs.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "inputLabel": "Enter Base Prompt",
+            "roleLabel": "Role",
+            "formatLabel": "Output Format",
+            "optimizeBtn": "Optimize Prompt",
+            "outputLabel": "Optimized Prompt Result"
+        }
+    },
+    "TailwindConfigBuilder": {
+        "title": "Tailwind Config Builder",
+        "description": "Visually configure colors, typography, and export tailwind.config.js.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "themeColor": "Base Theme Color",
+            "spacing": "Spacing Scale",
+            "exportBtn": "Copy Config Code",
+            "previewText": "Tailwind Component Live Preview",
+            "darkMode": "Dark Mode Strategy"
+        }
+    },
+    "CssGridGenerator": {
+        "title": "CSS Grid Generator",
+        "description": "Generate CSS Grid layout codes visually by customizing grid items.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "rows": "Rows count",
+            "cols": "Cols count",
+            "gap": "Gap size",
+            "codeExport": "Copy CSS Grid Code"
+        }
+    },
+    "SvgShapesGenerator": {
+        "title": "SVG Wave & Blob Generator",
+        "description": "Generate customized smooth SVG waves and blob shapes for backgrounds.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "complexity": "Wave Complexity",
+            "colorSelect": "Gradient Color",
+            "randomize": "Generate Random Shape",
+            "copySvg": "Copy SVG Code"
+        }
+    },
+    "MeshGradientGenerator": {
+        "title": "Mesh Gradient Generator",
+        "description": "Create dynamic multi-point mesh gradients and export CSS styles.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "pointCount": "Control Points",
+            "animate": "Animate Gradient",
+            "copyCss": "Copy CSS Styles"
+        }
+    },
+    "FontPairer": {
+        "title": "Font Pairing Assistant",
+        "description": "Match and preview beautiful Google Font pairs for websites.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "presetSelect": "Font Pair Presets",
+            "sampleTitle": "This is a Heading Example",
+            "sampleBody": "This is a body text example. Check the readability and harmony between fonts.",
+            "copyImport": "Copy Import Styles",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "DockerComposeGenerator": {
+        "title": "Docker Compose Generator",
+        "description": "Configure web servers, databases, and export docker-compose.yml files.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "selectServices": "Select Services",
+            "dbSetup": "Database Config",
+            "copyYml": "Copy docker-compose.yml",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "GitCommitHelper": {
+        "title": "Git Commit Helper",
+        "description": "Format clean commit messages matching Conventional Commits rules.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "commitType": "Commit Type",
+            "scope": "Scope",
+            "subject": "Subject",
+            "body": "Body Description",
+            "copyCommit": "Copy Commit Command",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "JsonSchemaGenerator": {
+        "title": "JSON Schema Generator",
+        "description": "Parse JSON data object and extract valid JSON Schema structures.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "jsonInput": "Enter Source JSON",
+            "schemaOutput": "Generated JSON Schema",
+            "copySchema": "Copy Schema"
+        }
+    },
+    "UrlParser": {
+        "title": "URL Query Parser & Builder",
+        "description": "Deconstruct complex URLs and edit parameters in key-value tables.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "urlInput": "Enter Full URL",
+            "queryTable": "Query Parameters Table",
+            "paramKey": "Parameter Key",
+            "paramVal": "Parameter Value",
+            "buildUrl": "Copy Rebuilt URL"
+        }
+    },
+    "HttpStatusCodes": {
+        "title": "HTTP Status Codes Guide",
+        "description": "Browse HTTP status codes (1xx-5xx), RFC specs, and debugging tips.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "searchCode": "Search HTTP status code...",
+            "codeSpec": "RFC Specification Details",
+            "codeFix": "How to resolve"
+        }
+    },
+    "CorsConfigurator": {
+        "title": "CORS Configuration Builder",
+        "description": "Build optimal CORS response headers config for express, spring, nginx.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "allowedOrigins": "Allowed Origins",
+            "allowedMethods": "Allowed Methods",
+            "exportConfig": "Copy Config Code",
+            "framework": "Framework / Generated Config",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "MarkdownTableBuilder": {
+        "title": "Markdown Table Builder",
+        "description": "Build markdown tables using an interactive spreadsheet grid editor.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "gridSize": "Grid Size",
+            "alignOption": "Text Alignment",
+            "copyMarkdown": "Copy Markdown Table",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "AsciiArtDiagram": {
+        "title": "ASCII Flow Diagram Builder",
+        "description": "Draw text diagrams using boxes, arrows, lines for source code comments.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "drawMode": "Drawing Mode",
+            "canvasArea": "Diagram Canvas Area",
+            "copyText": "Copy Text Diagram",
+            "copied": "Copied to clipboard"
+        }
+    },
+    "BudgetPlanner": {
+        "title": "Personal Budget Planner",
+        "description": "Locally plan budget inputs/expenses and simulate savings trends.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "addExpense": "Add Expense Item",
+            "category": "Category",
+            "amount": "Amount",
+            "totalStatus": "Budget Summary",
+            "income": "Income",
+            "expense": "Expense",
+            "balance": "Balance",
+            "delete": "Delete"
+        }
+    },
+    "KrWordCounter": {
+        "title": "Korean Resume Character Counter",
+        "description": "Calculate characters and exact Korean bytes (2/3-byte options).",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "inputPlaceholder": "Paste your resume text here...",
+            "spaceInc": "Characters (Spaces Incl.)",
+            "spaceExc": "Characters (Spaces Excl.)",
+            "byteCount": "Total Bytes",
+            "byteRule": "Byte Rule Spec",
+            "wordCount": "Words",
+            "lineCount": "Lines"
+        }
+    },
+    "KrIdValidator": {
+        "title": "Korean ID & Business Reg Validator",
+        "description": "Verify Korean resident registration and business numbers locally.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "juminLabel": "Resident Reg Number Check",
+            "businessLabel": "Business Reg Number Check",
+            "validateBtn": "Check Validity",
+            "validResult": "Valid Format.",
+            "invalidResult": "Invalid Format."
+        }
+    },
+    "KrRealEstate": {
+        "title": "Korean Real Estate Pyung & Tax Calc",
+        "description": "Convert square meters to Pyung and estimate acquisition taxes & fees.",
+        "features": {
+            "f1": {
+                "title": "Real-time Processing",
+                "desc": "Immediate local execution in your browser with zero latency."
+            },
+            "f2": {
+                "title": "Privacy First",
+                "desc": "All data stays locally on your device and is never uploaded."
+            },
+            "f3": {
+                "title": "Instant Copy",
+                "desc": "Copy output results with a single click to boost your workflow."
+            }
+        },
+        "ui": {
+            "areaSize": "Area ($m^2$)",
+            "pyungCount": "Pyung conversion",
+            "dealAmount": "Deal Amount (KRW)",
+            "commission": "Brokerage Commission",
+            "acquisitionTax": "Acquisition Tax (Est.)",
+            "taxNote": "Simplified estimate for housing under 85㎡; actual amounts may vary."
+        }
     }
 }
