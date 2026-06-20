@@ -245,11 +245,6 @@ export const tools = [
         href: "/tools/xml-formatter",
     },
     {
-        id: 'pdf-tools',
-        titleKey: 'Catalog.PdfTools.title',
-        href: "/tools/pdf-tools",
-    },
-    {
         id: '3d-viewer',
         titleKey: 'Catalog.Basic3dViewer.title',
         href: "/tools/3d-viewer",

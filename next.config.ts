@@ -8,6 +8,16 @@ import { NextConfig } from 'next';
 const nextConfig: NextConfig = {
     output: 'standalone',
     serverExternalPackages: ['better-sqlite3'],
+    async redirects() {
+        // pdf-tools (combined) was split back into individual tools.
+        return [
+            {
+                source: '/:locale/tools/pdf-tools',
+                destination: '/:locale/tools/pdf-merge',
+                permanent: true,
+            },
+        ];
+    },
     webpack: (config: any, { isServer }: { isServer: boolean }) => {
         if (!isServer) {
             config.resolve.fallback = {

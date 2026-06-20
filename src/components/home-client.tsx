@@ -105,7 +105,6 @@ const DOCUMENT_TOOL_IDS = new Set([
   "pdf-merge",
   "pdf-split",
   "pdf-to-image",
-  "pdf-tools",
   "csv-editor",
   "file-size-converter",
 ]);

@@ -819,15 +819,6 @@ export const toolsCatalog = [
     tags: ["Utilities"],
   },
   {
-    id: "pdf-tools",
-    titleKey: "Catalog.PdfTools.title",
-    descriptionKey: "Catalog.PdfTools.description",
-    icon: Files,
-    href: "/tools/pdf-tools",
-    color: "text-red-500",
-    tags: ["Utilities"],
-  },
-  {
     id: "3d-viewer",
     titleKey: "Catalog.Basic3dViewer.title",
     descriptionKey: "Catalog.Basic3dViewer.description",

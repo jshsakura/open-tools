@@ -3,15 +3,6 @@
         "title": "보안 & 암호화 도구",
         "description": "AES, RSA, Bcrypt, JWT, HMAC, 해시 생성 등 보안 관련 도구 모음."
     },
-    "PdfTools": {
-        "title": "PDF 도구 모음",
-        "description": "PDF 병합, 분할, 변환 기능을 한곳에서 편리하게 사용하세요.",
-        "tabs": {
-            "merge": "합치기",
-            "split": "나누기",
-            "toImage": "이미지로 변환"
-        }
-    },
     "DataTools": {
         "title": "데이터 처리 도구 모음",
         "description": "데이터 변환, 포맷팅, 처리를 위한 도구 모음입니다.",

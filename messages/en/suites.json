@@ -3,15 +3,6 @@
         "title": "Security & Encryption",
         "description": "Suite of security tools including AES, RSA, Bcrypt, JWT, HMAC, and Hashing."
     },
-    "PdfTools": {
-        "title": "PDF Tools",
-        "description": "All-in-one PDF utilities: Merge, Split, and Convert to Image.",
-        "tabs": {
-            "merge": "Merge",
-            "split": "Split",
-            "toImage": "To Image"
-        }
-    },
     "DataTools": {
         "title": "Data Manipulation Suite",
         "description": "A collection of tools for data conversion, formatting, and processing.",
