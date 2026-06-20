@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { formatBytes } from "@/lib/utils"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
@@ -264,7 +265,12 @@ export function ImageCompressor() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{t('dropTitle')}</h3>
                     <p className="text-muted-foreground mb-6">{t('dropDesc')}</p>
-                    <Button variant="secondary">{t('selectFile')}</Button>
+                    <div className="flex items-center gap-3">
+                        <Button variant="secondary">{t('selectFile')}</Button>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <ClipboardPasteButton onImageFile={handleFile} />
+                        </div>
+                    </div>
                 </GlassCard>
             ) : (
                 <div className="grid lg:grid-cols-[1fr_300px] gap-8">

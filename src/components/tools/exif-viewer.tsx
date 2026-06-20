@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
@@ -402,6 +403,9 @@ export function ExifViewerTool() {
                     <Upload className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                     <p className="text-lg font-medium">{t("dropTitle")}</p>
                     <p className="text-sm text-muted-foreground mt-1">{t("dropDesc")}</p>
+                    <div className="mt-4 flex justify-center" onClick={(e) => e.stopPropagation()}>
+                        <ClipboardPasteButton onImageFile={handleFile} />
+                    </div>
                     <input
                         ref={fileInputRef}
                         type="file"

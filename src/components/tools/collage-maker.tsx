@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 type LayoutType = "2x1" | "1x2" | "2x2" | "3x1" | "1x3" | "3x3"
@@ -118,7 +119,8 @@ export function CollageMaker() {
 
     useEffect(() => { drawCanvas() }, [drawCanvas])
 
-    const handleFiles = (files: FileList) => {
+    const loadFiles = (fileList: FileList | File[]) => {
+        const files = Array.from(fileList)
         const newImages: ImageSlot[] = []
         let loaded = 0
         const toLoad = Math.min(files.length, totalSlots - images.length)
@@ -138,6 +140,8 @@ export function CollageMaker() {
             img.src = URL.createObjectURL(file)
         }
     }
+
+    const handleFiles = (files: FileList) => loadFiles(files)
 
     const removeImage = (idx: number) => {
         setImages(prev => prev.filter((_, i) => i !== idx))
@@ -215,9 +219,15 @@ export function CollageMaker() {
                     <GlassCard className="p-4">
                         <div className="flex items-center justify-between mb-3">
                             <h3 className="text-sm font-bold">{t("images")} ({images.length}/{totalSlots})</h3>
-                            <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()} disabled={images.length >= totalSlots} className="gap-1">
-                                <Plus className="w-3 h-3" /> {t("addImage")}
-                            </Button>
+                            <div className="flex items-center gap-2">
+                                <ClipboardPasteButton
+                                    onImageFile={(f) => loadFiles([f])}
+                                    enablePasteShortcut={images.length < totalSlots}
+                                />
+                                <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()} disabled={images.length >= totalSlots} className="gap-1">
+                                    <Plus className="w-3 h-3" /> {t("addImage")}
+                                </Button>
+                            </div>
                             <input ref={fileInputRef} type="file" className="hidden" accept="image/*" multiple onChange={e => { if (e.target.files) handleFiles(e.target.files) }} />
                         </div>
                         <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">

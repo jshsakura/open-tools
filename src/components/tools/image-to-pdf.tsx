@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 type PageSize = "a4" | "letter" | "fit"
@@ -207,6 +208,10 @@ export function ImageToPdf() {
                                 e.target.value = ""
                             }}
                         />
+                    </div>
+
+                    <div className="flex justify-center">
+                        <ClipboardPasteButton onImageFile={(f) => addFiles([f])} />
                     </div>
 
                     {images.length > 0 && (

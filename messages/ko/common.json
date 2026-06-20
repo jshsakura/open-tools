@@ -3,7 +3,10 @@
         "visitors": "방문자 수",
         "visitorsShort": "방문",
         "today": "오늘",
-        "total": "전체"
+        "total": "전체",
+        "pasteFromClipboard": "클립보드에서 붙여넣기",
+        "clipboardNoImage": "클립보드에 이미지가 없습니다",
+        "pastedFromClipboard": "클립보드 이미지를 불러왔습니다"
     },
     "Home": {
         "title": "일상과 업무에 필요한 무료 온라인 도구",

@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 const KOREAN_FONT_FALLBACK = [
@@ -242,20 +243,25 @@ export function MemeGenerator() {
             </header>
 
             {!image ? (
-                <GlassCard
-                    className="h-[400px] flex flex-col items-center justify-center border-dashed border-2 border-primary/20 hover:border-primary/50 transition-colors cursor-pointer"
-                    onClick={() => fileInputRef.current?.click()}
-                    onDragOver={e => e.preventDefault()}
-                    onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files?.[0]; if (f) handleFile(f) }}
-                >
-                    <input ref={fileInputRef} type="file" className="hidden" accept="image/*" onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f) }} />
-                    <div className="bg-primary/10 p-6 rounded-full mb-6 animate-pulse">
-                        <Upload className="w-12 h-12 text-primary" />
+                <div className="space-y-4">
+                    <GlassCard
+                        className="h-[400px] flex flex-col items-center justify-center border-dashed border-2 border-primary/20 hover:border-primary/50 transition-colors cursor-pointer"
+                        onClick={() => fileInputRef.current?.click()}
+                        onDragOver={e => e.preventDefault()}
+                        onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files?.[0]; if (f) handleFile(f) }}
+                    >
+                        <input ref={fileInputRef} type="file" className="hidden" accept="image/*" onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f) }} />
+                        <div className="bg-primary/10 p-6 rounded-full mb-6 animate-pulse">
+                            <Upload className="w-12 h-12 text-primary" />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-2">{t("dropTitle")}</h3>
+                        <p className="text-muted-foreground mb-6">{t("dropDesc")}</p>
+                        <Button variant="secondary">{t("selectFile")}</Button>
+                    </GlassCard>
+                    <div className="flex justify-center">
+                        <ClipboardPasteButton onImageFile={handleFile} />
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">{t("dropTitle")}</h3>
-                    <p className="text-muted-foreground mb-6">{t("dropDesc")}</p>
-                    <Button variant="secondary">{t("selectFile")}</Button>
-                </GlassCard>
+                </div>
             ) : (
                 <div className="grid lg:grid-cols-[1fr_300px] gap-8">
                     <GlassCard className="p-4">

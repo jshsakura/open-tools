@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 
 interface Preset {
     label: string
@@ -171,6 +172,9 @@ export function ImageResizerTool() {
                     <Upload className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                     <p className="text-lg font-medium">{t("dropTitle")}</p>
                     <p className="text-sm text-muted-foreground mt-1">{t("dropDesc")}</p>
+                    <div className="mt-4 flex justify-center" onClick={(e) => e.stopPropagation()}>
+                        <ClipboardPasteButton onImageFile={handleFile} />
+                    </div>
                     <input
                         ref={fileInputRef}
                         type="file"

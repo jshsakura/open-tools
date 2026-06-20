@@ -3,7 +3,10 @@
         "visitors": "Visitors",
         "visitorsShort": "Visits",
         "today": "Today",
-        "total": "Total"
+        "total": "Total",
+        "pasteFromClipboard": "Paste from clipboard",
+        "clipboardNoImage": "No image in clipboard",
+        "pastedFromClipboard": "Pasted image from clipboard"
     },
     "Home": {
         "title": "Free online tools for everyday tasks and work",

@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 
 interface FilterState {
     brightness: number
@@ -149,7 +150,10 @@ export function ImageFilters() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{t("dropTitle")}</h3>
                     <p className="text-muted-foreground mb-6">{t("dropDesc")}</p>
-                    <Button variant="secondary">{t("selectFile")}</Button>
+                    <div className="flex gap-3" onClick={e => e.stopPropagation()}>
+                        <Button variant="secondary" onClick={() => fileInputRef.current?.click()}>{t("selectFile")}</Button>
+                        <ClipboardPasteButton onImageFile={handleFile} size="default" />
+                    </div>
                 </GlassCard>
             ) : (
                 <div className="space-y-6">

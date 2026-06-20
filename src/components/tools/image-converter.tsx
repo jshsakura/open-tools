@@ -6,6 +6,7 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { Slider } from "@/components/ui/slider"
 import { Upload, Download, FileImage, RefreshCw, X } from "lucide-react"
 import Image from "next/image"
@@ -35,11 +36,10 @@ export function ImageConverter() {
     const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([]);
     const [quality, setQuality] = useState(DEFAULT_QUALITY);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
+    const setFiles = (files: File[]) => {
+        if (files.length === 0) return;
 
-        const picked: SourceImage[] = Array.from(files).map((file) => ({
+        const picked: SourceImage[] = files.map((file) => ({
             file,
             previewUrl: URL.createObjectURL(file),
         }));
@@ -54,6 +54,14 @@ export function ImageConverter() {
             return [];
         });
     }
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        setFiles(Array.from(files));
+    }
+
+    const handleFile = (file: File) => setFiles([file]);
 
     const clearSources = () => {
         sources.forEach((s) => URL.revokeObjectURL(s.previewUrl));
@@ -205,6 +213,9 @@ export function ImageConverter() {
                             <Upload className="w-12 h-12 mx-auto text-muted-foreground" />
                             <p className="text-lg font-medium">{t('clickOrDrag')}</p>
                             <p className="text-sm text-muted-foreground">{t('dropDesc')}</p>
+                            <div className="relative z-10 flex justify-center pt-2 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+                                <ClipboardPasteButton onImageFile={handleFile} />
+                            </div>
                         </div>
                     )}
                 </div>

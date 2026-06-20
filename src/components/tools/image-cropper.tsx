@@ -6,6 +6,7 @@ import { Upload, Download, RotateCw, FlipHorizontal, FlipVertical, Crop, Trash2,
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 type AspectRatio = "free" | "1:1" | "4:3" | "16:9" | "9:16" | "3:2"
@@ -244,7 +245,12 @@ export function ImageCropper() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{t("dropTitle")}</h3>
                     <p className="text-muted-foreground mb-6">{t("dropDesc")}</p>
-                    <Button variant="secondary">{t("selectFile")}</Button>
+                    <div className="flex items-center gap-3">
+                        <Button variant="secondary">{t("selectFile")}</Button>
+                        <div onClick={e => e.stopPropagation()}>
+                            <ClipboardPasteButton onImageFile={handleFile} />
+                        </div>
+                    </div>
                 </GlassCard>
             ) : (
                 <div className="grid lg:grid-cols-[1fr_280px] gap-8">

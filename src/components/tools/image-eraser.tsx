@@ -12,8 +12,6 @@ import {
   Square,
   Circle,
   Undo2,
-  Clipboard,
-  ClipboardCheck,
   Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -21,6 +19,7 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 
 type BrushShape = "circle" | "square"
 type MaskMode = "paint" | "erase"
@@ -41,7 +40,6 @@ export function ImageEraser() {
   const [canUndo, setCanUndo] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
-  const [clipboardPasted, setClipboardPasted] = useState(false)
 
   // History for undo
   const historyRef = useRef<ImageData[]>([])
@@ -161,49 +159,6 @@ export function ImageEraser() {
     const file = e.target.files?.[0]
     if (file) handleFile(file)
   }
-
-  // Clipboard paste
-  const handlePasteFromClipboard = useCallback(async () => {
-    try {
-      const clipboardItems = await navigator.clipboard.read()
-      for (const item of clipboardItems) {
-        const imageType = item.types.find((type) => type.startsWith("image/"))
-        if (imageType) {
-          const blob = await item.getType(imageType)
-          handleFile(new File([blob], "clipboard-image.png", { type: blob.type }))
-          setClipboardPasted(true)
-          setTimeout(() => setClipboardPasted(false), 2000)
-          toast.success(t("clipboard.pasted"))
-          return
-        }
-      }
-      toast.error(t("clipboard.empty"))
-    } catch {
-      toast.error(t("clipboard.failed"))
-    }
-  }, [handleFile, t])
-
-  // Global paste listener
-  useEffect(() => {
-    const handleGlobalPaste = (e: ClipboardEvent) => {
-      const items = e.clipboardData?.items
-      if (!items) return
-      for (const item of Array.from(items)) {
-        if (item.type.startsWith("image/")) {
-          const blob = item.getAsFile()
-          if (blob) {
-            handleFile(new File([blob], "clipboard-image.png", { type: blob.type }))
-            setClipboardPasted(true)
-            setTimeout(() => setClipboardPasted(false), 2000)
-            toast.success(t("clipboard.pasted"))
-            return
-          }
-        }
-      }
-    }
-    window.addEventListener("paste", handleGlobalPaste)
-    return () => window.removeEventListener("paste", handleGlobalPaste)
-  }, [handleFile, t])
 
   // Get canvas coordinates from mouse event
   const getCanvasCoords = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -422,23 +377,9 @@ export function ImageEraser() {
           <h3 className="text-2xl font-bold mb-2">{t("inputPlaceholder")}</h3>
           <p className="text-muted-foreground mb-6 text-center max-w-md">{t("dropHint")}</p>
           <p className="text-xs text-muted-foreground mb-4">{t("supportedFormats")}</p>
-          <div className="flex gap-3">
-            <Button variant="secondary">{t("selectImage")}</Button>
-            <Button
-              variant="outline"
-              onClick={(e) => {
-                e.stopPropagation()
-                handlePasteFromClipboard()
-              }}
-              className="gap-2"
-            >
-              {clipboardPasted ? (
-                <ClipboardCheck className="w-4 h-4 text-emerald-500" />
-              ) : (
-                <Clipboard className="w-4 h-4" />
-              )}
-              {t("pasteFromClipboard")}
-            </Button>
+          <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
+            <Button variant="secondary" onClick={() => fileInputRef.current?.click()}>{t("selectImage")}</Button>
+            <ClipboardPasteButton onImageFile={handleFile} size="default" />
           </div>
         </GlassCard>
       ) : (

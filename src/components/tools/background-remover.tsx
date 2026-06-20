@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 
@@ -43,15 +44,18 @@ export function BackgroundRemover() {
         }
     }, []);
 
+    const handleFile = (file: File) => {
+        setImageFile(file);
+        const url = URL.createObjectURL(file);
+        setOriginalUrl(url);
+        setProcessedUrl(null);
+        setSliderValue(50);
+        setProgress(0);
+    }
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            setImageFile(file);
-            const url = URL.createObjectURL(file);
-            setOriginalUrl(url);
-            setProcessedUrl(null);
-            setSliderValue(50);
-            setProgress(0);
+            handleFile(e.target.files[0]);
         }
     }
 
@@ -128,6 +132,9 @@ export function BackgroundRemover() {
                             <Button variant="outline" className="mt-4 pointer-events-none">
                                 {t('selectImage')}
                             </Button>
+                            <div className="relative z-20 mt-2 flex justify-center">
+                                <ClipboardPasteButton onImageFile={handleFile} />
+                            </div>
                         </div>
                     </div>
                 ) : (

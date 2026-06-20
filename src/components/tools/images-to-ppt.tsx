@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 type SlideRatio = "16:9" | "4:3" | "auto"
@@ -211,6 +212,10 @@ export function ImagesToPpt() {
                                 e.target.value = ""
                             }}
                         />
+                    </div>
+
+                    <div className="flex justify-center">
+                        <ClipboardPasteButton onImageFile={(f) => addFiles([f])} />
                     </div>
 
                     {/* Slide list */}

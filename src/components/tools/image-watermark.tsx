@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
+import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 
 type WatermarkPosition = "center" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "tile"
 
@@ -171,7 +172,10 @@ export function ImageWatermark() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{t("dropTitle")}</h3>
                     <p className="text-muted-foreground mb-6">{t("dropDesc")}</p>
-                    <Button variant="secondary">{t("selectFile")}</Button>
+                    <div className="flex gap-3" onClick={e => e.stopPropagation()}>
+                        <Button variant="secondary" onClick={() => fileInputRef.current?.click()}>{t("selectFile")}</Button>
+                        <ClipboardPasteButton onImageFile={handleFile} size="default" />
+                    </div>
                 </GlassCard>
             ) : (
                 <div className="grid lg:grid-cols-[1fr_300px] gap-8">
