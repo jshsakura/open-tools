@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Copy, Check, FileJson, FileSpreadsheet, ArrowRightLeft, Database } from "lucide-react"
 import Papa from 'papaparse';
+import { parseInsert, toRecords } from "./sql-converter.utils"
 
 export function SqlConverter() {
     const t = useTranslations('Catalog');
@@ -34,47 +35,9 @@ export function SqlConverter() {
             let data: any[] = [];
 
             if (inputType === "sql") {
-                // Basic INSERT parsing
-                // Matches: INSERT INTO table (col1, col2) VALUES (val1, val2), (val3, val4);
-                // This is a simplified regex approach.
-                const valuesMatch = input.match(/VALUES\s*([\s\S]+);?/i);
-                if (valuesMatch) {
-                    const valuesStr = valuesMatch[1];
-                    // Split mostly by ),( but be careful about strings. 
-                    // For "sanjzbari" (simple) tools, we can try robust splitting or just eval if safe (not safe here).
-                    // Let's use a simple regex split for row groups: \),\s*\(
-                    // And trim leading ( and trailing )
-
-                    // Improved strategy: 
-                    // 1. Extract column names if available: INSERT INTO t (c1, c2)
-                    // 2. Extract value groups.
-
-                    const colsMatch = input.match(/INSERT\s+INTO\s+\w+\s*\(([^)]+)\)/i);
-                    const columns = colsMatch ? colsMatch[1].split(',').map(c => c.trim().replace(/['"`]/g, '')) : [];
-
-                    // Remove VALUES keyword and split by ), (
-                    // This is hacky but works for standard generated dumps
-                    const rowsStr = valuesStr.trim();
-                    const rows = rowsStr.split(/\)\s*,\s*\(/);
-
-                    data = rows.map(row => {
-                        // Clean start/end parenthesis for first/last items if split retained them or not
-                        let cleanedRow = row.replace(/^\(/, '').replace(/\)$/, ''); // Simple cleanup
-
-                        // Split values by comma, respecting quotes is hard with simple split.
-                        // We will use PapaParse to parse the *row string* as a CSV line!
-                        // Values in SQL are often comma separated like CSV.
-                        const parsed = Papa.parse(cleanedRow, { quoteChar: "'", delimiter: ",", skipEmptyLines: true });
-                        const values = parsed.data[0] as any[];
-
-                        if (columns.length > 0 && values.length === columns.length) {
-                            return columns.reduce((acc, col, idx) => ({ ...acc, [col]: values[idx] }), {});
-                        }
-                        return values; // Return array if no columns
-                    });
-                } else {
-                    throw new Error("Could not parse SQL INSERT statement.");
-                }
+                // Character-scanning parser that respects single-quoted strings,
+                // escaped quotes, and parens/commas inside values.
+                data = toRecords(parseInsert(input));
             } else {
                 // Table (TSV/CSV)
                 // Auto-detect delimiter
@@ -94,7 +57,7 @@ export function SqlConverter() {
             }
             setError(null);
         } catch (e) {
-            setError("Error parsing input. Please check the format.");
+            setError(t('SqlConverter.errorInvalidFormat'));
             setOutput("");
             console.error(e);
         }

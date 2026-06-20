@@ -9,63 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
-
-function minifyCss(css: string): string {
-    return css
-        // Remove comments
-        .replace(/\/\*[\s\S]*?\*\//g, "")
-        // Remove newlines and extra whitespace
-        .replace(/\s+/g, " ")
-        // Remove space around selectors and braces
-        .replace(/\s*{\s*/g, "{")
-        .replace(/\s*}\s*/g, "}")
-        .replace(/\s*;\s*/g, ";")
-        .replace(/\s*:\s*/g, ":")
-        .replace(/\s*,\s*/g, ",")
-        // Remove last semicolon before closing brace
-        .replace(/;}/g, "}")
-        .trim()
-}
-
-function beautifyCss(css: string): string {
-    // First minify to normalize
-    let result = css
-        .replace(/\/\*[\s\S]*?\*\//g, "")
-        .replace(/\s+/g, " ")
-        .trim()
-
-    let output = ""
-    let indent = 0
-    const indentStr = "  "
-
-    for (let i = 0; i < result.length; i++) {
-        const char = result[i]
-
-        if (char === "{") {
-            output += " {\n"
-            indent++
-            output += indentStr.repeat(indent)
-        } else if (char === "}") {
-            output = output.trimEnd()
-            output += "\n"
-            indent = Math.max(0, indent - 1)
-            output += indentStr.repeat(indent) + "}\n"
-            if (indent === 0) output += "\n"
-            if (i + 1 < result.length && result[i + 1] !== "}") {
-                output += indentStr.repeat(indent)
-            }
-        } else if (char === ";") {
-            output += ";\n"
-            if (i + 1 < result.length && result[i + 1] !== "}") {
-                output += indentStr.repeat(indent)
-            }
-        } else {
-            output += char
-        }
-    }
-
-    return output.replace(/\n{3,}/g, "\n\n").trim() + "\n"
-}
+import { beautifyCss, minifyCss } from "./css-minifier.utils"
 
 function formatBytes(bytes: number): string {
     if (bytes === 0) return "0 B"

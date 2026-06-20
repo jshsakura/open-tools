@@ -6,9 +6,15 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
 import { Upload, Download, FileImage, RefreshCw, X } from "lucide-react"
 import Image from "next/image"
-import browserImageCompression from 'browser-image-compression';
+import { toast } from "sonner"
+
+type ImageFormat = 'image/png' | 'image/jpeg' | 'image/webp'
+
+// Default output quality (%). Only affects lossy targets (JPEG/WebP).
+const DEFAULT_QUALITY = 90
 
 interface ConvertedImage {
     name: string;
@@ -17,20 +23,43 @@ interface ConvertedImage {
     type: string;
 }
 
+interface SourceImage {
+    file: File;
+    previewUrl: string;
+}
+
 export function ImageConverter() {
     const t = useTranslations('ImageConverter');
-    const [originalImage, setOriginalImage] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [sources, setSources] = useState<SourceImage[]>([]);
     const [isConverting, setIsConverting] = useState(false);
     const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([]);
+    const [quality, setQuality] = useState(DEFAULT_QUALITY);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            setOriginalImage(file);
-            setPreviewUrl(URL.createObjectURL(file));
-            setConvertedImages([]);
-        }
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+
+        const picked: SourceImage[] = Array.from(files).map((file) => ({
+            file,
+            previewUrl: URL.createObjectURL(file),
+        }));
+
+        setSources((prev) => {
+            // Revoke any previously held preview URLs to avoid leaks.
+            prev.forEach((s) => URL.revokeObjectURL(s.previewUrl));
+            return picked;
+        });
+        setConvertedImages((prev) => {
+            prev.forEach((c) => URL.revokeObjectURL(c.url));
+            return [];
+        });
+    }
+
+    const clearSources = () => {
+        sources.forEach((s) => URL.revokeObjectURL(s.previewUrl));
+        convertedImages.forEach((c) => URL.revokeObjectURL(c.url));
+        setSources([]);
+        setConvertedImages([]);
     }
 
     const formatSize = (bytes: number) => {
@@ -41,74 +70,90 @@ export function ImageConverter() {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    const convertImage = async (format: 'image/png' | 'image/jpeg' | 'image/webp') => {
-        if (!originalImage) return;
+    const convertOne = (source: SourceImage, format: ImageFormat, qualityRatio: number) =>
+        new Promise<ConvertedImage>((resolve, reject) => {
+            const img = document.createElement('img');
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) {
+                    reject(new Error('Canvas not supported'));
+                    return;
+                }
+                // JPEG has no alpha channel; paint a white background first
+                // so transparent PNGs don't turn black.
+                if (format === 'image/jpeg') {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(
+                    (blob) => {
+                        if (!blob) {
+                            reject(new Error('Conversion failed'));
+                            return;
+                        }
+                        const ext = format.split('/')[1];
+                        const base = source.file.name.includes('.')
+                            ? source.file.name.substring(0, source.file.name.lastIndexOf('.'))
+                            : source.file.name;
+                        const newName = `${base}.${ext === 'jpeg' ? 'jpg' : ext}`;
+                        resolve({
+                            name: newName,
+                            url: URL.createObjectURL(blob),
+                            size: formatSize(blob.size),
+                            type: format,
+                        });
+                    },
+                    format,
+                    qualityRatio
+                );
+            };
+            img.onerror = () => reject(new Error(`Could not load ${source.file.name}`));
+            img.src = source.previewUrl;
+        });
+
+    const convertImages = async (format: ImageFormat) => {
+        if (sources.length === 0) {
+            toast.error(t('uploadFirst'));
+            return;
+        }
 
         setIsConverting(true);
+        const qualityRatio = quality / 100;
+
         try {
-            const options = {
-                maxSizeMB: 10, // Max size, effectively no limit for conversion unless compression is desired
-                maxWidthOrHeight: 4096, // Limit dimension to prevent crash
-                useWebWorker: true,
-                fileType: format
-            }
-
-            // Note: browser-image-compression mainly focuses on compression. 
-            // For format conversion, we might need a different approach if strict format conversion is needed without compression.
-            // But it supports fileType in options.
-            const compressedFile = await browserImageCompression(originalImage, options);
-
-            // Rename extension
-            const ext = format.split('/')[1];
-            const newName = originalImage.name.substring(0, originalImage.name.lastIndexOf('.')) + '.' + (ext === 'jpeg' ? 'jpg' : ext);
-
-            const converted: ConvertedImage = {
-                name: newName,
-                url: URL.createObjectURL(compressedFile),
-                size: formatSize(compressedFile.size),
-                type: format
-            };
-
-            setConvertedImages(prev => [...prev, converted]);
-
+            const results = await Promise.all(
+                sources.map((source) => convertOne(source, format, qualityRatio))
+            );
+            setConvertedImages((prev) => {
+                prev.forEach((c) => URL.revokeObjectURL(c.url));
+                return results;
+            });
+            toast.success(t('conversionComplete'));
         } catch (error) {
             console.error(error);
+            const message = error instanceof Error ? error.message : t('conversionError');
+            toast.error(message);
         } finally {
             setIsConverting(false);
         }
     }
 
-    // Fallback Canvas conversion if library has issues or for simpler control
-    const convertWithCanvas = async (format: 'image/png' | 'image/jpeg' | 'image/webp') => {
-        if (!originalImage || !previewUrl) return;
-        setIsConverting(true);
+    const downloadImage = (img: ConvertedImage) => {
+        const link = document.createElement('a');
+        link.href = img.url;
+        link.download = img.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 
-        const img = document.createElement('img');
-        img.src = previewUrl;
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                ctx.drawImage(img, 0, 0);
-                canvas.toBlob((blob) => {
-                    if (blob) {
-                        const ext = format.split('/')[1];
-                        const newName = originalImage.name.substring(0, originalImage.name.lastIndexOf('.')) + '.' + (ext === 'jpeg' ? 'jpg' : ext);
-                        const converted: ConvertedImage = {
-                            name: newName,
-                            url: URL.createObjectURL(blob),
-                            size: formatSize(blob.size),
-                            type: format
-                        };
-                        setConvertedImages([converted]);
-                    }
-                    setIsConverting(false);
-                }, format, 0.9);
-            }
-        };
-    };
+    const downloadAll = () => {
+        convertedImages.forEach(downloadImage);
+    }
 
     return (
         <div className="mx-auto max-w-5xl space-y-8">
@@ -123,24 +168,33 @@ export function ImageConverter() {
                     <Input
                         type="file"
                         accept="image/*"
+                        multiple
                         onChange={handleFileChange}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-0"
                     />
-                    {originalImage ? (
+                    {sources.length > 0 ? (
                         <div className="text-center space-y-4">
-                            <div className="relative w-64 h-64 mx-auto rounded-lg overflow-hidden shadow-lg border border-border/40 bg-muted/20">
-                                <Image src={previewUrl!} alt="Preview" fill className="object-cover" />
+                            <div className="flex flex-wrap justify-center gap-4">
+                                {sources.slice(0, 4).map((s) => (
+                                    <div key={s.previewUrl} className="relative w-40 h-40 rounded-lg overflow-hidden shadow-lg border border-border/40 bg-muted/20">
+                                        <Image src={s.previewUrl} alt="Preview" fill className="object-cover" />
+                                    </div>
+                                ))}
                             </div>
                             <div>
-                                <p className="font-medium text-lg">{originalImage.name}</p>
-                                <p className="text-muted-foreground">{formatSize(originalImage.size)}</p>
+                                <p className="font-medium text-lg">
+                                    {sources.length === 1
+                                        ? sources[0].file.name
+                                        : t('filesSelected', { count: sources.length })}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {formatSize(sources.reduce((sum, s) => sum + s.file.size, 0))}
+                                </p>
                             </div>
                             <Button variant="outline" size="sm" onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
-                                setOriginalImage(null);
-                                setPreviewUrl(null);
-                                setConvertedImages([]);
+                                clearSources();
                             }} className="relative z-10 pointer-events-auto">
                                 <X className="mr-2 h-4 w-4" />
                                 {t('remove')}
@@ -155,26 +209,42 @@ export function ImageConverter() {
                     )}
                 </div>
 
+                <div className="mt-8 space-y-3">
+                        <div className="flex justify-between items-center">
+                            <Label className="text-base">{t('quality')}</Label>
+                            <span className="font-mono font-bold text-primary">{quality}%</span>
+                        </div>
+                        <Slider
+                            value={[quality]}
+                            onValueChange={([val]) => setQuality(val)}
+                            min={10}
+                            max={100}
+                            step={1}
+                            className="py-2"
+                        />
+                        <p className="text-xs text-muted-foreground">{t('qualityHint')}</p>
+                </div>
+
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <Button
-                        onClick={() => convertWithCanvas('image/png')}
-                        disabled={isConverting || !originalImage}
+                        onClick={() => convertImages('image/png')}
+                        disabled={isConverting || sources.length === 0}
                         className="bg-orange-500/10 hover:bg-orange-500/20 text-orange-500 border border-orange-500/20"
                     >
                         {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
                         {t('convertToPng')}
                     </Button>
                     <Button
-                        onClick={() => convertWithCanvas('image/jpeg')}
-                        disabled={isConverting || !originalImage}
+                        onClick={() => convertImages('image/jpeg')}
+                        disabled={isConverting || sources.length === 0}
                         className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border border-blue-500/20"
                     >
                         {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
                         {t('convertToJpg')}
                     </Button>
                     <Button
-                        onClick={() => convertWithCanvas('image/webp')}
-                        disabled={isConverting || !originalImage}
+                        onClick={() => convertImages('image/webp')}
+                        disabled={isConverting || sources.length === 0}
                         className="bg-green-500/10 hover:bg-green-500/20 text-green-500 border border-green-500/20"
                     >
                         {isConverting ? <RefreshCw className="animate-spin mr-2 h-4 w-4" /> : <FileImage className="mr-2 h-4 w-4" />}
@@ -184,31 +254,34 @@ export function ImageConverter() {
             </GlassCard>
 
             {convertedImages.length > 0 && (
-                <div className="grid gap-4 animate-in fade-in slide-in-from-bottom-4">
-                    {convertedImages.map((img, idx) => (
-                        <GlassCard key={idx} className="p-4 flex items-center justify-between rounded-xl">
-                            <div className="flex items-center gap-4">
-                                <div className="p-2 bg-muted/20 rounded-lg">
-                                    <FileImage className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">{img.name}</p>
-                                    <p className="text-sm text-muted-foreground">{img.size}</p>
-                                </div>
-                            </div>
-                            <Button onClick={() => {
-                                const link = document.createElement('a');
-                                link.href = img.url;
-                                link.download = img.name;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}>
+                <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4">
+                    {convertedImages.length > 1 && (
+                        <div className="flex justify-end">
+                            <Button onClick={downloadAll}>
                                 <Download className="mr-2 h-4 w-4" />
-                                {t('download')}
+                                {t('downloadAll')}
                             </Button>
-                        </GlassCard>
-                    ))}
+                        </div>
+                    )}
+                    <div className="grid gap-4">
+                        {convertedImages.map((img) => (
+                            <GlassCard key={img.url} className="p-4 flex items-center justify-between rounded-xl">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 bg-muted/20 rounded-lg">
+                                        <FileImage className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold">{img.name}</p>
+                                        <p className="text-sm text-muted-foreground">{img.size}</p>
+                                    </div>
+                                </div>
+                                <Button onClick={() => downloadImage(img)}>
+                                    <Download className="mr-2 h-4 w-4" />
+                                    {t('download')}
+                                </Button>
+                            </GlassCard>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

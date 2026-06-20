@@ -119,7 +119,35 @@
             "step1": "JWT 토큰 문자열을 입력 영역에 붙여넣으세요.",
             "step2": "헤더, 페이로드, 서명 정보가 자동으로 디코딩되어 표시됩니다.",
             "step3": "만료 시간, 발급자 등 클레임 정보를 확인하세요."
-        }
+        },
+        "encodedToken": "인코딩된 토큰",
+        "decoded": "디코딩 결과",
+        "header": "헤더",
+        "payload": "페이로드",
+        "signature": "서명",
+        "claims": "클레임",
+        "waiting": "토큰을 기다리는 중...",
+        "pastePrompt": "디코딩할 JWT를 붙여넣으세요",
+        "invalidToken": "유효하지 않은 토큰 형식",
+        "secretLabel": "시크릿 (선택)",
+        "secretPlaceholder": "서명 검증용 HS256 시크릿 입력",
+        "secretHelp": "검증은 브라우저에서 로컬로 실행됩니다. HS256만 지원됩니다.",
+        "claim": {
+            "exp": "만료 (exp)",
+            "iat": "발급 시각 (iat)",
+            "nbf": "유효 시작 (nbf)"
+        },
+        "expired": "토큰이 만료되었습니다",
+        "notExpired": "토큰이 만료되지 않았습니다",
+        "verifying": "검증 중...",
+        "signatureHint": "서명을 검증하려면 시크릿을 입력하세요.",
+        "signatureUnsupported": "서명 검증은 HS256만 지원합니다 (토큰 알고리즘: {alg}).",
+        "signatureVerified": "서명이 검증되었습니다",
+        "signatureFailed": "서명 검증에 실패했습니다",
+        "badgeVerified": "서명 검증됨",
+        "badgeFailed": "서명 불일치",
+        "badgeUnsupported": "지원되지 않는 알고리즘",
+        "badgeNotVerified": "미검증"
     },
     "VideoConverter": {
         "title": "비디오 에디터 & 변환기",
@@ -524,7 +552,10 @@
             "step1": "인코딩 또는 디코딩 탭을 선택하세요.",
             "step2": "변환할 텍스트나 Base64 문자열을 입력하세요.",
             "step3": "실시간으로 변환 결과가 표시되며, 복사 버튼으로 클립보드에 저장할 수 있습니다."
-        }
+        },
+        "urlSafe": "URL 안전 모드",
+        "urlSafeDesc": "+ / 대신 - _ 사용 (패딩 없음)",
+        "invalidBase64": "유효하지 않은 Base64 문자열"
     },
     "UrlConverter": {
         "title": "URL 인코더/디코더",
@@ -1008,7 +1039,9 @@
             "step1": "해시 생성: 비밀번호를 입력하고 Salt 라운드를 설정한 후 '해시 생성하기'를 클릭하세요.",
             "step2": "해시 검증: 비밀번호와 Bcrypt 해시를 입력하고 '비밀번호 검증'을 클릭하세요.",
             "step3": "생성된 해시를 복사하여 데이터베이스나 설정 파일에 사용하세요."
-        }
+        },
+        "generating": "생성 중...",
+        "verifying": "확인 중..."
     },
     "HmacGenerator": {
         "title": "HMAC 생성기",
@@ -1437,7 +1470,13 @@
             "step1": "변환할 이미지를 드래그하거나 클릭하여 업로드하세요.",
             "step2": "PNG, JPG, WebP 중 원하는 변환 포맷 버튼을 클릭하세요.",
             "step3": "변환된 이미지를 다운로드하세요. 모든 처리는 브라우저에서 로컬로 이루어집니다."
-        }
+        },
+        "quality": "품질",
+        "qualityHint": "JPG와 WebP에만 적용됩니다. PNG는 무손실입니다.",
+        "conversionComplete": "변환이 완료되었습니다!",
+        "conversionError": "변환에 실패했습니다. 다른 이미지를 시도해주세요.",
+        "filesSelected": "{count}개 파일 선택됨",
+        "downloadAll": "모두 다운로드"
     },
     "UuidGenerator": {
         "title": "UUID 생성기",
@@ -2637,7 +2676,18 @@
                 "title": "실시간 처리",
                 "desc": "글자를 입력할 때마다 실시간으로 번역 결과가 업데이트됩니다."
             }
-        }
+        },
+        "copied": "복사됨",
+        "switch": "전환",
+        "textLabel": "텍스트",
+        "morseLabel": "모스 부호",
+        "textResult": "텍스트 결과",
+        "morseResult": "모스 결과",
+        "resultPlaceholder": "결과...",
+        "speed": "속도",
+        "wpm": "WPM",
+        "frequency": "음높이",
+        "hz": "Hz"
     },
     "LoanCalculator": {
         "title": "대출/할부 상환 계산기",
@@ -2859,7 +2909,16 @@
                 "title": "공백 처리 옵션",
                 "desc": "정밀한 매칭을 위해 공백이나 줄 바꿈을 무시하고 검사할 수 있습니다."
             }
-        }
+        },
+        "clear": "지우기",
+        "copyResults": "결과 복사",
+        "copiedResults": "복사됨!",
+        "metricLevenshtein": "편집 거리",
+        "metricJaccard": "자카드",
+        "metricDice": "다이스",
+        "placeholder1": "원본 텍스트를 여기에 붙여넣으세요...",
+        "placeholder2": "비교할 텍스트를 여기에 붙여넣으세요...",
+        "tooLong": "텍스트가 너무 깁니다 (최대 {max}자). 비교하려면 길이를 줄이세요."
     },
     "IcoConverter": {
         "title": "ICO 파비콘 변환기",

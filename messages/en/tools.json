@@ -119,7 +119,35 @@
             "step1": "Paste your JWT token string into the input area.",
             "step2": "The header, payload, and signature are automatically decoded and displayed.",
             "step3": "Review claim details such as expiration time, issuer, and more."
-        }
+        },
+        "encodedToken": "Encoded Token",
+        "decoded": "Decoded",
+        "header": "Header",
+        "payload": "Payload",
+        "signature": "Signature",
+        "claims": "Claims",
+        "waiting": "Waiting for token...",
+        "pastePrompt": "Paste valid JWT to decode",
+        "invalidToken": "Invalid Token Format",
+        "secretLabel": "Secret (optional)",
+        "secretPlaceholder": "Enter HS256 secret to verify signature",
+        "secretHelp": "Verification runs locally in your browser. Only HS256 is supported.",
+        "claim": {
+            "exp": "Expires (exp)",
+            "iat": "Issued At (iat)",
+            "nbf": "Not Before (nbf)"
+        },
+        "expired": "Token is expired",
+        "notExpired": "Token is not expired",
+        "verifying": "Verifying...",
+        "signatureHint": "Enter a secret to verify the signature.",
+        "signatureUnsupported": "Signature verification is only supported for HS256 (token uses {alg}).",
+        "signatureVerified": "Signature verified",
+        "signatureFailed": "Signature verification failed",
+        "badgeVerified": "Signature Verified",
+        "badgeFailed": "Signature Invalid",
+        "badgeUnsupported": "Unsupported Alg",
+        "badgeNotVerified": "Not Verified"
     },
     "VideoConverter": {
         "title": "Video Editor & Converter",
@@ -524,7 +552,10 @@
             "step1": "Select the Encode or Decode tab.",
             "step2": "Enter the text or Base64 string you want to convert.",
             "step3": "The result appears in real-time. Use the copy button to save to clipboard."
-        }
+        },
+        "urlSafe": "URL-safe",
+        "urlSafeDesc": "Use - and _ instead of + and / (no padding)",
+        "invalidBase64": "Invalid Base64 string"
     },
     "UrlConverter": {
         "title": "URL Encoder/Decoder",
@@ -990,7 +1021,9 @@
             "step1": "Generate: Enter a password, set salt rounds, and click 'Generate Hash'.",
             "step2": "Verify: Enter a password and Bcrypt hash, then click 'Verify Password'.",
             "step3": "Copy the generated hash for use in your database or configuration."
-        }
+        },
+        "generating": "Generating...",
+        "verifying": "Verifying..."
     },
     "HmacGenerator": {
         "title": "HMAC Generator",
@@ -1417,7 +1450,13 @@
             "step1": "Drag & drop or click to upload the image you want to convert.",
             "step2": "Click the desired format button: PNG, JPG, or WebP.",
             "step3": "Download the converted image. All processing happens locally in your browser."
-        }
+        },
+        "quality": "Quality",
+        "qualityHint": "Applies to JPG and WebP only. PNG is lossless.",
+        "conversionComplete": "Conversion complete!",
+        "conversionError": "Conversion failed. Please try another image.",
+        "filesSelected": "{count} files selected",
+        "downloadAll": "Download All"
     },
     "SqlConverter": {
         "title": "SQL to JSON/CSV Converter",
@@ -2635,7 +2674,18 @@
                 "title": "Real-time Processing",
                 "desc": "Translation updates instantly as you type each character."
             }
-        }
+        },
+        "copied": "Copied",
+        "switch": "Switch",
+        "textLabel": "Text",
+        "morseLabel": "Morse Code",
+        "textResult": "Text Result",
+        "morseResult": "Morse Result",
+        "resultPlaceholder": "Result...",
+        "speed": "Speed",
+        "wpm": "WPM",
+        "frequency": "Tone",
+        "hz": "Hz"
     },
     "LoanCalculator": {
         "title": "Loan & Mortgage Calculator",
@@ -2857,7 +2907,16 @@
                 "title": "Whitespace Handling",
                 "desc": "Optionally ignore spaces and line breaks for more accurate matching."
             }
-        }
+        },
+        "clear": "Clear",
+        "copyResults": "Copy Results",
+        "copiedResults": "Copied!",
+        "metricLevenshtein": "Levenshtein",
+        "metricJaccard": "Jaccard",
+        "metricDice": "Dice",
+        "placeholder1": "Paste original text here...",
+        "placeholder2": "Paste text to compare here...",
+        "tooLong": "Text is too long (max {max} characters). Shorten it to compare."
     },
     "IcoConverter": {
         "title": "Direct ICO Converter",

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { Shield, RefreshCw, Copy, Check, Lock, KeyRound } from "lucide-react"
+import { Shield, RefreshCw, Copy, Check, Lock, KeyRound, X, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import bcrypt from "bcryptjs"
 
@@ -20,30 +20,36 @@ export function BcryptGenerator() {
     const [checkHash, setCheckHash] = useState("")
     const [isMatch, setIsMatch] = useState<boolean | null>(null)
     const [copied, setCopied] = useState(false)
+    const [isGenerating, setIsGenerating] = useState(false)
+    const [isVerifying, setIsVerifying] = useState(false)
 
-    const generateHash = () => {
+    const generateHash = async () => {
         if (!password) {
             toast.error(t("errorEmpty"))
             return
         }
+        setIsGenerating(true)
         try {
-            const salt = bcrypt.genSaltSync(rounds)
-            const newHash = bcrypt.hashSync(password, salt)
+            const salt = await bcrypt.genSalt(rounds)
+            const newHash = await bcrypt.hash(password, salt)
             setHash(newHash)
             toast.success(t("successGenerated"))
         } catch (e) {
             console.error(e)
             toast.error(t("error"))
+        } finally {
+            setIsGenerating(false)
         }
     }
 
-    const verifyHash = () => {
+    const verifyHash = async () => {
         if (!checkPassword || !checkHash) {
             toast.error(t("errorVerifyEmpty"))
             return
         }
+        setIsVerifying(true)
         try {
-            const match = bcrypt.compareSync(checkPassword, checkHash)
+            const match = await bcrypt.compare(checkPassword, checkHash)
             setIsMatch(match)
             if (match) toast.success(t("matchSuccess"))
             else toast.error(t("matchFail"))
@@ -51,6 +57,8 @@ export function BcryptGenerator() {
             console.error(e)
             setIsMatch(false)
             toast.error(t("errorVerify"))
+        } finally {
+            setIsVerifying(false)
         }
     }
 
@@ -98,9 +106,13 @@ export function BcryptGenerator() {
                         />
                     </div>
 
-                    <Button onClick={generateHash} className="w-full">
-                        <RefreshCw className="mr-2 h-4 w-4" />
-                        {t("generateButton")}
+                    <Button onClick={generateHash} className="w-full" disabled={isGenerating}>
+                        {isGenerating ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                            <RefreshCw className="mr-2 h-4 w-4" />
+                        )}
+                        {isGenerating ? t("generating") : t("generateButton")}
                     </Button>
 
                     {hash && (
@@ -151,39 +163,23 @@ export function BcryptGenerator() {
                         </div>
                     </div>
 
-                    <Button onClick={verifyHash} variant="secondary" className="w-full">
-                        <Shield className="mr-2 h-4 w-4" />
-                        {t("verifyButton")}
+                    <Button onClick={verifyHash} variant="secondary" className="w-full" disabled={isVerifying}>
+                        {isVerifying ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                            <Shield className="mr-2 h-4 w-4" />
+                        )}
+                        {isVerifying ? t("verifying") : t("verifyButton")}
                     </Button>
 
                     {isMatch !== null && (
                         <div className={`p-4 rounded-md flex items-center gap-2 font-medium ${isMatch ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"}`}>
-                            {isMatch ? <Check className="h-5 w-5" /> : <X className="h-5 w-5" />} // Oops imported X?
+                            {isMatch ? <Check className="h-5 w-5" /> : <X className="h-5 w-5" />}
                             {isMatch ? t("matchSuccess") : t("matchFail")}
                         </div>
                     )}
                 </CardContent>
             </Card>
         </div>
-    )
-}
-
-function X(props: any) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M18 6 6 18" />
-            <path d="m6 6 18 18" />
-        </svg>
     )
 }

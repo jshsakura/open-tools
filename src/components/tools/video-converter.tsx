@@ -13,11 +13,7 @@ import {
     Loader2,
     X,
     Scissors,
-    Shield,
-    FileVideo,
-    Settings,
-    Play,
-    Pause
+    FileVideo
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
@@ -28,6 +24,78 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+
+// x264 CRF (lower = better quality) + encoding preset per quality level.
+// CRF 18 ≈ visually lossless, 23 default, 28 smaller/faster.
+const X264_QUALITY: Record<string, { crf: string; preset: string }> = {
+    high: { crf: '18', preset: 'slow' },
+    medium: { crf: '23', preset: 'medium' },
+    low: { crf: '28', preset: 'veryfast' },
+};
+
+// VP9 CRF map for WebM output.
+const VP9_QUALITY: Record<string, string> = {
+    high: '24',
+    medium: '31',
+    low: '40',
+};
+
+/**
+ * Build the video codec/quality flags for a target container.
+ * Returns an array of ffmpeg args (no input/output).
+ */
+function buildVideoFlags(targetFormat: string, quality: string): string[] {
+    const x264 = X264_QUALITY[quality] ?? X264_QUALITY.medium;
+
+    switch (targetFormat) {
+        case 'mp4':
+        case 'mkv':
+            // H.264 video + AAC audio: broadly compatible.
+            return [
+                '-c:v', 'libx264',
+                '-crf', x264.crf,
+                '-preset', x264.preset,
+                '-c:a', 'aac',
+                '-b:a', '192k',
+            ];
+        case 'avi':
+            // AVI containers don't carry H.264 well; use MPEG-4 Part 2 + MP3.
+            return [
+                '-c:v', 'mpeg4',
+                '-q:v', quality === 'high' ? '3' : quality === 'low' ? '8' : '5',
+                '-c:a', 'libmp3lame',
+                '-b:a', '192k',
+            ];
+        case 'webm':
+            // VP9 video + Opus audio.
+            return [
+                '-c:v', 'libvpx-vp9',
+                '-crf', VP9_QUALITY[quality] ?? VP9_QUALITY.medium,
+                '-b:v', '0',
+                '-c:a', 'libopus',
+                '-b:a', '128k',
+            ];
+        default:
+            return ['-c:v', 'libx264', '-crf', x264.crf, '-preset', x264.preset];
+    }
+}
+
+/**
+ * Build the audio codec/quality flags for an extracted-audio target.
+ */
+function buildAudioFlags(audioFormat: string, audioBitrate: string): string[] {
+    switch (audioFormat) {
+        case 'mp3':
+            return ['-c:a', 'libmp3lame', '-b:a', audioBitrate];
+        case 'aac':
+            return ['-c:a', 'aac', '-b:a', audioBitrate];
+        case 'wav':
+            // WAV is uncompressed PCM; bitrate doesn't apply.
+            return ['-c:a', 'pcm_s16le'];
+        default:
+            return ['-b:a', audioBitrate];
+    }
+}
 
 export function VideoConverter() {
     const t = useTranslations('VideoConverter');
@@ -140,11 +208,7 @@ export function VideoConverter() {
             switch (action) {
                 case 'convert':
                     outputName = `output.${targetFormat}`;
-                    command = ['-i', inputName];
-                    if (targetFormat === 'mp4') {
-                        command.push('-c:v', 'libx264', '-preset', 'veryfast');
-                    }
-                    command.push(outputName);
+                    command = ['-i', inputName, ...buildVideoFlags(targetFormat, quality), outputName];
                     break;
 
                 case 'trim':
@@ -161,26 +225,28 @@ export function VideoConverter() {
 
                 case 'audio':
                     outputName = `audio.${audioFormat}`;
-                    command = ['-i', inputName, '-vn']; // No video
-                    if (audioFormat === 'mp3') {
-                        command.push('-ab', audioBitrate);
-                    }
-                    command.push(outputName);
+                    command = [
+                        '-i', inputName,
+                        '-vn', // No video
+                        ...buildAudioFlags(audioFormat, audioBitrate),
+                        outputName,
+                    ];
                     break;
 
                 case 'gif':
                     outputName = 'output.gif';
+                    // Single-filter palette approach: generate a palette and
+                    // apply it in one graph so GIF colors don't band/posterize.
                     command = [
                         '-i', inputName,
-                        '-vf', `fps=${gifFps},scale=${gifWidth}:-1:flags=lanczos`,
                         '-ss', startTime.toString(),
                         '-to', endTime.toString(),
-                        outputName
+                        '-vf', `fps=${gifFps},scale=${gifWidth}:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse`,
+                        outputName,
                     ];
                     break;
             }
 
-            console.log('Running command:', command);
             await ffmpeg.exec(command);
 
             const data = await ffmpeg.readFile(outputName) as any;
