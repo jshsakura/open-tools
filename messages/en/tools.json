@@ -4061,5 +4061,71 @@
             "step3": "The 6-digit code will calculate and update automatically with the progress circle. Click the code or copy button to copy to clipboard.",
             "step4": "You can also upload a QR code image containing an 'otpauth://' URL to auto-configure all settings."
         }
+    },
+    "ImagesToPpt": {
+        "title": "Images to PPT",
+        "description": "Drop in your images and download a ready-to-present PowerPoint — one slide per image, filled edge to edge.",
+        "dropTitle": "Drop images here or click to upload",
+        "dropHint": "Add multiple images at once · PNG, JPG, WebP, GIF",
+        "slides": "Slides",
+        "clearAll": "Clear all",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove",
+        "settings": "Settings",
+        "slideSize": "Slide size",
+        "ratioAuto": "Auto",
+        "fillMode": "Image fit",
+        "fillCover": "Fill",
+        "fillContain": "Fit",
+        "fillCoverHint": "Image fills the whole slide; edges may be cropped.",
+        "fillContainHint": "Whole image is shown, centered, with background bars.",
+        "bgColor": "Background",
+        "generate": "Generate PPTX",
+        "generating": "Generating...",
+        "generated": "PPTX with {count} slides downloaded",
+        "errorNoImage": "No image files found.",
+        "errorLoad": "Failed to load one or more images.",
+        "errorGenerate": "Failed to generate the presentation.",
+        "guide": {
+            "title": "How to Use Images to PPT",
+            "step1": "Drag and drop your images onto the upload area, or click to select multiple files. Each image becomes its own slide, in the order you add them.",
+            "step2": "Reorder slides with the up/down arrows, remove any you don't want, then pick a slide size (16:9, 4:3, or Auto) and an image fit mode (Fill to crop edge-to-edge, or Fit to show the whole image).",
+            "step3": "Click 'Generate PPTX' to download an editable PowerPoint file. Everything runs in your browser — your images are never uploaded to a server."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "One Slide per Image",
+                "desc": "Every uploaded image is placed on its own slide, full-bleed."
+            },
+            "f2": {
+                "title": "Fill or Fit",
+                "desc": "Crop images edge-to-edge, or fit the whole image with a background."
+            },
+            "f3": {
+                "title": "Reorder & Remove",
+                "desc": "Arrange slide order and drop unwanted images before exporting."
+            },
+            "f4": {
+                "title": "100% Private",
+                "desc": "Slides are built client-side with no upload — your images stay on your device."
+            }
+        },
+        "faq": {
+            "title": "FAQ",
+            "q1": {
+                "q": "Is the PowerPoint file editable?",
+                "a": "Yes. It's a real .pptx file, so you can open it in PowerPoint, Keynote, or Google Slides and keep editing."
+            },
+            "q2": {
+                "q": "Are my images uploaded anywhere?",
+                "a": "No. The entire presentation is generated in your browser. Nothing is sent to a server."
+            },
+            "q3": {
+                "q": "What does 'Auto' slide size do?",
+                "a": "Auto sets the slide shape to match your first image's aspect ratio, so it fills the slide perfectly with no cropping or bars."
+            }
+        }
     }
 }

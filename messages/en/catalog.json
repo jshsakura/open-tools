@@ -727,5 +727,9 @@
             "title": "TOTP Generator",
             "description": "Generate standard TOTP (2FA Google Authenticator) codes client-side with visual countdown timers."
         }
+    },
+    "ImagesToPpt": {
+        "title": "Images to PPT",
+        "description": "Turn images into a PowerPoint (.pptx) slideshow — one full-bleed slide per image, generated entirely in your browser."
     }
 }

@@ -6,6 +6,7 @@ import {
   Regex,
   Clock,
   MonitorPlay,
+  Presentation,
   Video,
   Image as ImageIcon,
   Sparkles,
@@ -1152,6 +1153,15 @@ export const toolsCatalog = [
     icon: LayoutGrid,
     href: "/tools/collage-maker",
     color: "text-pink-500",
+    tags: ["Image"],
+  },
+  {
+    id: "images-to-ppt",
+    titleKey: "Catalog.ImagesToPpt.title",
+    descriptionKey: "Catalog.ImagesToPpt.description",
+    icon: Presentation,
+    href: "/tools/images-to-ppt",
+    color: "text-orange-500",
     tags: ["Image"],
   },
   {

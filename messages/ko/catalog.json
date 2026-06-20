@@ -783,5 +783,9 @@
             "title": "TOTP 생성기",
             "description": "표준 TOTP (구글 OTP 2차 인증) 코드를 브라우저에서 직접 생성하고 남은 시간을 시각적으로 제공합니다."
         }
+    },
+    "ImagesToPpt": {
+        "title": "이미지 PPT 변환",
+        "description": "이미지를 PowerPoint(.pptx) 슬라이드쇼로 변환합니다. 이미지 한 장이 슬라이드 한 장이 되며, 브라우저에서 바로 생성됩니다."
     }
 }
