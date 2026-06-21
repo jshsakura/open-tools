@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react"
 import { useTranslations } from "next-intl"
-import { Calculator, Coins, Landmark, TrendingUp } from "lucide-react"
+import { Coins, Landmark, Table, TrendingUp } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { growthSchedule } from "./compound-interest-calculator.utils"
 
 const compoundingsPerYear = {
   yearly: 1,
@@ -22,45 +23,35 @@ export function CompoundInterestCalculatorTool() {
   const [years, setYears] = useState("10")
   const [compoundFrequency, setCompoundFrequency] = useState<keyof typeof compoundingsPerYear>("monthly")
 
-  const result = useMemo(() => {
+  const schedule = useMemo(() => {
     const principal = Number.parseFloat(startingAmount)
     const monthly = Number.parseFloat(monthlyContribution)
     const rate = Number.parseFloat(annualRate)
     const yearsValue = Number.parseFloat(years)
 
-    if (
-      !Number.isFinite(principal) ||
-      !Number.isFinite(monthly) ||
-      !Number.isFinite(rate) ||
-      !Number.isFinite(yearsValue) ||
-      principal < 0 ||
-      monthly < 0 ||
-      rate < 0 ||
-      yearsValue <= 0
-    ) {
-      return null
-    }
-
-    const periodsPerYear = compoundingsPerYear[compoundFrequency]
-    const totalPeriods = yearsValue * periodsPerYear
-    const periodicRate = rate / 100 / periodsPerYear
-    const monthlyRate = rate / 100 / 12
-    const futurePrincipal = principal * Math.pow(1 + periodicRate, totalPeriods)
-
-    const futureContributions = monthlyRate === 0
-      ? monthly * 12 * yearsValue
-      : monthly * ((Math.pow(1 + monthlyRate, yearsValue * 12) - 1) / monthlyRate)
-
-    const futureValue = futurePrincipal + futureContributions
-    const totalContributions = principal + monthly * 12 * yearsValue
-    const growth = futureValue - totalContributions
-
-    return {
-      futureValue,
-      totalContributions,
-      growth,
-    }
+    return growthSchedule(
+      principal,
+      rate,
+      yearsValue,
+      compoundingsPerYear[compoundFrequency],
+      monthly,
+    )
   }, [annualRate, compoundFrequency, monthlyContribution, startingAmount, years])
+
+  const result = useMemo(() => {
+    if (schedule.length === 0) return null
+    const last = schedule[schedule.length - 1]
+    return {
+      futureValue: last.balance,
+      totalContributions: last.principal + last.contributions,
+      growth: last.interest,
+    }
+  }, [schedule])
+
+  const maxBalance = useMemo(
+    () => schedule.reduce((max, row) => Math.max(max, row.balance), 0),
+    [schedule],
+  )
 
   const formatCurrency = (value: number) => Math.round(value).toLocaleString()
 
@@ -159,6 +150,46 @@ export function CompoundInterestCalculatorTool() {
           </GlassCard>
         </div>
       </div>
+
+      {schedule.length > 0 ? (
+        <GlassCard className="overflow-hidden p-0 border-border/50">
+          <div className="flex items-center gap-2 border-b border-border/50 bg-muted/30 p-4">
+            <Table className="h-4 w-4 text-primary" />
+            <h3 className="text-sm font-semibold">{t("scheduleTitle")}</h3>
+          </div>
+          <div className="max-h-[420px] overflow-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="sticky top-0 bg-background/95 backdrop-blur-sm shadow-sm">
+                <tr className="border-b border-border/50">
+                  <th className="p-3 font-medium text-muted-foreground">{t("colYear")}</th>
+                  <th className="p-3 font-medium text-muted-foreground text-right">{t("colContributions")}</th>
+                  <th className="p-3 font-medium text-muted-foreground text-right">{t("colInterest")}</th>
+                  <th className="p-3 font-medium text-muted-foreground text-right">{t("colBalance")}</th>
+                  <th className="hidden p-3 font-medium text-muted-foreground sm:table-cell">{t("colGrowth")}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/30">
+                {schedule.map((row) => (
+                  <tr key={row.year} className="hover:bg-muted/30 transition-colors">
+                    <td className="p-3 font-mono">{row.year}</td>
+                    <td className="p-3 text-right tabular-nums">{formatCurrency(row.principal + row.contributions)}</td>
+                    <td className="p-3 text-right tabular-nums text-violet-500">{formatCurrency(row.interest)}</td>
+                    <td className="p-3 text-right tabular-nums font-medium">{formatCurrency(row.balance)}</td>
+                    <td className="hidden p-3 sm:table-cell">
+                      <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-sky-500 to-emerald-500"
+                          style={{ width: `${maxBalance > 0 ? (row.balance / maxBalance) * 100 : 0}%` }}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </GlassCard>
+      ) : null}
     </div>
   )
 }

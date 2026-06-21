@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest"
 
-import { HTTP_STATUS_CODES, filterCodes } from "./http-status-codes.utils"
+import {
+  HTTP_STATUS_CODES,
+  filterByClass,
+  filterCodes,
+  statusClassOf,
+} from "./http-status-codes.utils"
 
 describe("http-status-codes utils", () => {
   describe("dataset coverage", () => {
@@ -141,9 +146,56 @@ describe("http-status-codes utils", () => {
 
       // Act
       filterCodes("404")
+      filterByClass(4)
 
       // Assert
       expect(HTTP_STATUS_CODES.length).toBe(before)
+    })
+  })
+
+  describe("statusClassOf", () => {
+    it("maps a code to its leading-digit class", () => {
+      expect(statusClassOf(100)).toBe(1)
+      expect(statusClassOf(204)).toBe(2)
+      expect(statusClassOf(301)).toBe(3)
+      expect(statusClassOf(404)).toBe(4)
+      expect(statusClassOf(503)).toBe(5)
+    })
+  })
+
+  describe("filterByClass", () => {
+    it("returns the full dataset for 'all'", () => {
+      const result = filterByClass("all")
+      expect(result).toEqual(HTTP_STATUS_CODES)
+    })
+
+    it("keeps only 4xx codes when filtering by class 4", () => {
+      // Act
+      const result = filterByClass(4)
+
+      // Assert
+      expect(result.length).toBeGreaterThan(0)
+      expect(result.every((c) => c.code >= 400 && c.code < 500)).toBe(true)
+      expect(result.some((c) => c.code === 404)).toBe(true)
+    })
+
+    it("keeps only 2xx codes when filtering by class 2", () => {
+      const result = filterByClass(2)
+      expect(result.every((c) => statusClassOf(c.code) === 2)).toBe(true)
+      expect(result.some((c) => c.code === 200)).toBe(true)
+    })
+
+    it("composes with filterCodes search results", () => {
+      // Arrange — search first, then narrow to 3xx
+      const searched = filterCodes("Redirect")
+
+      // Act
+      const result = filterByClass(3, searched)
+
+      // Assert — 307 and 308 are 3xx redirects
+      const codes = result.map((c) => c.code)
+      expect(codes).toContain(307)
+      expect(codes).toContain(308)
     })
   })
 })

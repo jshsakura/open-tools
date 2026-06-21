@@ -2785,7 +2785,10 @@
                 "title": "Instant Updates",
                 "desc": "Calculates results immediately as you change any loan parameter."
             }
-        }
+        },
+        "extraPayment": "Extra Monthly Payment",
+        "extraPaymentHint": "Extra principal paid each month to pay off the loan faster.",
+        "savingsSummary": "Paying extra clears the loan {months} months sooner and saves {interest} in interest."
     },
     "PassphraseGenerator": {
         "title": "Passphrase Generator",
@@ -3562,7 +3565,17 @@
                 "title": "Everyday friendly",
                 "desc": "Useful for birthdays, exams, anniversaries, trips, launches, and personal goals."
             }
-        }
+        },
+        "savedTitle": "Saved D-days",
+        "entryLabel": "Label",
+        "entryLabelPlaceholder": "e.g. Final exam",
+        "entryDate": "Date",
+        "addEntry": "Add",
+        "removeEntry": "Remove entry",
+        "noEntries": "No saved D-days yet. Add one above.",
+        "untitledEntry": "Untitled",
+        "excludeWeekends": "Exclude weekends (count business days)",
+        "businessDaysShort": "{days} business days"
     },
     "PercentageCalculator": {
         "title": "Percentage Calculator",
@@ -3869,7 +3882,21 @@
                 "title": "Simple daily planning",
                 "desc": "Helpful for dieting, maintaining weight, or gradually increasing intake."
             }
-        }
+        },
+        "useImperial": "Use imperial units (ft/in, lb)",
+        "heightFt": "Height (ft)",
+        "heightIn": "Height (in)",
+        "weightLb": "Weight (lb)",
+        "goal": "Goal",
+        "goalLose": "Lose weight",
+        "goalMaintain": "Maintain weight",
+        "goalGain": "Gain weight",
+        "targetCalories": "Daily target",
+        "macroBreakdown": "Macro breakdown",
+        "protein": "Protein",
+        "carbs": "Carbs",
+        "fat": "Fat",
+        "targetSummary": "Your daily target is about {target} kcal (maintenance ≈ {maintenance} kcal): {protein}g protein, {carbs}g carbs, {fat}g fat."
     },
     "CompoundInterestCalculator": {
         "title": "Compound Interest Calculator",
@@ -3915,7 +3942,13 @@
                 "title": "Savings planning",
                 "desc": "Useful for emergency funds, retirement prep, education savings, or general investing."
             }
-        }
+        },
+        "scheduleTitle": "Year-by-year growth",
+        "colYear": "Year",
+        "colContributions": "Contributions",
+        "colInterest": "Interest",
+        "colBalance": "Balance",
+        "colGrowth": "Growth"
     },
     "TemperatureConverter": {
         "title": "Temperature Converter",
@@ -4571,7 +4604,16 @@
             "tokenCount": "Est. Tokens",
             "costEstimate": "Est. Cost",
             "modelSelect": "Select AI Model",
-            "estimateNote": "Estimate only"
+            "estimateNote": "Estimate only",
+            "inputLabel": "Input",
+            "outputLabel": "Output (optional)",
+            "outputPlaceholder": "Paste sample output, or set expected length below...",
+            "expectedOutput": "Expected output tokens",
+            "inputTokens": "Input Tokens",
+            "outputTokens": "Output Tokens",
+            "inputCost": "Input Cost",
+            "outputCost": "Output Cost",
+            "totalCost": "Total Cost"
         }
     },
     "PromptOptimizer": {
@@ -4601,7 +4643,16 @@
             "formatDefault": "Markdown code blocks with step-by-step explanation",
             "copy": "Copy",
             "copied": "Copied to clipboard",
-            "template": "# [SYSTEM ROLE]\nYou are {role}. Follow these guidelines to provide an expert answer.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\nWrite the output strictly in the form of {format}. Be concise yet thorough, covering every important detail."
+            "template": "# [SYSTEM ROLE]\nYou are {role}. Follow these guidelines to provide an expert answer.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\nWrite the output strictly in the form of {format}. Be concise yet thorough, covering every important detail.",
+            "frameworkLabel": "Framework Preset",
+            "frameworkRtf": "RTF (Role-Task-Format)",
+            "frameworkCrispe": "CRISPE",
+            "frameworkCot": "Chain-of-Thought",
+            "frameworkFewshot": "Few-shot",
+            "templateRtf": "# ROLE\nYou are {role}.\n\n# TASK\n{prompt}\n\n# FORMAT\nRespond strictly as {format}.",
+            "templateCrispe": "# CAPACITY & ROLE\nAct as {role}.\n\n# INSIGHT\nUse relevant background and constraints to inform your answer.\n\n# STATEMENT\n{prompt}\n\n# PERSONALITY\nBe precise, expert, and direct.\n\n# EXPERIMENT\nProvide the answer formatted as {format}.",
+            "templateCot": "# ROLE\nYou are {role}.\n\n# QUESTION\n{prompt}\n\n# REASONING\nThink step by step, showing each intermediate step before the conclusion.\n\n# OUTPUT\nPresent the final answer as {format}.",
+            "templateFewshot": "# ROLE\nYou are {role}.\n\n# TASK\n{prompt}\n\n# EXAMPLES\nInput: [example input]\nOutput: [example output]\n\n# NOW\nFollow the example pattern and respond as {format}."
         }
     },
     "TailwindConfigBuilder": {
@@ -4875,7 +4926,18 @@
             "queryTable": "Query Parameters Table",
             "paramKey": "Parameter Key",
             "paramVal": "Parameter Value",
-            "buildUrl": "Copy Rebuilt URL"
+            "buildUrl": "Copy Rebuilt URL",
+            "componentsTable": "URL Components",
+            "protocol": "Protocol",
+            "auth": "Auth",
+            "host": "Host",
+            "port": "Port",
+            "pathname": "Path",
+            "hash": "Hash",
+            "origin": "Origin",
+            "invalidUrl": "Invalid URL. Check the format and try again.",
+            "copyBreakdown": "Copy breakdown",
+            "copied": "Copied to clipboard"
         }
     },
     "HttpStatusCodes": {
@@ -4898,7 +4960,11 @@
         "ui": {
             "searchCode": "Search HTTP status code...",
             "codeSpec": "RFC Specification Details",
-            "codeFix": "How to resolve"
+            "codeFix": "How to resolve",
+            "filterAll": "All",
+            "noResults": "No matching status codes.",
+            "copyCode": "Copy code",
+            "copied": "Copied to clipboard"
         }
     },
     "CorsConfigurator": {
@@ -4923,7 +4989,13 @@
             "allowedMethods": "Allowed Methods",
             "exportConfig": "Copy Config Code",
             "framework": "Framework / Generated Config",
-            "copied": "Copied to clipboard"
+            "copied": "Copied to clipboard",
+            "allowedHeaders": "Allowed Headers",
+            "exposedHeaders": "Exposed Headers",
+            "allowCredentials": "Allow Credentials",
+            "maxAge": "Max Age (seconds)",
+            "headersPlaceholder": "Content-Type, Authorization",
+            "credentialsWarning": "Browsers reject Access-Control-Allow-Credentials: true with a wildcard * origin. Specify an explicit origin."
         }
     },
     "MarkdownTableBuilder": {
@@ -5089,7 +5161,19 @@
             "dealAmount": "Deal Amount (KRW)",
             "commission": "Brokerage Commission",
             "acquisitionTax": "Acquisition Tax (Est.)",
-            "taxNote": "Simplified estimate for housing under 85㎡; actual amounts may vary."
+            "taxNote": "Simplified estimate for housing under 85㎡; actual amounts may vary.",
+            "homeCount": "Homes Owned (after purchase)",
+            "homeCount1": "1 home (standard rate)",
+            "homeCount2": "2 homes (8%, adjusted area)",
+            "homeCount3": "3+ homes (12%)",
+            "capitalGainsTitle": "Capital Gains Tax (양도소득세, est.)",
+            "salePrice": "Sale Price (KRW)",
+            "purchasePrice": "Purchase Price (KRW)",
+            "yearsHeld": "Years Held",
+            "oneHomeExempt": "1-home exemption (12억)",
+            "capitalGain": "Capital Gain",
+            "capitalGainsTax": "Capital Gains Tax (Est.)",
+            "capitalGainsNote": "Simplified estimate (12억 exemption, long-term deduction, basic rates); actual tax may vary."
         }
     }
 }

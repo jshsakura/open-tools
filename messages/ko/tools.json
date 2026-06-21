@@ -2787,7 +2787,10 @@
                 "title": "실시간 결과",
                 "desc": "입력 값을 변경하는 즉시 결과가 업데이트되어 빠른 비교가 가능합니다."
             }
-        }
+        },
+        "extraPayment": "월 추가 상환액",
+        "extraPaymentHint": "매월 원금을 추가 상환하여 대출을 더 빨리 갚습니다.",
+        "savingsSummary": "추가 상환으로 대출을 {months}개월 빨리 갚고 이자 {interest}을(를) 절약합니다."
     },
     "PassphraseGenerator": {
         "title": "다이스웨어 암호 생성기",
@@ -3564,7 +3567,17 @@
                 "title": "일상용 활용",
                 "desc": "시험, 생일, 여행, 기념일, 출시일, 목표 관리처럼 다양한 일상 일정에 어울립니다."
             }
-        }
+        },
+        "savedTitle": "저장된 D-day",
+        "entryLabel": "이름",
+        "entryLabelPlaceholder": "예: 기말고사",
+        "entryDate": "날짜",
+        "addEntry": "추가",
+        "removeEntry": "항목 삭제",
+        "noEntries": "저장된 D-day가 없습니다. 위에서 추가하세요.",
+        "untitledEntry": "제목 없음",
+        "excludeWeekends": "주말 제외 (영업일 기준)",
+        "businessDaysShort": "영업일 {days}일"
     },
     "PercentageCalculator": {
         "title": "퍼센트 계산기",
@@ -3871,7 +3884,21 @@
                 "title": "일상 식단 계획용",
                 "desc": "체중 유지, 다이어트, 벌크업처럼 자주 하는 식단 계획에 부담 없이 활용할 수 있습니다."
             }
-        }
+        },
+        "useImperial": "야드파운드 단위 사용 (ft/in, lb)",
+        "heightFt": "키 (피트)",
+        "heightIn": "키 (인치)",
+        "weightLb": "몸무게 (파운드)",
+        "goal": "목표",
+        "goalLose": "체중 감량",
+        "goalMaintain": "체중 유지",
+        "goalGain": "체중 증가",
+        "targetCalories": "일일 목표 칼로리",
+        "macroBreakdown": "영양소 구성",
+        "protein": "단백질",
+        "carbs": "탄수화물",
+        "fat": "지방",
+        "targetSummary": "일일 목표는 약 {target} kcal입니다 (유지 ≈ {maintenance} kcal): 단백질 {protein}g, 탄수화물 {carbs}g, 지방 {fat}g."
     },
     "CompoundInterestCalculator": {
         "title": "복리 계산기",
@@ -3917,7 +3944,13 @@
                 "title": "저축 계획 활용",
                 "desc": "비상금, 은퇴 준비, 교육비, 장기 투자 계획을 세울 때 유용합니다."
             }
-        }
+        },
+        "scheduleTitle": "연도별 성장",
+        "colYear": "연차",
+        "colContributions": "납입금",
+        "colInterest": "이자",
+        "colBalance": "잔액",
+        "colGrowth": "성장"
     },
     "TemperatureConverter": {
         "title": "온도 변환기",
@@ -4573,7 +4606,16 @@
             "tokenCount": "예상 토큰 수",
             "costEstimate": "예상 비용",
             "modelSelect": "AI 모델 선택",
-            "estimateNote": "추정치입니다"
+            "estimateNote": "추정치입니다",
+            "inputLabel": "입력",
+            "outputLabel": "출력 (선택)",
+            "outputPlaceholder": "샘플 출력을 붙여넣거나 아래에서 예상 길이를 설정하세요...",
+            "expectedOutput": "예상 출력 토큰",
+            "inputTokens": "입력 토큰",
+            "outputTokens": "출력 토큰",
+            "inputCost": "입력 비용",
+            "outputCost": "출력 비용",
+            "totalCost": "총 비용"
         }
     },
     "PromptOptimizer": {
@@ -4603,7 +4645,16 @@
             "formatDefault": "Markdown 코드 블록과 단계별 설명",
             "copy": "복사",
             "copied": "클립보드에 복사되었습니다",
-            "template": "# [SYSTEM ROLE]\n당신은 {role}입니다. 다음 지침에 따라 전문적인 답변을 제시하세요.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\n출력은 반드시 {format} 형태로 작성하세요. 간결하면서도 깊이 있는 세부 사항을 빠짐없이 기술하세요."
+            "template": "# [SYSTEM ROLE]\n당신은 {role}입니다. 다음 지침에 따라 전문적인 답변을 제시하세요.\n\n# [USER QUESTION]\n{prompt}\n\n# [OUTPUT SPECIFICATION]\n출력은 반드시 {format} 형태로 작성하세요. 간결하면서도 깊이 있는 세부 사항을 빠짐없이 기술하세요.",
+            "frameworkLabel": "프레임워크 프리셋",
+            "frameworkRtf": "RTF (역할-과제-형식)",
+            "frameworkCrispe": "CRISPE",
+            "frameworkCot": "사고의 연쇄 (CoT)",
+            "frameworkFewshot": "Few-shot (예시 기반)",
+            "templateRtf": "# 역할\n당신은 {role}입니다.\n\n# 과제\n{prompt}\n\n# 형식\n출력은 반드시 {format} 형태로 작성하세요.",
+            "templateCrispe": "# 역량 및 역할\n{role}로서 행동하세요.\n\n# 통찰\n관련 배경지식과 제약을 활용해 답변하세요.\n\n# 요청\n{prompt}\n\n# 성격\n정확하고 전문적이며 간결하게.\n\n# 실행\n답변은 {format} 형태로 작성하세요.",
+            "templateCot": "# 역할\n당신은 {role}입니다.\n\n# 질문\n{prompt}\n\n# 추론\n단계별로 생각하며, 결론 전에 각 중간 단계를 보여주세요.\n\n# 출력\n최종 답변은 {format} 형태로 제시하세요.",
+            "templateFewshot": "# 역할\n당신은 {role}입니다.\n\n# 과제\n{prompt}\n\n# 예시\n입력: [예시 입력]\n출력: [예시 출력]\n\n# 이제\n위 예시 패턴을 따라 {format} 형태로 답변하세요."
         }
     },
     "TailwindConfigBuilder": {
@@ -4877,7 +4928,18 @@
             "queryTable": "쿼리 파라미터 테이블",
             "paramKey": "매개변수 키",
             "paramVal": "매개변수 값",
-            "buildUrl": "재구성된 URL 복사"
+            "buildUrl": "재구성된 URL 복사",
+            "componentsTable": "URL 구성 요소",
+            "protocol": "프로토콜",
+            "auth": "인증 정보",
+            "host": "호스트",
+            "port": "포트",
+            "pathname": "경로",
+            "hash": "해시",
+            "origin": "오리진",
+            "invalidUrl": "잘못된 URL입니다. 형식을 확인하세요.",
+            "copyBreakdown": "분석 결과 복사",
+            "copied": "클립보드에 복사됨"
         }
     },
     "HttpStatusCodes": {
@@ -4900,7 +4962,11 @@
         "ui": {
             "searchCode": "상태 코드 검색...",
             "codeSpec": "RFC 명세 정보",
-            "codeFix": "문제 해결 가이드"
+            "codeFix": "문제 해결 가이드",
+            "filterAll": "전체",
+            "noResults": "일치하는 상태 코드가 없습니다.",
+            "copyCode": "코드 복사",
+            "copied": "클립보드에 복사됨"
         }
     },
     "CorsConfigurator": {
@@ -4925,7 +4991,13 @@
             "allowedMethods": "허용할 HTTP 메소드",
             "exportConfig": "설정 코드 복사",
             "framework": "프레임워크 / 생성된 설정",
-            "copied": "클립보드에 복사되었습니다"
+            "copied": "클립보드에 복사되었습니다",
+            "allowedHeaders": "허용할 헤더",
+            "exposedHeaders": "노출할 헤더",
+            "allowCredentials": "자격 증명 허용 (credentials)",
+            "maxAge": "캐시 시간 (Max-Age, 초)",
+            "headersPlaceholder": "Content-Type, Authorization",
+            "credentialsWarning": "와일드카드 * Origin과 credentials: true는 브라우저에서 거부됩니다. 명시적 Origin을 지정하세요."
         }
     },
     "MarkdownTableBuilder": {
@@ -5091,7 +5163,19 @@
             "dealAmount": "거래 금액 (원)",
             "commission": "예상 중개수수료",
             "acquisitionTax": "취득세 (예상)",
-            "taxNote": "전용 85㎡ 이하 주택 기준 간이 계산이며 실제 금액과 다를 수 있습니다."
+            "taxNote": "전용 85㎡ 이하 주택 기준 간이 계산이며 실제 금액과 다를 수 있습니다.",
+            "homeCount": "보유 주택 수 (취득 후)",
+            "homeCount1": "1주택 (기본세율)",
+            "homeCount2": "2주택 (8%, 조정대상지역)",
+            "homeCount3": "3주택 이상 (12%)",
+            "capitalGainsTitle": "양도소득세 (예상)",
+            "salePrice": "양도가액 (원)",
+            "purchasePrice": "취득가액 (원)",
+            "yearsHeld": "보유 기간 (년)",
+            "oneHomeExempt": "1세대 1주택 비과세 (12억)",
+            "capitalGain": "양도차익",
+            "capitalGainsTax": "양도소득세 (예상)",
+            "capitalGainsNote": "12억 비과세·장기보유공제·기본세율 적용 간이 계산이며 실제 세액과 다를 수 있습니다."
         }
     }
 }

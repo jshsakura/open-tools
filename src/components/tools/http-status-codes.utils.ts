@@ -47,3 +47,23 @@ export function filterCodes(
       c.desc.toLowerCase().includes(q),
   )
 }
+
+/** "all" or a leading digit 1-5 identifying the status-code class. */
+export type StatusClass = "all" | 1 | 2 | 3 | 4 | 5
+
+/** The class (1-5) a status code belongs to, derived from its leading digit. */
+export function statusClassOf(code: number): number {
+  return Math.floor(code / 100)
+}
+
+/**
+ * Filter by status-code class. "all" returns the input unchanged; a numeric
+ * class keeps only codes whose leading digit matches.
+ */
+export function filterByClass(
+  statusClass: StatusClass,
+  codes: HttpStatusCode[] = HTTP_STATUS_CODES,
+): HttpStatusCode[] {
+  if (statusClass === "all") return codes
+  return codes.filter((c) => statusClassOf(c.code) === statusClass)
+}

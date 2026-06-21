@@ -7,10 +7,28 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Clipboard } from "lucide-react"
+
+type Framework = "rtf" | "crispe" | "cot" | "fewshot"
+
+const FRAMEWORK_TEMPLATE_KEY: Record<Framework, string> = {
+  rtf: "templateRtf",
+  crispe: "templateCrispe",
+  cot: "templateCot",
+  fewshot: "templateFewshot",
+}
+
+const FRAMEWORKS: { id: Framework; labelKey: string }[] = [
+  { id: "rtf", labelKey: "frameworkRtf" },
+  { id: "crispe", labelKey: "frameworkCrispe" },
+  { id: "cot", labelKey: "frameworkCot" },
+  { id: "fewshot", labelKey: "frameworkFewshot" },
+]
 
 export function PromptOptimizer() {
   const t = useTranslations("PromptOptimizer.ui")
+  const [framework, setFramework] = useState<Framework>("rtf")
   const [prompt, setPrompt] = useState("")
   const [role, setRole] = useState(() => t("roleDefault"))
   const [format, setFormat] = useState(() => t("formatDefault"))
@@ -18,7 +36,7 @@ export function PromptOptimizer() {
 
   const handleOptimize = () => {
     if (!prompt.trim()) return
-    setResult(t("template", { role, prompt, format }))
+    setResult(t(FRAMEWORK_TEMPLATE_KEY[framework], { role, prompt, format }))
   }
 
   const copyResult = () => {
@@ -29,6 +47,21 @@ export function PromptOptimizer() {
   return (
     <Card className="max-w-4xl mx-auto border-border/50 bg-card/30 backdrop-blur-md">
       <CardContent className="pt-6 space-y-4">
+        <div>
+          <label className="text-xs font-semibold text-muted-foreground mb-1 block">{t("frameworkLabel")}</label>
+          <Select value={framework} onValueChange={(v) => setFramework(v as Framework)}>
+            <SelectTrigger className="bg-background/50">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {FRAMEWORKS.map((f) => (
+                <SelectItem key={f.id} value={f.id}>
+                  {t(f.labelKey)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         <div>
           <label className="text-xs font-semibold text-muted-foreground mb-1 block">{t("roleLabel")}</label>
           <Input value={role} onChange={(e) => setRole(e.target.value)} className="bg-background/50" />

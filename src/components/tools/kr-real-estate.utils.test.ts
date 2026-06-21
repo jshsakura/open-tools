@@ -2,9 +2,16 @@ import { describe, expect, it } from "vitest"
 
 import {
   acquisitionTax,
+  acquisitionTaxMultiHome,
+  BASIC_DEDUCTION,
   brokerageFee,
+  capitalGainsTax,
   EOK,
+  longTermHoldingRate,
   MAN,
+  MULTI_HOME_RATE_2,
+  MULTI_HOME_RATE_3_PLUS,
+  ONE_HOME_EXEMPTION,
   pyeongToSqm,
   sqmToPyeong,
 } from "./kr-real-estate.utils"
@@ -133,5 +140,136 @@ describe("acquisitionTax", () => {
   it("applies 3.3% well above 9억", () => {
     // 0.033 * 1,000,000,000 = 33,000,000
     expect(acquisitionTax(10 * EOK)).toBe(33_000_000)
+  })
+})
+
+describe("acquisitionTaxMultiHome", () => {
+  it("returns 0 for non-positive prices", () => {
+    expect(acquisitionTaxMultiHome(0, 2)).toBe(0)
+    expect(acquisitionTaxMultiHome(-1, 3)).toBe(0)
+  })
+
+  it("falls back to the standard banded rate for a single home", () => {
+    // 1 home at 6억 -> standard 1.1% = 6,600,000
+    expect(acquisitionTaxMultiHome(6 * EOK, 1)).toBe(acquisitionTax(6 * EOK))
+    expect(acquisitionTaxMultiHome(6 * EOK, 1)).toBe(6_600_000)
+  })
+
+  it("applies 8% for a 2nd home (조정대상지역 간이)", () => {
+    // 0.08 * 1,000,000,000 = 80,000,000
+    expect(acquisitionTaxMultiHome(10 * EOK, 2)).toBe(10 * EOK * MULTI_HOME_RATE_2)
+    expect(acquisitionTaxMultiHome(10 * EOK, 2)).toBe(80_000_000)
+  })
+
+  it("applies 12% for a 3rd+ home", () => {
+    // 0.12 * 1,000,000,000 = 120,000,000
+    expect(acquisitionTaxMultiHome(10 * EOK, 3)).toBe(10 * EOK * MULTI_HOME_RATE_3_PLUS)
+    expect(acquisitionTaxMultiHome(10 * EOK, 4)).toBe(120_000_000)
+  })
+})
+
+describe("longTermHoldingRate", () => {
+  it("is 0% below 3 years", () => {
+    expect(longTermHoldingRate(0)).toBe(0)
+    expect(longTermHoldingRate(2)).toBe(0)
+  })
+
+  it("is 2% at exactly 3 years", () => {
+    expect(longTermHoldingRate(3)).toBeCloseTo(0.02, 10)
+  })
+
+  it("grows 2% per year and caps at 30% (17 years)", () => {
+    expect(longTermHoldingRate(10)).toBeCloseTo(0.16, 10)
+    expect(longTermHoldingRate(17)).toBeCloseTo(0.3, 10)
+    expect(longTermHoldingRate(30)).toBeCloseTo(0.3, 10)
+  })
+})
+
+describe("capitalGainsTax", () => {
+  it("returns all zeros when there is no gain", () => {
+    const r = capitalGainsTax({
+      salePrice: 5 * EOK,
+      purchasePrice: 6 * EOK,
+      yearsHeld: 5,
+      isOneHomeExempt: false,
+    })
+    expect(r).toEqual({ gain: 0, taxableGain: 0, taxBase: 0, tax: 0 })
+  })
+
+  it("fully exempts a 1-home sale at or below the 12억 exemption", () => {
+    const r = capitalGainsTax({
+      salePrice: ONE_HOME_EXEMPTION,
+      purchasePrice: 8 * EOK,
+      yearsHeld: 5,
+      isOneHomeExempt: true,
+    })
+    expect(r.gain).toBe(4 * EOK)
+    expect(r.taxableGain).toBe(0)
+    expect(r.tax).toBe(0)
+  })
+
+  it("pro-rates the taxable gain above 12억 for a 1-home sale", () => {
+    // sale 16억, buy 12억 -> gain 4억; taxed ratio = (16-12)/16 = 0.25
+    // taxableGain = 4억 * 0.25 = 1억. yearsHeld < 3 -> no long-term deduction.
+    // taxBase = 1억 - 250만 = 97,500,000.
+    // bracket <=1.5억: rate 0.35, deduction 15,440,000.
+    // tax = floor(97,500,000 * 0.35 - 15,440,000) = 34,125,000 - 15,440,000 = 18,685,000
+    const r = capitalGainsTax({
+      salePrice: 16 * EOK,
+      purchasePrice: 12 * EOK,
+      yearsHeld: 2,
+      isOneHomeExempt: true,
+    })
+    expect(r.gain).toBe(4 * EOK)
+    expect(r.taxableGain).toBe(1 * EOK)
+    expect(r.taxBase).toBe(1 * EOK - BASIC_DEDUCTION)
+    expect(r.tax).toBe(18_685_000)
+  })
+
+  it("taxes the full gain for a non-exempt sale with progressive bracket", () => {
+    // gain = 3억 - 1억 = 2억; not exempt. yearsHeld 2 -> no long-term deduction.
+    // taxBase = 2억 - 250만 = 197,500,000.
+    // bracket <=3억: rate 0.38, deduction 19,940,000.
+    // tax = floor(197,500,000 * 0.38 - 19,940,000) = 75,050,000 - 19,940,000 = 55,110,000
+    const r = capitalGainsTax({
+      salePrice: 3 * EOK,
+      purchasePrice: 1 * EOK,
+      yearsHeld: 2,
+      isOneHomeExempt: false,
+    })
+    expect(r.gain).toBe(2 * EOK)
+    expect(r.taxableGain).toBe(2 * EOK)
+    expect(r.taxBase).toBe(2 * EOK - BASIC_DEDUCTION)
+    expect(r.tax).toBe(55_110_000)
+  })
+
+  it("applies the long-term holding deduction to a long-held non-exempt sale", () => {
+    // gain = 1.5억; yearsHeld 10 -> long-term 16%.
+    // afterLongTerm = 150,000,000 * 0.84 = 126,000,000.
+    // taxBase = 126,000,000 - 2,500,000 = 123,500,000.
+    // bracket <=1.5억: rate 0.35, deduction 15,440,000.
+    // tax = floor(123,500,000 * 0.35 - 15,440,000) = 43,225,000 - 15,440,000 = 27,785,000
+    const r = capitalGainsTax({
+      salePrice: 2.5 * EOK,
+      purchasePrice: 1 * EOK,
+      yearsHeld: 10,
+      isOneHomeExempt: false,
+    })
+    expect(r.taxableGain).toBe(1.5 * EOK)
+    expect(r.taxBase).toBe(123_500_000)
+    expect(r.tax).toBe(27_785_000)
+  })
+
+  it("yields 0 tax when deductions wipe out a small gain", () => {
+    // gain = 200만 < basic deduction 250만 -> taxBase 0.
+    const r = capitalGainsTax({
+      salePrice: 1 * EOK + 200 * MAN,
+      purchasePrice: 1 * EOK,
+      yearsHeld: 1,
+      isOneHomeExempt: false,
+    })
+    expect(r.gain).toBe(200 * MAN)
+    expect(r.taxBase).toBe(0)
+    expect(r.tax).toBe(0)
   })
 })

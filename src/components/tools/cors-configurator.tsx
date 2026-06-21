@@ -5,49 +5,38 @@ import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Clipboard } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Clipboard, TriangleAlert } from "lucide-react"
 import { toast } from "sonner"
+import { generateCors, type CorsTarget } from "./cors-configurator.utils"
 
 const ALL_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"] as const
 
-type Preset = "nginx" | "express" | "spring"
-
-const PRESETS: { id: Preset; label: string }[] = [
+const PRESETS: { id: CorsTarget; label: string }[] = [
   { id: "nginx", label: "NGINX" },
   { id: "express", label: "Express" },
   { id: "spring", label: "Spring" },
+  { id: "apache", label: "Apache" },
+  { id: "vercel", label: "Vercel" },
 ]
 
-function buildConfig(preset: Preset, origin: string, methods: string[]): string {
-  const methodList = methods.join(", ")
-  if (preset === "express") {
-    return `// Express (cors middleware)
-import cors from "cors"
-
-app.use(cors({
-  origin: "${origin}",
-  methods: [${methods.map((m) => `"${m}"`).join(", ")}],
-}))`
-  }
-  if (preset === "spring") {
-    return `// Spring (WebMvcConfigurer)
-@Override
-public void addCorsMappings(CorsRegistry registry) {
-  registry.addMapping("/**")
-    .allowedOrigins("${origin}")
-    .allowedMethods(${methods.map((m) => `"${m}"`).join(", ")});
-}`
-  }
-  return `# NGINX
-add_header 'Access-Control-Allow-Origin' '${origin}' always;
-add_header 'Access-Control-Allow-Methods' '${methodList}' always;`
+function parseList(value: string): string[] {
+  return value
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0)
 }
 
 export function CorsConfigurator() {
   const t = useTranslations("CorsConfigurator.ui")
-  const [preset, setPreset] = useState<Preset>("nginx")
+  const [preset, setPreset] = useState<CorsTarget>("nginx")
   const [origin, setOrigin] = useState("*")
   const [methods, setMethods] = useState<string[]>(["GET", "POST", "OPTIONS"])
+  const [allowedHeaders, setAllowedHeaders] = useState("Content-Type, Authorization")
+  const [exposedHeaders, setExposedHeaders] = useState("")
+  const [allowCredentials, setAllowCredentials] = useState(false)
+  const [maxAge, setMaxAge] = useState(86400)
 
   const toggleMethod = (method: string) => {
     setMethods((prev) =>
@@ -55,10 +44,20 @@ export function CorsConfigurator() {
     )
   }
 
-  const configStr = buildConfig(preset, origin, methods)
+  const { config, credentialsWildcardWarning } = generateCors(
+    {
+      origin,
+      methods,
+      allowedHeaders: parseList(allowedHeaders),
+      exposedHeaders: parseList(exposedHeaders),
+      allowCredentials,
+      maxAge,
+    },
+    preset
+  )
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(configStr)
+    navigator.clipboard.writeText(config)
     toast.success(t("copied"))
   }
 
@@ -122,6 +121,60 @@ export function CorsConfigurator() {
               })}
             </div>
           </div>
+
+          <div>
+            <label className="text-xs font-semibold text-muted-foreground mb-1 block">
+              {t("allowedHeaders")}
+            </label>
+            <Input
+              value={allowedHeaders}
+              onChange={(e) => setAllowedHeaders(e.target.value)}
+              placeholder={t("headersPlaceholder")}
+              className="bg-background/50"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-semibold text-muted-foreground mb-1 block">
+              {t("exposedHeaders")}
+            </label>
+            <Input
+              value={exposedHeaders}
+              onChange={(e) => setExposedHeaders(e.target.value)}
+              placeholder={t("headersPlaceholder")}
+              className="bg-background/50"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-semibold text-muted-foreground mb-1 block">
+              {t("maxAge")}
+            </label>
+            <Input
+              type="number"
+              value={maxAge}
+              onChange={(e) => setMaxAge(Number(e.target.value))}
+              className="bg-background/50"
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Switch
+              id="allowCredentials"
+              checked={allowCredentials}
+              onCheckedChange={setAllowCredentials}
+            />
+            <Label htmlFor="allowCredentials" className="text-xs font-semibold text-muted-foreground">
+              {t("allowCredentials")}
+            </Label>
+          </div>
+
+          {credentialsWildcardWarning && (
+            <div className="flex items-start gap-2 rounded-md border border-amber-500/40 bg-amber-500/10 p-2 text-xs text-amber-600 dark:text-amber-400">
+              <TriangleAlert className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+              <span>{t("credentialsWarning")}</span>
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -133,7 +186,7 @@ export function CorsConfigurator() {
             </Button>
           </div>
           <pre className="p-4 rounded-lg bg-muted text-xs font-mono whitespace-pre-wrap select-all">
-            {configStr}
+            {config}
           </pre>
         </div>
       </CardContent>
