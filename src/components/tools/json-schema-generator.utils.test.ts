@@ -1,11 +1,18 @@
 import { describe, expect, it } from "vitest"
 
-import { generateSchema, type GeneratedSchema } from "./json-schema-generator.utils"
+import {
+  DRAFT_META,
+  generateSchema,
+  inferStringFormat,
+  mergeItems,
+  type GeneratedSchema,
+  type SchemaDraft,
+} from "./json-schema-generator.utils"
 
 // Helper: run generateSchema, serialize, then re-parse so assertions run
 // against the same structure a consumer would inspect after JSON round-trip.
-function buildSchema(value: unknown): GeneratedSchema {
-  return JSON.parse(JSON.stringify(generateSchema(value)))
+function buildSchema(value: unknown, draft?: SchemaDraft): GeneratedSchema {
+  return JSON.parse(JSON.stringify(generateSchema(value, draft)))
 }
 
 describe("json-schema-generator utils", () => {
@@ -223,6 +230,94 @@ describe("json-schema-generator utils", () => {
       expect(parsed.$schema).toBe("http://json-schema.org/draft-07/schema#")
       expect(parsed.properties.name).toEqual({ type: "string" })
       expect(parsed.properties.age).toEqual({ type: "integer" })
+    })
+  })
+
+  describe("draft selection", () => {
+    it("defaults to draft-07 metadata", () => {
+      expect(buildSchema({}).$schema).toBe(DRAFT_META["draft-07"])
+    })
+
+    it("emits the 2020-12 $schema when requested", () => {
+      const schema = buildSchema({}, "2020-12")
+      expect(schema.$schema).toBe("https://json-schema.org/draft/2020-12/schema")
+    })
+  })
+
+  describe("array item merging", () => {
+    it("unions keys across all object items and only requires shared keys", () => {
+      // Arrange: second item is missing `qty`, third adds `note`.
+      const value = {
+        items: [
+          { sku: "x1", qty: 2 },
+          { sku: "x2" },
+          { sku: "x3", qty: 4, note: "n" },
+        ],
+      }
+
+      // Act
+      const items = buildSchema(value).properties?.items
+
+      // Assert
+      expect(items?.type).toBe("array")
+      expect(Object.keys(items?.items?.properties ?? {})).toEqual(["sku", "qty", "note"])
+      // sku is the only key present in every item
+      expect(items?.items?.required).toEqual(["sku"])
+    })
+
+    it("merges scalar items into a union type when they differ", () => {
+      const merged = mergeItems([1, "a", 2])
+      expect(merged.type).toEqual(["integer", "string"])
+    })
+
+    it("collapses a uniform scalar array to a single type", () => {
+      const merged = mergeItems(["a", "b", "c"])
+      expect(merged.type).toBe("string")
+    })
+  })
+
+  describe("format inference", () => {
+    it("detects date-time strings", () => {
+      expect(inferStringFormat("2024-01-02T03:04:05Z")).toBe("date-time")
+    })
+
+    it("detects email strings", () => {
+      expect(inferStringFormat("a@b.com")).toBe("email")
+    })
+
+    it("detects uri strings", () => {
+      expect(inferStringFormat("https://example.com/x")).toBe("uri")
+    })
+
+    it("returns undefined for plain text", () => {
+      expect(inferStringFormat("hello world")).toBeUndefined()
+    })
+
+    it("annotates a property's format when every sample agrees", () => {
+      const value = { emails: ["a@b.com", "c@d.com"] }
+      const items = buildSchema(value).properties?.emails?.items
+      expect(items).toEqual({ type: "string", format: "email" })
+    })
+  })
+
+  describe("enum inference", () => {
+    it("infers a small enum from repeated low-cardinality strings", () => {
+      const value = { status: ["active", "inactive", "active", "active"] }
+      const items = buildSchema(value).properties?.status?.items
+      expect(items?.type).toBe("string")
+      expect(items?.enum).toEqual(["active", "inactive"])
+    })
+
+    it("does not infer an enum when every value is distinct", () => {
+      const value = { ids: ["a", "b", "c", "d"] }
+      const items = buildSchema(value).properties?.ids?.items
+      expect(items?.enum).toBeUndefined()
+    })
+
+    it("does not infer an enum above the cardinality cap", () => {
+      const value = { vals: ["a", "b", "c", "d", "e", "f", "a"] }
+      const items = buildSchema(value).properties?.vals?.items
+      expect(items?.enum).toBeUndefined()
     })
   })
 })

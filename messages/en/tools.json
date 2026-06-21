@@ -108,7 +108,13 @@
             "step1": "Paste your JSON or YAML code in the left input area.",
             "step2": "Click the 'Convert' button.",
             "step3": "The converted result appears on the right. Use the copy button to copy to clipboard."
-        }
+        },
+        "copied": "Copied to clipboard",
+        "clear": "Clear",
+        "download": "Download",
+        "downloaded": "File downloaded",
+        "indent": "Indent",
+        "sortKeys": "Sort keys"
     },
     "JwtDebugger": {
         "title": "JWT Debugger",
@@ -213,7 +219,14 @@
             "step1": "Paste your SVG code in the left input area.",
             "step2": "Enter a component name and click 'Convert'.",
             "step3": "Copy the generated JSX code and use it directly in your React project."
-        }
+        },
+        "copyError": "Failed to copy",
+        "download": "Download",
+        "downloaded": "Downloaded",
+        "preview": "Preview",
+        "previewPlaceholder": "Paste SVG to preview",
+        "typescript": "TypeScript",
+        "spreadProps": "Spread props"
     },
     "RegexTester": {
         "title": "RegEx Tester",
@@ -2620,7 +2633,14 @@
                 "title": "Clean Output",
                 "desc": "Removes unnecessary HTML comments and formats the resulting code."
             }
-        }
+        },
+        "copied": "Copied!",
+        "copyError": "Failed to copy",
+        "download": "Download",
+        "downloaded": "Downloaded",
+        "outputPlaceholder": "JSX result will appear here...",
+        "wrapComponent": "Wrap in component",
+        "componentName": "Component Name"
     },
     "HtmlEntityEncoder": {
         "features": {
@@ -2841,7 +2861,12 @@
                 "title": "Nested Support",
                 "desc": "Handles deeply nested objects and arrays without data loss."
             }
-        }
+        },
+        "copied": "Copied to clipboard",
+        "download": "Download",
+        "downloaded": "File downloaded",
+        "indent": "Indent",
+        "sortKeys": "Sort keys"
     },
     "TimeZoneConverter": {
         "title": "Visual Time Zone Converter",
@@ -4711,7 +4736,12 @@
             "selectServices": "Select Services",
             "dbSetup": "Database Config",
             "copyYml": "Copy docker-compose.yml",
-            "copied": "Copied to clipboard"
+            "copied": "Copied to clipboard",
+            "imageTag": "Image Tag",
+            "hostPort": "Host Port",
+            "restartPolicy": "Restart Policy",
+            "download": "Download",
+            "downloaded": "File downloaded"
         }
     },
     "GitCommitHelper": {
@@ -4737,7 +4767,12 @@
             "subject": "Subject",
             "body": "Body Description",
             "copyCommit": "Copy Commit Command",
-            "copied": "Copied to clipboard"
+            "copied": "Copied to clipboard",
+            "footer": "Footer (BREAKING CHANGE / Closes #)",
+            "gitmoji": "Prepend Gitmoji",
+            "preview": "Commit Preview",
+            "subjectTooLong": "Subject exceeds 50 characters",
+            "bodyTooLong": "A body line exceeds 72 characters"
         }
     },
     "JsonSchemaGenerator": {
@@ -4760,7 +4795,15 @@
         "ui": {
             "jsonInput": "Enter Source JSON",
             "schemaOutput": "Generated JSON Schema",
-            "copySchema": "Copy Schema"
+            "copySchema": "Copy Schema",
+            "generate": "Generate Schema",
+            "invalidJson": "Invalid JSON data format.",
+            "draft": "Draft Version",
+            "indent": "Indentation",
+            "tab": "Tab",
+            "spaces": "{count} spaces",
+            "download": "Download",
+            "downloaded": "Schema downloaded"
         }
     },
     "UrlParser": {

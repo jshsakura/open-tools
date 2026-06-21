@@ -108,7 +108,13 @@
             "step1": "왼쪽 입력 영역에 JSON 또는 YAML 코드를 붙여넣으세요.",
             "step2": "'변환하기' 버튼을 클릭하세요.",
             "step3": "오른쪽에 변환된 결과가 표시되며, 복사 버튼으로 클립보드에 복사할 수 있습니다."
-        }
+        },
+        "copied": "클립보드에 복사되었습니다",
+        "clear": "지우기",
+        "download": "다운로드",
+        "downloaded": "파일이 다운로드되었습니다",
+        "indent": "들여쓰기",
+        "sortKeys": "키 정렬"
     },
     "JwtDebugger": {
         "title": "JWT 디버거",
@@ -213,7 +219,14 @@
             "step1": "왼쪽 입력 영역에 SVG 코드를 붙여넣으세요.",
             "step2": "컴포넌트 이름을 입력하고 '변환' 버튼을 클릭하세요.",
             "step3": "생성된 JSX 코드를 복사하여 React 프로젝트에 바로 사용하세요."
-        }
+        },
+        "copyError": "복사에 실패했습니다",
+        "download": "다운로드",
+        "downloaded": "다운로드됨",
+        "preview": "미리보기",
+        "previewPlaceholder": "SVG를 붙여넣으면 미리보기가 표시됩니다",
+        "typescript": "TypeScript",
+        "spreadProps": "props 전달"
     },
     "RegexTester": {
         "title": "정규식 테스터",
@@ -2622,7 +2635,14 @@
                 "title": "코드 정리",
                 "desc": "불필요한 HTML 주석을 제거하고 결과 코드를 깔끔하게 포맷팅합니다."
             }
-        }
+        },
+        "copied": "복사됨!",
+        "copyError": "복사에 실패했습니다",
+        "download": "다운로드",
+        "downloaded": "다운로드됨",
+        "outputPlaceholder": "JSX 결과가 여기에 표시됩니다...",
+        "wrapComponent": "컴포넌트로 감싸기",
+        "componentName": "컴포넌트 이름"
     },
     "HtmlEntityEncoder": {
         "features": {
@@ -2843,7 +2863,12 @@
                 "title": "복잡한 구조 지원",
                 "desc": "깊게 중첩된 객체나 배열도 데이터 손실 없이 정확하게 변환합니다."
             }
-        }
+        },
+        "copied": "클립보드에 복사되었습니다",
+        "download": "다운로드",
+        "downloaded": "파일이 다운로드되었습니다",
+        "indent": "들여쓰기",
+        "sortKeys": "키 정렬"
     },
     "TimeZoneConverter": {
         "title": "시각적 세계 시간대 변환기",
@@ -4713,7 +4738,12 @@
             "selectServices": "서비스 추가 선택",
             "dbSetup": "데이터베이스 설정",
             "copyYml": "docker-compose.yml 복사",
-            "copied": "클립보드에 복사되었습니다"
+            "copied": "클립보드에 복사되었습니다",
+            "imageTag": "이미지 태그",
+            "hostPort": "호스트 포트",
+            "restartPolicy": "재시작 정책",
+            "download": "다운로드",
+            "downloaded": "파일을 다운로드했습니다"
         }
     },
     "GitCommitHelper": {
@@ -4739,7 +4769,12 @@
             "subject": "제목 (Subject)",
             "body": "본문 설명 (Body)",
             "copyCommit": "커밋 명령어 복사",
-            "copied": "클립보드에 복사되었습니다"
+            "copied": "클립보드에 복사되었습니다",
+            "footer": "푸터 (BREAKING CHANGE / Closes #)",
+            "gitmoji": "Gitmoji 추가",
+            "preview": "커밋 미리보기",
+            "subjectTooLong": "제목이 50자를 초과합니다",
+            "bodyTooLong": "본문 줄이 72자를 초과합니다"
         }
     },
     "JsonSchemaGenerator": {
@@ -4762,7 +4797,15 @@
         "ui": {
             "jsonInput": "원본 JSON 입력",
             "schemaOutput": "생성된 JSON Schema",
-            "copySchema": "스키마 복사"
+            "copySchema": "스키마 복사",
+            "generate": "스키마 생성",
+            "invalidJson": "잘못된 JSON 데이터 형식입니다.",
+            "draft": "드래프트 버전",
+            "indent": "들여쓰기",
+            "tab": "탭",
+            "spaces": "공백 {count}칸",
+            "download": "다운로드",
+            "downloaded": "스키마를 다운로드했습니다"
         }
     },
     "UrlParser": {

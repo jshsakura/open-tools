@@ -1,77 +1,82 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useTranslations } from 'next-intl'
-import { Copy, RefreshCw, AlertCircle, Trash2 } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Copy, AlertCircle, Trash2, Download } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import jsyaml from 'js-yaml'
 import { toast } from "sonner"
+import { jsonToYaml, yamlToJson } from "./yaml-convert.utils"
+
+type Mode = "toYaml" | "toJson"
+
+const INDENT_OPTIONS = [2, 4] as const
 
 export function YamlConverter() {
-    const t = useTranslations('YamlConverter');
+    const t = useTranslations("YamlConverter")
 
     const [input, setInput] = useState("")
     const [output, setOutput] = useState("")
     const [error, setError] = useState<string | null>(null)
-    const [mode, setMode] = useState<'toYaml' | 'toJson'>('toJson')
+    const [mode, setMode] = useState<Mode>("toJson")
+    const [indent, setIndent] = useState(2)
+    const [sortKeys, setSortKeys] = useState(false)
 
-    const detectFormatAndConvert = (val: string) => {
-        if (!val.trim()) {
+    // Live conversion: re-run whenever input, target mode, or options change.
+    useEffect(() => {
+        if (!input.trim()) {
             setOutput("")
             setError(null)
             return
         }
 
         try {
-            // Try parsing as JSON first
-            const parsed = JSON.parse(val)
-            setMode('toYaml')
-            const yaml = jsyaml.dump(parsed)
-            setOutput(yaml)
+            const result =
+                mode === "toYaml"
+                    ? jsonToYaml(input, { indent, sortKeys })
+                    : yamlToJson(input, { indent, sortKeys })
+            setOutput(result)
             setError(null)
-        } catch (e1) {
-            try {
-                // Try parsing as YAML
-                const parsed = jsyaml.load(val)
-                if (typeof parsed === 'string' && parsed === val) {
-                   // It's just a string, not really YAML/JSON structure
-                }
-                setMode('toJson')
-                const json = JSON.stringify(parsed, null, 2)
-                setOutput(json)
-                setError(null)
-            } catch (e2: any) {
-                setError(e2.message)
-            }
+        } catch (e) {
+            setOutput("")
+            setError(e instanceof Error ? e.message : String(e))
         }
-    }
-
-    const handleConvert = (targetMode: 'toYaml' | 'toJson') => {
-        setError(null)
-        if (!input.trim()) return
-
-        try {
-            if (targetMode === 'toYaml') {
-                const parsed = JSON.parse(input)
-                setOutput(jsyaml.dump(parsed))
-            } else {
-                const parsed = jsyaml.load(input)
-                setOutput(JSON.stringify(parsed, null, 2))
-            }
-            setMode(targetMode)
-        } catch (e: any) {
-            setError(e.message)
-        }
-    }
+    }, [input, mode, indent, sortKeys])
 
     const copyToClipboard = () => {
         if (!output) return
         navigator.clipboard.writeText(output)
-        toast.success(t('copy'))
+        toast.success(t("copied"))
+    }
+
+    const downloadOutput = () => {
+        if (!output) return
+        const ext = mode === "toYaml" ? "yaml" : "json"
+        const type =
+            mode === "toYaml"
+                ? "text/yaml;charset=utf-8"
+                : "application/json;charset=utf-8"
+        const blob = new Blob([output], { type })
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement("a")
+        link.href = url
+        link.download = `converted.${ext}`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+        toast.success(t("downloaded"))
     }
 
     const clearInput = () => {
@@ -83,45 +88,75 @@ export function YamlConverter() {
     return (
         <div className="max-w-5xl mx-auto space-y-6">
             <GlassCard className="p-6">
+                {/* Options bar */}
+                <div className="flex flex-wrap items-center gap-6 mb-6">
+                    <div className="flex items-center gap-2">
+                        <Label className="text-sm text-muted-foreground">{t("indent")}</Label>
+                        <Select
+                            value={String(indent)}
+                            onValueChange={(v) => setIndent(Number(v))}
+                        >
+                            <SelectTrigger className="h-8 w-20">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {INDENT_OPTIONS.map((n) => (
+                                    <SelectItem key={n} value={String(n)}>
+                                        {n}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Switch checked={sortKeys} onCheckedChange={setSortKeys} id="sort-keys" />
+                        <Label htmlFor="sort-keys" className="text-sm text-muted-foreground">
+                            {t("sortKeys")}
+                        </Label>
+                    </div>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                            <Label className="text-lg font-semibold">{t('input')}</Label>
-                            <Button variant="ghost" size="sm" onClick={clearInput} className="text-muted-foreground h-8">
+                            <Label className="text-lg font-semibold">{t("input")}</Label>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={clearInput}
+                                className="text-muted-foreground h-8"
+                            >
                                 <Trash2 className="w-4 h-4 mr-2" />
-                                {t('clear')}
+                                {t("clear")}
                             </Button>
                         </div>
                         <Textarea
                             className="min-h-[400px] font-mono text-sm bg-muted/20 resize-none"
-                            placeholder={t('placeholder')}
+                            placeholder={t("placeholder")}
                             value={input}
-                            onChange={(e) => {
-                                setInput(e.target.value)
-                                // detectFormatAndConvert(e.target.value) // Optional auto-detect
-                            }}
+                            onChange={(e) => setInput(e.target.value)}
                         />
                     </div>
 
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                            <Label className="text-lg font-semibold">{t('output')}</Label>
+                            <Label className="text-lg font-semibold">{t("output")}</Label>
                             <div className="flex gap-2">
                                 <Button
-                                    variant={mode === 'toJson' ? 'default' : 'outline'}
+                                    variant={mode === "toJson" ? "default" : "outline"}
                                     size="sm"
-                                    onClick={() => handleConvert('toJson')}
+                                    onClick={() => setMode("toJson")}
                                     className="h-8"
                                 >
-                                    {t('toJson')}
+                                    {t("toJson")}
                                 </Button>
                                 <Button
-                                    variant={mode === 'toYaml' ? 'default' : 'outline'}
+                                    variant={mode === "toYaml" ? "default" : "outline"}
                                     size="sm"
-                                    onClick={() => handleConvert('toYaml')}
+                                    onClick={() => setMode("toYaml")}
                                     className="h-8"
                                 >
-                                    {t('toYaml')}
+                                    {t("toYaml")}
                                 </Button>
                             </div>
                         </div>
@@ -132,21 +167,26 @@ export function YamlConverter() {
                                 readOnly
                             />
                             {output && (
-                                <Button
-                                    size="sm"
-                                    className="absolute top-2 right-2 h-8"
-                                    onClick={copyToClipboard}
-                                >
-                                    <Copy className="w-4 h-4 mr-2" />
-                                    {t('copy')}
-                                </Button>
+                                <div className="absolute top-2 right-2 flex gap-2">
+                                    <Button size="sm" variant="outline" className="h-8" onClick={downloadOutput}>
+                                        <Download className="w-4 h-4 mr-2" />
+                                        {t("download")}
+                                    </Button>
+                                    <Button size="sm" className="h-8" onClick={copyToClipboard}>
+                                        <Copy className="w-4 h-4 mr-2" />
+                                        {t("copy")}
+                                    </Button>
+                                </div>
                             )}
                         </div>
                     </div>
                 </div>
 
                 {error && (
-                    <Alert variant="destructive" className="mt-6 bg-red-500/10 border-red-500/20 text-red-500">
+                    <Alert
+                        variant="destructive"
+                        className="mt-6 bg-red-500/10 border-red-500/20 text-red-500"
+                    >
                         <AlertCircle className="h-4 w-4" />
                         <AlertTitle>Error</AlertTitle>
                         <AlertDescription className="font-mono text-xs">{error}</AlertDescription>
