@@ -3204,6 +3204,37 @@
                 "title": "누적 시간 요약",
                 "desc": "총 경과 일수와 주 수를 함께 보여줘 시간을 직관적으로 이해할 수 있습니다."
             }
+        },
+        "koreanAge": "한국식 나이",
+        "manAge": "만 나이",
+        "countingAge": "세는 나이",
+        "yearAge": "연 나이",
+        "yearsCounter": "세",
+        "totalMonths": "총 경과 개월 수",
+        "hours": "시간",
+        "bornOn": "태어난 날",
+        "weekdays": {
+            "sunday": "일요일",
+            "monday": "월요일",
+            "tuesday": "화요일",
+            "wednesday": "수요일",
+            "thursday": "목요일",
+            "friday": "금요일",
+            "saturday": "토요일"
+        },
+        "zodiac": {
+            "rat": "쥐띠",
+            "ox": "소띠",
+            "tiger": "호랑이띠",
+            "rabbit": "토끼띠",
+            "dragon": "용띠",
+            "snake": "뱀띠",
+            "horse": "말띠",
+            "goat": "양띠",
+            "monkey": "원숭이띠",
+            "rooster": "닭띠",
+            "dog": "개띠",
+            "pig": "돼지띠"
         }
     },
     "OvulationCalculator": {
@@ -3305,7 +3336,16 @@
                 "title": "일상 체크용",
                 "desc": "가벼운 건강 체크, 운동 목표 관리, 자기 기록용으로 편하게 사용할 수 있습니다."
             }
-        }
+        },
+        "metric": "미터법",
+        "imperial": "야드파운드법",
+        "heightImperial": "키 (피트 / 인치)",
+        "weightImperial": "몸무게 (파운드)",
+        "feet": "피트",
+        "inches": "인치",
+        "poundsHint": "현재 몸무게를 파운드로 입력하세요.",
+        "gaugeTitle": "내 BMI 위치",
+        "healthyRangeSummaryUnit": "이 키 기준으로 건강 체중은 대략 {min}에서 {max} 사이입니다."
     },
     "TipCalculator": {
         "title": "팁 계산기",
@@ -3341,7 +3381,13 @@
                 "title": "일상 결제용",
                 "desc": "식당, 카페, 택시처럼 작은 정산 상황에서 바로 사용할 수 있습니다."
             }
-        }
+        },
+        "currency": "통화",
+        "roundUp": "총액 올림",
+        "roundUpHint": "최종 합계를 가장 가까운 정수로 올림합니다.",
+        "on": "켜기",
+        "off": "끄기",
+        "tipPerPerson": "1인당 팁"
     },
     "DateCalculator": {
         "title": "날짜 계산기",
@@ -3387,7 +3433,12 @@
                 "title": "즉시 반영",
                 "desc": "입력이 바뀌면 결과가 바로 업데이트됩니다."
             }
-        }
+        },
+        "businessOnly": "영업일만 계산",
+        "includeEnd": "종료일 포함",
+        "businessDays": "영업일",
+        "ymdBreakdown": "년·월·일 상세",
+        "ymdValue": "{years}년 {months}개월 {days}일"
     },
     "DDayCalculator": {
         "title": "디데이 계산기",
@@ -3481,7 +3532,20 @@
                 "title": "실용적인 일상 도구",
                 "desc": "쇼핑 할인, 성적 변화, 지출 비교, 리포트 확인 등 다양한 상황에 잘 맞습니다."
             }
-        }
+        },
+        "modeBasic": "값의 %",
+        "modeOfWhich": "A는 B의 몇 %",
+        "modeChange": "변화율",
+        "modeAdjust": "증가 / 감소",
+        "ofWhichTitle": "A는 B의 몇 퍼센트",
+        "partValue": "값 A",
+        "wholeValue": "값 B (전체)",
+        "ofWhichSummary": "{part}이(가) {whole}의 몇 퍼센트인지 보여줍니다.",
+        "adjustTitle": "퍼센트로 증가 또는 감소",
+        "adjustValue": "값",
+        "adjustPercent": "변화 퍼센트",
+        "adjustHint": "값을 줄이려면 음수 퍼센트를 입력하세요.",
+        "adjustDelta": "변화량"
     },
     "DiscountCalculator": {
         "title": "할인 계산기",
@@ -3522,7 +3586,16 @@
                 "title": "일상 쇼핑용",
                 "desc": "온라인 쇼핑, 장보기, 멤버십 혜택, 시즌 세일 계산에 부담 없이 쓸 수 있습니다."
             }
-        }
+        },
+        "extraDiscountPercent": "추가 할인 (%)",
+        "extraDiscountHint": "첫 번째 할인에 중첩 적용됩니다 (예: 20% 후 10%). 없으면 0을 입력하세요.",
+        "quantity": "수량",
+        "taxPercent": "세금 (%)",
+        "unitPrice": "개당 가격",
+        "subtotal": "소계",
+        "taxAmount": "세금",
+        "finalTotal": "최종 합계",
+        "summaryStacked": "총 약 {saved}을(를) 절약하며, 세전 기준 개당 약 {percent}% 할인입니다."
     },
     "SplitBillCalculator": {
         "title": "더치페이 계산기",
@@ -3563,7 +3636,20 @@
                 "title": "바로바로 계산",
                 "desc": "인원 수나 비율을 바꾸면 결과가 즉시 반영돼 현장에서 쓰기 편합니다."
             }
-        }
+        },
+        "currency": "통화",
+        "splitMode": "분할 방식",
+        "mode": {
+            "even": "균등 분할",
+            "weighted": "비중 분할"
+        },
+        "evenHint": "모두 같은 금액을 냅니다.",
+        "weightedHint": "각자에게 비중을 지정하세요 (예: 1, 2).",
+        "weight": "비중",
+        "personLabel": "{index}번",
+        "addPerson": "인원 추가",
+        "removePerson": "인원 제거",
+        "breakdownTitle": "1인별 내역"
     },
     "SleepCalculator": {
         "title": "수면 계산기",
@@ -3640,7 +3726,25 @@
                 "title": "하루 루틴 관리",
                 "desc": "한 번에 몰아 마시지 않고 하루 동안 나눠 마실 수 있게 페이스를 함께 보여줍니다."
             }
-        }
+        },
+        "weight": "체중",
+        "weightUnit": {
+            "kg": "kg",
+            "lb": "lb"
+        },
+        "sex": "성별",
+        "sexOption": {
+            "female": "여성",
+            "male": "남성"
+        },
+        "climate": "기후",
+        "climateOption": {
+            "temperate": "보통",
+            "hot": "더움"
+        },
+        "dailyTargetOz": "하루 목표 (oz)",
+        "adjustmentBoost": "기후·체질 보정 (ml)",
+        "scheduleTitle": "시간대별 음수 계획"
     },
     "CalorieCalculator": {
         "title": "칼로리 계산기",
@@ -3748,7 +3852,8 @@
         "units": {
             "C": "섭씨 (°C)",
             "F": "화씨 (°F)",
-            "K": "켈빈 (K)"
+            "K": "켈빈 (K)",
+            "R": "랭킨 (°R)"
         },
         "hint": "날씨, 요리, 학교 과제, 실험, 여행처럼 온도 단위를 자주 바꿔야 할 때 편하게 쓸 수 있습니다.",
         "convertedValue": "변환 결과",
@@ -3781,6 +3886,19 @@
                 "title": "일상 활용도 높음",
                 "desc": "날씨, 레시피, 과제, 실험, 여행 준비 등 다양한 상황에서 유용합니다."
             }
+        },
+        "swap": "단위 바꾸기",
+        "referenceTitle": "자주 쓰는 기준 온도",
+        "refColLabel": "기준",
+        "reference": {
+            "absoluteZero": "절대영도",
+            "freezing": "물 어는점",
+            "fridge": "냉장고",
+            "roomTemp": "실온",
+            "bodyTemp": "체온",
+            "boiling": "물 끓는점",
+            "ovenModerate": "오븐 (중간)",
+            "ovenHot": "오븐 (강)"
         }
     },
     "BodyFatCalculator": {
@@ -3874,7 +3992,18 @@
                 "title": "실생활 활용",
                 "desc": "출퇴근, 주말 이동, 여행, 배달 동선처럼 자주 있는 이동 계획에 바로 쓸 수 있습니다."
             }
-        }
+        },
+        "efficiencyUnit": "연비 단위",
+        "units": {
+            "kmPerL": "km/L",
+            "lPer100km": "L/100km",
+            "mpg": "MPG"
+        },
+        "roundTrip": "왕복",
+        "compareToggle": "차량 2대 비교",
+        "efficiencyB": "두 번째 차량 연비",
+        "vehicleBCost": "두 번째 차량 비용",
+        "savings": "차이: {amount}"
     },
     "FileSizeConverter": {
         "title": "파일 크기 변환기",
@@ -3887,7 +4016,12 @@
             "KB": "킬로바이트 (KB)",
             "MB": "메가바이트 (MB)",
             "GB": "기가바이트 (GB)",
-            "TB": "테라바이트 (TB)"
+            "TB": "테라바이트 (TB)",
+            "PB": "페타바이트 (PB)",
+            "EB": "엑사바이트 (EB)",
+            "Kb": "킬로비트 (Kb)",
+            "Mb": "메가비트 (Mb)",
+            "Gb": "기가비트 (Gb)"
         },
         "hint": "첨부 제한, 업로드 용량, 클라우드 저장 공간, 내보내기 파일 크기를 비교할 때 유용합니다.",
         "convertedValue": "변환 결과",
@@ -3920,7 +4054,13 @@
                 "title": "실무·일상 모두 활용",
                 "desc": "미디어 내보내기, 압축 파일, 저장 공간, 클라우드 용량을 비교할 때 편리합니다."
             }
-        }
+        },
+        "baseMode": "단위 기준",
+        "baseDecimal": "10진 (1000)",
+        "baseBinary": "2진 (1024)",
+        "bandwidth": "대역폭 (Mbps)",
+        "transferTime": "다운로드 예상 시간",
+        "transferHint": "입력한 대역폭 기준 예상치입니다."
     },
     "RandomPicker": {
         "title": "랜덤 선택기",
@@ -4024,7 +4164,13 @@
     "RomanNumeralConverter": {
         "number": "숫자",
         "roman": "로마 숫자",
-        "rangeNote": "1부터 3999까지 변환할 수 있습니다."
+        "rangeNote": "1부터 3999까지 변환할 수 있습니다.",
+        "copy": "복사",
+        "copied": "클립보드에 복사되었습니다",
+        "errorNotInteger": "정수를 입력하세요.",
+        "errorRange": "1부터 3999 사이의 숫자를 입력하세요.",
+        "errorInvalidRoman": "올바른 로마 숫자가 아닙니다.",
+        "referenceTitle": "기호 참고표"
     },
     "TextRepeater": {
         "text": "텍스트",

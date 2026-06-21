@@ -2,50 +2,56 @@
 
 import { useMemo, useState } from "react"
 import { useTranslations } from "next-intl"
-import { Snowflake, Thermometer, Waves } from "lucide-react"
+import { ArrowLeftRight, Snowflake, Thermometer, Waves } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { convertTemperature, fromCelsius, type DisplayUnit, type TemperatureUnit } from "./temperature-converter.utils"
 
-type TemperatureUnit = "C" | "F" | "K"
+const UNIT_OPTIONS: DisplayUnit[] = ["C", "F", "K", "R"]
 
-function toCelsius(value: number, unit: TemperatureUnit) {
-  if (unit === "C") return value
-  if (unit === "F") return (value - 32) * (5 / 9)
-  return value - 273.15
-}
-
-function fromCelsius(value: number, unit: TemperatureUnit) {
-  if (unit === "C") return value
-  if (unit === "F") return (value * 9) / 5 + 32
-  return value + 273.15
-}
+/** Common reference temperatures expressed in Celsius, with an i18n label key. */
+const REFERENCE_POINTS: { key: string; celsius: number }[] = [
+  { key: "absoluteZero", celsius: -273.15 },
+  { key: "freezing", celsius: 0 },
+  { key: "fridge", celsius: 4 },
+  { key: "roomTemp", celsius: 21 },
+  { key: "bodyTemp", celsius: 37 },
+  { key: "boiling", celsius: 100 },
+  { key: "ovenModerate", celsius: 180 },
+  { key: "ovenHot", celsius: 220 },
+]
 
 export function TemperatureConverterTool() {
   const t = useTranslations("TemperatureConverter")
   const [value, setValue] = useState("25")
-  const [fromUnit, setFromUnit] = useState<TemperatureUnit>("C")
-  const [toUnit, setToUnit] = useState<TemperatureUnit>("F")
+  const [fromUnit, setFromUnit] = useState<DisplayUnit>("C")
+  const [toUnit, setToUnit] = useState<DisplayUnit>("F")
 
   const result = useMemo(() => {
     const parsedValue = Number.parseFloat(value)
+    // Rankine is a display-only output; conversions start from a base unit.
+    const baseUnit: TemperatureUnit = fromUnit === "R" ? "C" : fromUnit
+    const sourceValue = fromUnit === "R" ? (parsedValue - 491.67) * (5 / 9) : parsedValue
 
-    if (!Number.isFinite(parsedValue)) {
-      return null
-    }
-
-    const celsius = toCelsius(parsedValue, fromUnit)
-    const converted = fromCelsius(celsius, toUnit)
+    const conversion = convertTemperature(sourceValue, baseUnit)
+    if (!conversion) return null
 
     return {
-      converted,
+      converted: conversion[toUnit],
       freezing: fromCelsius(0, toUnit),
       boiling: fromCelsius(100, toUnit),
     }
   }, [fromUnit, toUnit, value])
 
   const formatTemperature = (input: number) => input.toLocaleString(undefined, { maximumFractionDigits: 2 })
+
+  const swapUnits = () => {
+    setFromUnit(toUnit)
+    setToUnit(fromUnit)
+  }
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -59,30 +65,39 @@ export function TemperatureConverterTool() {
             <Input type="number" step="0.1" value={value} onChange={(e) => setValue(e.target.value)} />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
+          <div className="flex items-end gap-2">
+            <div className="flex-1 space-y-2">
               <Label>{t("fromUnit")}</Label>
-              <Select value={fromUnit} onValueChange={(unit: TemperatureUnit) => setFromUnit(unit)}>
+              <Select value={fromUnit} onValueChange={(unit: DisplayUnit) => setFromUnit(unit)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="C">{t("units.C")}</SelectItem>
-                  <SelectItem value="F">{t("units.F")}</SelectItem>
-                  <SelectItem value="K">{t("units.K")}</SelectItem>
+                  {UNIT_OPTIONS.map((unit) => (
+                    <SelectItem key={unit} value={unit}>
+                      {t(`units.${unit}`)}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
+
+            <Button variant="outline" size="icon" onClick={swapUnits} aria-label={t("swap")} className="mb-0.5">
+              <ArrowLeftRight className="h-4 w-4" />
+            </Button>
+
+            <div className="flex-1 space-y-2">
               <Label>{t("toUnit")}</Label>
-              <Select value={toUnit} onValueChange={(unit: TemperatureUnit) => setToUnit(unit)}>
+              <Select value={toUnit} onValueChange={(unit: DisplayUnit) => setToUnit(unit)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="C">{t("units.C")}</SelectItem>
-                  <SelectItem value="F">{t("units.F")}</SelectItem>
-                  <SelectItem value="K">{t("units.K")}</SelectItem>
+                  {UNIT_OPTIONS.map((unit) => (
+                    <SelectItem key={unit} value={unit}>
+                      {t(`units.${unit}`)}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -126,6 +141,32 @@ export function TemperatureConverterTool() {
           </GlassCard>
 
           <GlassCard className="border-violet-500/20 p-5 sm:col-span-2">
+            <p className="text-sm font-medium">{t("referenceTitle")}</p>
+            <div className="mt-3 overflow-hidden rounded-xl border border-border/50">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/30 text-muted-foreground">
+                    <th className="px-3 py-2 text-left font-medium">{t("refColLabel")}</th>
+                    <th className="px-3 py-2 text-right font-medium">{t("units.C")}</th>
+                    <th className="px-3 py-2 text-right font-medium">{t("units.F")}</th>
+                    <th className="px-3 py-2 text-right font-medium">{t("units.K")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {REFERENCE_POINTS.map((ref) => (
+                    <tr key={ref.key} className="border-t border-border/40">
+                      <td className="px-3 py-2 text-left text-muted-foreground">{t(`reference.${ref.key}`)}</td>
+                      <td className="px-3 py-2 text-right font-medium">{formatTemperature(ref.celsius)}</td>
+                      <td className="px-3 py-2 text-right">{formatTemperature(fromCelsius(ref.celsius, "F"))}</td>
+                      <td className="px-3 py-2 text-right">{formatTemperature(fromCelsius(ref.celsius, "K"))}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlassCard>
+
+          <GlassCard className="border-primary/20 p-5 sm:col-span-2">
             <p className="text-sm text-muted-foreground">{t("summaryTitle")}</p>
             <p className="mt-2 text-sm font-medium leading-6">
               {result

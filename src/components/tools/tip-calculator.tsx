@@ -4,40 +4,75 @@ import { useMemo, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Calculator, Coins, ReceiptText, Users } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+
+const CURRENCIES = ["USD", "EUR", "GBP", "KRW", "JPY"] as const
+type Currency = (typeof CURRENCIES)[number]
+
+const TIP_PRESETS = [10, 15, 18, 20] as const
 
 export function TipCalculatorTool() {
   const t = useTranslations("TipCalculator")
   const [bill, setBill] = useState("58")
   const [tipPercent, setTipPercent] = useState(15)
   const [people, setPeople] = useState("2")
+  const [currency, setCurrency] = useState<Currency>("USD")
+  const [roundUp, setRoundUp] = useState(false)
 
   const result = useMemo(() => {
     const billValue = parseFloat(bill) || 0
     const peopleValue = Math.max(1, parseInt(people, 10) || 1)
     const tipAmount = billValue * (tipPercent / 100)
-    const total = billValue + tipAmount
+    let total = billValue + tipAmount
+
+    if (roundUp) {
+      total = Math.ceil(total)
+    }
+
+    const perPerson = total / peopleValue
+    const tipPerPerson = (total - billValue) / peopleValue
 
     return {
       billValue,
-      tipAmount,
+      tipAmount: total - billValue,
       total,
-      perPerson: total / peopleValue,
+      perPerson,
+      tipPerPerson,
       peopleValue,
     }
-  }, [bill, people, tipPercent])
+  }, [bill, people, roundUp, tipPercent])
 
   const formatCurrency = (value: number) =>
-    new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(
-      Number.isFinite(value) ? value : 0,
-    )
+    new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 2,
+    }).format(Number.isFinite(value) ? value : 0)
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <GlassCard className="p-6 space-y-6">
+          <div className="space-y-2">
+            <Label className="text-sm font-medium">{t("currency")}</Label>
+            <div className="flex flex-wrap gap-2">
+              {CURRENCIES.map((code) => (
+                <Button
+                  key={code}
+                  type="button"
+                  size="sm"
+                  variant={currency === code ? "default" : "outline"}
+                  onClick={() => setCurrency(code)}
+                >
+                  {code}
+                </Button>
+              ))}
+            </div>
+          </div>
+
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-sm font-medium">
               <ReceiptText className="h-4 w-4 text-emerald-500" />
@@ -54,6 +89,19 @@ export function TipCalculatorTool() {
               </Label>
               <span className="text-sm font-semibold text-amber-500">{tipPercent}%</span>
             </div>
+            <div className="flex flex-wrap gap-2">
+              {TIP_PRESETS.map((preset) => (
+                <Button
+                  key={preset}
+                  type="button"
+                  size="sm"
+                  variant={tipPercent === preset ? "default" : "outline"}
+                  onClick={() => setTipPercent(preset)}
+                >
+                  {preset}%
+                </Button>
+              ))}
+            </div>
             <Slider value={[tipPercent]} min={0} max={35} step={1} onValueChange={(v) => setTipPercent(v[0] ?? 0)} />
           </div>
 
@@ -63,6 +111,21 @@ export function TipCalculatorTool() {
               {t("splitBetween")}
             </Label>
             <Input type="number" min="1" step="1" value={people} onChange={(e) => setPeople(e.target.value)} />
+          </div>
+
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-border/50 bg-muted/20 p-4">
+            <div>
+              <p className="text-sm font-medium">{t("roundUp")}</p>
+              <p className="text-xs text-muted-foreground">{t("roundUpHint")}</p>
+            </div>
+            <Button
+              type="button"
+              size="sm"
+              variant={roundUp ? "default" : "outline"}
+              onClick={() => setRoundUp((prev) => !prev)}
+            >
+              {roundUp ? t("on") : t("off")}
+            </Button>
           </div>
         </GlassCard>
 
@@ -75,7 +138,11 @@ export function TipCalculatorTool() {
             <p className="text-sm text-muted-foreground">{t("totalWithTip")}</p>
             <p className="mt-2 text-3xl font-black tracking-tight text-violet-500">{formatCurrency(result.total)}</p>
           </GlassCard>
-          <GlassCard className="p-5 border-sky-500/20 sm:col-span-2">
+          <GlassCard className="p-5 border-amber-500/20">
+            <p className="text-sm text-muted-foreground">{t("tipPerPerson")}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-amber-500">{formatCurrency(result.tipPerPerson)}</p>
+          </GlassCard>
+          <GlassCard className="p-5 border-sky-500/20">
             <div className="flex items-start gap-4">
               <div className="rounded-2xl bg-sky-500/10 p-3">
                 <Calculator className="h-5 w-5 text-sky-500" />
@@ -83,11 +150,13 @@ export function TipCalculatorTool() {
               <div>
                 <p className="text-sm text-muted-foreground">{t("perPerson")}</p>
                 <p className="mt-2 text-3xl font-black tracking-tight text-sky-500">{formatCurrency(result.perPerson)}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t("splitSummary", { people: result.peopleValue, tip: tipPercent })}
-                </p>
               </div>
             </div>
+          </GlassCard>
+          <GlassCard className="p-5 sm:col-span-2">
+            <p className="text-sm text-muted-foreground">
+              {t("splitSummary", { people: result.peopleValue, tip: tipPercent })}
+            </p>
           </GlassCard>
         </div>
       </div>

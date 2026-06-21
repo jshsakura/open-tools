@@ -6,7 +6,9 @@ import { CalendarRange, PlusCircle } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { businessDayCount, dayDifference, parseDate, ymdBreakdown } from "./date-calculator.utils"
 
 function formatDateInput(date: Date) {
   return date.toISOString().split("T")[0]
@@ -37,24 +39,28 @@ export function DateCalculatorTool() {
   const [baseDate, setBaseDate] = useState(today)
   const [offset, setOffset] = useState("30")
   const [unit, setUnit] = useState<"days" | "weeks" | "months">("days")
+  const [includeEnd, setIncludeEnd] = useState(false)
+  const [businessOnly, setBusinessOnly] = useState(false)
 
   const difference = useMemo(() => {
-    const start = new Date(`${startDate}T00:00:00`)
-    const end = new Date(`${endDate}T00:00:00`)
+    const start = parseDate(startDate)
+    const end = parseDate(endDate)
 
-    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+    if (!start || !end) {
       return null
     }
 
-    const diffMs = Math.abs(end.getTime() - start.getTime())
-    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+    const calendarDays = dayDifference(start, end, includeEnd)
+    const totalDays = businessOnly ? businessDayCount(start, end, includeEnd) : calendarDays
+    const breakdown = ymdBreakdown(start, end)
 
     return {
       totalDays,
       weeks: Math.floor(totalDays / 7),
-      monthsApprox: (totalDays / 30.44).toFixed(1),
+      monthsApprox: (calendarDays / 30.44).toFixed(1),
+      breakdown,
     }
-  }, [endDate, startDate])
+  }, [businessOnly, endDate, includeEnd, startDate])
 
   const adjusted = useMemo(() => {
     const base = new Date(`${baseDate}T00:00:00`)
@@ -87,9 +93,20 @@ export function DateCalculatorTool() {
             </div>
           </div>
 
+          <div className="space-y-3 rounded-2xl border border-border/50 bg-muted/20 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <Label htmlFor="businessOnly" className="text-sm font-medium">{t("businessOnly")}</Label>
+              <Switch id="businessOnly" checked={businessOnly} onCheckedChange={setBusinessOnly} />
+            </div>
+            <div className="flex items-center justify-between gap-3">
+              <Label htmlFor="includeEnd" className="text-sm font-medium">{t("includeEnd")}</Label>
+              <Switch id="includeEnd" checked={includeEnd} onCheckedChange={setIncludeEnd} />
+            </div>
+          </div>
+
           <div className="grid gap-4 sm:grid-cols-3">
             <GlassCard className="p-4 border-emerald-500/20">
-              <p className="text-xs text-muted-foreground">{t("daysBetween")}</p>
+              <p className="text-xs text-muted-foreground">{businessOnly ? t("businessDays") : t("daysBetween")}</p>
               <p className="mt-2 text-2xl font-black text-emerald-500">{difference?.totalDays ?? 0}</p>
             </GlassCard>
             <GlassCard className="p-4 border-sky-500/20">
@@ -100,6 +117,19 @@ export function DateCalculatorTool() {
               <p className="text-xs text-muted-foreground">{t("monthsApprox")}</p>
               <p className="mt-2 text-2xl font-black text-violet-500">{difference?.monthsApprox ?? "0.0"}</p>
             </GlassCard>
+          </div>
+
+          <div className="rounded-2xl border border-border/50 bg-muted/20 p-4">
+            <p className="text-xs text-muted-foreground">{t("ymdBreakdown")}</p>
+            <p className="mt-2 text-lg font-bold tracking-tight">
+              {difference
+                ? t("ymdValue", {
+                    years: difference.breakdown.years,
+                    months: difference.breakdown.months,
+                    days: difference.breakdown.days,
+                  })
+                : "-"}
+            </p>
           </div>
         </GlassCard>
 

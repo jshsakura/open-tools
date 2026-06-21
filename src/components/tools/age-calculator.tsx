@@ -2,10 +2,21 @@
 
 import { useMemo, useState } from "react"
 import { useTranslations } from "next-intl"
-import { Cake, CalendarClock, Gift } from "lucide-react"
+import { Cake, CalendarClock, Gift, Sparkles } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  koreanCountingAge,
+  koreanManAge,
+  koreanYearAge,
+  totalDaysLived,
+  totalHoursLived,
+  totalMonthsLived,
+  weekdayKey,
+  westernAge,
+  zodiacForYear,
+} from "./age-calculator.utils"
 
 function formatDateInput(date: Date) {
   return date.toISOString().split("T")[0]
@@ -44,23 +55,8 @@ export function AgeCalculatorTool() {
       return null
     }
 
-    let years = target.getFullYear() - birth.getFullYear()
-    let months = target.getMonth() - birth.getMonth()
-    let days = target.getDate() - birth.getDate()
-
-    if (days < 0) {
-      const previousMonth = new Date(target.getFullYear(), target.getMonth(), 0)
-      days += previousMonth.getDate()
-      months -= 1
-    }
-
-    if (months < 0) {
-      months += 12
-      years -= 1
-    }
-
-    const diffMs = target.getTime() - birth.getTime()
-    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+    const { years, months, days } = westernAge(birth, target)
+    const totalDays = totalDaysLived(birth, target)
     const totalWeeks = Math.floor(totalDays / 7)
     const nextBirthdayIn = daysUntilNextBirthday(birth, target)
 
@@ -71,6 +67,13 @@ export function AgeCalculatorTool() {
       totalDays,
       totalWeeks,
       nextBirthdayIn,
+      manAge: koreanManAge(birth, target),
+      countingAge: koreanCountingAge(birth, target),
+      yearAge: koreanYearAge(birth, target),
+      totalMonths: totalMonthsLived(birth, target),
+      totalHours: totalHoursLived(birth, target),
+      bornWeekday: weekdayKey(birth),
+      zodiac: zodiacForYear(birth.getFullYear()),
     }
   }, [birthDate, targetDate])
 
@@ -142,6 +145,54 @@ export function AgeCalculatorTool() {
                     days: result.days,
                     totalDays: result.totalDays.toLocaleString(),
                   }) : t("invalidRange")}
+                </p>
+              </div>
+            </div>
+          </GlassCard>
+
+          <GlassCard className="p-5 border-amber-500/20 sm:col-span-2">
+            <p className="text-sm text-muted-foreground">{t("koreanAge")}</p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <div>
+                <p className="text-xs text-muted-foreground">{t("manAge")}</p>
+                <p className="mt-1 text-2xl font-black tracking-tight text-amber-500">
+                  {result ? `${result.manAge}${t("yearsCounter")}` : "-"}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">{t("countingAge")}</p>
+                <p className="mt-1 text-2xl font-black tracking-tight text-amber-500">
+                  {result ? `${result.countingAge}${t("yearsCounter")}` : "-"}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">{t("yearAge")}</p>
+                <p className="mt-1 text-2xl font-black tracking-tight text-amber-500">
+                  {result ? `${result.yearAge}${t("yearsCounter")}` : "-"}
+                </p>
+              </div>
+            </div>
+          </GlassCard>
+
+          <GlassCard className="p-5 border-teal-500/20">
+            <p className="text-sm text-muted-foreground">{t("totalMonths")}</p>
+            <p className="mt-2 text-2xl font-black tracking-tight text-teal-500">
+              {result ? result.totalMonths.toLocaleString() : "-"}
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {result ? `${result.totalHours.toLocaleString()} ${t("hours")}` : t("invalidRange")}
+            </p>
+          </GlassCard>
+
+          <GlassCard className="p-5 border-rose-500/20">
+            <div className="flex items-start gap-3">
+              <div className="rounded-xl bg-rose-500/10 p-2">
+                <Sparkles className="h-5 w-5 text-rose-500" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">{t("bornOn")}</p>
+                <p className="mt-2 text-lg font-bold tracking-tight">
+                  {result ? `${t(`weekdays.${result.bornWeekday}`)} · ${t(`zodiac.${result.zodiac}`)}` : "-"}
                 </p>
               </div>
             </div>

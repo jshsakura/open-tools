@@ -3202,6 +3202,37 @@
                 "title": "Life totals",
                 "desc": "Summarizes total days and weeks for a more tangible snapshot of time lived."
             }
+        },
+        "koreanAge": "Korean age",
+        "manAge": "International age (만나이)",
+        "countingAge": "Counting age (세는나이)",
+        "yearAge": "Year age (연나이)",
+        "yearsCounter": " yrs",
+        "totalMonths": "Total months lived",
+        "hours": "hours",
+        "bornOn": "Born on",
+        "weekdays": {
+            "sunday": "Sunday",
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday"
+        },
+        "zodiac": {
+            "rat": "Rat",
+            "ox": "Ox",
+            "tiger": "Tiger",
+            "rabbit": "Rabbit",
+            "dragon": "Dragon",
+            "snake": "Snake",
+            "horse": "Horse",
+            "goat": "Goat",
+            "monkey": "Monkey",
+            "rooster": "Rooster",
+            "dog": "Dog",
+            "pig": "Pig"
         }
     },
     "OvulationCalculator": {
@@ -3303,7 +3334,16 @@
                 "title": "Everyday friendly",
                 "desc": "Useful for routine check-ins, fitness goals, and simple self-tracking."
             }
-        }
+        },
+        "metric": "Metric",
+        "imperial": "Imperial",
+        "heightImperial": "Height (ft / in)",
+        "weightImperial": "Weight (lb)",
+        "feet": "Feet",
+        "inches": "Inches",
+        "poundsHint": "Enter your current weight in pounds.",
+        "gaugeTitle": "Where your BMI lands",
+        "healthyRangeSummaryUnit": "For this height, a common healthy-weight estimate falls around {min} to {max}."
     },
     "TipCalculator": {
         "title": "Tip Calculator",
@@ -3339,7 +3379,13 @@
                 "title": "Simple restaurant math",
                 "desc": "Perfect for dinner, coffee, taxis, and any small shared payments."
             }
-        }
+        },
+        "currency": "Currency",
+        "roundUp": "Round up total",
+        "roundUpHint": "Round the final total up to the nearest whole unit.",
+        "on": "On",
+        "off": "Off",
+        "tipPerPerson": "Tip per person"
     },
     "DateCalculator": {
         "title": "Date Calculator",
@@ -3385,7 +3431,12 @@
                 "title": "Instant results",
                 "desc": "All calculations update immediately as soon as the input changes."
             }
-        }
+        },
+        "businessOnly": "Business days only",
+        "includeEnd": "Include end date",
+        "businessDays": "Business days",
+        "ymdBreakdown": "Year / month / day breakdown",
+        "ymdValue": "{years}y {months}m {days}d"
     },
     "DDayCalculator": {
         "title": "D-Day Countdown Calculator",
@@ -3479,7 +3530,20 @@
                 "title": "Daily practical use",
                 "desc": "Helpful for discounts, savings, score changes, reports, and routine money math."
             }
-        }
+        },
+        "modeBasic": "% of value",
+        "modeOfWhich": "A is what % of B",
+        "modeChange": "Change",
+        "modeAdjust": "Increase / decrease",
+        "ofWhichTitle": "A is what percent of B",
+        "partValue": "Value A",
+        "wholeValue": "Value B (total)",
+        "ofWhichSummary": "This shows what percent {part} is of {whole}.",
+        "adjustTitle": "Increase or decrease by a percent",
+        "adjustValue": "Value",
+        "adjustPercent": "Change percent",
+        "adjustHint": "Use a negative percent to decrease the value.",
+        "adjustDelta": "Amount changed"
     },
     "DiscountCalculator": {
         "title": "Discount Calculator",
@@ -3520,7 +3584,16 @@
                 "title": "Everyday checkout help",
                 "desc": "Useful for online shopping, grocery apps, memberships, and seasonal sale events."
             }
-        }
+        },
+        "extraDiscountPercent": "Extra discount (%)",
+        "extraDiscountHint": "Stacks on top of the first discount (e.g. 20% then 10%). Use 0 to skip.",
+        "quantity": "Quantity",
+        "taxPercent": "Tax (%)",
+        "unitPrice": "Price per item",
+        "subtotal": "Subtotal",
+        "taxAmount": "Tax",
+        "finalTotal": "Final total",
+        "summaryStacked": "You save about {saved} in total — roughly {percent}% off per item before tax."
     },
     "SplitBillCalculator": {
         "title": "Split Bill Calculator",
@@ -3561,7 +3634,20 @@
                 "title": "Fast group math",
                 "desc": "Change the number of people or percentages and watch the totals update immediately."
             }
-        }
+        },
+        "currency": "Currency",
+        "splitMode": "Split mode",
+        "mode": {
+            "even": "Even split",
+            "weighted": "By weight"
+        },
+        "evenHint": "Everyone pays the same amount.",
+        "weightedHint": "Assign a share weight to each person (e.g. 1, 2).",
+        "weight": "Weight",
+        "personLabel": "Person {index}",
+        "addPerson": "Add person",
+        "removePerson": "Remove person",
+        "breakdownTitle": "Per-person breakdown"
     },
     "SleepCalculator": {
         "title": "Sleep Calculator",
@@ -3638,7 +3724,25 @@
                 "title": "Steady routine support",
                 "desc": "Helps you space water intake through the day instead of trying to catch up late."
             }
-        }
+        },
+        "weight": "Body weight",
+        "weightUnit": {
+            "kg": "kg",
+            "lb": "lb"
+        },
+        "sex": "Sex",
+        "sexOption": {
+            "female": "Female",
+            "male": "Male"
+        },
+        "climate": "Climate",
+        "climateOption": {
+            "temperate": "Temperate",
+            "hot": "Hot"
+        },
+        "dailyTargetOz": "Daily target (oz)",
+        "adjustmentBoost": "Climate & body adjustment (ml)",
+        "scheduleTitle": "Hourly drink schedule"
     },
     "CalorieCalculator": {
         "title": "Calorie Calculator",
@@ -3746,7 +3850,8 @@
         "units": {
             "C": "Celsius (°C)",
             "F": "Fahrenheit (°F)",
-            "K": "Kelvin (K)"
+            "K": "Kelvin (K)",
+            "R": "Rankine (°R)"
         },
         "hint": "Useful for weather, cooking, schoolwork, lab references, or quick travel conversions.",
         "convertedValue": "Converted value",
@@ -3779,6 +3884,19 @@
                 "title": "Practical daily use",
                 "desc": "Helpful for travel, recipes, schoolwork, experiments, and weather checks."
             }
+        },
+        "swap": "Swap units",
+        "referenceTitle": "Common reference temperatures",
+        "refColLabel": "Reference",
+        "reference": {
+            "absoluteZero": "Absolute zero",
+            "freezing": "Water freezing",
+            "fridge": "Refrigerator",
+            "roomTemp": "Room temperature",
+            "bodyTemp": "Body temperature",
+            "boiling": "Water boiling",
+            "ovenModerate": "Oven (moderate)",
+            "ovenHot": "Oven (hot)"
         }
     },
     "BodyFatCalculator": {
@@ -3872,7 +3990,18 @@
                 "title": "Everyday driving use",
                 "desc": "Useful for commuting, road trips, weekend drives, and delivery planning."
             }
-        }
+        },
+        "efficiencyUnit": "Efficiency unit",
+        "units": {
+            "kmPerL": "km/L",
+            "lPer100km": "L/100km",
+            "mpg": "MPG"
+        },
+        "roundTrip": "Round trip",
+        "compareToggle": "Compare a second vehicle",
+        "efficiencyB": "Second vehicle efficiency",
+        "vehicleBCost": "Second vehicle cost",
+        "savings": "Difference: {amount}"
     },
     "FileSizeConverter": {
         "title": "File Size Converter",
@@ -3885,7 +4014,12 @@
             "KB": "Kilobytes (KB)",
             "MB": "Megabytes (MB)",
             "GB": "Gigabytes (GB)",
-            "TB": "Terabytes (TB)"
+            "TB": "Terabytes (TB)",
+            "PB": "Petabytes (PB)",
+            "EB": "Exabytes (EB)",
+            "Kb": "Kilobits (Kb)",
+            "Mb": "Megabits (Mb)",
+            "Gb": "Gigabits (Gb)"
         },
         "hint": "Helpful for uploads, cloud storage limits, attachments, and comparing plan sizes quickly.",
         "convertedValue": "Converted size",
@@ -3918,7 +4052,13 @@
                 "title": "Practical workflow help",
                 "desc": "Useful for files, cloud plans, archives, media exports, and device storage checks."
             }
-        }
+        },
+        "baseMode": "Unit base",
+        "baseDecimal": "Decimal (1000)",
+        "baseBinary": "Binary (1024)",
+        "bandwidth": "Bandwidth (Mbps)",
+        "transferTime": "Download time",
+        "transferHint": "Estimated at the given bandwidth."
     },
     "RandomPicker": {
         "title": "Random Picker",
@@ -4022,7 +4162,13 @@
     "RomanNumeralConverter": {
         "number": "Number",
         "roman": "Roman numeral",
-        "rangeNote": "Supports conversion from 1 to 3999."
+        "rangeNote": "Supports conversion from 1 to 3999.",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "errorNotInteger": "Enter a whole number.",
+        "errorRange": "Enter a number between 1 and 3999.",
+        "errorInvalidRoman": "Not a valid Roman numeral.",
+        "referenceTitle": "Symbol reference"
     },
     "TextRepeater": {
         "text": "Text",

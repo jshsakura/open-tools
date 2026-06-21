@@ -2,10 +2,12 @@
 
 import { useMemo, useState } from "react"
 import { useTranslations } from "next-intl"
-import { BadgePercent, Receipt, Tags, Wallet } from "lucide-react"
+import { BadgePercent, Layers, Receipt, Tags, Wallet } from "lucide-react"
 import { GlassCard } from "@/components/ui/glass-card"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { computeDiscount } from "./discount-calculator.utils"
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat(undefined, {
@@ -17,32 +19,20 @@ export function DiscountCalculatorTool() {
   const t = useTranslations("DiscountCalculator")
   const [originalPrice, setOriginalPrice] = useState("120")
   const [discountPercent, setDiscountPercent] = useState("20")
+  const [extraDiscountPercent, setExtraDiscountPercent] = useState("10")
   const [extraCoupon, setExtraCoupon] = useState("5")
+  const [quantity, setQuantity] = useState("1")
+  const [taxPercent, setTaxPercent] = useState("0")
 
   const result = useMemo(() => {
-    const price = parseFloat(originalPrice)
-    const discount = parseFloat(discountPercent)
-    const coupon = parseFloat(extraCoupon) || 0
-
-    if (!Number.isFinite(price) || !Number.isFinite(discount) || price < 0 || discount < 0) {
-      return null
-    }
-
-    const percentOff = Math.min(discount, 100)
-    const discountAmount = price * (percentOff / 100)
-    const priceAfterDiscount = Math.max(0, price - discountAmount)
-    const finalPrice = Math.max(0, priceAfterDiscount - coupon)
-    const totalSaved = Math.max(0, price - finalPrice)
-    const totalSavedPercent = price > 0 ? (totalSaved / price) * 100 : 0
-
-    return {
-      discountAmount,
-      priceAfterDiscount,
-      finalPrice,
-      totalSaved,
-      totalSavedPercent,
-    }
-  }, [discountPercent, extraCoupon, originalPrice])
+    return computeDiscount({
+      originalPrice: parseFloat(originalPrice),
+      discounts: [parseFloat(discountPercent), parseFloat(extraDiscountPercent) || 0],
+      coupon: parseFloat(extraCoupon) || 0,
+      taxPercent: parseFloat(taxPercent) || 0,
+      quantity: parseInt(quantity, 10) || 0,
+    })
+  }, [discountPercent, extraCoupon, extraDiscountPercent, originalPrice, quantity, taxPercent])
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -66,11 +56,31 @@ export function DiscountCalculatorTool() {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-sm font-medium">
+              <Layers className="h-4 w-4 text-rose-500" />
+              {t("extraDiscountPercent")}
+            </Label>
+            <Input type="number" min="0" max="100" step="0.1" value={extraDiscountPercent} onChange={(e) => setExtraDiscountPercent(e.target.value)} />
+            <p className="text-xs text-muted-foreground">{t("extraDiscountHint")}</p>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-sm font-medium">
               <Tags className="h-4 w-4 text-violet-500" />
               {t("extraCoupon")}
             </Label>
             <Input type="number" min="0" step="0.01" value={extraCoupon} onChange={(e) => setExtraCoupon(e.target.value)} />
             <p className="text-xs text-muted-foreground">{t("couponHint")}</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">{t("quantity")}</Label>
+              <Input type="number" min="1" step="1" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">{t("taxPercent")}</Label>
+              <Input type="number" min="0" step="0.1" value={taxPercent} onChange={(e) => setTaxPercent(e.target.value)} />
+            </div>
           </div>
 
           <div className="rounded-2xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
@@ -80,37 +90,37 @@ export function DiscountCalculatorTool() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <GlassCard className="border-rose-500/20 p-5">
-            <p className="text-sm text-muted-foreground">{t("discountAmount")}</p>
-            <p className="mt-2 text-3xl font-black tracking-tight text-rose-500">{result ? formatNumber(result.discountAmount) : "-"}</p>
-          </GlassCard>
-
-          <GlassCard className="border-emerald-500/20 p-5">
-            <p className="text-sm text-muted-foreground">{t("finalPrice")}</p>
-            <p className="mt-2 text-3xl font-black tracking-tight text-emerald-500">{result ? formatNumber(result.finalPrice) : "-"}</p>
+            <p className="text-sm text-muted-foreground">{t("unitPrice")}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-rose-500">{result ? formatNumber(result.unitAfterCoupon) : "-"}</p>
           </GlassCard>
 
           <GlassCard className="border-sky-500/20 p-5">
-            <p className="text-sm text-muted-foreground">{t("priceAfterDiscount")}</p>
-            <p className="mt-2 text-3xl font-black tracking-tight text-sky-500">{result ? formatNumber(result.priceAfterDiscount) : "-"}</p>
+            <p className="text-sm text-muted-foreground">{t("subtotal")}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-sky-500">{result ? formatNumber(result.subtotal) : "-"}</p>
           </GlassCard>
 
-          <GlassCard className="border-violet-500/20 p-5">
-            <p className="text-sm text-muted-foreground">{t("totalSaved")}</p>
-            <p className="mt-2 text-3xl font-black tracking-tight text-violet-500">{result ? formatNumber(result.totalSaved) : "-"}</p>
+          <GlassCard className="border-amber-500/20 p-5">
+            <p className="text-sm text-muted-foreground">{t("taxAmount")}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-amber-500">{result ? formatNumber(result.taxAmount) : "-"}</p>
           </GlassCard>
 
-          <GlassCard className="border-amber-500/20 p-5 sm:col-span-2">
+          <GlassCard className="border-emerald-500/20 p-5">
+            <p className="text-sm text-muted-foreground">{t("finalTotal")}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-emerald-500">{result ? formatNumber(result.finalTotal) : "-"}</p>
+          </GlassCard>
+
+          <GlassCard className="border-violet-500/20 p-5 sm:col-span-2">
             <div className="flex items-start gap-4">
-              <div className="rounded-2xl bg-amber-500/10 p-3">
-                <Receipt className="h-5 w-5 text-amber-500" />
+              <div className="rounded-2xl bg-violet-500/10 p-3">
+                <Receipt className="h-5 w-5 text-violet-500" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">{t("summaryTitle")}</p>
                 <p className="mt-2 text-sm font-medium leading-6">
                   {result
-                    ? t("summary", {
+                    ? t("summaryStacked", {
                         saved: formatNumber(result.totalSaved),
-                        percent: result.totalSavedPercent.toFixed(1),
+                        percent: result.effectivePercentOff.toFixed(1),
                       })
                     : t("invalidInput")}
                 </p>
