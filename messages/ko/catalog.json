@@ -926,6 +926,26 @@
         "CountdownTimer": {
             "title": "카운트다운 타이머",
             "description": "목표 날짜·시간까지 실시간으로 카운트다운하거나, 시간이 끝나면 알림을 주는 타이머를 실행하세요."
+        },
+        "BarcodeGenerator": {
+            "title": "바코드 생성기",
+            "description": "어떤 텍스트로든 Code 128 바코드를 생성하세요. 크기와 색상을 자유롭게 조절하고 SVG 또는 PNG로 내려받을 수 있습니다. 무료이며 모든 처리는 브라우저에서 이루어집니다."
+        },
+        "OgPreview": {
+            "title": "오픈 그래프 미리보기",
+            "description": "페이스북, X, 링크드인, 디스코드, 슬랙에서 링크가 어떻게 보이는지 미리보고 메타 태그를 생성하세요."
+        },
+        "HtpasswdGenerator": {
+            "title": "htpasswd 생성기",
+            "description": "bcrypt, APR1(MD5), SHA-1 해시로 Apache .htpasswd 라인을 생성합니다. 무료, 브라우저 처리, 업로드 없음."
+        },
+        "CronNextRuns": {
+            "title": "Cron 다음 실행 시간",
+            "description": "Cron 표현식을 해석해 사람이 읽기 쉬운 스케줄 설명과 다음 실행 시간을 보여줍니다."
+        },
+        "JsonPathFinder": {
+            "title": "JSONPath 파인더",
+            "description": "JSONPath로 JSON을 조회하고 일치하는 값과 경로를 바로 확인하세요."
         }
     }
 }

@@ -5961,5 +5961,246 @@
                 "desc": "Get an on-screen toast, an optional WebAudio beep, and a browser notification the moment the countdown ends."
             }
         }
+    },
+    "BarcodeGenerator": {
+        "resultPreview": "Preview",
+        "previewHint": "Your Code 128 barcode updates as you type.",
+        "checksumLabel": "Mod-103 checksum:",
+        "symbologyHint": "Code 128 (Code Set B) supports ASCII characters 32 to 126.",
+        "downloadSvg": "SVG",
+        "downloadPng": "PNG",
+        "downloadedSvg": "Barcode downloaded as SVG.",
+        "downloadedPng": "Barcode downloaded as PNG.",
+        "contentLabel": "Content",
+        "textLabel": "Text to encode",
+        "textPlaceholder": "Enter text or numbers",
+        "textHelp": "Supports letters, digits, and symbols (ASCII 32-126).",
+        "appearance": "Appearance",
+        "foregroundColor": "Bar color",
+        "backgroundColor": "Background color",
+        "barHeight": "Bar height",
+        "moduleWidth": "Module width",
+        "showTextLabel": "Show readable text",
+        "showTextDesc": "Print the encoded text below the bars.",
+        "errorEmpty": "Enter some text to generate a barcode.",
+        "errorInvalid": "Contains characters that Code 128 Code Set B cannot encode (ASCII 32-126 only).",
+        "errorPng": "Failed to export PNG. Please try again.",
+        "guide": {
+            "title": "How to use the Barcode Generator",
+            "step1": "Type the text or numbers you want to encode into the content field.",
+            "step2": "Adjust the bar height, module width, colors, and whether the readable text is shown.",
+            "step3": "Download the live preview as a crisp SVG or a high-resolution PNG."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Code 128 standard",
+                "desc": "Generates valid Code 128 (Code Set B) barcodes with a correct mod-103 checksum and stop pattern."
+            },
+            "f2": {
+                "title": "Fully customizable",
+                "desc": "Control bar height, module width, foreground and background colors, and the human-readable label."
+            },
+            "f3": {
+                "title": "SVG and PNG export",
+                "desc": "Download lossless vector SVG for print or a 4x scaled PNG for everyday use."
+            },
+            "f4": {
+                "title": "Private and instant",
+                "desc": "Everything runs in your browser with a live preview. No upload, no tracking, no sign-up."
+            }
+        }
+    },
+    "OgPreview": {
+        "inputsTitle": "Link Details",
+        "titleLabel": "Title",
+        "titlePlaceholder": "My awesome page",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A short summary of the page",
+        "imageLabel": "Image URL",
+        "urlLabel": "Page URL",
+        "typeLabel": "og:type",
+        "metaTagsTitle": "Meta Tags",
+        "copy": "Copy",
+        "copied": "Copied",
+        "emptyMeta": "Fill in the fields to generate meta tags.",
+        "previewsTitle": "Live Previews",
+        "placeholderTitle": "Your page title appears here",
+        "placeholderDescription": "Your page description appears here, truncated per platform.",
+        "platform": {
+            "facebook": "Facebook",
+            "twitter": "X (Twitter)",
+            "linkedin": "LinkedIn",
+            "discord": "Discord",
+            "slack": "Slack"
+        },
+        "guide": {
+            "title": "How to Use the Open Graph Preview",
+            "step1": "Enter your page title, description, image URL, page URL, and og:type.",
+            "step2": "See live preview cards approximating Facebook, X, LinkedIn, Discord, and Slack.",
+            "step3": "Copy the generated og: and twitter: meta tags into your page's <head>."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Multi-Platform Preview",
+                "desc": "See how your link renders across five major social platforms at once."
+            },
+            "f2": {
+                "title": "Accurate Truncation",
+                "desc": "Titles and descriptions are clipped to each platform's character limits."
+            },
+            "f3": {
+                "title": "Ready-to-Use Meta Tags",
+                "desc": "Generates escaped og: and twitter: tags with one-click copy."
+            },
+            "f4": {
+                "title": "Private & Instant",
+                "desc": "Everything runs in your browser, with no data leaving your device."
+            }
+        }
+    },
+    "HtpasswdGenerator": {
+        "title": "Apache htpasswd Generator",
+        "description": "Create username:hash lines for Apache and Nginx basic authentication. Everything runs in your browser, so passwords never leave your device.",
+        "usernameLabel": "Username",
+        "usernamePlaceholder": "e.g. admin",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter a password",
+        "algorithmLabel": "Algorithm",
+        "algoBcrypt": "bcrypt (recommended)",
+        "algoApr1": "APR1 (Apache MD5)",
+        "algoSha1": "SHA-1",
+        "hint_bcrypt": "Modern, strong, and salted. Output uses the Apache $2y$ prefix.",
+        "hint_apr1": "Apache's salted MD5 ($apr1$). Widely supported by older servers.",
+        "hint_sha1": "Legacy {SHA} format. Unsalted and insecure — use only for compatibility.",
+        "generateButton": "Add Entry",
+        "generating": "Generating...",
+        "resultTitle": "Generated Entries",
+        "copyAll": "Copy All",
+        "clearAll": "Clear",
+        "copy": "Copy line",
+        "remove": "Remove",
+        "successGenerated": "Entry added",
+        "copied": "Line copied to clipboard",
+        "copiedAll": "All entries copied to clipboard",
+        "cleared": "All entries cleared",
+        "errorNoUser": "Please enter a username",
+        "errorNoPassword": "Please enter a password",
+        "error": "Failed to generate the hash",
+        "guide": {
+            "title": "How to use",
+            "step1": "Enter a username and password, then pick a hashing algorithm (bcrypt is recommended).",
+            "step2": "Click \"Add Entry\" to generate a username:hash line. Add as many users as you need.",
+            "step3": "Copy a single line or all entries and paste them into your .htpasswd file."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Client-Side",
+                "desc": "Hashing happens entirely in your browser. Passwords are never sent to a server."
+            },
+            "f2": {
+                "title": "Multiple Algorithms",
+                "desc": "Choose bcrypt ($2y$), Apache APR1 MD5 ($apr1$), or legacy SHA-1 ({SHA})."
+            },
+            "f3": {
+                "title": "Multi-User Lists",
+                "desc": "Accumulate several username:hash lines and copy the whole file at once."
+            },
+            "f4": {
+                "title": "Random Salting",
+                "desc": "bcrypt and APR1 entries use cryptographically secure random salts."
+            }
+        }
+    },
+    "CronNextRuns": {
+        "cronExpression": "Cron Expression",
+        "fieldHint": "Supports standard 5-field and 6-field (with seconds) cron expressions.",
+        "timezone": "Timezone",
+        "tzLocal": "Local time",
+        "tzUtc": "UTC",
+        "schedule": "Schedule",
+        "nextRuns": "Next {count} Runs",
+        "copyList": "Copy",
+        "copied": "Run times copied to clipboard",
+        "copyFailed": "Failed to copy to clipboard",
+        "invalidExpression": "Invalid cron expression. Please check the syntax.",
+        "enterValidCron": "Enter a cron expression to see upcoming run times.",
+        "fixToSeeRuns": "Fix the expression above to see upcoming run times.",
+        "presets": {
+            "everyMinute": "Every minute",
+            "every5Minutes": "Every 5 minutes",
+            "everyHour": "Every hour",
+            "dailyAtMidnight": "Daily at midnight",
+            "everyMonday9am": "Mondays at 9 AM",
+            "firstOfMonth": "First of every month"
+        },
+        "guide": {
+            "title": "How to use the Cron Next Runs analyzer",
+            "step1": "Type or paste a cron expression, or pick one of the common presets.",
+            "step2": "Read the plain-English description to confirm the schedule matches your intent.",
+            "step3": "Choose Local or UTC, then review and copy the next 10 scheduled run times."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Plain-English descriptions",
+                "desc": "Every cron expression is translated into a clear, human-readable schedule so you can verify it at a glance."
+            },
+            "f2": {
+                "title": "Real next run times",
+                "desc": "See the next 10 actual datetimes the job will fire, computed from a real cron engine rather than guesswork."
+            },
+            "f3": {
+                "title": "Local & UTC timezones",
+                "desc": "Switch between your local timezone and UTC to know exactly when the schedule runs on your servers."
+            },
+            "f4": {
+                "title": "Private & instant",
+                "desc": "Everything runs in your browser. Expressions never leave your device, and results update as you type."
+            }
+        }
+    },
+    "JsonPathFinder": {
+        "title": "JSONPath Finder",
+        "description": "Paste JSON, enter a JSONPath query, and see every matched value with its exact path.",
+        "jsonLabel": "JSON Input",
+        "jsonPlaceholder": "Paste your JSON here",
+        "queryLabel": "JSONPath Query",
+        "examplesLabel": "Example queries (click to try)",
+        "matchCount": "{count} matches",
+        "noMatch": "No values matched this query.",
+        "idle": "Enter JSON and a JSONPath query to see results.",
+        "invalidJson": "Invalid JSON",
+        "invalidQuery": "Invalid JSONPath",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "clear": "Clear",
+        "guide": {
+            "title": "How to Use the JSONPath Finder",
+            "step1": "Paste any valid JSON into the input box on the left.",
+            "step2": "Type a JSONPath query (e.g. $.store.book[*].title) or click an example.",
+            "step3": "Every matching value appears instantly with its concrete path."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Live Evaluation",
+                "desc": "Matches update as you type the JSON or the query — no button needed."
+            },
+            "f2": {
+                "title": "Practical JSONPath Subset",
+                "desc": "Supports member access, array indexes, negative indexes, wildcards, slices, and recursive descent (..)."
+            },
+            "f3": {
+                "title": "Concrete Paths",
+                "desc": "Each result shows the exact normalized path so you know precisely where the value lives."
+            },
+            "f4": {
+                "title": "Private & Offline",
+                "desc": "Everything runs in your browser. Your JSON never leaves your device."
+            }
+        }
     }
 }

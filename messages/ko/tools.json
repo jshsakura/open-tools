@@ -5963,5 +5963,246 @@
                 "desc": "카운트다운이 끝나는 순간 화면 토스트, 선택적 WebAudio 알림음, 브라우저 알림을 받을 수 있습니다."
             }
         }
+    },
+    "BarcodeGenerator": {
+        "resultPreview": "미리보기",
+        "previewHint": "입력하는 즉시 Code 128 바코드가 갱신됩니다.",
+        "checksumLabel": "Mod-103 체크섬:",
+        "symbologyHint": "Code 128(Code Set B)은 ASCII 32~126 문자를 지원합니다.",
+        "downloadSvg": "SVG",
+        "downloadPng": "PNG",
+        "downloadedSvg": "바코드를 SVG로 내려받았습니다.",
+        "downloadedPng": "바코드를 PNG로 내려받았습니다.",
+        "contentLabel": "내용",
+        "textLabel": "인코딩할 텍스트",
+        "textPlaceholder": "텍스트 또는 숫자를 입력하세요",
+        "textHelp": "영문, 숫자, 기호를 지원합니다(ASCII 32~126).",
+        "appearance": "모양",
+        "foregroundColor": "바 색상",
+        "backgroundColor": "배경 색상",
+        "barHeight": "바 높이",
+        "moduleWidth": "모듈 너비",
+        "showTextLabel": "사람이 읽을 수 있는 텍스트 표시",
+        "showTextDesc": "바 아래에 인코딩된 텍스트를 함께 출력합니다.",
+        "errorEmpty": "바코드를 생성하려면 텍스트를 입력하세요.",
+        "errorInvalid": "Code 128 Code Set B로 인코딩할 수 없는 문자가 있습니다(ASCII 32~126만 지원).",
+        "errorPng": "PNG 내보내기에 실패했습니다. 다시 시도해 주세요.",
+        "guide": {
+            "title": "바코드 생성기 사용법",
+            "step1": "인코딩하려는 텍스트나 숫자를 내용 칸에 입력하세요.",
+            "step2": "바 높이, 모듈 너비, 색상과 텍스트 표시 여부를 원하는 대로 조절하세요.",
+            "step3": "실시간 미리보기를 선명한 SVG 또는 고해상도 PNG로 내려받으세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "Code 128 표준",
+                "desc": "올바른 mod-103 체크섬과 정지 패턴을 갖춘 정식 Code 128(Code Set B) 바코드를 생성합니다."
+            },
+            "f2": {
+                "title": "자유로운 커스터마이즈",
+                "desc": "바 높이, 모듈 너비, 전경/배경 색상, 사람이 읽는 라벨 표시를 모두 조절할 수 있습니다."
+            },
+            "f3": {
+                "title": "SVG·PNG 내보내기",
+                "desc": "인쇄용 무손실 벡터 SVG 또는 4배 확대된 PNG로 내려받을 수 있습니다."
+            },
+            "f4": {
+                "title": "비공개·즉시 처리",
+                "desc": "모든 처리는 브라우저에서 실시간으로 이루어집니다. 업로드도, 추적도, 가입도 없습니다."
+            }
+        }
+    },
+    "OgPreview": {
+        "inputsTitle": "링크 정보",
+        "titleLabel": "제목",
+        "titlePlaceholder": "멋진 페이지 제목",
+        "descriptionLabel": "설명",
+        "descriptionPlaceholder": "페이지에 대한 짧은 요약",
+        "imageLabel": "이미지 URL",
+        "urlLabel": "페이지 URL",
+        "typeLabel": "og:type",
+        "metaTagsTitle": "메타 태그",
+        "copy": "복사",
+        "copied": "복사됨",
+        "emptyMeta": "항목을 입력하면 메타 태그가 생성됩니다.",
+        "previewsTitle": "실시간 미리보기",
+        "placeholderTitle": "여기에 페이지 제목이 표시됩니다",
+        "placeholderDescription": "여기에 페이지 설명이 표시되며, 플랫폼별로 잘려서 나타납니다.",
+        "platform": {
+            "facebook": "페이스북",
+            "twitter": "X (트위터)",
+            "linkedin": "링크드인",
+            "discord": "디스코드",
+            "slack": "슬랙"
+        },
+        "guide": {
+            "title": "오픈 그래프 미리보기 사용법",
+            "step1": "페이지 제목, 설명, 이미지 URL, 페이지 URL, og:type을 입력하세요.",
+            "step2": "페이스북, X, 링크드인, 디스코드, 슬랙에 가까운 미리보기 카드를 실시간으로 확인하세요.",
+            "step3": "생성된 og: 및 twitter: 메타 태그를 복사해 페이지의 <head>에 붙여넣으세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "멀티 플랫폼 미리보기",
+                "desc": "주요 5개 소셜 플랫폼에서의 링크 모습을 한 번에 확인합니다."
+            },
+            "f2": {
+                "title": "정확한 길이 제한",
+                "desc": "제목과 설명을 각 플랫폼의 글자 수 제한에 맞춰 자릅니다."
+            },
+            "f3": {
+                "title": "바로 쓰는 메타 태그",
+                "desc": "이스케이프 처리된 og: 및 twitter: 태그를 클릭 한 번으로 복사합니다."
+            },
+            "f4": {
+                "title": "비공개 즉시 처리",
+                "desc": "모든 작업이 브라우저에서 실행되어 데이터가 외부로 전송되지 않습니다."
+            }
+        }
+    },
+    "HtpasswdGenerator": {
+        "title": "Apache htpasswd 생성기",
+        "description": "Apache와 Nginx 기본 인증에 사용할 username:hash 라인을 만듭니다. 모든 처리가 브라우저에서 이루어지므로 비밀번호가 기기를 벗어나지 않습니다.",
+        "usernameLabel": "사용자 이름",
+        "usernamePlaceholder": "예: admin",
+        "passwordLabel": "비밀번호",
+        "passwordPlaceholder": "비밀번호를 입력하세요",
+        "algorithmLabel": "알고리즘",
+        "algoBcrypt": "bcrypt (권장)",
+        "algoApr1": "APR1 (Apache MD5)",
+        "algoSha1": "SHA-1",
+        "hint_bcrypt": "최신의 강력한 솔트 적용 방식입니다. 출력은 Apache용 $2y$ 접두사를 사용합니다.",
+        "hint_apr1": "Apache의 솔트 적용 MD5($apr1$) 방식으로, 구형 서버에서도 폭넓게 지원됩니다.",
+        "hint_sha1": "레거시 {SHA} 형식입니다. 솔트가 없어 안전하지 않으므로 호환성 목적으로만 사용하세요.",
+        "generateButton": "항목 추가",
+        "generating": "생성 중...",
+        "resultTitle": "생성된 항목",
+        "copyAll": "전체 복사",
+        "clearAll": "초기화",
+        "copy": "라인 복사",
+        "remove": "삭제",
+        "successGenerated": "항목이 추가되었습니다",
+        "copied": "라인이 클립보드에 복사되었습니다",
+        "copiedAll": "모든 항목이 클립보드에 복사되었습니다",
+        "cleared": "모든 항목이 삭제되었습니다",
+        "errorNoUser": "사용자 이름을 입력하세요",
+        "errorNoPassword": "비밀번호를 입력하세요",
+        "error": "해시 생성에 실패했습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "사용자 이름과 비밀번호를 입력한 뒤 해시 알고리즘을 선택하세요(bcrypt 권장).",
+            "step2": "\"항목 추가\"를 클릭하면 username:hash 라인이 생성됩니다. 필요한 만큼 사용자를 추가할 수 있습니다.",
+            "step3": "라인 하나 또는 전체를 복사하여 .htpasswd 파일에 붙여넣으세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "100% 브라우저 처리",
+                "desc": "해싱이 전적으로 브라우저에서 이루어지며, 비밀번호가 서버로 전송되지 않습니다."
+            },
+            "f2": {
+                "title": "다양한 알고리즘",
+                "desc": "bcrypt($2y$), Apache APR1 MD5($apr1$), 레거시 SHA-1({SHA}) 중에서 선택할 수 있습니다."
+            },
+            "f3": {
+                "title": "다중 사용자 목록",
+                "desc": "여러 username:hash 라인을 모아 파일 전체를 한 번에 복사할 수 있습니다."
+            },
+            "f4": {
+                "title": "랜덤 솔트 적용",
+                "desc": "bcrypt와 APR1 항목은 암호학적으로 안전한 랜덤 솔트를 사용합니다."
+            }
+        }
+    },
+    "CronNextRuns": {
+        "cronExpression": "Cron 표현식",
+        "fieldHint": "표준 5자리 및 초 단위 6자리 Cron 표현식을 지원합니다.",
+        "timezone": "시간대",
+        "tzLocal": "현지 시간",
+        "tzUtc": "UTC",
+        "schedule": "스케줄",
+        "nextRuns": "다음 실행 {count}회",
+        "copyList": "복사",
+        "copied": "실행 시간을 클립보드에 복사했습니다",
+        "copyFailed": "클립보드 복사에 실패했습니다",
+        "invalidExpression": "잘못된 Cron 표현식입니다. 형식을 확인해 주세요.",
+        "enterValidCron": "Cron 표현식을 입력하면 다음 실행 시간이 표시됩니다.",
+        "fixToSeeRuns": "위 표현식을 수정하면 다음 실행 시간이 표시됩니다.",
+        "presets": {
+            "everyMinute": "매분",
+            "every5Minutes": "5분마다",
+            "everyHour": "매시간",
+            "dailyAtMidnight": "매일 자정",
+            "everyMonday9am": "매주 월요일 오전 9시",
+            "firstOfMonth": "매월 1일"
+        },
+        "guide": {
+            "title": "Cron 다음 실행 시간 분석기 사용법",
+            "step1": "Cron 표현식을 입력하거나 붙여넣고, 또는 자주 쓰는 프리셋을 선택하세요.",
+            "step2": "사람이 읽기 쉬운 설명을 확인해 의도한 스케줄과 일치하는지 점검하세요.",
+            "step3": "현지 시간 또는 UTC를 선택한 뒤, 다음 10회 실행 시간을 확인하고 복사하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "읽기 쉬운 설명",
+                "desc": "모든 Cron 표현식을 명확하고 자연스러운 스케줄 설명으로 변환해 한눈에 확인할 수 있습니다."
+            },
+            "f2": {
+                "title": "실제 다음 실행 시간",
+                "desc": "실제 Cron 엔진으로 계산한 다음 10회 실행 시각을 정확한 날짜와 시간으로 보여줍니다."
+            },
+            "f3": {
+                "title": "현지 시간 및 UTC 지원",
+                "desc": "현지 시간과 UTC를 전환하며 서버에서 스케줄이 정확히 언제 실행되는지 확인할 수 있습니다."
+            },
+            "f4": {
+                "title": "비공개 즉시 처리",
+                "desc": "모든 처리가 브라우저에서 이루어집니다. 표현식이 기기를 벗어나지 않으며 입력하는 즉시 결과가 갱신됩니다."
+            }
+        }
+    },
+    "JsonPathFinder": {
+        "title": "JSONPath 파인더",
+        "description": "JSON을 붙여넣고 JSONPath 쿼리를 입력하면 일치하는 모든 값을 정확한 경로와 함께 보여줍니다.",
+        "jsonLabel": "JSON 입력",
+        "jsonPlaceholder": "여기에 JSON을 붙여넣으세요",
+        "queryLabel": "JSONPath 쿼리",
+        "examplesLabel": "예시 쿼리 (클릭하면 적용)",
+        "matchCount": "일치 {count}개",
+        "noMatch": "이 쿼리와 일치하는 값이 없습니다.",
+        "idle": "JSON과 JSONPath 쿼리를 입력하면 결과가 표시됩니다.",
+        "invalidJson": "잘못된 JSON",
+        "invalidQuery": "잘못된 JSONPath",
+        "copy": "복사",
+        "copied": "복사됨!",
+        "clear": "지우기",
+        "guide": {
+            "title": "JSONPath 파인더 사용법",
+            "step1": "왼쪽 입력란에 올바른 형식의 JSON을 붙여넣으세요.",
+            "step2": "JSONPath 쿼리(예: $.store.book[*].title)를 입력하거나 예시를 클릭하세요.",
+            "step3": "일치하는 모든 값이 정확한 경로와 함께 즉시 표시됩니다."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "실시간 평가",
+                "desc": "버튼 없이 JSON이나 쿼리를 입력하는 즉시 결과가 갱신됩니다."
+            },
+            "f2": {
+                "title": "실용적인 JSONPath 지원",
+                "desc": "멤버 접근, 배열 인덱스, 음수 인덱스, 와일드카드, 슬라이스, 재귀 탐색(..)을 지원합니다."
+            },
+            "f3": {
+                "title": "정확한 경로 표시",
+                "desc": "각 결과에 값이 위치한 정규화된 경로를 함께 보여주어 위치를 정확히 알 수 있습니다."
+            },
+            "f4": {
+                "title": "비공개 · 오프라인",
+                "desc": "모든 처리가 브라우저에서 이루어지며 JSON은 기기를 벗어나지 않습니다."
+            }
+        }
     }
 }

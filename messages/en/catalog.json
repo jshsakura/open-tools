@@ -874,6 +874,26 @@
         "CountdownTimer": {
             "title": "Countdown Timer",
             "description": "Count down live to a target date and time, or run a duration timer with alerts when it hits zero."
+        },
+        "BarcodeGenerator": {
+            "title": "Barcode Generator",
+            "description": "Generate Code 128 barcodes from any text. Customize size and colors, then download as SVG or PNG. Free and runs entirely in your browser."
+        },
+        "OgPreview": {
+            "title": "Open Graph Preview",
+            "description": "Preview how your link looks on Facebook, X, LinkedIn, Discord, and Slack, and generate the meta tags."
+        },
+        "HtpasswdGenerator": {
+            "title": "htpasswd Generator",
+            "description": "Generate Apache .htpasswd lines with bcrypt, APR1 (MD5), or SHA-1 hashes. Free, client-side, no upload."
+        },
+        "CronNextRuns": {
+            "title": "Cron Next Runs",
+            "description": "Parse any cron expression to see a plain-English schedule and the next scheduled run times."
+        },
+        "JsonPathFinder": {
+            "title": "JSONPath Finder",
+            "description": "Query JSON with JSONPath and see matched values and their paths instantly."
         }
     }
 }
