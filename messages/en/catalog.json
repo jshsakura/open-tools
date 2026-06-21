@@ -854,6 +854,26 @@
         "TextCleaner": {
             "title": "Text Cleaner & Formatter",
             "description": "Clean and format text instantly — remove duplicate lines, trim whitespace, strip HTML, sort lines, and change case, all in your browser."
+        },
+        "MarkdownTocGenerator": {
+            "title": "Markdown Table of Contents Generator",
+            "description": "Paste Markdown and instantly generate a nested table of contents with GitHub-style anchor links — copy or download as Markdown."
+        },
+        "BinaryTextConverter": {
+            "title": "Binary / Text Converter",
+            "description": "Convert text to and from binary, hexadecimal, decimal, and octal. Full UTF-8 support with a configurable separator."
+        },
+        "CssSpecificityCalculator": {
+            "title": "CSS Specificity Calculator",
+            "description": "Calculate the specificity (a, b, c) of any CSS selector. Paste multiple selectors to see which one wins."
+        },
+        "ColorBlindnessSimulator": {
+            "title": "Color Blindness Simulator",
+            "description": "Preview how images look under common color vision deficiencies and download the simulated result."
+        },
+        "CountdownTimer": {
+            "title": "Countdown Timer",
+            "description": "Count down live to a target date and time, or run a duration timer with alerts when it hits zero."
         }
     }
 }

@@ -906,6 +906,26 @@
         "TextCleaner": {
             "title": "텍스트 클리너 & 포맷터",
             "description": "중복 줄 제거, 공백 정리, HTML 태그 제거, 줄 정렬, 대소문자 변환까지 — 브라우저에서 바로 텍스트를 깔끔하게 정리하세요."
+        },
+        "MarkdownTocGenerator": {
+            "title": "마크다운 목차(TOC) 생성기",
+            "description": "마크다운을 붙여넣으면 GitHub 스타일 앵커 링크가 포함된 중첩 목차를 즉시 생성합니다. 마크다운으로 복사하거나 내려받으세요."
+        },
+        "BinaryTextConverter": {
+            "title": "바이너리 / 텍스트 변환기",
+            "description": "텍스트를 2진수, 16진수, 10진수, 8진수로 상호 변환합니다. UTF-8을 완벽히 지원하며 구분자를 선택할 수 있습니다."
+        },
+        "CssSpecificityCalculator": {
+            "title": "CSS 우선순위 계산기",
+            "description": "CSS 선택자의 명시도(a, b, c)를 계산합니다. 여러 선택자를 입력해 어느 것이 우선 적용되는지 확인하세요."
+        },
+        "ColorBlindnessSimulator": {
+            "title": "색맹 시뮬레이터",
+            "description": "이미지가 주요 색각 이상에서 어떻게 보이는지 미리 보고 시뮬레이션 결과를 다운로드하세요."
+        },
+        "CountdownTimer": {
+            "title": "카운트다운 타이머",
+            "description": "목표 날짜·시간까지 실시간으로 카운트다운하거나, 시간이 끝나면 알림을 주는 타이머를 실행하세요."
         }
     }
 }

@@ -5715,5 +5715,251 @@
                 "desc": "Everything runs in your browser with instant before/after line counts."
             }
         }
+    },
+    "MarkdownTocGenerator": {
+        "inputLabel": "Markdown",
+        "inputPlaceholder": "Paste your Markdown here…",
+        "outputLabel": "Table of Contents",
+        "minDepth": "Min heading level",
+        "maxDepth": "Max heading level",
+        "ordered": "Ordered list",
+        "wrapInMarkers": "Wrap in TOC markers",
+        "copy": "Copy",
+        "download": "Download",
+        "copied": "Copied to clipboard",
+        "downloaded": "Downloaded table-of-contents.md",
+        "emptyOutput": "No headings found yet.",
+        "guide": {
+            "title": "How to use",
+            "step1": "Paste or type your Markdown document into the input box on the left.",
+            "step2": "Choose the heading levels to include, and toggle ordered list or TOC markers.",
+            "step3": "Copy the generated table of contents or download it as a .md file."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Nested headings",
+                "desc": "Builds a properly indented, nested outline from your H1–H6 headings."
+            },
+            "f2": {
+                "title": "GitHub-style anchors",
+                "desc": "Generates slugified anchor links with automatic -1/-2 disambiguation for duplicates."
+            },
+            "f3": {
+                "title": "Code-block aware",
+                "desc": "Ignores headings inside fenced code blocks so your TOC stays accurate."
+            },
+            "f4": {
+                "title": "Flexible output",
+                "desc": "Switch between bullet and ordered lists, filter by depth, and wrap in TOC markers."
+            }
+        }
+    },
+    "BinaryTextConverter": {
+        "direction": "Direction",
+        "textToCode": "Text → Code",
+        "codeToText": "Code → Text",
+        "base": "Base",
+        "bases": {
+            "binary": "Binary",
+            "hex": "Hexadecimal",
+            "decimal": "Decimal",
+            "octal": "Octal"
+        },
+        "separator": "Separator",
+        "separators": {
+            "space": "Space",
+            "none": "None",
+            "comma": "Comma"
+        },
+        "textLabel": "Text",
+        "codeLabel": "Encoded value",
+        "textResult": "Text",
+        "codeResult": "Encoded value",
+        "textPlaceholder": "Hello, World!",
+        "codePlaceholder": "01001000 01101001",
+        "resultPlaceholder": "Result appears here",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "copyFailed": "Failed to copy",
+        "clear": "Clear",
+        "invalidInput": "Invalid input — check the base and separator settings.",
+        "guide": {
+            "title": "How to use",
+            "step1": "Pick a direction: Text → Code to encode, or Code → Text to decode.",
+            "step2": "Choose a base (binary, hex, decimal, or octal) and a separator.",
+            "step3": "Type or paste your input — conversion runs live, then copy the result."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Four number bases",
+                "desc": "Convert between text and binary, hexadecimal, decimal, or octal in one place."
+            },
+            "f2": {
+                "title": "Full UTF-8 support",
+                "desc": "Multibyte characters, Korean, and emoji are encoded byte-accurately and round-trip losslessly."
+            },
+            "f3": {
+                "title": "Configurable separator",
+                "desc": "Separate values by space, comma, or none (fixed-width) to match any format."
+            },
+            "f4": {
+                "title": "Live & private",
+                "desc": "Everything runs in your browser in real time — no input is ever sent to a server."
+            }
+        }
+    },
+    "CssSpecificityCalculator": {
+        "title": "CSS Specificity Calculator",
+        "description": "Calculate the specificity of any CSS selector.",
+        "inputLabel": "CSS selectors",
+        "inputPlaceholder": "#header .nav a:hover\n.nav a\nul li a",
+        "inputHint": "Enter one selector per line.",
+        "resultsTitle": "Specificity breakdown",
+        "emptyState": "Enter at least one selector to see its specificity.",
+        "idCount": "ID: {count}",
+        "classCount": "Class: {count}",
+        "elementCount": "Element: {count}",
+        "winnerLabel": "Highest specificity",
+        "winnerSummary": "\"{selector}\" wins with the highest specificity.",
+        "tieSummary": "{count} selectors tie for the highest specificity.",
+        "legendTitle": "How specificity (a, b, c) works",
+        "legendA": "ID selectors (#id)",
+        "legendB": "Classes, attributes, and pseudo-classes (.cls, [type], :hover)",
+        "legendC": "Elements and pseudo-elements (div, ::before)",
+        "inlineNote": "Inline styles always win, conceptually scoring 1,0,0,0 above any selector.",
+        "copied": "Copied to clipboard",
+        "copy": "Copy",
+        "guide": {
+            "title": "How to Use the CSS Specificity Calculator",
+            "step1": "Paste one or more CSS selectors, one per line, into the box.",
+            "step2": "Each selector's specificity is shown as an (a, b, c) tuple with a per-part breakdown.",
+            "step3": "When you enter several selectors, the highest-specificity one is highlighted as the winner."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Accurate (a, b, c) Scoring",
+                "desc": "Counts IDs, classes, attributes, pseudo-classes, elements, and pseudo-elements correctly."
+            },
+            "f2": {
+                "title": "Compare Selectors",
+                "desc": "Enter multiple selectors and instantly see which one wins the cascade."
+            },
+            "f3": {
+                "title": "Modern Selector Support",
+                "desc": "Handles :not(), :is(), :has(), :where() (zero), combinators, and the universal selector."
+            },
+            "f4": {
+                "title": "Runs in Your Browser",
+                "desc": "Everything is computed locally and instantly. No data ever leaves your device."
+            }
+        }
+    },
+    "ColorBlindnessSimulator": {
+        "title": "Color Blindness Simulator",
+        "description": "See how your image appears to people with different types of color blindness, then export the simulation.",
+        "dropTitle": "Drop an image here",
+        "dropDesc": "Upload, drag & drop, or paste an image to simulate color vision deficiencies",
+        "selectFile": "Select File",
+        "errorInvalid": "Please choose a valid image file.",
+        "downloaded": "Simulated image downloaded",
+        "download": "Download",
+        "typeLabel": "Vision deficiency type",
+        "originalLabel": "Original",
+        "viewSingle": "Single view",
+        "viewCompare": "Compare",
+        "clear": "Remove image",
+        "types": {
+            "protanopia": "Protanopia (no red)",
+            "deuteranopia": "Deuteranopia (no green)",
+            "tritanopia": "Tritanopia (no blue)",
+            "protanomaly": "Protanomaly (weak red)",
+            "deuteranomaly": "Deuteranomaly (weak green)",
+            "tritanomaly": "Tritanomaly (weak blue)",
+            "achromatopsia": "Achromatopsia (grayscale)"
+        },
+        "guide": {
+            "title": "How to use the Color Blindness Simulator",
+            "step1": "Upload, drag in, or paste an image you want to check.",
+            "step2": "Pick a color vision deficiency type from the selector to apply the simulation.",
+            "step3": "Toggle compare/single view, then download the simulated PNG."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "7 deficiency types",
+                "desc": "Simulate protanopia, deuteranopia, tritanopia, their anomalous forms, and full grayscale achromatopsia."
+            },
+            "f2": {
+                "title": "Side-by-side compare",
+                "desc": "View the original and simulated image together, or switch to a single full-width preview."
+            },
+            "f3": {
+                "title": "100% private",
+                "desc": "All processing runs in your browser on a canvas — your image never leaves your device."
+            },
+            "f4": {
+                "title": "Paste & download",
+                "desc": "Paste straight from the clipboard and export the simulated result as a PNG."
+            }
+        }
+    },
+    "CountdownTimer": {
+        "title": "Countdown Timer",
+        "description": "A precise live countdown to a chosen date and time, or a start/pause duration timer.",
+        "modeDuration": "Duration",
+        "modeDatetime": "To a date/time",
+        "targetLabel": "Target date & time",
+        "targetHint": "Pick a future moment. The timer counts down to the exact second.",
+        "durationLabel": "Set a duration",
+        "hours": "Hours",
+        "minutes": "Minutes",
+        "seconds": "Seconds",
+        "preset1m": "1 min",
+        "preset5m": "5 min",
+        "preset10m": "10 min",
+        "preset25m": "25 min",
+        "daysLabel": "{days, plural, one {# day} other {# days}} left",
+        "runningLabel": "Running",
+        "pausedLabel": "Paused",
+        "idleLabel": "Ready",
+        "finishedLabel": "Time's up",
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "soundOn": "Enable sound",
+        "soundOff": "Mute sound",
+        "timesUpTitle": "Time's up!",
+        "timesUpBody": "Your countdown has reached zero.",
+        "invalidDate": "Please enter a valid date and time.",
+        "pastDate": "Pick a time in the future.",
+        "invalidDuration": "Set a duration greater than zero.",
+        "guide": {
+            "title": "How to Use the Countdown Timer",
+            "step1": "Choose a mode: Duration to count down hours, minutes, and seconds, or To a date/time to count down to a specific future moment.",
+            "step2": "Press play to start. The big HH:MM:SS display ticks down live (with a day count when there's more than 24 hours left). Use pause and reset anytime in duration mode.",
+            "step3": "When it reaches zero you get a toast, an optional beep, and a browser notification if you allowed it. A running countdown is saved, so refreshing the page keeps it accurate."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Two Countdown Modes",
+                "desc": "Count down to a precise date and time, or run a simple hours/minutes/seconds duration timer."
+            },
+            "f2": {
+                "title": "Accurate Live Display",
+                "desc": "Remaining time is computed from the target moment each tick, so it stays exact even when the tab is throttled."
+            },
+            "f3": {
+                "title": "Survives Refreshes",
+                "desc": "The running target is saved to your browser, so reloading the page resumes the countdown right where it should be."
+            },
+            "f4": {
+                "title": "Alerts at Zero",
+                "desc": "Get an on-screen toast, an optional WebAudio beep, and a browser notification the moment the countdown ends."
+            }
+        }
     }
 }
