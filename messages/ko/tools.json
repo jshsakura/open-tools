@@ -5193,5 +5193,238 @@
             "capitalGainsTax": "양도소득세 (예상)",
             "capitalGainsNote": "12억 비과세·장기보유공제·기본세율 적용 간이 계산이며 실제 세액과 다를 수 있습니다."
         }
+    },
+    "ChmodCalculator": {
+        "gridTitle": "권한",
+        "roleHeader": "대상",
+        "owner": "소유자",
+        "group": "그룹",
+        "others": "기타",
+        "read": "읽기",
+        "write": "쓰기",
+        "execute": "실행",
+        "specialTitle": "특수 비트",
+        "setuid": "Setuid",
+        "setgid": "Setgid",
+        "sticky": "스티키",
+        "octal": "8진수",
+        "symbolic": "기호 표기",
+        "command": "명령어",
+        "errorInvalidOctal": "유효한 8진수를 입력하세요 (000–777, 숫자 0–7).",
+        "note": "특수 비트를 켜면 4자리 8진수(예: 4755)가 되며, 기호 표기에서 실행 자리가 s/S, t/T로 바뀝니다.",
+        "copy": "복사",
+        "copied": "클립보드에 복사했습니다",
+        "guide": {
+            "title": "chmod 권한 계산기 사용법",
+            "step1": "소유자·그룹·기타의 읽기·쓰기·실행을 체크하면 8진수와 기호 표기가 즉시 갱신됩니다.",
+            "step2": "또는 8진수 값(예: 755)을 입력하면 체크박스가 자동으로 맞춰집니다.",
+            "step3": "setuid·setgid·스티키 비트를 켜면 4자리 8진수가 되고, 바로 실행 가능한 chmod 명령어를 복사할 수 있습니다."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "양방향 변환",
+                "desc": "체크박스를 켜거나 8진수를 입력하면 양쪽이 실시간으로 동기화됩니다."
+            },
+            "f2": {
+                "title": "8진수와 기호 표기",
+                "desc": "755와 rwxr-xr-x를 항상 함께 보여줍니다."
+            },
+            "f3": {
+                "title": "특수 비트 지원",
+                "desc": "setuid·setgid·스티키 비트를 올바른 4자리 8진수로 계산합니다."
+            },
+            "f4": {
+                "title": "바로 쓰는 명령어",
+                "desc": "chmod 755 file 명령어 전체를 클릭 한 번으로 복사합니다."
+            }
+        }
+    },
+    "NumberToWords": {
+        "title": "숫자를 글자로 (한글/영어)",
+        "description": "숫자를 입력하는 즉시 영어 단어와 한글 금액으로 바꿔 줍니다.",
+        "inputLabel": "숫자",
+        "language": "언어",
+        "langEnglish": "영어",
+        "langKorean": "한글",
+        "ordinalToggle": "서수 (1st)",
+        "currencyToggle": "통화 (USD)",
+        "resultWords": "단어 표기",
+        "resultKorean": "한글 읽기",
+        "resultFormal": "정식 금액 (금액)",
+        "errorInvalid": "올바른 숫자를 입력하세요.",
+        "copy": "복사",
+        "copied": "클립보드에 복사되었습니다",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "정수, 음수, 소수 등 어떤 숫자든 입력하세요.",
+            "step2": "영어 또는 한글을 선택하세요. 영어에서는 서수(1st → first)나 달러(USD) 모드를 켤 수 있습니다.",
+            "step3": "한글은 자연스러운 읽기와 함께 세금계산서·수표용 정식 금액(일금 …원정)을 보여 줍니다. 결과는 클릭 한 번으로 복사됩니다."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "한글·영어 지원",
+                "desc": "입력하는 즉시 두 언어로 숫자를 글자로 변환합니다."
+            },
+            "f2": {
+                "title": "서수·통화 모드",
+                "desc": "서수(first, second)나 달러 통화 표기(dollars and cents)로 전환할 수 있습니다."
+            },
+            "f3": {
+                "title": "한글 정식 금액",
+                "desc": "세금계산서·수표·계약서에 쓰는 일금 …원정 형식을 생성합니다."
+            },
+            "f4": {
+                "title": "소수·음수 처리",
+                "desc": "소수점 이하 자릿수를 읽고 음수도 정확히 처리합니다."
+            }
+        }
+    },
+    "SlugGenerator": {
+        "inputLabel": "변환할 텍스트",
+        "inputPlaceholder": "텍스트를 입력하세요. 한 줄에 하나씩…",
+        "inputHint": "한글은 자동으로 로마자로 변환됩니다. 여러 줄을 입력하면 줄마다 슬러그가 하나씩 생성됩니다.",
+        "separatorLabel": "단어 구분자",
+        "separatorHyphen": "하이픈 ( - )",
+        "separatorUnderscore": "밑줄 ( _ )",
+        "maxLengthLabel": "최대 길이",
+        "maxLengthPlaceholder": "제한 없음",
+        "lowercaseLabel": "소문자",
+        "stripSpecialLabel": "특수문자 제거",
+        "outputLabel": "생성된 슬러그",
+        "emptyOutput": "여기에 슬러그가 표시됩니다.",
+        "copy": "복사",
+        "copied": "클립보드에 복사했습니다",
+        "nothingToCopy": "복사할 내용이 없습니다",
+        "guide": {
+            "title": "슬러그 생성기 사용법",
+            "step1": "입력란에 텍스트를 입력하거나 붙여넣으세요. 여러 줄을 입력하면 한 번에 여러 슬러그를 만들 수 있습니다.",
+            "step2": "구분자를 선택하고 소문자·특수문자 제거 옵션을 켜거나 끄고, 필요하면 최대 길이를 설정하세요.",
+            "step3": "URL에 안전한 슬러그가 아래에 실시간으로 표시됩니다. 개별 또는 전체를 한 번에 복사하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "한글 로마자 변환",
+                "desc": "한글을 로마자로 변환한 뒤(예: 안녕하세요 세계 → annyeonghaseyo-segye) 슬러그를 생성합니다."
+            },
+            "f2": {
+                "title": "유연한 서식",
+                "desc": "하이픈 또는 밑줄 구분자, 소문자, 특수문자 제거를 선택할 수 있습니다."
+            },
+            "f3": {
+                "title": "길이 제어",
+                "desc": "끝에 구분자를 남기지 않고 슬러그를 최대 길이로 제한합니다."
+            },
+            "f4": {
+                "title": "일괄 처리",
+                "desc": "여러 줄을 입력하면 한 번에 줄마다 깔끔한 슬러그를 생성합니다."
+            }
+        },
+        "faq": {
+            "title": "자주 묻는 질문",
+            "q1": {
+                "q": "한글은 어떻게 처리되나요?",
+                "a": "한글 입력은 국어의 로마자 표기법에 따라 라틴 문자로 변환된 후 URL에 안전한 슬러그로 만들어집니다."
+            },
+            "q2": {
+                "q": "텍스트가 서버로 전송되나요?",
+                "a": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 아무것도 업로드되지 않습니다."
+            }
+        }
+    },
+    "NeumorphismGenerator": {
+        "settings": "설정",
+        "reset": "초기화",
+        "baseColor": "기본 색상",
+        "size": "크기",
+        "borderRadius": "모서리 둥글기",
+        "distance": "그림자 거리",
+        "intensity": "그림자 강도",
+        "lightSource": "빛 방향",
+        "shape": "모양",
+        "output": "CSS 결과",
+        "copy": "CSS 복사",
+        "copied": "복사되었습니다!",
+        "directions": {
+            "top-left": "왼쪽 위",
+            "top-right": "오른쪽 위",
+            "bottom-right": "오른쪽 아래",
+            "bottom-left": "왼쪽 아래"
+        },
+        "shapes": {
+            "flat": "평면",
+            "concave": "오목",
+            "convex": "볼록",
+            "pressed": "눌림"
+        },
+        "guide": {
+            "title": "사용 방법",
+            "step1": "기본 배경 색상을 선택하세요. 뉴모피즘은 페이지 배경과 어울리는 밝고 대비가 낮은 표면에서 가장 잘 어울립니다.",
+            "step2": "크기, 모서리, 거리, 강도를 조절한 뒤 빛이 들어오는 모서리와 모양(평면, 오목, 볼록, 눌림)을 선택하세요.",
+            "step3": "소프트 UI 요소를 실시간으로 확인한 후 생성된 CSS(background, border-radius, box-shadow)를 프로젝트에 복사하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "실시간 미리보기",
+                "desc": "모든 설정을 변경할 때마다 뉴모피즘 요소가 즉시 업데이트됩니다."
+            },
+            "f2": {
+                "title": "자동 그림자 쌍",
+                "desc": "기본 색상을 밝게/어둡게 계산하여 밝은 그림자와 어두운 그림자를 자동 생성합니다."
+            },
+            "f3": {
+                "title": "4가지 모양",
+                "desc": "평면, 오목, 볼록, 눌림(inset) 스타일을 클릭 한 번으로 전환합니다."
+            },
+            "f4": {
+                "title": "복사 가능한 CSS",
+                "desc": "background, border-radius, box-shadow 선언을 그대로 스타일시트에 복사할 수 있습니다."
+            }
+        }
+    },
+    "SignaturePad": {
+        "title": "서명 패드",
+        "description": "서명을 그리고 투명 또는 흰색 배경 PNG로 다운로드하세요.",
+        "controlsTitle": "설정",
+        "canvasHint": "위 영역에 마우스나 손가락으로 그리세요.",
+        "colorLabel": "펜 색상",
+        "thicknessLabel": "펜 굵기",
+        "backgroundLabel": "배경",
+        "background": {
+            "transparent": "투명",
+            "white": "흰색"
+        },
+        "undo": "실행 취소",
+        "clear": "지우기",
+        "download": "PNG 다운로드",
+        "downloaded": "서명을 다운로드했습니다",
+        "errors": {
+            "empty": "먼저 서명을 그려주세요.",
+            "exportFailed": "서명을 내보내지 못했습니다."
+        },
+        "guide": {
+            "title": "서명 패드 사용 방법",
+            "step1": "펜 색상과 굵기를 고른 뒤 마우스나 손가락으로 캔버스에 서명을 그립니다.",
+            "step2": "투명 또는 흰색 배경을 선택하고, 실행 취소·지우기로 수정할 수 있습니다.",
+            "step3": "PNG 다운로드를 누르면 서명이 저장됩니다. 투명 배경 옵션은 문서나 양식 위에 깔끔하게 올라갑니다."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "마우스 & 터치",
+                "desc": "포인터 이벤트 기반의 부드러운 획으로 PC와 모바일 모두 지원합니다."
+            },
+            "f2": {
+                "title": "투명 PNG",
+                "desc": "투명 배경으로 내보내 계약서나 PDF 위에 바로 얹을 수 있습니다."
+            },
+            "f3": {
+                "title": "완전한 프라이버시",
+                "desc": "모든 처리가 브라우저에서 이루어져 서명이 기기를 벗어나지 않습니다."
+            }
+        }
     }
 }

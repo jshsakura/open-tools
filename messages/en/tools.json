@@ -5191,5 +5191,238 @@
             "capitalGainsTax": "Capital Gains Tax (Est.)",
             "capitalGainsNote": "Simplified estimate (12억 exemption, long-term deduction, basic rates); actual tax may vary."
         }
+    },
+    "ChmodCalculator": {
+        "gridTitle": "Permissions",
+        "roleHeader": "Who",
+        "owner": "Owner",
+        "group": "Group",
+        "others": "Others",
+        "read": "Read",
+        "write": "Write",
+        "execute": "Execute",
+        "specialTitle": "Special bits",
+        "setuid": "Setuid",
+        "setgid": "Setgid",
+        "sticky": "Sticky",
+        "octal": "Octal",
+        "symbolic": "Symbolic",
+        "command": "Command",
+        "errorInvalidOctal": "Enter a valid octal value (000–777, digits 0–7).",
+        "note": "Special bits produce a 4-digit octal (e.g. 4755) and adjust the execute slot in symbolic notation (s/S, t/T).",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "guide": {
+            "title": "How to Use the Chmod Calculator",
+            "step1": "Tick read, write, and execute for owner, group, and others — the octal and symbolic values update instantly.",
+            "step2": "Or type an octal value (e.g. 755) and the checkboxes update to match.",
+            "step3": "Enable setuid, setgid, or sticky for a 4-digit octal, then copy the ready-to-run chmod command."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Two-Way Conversion",
+                "desc": "Toggle checkboxes or type an octal value — both stay in sync live."
+            },
+            "f2": {
+                "title": "Octal & Symbolic",
+                "desc": "See 755 and rwxr-xr-x side by side at all times."
+            },
+            "f3": {
+                "title": "Special Bits",
+                "desc": "Setuid, setgid, and sticky bits produce the correct 4-digit octal."
+            },
+            "f4": {
+                "title": "Copy-Ready Command",
+                "desc": "Grab the full chmod 755 file command with one click."
+            }
+        }
+    },
+    "NumberToWords": {
+        "title": "Number to Words",
+        "description": "Spell out any number as words in English or Korean — instantly as you type.",
+        "inputLabel": "Number",
+        "language": "Language",
+        "langEnglish": "English",
+        "langKorean": "Korean (한글)",
+        "ordinalToggle": "Ordinal (1st)",
+        "currencyToggle": "Currency (USD)",
+        "resultWords": "In words",
+        "resultKorean": "Korean reading",
+        "resultFormal": "Formal amount (금액)",
+        "errorInvalid": "Please enter a valid number.",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "guide": {
+            "title": "How to use",
+            "step1": "Type any number — integers, negatives, and decimals are all supported.",
+            "step2": "Pick English or Korean. In English, toggle Ordinal (1st → first) or USD Currency (dollars and cents).",
+            "step3": "Korean shows both the natural reading and the formal invoice amount (일금 …원정). Copy any result with one click."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "English & Korean",
+                "desc": "Spell out numbers in both languages, updated live as you type."
+            },
+            "f2": {
+                "title": "Ordinal & currency",
+                "desc": "Switch to ordinals (first, second) or USD currency wording (dollars and cents)."
+            },
+            "f3": {
+                "title": "Korean formal amount",
+                "desc": "Generates 일금 …원정 used on Korean invoices, checks, and contracts."
+            },
+            "f4": {
+                "title": "Decimals & negatives",
+                "desc": "Reads digits after the point and handles negative values correctly."
+            }
+        }
+    },
+    "SlugGenerator": {
+        "inputLabel": "Text to convert",
+        "inputPlaceholder": "Enter text, one item per line…",
+        "inputHint": "Korean is automatically romanized. Enter multiple lines to generate one slug per line.",
+        "separatorLabel": "Word separator",
+        "separatorHyphen": "Hyphen ( - )",
+        "separatorUnderscore": "Underscore ( _ )",
+        "maxLengthLabel": "Max length",
+        "maxLengthPlaceholder": "No limit",
+        "lowercaseLabel": "Lowercase",
+        "stripSpecialLabel": "Strip special characters",
+        "outputLabel": "Generated slugs",
+        "emptyOutput": "Your slugs will appear here.",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "nothingToCopy": "Nothing to copy yet",
+        "guide": {
+            "title": "How to use the slug generator",
+            "step1": "Type or paste your text in the input box. You can enter multiple lines to generate several slugs at once.",
+            "step2": "Pick a separator, toggle lowercase and special-character stripping, and optionally set a maximum length.",
+            "step3": "Your URL-safe slugs update live below — copy a single slug or all of them at once."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Korean transliteration",
+                "desc": "Hangul is romanized (e.g. 안녕하세요 세계 → annyeonghaseyo-segye) before slugifying."
+            },
+            "f2": {
+                "title": "Flexible formatting",
+                "desc": "Choose hyphen or underscore separators, lowercase, and special-character stripping."
+            },
+            "f3": {
+                "title": "Length control",
+                "desc": "Cap slugs at a maximum length without leaving trailing separators."
+            },
+            "f4": {
+                "title": "Batch processing",
+                "desc": "Enter multiple lines to generate one clean slug per line in a single pass."
+            }
+        },
+        "faq": {
+            "title": "FAQ",
+            "q1": {
+                "q": "How is Korean text handled?",
+                "a": "Korean input is transliterated to the Latin alphabet using the Revised Romanization scheme, then converted into a URL-safe slug."
+            },
+            "q2": {
+                "q": "Is my text sent to a server?",
+                "a": "No. Everything runs entirely in your browser — nothing is uploaded."
+            }
+        }
+    },
+    "NeumorphismGenerator": {
+        "settings": "Settings",
+        "reset": "Reset",
+        "baseColor": "Base Color",
+        "size": "Size",
+        "borderRadius": "Border Radius",
+        "distance": "Distance",
+        "intensity": "Intensity",
+        "lightSource": "Light Source",
+        "shape": "Shape",
+        "output": "CSS Output",
+        "copy": "Copy CSS",
+        "copied": "Copied!",
+        "directions": {
+            "top-left": "Top Left",
+            "top-right": "Top Right",
+            "bottom-right": "Bottom Right",
+            "bottom-left": "Bottom Left"
+        },
+        "shapes": {
+            "flat": "Flat",
+            "concave": "Concave",
+            "convex": "Convex",
+            "pressed": "Pressed"
+        },
+        "guide": {
+            "title": "How to use",
+            "step1": "Pick a base background color — neumorphism works best on light, low-contrast surfaces that match your page background.",
+            "step2": "Adjust size, border radius, distance and intensity, then choose the light source corner and a shape (flat, concave, convex or pressed).",
+            "step3": "Preview the soft UI element live, then copy the generated CSS (background, border-radius, box-shadow) into your project."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Live Preview",
+                "desc": "See the neumorphic element update instantly as you change every control."
+            },
+            "f2": {
+                "title": "Auto Shadow Pair",
+                "desc": "Light and dark shadows are computed automatically by lightening and darkening your base color."
+            },
+            "f3": {
+                "title": "Four Shapes",
+                "desc": "Switch between flat, concave, convex and pressed (inset) styles in one click."
+            },
+            "f4": {
+                "title": "Copy-Ready CSS",
+                "desc": "Copy clean background, border-radius and box-shadow declarations straight into your stylesheet."
+            }
+        }
+    },
+    "SignaturePad": {
+        "title": "Signature Pad",
+        "description": "Draw your signature and download it as a PNG — transparent or white background.",
+        "controlsTitle": "Controls",
+        "canvasHint": "Draw above with your mouse or finger.",
+        "colorLabel": "Pen color",
+        "thicknessLabel": "Pen thickness",
+        "backgroundLabel": "Background",
+        "background": {
+            "transparent": "Transparent",
+            "white": "White"
+        },
+        "undo": "Undo",
+        "clear": "Clear",
+        "download": "Download PNG",
+        "downloaded": "Signature downloaded",
+        "errors": {
+            "empty": "Draw a signature first.",
+            "exportFailed": "Could not export the signature."
+        },
+        "guide": {
+            "title": "How to Use the Signature Pad",
+            "step1": "Pick a pen color and thickness, then draw your signature on the canvas with your mouse or finger.",
+            "step2": "Choose a transparent or white background, and use Undo or Clear to fix mistakes.",
+            "step3": "Click Download PNG to save your signature — the transparent option drops in cleanly over documents and forms."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Mouse & Touch",
+                "desc": "Smooth strokes from pointer events work on desktop and mobile alike."
+            },
+            "f2": {
+                "title": "Transparent PNG",
+                "desc": "Export with a transparent background to overlay on contracts and PDFs."
+            },
+            "f3": {
+                "title": "Fully Private",
+                "desc": "Everything runs in your browser — your signature never leaves your device."
+            }
+        }
     }
 }

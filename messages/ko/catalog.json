@@ -366,8 +366,8 @@
             "description": "docker run 명령어를 docker-compose.yml로 자동 변환하세요."
         },
         "ChmodCalculator": {
-            "title": "Chmod 계산기",
-            "description": "시각적 토글로 파일 권한(Chmod)을 쉽게 계산하세요."
+            "title": "chmod 권한 계산기",
+            "description": "유닉스 파일 권한을 계산합니다. 체크박스, 8진수(755), 기호 표기(rwxr-xr-x)를 서로 변환하고 setuid·setgid·스티키 비트도 지원합니다."
         },
         "KoreanBusinessValidator": {
             "title": "한국 사업자등록번호 검증",
@@ -870,6 +870,22 @@
         "KrRealEstate": {
             "title": "부동산 평수/세금 계산기",
             "description": "공급면적(㎡)의 평형 변환과 매매 시 부동산 중개수수료, 취득세를 계산합니다."
+        },
+        "NumberToWords": {
+            "title": "숫자를 한글/영어로",
+            "description": "숫자를 영어 단어(서수·달러 모드 포함)와 한글 금액(자연스러운 읽기·일금 …원정 형식)으로 변환합니다."
+        },
+        "SlugGenerator": {
+            "title": "슬러그 생성기",
+            "description": "한글을 포함한 모든 텍스트를 URL에 안전한 슬러그로 변환합니다. 구분자, 대소문자, 길이를 선택하고 여러 줄을 한 번에 처리하세요."
+        },
+        "NeumorphismGenerator": {
+            "title": "뉴모피즘 생성기",
+            "description": "실시간 미리보기로 소프트 UI(뉴모피즘) CSS 그림자를 만드세요. 색상, 크기, 모서리, 거리, 강도, 빛 방향, 모양을 조절할 수 있습니다."
+        },
+        "SignaturePad": {
+            "title": "서명 패드",
+            "description": "마우스나 손가락으로 손글씨 서명을 그리고 투명 배경 또는 흰색 배경 PNG로 내보내세요."
         }
     }
 }

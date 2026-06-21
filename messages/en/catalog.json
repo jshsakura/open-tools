@@ -814,6 +814,26 @@
         "KrRealEstate": {
             "title": "Korean Real Estate Pyung & Tax Calc",
             "description": "Convert square meters to Pyung and estimate acquisition taxes & fees."
+        },
+        "ChmodCalculator": {
+            "title": "Chmod Calculator",
+            "description": "Calculate Unix file permissions. Convert between checkboxes, octal (755), and symbolic (rwxr-xr-x) notation, with setuid/setgid/sticky bits."
+        },
+        "NumberToWords": {
+            "title": "Number to Words",
+            "description": "Convert numbers to written words in English (with ordinal and USD currency modes) and Korean (한글 금액 and formal invoice amount)."
+        },
+        "SlugGenerator": {
+            "title": "Slug Generator",
+            "description": "Turn any text — including Korean — into clean, URL-safe slugs. Choose your separator, casing, and length, and process multiple lines at once."
+        },
+        "NeumorphismGenerator": {
+            "title": "Neumorphism Generator",
+            "description": "Create soft UI (neumorphism) CSS box-shadows with a live preview. Tune color, size, radius, distance, intensity, light direction and shape."
+        },
+        "SignaturePad": {
+            "title": "Signature Pad",
+            "description": "Draw a handwritten signature with your mouse or finger and export it as a transparent or white-background PNG."
         }
     }
 }
