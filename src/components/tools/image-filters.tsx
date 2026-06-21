@@ -8,7 +8,12 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
+import { cn } from "@/lib/utils"
 import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
+
+type OutputFormat = "png" | "jpeg" | "webp"
+const OUTPUT_FORMATS: OutputFormat[] = ["png", "jpeg", "webp"]
+const DEFAULT_QUALITY = 0.92
 
 interface FilterState {
     brightness: number
@@ -46,6 +51,8 @@ export function ImageFilters() {
     const [fileName, setFileName] = useState("")
     const [filters, setFilters] = useState<FilterState>({ ...DEFAULT_FILTERS })
     const [activePreset, setActivePreset] = useState("Original")
+    const [outputFormat, setOutputFormat] = useState<OutputFormat>("png")
+    const [quality, setQuality] = useState(DEFAULT_QUALITY)
 
     const getFilterString = useCallback((f: FilterState) => {
         return `brightness(${f.brightness}%) contrast(${f.contrast}%) saturate(${f.saturate}%) blur(${f.blur}px) grayscale(${f.grayscale}%) sepia(${f.sepia}%) hue-rotate(${f.hueRotate}deg) invert(${f.invert}%)`
@@ -94,14 +101,18 @@ export function ImageFilters() {
         ctx.drawImage(image, 0, 0)
         ctx.filter = "none"
 
+        const ext = outputFormat === "jpeg" ? "jpg" : outputFormat
+        const baseName = fileName.replace(/\.[^.]+$/, "") || "image"
+        const q = outputFormat === "png" ? undefined : quality
+
         c.toBlob((blob) => {
             if (!blob) return
             const a = document.createElement("a")
             a.href = URL.createObjectURL(blob)
-            a.download = `filtered_${fileName}`
+            a.download = `filtered_${baseName}.${ext}`
             a.click()
             toast.success(t("downloaded"))
-        }, "image/png")
+        }, `image/${outputFormat}`, q)
     }
 
     const applyPreset = (preset: typeof PRESETS[number]) => {
@@ -209,6 +220,43 @@ export function ImageFilters() {
                                         <Slider value={[filters[key]]} onValueChange={([v]) => updateFilter(key, v)} min={min} max={max} step={step} />
                                     </div>
                                 ))}
+
+                                <div className="space-y-3 pt-1 border-t border-border/30">
+                                    <div className="space-y-1.5">
+                                        <Label className="text-xs font-bold">{t("outputFormat")}</Label>
+                                        <div className="flex gap-2">
+                                            {OUTPUT_FORMATS.map((fmt) => (
+                                                <Button
+                                                    key={fmt}
+                                                    variant="outline"
+                                                    size="sm"
+                                                    onClick={() => setOutputFormat(fmt)}
+                                                    className={cn(
+                                                        "flex-1 text-xs",
+                                                        outputFormat === fmt && "border-primary bg-primary/10"
+                                                    )}
+                                                >
+                                                    {fmt.toUpperCase()}
+                                                </Button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    {outputFormat !== "png" && (
+                                        <div className="space-y-1.5">
+                                            <div className="flex justify-between text-xs">
+                                                <Label className="font-bold">{t("quality")}</Label>
+                                                <span className="font-mono text-primary">{Math.round(quality * 100)}%</span>
+                                            </div>
+                                            <Slider
+                                                value={[quality]}
+                                                onValueChange={([v]) => setQuality(v)}
+                                                min={0.1}
+                                                max={1}
+                                                step={0.05}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
 
                                 <Button size="lg" className="w-full font-bold gap-2" onClick={exportImage}>
                                     <Download className="w-4 h-4" />

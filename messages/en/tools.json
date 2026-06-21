@@ -1980,7 +1980,8 @@
             "step1": "Upload an image by clicking or drag & drop.",
             "step2": "Select a preset size or enter custom width and height dimensions.",
             "step3": "Choose output format and quality, then click 'Resize Image' and download."
-        }
+        },
+        "scaleByPercent": "Scale by Percentage"
     },
     "SvgOptimizer": {
         "title": "SVG Optimizer",
@@ -2140,7 +2141,9 @@
                 "title": "100% Local Processing",
                 "desc": "Your images never leave your browser. No server uploads."
             }
-        }
+        },
+        "outputFormat": "Output Format",
+        "quality": "Quality"
     },
     "ImageWatermark": {
         "title": "Image Watermark",
@@ -2182,7 +2185,17 @@
                 "title": "Non-destructive",
                 "desc": "Original image stays untouched. A new watermarked copy is created."
             }
-        }
+        },
+        "markType": "Watermark Type",
+        "typeText": "Text",
+        "typeImage": "Image",
+        "logo": "Logo Image",
+        "logoUpload": "Upload Logo",
+        "logoChange": "Change Logo",
+        "scale": "Scale",
+        "tileMode": "Tile Mode",
+        "on": "On",
+        "off": "Off"
     },
     "ImageFilters": {
         "title": "Image Filter & Effects",
@@ -2228,7 +2241,9 @@
                 "title": "Full Resolution Export",
                 "desc": "Download the filtered image at the original resolution, not a thumbnail."
             }
-        }
+        },
+        "outputFormat": "Output Format",
+        "quality": "Quality"
     },
     "CollageMaker": {
         "title": "Collage Maker",
@@ -2267,7 +2282,8 @@
                 "title": "Drag & Drop Upload",
                 "desc": "Add multiple images at once by dragging files into the tool."
             }
-        }
+        },
+        "aspectRatio": "Aspect Ratio"
     },
     "MemeGenerator": {
         "title": "Meme Generator",

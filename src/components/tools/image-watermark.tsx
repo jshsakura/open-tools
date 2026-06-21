@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react"
 import { useTranslations } from "next-intl"
-import { Upload, Download, Type, Trash2 } from "lucide-react"
+import { Upload, Download, Type, Trash2, Image as ImageIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
@@ -10,32 +10,86 @@ import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
 import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
+import { placementXY, type WatermarkPosition } from "./image-watermark.utils"
 
-type WatermarkPosition = "center" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "tile"
+type MarkType = "text" | "image"
 
-const POSITIONS: { value: WatermarkPosition; label: string }[] = [
+const GRID_POSITIONS: { value: WatermarkPosition; label: string }[] = [
     { value: "top-left", label: "↖" },
+    { value: "top-center", label: "↑" },
     { value: "top-right", label: "↗" },
+    { value: "center-left", label: "←" },
     { value: "center", label: "⊕" },
+    { value: "center-right", label: "→" },
     { value: "bottom-left", label: "↙" },
+    { value: "bottom-center", label: "↓" },
     { value: "bottom-right", label: "↘" },
-    { value: "tile", label: "▦" },
 ]
+
+const BASE_MARGIN = 30
 
 export function ImageWatermark() {
     const t = useTranslations("ImageWatermark")
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
+    const logoInputRef = useRef<HTMLInputElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [image, setImage] = useState<HTMLImageElement | null>(null)
     const [fileName, setFileName] = useState("")
+    const [markType, setMarkType] = useState<MarkType>("text")
+    const [logo, setLogo] = useState<HTMLImageElement | null>(null)
     const [watermarkText, setWatermarkText] = useState("© My Watermark")
     const [fontSize, setFontSize] = useState(32)
     const [opacity, setOpacity] = useState(0.3)
     const [color, setColor] = useState("#ffffff")
     const [position, setPosition] = useState<WatermarkPosition>("bottom-right")
+    const [scale, setScale] = useState(1)
     const [rotation, setRotation] = useState(-30)
+    const [tile, setTile] = useState(false)
+
+    // Renders the watermark (text or logo) onto ctx at native resolution `r`
+    // (1 for export, canvas/image scale for preview). Pure draw, no state.
+    const drawWatermark = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, r: number) => {
+        ctx.save()
+        ctx.globalAlpha = opacity
+
+        if (markType === "image" && logo) {
+            const markW = logo.width * scale * r
+            const markH = logo.height * scale * r
+            if (tile) {
+                drawTiled(ctx, w, h, markW + 40 * r, markH + 40 * r, rotation, (x, y) => {
+                    ctx.drawImage(logo, x, y, markW, markH)
+                })
+            } else {
+                const { x, y } = placementXY(position, w, h, markW, markH, BASE_MARGIN * r)
+                ctx.drawImage(logo, x, y, markW, markH)
+            }
+            ctx.restore()
+            return
+        }
+
+        // Text watermark
+        ctx.fillStyle = color
+        ctx.font = `bold ${fontSize * scale * r}px 'Inter', sans-serif`
+        ctx.textBaseline = "top"
+        const markW = ctx.measureText(watermarkText).width
+        const markH = fontSize * scale * r
+
+        if (tile) {
+            drawTiled(ctx, w, h, markW + 40 * r, markH + 40 * r, rotation, (x, y) => {
+                ctx.fillText(watermarkText, x, y)
+            })
+        } else {
+            const { x, y } = placementXY(position, w, h, markW, markH, BASE_MARGIN * r)
+            ctx.shadowColor = "rgba(0,0,0,0.5)"
+            ctx.shadowBlur = 4 * r
+            ctx.shadowOffsetX = 2 * r
+            ctx.shadowOffsetY = 2 * r
+            ctx.fillText(watermarkText, x, y)
+        }
+        ctx.restore()
+    }, [markType, logo, watermarkText, fontSize, opacity, color, position, scale, rotation, tile])
 
     const drawCanvas = useCallback(() => {
         const canvas = canvasRef.current
@@ -46,56 +100,31 @@ export function ImageWatermark() {
         if (!container) return
         const maxW = container.clientWidth
         const maxH = 500
-        const scale = Math.min(maxW / image.width, maxH / image.height, 1)
+        const r = Math.min(maxW / image.width, maxH / image.height, 1)
 
-        canvas.width = image.width * scale
-        canvas.height = image.height * scale
+        canvas.width = image.width * r
+        canvas.height = image.height * r
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-
-        // Draw watermark
-        ctx.save()
-        ctx.globalAlpha = opacity
-        ctx.fillStyle = color
-        ctx.font = `bold ${fontSize * scale}px 'Inter', sans-serif`
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-
-        if (position === "tile") {
-            const textW = ctx.measureText(watermarkText).width + 40
-            const textH = fontSize * scale * 2
-            ctx.rotate((rotation * Math.PI) / 180)
-            for (let y = -canvas.height; y < canvas.height * 2; y += textH) {
-                for (let x = -canvas.width; x < canvas.width * 2; x += textW) {
-                    ctx.fillText(watermarkText, x, y)
-                }
-            }
-        } else {
-            const padding = 30 * scale
-            let x = canvas.width / 2
-            let y = canvas.height / 2
-            if (position === "top-left") { x = padding + ctx.measureText(watermarkText).width / 2; y = padding + fontSize * scale / 2 }
-            else if (position === "top-right") { x = canvas.width - padding - ctx.measureText(watermarkText).width / 2; y = padding + fontSize * scale / 2 }
-            else if (position === "bottom-left") { x = padding + ctx.measureText(watermarkText).width / 2; y = canvas.height - padding - fontSize * scale / 2 }
-            else if (position === "bottom-right") { x = canvas.width - padding - ctx.measureText(watermarkText).width / 2; y = canvas.height - padding - fontSize * scale / 2 }
-
-            // Text shadow
-            ctx.shadowColor = "rgba(0,0,0,0.5)"
-            ctx.shadowBlur = 4 * scale
-            ctx.shadowOffsetX = 2 * scale
-            ctx.shadowOffsetY = 2 * scale
-            ctx.fillText(watermarkText, x, y)
-        }
-        ctx.restore()
-    }, [image, watermarkText, fontSize, opacity, color, position, rotation])
+        drawWatermark(ctx, canvas.width, canvas.height, r)
+    }, [image, drawWatermark])
 
     useEffect(() => { drawCanvas() }, [drawCanvas])
+
+    const loadImage = (file: File, onLoad: (img: HTMLImageElement) => void) => {
+        const img = new Image()
+        img.onload = () => onLoad(img)
+        img.src = URL.createObjectURL(file)
+    }
 
     const handleFile = (file: File) => {
         if (!file.type.startsWith("image/")) { toast.error(t("errorInvalid")); return }
         setFileName(file.name)
-        const img = new Image()
-        img.onload = () => setImage(img)
-        img.src = URL.createObjectURL(file)
+        loadImage(file, setImage)
+    }
+
+    const handleLogo = (file: File) => {
+        if (!file.type.startsWith("image/")) { toast.error(t("errorInvalid")); return }
+        loadImage(file, (img) => { setLogo(img); setMarkType("image") })
     }
 
     const exportImage = () => {
@@ -105,37 +134,7 @@ export function ImageWatermark() {
         c.height = image.height
         const ctx = c.getContext("2d")!
         ctx.drawImage(image, 0, 0)
-
-        ctx.save()
-        ctx.globalAlpha = opacity
-        ctx.fillStyle = color
-        ctx.font = `bold ${fontSize}px 'Inter', sans-serif`
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-
-        if (position === "tile") {
-            const textW = ctx.measureText(watermarkText).width + 40
-            const textH = fontSize * 2
-            ctx.rotate((rotation * Math.PI) / 180)
-            for (let y = -c.height; y < c.height * 2; y += textH) {
-                for (let x = -c.width; x < c.width * 2; x += textW) {
-                    ctx.fillText(watermarkText, x, y)
-                }
-            }
-        } else {
-            const padding = 30
-            let x = c.width / 2, y = c.height / 2
-            if (position === "top-left") { x = padding + ctx.measureText(watermarkText).width / 2; y = padding + fontSize / 2 }
-            else if (position === "top-right") { x = c.width - padding - ctx.measureText(watermarkText).width / 2; y = padding + fontSize / 2 }
-            else if (position === "bottom-left") { x = padding + ctx.measureText(watermarkText).width / 2; y = c.height - padding - fontSize / 2 }
-            else if (position === "bottom-right") { x = c.width - padding - ctx.measureText(watermarkText).width / 2; y = c.height - padding - fontSize / 2 }
-            ctx.shadowColor = "rgba(0,0,0,0.5)"
-            ctx.shadowBlur = 4
-            ctx.shadowOffsetX = 2
-            ctx.shadowOffsetY = 2
-            ctx.fillText(watermarkText, x, y)
-        }
-        ctx.restore()
+        drawWatermark(ctx, c.width, c.height, 1)
 
         c.toBlob((blob) => {
             if (!blob) return
@@ -197,18 +196,52 @@ export function ImageWatermark() {
                                 </Button>
                             </div>
 
+                            {/* Watermark type */}
                             <div className="space-y-2">
-                                <Label className="text-xs font-bold">{t("text")}</Label>
-                                <Input value={watermarkText} onChange={e => setWatermarkText(e.target.value)} placeholder="© Your Name" />
+                                <Label className="text-xs font-bold">{t("markType")}</Label>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <Button size="sm" variant={markType === "text" ? "default" : "outline"} onClick={() => setMarkType("text")} className="text-xs gap-1">
+                                        <Type className="w-3 h-3" /> {t("typeText")}
+                                    </Button>
+                                    <Button size="sm" variant={markType === "image" ? "default" : "outline"} onClick={() => setMarkType("image")} className="text-xs gap-1">
+                                        <ImageIcon className="w-3 h-3" /> {t("typeImage")}
+                                    </Button>
+                                </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-sm">
-                                    <Label className="text-xs font-bold">{t("fontSize")}</Label>
-                                    <span className="font-mono text-primary text-xs">{fontSize}px</span>
+                            {markType === "text" ? (
+                                <>
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold">{t("text")}</Label>
+                                        <Input value={watermarkText} onChange={e => setWatermarkText(e.target.value)} placeholder="© Your Name" />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <div className="flex justify-between text-sm">
+                                            <Label className="text-xs font-bold">{t("fontSize")}</Label>
+                                            <span className="font-mono text-primary text-xs">{fontSize}px</span>
+                                        </div>
+                                        <Slider value={[fontSize]} onValueChange={([v]) => setFontSize(v)} min={12} max={120} step={2} />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold">{t("color")}</Label>
+                                        <div className="flex gap-2">
+                                            <input type="color" value={color} onChange={e => setColor(e.target.value)} className="w-10 h-10 rounded-lg border border-border/30 cursor-pointer" />
+                                            <Input value={color} onChange={e => setColor(e.target.value)} className="font-mono text-sm" />
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-bold">{t("logo")}</Label>
+                                    <input ref={logoInputRef} type="file" className="hidden" accept="image/*" onChange={e => { const f = e.target.files?.[0]; if (f) handleLogo(f) }} />
+                                    <Button size="sm" variant="outline" onClick={() => logoInputRef.current?.click()} className="w-full text-xs gap-1">
+                                        <Upload className="w-3 h-3" /> {logo ? t("logoChange") : t("logoUpload")}
+                                    </Button>
+                                    {logo && <p className="text-xs text-muted-foreground">{logo.width} × {logo.height} px</p>}
                                 </div>
-                                <Slider value={[fontSize]} onValueChange={([v]) => setFontSize(v)} min={12} max={120} step={2} />
-                            </div>
+                            )}
 
                             <div className="space-y-2">
                                 <div className="flex justify-between text-sm">
@@ -219,25 +252,36 @@ export function ImageWatermark() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label className="text-xs font-bold">{t("color")}</Label>
-                                <div className="flex gap-2">
-                                    <input type="color" value={color} onChange={e => setColor(e.target.value)} className="w-10 h-10 rounded-lg border border-border/30 cursor-pointer" />
-                                    <Input value={color} onChange={e => setColor(e.target.value)} className="font-mono text-sm" />
+                                <div className="flex justify-between text-sm">
+                                    <Label className="text-xs font-bold">{t("scale")}</Label>
+                                    <span className="font-mono text-primary text-xs">{Math.round(scale * 100)}%</span>
                                 </div>
+                                <Slider value={[scale]} onValueChange={([v]) => setScale(v)} min={0.25} max={3} step={0.05} />
                             </div>
 
-                            <div className="space-y-2">
-                                <Label className="text-xs font-bold">{t("position")}</Label>
-                                <div className="grid grid-cols-3 gap-2">
-                                    {POSITIONS.map(p => (
-                                        <Button key={p.value} size="sm" variant={position === p.value ? "default" : "outline"} onClick={() => setPosition(p.value)} className="text-base">
-                                            {p.label}
-                                        </Button>
-                                    ))}
+                            {/* 9-grid position (hidden in tile mode) */}
+                            {!tile && (
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-bold">{t("position")}</Label>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        {GRID_POSITIONS.map(p => (
+                                            <Button key={p.value} size="sm" variant={position === p.value ? "default" : "outline"} onClick={() => setPosition(p.value)} className="text-base">
+                                                {p.label}
+                                            </Button>
+                                        ))}
+                                    </div>
                                 </div>
+                            )}
+
+                            {/* Tile toggle */}
+                            <div className="flex items-center justify-between">
+                                <Label className="text-xs font-bold">{t("tileMode")}</Label>
+                                <Button size="sm" variant={tile ? "default" : "outline"} onClick={() => setTile(v => !v)} className="text-xs">
+                                    {tile ? t("on") : t("off")}
+                                </Button>
                             </div>
 
-                            {position === "tile" && (
+                            {tile && (
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-sm">
                                         <Label className="text-xs font-bold">{t("tileRotation")}</Label>
@@ -257,4 +301,28 @@ export function ImageWatermark() {
             )}
         </div>
     )
+}
+
+// Stamps a mark across the whole canvas at a rotation. Uses an over-scan range
+// so the rotated grid still covers every corner.
+function drawTiled(
+    ctx: CanvasRenderingContext2D,
+    w: number,
+    h: number,
+    stepX: number,
+    stepY: number,
+    rotation: number,
+    stamp: (x: number, y: number) => void
+) {
+    if (stepX <= 0 || stepY <= 0) return
+    ctx.save()
+    ctx.translate(w / 2, h / 2)
+    ctx.rotate((rotation * Math.PI) / 180)
+    const reach = Math.max(w, h)
+    for (let y = -reach; y < reach; y += stepY) {
+        for (let x = -reach; x < reach; x += stepX) {
+            stamp(x, y)
+        }
+    }
+    ctx.restore()
 }

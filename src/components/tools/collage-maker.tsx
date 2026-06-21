@@ -2,16 +2,20 @@
 
 import { useState, useRef, useCallback, useEffect } from "react"
 import { useTranslations } from "next-intl"
-import { Upload, Download, Plus, Trash2, LayoutGrid, GripVertical } from "lucide-react"
+import { Download, Plus, Trash2, LayoutGrid } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
+import { computeCells, computeCanvasSize, ASPECT_RATIOS, type Cell } from "./collage-maker.utils"
 
-type LayoutType = "2x1" | "1x2" | "2x2" | "3x1" | "1x3" | "3x3"
+type LayoutType =
+    | "2x1" | "1x2" | "2x2" | "3x1" | "1x3" | "3x3"
+    | "4x1" | "1x4" | "2x3" | "3x2"
 
 const LAYOUTS: { value: LayoutType; cols: number; rows: number; label: string }[] = [
     { value: "2x1", cols: 2, rows: 1, label: "2×1" },
@@ -20,12 +24,51 @@ const LAYOUTS: { value: LayoutType; cols: number; rows: number; label: string }[
     { value: "3x1", cols: 3, rows: 1, label: "3×1" },
     { value: "1x3", cols: 1, rows: 3, label: "1×3" },
     { value: "3x3", cols: 3, rows: 3, label: "3×3" },
+    { value: "4x1", cols: 4, rows: 1, label: "4×1" },
+    { value: "1x4", cols: 1, rows: 4, label: "1×4" },
+    { value: "2x3", cols: 2, rows: 3, label: "2×3" },
+    { value: "3x2", cols: 3, rows: 2, label: "3×2" },
 ]
+
+const PREVIEW_MAX = 800
 
 interface ImageSlot {
     id: string
     image: HTMLImageElement
     file: File
+}
+
+/** Trace a rounded-rectangle path on the context (does not fill or stroke). */
+function roundedRectPath(ctx: CanvasRenderingContext2D, cell: Cell, r: number) {
+    const { x, y, w, h } = cell
+    const radius = Math.min(r, w / 2, h / 2)
+    ctx.beginPath()
+    ctx.moveTo(x + radius, y)
+    ctx.lineTo(x + w - radius, y)
+    ctx.quadraticCurveTo(x + w, y, x + w, y + radius)
+    ctx.lineTo(x + w, y + h - radius)
+    ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h)
+    ctx.lineTo(x + radius, y + h)
+    ctx.quadraticCurveTo(x, y + h, x, y + h - radius)
+    ctx.lineTo(x, y + radius)
+    ctx.quadraticCurveTo(x, y, x + radius, y)
+    ctx.closePath()
+}
+
+/** Draw an image into a cell using cover-fit (center crop). */
+function drawCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, cell: Cell) {
+    const { x, y, w, h } = cell
+    const imgRatio = img.width / img.height
+    const cellRatio = w / h
+    let sx = 0, sy = 0, sw = img.width, sh = img.height
+    if (imgRatio > cellRatio) {
+        sw = img.height * cellRatio
+        sx = (img.width - sw) / 2
+    } else {
+        sh = img.width / cellRatio
+        sy = (img.height - sh) / 2
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h)
 }
 
 export function CollageMaker() {
@@ -35,87 +78,65 @@ export function CollageMaker() {
 
     const [images, setImages] = useState<ImageSlot[]>([])
     const [layout, setLayout] = useState<LayoutType>("2x2")
+    const [aspect, setAspect] = useState("1:1")
     const [gap, setGap] = useState(8)
     const [bgColor, setBgColor] = useState("#ffffff")
     const [borderRadius, setBorderRadius] = useState(0)
-    const [canvasSize, setCanvasSize] = useState(1200)
+    const [outputSize, setOutputSize] = useState(1200)
 
     const currentLayout = LAYOUTS.find(l => l.value === layout)!
+    const currentAspect = ASPECT_RATIOS.find(a => a.value === aspect)!
     const totalSlots = currentLayout.cols * currentLayout.rows
+
+    /** Render the collage onto a context sized to `width` x `height`. */
+    const renderTo = useCallback(
+        (ctx: CanvasRenderingContext2D, width: number, height: number, scale: number, withPlaceholders: boolean) => {
+            ctx.fillStyle = bgColor
+            ctx.fillRect(0, 0, width, height)
+
+            const cells = computeCells(width, height, currentLayout.cols, currentLayout.rows, gap * scale)
+            const r = borderRadius * scale
+
+            cells.forEach((cell, idx) => {
+                ctx.save()
+                roundedRectPath(ctx, cell, r)
+                ctx.clip()
+
+                if (images[idx]) {
+                    drawCover(ctx, images[idx].image, cell)
+                } else if (withPlaceholders) {
+                    ctx.fillStyle = "rgba(128,128,128,0.1)"
+                    ctx.fillRect(cell.x, cell.y, cell.w, cell.h)
+                    ctx.strokeStyle = "rgba(128,128,128,0.3)"
+                    ctx.setLineDash([6, 4])
+                    ctx.strokeRect(cell.x + 1, cell.y + 1, cell.w - 2, cell.h - 2)
+                    ctx.setLineDash([])
+                    ctx.fillStyle = "rgba(128,128,128,0.3)"
+                    ctx.font = `bold ${24 * scale}px sans-serif`
+                    ctx.textAlign = "center"
+                    ctx.textBaseline = "middle"
+                    ctx.fillText("+", cell.x + cell.w / 2, cell.y + cell.h / 2)
+                }
+                ctx.restore()
+            })
+        },
+        [images, gap, bgColor, borderRadius, currentLayout],
+    )
 
     const drawCanvas = useCallback(() => {
         const canvas = canvasRef.current
         const ctx = canvas?.getContext("2d")
         if (!canvas || !ctx) return
 
-        const displaySize = Math.min(canvasSize, 800)
-        const scale = displaySize / canvasSize
-        canvas.width = displaySize
-        canvas.height = displaySize
+        const full = computeCanvasSize(outputSize, currentAspect.ratioW, currentAspect.ratioH)
+        const scale = Math.min(PREVIEW_MAX / full.width, PREVIEW_MAX / full.height, 1)
+        const dispW = Math.round(full.width * scale)
+        const dispH = Math.round(full.height * scale)
+        canvas.width = dispW
+        canvas.height = dispH
 
-        ctx.fillStyle = bgColor
-        ctx.fillRect(0, 0, displaySize, displaySize)
-
-        const cellW = (canvasSize - gap * (currentLayout.cols + 1)) / currentLayout.cols
-        const cellH = (canvasSize - gap * (currentLayout.rows + 1)) / currentLayout.rows
-
-        for (let row = 0; row < currentLayout.rows; row++) {
-            for (let col = 0; col < currentLayout.cols; col++) {
-                const idx = row * currentLayout.cols + col
-                const x = (gap + col * (cellW + gap)) * scale
-                const y = (gap + row * (cellH + gap)) * scale
-                const w = cellW * scale
-                const h = cellH * scale
-                const r = borderRadius * scale
-
-                ctx.save()
-                // Rounded rect clip
-                ctx.beginPath()
-                ctx.moveTo(x + r, y)
-                ctx.lineTo(x + w - r, y)
-                ctx.quadraticCurveTo(x + w, y, x + w, y + r)
-                ctx.lineTo(x + w, y + h - r)
-                ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
-                ctx.lineTo(x + r, y + h)
-                ctx.quadraticCurveTo(x, y + h, x, y + h - r)
-                ctx.lineTo(x, y + r)
-                ctx.quadraticCurveTo(x, y, x + r, y)
-                ctx.closePath()
-                ctx.clip()
-
-                if (images[idx]) {
-                    const img = images[idx].image
-                    // Cover fit
-                    const imgRatio = img.width / img.height
-                    const cellRatio = w / h
-                    let sx = 0, sy = 0, sw = img.width, sh = img.height
-                    if (imgRatio > cellRatio) {
-                        sw = img.height * cellRatio
-                        sx = (img.width - sw) / 2
-                    } else {
-                        sh = img.width / cellRatio
-                        sy = (img.height - sh) / 2
-                    }
-                    ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h)
-                } else {
-                    ctx.fillStyle = "rgba(128,128,128,0.1)"
-                    ctx.fillRect(x, y, w, h)
-                    ctx.strokeStyle = "rgba(128,128,128,0.3)"
-                    ctx.setLineDash([6, 4])
-                    ctx.strokeRect(x + 1, y + 1, w - 2, h - 2)
-                    ctx.setLineDash([])
-
-                    // Plus icon
-                    ctx.fillStyle = "rgba(128,128,128,0.3)"
-                    ctx.font = `bold ${24 * scale}px sans-serif`
-                    ctx.textAlign = "center"
-                    ctx.textBaseline = "middle"
-                    ctx.fillText("+", x + w / 2, y + h / 2)
-                }
-                ctx.restore()
-            }
-        }
-    }, [images, layout, gap, bgColor, borderRadius, canvasSize, currentLayout])
+        renderTo(ctx, dispW, dispH, scale, true)
+    }, [outputSize, currentAspect, renderTo])
 
     useEffect(() => { drawCanvas() }, [drawCanvas])
 
@@ -148,49 +169,14 @@ export function CollageMaker() {
     }
 
     const exportCollage = () => {
+        const { width, height } = computeCanvasSize(outputSize, currentAspect.ratioW, currentAspect.ratioH)
         const c = document.createElement("canvas")
-        c.width = canvasSize
-        c.height = canvasSize
-        const ctx = c.getContext("2d")!
+        c.width = width
+        c.height = height
+        const ctx = c.getContext("2d")
+        if (!ctx) return
 
-        ctx.fillStyle = bgColor
-        ctx.fillRect(0, 0, canvasSize, canvasSize)
-
-        const cellW = (canvasSize - gap * (currentLayout.cols + 1)) / currentLayout.cols
-        const cellH = (canvasSize - gap * (currentLayout.rows + 1)) / currentLayout.rows
-
-        for (let row = 0; row < currentLayout.rows; row++) {
-            for (let col = 0; col < currentLayout.cols; col++) {
-                const idx = row * currentLayout.cols + col
-                const x = gap + col * (cellW + gap)
-                const y = gap + row * (cellH + gap)
-
-                ctx.save()
-                ctx.beginPath()
-                ctx.moveTo(x + borderRadius, y)
-                ctx.lineTo(x + cellW - borderRadius, y)
-                ctx.quadraticCurveTo(x + cellW, y, x + cellW, y + borderRadius)
-                ctx.lineTo(x + cellW, y + cellH - borderRadius)
-                ctx.quadraticCurveTo(x + cellW, y + cellH, x + cellW - borderRadius, y + cellH)
-                ctx.lineTo(x + borderRadius, y + cellH)
-                ctx.quadraticCurveTo(x, y + cellH, x, y + cellH - borderRadius)
-                ctx.lineTo(x, y + borderRadius)
-                ctx.quadraticCurveTo(x, y, x + borderRadius, y)
-                ctx.closePath()
-                ctx.clip()
-
-                if (images[idx]) {
-                    const img = images[idx].image
-                    const imgRatio = img.width / img.height
-                    const cellRatio = cellW / cellH
-                    let sx = 0, sy = 0, sw = img.width, sh = img.height
-                    if (imgRatio > cellRatio) { sw = img.height * cellRatio; sx = (img.width - sw) / 2 }
-                    else { sh = img.width / cellRatio; sy = (img.height - sh) / 2 }
-                    ctx.drawImage(img, sx, sy, sw, sh, x, y, cellW, cellH)
-                }
-                ctx.restore()
-            }
-        }
+        renderTo(ctx, width, height, 1, false)
 
         c.toBlob(blob => {
             if (!blob) return
@@ -212,7 +198,9 @@ export function CollageMaker() {
             <div className="grid lg:grid-cols-[1fr_300px] gap-8">
                 <div className="space-y-4">
                     <GlassCard className="p-4">
-                        <canvas ref={canvasRef} className="w-full rounded-lg" />
+                        <div className="flex items-center justify-center">
+                            <canvas ref={canvasRef} className="max-w-full max-h-[70vh] rounded-lg" />
+                        </div>
                     </GlassCard>
 
                     {/* Image slots */}
@@ -273,6 +261,18 @@ export function CollageMaker() {
                         </div>
 
                         <div className="space-y-2">
+                            <Label className="text-xs font-bold">{t("aspectRatio")}</Label>
+                            <Select value={aspect} onValueChange={setAspect}>
+                                <SelectTrigger><SelectValue /></SelectTrigger>
+                                <SelectContent>
+                                    {ASPECT_RATIOS.map(a => (
+                                        <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-2">
                             <div className="flex justify-between text-xs">
                                 <Label className="font-bold">{t("gap")}</Label>
                                 <span className="font-mono text-primary">{gap}px</span>
@@ -299,9 +299,9 @@ export function CollageMaker() {
                         <div className="space-y-2">
                             <div className="flex justify-between text-xs">
                                 <Label className="font-bold">{t("outputSize")}</Label>
-                                <span className="font-mono text-primary">{canvasSize}px</span>
+                                <span className="font-mono text-primary">{outputSize}px</span>
                             </div>
-                            <Slider value={[canvasSize]} onValueChange={([v]) => setCanvasSize(v)} min={600} max={3000} step={100} />
+                            <Slider value={[outputSize]} onValueChange={([v]) => setOutputSize(v)} min={600} max={3000} step={100} />
                         </div>
 
                         <Button size="lg" className="w-full font-bold gap-2" onClick={exportCollage} disabled={images.length === 0}>

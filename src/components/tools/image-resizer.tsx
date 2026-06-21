@@ -18,6 +18,9 @@ import { Slider } from "@/components/ui/slider"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
+import { scaleToWidth, scaleToHeight, scaleByPercent } from "./image-resizer.utils"
+
+const PERCENT_PRESETS = [25, 50, 75, 100] as const
 
 interface Preset {
     label: string
@@ -86,20 +89,33 @@ export function ImageResizerTool() {
     }, [handleFile])
 
     const handleWidthChange = useCallback((w: number) => {
-        setTargetWidth(w)
         if (lockAspect && aspectRatio > 0) {
-            setTargetHeight(Math.round(w / aspectRatio))
+            const dims = scaleToWidth(w, aspectRatio)
+            setTargetWidth(dims.width)
+            setTargetHeight(dims.height)
+        } else {
+            setTargetWidth(w)
         }
         setResizedUrl(null)
     }, [lockAspect, aspectRatio])
 
     const handleHeightChange = useCallback((h: number) => {
-        setTargetHeight(h)
         if (lockAspect && aspectRatio > 0) {
-            setTargetWidth(Math.round(h * aspectRatio))
+            const dims = scaleToHeight(h, aspectRatio)
+            setTargetWidth(dims.width)
+            setTargetHeight(dims.height)
+        } else {
+            setTargetHeight(h)
         }
         setResizedUrl(null)
     }, [lockAspect, aspectRatio])
+
+    const applyPercent = useCallback((percent: number) => {
+        const dims = scaleByPercent(originalWidth, originalHeight, percent)
+        setTargetWidth(dims.width)
+        setTargetHeight(dims.height)
+        setResizedUrl(null)
+    }, [originalWidth, originalHeight])
 
     const applyPreset = useCallback((preset: Preset) => {
         setTargetWidth(preset.width)
@@ -273,6 +289,29 @@ export function ImageResizerTool() {
                                 <p className="text-xs text-muted-foreground">
                                     {t("originalSize")}: {originalWidth} x {originalHeight} px
                                 </p>
+                                <div>
+                                    <Label className="text-xs">{t("scaleByPercent")}</Label>
+                                    <div className="flex gap-2 mt-1">
+                                        {PERCENT_PRESETS.map((pct) => {
+                                            const dims = scaleByPercent(originalWidth, originalHeight, pct)
+                                            const isActive = targetWidth === dims.width && targetHeight === dims.height
+                                            return (
+                                                <Button
+                                                    key={pct}
+                                                    variant="outline"
+                                                    size="sm"
+                                                    onClick={() => applyPercent(pct)}
+                                                    className={cn(
+                                                        "text-xs flex-1",
+                                                        isActive && "border-primary bg-primary/10"
+                                                    )}
+                                                >
+                                                    {pct}%
+                                                </Button>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Format & Quality */}

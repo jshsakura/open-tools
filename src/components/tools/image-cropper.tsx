@@ -6,10 +6,18 @@ import { Upload, Download, RotateCw, FlipHorizontal, FlipVertical, Crop, Trash2,
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
 import { ClipboardPasteButton } from "@/components/clipboard-paste-button"
 import { toast } from "sonner"
 
 type AspectRatio = "free" | "1:1" | "4:3" | "16:9" | "9:16" | "3:2"
+type OutputFormat = "png" | "jpeg" | "webp"
+
+const OUTPUT_FORMATS: { value: OutputFormat; ext: string }[] = [
+    { value: "png", ext: "png" },
+    { value: "jpeg", ext: "jpg" },
+    { value: "webp", ext: "webp" },
+]
 
 const ASPECT_RATIOS: { value: AspectRatio; label: string; icon: React.ElementType }[] = [
     { value: "free", label: "Free", icon: Crop },
@@ -32,6 +40,8 @@ export function ImageCropper() {
     const [flipH, setFlipH] = useState(false)
     const [flipV, setFlipV] = useState(false)
     const [aspectRatio, setAspectRatio] = useState<AspectRatio>("free")
+    const [outputFormat, setOutputFormat] = useState<OutputFormat>("png")
+    const [quality, setQuality] = useState(0.92)
 
     // Crop region in image coordinates
     const [cropRegion, setCropRegion] = useState({ x: 0, y: 0, w: 0, h: 0 })
@@ -200,6 +210,12 @@ export function ImageCropper() {
         c.width = cropRegion.w
         c.height = cropRegion.h
         const ctx = c.getContext("2d")!
+        // Opaque formats (JPEG) have no alpha — fill white so transparent areas
+        // don't render as black.
+        if (outputFormat !== "png") {
+            ctx.fillStyle = "#fff"
+            ctx.fillRect(0, 0, c.width, c.height)
+        }
         ctx.save()
         ctx.translate(c.width / 2, c.height / 2)
         ctx.rotate((rotation * Math.PI) / 180)
@@ -207,16 +223,20 @@ export function ImageCropper() {
         ctx.drawImage(image, -cropRegion.x - cropRegion.w / 2, -cropRegion.y - cropRegion.h / 2)
         ctx.restore()
 
+        const fmt = OUTPUT_FORMATS.find(f => f.value === outputFormat)!
+        const baseName = fileName.replace(/\.[^.]+$/, "")
+        const q = outputFormat === "png" ? undefined : quality
+
         c.toBlob((blob) => {
             if (!blob) return
             const url = URL.createObjectURL(blob)
             const a = document.createElement("a")
             a.href = url
-            a.download = `cropped_${fileName}`
+            a.download = `cropped_${baseName}.${fmt.ext}`
             a.click()
             URL.revokeObjectURL(url)
             toast.success(t("downloaded"))
-        }, "image/png")
+        }, `image/${outputFormat}`, q)
     }
 
     const clear = () => {
@@ -320,6 +340,35 @@ export function ImageCropper() {
                                     </Button>
                                 </div>
                             </div>
+
+                            {/* Output Format */}
+                            <div className="space-y-2">
+                                <Label className="text-xs font-bold">{t("outputFormat")}</Label>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {OUTPUT_FORMATS.map(f => (
+                                        <Button
+                                            key={f.value}
+                                            size="sm"
+                                            variant={outputFormat === f.value ? "default" : "outline"}
+                                            onClick={() => setOutputFormat(f.value)}
+                                            className="text-xs"
+                                        >
+                                            {f.value.toUpperCase()}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Quality (lossy formats only) */}
+                            {outputFormat !== "png" && (
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-sm">
+                                        <Label className="text-xs font-bold">{t("quality")}</Label>
+                                        <span className="font-mono text-primary text-xs">{Math.round(quality * 100)}%</span>
+                                    </div>
+                                    <Slider value={[quality]} onValueChange={([v]) => setQuality(v)} min={0.1} max={1} step={0.02} />
+                                </div>
+                            )}
 
                             <Button size="lg" className="w-full font-bold gap-2" onClick={exportCrop} disabled={cropRegion.w <= 0}>
                                 <Download className="w-4 h-4" />
