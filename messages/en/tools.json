@@ -6443,5 +6443,469 @@
                 "desc": "Extract just the part you need by setting a start time and duration."
             }
         }
+    },
+    "VideoRotate": {
+        "uploadTitle": "Drop your video here",
+        "uploadHint": "or click to browse — your file never leaves your device",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Upload a video to start rotating",
+        "rotationLabel": "Rotation",
+        "rotation_0": "No rotation",
+        "rotation_90": "90° clockwise",
+        "rotation_180": "180°",
+        "rotation_270": "90° counter-clockwise",
+        "flipLabel": "Flip",
+        "flipH": "Horizontal",
+        "flipHDesc": "Mirror left to right",
+        "flipV": "Vertical",
+        "flipVDesc": "Mirror top to bottom",
+        "rotateAction": "Rotate Video",
+        "resultTitle": "Your rotated video is ready",
+        "download": "Download",
+        "loading": "Loading video engine…",
+        "loadError": "Failed to load the video engine. Please refresh and try again.",
+        "processing": "Processing",
+        "noChange": "Pick a rotation or flip first.",
+        "done": "Video rotated successfully!",
+        "error": "Something went wrong while rotating the video.",
+        "guide": {
+            "title": "How to rotate a video",
+            "step1": "Upload your video — it stays on your device and is never sent to a server.",
+            "step2": "Choose a rotation angle and, if needed, flip it horizontally or vertically.",
+            "step3": "Click Rotate Video, preview the result, and download the new MP4 file."
+        },
+        "features": {
+            "title": "Why use this tool",
+            "f1": {
+                "title": "100% private",
+                "desc": "Everything runs in your browser with WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Rotate any angle",
+                "desc": "Fix sideways or upside-down clips with 90°, 180°, or 270° rotation in one click."
+            },
+            "f3": {
+                "title": "Mirror & flip",
+                "desc": "Flip horizontally or vertically — perfect for selfie videos or mirrored footage."
+            },
+            "f4": {
+                "title": "No installs, no limits",
+                "desc": "Free to use with no sign-up, no watermark, and no file-size restrictions."
+            }
+        }
+    },
+    "VideoSpeed": {
+        "loading": "Loading video engine...",
+        "loadError": "Failed to load the video engine. Please refresh and try again.",
+        "uploadTitle": "Upload a video",
+        "uploadHint": "MP4, MOV, WebM and more — processed locally in your browser",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Upload a video to change its speed",
+        "speedLabel": "Speed",
+        "presetLabel": "Speed preset",
+        "presetPlaceholder": "Choose a speed",
+        "sliderHint": "Drag for a custom speed between 0.25x and 4x",
+        "audioLabel": "Audio",
+        "audioKeep": "Keep audio",
+        "audioKeepDesc": "Pitch-correct the soundtrack to match the new speed.",
+        "audioDrop": "Drop audio",
+        "audioDropDesc": "Remove the soundtrack and export a silent video.",
+        "runAction": "Change Speed",
+        "processing": "Processing",
+        "done": "Speed changed successfully.",
+        "error": "Something went wrong while processing the video.",
+        "resultTitle": "Your video is ready",
+        "download": "Download",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload a video file. It is processed entirely in your browser and never uploaded to a server.",
+            "step2": "Pick a speed preset (0.25x–4x) or fine-tune it with the slider, and choose whether to keep the audio.",
+            "step3": "Click Change Speed, then preview and download your re-encoded MP4."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All processing runs locally via WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Slow & Fast Motion",
+                "desc": "Speed from 0.25x slow motion up to 4x fast forward with presets or a fine slider."
+            },
+            "f3": {
+                "title": "Smart Audio",
+                "desc": "Audio is tempo-adjusted with chained atempo filters, or dropped entirely on request."
+            },
+            "f4": {
+                "title": "Live Preview",
+                "desc": "Review the re-encoded H.264/AAC MP4 in the browser before downloading."
+            }
+        }
+    },
+    "VideoResizer": {
+        "loading": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection.",
+        "uploadTitle": "Drop a video here",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Please select a video file to start resizing",
+        "original": "Original",
+        "newSize": "New",
+        "resolutionLabel": "Target Resolution",
+        "customOption": "Custom size",
+        "preset": {
+            "2160p": "2160p (4K UHD)",
+            "1440p": "1440p (2K QHD)",
+            "1080p": "1080p (Full HD)",
+            "720p": "720p (HD)",
+            "480p": "480p (SD)",
+            "360p": "360p"
+        },
+        "lockAspect": "Lock aspect ratio",
+        "lockAspectDesc": "Keep the original proportions (height auto-calculated).",
+        "widthLabel": "Width (px)",
+        "heightLabel": "Height (px)",
+        "resizeAction": "Resize Video",
+        "processing": "Resizing...",
+        "invalidSize": "Please enter a valid width and height.",
+        "done": "Resize complete!",
+        "error": "An error occurred while resizing the video.",
+        "resultTitle": "Resize Complete!",
+        "download": "Download",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload a video file. It is processed entirely in your browser and never uploaded to a server.",
+            "step2": "Pick a preset resolution (2160p–360p) or choose Custom size and enter a width and height.",
+            "step3": "Keep 'Lock aspect ratio' on to avoid stretching, click Resize Video, then preview and download your MP4."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All processing runs locally via WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Resolution Presets",
+                "desc": "One-click 2160p, 1440p, 1080p, 720p, 480p, and 360p targets with widths from your source ratio."
+            },
+            "f3": {
+                "title": "Custom Dimensions",
+                "desc": "Enter any exact width and height, or lock the aspect ratio to scale without distortion."
+            },
+            "f4": {
+                "title": "Quality Re-encode",
+                "desc": "Outputs a clean H.264/AAC MP4 that plays everywhere, with even dimensions for full compatibility."
+            }
+        }
+    },
+    "VideoCrop": {
+        "loading": "Loading video engine...",
+        "loadError": "Failed to load the video engine. Please refresh and try again.",
+        "uploadTitle": "Drop a video here",
+        "uploadHint": "MP4, WebM, MOV and more — processed locally in your browser",
+        "chooseVideo": "Choose video",
+        "selectPrompt": "Upload a video to start cropping",
+        "sourceLabel": "Source",
+        "aspectLabel": "Aspect ratio",
+        "aspectPlaceholder": "Select a ratio",
+        "aspectHint": "Picking a ratio sets a centered crop that fits your video.",
+        "aspectCustom": "Custom",
+        "aspect_1_1": "1:1 (Square)",
+        "aspect_4_3": "4:3 (Standard)",
+        "aspect_16_9": "16:9 (Widescreen)",
+        "aspect_9_16": "9:16 (Vertical)",
+        "aspect_3_4": "3:4 (Portrait)",
+        "widthLabel": "Width (px)",
+        "heightLabel": "Height (px)",
+        "xLabel": "X offset (px)",
+        "yLabel": "Y offset (px)",
+        "cropAction": "Crop Video",
+        "processing": "Processing",
+        "invalidCrop": "Crop region is too small. Increase the width and height.",
+        "done": "Video cropped successfully!",
+        "error": "Something went wrong while cropping the video.",
+        "resultTitle": "Your cropped video is ready",
+        "download": "Download",
+        "guide": {
+            "title": "How to crop a video",
+            "step1": "Upload a video — it is processed entirely in your browser and never leaves your device.",
+            "step2": "Pick an aspect-ratio preset for a centered crop, or set the width, height and X/Y offset manually.",
+            "step3": "Click Crop Video, preview the result, and download your re-encoded MP4."
+        },
+        "features": {
+            "title": "Why use this video cropper",
+            "f1": {
+                "title": "100% private",
+                "desc": "Everything runs locally with WebAssembly. Your video is never uploaded to any server."
+            },
+            "f2": {
+                "title": "Aspect-ratio presets",
+                "desc": "One click for 1:1, 4:3, 16:9, 9:16 or 3:4 — perfect for social, stories and reels."
+            },
+            "f3": {
+                "title": "Pixel-precise control",
+                "desc": "Set exact width, height and X/Y offset, with a live overlay showing the crop region."
+            },
+            "f4": {
+                "title": "Clean MP4 output",
+                "desc": "Re-encoded with H.264 and AAC for a widely compatible, ready-to-share MP4."
+            }
+        }
+    },
+    "VideoMerger": {
+        "ffmpegLoading": "Loading video engine...",
+        "loadError": "Failed to load the video engine. Please check your connection.",
+        "inputPlaceholder": "Upload videos to merge",
+        "addHint": "Click or drop multiple video files. Add more anytime.",
+        "listTitle": "Merge order ({count} clips)",
+        "clearAll": "Clear all",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove",
+        "needTwo": "Add at least 2 videos to merge.",
+        "mergeAction": "Merge Videos",
+        "processing": "Merging...",
+        "successToast": "Videos merged successfully!",
+        "errorToast": "An error occurred while merging. The clips may be corrupted or unsupported.",
+        "resultTitle": "Merge complete!",
+        "download": "Download MP4",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload two or more video files. You can keep adding clips at any time.",
+            "step2": "Reorder clips with the up/down arrows, or remove any you don't want.",
+            "step3": "Click Merge Videos. Clips are normalized to 720p and joined locally in your browser, then download the MP4."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "Everything runs locally with WebAssembly. Your videos never leave your device."
+            },
+            "f2": {
+                "title": "Mixed Formats",
+                "desc": "Combine clips with different codecs and resolutions; each is re-encoded to a common size."
+            },
+            "f3": {
+                "title": "Drag-Free Reordering",
+                "desc": "Arrange clips in any order with simple up/down controls before merging."
+            },
+            "f4": {
+                "title": "Ready-to-Share MP4",
+                "desc": "Outputs a single H.264/AAC MP4 that plays everywhere."
+            }
+        }
+    },
+    "GifToVideo": {
+        "uploadTitle": "Drop your GIF here",
+        "uploadHint": "Animated GIF (.gif)",
+        "chooseGif": "Choose GIF",
+        "loadingFfmpeg": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection and refresh.",
+        "formatLabel": "Output Format",
+        "format_mp4": "MP4 (H.264)",
+        "format_webm": "WebM (VP9)",
+        "formatHint": "MP4 plays everywhere; WebM is smaller and open-source",
+        "loopLabel": "Loop",
+        "loop_-1": "Play once",
+        "loop_0": "Loop forever",
+        "loop_2": "Repeat 2x",
+        "loop_4": "Repeat 4x",
+        "loopHint": "Repeat the GIF to make a longer clip",
+        "convertAction": "Convert to Video",
+        "processing": "Converting...",
+        "success": "Video created successfully!",
+        "error": "An error occurred while converting the GIF.",
+        "resultTitle": "Your Video",
+        "download": "Download Video",
+        "guide": {
+            "title": "How to use",
+            "step1": "Upload a GIF file — it never leaves your device; all processing runs locally in your browser.",
+            "step2": "Pick an output format (MP4 for maximum compatibility or WebM for a smaller file) and an optional loop count.",
+            "step3": "Click Convert to Video, preview the result, and download your MP4 or WebM."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "FFmpeg.wasm runs entirely in your browser. Your GIF is never uploaded to any server."
+            },
+            "f2": {
+                "title": "Smaller Files",
+                "desc": "H.264 and VP9 video compress far better than GIF, shrinking large animations dramatically."
+            },
+            "f3": {
+                "title": "Broad Compatibility",
+                "desc": "MP4 output uses yuv420p and +faststart so it plays smoothly on every browser and phone."
+            },
+            "f4": {
+                "title": "Odd Sizes Handled",
+                "desc": "GIFs with odd dimensions are auto-scaled to even sizes, so encoding never fails."
+            }
+        }
+    },
+    "VideoReverse": {
+        "uploadTitle": "Drop your video here",
+        "uploadHint": "or click to browse — best for short clips",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Upload a video to reverse it",
+        "optionsTitle": "Reverse Options",
+        "optionsHint": "Your clip will play from end to start.",
+        "memoryWarning": "Reversing buffers the entire clip in memory, so this works best for short videos. Long clips may run slowly or run out of memory.",
+        "reverseAudioLabel": "Reverse audio too",
+        "reverseAudioOnHint": "Audio will play backwards along with the video.",
+        "reverseAudioOffHint": "Audio will be removed, leaving a silent clip.",
+        "reverseAction": "Reverse Video",
+        "resultTitle": "Reversed video ready",
+        "download": "Download",
+        "loading": "Loading video engine…",
+        "loadError": "Failed to load the video engine. Please refresh and try again.",
+        "processing": "Reversing…",
+        "done": "Video reversed successfully!",
+        "error": "Something went wrong while reversing the video.",
+        "guide": {
+            "title": "How to reverse a video",
+            "step1": "Upload a short video clip — MP4, WebM, MOV and more are supported.",
+            "step2": "Choose whether to reverse the audio too or remove it for a silent result.",
+            "step3": "Click Reverse Video, then preview and download your backwards clip."
+        },
+        "features": {
+            "title": "Why use this reverser",
+            "f1": {
+                "title": "100% Private",
+                "desc": "Your video never leaves your device — all processing happens in your browser."
+            },
+            "f2": {
+                "title": "Reverse Audio",
+                "desc": "Play the soundtrack backwards too, or mute it entirely with one toggle."
+            },
+            "f3": {
+                "title": "No Watermark",
+                "desc": "Get a clean MP4 with no logos, watermarks, or sign-up required."
+            },
+            "f4": {
+                "title": "Works Offline",
+                "desc": "Powered by WebAssembly, so it keeps working even without a connection."
+            }
+        }
+    },
+    "VideoMute": {
+        "uploadTitle": "Drop your video here",
+        "uploadHint": "or click to browse",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Upload a video to remove its audio",
+        "optionsTitle": "Mute Options",
+        "optionsHint": "The audio track will be removed, keeping the video untouched.",
+        "losslessTitle": "Fast & lossless",
+        "losslessHint": "The video is copied without re-encoding, so quality stays identical and it finishes in seconds.",
+        "muteAction": "Remove Audio",
+        "resultTitle": "Muted video ready",
+        "download": "Download",
+        "loading": "Loading video engine…",
+        "loadError": "Failed to load the video engine. Please refresh and try again.",
+        "processing": "Removing audio…",
+        "done": "Audio removed successfully!",
+        "error": "Something went wrong while muting the video.",
+        "guide": {
+            "title": "How to mute a video",
+            "step1": "Upload your video — MP4, WebM, MOV and more are supported.",
+            "step2": "Review the preview to confirm it's the right clip.",
+            "step3": "Click Remove Audio, then preview and download your silent video."
+        },
+        "features": {
+            "title": "Why use this muter",
+            "f1": {
+                "title": "Lossless Quality",
+                "desc": "Video is stream-copied, so the picture stays pixel-for-pixel identical."
+            },
+            "f2": {
+                "title": "Lightning Fast",
+                "desc": "No re-encoding means most videos finish in just a few seconds."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Files are processed locally in your browser and never uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, and no limits on how many videos you mute."
+            }
+        }
+    },
+    "VideoFrames": {
+        "title": "Video Frame Extractor",
+        "description": "Pull image frames out of any video right in your browser using WASM. No upload, fully private.",
+        "inputPlaceholder": "Drag & drop a video or click to upload",
+        "ffmpegLoading": "Initializing FFmpeg (WASM)...",
+        "processing": "Processing...",
+        "download": "Download Image",
+        "downloadZip": "Download all as ZIP",
+        "selectPrompt": "Please select a video file to enable extraction tools",
+        "extract": {
+            "title": "Extract Frames",
+            "action": "Extract Frames"
+        },
+        "mode": {
+            "label": "Extraction Mode",
+            "fps": "Frames per second (fps)",
+            "interval": "Every N seconds"
+        },
+        "fps": {
+            "label": "Frame Rate (fps)",
+            "hint": "1 = one frame per second. Use 0.5 for one frame every 2 seconds."
+        },
+        "interval": {
+            "label": "Interval (seconds)",
+            "hint": "Capture one frame every N seconds. 2 = one frame every 2 seconds."
+        },
+        "format": {
+            "label": "Image Format"
+        },
+        "frames": {
+            "count": "{count} frames extracted",
+            "more": "+{count} more frames"
+        },
+        "thumbnail": {
+            "title": "Quick Thumbnail",
+            "time": "Timestamp (seconds)",
+            "hint": "Grab a single frame at this point in the video.",
+            "action": "Grab Thumbnail",
+            "result": "Thumbnail"
+        },
+        "toast": {
+            "extracted": "Extracted {count} frames.",
+            "thumbnail": "Thumbnail captured."
+        },
+        "errors": {
+            "invalidRate": "Enter a valid frame rate greater than 0.",
+            "invalidTime": "Enter a valid timestamp.",
+            "noFrames": "No frames were generated. Try a different rate.",
+            "failed": "An error occurred during processing.",
+            "zipFailed": "Failed to build the ZIP file."
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Drag & drop or click to upload a video file.",
+            "step2": "Pick a mode — frames per second or a fixed interval — and an image format (PNG or JPG).",
+            "step3": "Click Extract Frames to preview thumbnails and download all frames as a ZIP, or grab a single thumbnail at a timestamp."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Frame Rate Control",
+                "desc": "Extract at any fps, including fractional rates like one frame every few seconds."
+            },
+            "f2": {
+                "title": "PNG or JPG",
+                "desc": "Choose lossless PNG or smaller JPG output for your extracted frames."
+            },
+            "f3": {
+                "title": "Single Thumbnail",
+                "desc": "Jump to any timestamp and grab one frame instantly."
+            },
+            "f4": {
+                "title": "ZIP Download",
+                "desc": "Bundle every extracted frame into a single ZIP — all processed locally, no uploads."
+            }
+        }
     }
 }

@@ -1,0 +1,41 @@
+import { getTranslations, setRequestLocale } from "next-intl/server"
+import { VideoSpeed } from "@/components/tools/video-speed"
+import { ToolGuide } from "@/components/tool-guide-section"
+import { createToolJsonLd, createToolMetadata } from "@/lib/seo"
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: "Catalog" })
+    return createToolMetadata({
+        locale,
+        title: t("VideoSpeed.title"),
+        description: t("VideoSpeed.description"),
+        path: "/tools/video-speed",
+    })
+}
+
+export function generateStaticParams() {
+    return [{ locale: "ko" }, { locale: "en" }]
+}
+
+export default async function VideoSpeedPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    setRequestLocale(locale)
+    const tc = await getTranslations({ locale, namespace: "Catalog" })
+
+    const jsonLd = createToolJsonLd({
+        locale,
+        title: tc("VideoSpeed.title"),
+        description: tc("VideoSpeed.description"),
+        path: "/tools/video-speed",
+        category: "MultimediaApplication",
+    })
+
+    return (
+        <div className="container mx-auto px-4 py-12 max-w-6xl">
+            <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+            <VideoSpeed />
+            <ToolGuide ns="VideoSpeed" />
+        </div>
+    )
+}

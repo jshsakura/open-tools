@@ -914,6 +914,42 @@
         "AudioExtractor": {
             "title": "Audio Extractor",
             "description": "Extract the audio track from any video file and save it as MP3, WAV, AAC, or OGG — all in your browser, nothing uploaded."
+        },
+        "VideoRotate": {
+            "title": "Video Rotate & Flip",
+            "description": "Rotate or flip any video in your browser — 90°, 180°, mirror horizontally or vertically. Free, private, no upload."
+        },
+        "VideoSpeed": {
+            "title": "Video Speed Changer",
+            "description": "Speed up or slow down videos right in your browser. Pick a multiplier from 0.25x to 4x, keep or drop audio, and download an MP4. 100% private, nothing is uploaded."
+        },
+        "VideoResizer": {
+            "title": "Video Resizer",
+            "description": "Resize and scale video resolution right in your browser. Pick a preset (2160p–360p) or set a custom width and height, lock the aspect ratio, and download the re-encoded MP4. 100% private, nothing is uploaded."
+        },
+        "VideoCrop": {
+            "title": "Video Cropper",
+            "description": "Crop video to a region or aspect ratio (1:1, 16:9, 9:16) right in your browser. No upload, fully private."
+        },
+        "VideoMerger": {
+            "title": "Video Merger",
+            "description": "Merge and concatenate multiple videos into one MP4 locally in your browser. No uploads, fully private."
+        },
+        "GifToVideo": {
+            "title": "GIF to Video Converter",
+            "description": "Convert animated GIFs to MP4 or WebM video right in your browser. Smaller files, smooth playback, full privacy — no upload, all processing runs locally."
+        },
+        "VideoReverse": {
+            "title": "Video Reverse",
+            "description": "Play any short video backwards right in your browser. Reverse video and audio, or mute it — 100% private, no upload."
+        },
+        "VideoMute": {
+            "title": "Video Mute (Remove Audio)",
+            "description": "Strip the audio track from a video instantly. Fast, lossless, no re-encoding — everything runs locally in your browser."
+        },
+        "VideoFrames": {
+            "title": "Video Frame Extractor",
+            "description": "Extract frames from a video as PNG/JPG images locally in your browser. Choose an fps or interval, grab a thumbnail, download all as ZIP. No uploads."
         }
     }
 }
