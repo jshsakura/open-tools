@@ -6204,5 +6204,246 @@
                 "desc": "모든 처리가 브라우저에서 이루어지며 JSON은 기기를 벗어나지 않습니다."
             }
         }
+    },
+    "VideoToGif": {
+        "uploadTitle": "동영상을 여기에 놓으세요",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "동영상 선택",
+        "loadingFfmpeg": "FFmpeg 엔진을 불러오는 중...",
+        "loadError": "FFmpeg를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침해 주세요.",
+        "fpsLabel": "프레임 속도",
+        "fpsHint": "FPS가 높을수록 부드럽지만 파일 용량이 커집니다",
+        "widthLabel": "너비",
+        "widthHint": "높이는 비율에 맞춰 자동으로 조정됩니다",
+        "startLabel": "시작 시간",
+        "durationLabel": "길이 (초)",
+        "trimHint": "{start}부터 {duration} 구간을 변환합니다",
+        "convertAction": "GIF 만들기",
+        "processing": "GIF 생성 중...",
+        "success": "GIF가 생성되었습니다!",
+        "error": "GIF를 만드는 중 오류가 발생했습니다.",
+        "resultTitle": "생성된 GIF",
+        "download": "GIF 다운로드",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "동영상 파일을 업로드하세요. 파일은 기기를 벗어나지 않으며 모든 처리는 브라우저에서 로컬로 실행됩니다.",
+            "step2": "프레임 속도와 너비를 선택한 뒤 시작 시간과 길이를 지정해 원하는 구간을 정확히 잘라내세요.",
+            "step3": "GIF 만들기를 누르고 결과를 미리 본 다음 고화질 애니메이션 GIF를 다운로드하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "100% 비공개",
+                "desc": "FFmpeg.wasm이 브라우저 안에서만 동작합니다. 동영상이 서버로 전송되지 않습니다."
+            },
+            "f2": {
+                "title": "고화질",
+                "desc": "2단계 팔레트 필터(palettegen/paletteuse)를 사용해 색 번짐 없이 선명한 GIF를 만듭니다."
+            },
+            "f3": {
+                "title": "정밀한 구간 자르기",
+                "desc": "시작 시간과 길이를 지정해 필요한 부분만 변환할 수 있습니다."
+            },
+            "f4": {
+                "title": "세밀한 제어",
+                "desc": "프레임 속도와 너비를 조절해 부드러움, 용량, 디테일의 균형을 맞추세요."
+            }
+        }
+    },
+    "VideoTrimmer": {
+        "loading": "FFmpeg 엔진을 불러오는 중...",
+        "loadError": "FFmpeg를 불러오지 못했습니다. 연결 상태를 확인해 주세요.",
+        "uploadTitle": "동영상을 여기에 놓으세요",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "동영상 선택",
+        "selectPrompt": "자르기를 시작하려면 동영상 파일을 선택하세요",
+        "start": "시작",
+        "end": "끝",
+        "startLabel": "시작 (HH:MM:SS)",
+        "endLabel": "끝 (HH:MM:SS)",
+        "sliderHint": "핸들을 드래그해 시작과 끝 지점을 설정하세요",
+        "modeLabel": "자르기 모드",
+        "modeFast": "빠른 모드",
+        "modeFastDesc": "재인코딩 없음(-c copy). 즉시 처리되고 무손실이며 키프레임 단위로 잘립니다.",
+        "modeAccurate": "정밀 모드",
+        "modeAccurateDesc": "H.264/AAC로 재인코딩해 프레임 단위로 정확하게 자릅니다. 더 느립니다.",
+        "trimAction": "동영상 자르기",
+        "processing": "자르는 중...",
+        "invalidRange": "끝 시간은 시작 시간보다 커야 합니다.",
+        "done": "자르기 완료!",
+        "error": "동영상을 자르는 중 오류가 발생했습니다.",
+        "resultTitle": "자르기 완료!",
+        "download": "다운로드",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "동영상 파일을 업로드하세요. 모든 처리는 브라우저에서 이뤄지며 서버로 전송되지 않습니다.",
+            "step2": "슬라이더를 움직이거나 HH:MM:SS 값을 입력해 시작과 끝 지점을 설정하세요.",
+            "step3": "빠른 모드 또는 정밀 모드를 선택하고 '동영상 자르기'를 누른 뒤 결과를 미리 보고 MP4로 내려받으세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "100% 안전",
+                "desc": "모든 처리가 WebAssembly로 로컬에서 실행되어 동영상이 기기를 떠나지 않습니다."
+            },
+            "f2": {
+                "title": "빠른 모드",
+                "desc": "재인코딩 없이 스트림 복사로 잘라 즉시, 무손실로 처리합니다."
+            },
+            "f3": {
+                "title": "정밀 모드",
+                "desc": "H.264/AAC로 재인코딩해 프레임 단위로 정확하게 자릅니다."
+            },
+            "f4": {
+                "title": "실시간 미리보기",
+                "desc": "동영상을 미리 확인하고 자른 결과를 내려받기 전에 검토할 수 있습니다."
+            }
+        }
+    },
+    "VideoCompressor": {
+        "uploadTitle": "동영상을 끌어다 놓거나 선택하세요",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "동영상 선택",
+        "selectPrompt": "압축 옵션을 사용하려면 동영상 파일을 선택하세요",
+        "qualityLabel": "품질",
+        "qualityHint": "품질이 낮을수록 파일 용량이 작아집니다.",
+        "quality": {
+            "high": "높음 (최고 품질, 용량 큼)",
+            "medium": "보통 (균형)",
+            "low": "낮음 (가장 작은 용량)"
+        },
+        "resolutionLabel": "최대 해상도",
+        "resolutionHint": "해상도를 낮추면 용량이 더 줄어듭니다. 화면 비율은 그대로 유지됩니다.",
+        "resolution": {
+            "keep": "원본 유지",
+            "1080": "1080p",
+            "720": "720p",
+            "480": "480p"
+        },
+        "action": "동영상 압축",
+        "download": "다운로드",
+        "original": "원본",
+        "compressed": "압축 결과",
+        "loading": "압축 엔진을 불러오는 중...",
+        "processing": "압축 중...",
+        "sizeSaved": "{percent}% 줄어듦",
+        "success": "압축이 완료되었습니다!",
+        "error": "압축 중 오류가 발생했습니다.",
+        "guide": {
+            "title": "동영상 압축기 사용법",
+            "step1": "동영상 파일을 업로드하세요. 파일은 브라우저 안에서만 처리되며 서버로 전송되지 않습니다.",
+            "step2": "품질 단계를 선택하고, 필요하면 줄일 최대 해상도를 함께 지정하세요.",
+            "step3": "압축 버튼을 누른 뒤 원본과 압축 결과 용량을 비교하고 파일을 다운로드하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "100% 개인정보 보호",
+                "desc": "모든 압축이 WebAssembly로 로컬에서 실행됩니다. 동영상이 기기를 벗어나지 않습니다."
+            },
+            "f2": {
+                "title": "품질 프리셋",
+                "desc": "높음·보통·낮음 프리셋이 각각 최적화된 CRF 값으로 매핑되어 용량과 품질의 균형을 맞춥니다."
+            },
+            "f3": {
+                "title": "선택형 해상도 축소",
+                "desc": "최대 해상도를 1080p·720p·480p로 제한해 화면 비율은 유지하면서 용량을 더 줄입니다."
+            },
+            "f4": {
+                "title": "즉시 용량 리포트",
+                "desc": "원본과 압축 결과 용량을 비교하고 정확히 몇 퍼센트를 절약했는지 보여줍니다."
+            }
+        }
+    },
+    "AudioConverter": {
+        "loading": "오디오 엔진을 불러오는 중...",
+        "loadError": "오디오 엔진을 불러오지 못했습니다. 연결 상태를 확인해 주세요.",
+        "inputPlaceholder": "여기에 오디오 파일을 끌어다 놓으세요",
+        "chooseFile": "오디오 선택",
+        "sourceLabel": "원본 파일",
+        "emptyHint": "변환 옵션을 사용하려면 오디오 파일을 선택하세요",
+        "formatLabel": "변환할 형식",
+        "lossy": "손실",
+        "lossless": "무손실",
+        "bitrateLabel": "비트레이트",
+        "bitrateHint": "비트레이트가 높을수록 음질이 좋아지지만 파일 크기가 커집니다.",
+        "bitrateNa": "무손실 형식에는 비트레이트가 적용되지 않습니다.",
+        "convertAction": "오디오 변환",
+        "processing": "변환하는 중...",
+        "success": "변환이 완료되었습니다!",
+        "convertError": "변환 중 오류가 발생했습니다.",
+        "resultTitle": "변환 완료!",
+        "download": "다운로드",
+        "guide": {
+            "title": "사용 방법",
+            "step1": "자주 쓰는 형식(MP3, WAV, M4A, OGG, FLAC)의 오디오 파일을 업로드하세요.",
+            "step2": "변환할 형식을 고르고, 손실 형식이라면 비트레이트(128~320kbps)를 선택하세요.",
+            "step3": "변환 버튼을 누르고 결과를 미리 들어본 뒤 변환된 파일을 다운로드하세요."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "5가지 형식",
+                "desc": "각 형식에 맞는 코덱으로 MP3, WAV, AAC(m4a), OGG, FLAC 간 변환을 지원합니다."
+            },
+            "f2": {
+                "title": "100% 비공개",
+                "desc": "WebAssembly로 브라우저 안에서만 변환되어 파일이 기기를 벗어나지 않습니다."
+            },
+            "f3": {
+                "title": "비트레이트 조절",
+                "desc": "손실 형식에서 128·192·256·320kbps 중 선택해 음질과 용량을 조절하세요."
+            },
+            "f4": {
+                "title": "즉시 미리듣기",
+                "desc": "다운로드 전에 원본과 변환된 오디오를 페이지에서 바로 재생할 수 있습니다."
+            }
+        }
+    },
+    "AudioExtractor": {
+        "loading": "오디오 엔진을 불러오는 중...",
+        "loadError": "오디오 엔진을 불러오지 못했습니다. 연결 상태를 확인해 주세요.",
+        "uploadTitle": "동영상을 여기에 놓으세요",
+        "uploadHint": "MP4, WebM, MOV, AVI, MKV",
+        "chooseFile": "동영상 선택",
+        "selectPrompt": "추출 옵션을 사용하려면 동영상 파일을 선택하세요",
+        "formatLabel": "출력 형식",
+        "bitrateLabel": "오디오 비트레이트",
+        "losslessNote": "WAV는 무손실(비압축) 형식이라 비트레이트가 적용되지 않습니다.",
+        "trimLabel": "구간 자르기 (선택)",
+        "startLabel": "시작 (초)",
+        "durationLabel": "길이 (초)",
+        "trimHint": "둘 다 0으로 두면 전체 오디오를 추출합니다.",
+        "extractAction": "오디오 추출",
+        "processing": "추출하는 중...",
+        "success": "오디오를 추출했습니다!",
+        "error": "추출 중 문제가 발생했습니다.",
+        "resultTitle": "추출 완료",
+        "download": "다운로드",
+        "guide": {
+            "title": "오디오 추출기 사용 방법",
+            "step1": "동영상 파일을 업로드하세요. 파일은 기기에만 남고 서버로 전송되지 않습니다.",
+            "step2": "출력 형식(MP3, WAV, AAC, OGG)을 고르고, 손실 형식은 비트레이트를 설정한 뒤 필요하면 구간을 잘라내세요.",
+            "step3": "오디오 추출을 누르면 결과를 미리 듣고 파일로 다운로드할 수 있습니다."
+        },
+        "features": {
+            "title": "주요 기능",
+            "f1": {
+                "title": "100% 브라우저 처리",
+                "desc": "WebAssembly로 기기 안에서 추출되어 동영상이 외부로 전송되지 않습니다."
+            },
+            "f2": {
+                "title": "다양한 형식 지원",
+                "desc": "각 형식에 맞는 코덱으로 MP3, WAV, AAC(m4a), OGG로 내보냅니다."
+            },
+            "f3": {
+                "title": "비트레이트 조절",
+                "desc": "손실 형식은 128k~320k 중에서 골라 음질과 용량의 균형을 맞출 수 있습니다."
+            },
+            "f4": {
+                "title": "구간 추출",
+                "desc": "시작 시간과 길이를 지정해 필요한 부분만 추출할 수 있습니다."
+            }
+        }
     }
 }

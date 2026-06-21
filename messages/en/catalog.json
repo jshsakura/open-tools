@@ -894,6 +894,26 @@
         "JsonPathFinder": {
             "title": "JSONPath Finder",
             "description": "Query JSON with JSONPath and see matched values and their paths instantly."
+        },
+        "VideoToGif": {
+            "title": "Video to GIF Converter",
+            "description": "Turn any video into a high-quality animated GIF right in your browser. Trim a segment, set FPS and width, and download instantly — no upload, fully private."
+        },
+        "VideoTrimmer": {
+            "title": "Video Trimmer",
+            "description": "Trim and cut videos right in your browser. Set start and end points, choose fast (no re-encode) or accurate mode, and download the clip. 100% private, nothing is uploaded."
+        },
+        "VideoCompressor": {
+            "title": "Video Compressor",
+            "description": "Shrink video file size in your browser. Pick a quality level and optional resolution, then re-encode to MP4 — nothing is uploaded."
+        },
+        "AudioConverter": {
+            "title": "Audio Converter",
+            "description": "Convert audio between MP3, WAV, AAC, OGG, and FLAC right in your browser. 100% private — no uploads, powered by WebAssembly."
+        },
+        "AudioExtractor": {
+            "title": "Audio Extractor",
+            "description": "Extract the audio track from any video file and save it as MP3, WAV, AAC, or OGG — all in your browser, nothing uploaded."
         }
     }
 }

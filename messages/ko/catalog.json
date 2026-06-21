@@ -946,6 +946,26 @@
         "JsonPathFinder": {
             "title": "JSONPath 파인더",
             "description": "JSONPath로 JSON을 조회하고 일치하는 값과 경로를 바로 확인하세요."
+        },
+        "VideoToGif": {
+            "title": "동영상 GIF 변환기",
+            "description": "브라우저에서 바로 동영상을 고화질 GIF로 변환하세요. 원하는 구간을 자르고 FPS와 너비를 설정해 즉시 다운로드할 수 있습니다. 업로드 없이 100% 비공개로 처리됩니다."
+        },
+        "VideoTrimmer": {
+            "title": "동영상 자르기",
+            "description": "브라우저에서 바로 동영상을 자르고 편집하세요. 시작과 끝 지점을 지정하고 빠른 모드(재인코딩 없음) 또는 정밀 모드를 선택해 클립을 내려받을 수 있습니다. 파일은 업로드되지 않아 100% 안전합니다."
+        },
+        "VideoCompressor": {
+            "title": "동영상 압축기",
+            "description": "브라우저에서 동영상 용량을 줄이세요. 품질과 해상도를 고른 뒤 MP4로 다시 인코딩하며, 파일은 업로드되지 않습니다."
+        },
+        "AudioConverter": {
+            "title": "오디오 변환기",
+            "description": "MP3, WAV, AAC, OGG, FLAC 형식을 브라우저에서 바로 변환하세요. 파일 업로드 없이 100% 비공개로 처리되는 WebAssembly 기반 도구입니다."
+        },
+        "AudioExtractor": {
+            "title": "오디오 추출기",
+            "description": "동영상 파일에서 오디오 트랙만 추출해 MP3, WAV, AAC, OGG로 저장하세요. 모든 처리는 브라우저에서 이루어지며 업로드되지 않습니다."
         }
     }
 }

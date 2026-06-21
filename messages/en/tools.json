@@ -6202,5 +6202,246 @@
                 "desc": "Everything runs in your browser. Your JSON never leaves your device."
             }
         }
+    },
+    "VideoToGif": {
+        "uploadTitle": "Drop your video here",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "Choose Video",
+        "loadingFfmpeg": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection and refresh.",
+        "fpsLabel": "Frame Rate",
+        "fpsHint": "Higher FPS is smoother but produces a larger file",
+        "widthLabel": "Width",
+        "widthHint": "Height scales automatically to keep the aspect ratio",
+        "startLabel": "Start Time",
+        "durationLabel": "Duration (s)",
+        "trimHint": "Capturing {duration} starting at {start}",
+        "convertAction": "Create GIF",
+        "processing": "Creating GIF...",
+        "success": "GIF created successfully!",
+        "error": "An error occurred while creating the GIF.",
+        "resultTitle": "Your GIF",
+        "download": "Download GIF",
+        "guide": {
+            "title": "How to use",
+            "step1": "Upload a video file — it never leaves your device; all processing runs locally in your browser.",
+            "step2": "Choose the frame rate and width, then set a start time and duration to trim the exact segment you want.",
+            "step3": "Click Create GIF, preview the result, and download your high-quality animated GIF."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "FFmpeg.wasm runs entirely in your browser. Your video is never uploaded to any server."
+            },
+            "f2": {
+                "title": "High Quality",
+                "desc": "Uses a two-pass palette filter (palettegen/paletteuse) for crisp colors without banding."
+            },
+            "f3": {
+                "title": "Precise Trimming",
+                "desc": "Pick a start time and duration to convert just the part of the video you need."
+            },
+            "f4": {
+                "title": "Full Control",
+                "desc": "Adjust frame rate and width to balance smoothness, size, and detail."
+            }
+        }
+    },
+    "VideoTrimmer": {
+        "loading": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection.",
+        "uploadTitle": "Drop a video here",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Please select a video file to start trimming",
+        "start": "Start",
+        "end": "End",
+        "startLabel": "Start (HH:MM:SS)",
+        "endLabel": "End (HH:MM:SS)",
+        "sliderHint": "Drag the handles to set the start and end points",
+        "modeLabel": "Trim Mode",
+        "modeFast": "Fast",
+        "modeFastDesc": "No re-encoding (-c copy). Instant and lossless, cuts at keyframes.",
+        "modeAccurate": "Accurate",
+        "modeAccurateDesc": "Re-encodes (H.264/AAC) for frame-accurate cuts. Slower.",
+        "trimAction": "Trim Video",
+        "processing": "Trimming...",
+        "invalidRange": "End time must be greater than start time.",
+        "done": "Trim complete!",
+        "error": "An error occurred while trimming the video.",
+        "resultTitle": "Trim Complete!",
+        "download": "Download",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload a video file. It is processed entirely in your browser and never uploaded to a server.",
+            "step2": "Set the start and end points with the slider or by typing HH:MM:SS values.",
+            "step3": "Pick fast or accurate mode, click Trim Video, then preview and download your MP4 clip."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All processing runs locally via WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Fast Mode",
+                "desc": "Stream-copy trimming with no re-encoding for near-instant, lossless cuts."
+            },
+            "f3": {
+                "title": "Accurate Mode",
+                "desc": "Re-encode with H.264/AAC for precise, frame-accurate trim boundaries."
+            },
+            "f4": {
+                "title": "Live Preview",
+                "desc": "Scrub a video preview and review the trimmed result before downloading."
+            }
+        }
+    },
+    "VideoCompressor": {
+        "uploadTitle": "Drop or choose a video",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Select a video file to enable compression options",
+        "qualityLabel": "Quality",
+        "qualityHint": "Lower quality means a smaller file.",
+        "quality": {
+            "high": "High (best quality, larger file)",
+            "medium": "Medium (balanced)",
+            "low": "Low (smallest file)"
+        },
+        "resolutionLabel": "Max Resolution",
+        "resolutionHint": "Downscaling reduces size further. Aspect ratio is preserved.",
+        "resolution": {
+            "keep": "Keep original",
+            "1080": "1080p",
+            "720": "720p",
+            "480": "480p"
+        },
+        "action": "Compress Video",
+        "download": "Download",
+        "original": "Original",
+        "compressed": "Compressed",
+        "loading": "Loading compression engine...",
+        "processing": "Compressing...",
+        "sizeSaved": "{percent}% smaller",
+        "success": "Compression complete!",
+        "error": "An error occurred during compression.",
+        "guide": {
+            "title": "How to use the Video Compressor",
+            "step1": "Upload a video file — it stays in your browser and is never sent to a server.",
+            "step2": "Choose a quality level and, optionally, a maximum resolution to downscale to.",
+            "step3": "Click Compress, then compare the original and compressed sizes and download the result."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All compression runs locally with WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Quality Presets",
+                "desc": "High, medium, and low presets map to tuned CRF values for the right size-quality balance."
+            },
+            "f3": {
+                "title": "Optional Downscaling",
+                "desc": "Cap the resolution at 1080p, 720p, or 480p to cut file size while keeping the aspect ratio."
+            },
+            "f4": {
+                "title": "Instant Size Report",
+                "desc": "See the original vs. compressed size and exactly how many percent you saved."
+            }
+        }
+    },
+    "AudioConverter": {
+        "loading": "Loading audio engine...",
+        "loadError": "Failed to load the audio engine. Please check your connection.",
+        "inputPlaceholder": "Drop an audio file here",
+        "chooseFile": "Choose Audio",
+        "sourceLabel": "Source file",
+        "emptyHint": "Select an audio file to enable conversion options",
+        "formatLabel": "Target format",
+        "lossy": "Lossy",
+        "lossless": "Lossless",
+        "bitrateLabel": "Bitrate",
+        "bitrateHint": "Higher bitrate means better quality and a larger file.",
+        "bitrateNa": "Bitrate does not apply to lossless formats.",
+        "convertAction": "Convert Audio",
+        "processing": "Converting...",
+        "success": "Conversion complete!",
+        "convertError": "An error occurred during conversion.",
+        "resultTitle": "Conversion complete!",
+        "download": "Download",
+        "guide": {
+            "title": "How to use",
+            "step1": "Upload an audio file in any common format (MP3, WAV, M4A, OGG, or FLAC).",
+            "step2": "Pick a target format and, for lossy formats, choose a bitrate (128–320 kbps).",
+            "step3": "Click Convert, preview the result, and download your converted file."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "5 formats",
+                "desc": "Convert between MP3, WAV, AAC (m4a), OGG, and FLAC with the correct codec for each."
+            },
+            "f2": {
+                "title": "100% private",
+                "desc": "Conversion runs entirely in your browser via WebAssembly — your files never leave your device."
+            },
+            "f3": {
+                "title": "Bitrate control",
+                "desc": "Choose 128, 192, 256, or 320 kbps for lossy formats to balance quality and size."
+            },
+            "f4": {
+                "title": "Instant preview",
+                "desc": "Play both the source and converted audio in-page before downloading."
+            }
+        }
+    },
+    "AudioExtractor": {
+        "loading": "Loading audio engine...",
+        "loadError": "Failed to load the audio engine. Please check your connection.",
+        "uploadTitle": "Drop a video here",
+        "uploadHint": "MP4, WebM, MOV, AVI, MKV",
+        "chooseFile": "Choose Video",
+        "selectPrompt": "Select a video file to enable extraction options",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV is uncompressed — bitrate does not apply.",
+        "trimLabel": "Trim (optional)",
+        "startLabel": "Start (sec)",
+        "durationLabel": "Duration (sec)",
+        "trimHint": "Leave both at 0 to extract the full audio track.",
+        "extractAction": "Extract Audio",
+        "processing": "Extracting...",
+        "success": "Audio extracted!",
+        "error": "Something went wrong during extraction.",
+        "resultTitle": "Extraction Complete",
+        "download": "Download",
+        "guide": {
+            "title": "How to use the Audio Extractor",
+            "step1": "Upload a video file — it stays on your device and is never sent to a server.",
+            "step2": "Pick an output format (MP3, WAV, AAC, OGG), set a bitrate for lossy formats, and optionally trim a segment.",
+            "step3": "Click Extract Audio, then preview the result and download your audio file."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% In-Browser",
+                "desc": "Extraction runs locally with WebAssembly — your video never leaves your device."
+            },
+            "f2": {
+                "title": "Multiple Formats",
+                "desc": "Export to MP3, WAV, AAC (m4a), or OGG using the right codec for each."
+            },
+            "f3": {
+                "title": "Bitrate Control",
+                "desc": "Choose 128k–320k for lossy formats to balance quality and file size."
+            },
+            "f4": {
+                "title": "Trim Segments",
+                "desc": "Extract just the part you need by setting a start time and duration."
+            }
+        }
     }
 }
