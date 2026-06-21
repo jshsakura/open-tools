@@ -3016,7 +3016,11 @@
             }
         },
         "copy": "Copy",
-        "clear": "Clear"
+        "clear": "Clear",
+        "downloadSvg": "Download SVG",
+        "fillToggle": "Fill Shape",
+        "commandBreakdown": "Command Breakdown",
+        "noCommands": "No path commands to display."
     },
     "ColorNameFinder": {
         "title": "Color Name Finder",
@@ -4147,7 +4151,11 @@
         "ratio": "Ratio",
         "width": "Width",
         "height": "Height",
-        "simplified": "Simplified ratio"
+        "simplified": "Simplified ratio",
+        "presets": "Presets",
+        "preview": "Preview",
+        "copy": "Copy",
+        "copied": "Copied!"
     },
     "CssClampGenerator": {
         "minViewport": "Min viewport",
@@ -4157,7 +4165,13 @@
         "result": "Result",
         "copy": "Copy",
         "copied": "Copied!",
-        "invalid": "Check your values"
+        "invalid": "Check your values",
+        "property": "CSS Property",
+        "preview": "Live Preview",
+        "previewWidth": "Preview viewport width",
+        "atMin": "At Min",
+        "atCurrent": "At Current",
+        "atMax": "At Max"
     },
     "RomanNumeralConverter": {
         "number": "Number",
@@ -4540,7 +4554,9 @@
             "spacing": "Spacing Scale",
             "exportBtn": "Copy Config Code",
             "previewText": "Tailwind Component Live Preview",
-            "darkMode": "Dark Mode Strategy"
+            "darkMode": "Dark Mode Strategy",
+            "colorScale": "Color Scale",
+            "fontFamily": "Font Family"
         }
     },
     "CssGridGenerator": {
@@ -4564,7 +4580,8 @@
             "rows": "Rows count",
             "cols": "Cols count",
             "gap": "Gap size",
-            "codeExport": "Copy CSS Grid Code"
+            "codeExport": "Copy CSS Grid Code",
+            "preview": "Live Preview"
         }
     },
     "SvgShapesGenerator": {
@@ -4588,7 +4605,22 @@
             "complexity": "Wave Complexity",
             "colorSelect": "Gradient Color",
             "randomize": "Generate Random Shape",
-            "copySvg": "Copy SVG Code"
+            "copySvg": "Copy SVG Code",
+            "shapeType": "Shape Type",
+            "shape_blob": "Blob",
+            "shape_waves": "Waves",
+            "shape_layeredWaves": "Layered Waves",
+            "shape_polygon": "Polygon",
+            "shape_star": "Star",
+            "shape_corner": "Corner",
+            "fillMode": "Fill",
+            "fillSolid": "Solid",
+            "fillGradient": "Gradient",
+            "colorSelect2": "Second Color",
+            "strokeToggle": "Add Stroke",
+            "downloadSvg": "Download SVG",
+            "downloadPng": "Download PNG",
+            "exportFailed": "Export failed"
         }
     },
     "MeshGradientGenerator": {
@@ -4611,7 +4643,13 @@
         "ui": {
             "pointCount": "Control Points",
             "animate": "Animate Gradient",
-            "copyCss": "Copy CSS Styles"
+            "copyCss": "Copy CSS Styles",
+            "colorLabel": "Color",
+            "addColor": "Add Color",
+            "removeColor": "Remove color",
+            "randomize": "Randomize",
+            "exportPng": "Export PNG",
+            "exportFailed": "Export failed"
         }
     },
     "FontPairer": {
@@ -4636,7 +4674,20 @@
             "sampleTitle": "This is a Heading Example",
             "sampleBody": "This is a body text example. Check the readability and harmony between fonts.",
             "copyImport": "Copy Import Styles",
-            "copied": "Copied to clipboard"
+            "copied": "Copied to clipboard",
+            "categoryFilter": "Category",
+            "category_all": "All",
+            "category_serif": "Serif",
+            "category_sans": "Sans",
+            "category_display": "Display",
+            "category_mono": "Mono",
+            "weight": "Weight",
+            "size": "Heading Size",
+            "lineHeight": "Line Height",
+            "cssOutput": "Font Family CSS",
+            "copyCss": "Copy CSS",
+            "previewTitleLabel": "Preview Heading",
+            "previewBodyLabel": "Preview Body"
         }
     },
     "DockerComposeGenerator": {
@@ -4830,7 +4881,19 @@
             "drawMode": "Drawing Mode",
             "canvasArea": "Diagram Canvas Area",
             "copyText": "Copy Text Diagram",
-            "copied": "Copied to clipboard"
+            "copied": "Copied to clipboard",
+            "template": "Starter Template",
+            "templatePlaceholder": "Choose a template…",
+            "template_flowchart": "Flowchart",
+            "template_tree": "File Tree",
+            "template_table": "Table",
+            "template_box": "Box",
+            "drawBox": "Draw Box",
+            "boxWidth": "Box width",
+            "boxHeight": "Box height",
+            "insertBox": "Insert",
+            "download": "Download .txt",
+            "downloaded": "Downloaded"
         }
     },
     "BudgetPlanner": {

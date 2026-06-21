@@ -3018,7 +3018,11 @@
             }
         },
         "copy": "복사",
-        "clear": "지우기"
+        "clear": "지우기",
+        "downloadSvg": "SVG 다운로드",
+        "fillToggle": "도형 채우기",
+        "commandBreakdown": "명령어 분석",
+        "noCommands": "표시할 경로 명령어가 없습니다."
     },
     "ColorNameFinder": {
         "title": "색상 이름 탐색기",
@@ -4149,7 +4153,11 @@
         "ratio": "비율",
         "width": "너비",
         "height": "높이",
-        "simplified": "간단한 비율"
+        "simplified": "간단한 비율",
+        "presets": "프리셋",
+        "preview": "미리보기",
+        "copy": "복사",
+        "copied": "복사되었습니다!"
     },
     "CssClampGenerator": {
         "minViewport": "최소 뷰포트",
@@ -4159,7 +4167,13 @@
         "result": "결과",
         "copy": "복사",
         "copied": "복사됨!",
-        "invalid": "값을 확인하세요"
+        "invalid": "값을 확인하세요",
+        "property": "CSS 속성",
+        "preview": "실시간 미리보기",
+        "previewWidth": "미리보기 뷰포트 너비",
+        "atMin": "최소 시",
+        "atCurrent": "현재 시",
+        "atMax": "최대 시"
     },
     "RomanNumeralConverter": {
         "number": "숫자",
@@ -4542,7 +4556,9 @@
             "spacing": "기본 스페이싱 배수",
             "exportBtn": "설정 파일 복사",
             "previewText": "Tailwind 컴포넌트 실시간 프리뷰",
-            "darkMode": "다크 모드 방식"
+            "darkMode": "다크 모드 방식",
+            "colorScale": "컬러 스케일",
+            "fontFamily": "글꼴"
         }
     },
     "CssGridGenerator": {
@@ -4566,7 +4582,8 @@
             "rows": "행 개수 (Rows)",
             "cols": "열 개수 (Cols)",
             "gap": "간격 (Gap)",
-            "codeExport": "CSS 코드 복사"
+            "codeExport": "CSS 코드 복사",
+            "preview": "실시간 미리보기"
         }
     },
     "SvgShapesGenerator": {
@@ -4590,7 +4607,22 @@
             "complexity": "곡선 복잡도",
             "colorSelect": "색상 그라데이션",
             "randomize": "새로운 모양 생성",
-            "copySvg": "SVG 코드 복사"
+            "copySvg": "SVG 코드 복사",
+            "shapeType": "도형 종류",
+            "shape_blob": "블롭",
+            "shape_waves": "파도",
+            "shape_layeredWaves": "레이어드 파도",
+            "shape_polygon": "다각형",
+            "shape_star": "별",
+            "shape_corner": "코너",
+            "fillMode": "채우기",
+            "fillSolid": "단색",
+            "fillGradient": "그라데이션",
+            "colorSelect2": "두 번째 색상",
+            "strokeToggle": "외곽선 추가",
+            "downloadSvg": "SVG 다운로드",
+            "downloadPng": "PNG 다운로드",
+            "exportFailed": "내보내기에 실패했습니다"
         }
     },
     "MeshGradientGenerator": {
@@ -4613,7 +4645,13 @@
         "ui": {
             "pointCount": "그라데이션 조절점 수",
             "animate": "그라데이션 애니메이션",
-            "copyCss": "CSS 스타일 복사"
+            "copyCss": "CSS 스타일 복사",
+            "colorLabel": "색상",
+            "addColor": "색상 추가",
+            "removeColor": "색상 제거",
+            "randomize": "랜덤 생성",
+            "exportPng": "PNG 내보내기",
+            "exportFailed": "내보내기에 실패했습니다"
         }
     },
     "FontPairer": {
@@ -4638,7 +4676,20 @@
             "sampleTitle": "멋진 제목 예시입니다",
             "sampleBody": "이곳은 본문 텍스트 예시입니다. 폰트의 가독성과 조화를 미리 확인해보세요.",
             "copyImport": "임포트 코드 복사",
-            "copied": "클립보드에 복사되었습니다"
+            "copied": "클립보드에 복사되었습니다",
+            "categoryFilter": "분류",
+            "category_all": "전체",
+            "category_serif": "세리프",
+            "category_sans": "산세리프",
+            "category_display": "디스플레이",
+            "category_mono": "모노",
+            "weight": "굵기",
+            "size": "제목 크기",
+            "lineHeight": "줄 간격",
+            "cssOutput": "폰트 패밀리 CSS",
+            "copyCss": "CSS 복사",
+            "previewTitleLabel": "미리보기 제목",
+            "previewBodyLabel": "미리보기 본문"
         }
     },
     "DockerComposeGenerator": {
@@ -4832,7 +4883,19 @@
             "drawMode": "그리기 도구",
             "canvasArea": "다이어그램 캔버스 영역",
             "copyText": "텍스트 다이어그램 복사",
-            "copied": "클립보드에 복사되었습니다"
+            "copied": "클립보드에 복사되었습니다",
+            "template": "시작 템플릿",
+            "templatePlaceholder": "템플릿 선택…",
+            "template_flowchart": "순서도",
+            "template_tree": "파일 트리",
+            "template_table": "표",
+            "template_box": "상자",
+            "drawBox": "상자 그리기",
+            "boxWidth": "상자 너비",
+            "boxHeight": "상자 높이",
+            "insertBox": "삽입",
+            "download": ".txt 다운로드",
+            "downloaded": "다운로드됨"
         }
     },
     "BudgetPlanner": {
