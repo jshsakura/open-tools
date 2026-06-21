@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useTranslations } from "next-intl"
-import { Play, Pause, Square, Volume2 } from "lucide-react"
+import { Play, Pause, Square, Volume2, Circle, Download, Info } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
@@ -18,11 +19,22 @@ export function TextToSpeechTool() {
     const [selectedVoice, setSelectedVoice] = useState("")
     const [rate, setRate] = useState(1)
     const [pitch, setPitch] = useState(1)
+    const [volume, setVolume] = useState(1)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isPaused, setIsPaused] = useState(false)
     const [highlightIndex, setHighlightIndex] = useState(-1)
     const [supported, setSupported] = useState(true)
+
+    // Recording (best-effort via tab/display audio capture)
+    const [recordEnabled, setRecordEnabled] = useState(false)
+    const [isRecording, setIsRecording] = useState(false)
+    const [audioUrl, setAudioUrl] = useState<string | null>(null)
+    const [canRecord, setCanRecord] = useState(false)
+
     const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
+    const recorderRef = useRef<MediaRecorder | null>(null)
+    const recordStreamRef = useRef<MediaStream | null>(null)
+    const chunksRef = useRef<Blob[]>([])
 
     useEffect(() => {
         if (typeof window === "undefined" || !window.speechSynthesis) {
@@ -30,14 +42,21 @@ export function TextToSpeechTool() {
             return
         }
 
+        setCanRecord(
+            typeof navigator !== "undefined" &&
+            !!navigator.mediaDevices?.getDisplayMedia &&
+            typeof window.MediaRecorder !== "undefined"
+        )
+
         const loadVoices = () => {
             const v = window.speechSynthesis.getVoices()
             if (v.length > 0) {
                 setVoices(v)
-                if (!selectedVoice && v.length > 0) {
+                setSelectedVoice((prev) => {
+                    if (prev) return prev
                     const defaultV = v.find((voice) => voice.default) || v[0]
-                    setSelectedVoice(defaultV.name)
-                }
+                    return defaultV.name
+                })
             }
         }
 
@@ -47,10 +66,70 @@ export function TextToSpeechTool() {
             window.speechSynthesis.removeEventListener("voiceschanged", loadVoices)
             window.speechSynthesis.cancel()
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const handlePlay = useCallback(() => {
+    // Revoke object URL on unmount / replacement
+    useEffect(() => {
+        return () => {
+            if (audioUrl) URL.revokeObjectURL(audioUrl)
+        }
+    }, [audioUrl])
+
+    const stopRecording = useCallback(() => {
+        const recorder = recorderRef.current
+        if (recorder && recorder.state !== "inactive") {
+            recorder.stop()
+        }
+        recordStreamRef.current?.getTracks().forEach((track) => track.stop())
+        recordStreamRef.current = null
+        recorderRef.current = null
+        setIsRecording(false)
+    }, [])
+
+    // Start a best-effort capture of the tab's audio output.
+    const startRecording = useCallback(async (): Promise<boolean> => {
+        try {
+            const stream = await navigator.mediaDevices.getDisplayMedia({
+                video: true,
+                audio: true,
+            })
+            const audioTracks = stream.getAudioTracks()
+            if (audioTracks.length === 0) {
+                stream.getTracks().forEach((track) => track.stop())
+                toast.error(t("recordNoAudio"))
+                return false
+            }
+            // Drop video tracks — we only want audio.
+            stream.getVideoTracks().forEach((track) => {
+                track.stop()
+                stream.removeTrack(track)
+            })
+
+            const recorder = new MediaRecorder(stream)
+            chunksRef.current = []
+            recorder.ondataavailable = (e) => {
+                if (e.data.size > 0) chunksRef.current.push(e.data)
+            }
+            recorder.onstop = () => {
+                const blob = new Blob(chunksRef.current, { type: recorder.mimeType || "audio/webm" })
+                setAudioUrl((prev) => {
+                    if (prev) URL.revokeObjectURL(prev)
+                    return URL.createObjectURL(blob)
+                })
+            }
+
+            recordStreamRef.current = stream
+            recorderRef.current = recorder
+            recorder.start()
+            setIsRecording(true)
+            return true
+        } catch {
+            toast.error(t("recordFailed"))
+            return false
+        }
+    }, [t])
+
+    const handlePlay = useCallback(async () => {
         if (!text.trim()) {
             toast.error(t("emptyText"))
             return
@@ -64,11 +143,17 @@ export function TextToSpeechTool() {
 
         window.speechSynthesis.cancel()
 
+        if (recordEnabled && canRecord) {
+            const started = await startRecording()
+            if (!started) return
+        }
+
         const utterance = new SpeechSynthesisUtterance(text)
         const voice = voices.find((v) => v.name === selectedVoice)
         if (voice) utterance.voice = voice
         utterance.rate = rate
         utterance.pitch = pitch
+        utterance.volume = volume
 
         utterance.onboundary = (e) => {
             if (e.name === "word") {
@@ -80,19 +165,24 @@ export function TextToSpeechTool() {
             setIsPlaying(false)
             setIsPaused(false)
             setHighlightIndex(-1)
+            if (recorderRef.current) stopRecording()
         }
 
         utterance.onerror = () => {
             setIsPlaying(false)
             setIsPaused(false)
             setHighlightIndex(-1)
+            if (recorderRef.current) stopRecording()
         }
 
         utteranceRef.current = utterance
         window.speechSynthesis.speak(utterance)
         setIsPlaying(true)
         setIsPaused(false)
-    }, [text, isPaused, voices, selectedVoice, rate, pitch, t])
+    }, [
+        text, isPaused, voices, selectedVoice, rate, pitch, volume,
+        recordEnabled, canRecord, startRecording, stopRecording, t,
+    ])
 
     const handlePause = () => {
         window.speechSynthesis.pause()
@@ -105,6 +195,17 @@ export function TextToSpeechTool() {
         setIsPlaying(false)
         setIsPaused(false)
         setHighlightIndex(-1)
+        if (recorderRef.current) stopRecording()
+    }
+
+    const downloadAudio = () => {
+        if (!audioUrl) return
+        const link = document.createElement("a")
+        link.href = audioUrl
+        link.download = "speech.webm"
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
     }
 
     const renderHighlightedText = () => {
@@ -165,7 +266,7 @@ export function TextToSpeechTool() {
                         )}
 
                         {/* Controls */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                             {!isPlaying ? (
                                 <Button onClick={handlePlay}>
                                     <Play className="w-4 h-4 mr-2" />
@@ -185,7 +286,23 @@ export function TextToSpeechTool() {
                                 <Square className="w-4 h-4 mr-2" />
                                 {t("stop")}
                             </Button>
+                            {isRecording && (
+                                <span className="flex items-center gap-1.5 text-xs font-bold text-rose-500">
+                                    <Circle className="w-3 h-3 fill-rose-500 animate-pulse" />
+                                    {t("recording")}
+                                </span>
+                            )}
+                            {audioUrl && !isRecording && (
+                                <Button onClick={downloadAudio} variant="outline">
+                                    <Download className="w-4 h-4 mr-2" />
+                                    {t("saveAudio")}
+                                </Button>
+                            )}
                         </div>
+
+                        {audioUrl && !isRecording && (
+                            <audio src={audioUrl} controls className="w-full" />
+                        )}
                     </CardContent>
                 </Card>
 
@@ -234,6 +351,37 @@ export function TextToSpeechTool() {
                                 step={0.1}
                             />
                         </div>
+
+                        {/* Volume */}
+                        <div className="space-y-2">
+                            <Label>{t("volume")}: {Math.round(volume * 100)}%</Label>
+                            <Slider
+                                value={[volume]}
+                                onValueChange={([v]) => setVolume(v)}
+                                min={0}
+                                max={1}
+                                step={0.05}
+                            />
+                        </div>
+
+                        {/* Record / save audio */}
+                        {canRecord && (
+                            <div className="space-y-2 pt-2 border-t border-border/40">
+                                <div className="flex items-center justify-between">
+                                    <Label htmlFor="tts-record">{t("recordLabel")}</Label>
+                                    <Switch
+                                        id="tts-record"
+                                        checked={recordEnabled}
+                                        onCheckedChange={setRecordEnabled}
+                                        disabled={isPlaying || isPaused || isRecording}
+                                    />
+                                </div>
+                                <p className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                                    <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                                    {t("recordNote")}
+                                </p>
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
             </div>

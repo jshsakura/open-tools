@@ -17,20 +17,11 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { GlassCard } from "@/components/ui/glass-card"
-import { cn } from "@/lib/utils"
-
-const WORD_LIST = [
-  "apple", "beach", "brain", "bread", "brush", "chair", "chest", "chord", "click", "clock",
-  "cloud", "dance", "diary", "drink", "earth", "feast", "field", "flame", "flash", "float",
-  "floor", "focus", "fruit", "glass", "green", "guide", "heart", "house", "juice", "light",
-  "lemon", "magic", "music", "night", "ocean", "paint", "paper", "phone", "piano", "pilot",
-  "plant", "plate", "radio", "river", "robot", "rocky", "round", "scene", "score", "sharp",
-  "shirt", "sight", "silver", "smile", "snake", "space", "spoon", "stage", "star", "stone",
-  "table", "tiger", "toast", "touch", "train", "truck", "voice", "water", "watch", "whale",
-  "world", "write", "youth", "zebra", "active", "bright", "clever", "direct", "energy", "famous",
-  "gentle", "happy", "island", "jungle", "kindly", "lovely", "modern", "native", "orange", "perfect",
-  "quiet", "rising", "strong", "travel", "unique", "vivid", "winter", "yellow", "zenith", "bridge"
-]
+import {
+  buildPassphrase,
+  passphraseEntropy,
+  WORDLIST_SIZE,
+} from "./passphrase-generator.utils"
 
 export function PassphraseGenerator() {
   const t = useTranslations("PassphraseGenerator")
@@ -42,25 +33,9 @@ export function PassphraseGenerator() {
   const [copied, setCopied] = useState(false)
 
   const generate = useCallback(() => {
-    let selected = []
-    const crypto = window.crypto
-    const array = new Uint32Array(wordCount)
-    crypto.getRandomValues(array)
-
-    for (let i = 0; i < wordCount; i++) {
-      let word = WORD_LIST[array[i] % WORD_LIST.length]
-      if (capitalize) {
-        word = word.charAt(0).toUpperCase() + word.slice(1)
-      }
-      selected.push(word)
-    }
-
-    let result = selected.join(separator)
-    if (includeNumber) {
-      const num = Math.floor(Math.random() * 100)
-      result += num
-    }
-    setPassphrase(result)
+    setPassphrase(
+      buildPassphrase({ wordCount, separator, capitalize, includeNumber })
+    )
   }, [wordCount, separator, capitalize, includeNumber])
 
   useEffect(() => {
@@ -73,7 +48,7 @@ export function PassphraseGenerator() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const entropy = Math.round(wordCount * Math.log2(WORD_LIST.length) + (includeNumber ? Math.log2(100) : 0))
+  const entropy = passphraseEntropy({ wordCount, separator, capitalize, includeNumber })
 
   return (
         <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -161,7 +136,10 @@ export function PassphraseGenerator() {
                       style={{ width: `${Math.min(100, (entropy / 80) * 100)}%` }}
                     />
                   </div>
-                  <p className="text-[10px] text-muted-foreground mt-2 leading-relaxed italic">
+                  <p className="text-[10px] text-muted-foreground mt-2 leading-relaxed">
+                    {t("wordlistInfo", { count: WORDLIST_SIZE })}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground leading-relaxed italic">
                     {t("features.f1.desc")}
                   </p>
                 </div>

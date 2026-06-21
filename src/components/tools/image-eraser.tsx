@@ -229,7 +229,113 @@ export function ImageEraser() {
     drawCanvas()
   }, [saveState, drawCanvas])
 
-  // Simple inpainting algorithm using surrounding pixel averaging
+  // Inpaint quality tuning. We operate on a downscaled working buffer so large
+  // images stay responsive, then upscale the filled result back to full res.
+  const WORK_MAX_DIM = 720 // cap the longest side of the working buffer
+  const RING_RADIUS = 9 // sample a wide neighborhood ring (not just adjacent px)
+  const RING_STEP = 2 // skip pixels inside the ring for speed
+  const SMOOTH_PASSES = 2 // light blur passes over the filled region only
+
+  // Distance-weighted fill: for each masked pixel, gather known pixels across an
+  // expanding ring and blend them weighted by 1/distance so nearer color wins.
+  const fillBuffer = useCallback(
+    (data: Uint8ClampedArray, masked: Uint8Array, w: number, h: number) => {
+      // Iterate from the mask boundary inward by repeatedly filling pixels that
+      // have at least one known neighbor — this propagates color into the hole
+      // instead of averaging the whole region into one flat smear.
+      const remaining = new Uint8Array(masked) // 1 = still a hole
+      let holes = 0
+      for (let i = 0; i < remaining.length; i++) if (remaining[i]) holes++
+
+      const maxIterations = w + h // safety bound on propagation passes
+      let iteration = 0
+
+      while (holes > 0 && iteration < maxIterations) {
+        iteration++
+        const filledThisPass: number[] = []
+        const colorThisPass: number[] = []
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const p = y * w + x
+            if (!remaining[p]) continue
+
+            let totalR = 0, totalG = 0, totalB = 0, weight = 0
+
+            for (let r = 1; r <= RING_RADIUS; r++) {
+              for (let dy = -r; dy <= r; dy += RING_STEP) {
+                for (let dx = -r; dx <= r; dx += RING_STEP) {
+                  // Only the perimeter of each ring radius.
+                  if (Math.max(Math.abs(dx), Math.abs(dy)) !== r) continue
+                  const nx = x + dx
+                  const ny = y + dy
+                  if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue
+                  const np = ny * w + nx
+                  if (remaining[np]) continue // still unknown, skip
+                  const wgt = 1 / Math.sqrt(dx * dx + dy * dy)
+                  const ni = np * 4
+                  totalR += data[ni] * wgt
+                  totalG += data[ni + 1] * wgt
+                  totalB += data[ni + 2] * wgt
+                  weight += wgt
+                }
+              }
+              if (weight > 0) break // got enough from the nearest ring(s)
+            }
+
+            if (weight > 0) {
+              filledThisPass.push(p)
+              colorThisPass.push(totalR / weight, totalG / weight, totalB / weight)
+            }
+          }
+        }
+
+        if (filledThisPass.length === 0) break // nothing reachable, stop
+
+        for (let k = 0; k < filledThisPass.length; k++) {
+          const p = filledThisPass[k]
+          const i = p * 4
+          data[i] = Math.round(colorThisPass[k * 3])
+          data[i + 1] = Math.round(colorThisPass[k * 3 + 1])
+          data[i + 2] = Math.round(colorThisPass[k * 3 + 2])
+          data[i + 3] = 255
+          remaining[p] = 0
+          holes--
+        }
+      }
+
+      // Light box-blur smoothing constrained to originally-masked pixels so the
+      // patch blends with its surroundings without softening the whole image.
+      for (let pass = 0; pass < SMOOTH_PASSES; pass++) {
+        const snapshot = new Uint8ClampedArray(data)
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const p = y * w + x
+            if (!masked[p]) continue
+            let sR = 0, sG = 0, sB = 0, n = 0
+            for (let dy = -1; dy <= 1; dy++) {
+              for (let dx = -1; dx <= 1; dx++) {
+                const nx = x + dx
+                const ny = y + dy
+                if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue
+                const ni = (ny * w + nx) * 4
+                sR += snapshot[ni]
+                sG += snapshot[ni + 1]
+                sB += snapshot[ni + 2]
+                n++
+              }
+            }
+            const i = p * 4
+            data[i] = Math.round(sR / n)
+            data[i + 1] = Math.round(sG / n)
+            data[i + 2] = Math.round(sB / n)
+          }
+        }
+      }
+    },
+    []
+  )
+
   const inpaintRegion = useCallback(() => {
     if (!image || !maskCanvasRef.current) return null
 
@@ -237,65 +343,64 @@ export function ImageEraser() {
     const maskCtx = maskCanvas.getContext("2d")
     if (!maskCtx) return null
 
-    const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height)
+    const fullW = image.width
+    const fullH = image.height
 
-    // Create output canvas at full resolution
-    const outputCanvas = document.createElement("canvas")
-    outputCanvas.width = image.width
-    outputCanvas.height = image.height
-    const outputCtx = outputCanvas.getContext("2d")
-    if (!outputCtx) return null
+    // Determine the working scale (downscale large images for speed).
+    const scale = Math.min(1, WORK_MAX_DIM / Math.max(fullW, fullH))
+    const workW = Math.max(1, Math.round(fullW * scale))
+    const workH = Math.max(1, Math.round(fullH * scale))
 
-    // Draw original image
-    outputCtx.drawImage(image, 0, 0)
-    const outputData = outputCtx.getImageData(0, 0, outputCanvas.width, outputCanvas.height)
+    // Build the working color buffer from the source image.
+    const workCanvas = document.createElement("canvas")
+    workCanvas.width = workW
+    workCanvas.height = workH
+    const workCtx = workCanvas.getContext("2d")
+    if (!workCtx) return null
+    workCtx.drawImage(image, 0, 0, workW, workH)
+    const workImage = workCtx.getImageData(0, 0, workW, workH)
 
-    // For each masked pixel, average surrounding non-masked pixels
-    const searchRadius = 20
-    for (let y = 0; y < maskCanvas.height; y++) {
-      for (let x = 0; x < maskCanvas.width; x++) {
-        const maskIdx = (y * maskCanvas.width + x) * 4
-        if (maskData.data[maskIdx + 3] > 0) {
-          // This pixel is masked, need to fill
-          let totalR = 0,
-            totalG = 0,
-            totalB = 0,
-            count = 0
+    // Build a matching downscaled mask (1 where the user painted).
+    const maskScaleCanvas = document.createElement("canvas")
+    maskScaleCanvas.width = workW
+    maskScaleCanvas.height = workH
+    const maskScaleCtx = maskScaleCanvas.getContext("2d")
+    if (!maskScaleCtx) return null
+    maskScaleCtx.drawImage(maskCanvas, 0, 0, workW, workH)
+    const maskScaled = maskScaleCtx.getImageData(0, 0, workW, workH)
 
-          // Search in a spiral pattern for non-masked pixels
-          for (let r = 1; r <= searchRadius && count === 0; r++) {
-            for (let dy = -r; dy <= r; dy++) {
-              for (let dx = -r; dx <= r; dx++) {
-                const nx = x + dx
-                const ny = y + dy
-                if (nx < 0 || nx >= maskCanvas.width || ny < 0 || ny >= maskCanvas.height) continue
-                const nMaskIdx = (ny * maskCanvas.width + nx) * 4
-                if (maskData.data[nMaskIdx + 3] === 0) {
-                  // Non-masked pixel
-                  const nOutIdx = (ny * outputCanvas.width + nx) * 4
-                  totalR += outputData.data[nOutIdx]
-                  totalG += outputData.data[nOutIdx + 1]
-                  totalB += outputData.data[nOutIdx + 2]
-                  count++
-                }
-              }
-            }
-          }
-
-          if (count > 0) {
-            const outIdx = (y * outputCanvas.width + x) * 4
-            outputData.data[outIdx] = Math.round(totalR / count)
-            outputData.data[outIdx + 1] = Math.round(totalG / count)
-            outputData.data[outIdx + 2] = Math.round(totalB / count)
-            outputData.data[outIdx + 3] = 255
-          }
-        }
-      }
+    const masked = new Uint8Array(workW * workH)
+    for (let p = 0; p < masked.length; p++) {
+      masked[p] = maskScaled.data[p * 4 + 3] > 16 ? 1 : 0
     }
 
-    outputCtx.putImageData(outputData, 0, 0)
+    fillBuffer(workImage.data, masked, workW, workH)
+    workCtx.putImageData(workImage, 0, 0)
+
+    // Composite: draw the original at full res, then overlay the upscaled,
+    // filled patch only where the mask was, so unmasked areas keep full detail.
+    const outputCanvas = document.createElement("canvas")
+    outputCanvas.width = fullW
+    outputCanvas.height = fullH
+    const outputCtx = outputCanvas.getContext("2d")
+    if (!outputCtx) return null
+    outputCtx.drawImage(image, 0, 0)
+
+    // Build a full-res patch from the upscaled work buffer, masked by the
+    // original (full-res) mask via destination-in compositing.
+    const patchCanvas = document.createElement("canvas")
+    patchCanvas.width = fullW
+    patchCanvas.height = fullH
+    const patchCtx = patchCanvas.getContext("2d")
+    if (!patchCtx) return null
+    patchCtx.imageSmoothingEnabled = true
+    patchCtx.drawImage(workCanvas, 0, 0, fullW, fullH)
+    patchCtx.globalCompositeOperation = "destination-in"
+    patchCtx.drawImage(maskCanvas, 0, 0, fullW, fullH)
+
+    outputCtx.drawImage(patchCanvas, 0, 0)
     return outputCanvas.toDataURL("image/png")
-  }, [image])
+  }, [image, fillBuffer])
 
   // Run eraser
   const runEraser = useCallback(async () => {

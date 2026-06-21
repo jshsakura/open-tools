@@ -10,43 +10,67 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { RefreshCw, Copy, Check, FileKey } from "lucide-react"
 import { toast } from "sonner"
-import CryptoJS from "crypto-js"
+import {
+    decodeKey,
+    bufToHex,
+    bufToBase64,
+    type KeyEncoding,
+    type OutputEncoding,
+} from "./hmac-generator.utils"
+
+// Web Crypto HMAC supports SHA-1/256/384/512 only (no MD5, no SHA-3).
+const HASH_ALGORITHMS = ["SHA-1", "SHA-256", "SHA-384", "SHA-512"] as const
 
 export function HmacGenerator() {
     const t = useTranslations("HmacGenerator")
     const [input, setInput] = useState("")
     const [secret, setSecret] = useState("")
-    const [algorithm, setAlgorithm] = useState("SHA256")
+    const [algorithm, setAlgorithm] = useState<string>("SHA-256")
+    const [keyEncoding, setKeyEncoding] = useState<KeyEncoding>("utf8")
+    const [outputEncoding, setOutputEncoding] = useState<OutputEncoding>("hex")
     const [output, setOutput] = useState("")
     const [copied, setCopied] = useState(false)
 
-    const generateHmac = () => {
+    const generateHmac = async () => {
         if (!input || !secret) {
             toast.error(t("errorEmpty"))
             return
         }
 
-        let result: CryptoJS.lib.WordArray
-
-        switch (algorithm) {
-            case "MD5":
-                result = CryptoJS.HmacMD5(input, secret)
-                break
-            case "SHA1":
-                result = CryptoJS.HmacSHA1(input, secret)
-                break
-            case "SHA256":
-                result = CryptoJS.HmacSHA256(input, secret)
-                break
-            case "SHA512":
-                result = CryptoJS.HmacSHA512(input, secret)
-                break
-            default:
-                result = CryptoJS.HmacSHA256(input, secret)
+        let keyBytes: Uint8Array
+        try {
+            keyBytes = decodeKey(secret, keyEncoding)
+        } catch {
+            toast.error(t("errorKeyDecode"))
+            return
         }
 
-        setOutput(result.toString(CryptoJS.enc.Hex))
-        toast.success(t("successGenerated"))
+        if (keyBytes.length === 0) {
+            toast.error(t("errorEmpty"))
+            return
+        }
+
+        try {
+            // Copy into a fresh ArrayBuffer-backed view so the type is a plain
+            // BufferSource (not ArrayBufferLike) for importKey.
+            const keyData = new Uint8Array(keyBytes.length)
+            keyData.set(keyBytes)
+            const cryptoKey = await crypto.subtle.importKey(
+                "raw",
+                keyData,
+                { name: "HMAC", hash: algorithm },
+                false,
+                ["sign"]
+            )
+            const messageBytes = new TextEncoder().encode(input)
+            const signature = await crypto.subtle.sign("HMAC", cryptoKey, messageBytes)
+
+            setOutput(outputEncoding === "hex" ? bufToHex(signature) : bufToBase64(signature))
+            toast.success(t("successGenerated"))
+        } catch (error) {
+            console.error("HMAC generation failed:", error)
+            toast.error(t("error"))
+        }
     }
 
     const copyToClipboard = () => {
@@ -67,18 +91,52 @@ export function HmacGenerator() {
                 <CardDescription>{t("description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-3">
                     <div className="space-y-2">
                         <Label htmlFor="algorithm">{t("algoLabel")}</Label>
                         <Select value={algorithm} onValueChange={setAlgorithm}>
-                            <SelectTrigger>
+                            <SelectTrigger id="algorithm">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="MD5">HMAC-MD5</SelectItem>
-                                <SelectItem value="SHA1">HMAC-SHA1</SelectItem>
-                                <SelectItem value="SHA256">HMAC-SHA256</SelectItem>
-                                <SelectItem value="SHA512">HMAC-SHA512</SelectItem>
+                                {HASH_ALGORITHMS.map((algo) => (
+                                    <SelectItem key={algo} value={algo}>
+                                        HMAC-{algo}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="keyEncoding">{t("keyEncodingLabel")}</Label>
+                        <Select
+                            value={keyEncoding}
+                            onValueChange={(v) => setKeyEncoding(v as KeyEncoding)}
+                        >
+                            <SelectTrigger id="keyEncoding">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="utf8">UTF-8</SelectItem>
+                                <SelectItem value="hex">Hex</SelectItem>
+                                <SelectItem value="base64">Base64</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="outputEncoding">{t("outputEncodingLabel")}</Label>
+                        <Select
+                            value={outputEncoding}
+                            onValueChange={(v) => setOutputEncoding(v as OutputEncoding)}
+                        >
+                            <SelectTrigger id="outputEncoding">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="hex">Hex</SelectItem>
+                                <SelectItem value="base64">Base64</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -114,7 +172,9 @@ export function HmacGenerator() {
 
                 {output && (
                     <div className="space-y-2">
-                        <Label>{t("outputLabel")}</Label>
+                        <Label>
+                            {t("outputResultLabel")} ({outputEncoding === "hex" ? "Hex" : "Base64"})
+                        </Label>
                         <div className="relative p-4 bg-muted rounded-md break-all font-mono text-sm">
                             {output}
                             <Button

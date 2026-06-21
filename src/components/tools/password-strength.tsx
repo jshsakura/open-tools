@@ -2,20 +2,48 @@
 
 import { useState, useMemo } from "react"
 import { useTranslations } from "next-intl"
-import { 
-  ShieldCheck, 
-  Eye, 
-  EyeOff, 
+import {
+  ShieldCheck,
+  Eye,
+  EyeOff,
   Info,
-  Clock,
+  AlertTriangle,
   Zap,
   Server,
-  Activity
+  Wifi,
+  Activity,
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GlassCard } from "@/components/ui/glass-card"
 import { cn } from "@/lib/utils"
+import {
+  estimateStrength,
+  formatCrackTime,
+  type StrengthScore,
+} from "./password-strength.utils"
+
+const LEVEL_KEYS = ["weak", "weak", "fair", "good", "strong"] as const
+const LEVEL_COLORS = [
+  "bg-rose-500",
+  "bg-rose-500",
+  "bg-amber-500",
+  "bg-blue-500",
+  "bg-emerald-500",
+] as const
+
+const CHECK_LABELS: Record<string, string> = {
+  length: "12+ Characters",
+  hasUpper: "Uppercase Letters",
+  hasLower: "Lowercase Letters",
+  hasNumber: "Numbers",
+  hasSymbol: "Special Symbols",
+}
+
+function filledSegments(score: StrengthScore): number {
+  // map 0..4 score onto a 4-segment meter
+  return Math.max(1, score)
+}
 
 export function PasswordStrength() {
   const t = useTranslations("PasswordStrength")
@@ -24,8 +52,7 @@ export function PasswordStrength() {
 
   const analysis = useMemo(() => {
     if (!password) return null
-
-    let score = 0
+    const result = estimateStrength(password)
     const checks = {
       length: password.length >= 12,
       hasUpper: /[A-Z]/.test(password),
@@ -33,56 +60,11 @@ export function PasswordStrength() {
       hasNumber: /[0-9]/.test(password),
       hasSymbol: /[^A-Za-z0-9]/.test(password),
     }
-
-    if (password.length > 0) score += Math.min(password.length, 8)
-    if (checks.hasUpper) score += 2
-    if (checks.hasLower) score += 2
-    if (checks.hasNumber) score += 2
-    if (checks.hasSymbol) score += 3
-    if (password.length >= 12) score += 3
-
-    // Simple entropy calculation (bits)
-    let charsetSize = 0
-    if (checks.hasLower) charsetSize += 26
-    if (checks.hasUpper) charsetSize += 26
-    if (checks.hasNumber) charsetSize += 10
-    if (checks.hasSymbol) charsetSize += 33
-    const entropy = Math.floor(password.length * Math.log2(charsetSize || 1))
-
-    // Time to crack (simplified)
-    // 10^9 guesses per second (standard PC)
-    const guessesPerSec = 1e9
-    const totalGuesses = Math.pow(charsetSize || 1, password.length)
-    const secondsToCrack = totalGuesses / guessesPerSec
-
-    const formatTime = (s: number) => {
-      if (s < 1) return "< 1 sec"
-      if (s < 60) return `${Math.round(s)} secs`
-      if (s < 3600) return `${Math.round(s/60)} mins`
-      if (s < 86400) return `${Math.round(s/3600)} hours`
-      if (s < 31536000) return `${Math.round(s/86400)} days`
-      if (s < 3153600000) return `${Math.round(s/31536000)} years`
-      return "Centuries"
-    }
-
-    let level = "weak"
-    let color = "bg-rose-500"
-    if (score > 15) { level = "strong"; color = "bg-emerald-500" }
-    else if (score > 10) { level = "good"; color = "bg-blue-500" }
-    else if (score > 6) { level = "fair"; color = "bg-amber-500" }
-
-    return {
-      score,
-      level,
-      color,
-      entropy,
-      time: formatTime(secondsToCrack),
-      checks
-    }
+    return { ...result, checks }
   }, [password])
 
   return (
-        <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="mx-auto max-w-5xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <GlassCard className="p-8">
         <div className="space-y-6">
           <div className="space-y-2">
@@ -103,6 +85,7 @@ export function PasswordStrength() {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -114,46 +97,73 @@ export function PasswordStrength() {
               {/* Strength Meter */}
               <div className="space-y-2">
                 <div className="flex justify-between items-end">
-                  <span className="text-sm font-medium">{t("level")}: <span className={cn("font-bold uppercase", analysis.color.replace("bg-", "text-"))}>{t(analysis.level)}</span></span>
-                  <span className="text-xs text-muted-foreground">{analysis.entropy} bits</span>
+                  <span className="text-sm font-medium">
+                    {t("level")}:{" "}
+                    <span className={cn("font-bold uppercase", LEVEL_COLORS[analysis.score].replace("bg-", "text-"))}>
+                      {t(LEVEL_KEYS[analysis.score])}
+                    </span>
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {analysis.entropyBits} {t("entropy")}
+                  </span>
                 </div>
                 <div className="h-3 bg-muted rounded-full overflow-hidden flex gap-1 p-0.5">
-                  {[0, 1, 2, 3].map((segment) => (
-                    <div 
+                  {[1, 2, 3, 4].map((segment) => (
+                    <div
                       key={segment}
                       className={cn(
                         "h-full flex-1 rounded-sm transition-all duration-500",
-                        segment <= (analysis.level === "strong" ? 3 : analysis.level === "good" ? 2 : analysis.level === "fair" ? 1 : 0) ? analysis.color : "bg-muted-foreground/10"
+                        segment <= filledSegments(analysis.score)
+                          ? LEVEL_COLORS[analysis.score]
+                          : "bg-muted-foreground/10"
                       )}
                     />
                   ))}
                 </div>
               </div>
 
-              {/* Crack Time Cards */}
+              {/* Crack Time Cards — derived from penalized entropy */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-muted/30 border border-border/50 flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-muted-foreground">
-                    <Zap className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Desktop PC</span>
+                    <Wifi className="w-3.5 h-3.5" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">{t("attackOnline")}</span>
                   </div>
-                  <span className="text-lg font-bold tabular-nums">{analysis.time}</span>
+                  <span className="text-lg font-bold tabular-nums">
+                    {formatCrackTime(analysis.crackTimes.onlineSeconds)}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl bg-muted/30 border border-border/50 flex flex-col gap-2">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Zap className="w-3.5 h-3.5" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">{t("attackOffline")}</span>
+                  </div>
+                  <span className="text-lg font-bold tabular-nums">
+                    {formatCrackTime(analysis.crackTimes.offlineSeconds)}
+                  </span>
                 </div>
                 <div className="p-4 rounded-xl bg-muted/30 border border-border/50 flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Server className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Supercomputer</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider">{t("attackSupercomputer")}</span>
                   </div>
-                  <span className="text-lg font-bold tabular-nums">{analysis.level === "strong" ? "Months/Years" : "Seconds/Mins"}</span>
-                </div>
-                <div className="p-4 rounded-xl bg-muted/30 border border-border/50 flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Offline Attack</span>
-                  </div>
-                  <span className="text-lg font-bold tabular-nums text-rose-500 font-mono">Instant</span>
+                  <span className="text-lg font-bold tabular-nums">
+                    {formatCrackTime(analysis.crackTimes.supercomputerSeconds)}
+                  </span>
                 </div>
               </div>
+
+              {/* Warnings */}
+              {analysis.warnings.length > 0 && (
+                <div className="space-y-2 p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                  {analysis.warnings.map((w) => (
+                    <div key={w} className="flex items-center gap-2 text-xs text-amber-600">
+                      <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{t(`warning.${w}`)}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Suggestions */}
               <div className="space-y-3 pt-4 border-t border-border/50">
@@ -164,14 +174,16 @@ export function PasswordStrength() {
                 <div className="grid grid-cols-2 gap-2">
                   {Object.entries(analysis.checks).map(([key, passed]) => (
                     <div key={key} className="flex items-center gap-2 text-xs">
-                      <div className={cn("w-4 h-4 rounded-full flex items-center justify-center", passed ? "bg-emerald-500/10 text-emerald-600" : "bg-muted text-muted-foreground")}>
+                      <div
+                        className={cn(
+                          "w-4 h-4 rounded-full flex items-center justify-center",
+                          passed ? "bg-emerald-500/10 text-emerald-600" : "bg-muted text-muted-foreground"
+                        )}
+                      >
                         {passed ? <Check className="w-2.5 h-2.5" /> : <Info className="w-2.5 h-2.5" />}
                       </div>
                       <span className={passed ? "text-foreground" : "text-muted-foreground"}>
-                        {key === "length" ? "12+ Characters" : 
-                         key === "hasUpper" ? "Uppercase Letters" :
-                         key === "hasLower" ? "Lowercase Letters" :
-                         key === "hasNumber" ? "Numbers" : "Special Symbols"}
+                        {CHECK_LABELS[key]}
                       </span>
                     </div>
                   ))}
@@ -187,18 +199,18 @@ export function PasswordStrength() {
 
 function Check({ className }: { className?: string }) {
   return (
-    <svg 
+    <svg
       aria-hidden="true"
       focusable="false"
-      xmlns="http://www.w3.org/2000/svg" 
-      width="24" 
-      height="24" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="3" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
     >
       <polyline points="20 6 9 17 4 12" />

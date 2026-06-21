@@ -604,7 +604,14 @@
             "step1": "입력 영역에 해시로 변환할 텍스트를 입력하세요.",
             "step2": "MD5, SHA-1, SHA-256, SHA-512 해시가 실시간으로 생성됩니다.",
             "step3": "각 해시 값 옆의 복사 버튼으로 원하는 해시를 복사하세요."
-        }
+        },
+        "fileLabel": "파일 체크섬",
+        "fileDropHint": "파일을 끌어다 놓거나 클릭하여 선택하세요",
+        "fileProgress": "읽는 중… {percent}%",
+        "compareLabel": "예상 해시와 비교",
+        "comparePlaceholder": "검증할 예상 해시를 붙여넣으세요…",
+        "compareMatch": "일치 — 해시가 동일합니다",
+        "compareMismatch": "불일치 — 해시가 다릅니다"
     },
     "SecurityTools": {
         "title": "보안 도구 모음",
@@ -846,7 +853,23 @@
             "step1": "데이터 URI 또는 Base64 원시 문자열을 입력 영역에 붙여넣으세요.",
             "step2": "'디코딩 및 미리보기' 버튼을 클릭하면 이미지가 표시됩니다.",
             "step3": "'저장' 버튼으로 디코딩된 이미지를 다운로드하세요."
-        }
+        },
+        "encodeTab": "인코딩",
+        "decodeTab": "디코딩",
+        "imageSource": "이미지 소스",
+        "uploadOrPaste": "인코딩할 이미지를 업로드하거나 붙여넣으세요",
+        "uploadImage": "이미지 업로드",
+        "noImageYet": "아직 이미지가 없습니다",
+        "base64Output": "Base64 출력",
+        "dataUriOutput": "데이터 URI / 원본 Base64",
+        "copyDataUri": "데이터 URI 복사",
+        "copyRawBase64": "원본 Base64 복사",
+        "outputPlaceholder": "인코딩된 데이터 URI가 여기에 표시됩니다...",
+        "copied": "클립보드에 복사됨",
+        "copyFailed": "복사하지 못했습니다",
+        "encodeInvalidType": "이미지 파일을 선택하세요.",
+        "encodeTooLarge": "이미지가 너무 큽니다 (최대 12MB).",
+        "encodeReadFailed": "이미지 파일을 읽을 수 없습니다."
     },
     "GradientGenerator": {
         "title": "CSS 그래디언트 생성기",
@@ -1074,7 +1097,12 @@
             "step1": "알고리즘(SHA-256, SHA-512 등)을 선택하세요.",
             "step2": "비밀키와 해시할 메시지를 입력하세요.",
             "step3": "'HMAC 생성하기' 버튼을 클릭하고 결과를 복사하세요."
-        }
+        },
+        "keyEncodingLabel": "키 인코딩",
+        "outputEncodingLabel": "출력 인코딩",
+        "outputResultLabel": "HMAC 결과",
+        "errorKeyDecode": "선택한 인코딩에 맞지 않는 비밀키입니다",
+        "error": "HMAC 생성에 실패했습니다"
     },
     "RsaGenerator": {
         "title": "RSA 키 생성기",
@@ -1538,7 +1566,8 @@
             "step1": "슬라이더로 비밀번호 길이를 설정하세요 (8~128자).",
             "step2": "대문자, 소문자, 숫자, 특수문자 포함 여부를 선택하세요.",
             "step3": "'비밀번호 생성' 버튼을 클릭하고 복사 버튼으로 클립보드에 복사하세요."
-        }
+        },
+        "excludeSimilar": "비슷한 문자 제외 (l, 1, I, O, 0)"
     },
     "UnixTimestamp": {
         "title": "Unix 타임스탬프 변환기",
@@ -2037,7 +2066,14 @@
             "step1": "입력 영역에 텍스트를 입력하거나 붙여넣으세요.",
             "step2": "음성을 선택하고 속도와 피치를 원하는 대로 조절하세요.",
             "step3": "재생 버튼을 클릭하여 들으세요. 현재 읽고 있는 단어가 강조 표시됩니다."
-        }
+        },
+        "volume": "음량",
+        "recordLabel": "오디오 녹음",
+        "recordNote": "녹음은 탭 오디오를 캡처합니다. 오디오를 켠 상태로 이 탭 공유를 허용한 뒤 재생을 누르세요.",
+        "recording": "녹음 중...",
+        "saveAudio": "오디오 저장",
+        "recordNoAudio": "오디오 트랙이 공유되지 않았습니다. \"탭 오디오 공유\"를 켜세요.",
+        "recordFailed": "녹음을 시작할 수 없습니다."
     },
     "WhoisLookup": {
         "title": "도메인/DNS 조회",
@@ -2789,7 +2825,8 @@
             }
         },
         "settings": "설정",
-        "entropy": "예상 엔트로피"
+        "entropy": "예상 엔트로피",
+        "wordlistInfo": "{count}개 단어 목록 사용 (단어당 약 11비트)"
     },
     "PasswordStrength": {
         "title": "비밀번호 강도 분석기",
@@ -2827,6 +2864,16 @@
                 "title": "철저한 보안",
                 "desc": "비밀번호는 서버로 절대 전송되지 않으며 오직 로컬에서만 분석됩니다."
             }
+        },
+        "attackOnline": "온라인 공격",
+        "attackOffline": "오프라인(GPU)",
+        "attackSupercomputer": "슈퍼컴퓨터",
+        "warning": {
+            "common": "흔히 쓰이는 비밀번호입니다",
+            "sequence": "연속된 패턴이 있습니다 (예: abc, 123)",
+            "repeat": "반복되는 문자가 있습니다",
+            "keyboard": "키보드 배열 패턴이 있습니다 (예: qwerty)",
+            "short": "너무 짧습니다 — 8자 이상 사용하세요"
         }
     },
     "YamlConverter": {

@@ -604,7 +604,14 @@
             "step1": "Enter the text you want to hash in the input area.",
             "step2": "MD5, SHA-1, SHA-256, and SHA-512 hashes are generated in real-time.",
             "step3": "Click the copy button next to any hash value to copy it to clipboard."
-        }
+        },
+        "fileLabel": "File Checksum",
+        "fileDropHint": "Drag & drop a file here, or click to select",
+        "fileProgress": "Reading… {percent}%",
+        "compareLabel": "Compare Against Expected Hash",
+        "comparePlaceholder": "Paste an expected hash to verify…",
+        "compareMatch": "Match — hashes are identical",
+        "compareMismatch": "No match — hashes differ"
     },
     "SecurityTools": {
         "title": "Security Tools",
@@ -828,7 +835,23 @@
             "step1": "Paste a data URI or raw Base64 string in the input area.",
             "step2": "Click 'Decode & Preview' to display the image.",
             "step3": "Click 'Save' to download the decoded image."
-        }
+        },
+        "encodeTab": "Encode",
+        "decodeTab": "Decode",
+        "imageSource": "Image Source",
+        "uploadOrPaste": "Upload or paste an image to encode",
+        "uploadImage": "Upload Image",
+        "noImageYet": "No image yet",
+        "base64Output": "Base64 Output",
+        "dataUriOutput": "Data URI / raw Base64",
+        "copyDataUri": "Copy Data URI",
+        "copyRawBase64": "Copy Raw Base64",
+        "outputPlaceholder": "The encoded data URI will appear here...",
+        "copied": "Copied to clipboard",
+        "copyFailed": "Failed to copy",
+        "encodeInvalidType": "Please select an image file.",
+        "encodeTooLarge": "Image is too large (max 12MB).",
+        "encodeReadFailed": "Could not read the image file."
     },
     "GradientGenerator": {
         "title": "CSS Gradient Generator",
@@ -1056,7 +1079,12 @@
             "step1": "Select an algorithm (SHA-256, SHA-512, etc.).",
             "step2": "Enter your secret key and the message to hash.",
             "step3": "Click 'Generate HMAC' and copy the result."
-        }
+        },
+        "keyEncodingLabel": "Key Encoding",
+        "outputEncodingLabel": "Output Encoding",
+        "outputResultLabel": "HMAC Output",
+        "errorKeyDecode": "Invalid secret key for the selected encoding",
+        "error": "Failed to generate HMAC"
     },
     "RsaGenerator": {
         "title": "RSA Key Generator",
@@ -1536,7 +1564,8 @@
             "step1": "Set the password length using the slider (8-128 characters).",
             "step2": "Choose which character types to include: uppercase, lowercase, numbers, symbols.",
             "step3": "Click 'Generate Password' and use the copy button to save to clipboard."
-        }
+        },
+        "excludeSimilar": "Exclude similar characters (l, 1, I, O, 0)"
     },
     "UnixTimestamp": {
         "title": "Unix Timestamp Converter",
@@ -2035,7 +2064,14 @@
             "step1": "Type or paste text into the input area.",
             "step2": "Select a voice, adjust speed and pitch to your preference.",
             "step3": "Click Play to listen. The current word will be highlighted as it is spoken."
-        }
+        },
+        "volume": "Volume",
+        "recordLabel": "Record audio",
+        "recordNote": "Recording captures tab audio: you'll be asked to share this tab with audio enabled, then click Play.",
+        "recording": "Recording...",
+        "saveAudio": "Save audio",
+        "recordNoAudio": "No audio track was shared. Enable \"Share tab audio\".",
+        "recordFailed": "Could not start recording."
     },
     "WhoisLookup": {
         "title": "Domain / DNS Lookup",
@@ -2787,7 +2823,8 @@
             }
         },
         "settings": "Settings",
-        "entropy": "Estimated Entropy"
+        "entropy": "Estimated Entropy",
+        "wordlistInfo": "Uses a {count}-word list (~11 bits/word)"
     },
     "PasswordStrength": {
         "title": "Password Strength Analyzer",
@@ -2825,6 +2862,16 @@
                 "title": "Privacy First",
                 "desc": "Your password is never sent to any server; all analysis is done locally."
             }
+        },
+        "attackOnline": "Online Attack",
+        "attackOffline": "Offline (GPU)",
+        "attackSupercomputer": "Supercomputer",
+        "warning": {
+            "common": "This is a commonly used password",
+            "sequence": "Contains a sequential pattern (e.g. abc, 123)",
+            "repeat": "Contains repeated characters",
+            "keyboard": "Contains a keyboard pattern (e.g. qwerty)",
+            "short": "Too short — use at least 8 characters"
         }
     },
     "YamlConverter": {

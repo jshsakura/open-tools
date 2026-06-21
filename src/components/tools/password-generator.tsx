@@ -8,15 +8,10 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Switch } from "@/components/ui/switch"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
-
-const CHAR_SETS = {
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    numbers: "0123456789",
-    symbols: "!@#$%^&*()_+-=[]{}|;:,.<>?",
-}
+import { generatePassword } from "./password-generator.utils"
 
 function calculateStrength(password: string): number {
     let score = 0
@@ -32,22 +27,6 @@ function calculateStrength(password: string): number {
     return Math.max(0, Math.min(4, score <= 2 ? 1 : score <= 4 ? 2 : score <= 6 ? 3 : 4))
 }
 
-function generatePassword(
-    length: number,
-    options: { uppercase: boolean; lowercase: boolean; numbers: boolean; symbols: boolean }
-): string {
-    let charset = ""
-    if (options.uppercase) charset += CHAR_SETS.uppercase
-    if (options.lowercase) charset += CHAR_SETS.lowercase
-    if (options.numbers) charset += CHAR_SETS.numbers
-    if (options.symbols) charset += CHAR_SETS.symbols
-    if (!charset) charset = CHAR_SETS.lowercase
-
-    const array = new Uint32Array(length)
-    crypto.getRandomValues(array)
-    return Array.from(array, (val) => charset[val % charset.length]).join("")
-}
-
 export function PasswordGenerator() {
     const t = useTranslations("PasswordGenerator")
     const [length, setLength] = useState(16)
@@ -57,16 +36,17 @@ export function PasswordGenerator() {
         numbers: true,
         symbols: true,
     })
+    const [excludeSimilar, setExcludeSimilar] = useState(false)
     const [password, setPassword] = useState("")
     const [history, setHistory] = useState<string[]>([])
     const [copied, setCopied] = useState(false)
     const [showPassword, setShowPassword] = useState(true)
 
     const generate = useCallback(() => {
-        const newPassword = generatePassword(length, options)
+        const newPassword = generatePassword({ length, ...options, excludeSimilar })
         setPassword(newPassword)
         setHistory((prev) => [newPassword, ...prev].slice(0, 5))
-    }, [length, options])
+    }, [length, options, excludeSimilar])
 
     useEffect(() => {
         generate()
@@ -186,6 +166,13 @@ export function PasswordGenerator() {
                                 </label>
                             ))}
                         </div>
+                        <label className="flex items-center justify-between gap-2 cursor-pointer pt-1">
+                            <span className="text-sm">{t("excludeSimilar")}</span>
+                            <Switch
+                                checked={excludeSimilar}
+                                onCheckedChange={(checked) => setExcludeSimilar(!!checked)}
+                            />
+                        </label>
                     </div>
 
                     {/* Generate button */}
