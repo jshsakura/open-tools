@@ -834,6 +834,26 @@
         "SignaturePad": {
             "title": "Signature Pad",
             "description": "Draw a handwritten signature with your mouse or finger and export it as a transparent or white-background PNG."
+        },
+        "FlexboxGenerator": {
+            "title": "Flexbox Generator",
+            "description": "Visually build CSS Flexbox layouts and copy the container CSS or Tailwind classes."
+        },
+        "CssAnimationGenerator": {
+            "title": "CSS Animation Generator",
+            "description": "Build CSS keyframe animations visually with a live preview and copy-ready @keyframes and animation shorthand."
+        },
+        "AsciiTable": {
+            "title": "ASCII Table",
+            "description": "Searchable ASCII reference table with decimal, hex, octal, and binary codes, control-character names, and one-click copy."
+        },
+        "WifiQrGenerator": {
+            "title": "WiFi QR Code Generator",
+            "description": "Create a QR code that instantly connects any phone to your WiFi network. Just enter your network name and password — no app required."
+        },
+        "TextCleaner": {
+            "title": "Text Cleaner & Formatter",
+            "description": "Clean and format text instantly — remove duplicate lines, trim whitespace, strip HTML, sort lines, and change case, all in your browser."
         }
     }
 }

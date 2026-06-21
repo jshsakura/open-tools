@@ -5424,5 +5424,296 @@
                 "desc": "Everything runs in your browser — your signature never leaves your device."
             }
         }
+    },
+    "FlexboxGenerator": {
+        "flexDirection": "Flex direction",
+        "justifyContent": "Justify content",
+        "alignItems": "Align items",
+        "alignContent": "Align content",
+        "flexWrap": "Flex wrap",
+        "gap": "Gap",
+        "itemCount": "Item count (2–12)",
+        "preview": "Live preview",
+        "copyCss": "Copy CSS",
+        "copyTailwind": "Copy Tailwind",
+        "copied": "Copied to clipboard",
+        "copyFailed": "Failed to copy",
+        "privacyNote": "Runs entirely in your browser — nothing is uploaded.",
+        "guide": {
+            "title": "How to use",
+            "step1": "Pick a flex-direction and adjust justify-content, align-items, align-content, and flex-wrap to position the boxes.",
+            "step2": "Set the item count (2–12) and the gap to see the numbered boxes respond in the live preview.",
+            "step3": "Toggle between CSS and Tailwind output and copy the container styles into your project."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Live preview",
+                "desc": "Numbered boxes react instantly to every control you change."
+            },
+            "f2": {
+                "title": "Full control set",
+                "desc": "Direction, justify, align-items, align-content, wrap, and gap in one place."
+            },
+            "f3": {
+                "title": "CSS & Tailwind output",
+                "desc": "Copy a ready-to-paste flex container rule or the equivalent Tailwind classes."
+            },
+            "f4": {
+                "title": "Private & offline",
+                "desc": "Everything runs in your browser — no sign-up, no upload."
+            }
+        }
+    },
+    "CssAnimationGenerator": {
+        "preset": "Animation Preset",
+        "presets": {
+            "fade": "Fade In",
+            "slide-in": "Slide In",
+            "bounce": "Bounce",
+            "pulse": "Pulse",
+            "spin": "Spin",
+            "shake": "Shake",
+            "zoom": "Zoom In"
+        },
+        "duration": "Duration",
+        "delay": "Delay",
+        "timingFunction": "Timing Function",
+        "timingBezier": "Bounce (cubic-bezier)",
+        "iterationCount": "Iteration Count",
+        "infinite": "Infinite",
+        "direction": "Direction",
+        "preview": "Live Preview",
+        "replay": "Replay",
+        "output": "Generated CSS",
+        "copy": "Copy",
+        "copied": "Copied to clipboard",
+        "shorthandLabel": "Shorthand",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Pick an animation preset such as fade, bounce, or spin.",
+            "step2": "Adjust duration, delay, timing function, iteration count, and direction while watching the live preview.",
+            "step3": "Copy the generated @keyframes block and animation shorthand straight into your stylesheet."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "7 Presets",
+                "desc": "Fade, slide, bounce, pulse, spin, shake, and zoom ready to use."
+            },
+            "f2": {
+                "title": "Live Preview",
+                "desc": "See the animation run instantly and replay it any time."
+            },
+            "f3": {
+                "title": "Full Control",
+                "desc": "Tune duration, delay, easing, iterations, and direction."
+            },
+            "f4": {
+                "title": "Copy-Ready CSS",
+                "desc": "Outputs both @keyframes and the animation shorthand."
+            }
+        }
+    },
+    "AsciiTable": {
+        "searchPlaceholder": "Search by character, name, decimal, or hex…",
+        "searchLabel": "Search ASCII table",
+        "searchHint": "Try \"A\", \"65\", \"0x41\", \"ESC\", or \"escape\".",
+        "view": {
+            "all": "All (0–127)",
+            "printable": "Printable",
+            "control": "Control",
+            "extended": "Extended (128–255)"
+        },
+        "col": {
+            "char": "Char",
+            "dec": "Dec",
+            "hex": "Hex",
+            "oct": "Oct",
+            "bin": "Binary",
+            "desc": "Description"
+        },
+        "rowCopyHint": "Click to copy the character",
+        "copiedValue": "Copied {value}",
+        "nothingToCopy": "Nothing to copy",
+        "noResults": "No characters match your search.",
+        "countNote": "Showing {count} characters",
+        "guide": {
+            "title": "How to use the ASCII Table",
+            "step1": "Type a character, name (like ESC), decimal value, or hex code (0x41) in the search box to filter instantly.",
+            "step2": "Use the Printable / Control / All / Extended toggle to narrow the table to the range you need.",
+            "step3": "Click any row to copy the character, or click a decimal or hex cell to copy that value to your clipboard."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Four number bases",
+                "desc": "Every code shown in decimal, hexadecimal, octal, and 8-bit binary at once."
+            },
+            "f2": {
+                "title": "Control-char names",
+                "desc": "Non-printable codes 0–31 and DEL appear with symbolic names like NUL, ESC, and CR plus a short description."
+            },
+            "f3": {
+                "title": "Instant search",
+                "desc": "Filter by glyph, name, decimal, or hex (with or without a 0x prefix) as you type."
+            },
+            "f4": {
+                "title": "Click to copy",
+                "desc": "Copy the character or any code value with a single click — runs entirely in your browser."
+            }
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "q1": {
+                "q": "What is the difference between printable and control characters?",
+                "a": "Codes 32–126 are printable glyphs you can see and type. Codes 0–31 and 127 are control characters (like NUL, ESC, and CR) used for formatting and device control rather than display."
+            },
+            "q2": {
+                "q": "What is extended ASCII?",
+                "a": "The original ASCII standard covers codes 0–127. Codes 128–255 are extended and vary by code page; the values shown here use the Unicode/Latin-1 mapping."
+            },
+            "q3": {
+                "q": "Is my data sent anywhere?",
+                "a": "No. The table is generated and filtered entirely in your browser, and copying uses your local clipboard. Nothing is uploaded."
+            }
+        }
+    },
+    "WifiQrGenerator": {
+        "resultPreview": "QR Code Preview",
+        "qrCodeReady": "Scan this with your phone camera to join the network.",
+        "downloadPng": "Download PNG",
+        "copyPayload": "Copy WiFi Code",
+        "payloadLabel": "WiFi payload",
+        "scanHint": "Point your phone camera at the code to connect automatically.",
+        "networkLabel": "Network Details",
+        "ssidLabel": "Network Name (SSID)",
+        "ssidPlaceholder": "e.g. MyHomeWiFi",
+        "encryptionLabel": "Encryption",
+        "encWpa": "WPA/WPA2 (recommended)",
+        "encWep": "WEP (legacy)",
+        "encNone": "None (open network)",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter the network password",
+        "optionsLabel": "Options",
+        "hiddenLabel": "Hidden network",
+        "hiddenDesc": "Enable if your network doesn't broadcast its name (SSID).",
+        "downloadedPng": "PNG downloaded",
+        "copiedPayload": "WiFi code copied to clipboard",
+        "errorGenerate": "Failed to generate QR code",
+        "errorNoSsid": "Please enter a network name first",
+        "errorCopy": "Failed to copy",
+        "guide": {
+            "title": "How to use",
+            "step1": "Enter your WiFi network name (SSID) and choose the encryption type.",
+            "step2": "Type the password — or pick 'None' for an open network with no password.",
+            "step3": "Download the PNG or copy the code, then scan it with any phone camera to connect."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Instant Connection",
+                "desc": "Scanning the code joins the WiFi network automatically — no typing passwords."
+            },
+            "f2": {
+                "title": "All Encryption Types",
+                "desc": "Supports WPA/WPA2, legacy WEP, and open networks with no password."
+            },
+            "f3": {
+                "title": "Hidden Networks",
+                "desc": "Toggle the hidden flag for networks that don't broadcast their SSID."
+            },
+            "f4": {
+                "title": "Private & Offline",
+                "desc": "Everything runs in your browser. Your password never leaves your device."
+            }
+        }
+    },
+    "TextCleaner": {
+        "title": "Text Cleaner & Formatter",
+        "description": "A multi-operation text cleanup tool that removes duplicates, trims lines, collapses spaces, strips HTML, sorts, and reformats text live.",
+        "input": "Input Text",
+        "output": "Cleaned Output",
+        "placeholder": "Paste or type the text you want to clean...",
+        "outputPlaceholder": "Your cleaned text will appear here",
+        "operations": "Cleanup Operations",
+        "linesBefore": "Lines Before",
+        "linesAfter": "Lines After",
+        "copy": "Copy",
+        "download": "Download",
+        "clear": "Clear",
+        "reset": "Reset",
+        "copied": "Copied to clipboard",
+        "copyFailed": "Failed to copy",
+        "downloaded": "File downloaded",
+        "optionsReset": "Options reset to default",
+        "toggles": {
+            "trimLines": {
+                "label": "Trim each line",
+                "hint": "Remove leading and trailing whitespace"
+            },
+            "collapseSpaces": {
+                "label": "Collapse spaces",
+                "hint": "Merge multiple spaces into one"
+            },
+            "removeEmpty": {
+                "label": "Remove empty lines",
+                "hint": "Delete blank lines entirely"
+            },
+            "removeExtraBlank": {
+                "label": "Remove extra blank lines",
+                "hint": "Keep at most one blank line in a row"
+            },
+            "removeDuplicates": {
+                "label": "Remove duplicate lines",
+                "hint": "Keep only the first occurrence"
+            },
+            "removeLineNumbers": {
+                "label": "Remove line numbers",
+                "hint": "Strip leading numbering like 1. or 2)"
+            },
+            "stripHtml": {
+                "label": "Strip HTML tags",
+                "hint": "Remove tags but keep the text"
+            }
+        },
+        "sort": {
+            "label": "Sort lines",
+            "none": "No sorting",
+            "asc": "Ascending (A-Z)",
+            "desc": "Descending (Z-A)"
+        },
+        "case": {
+            "label": "Change case",
+            "none": "Keep original",
+            "lower": "lowercase",
+            "upper": "UPPERCASE",
+            "title": "Title Case"
+        },
+        "guide": {
+            "title": "How to Use the Text Cleaner",
+            "step1": "Paste or type your text into the input area on the left.",
+            "step2": "Toggle the cleanup operations you need — trim lines, remove duplicates, strip HTML, and more — and pick a sort or case option.",
+            "step3": "The cleaned result updates live on the right. Copy it to your clipboard or download it as a .txt file."
+        },
+        "features": {
+            "title": "Key Features",
+            "f1": {
+                "title": "Multiple Operations",
+                "desc": "Combine trimming, deduplication, space collapsing, and more in one pass."
+            },
+            "f2": {
+                "title": "Sort & Case",
+                "desc": "Sort lines A-Z or Z-A and convert to lower, UPPER, or Title Case."
+            },
+            "f3": {
+                "title": "HTML & Numbers",
+                "desc": "Strip HTML tags and remove leading line numbers in a single toggle."
+            },
+            "f4": {
+                "title": "Private & Live",
+                "desc": "Everything runs in your browser with instant before/after line counts."
+            }
+        }
     }
 }

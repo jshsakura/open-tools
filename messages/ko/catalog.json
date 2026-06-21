@@ -886,6 +886,26 @@
         "SignaturePad": {
             "title": "서명 패드",
             "description": "마우스나 손가락으로 손글씨 서명을 그리고 투명 배경 또는 흰색 배경 PNG로 내보내세요."
+        },
+        "FlexboxGenerator": {
+            "title": "플렉스박스 생성기",
+            "description": "CSS 플렉스박스 레이아웃을 시각적으로 만들고 컨테이너 CSS 또는 Tailwind 클래스를 복사하세요."
+        },
+        "CssAnimationGenerator": {
+            "title": "CSS 애니메이션 생성기",
+            "description": "실시간 미리보기로 CSS 키프레임 애니메이션을 만들고 @keyframes와 animation 단축 속성을 바로 복사하세요."
+        },
+        "AsciiTable": {
+            "title": "아스키 코드표",
+            "description": "10진수·16진수·8진수·2진수 코드와 제어 문자 이름을 한눈에 보고 검색하며 클릭 한 번으로 복사하는 ASCII 참조표입니다."
+        },
+        "WifiQrGenerator": {
+            "title": "와이파이 QR 코드 생성기",
+            "description": "스마트폰으로 스캔하면 바로 와이파이에 연결되는 QR 코드를 만드세요. 네트워크 이름과 비밀번호만 입력하면 끝, 앱 설치도 필요 없습니다."
+        },
+        "TextCleaner": {
+            "title": "텍스트 클리너 & 포맷터",
+            "description": "중복 줄 제거, 공백 정리, HTML 태그 제거, 줄 정렬, 대소문자 변환까지 — 브라우저에서 바로 텍스트를 깔끔하게 정리하세요."
         }
     }
 }
