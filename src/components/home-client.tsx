@@ -552,7 +552,14 @@ export function HomeClient() {
                       )}
                     >
                     {t(`Category.${tag}`)}
-                      <span className="ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                      <span
+                        className={cn(
+                          "ml-2 inline-flex items-center justify-center h-4 min-w-4 px-1.5 text-[10px] font-semibold rounded-full ring-1",
+                          selectedTag === tag
+                            ? "bg-primary-foreground/15 text-primary-foreground ring-primary-foreground/20"
+                            : "bg-primary/10 text-primary ring-primary/20",
+                        )}
+                      >
                         {tagCounts[tag] || 0}
                       </span>
                     </Button>
