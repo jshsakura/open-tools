@@ -30,3 +30,24 @@ export function buildEncodeFlags(format: AudioFormat, bitrate: number): string[]
     if (spec.lossy) flags.push("-b:a", `${bitrate}k`)
     return flags
 }
+
+/**
+ * Build a standard single-input, single-filter ffmpeg arg list:
+ *   -i <input> [-af <filter>] <encode flags> <output>
+ *
+ * `-af` is omitted when `filter` is empty so the tool falls back to a plain
+ * re-encode. Shared by the filter-based audio tools (reverse, equalizer,
+ * silence-remove, …).
+ */
+export function buildFilterArgs(
+    inputName: string,
+    outputName: string,
+    filter: string,
+    format: AudioFormat,
+    bitrate: number,
+): string[] {
+    const args = ["-i", inputName]
+    if (filter) args.push("-af", filter)
+    args.push(...buildEncodeFlags(format, bitrate), outputName)
+    return args
+}

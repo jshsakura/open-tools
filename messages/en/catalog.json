@@ -990,6 +990,26 @@
         "AudioFade": {
             "title": "Audio Fade In/Out",
             "description": "Add smooth fade-in and fade-out effects to your audio in the browser. Private, free, and no uploads."
+        },
+        "AudioSilenceRemove": {
+            "title": "Audio Silence Remover",
+            "description": "Automatically trim silent gaps from the start and end of your audio — right in your browser, nothing uploaded."
+        },
+        "AudioReverse": {
+            "title": "Audio Reverser",
+            "description": "Play any audio backwards and download the reversed track — fully in your browser, no uploads."
+        },
+        "AudioChannels": {
+            "title": "Mono/Stereo Converter",
+            "description": "Convert audio between mono and stereo in your browser. Private, free, and nothing uploaded."
+        },
+        "AudioLoop": {
+            "title": "Audio Looper",
+            "description": "Repeat an audio clip any number of times into one seamless file — all in your browser, no uploads."
+        },
+        "AudioEqualizer": {
+            "title": "Audio Equalizer",
+            "description": "Boost or cut bass and treble with a simple two-band EQ, right in your browser. Private and free."
         }
     }
 }

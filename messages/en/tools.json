@@ -7421,5 +7421,231 @@
                 "desc": "No watermarks, no sign-up, no limits."
             }
         }
+    },
+    "AudioSilenceRemove": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to remove silence",
+        "modeLabel": "Trim From",
+        "modeLeading": "Start",
+        "modeTrailing": "End",
+        "modeBoth": "Both",
+        "thresholdLabel": "Silence Threshold",
+        "thresholdHint": "Audio quieter than this level is treated as silence. Lower = stricter.",
+        "action": "Remove Silence",
+        "success": "Silence removed!",
+        "error": "Something went wrong while removing silence.",
+        "resultTitle": "Trimmed audio ready",
+        "guide": {
+            "title": "How to remove silence from audio",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Choose whether to trim silence from the start, end, or both, and set the threshold.",
+            "step3": "Click Remove Silence, then preview and download the cleaned track."
+        },
+        "features": {
+            "title": "Why use this silence remover",
+            "f1": {
+                "title": "Auto Detection",
+                "desc": "Silent gaps are detected and trimmed automatically by level."
+            },
+            "f2": {
+                "title": "Flexible",
+                "desc": "Trim only the start, only the end, or both — with an adjustable threshold."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Processing happens in your browser; nothing is uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioReverse": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to reverse",
+        "infoNote": "The entire track will be reversed so it plays from end to start.",
+        "action": "Reverse Audio",
+        "success": "Audio reversed!",
+        "error": "Something went wrong while reversing.",
+        "resultTitle": "Reversed audio ready",
+        "guide": {
+            "title": "How to reverse audio",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Pick an output format and bitrate.",
+            "step3": "Click Reverse Audio, then preview and download the backwards track."
+        },
+        "features": {
+            "title": "Why use this reverser",
+            "f1": {
+                "title": "True Reverse",
+                "desc": "The whole waveform is flipped for a genuine backwards playback."
+            },
+            "f2": {
+                "title": "Any Format",
+                "desc": "Export the result as MP3, WAV, M4A, OGG or FLAC."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Runs locally in your browser; files are never uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioChannels": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to convert channels",
+        "modeLabel": "Channels",
+        "modeMono": "Mono",
+        "modeStereo": "Stereo",
+        "modeHint": "Mono mixes everything to a single channel; stereo outputs two channels.",
+        "action": "Convert",
+        "success": "Channels converted!",
+        "error": "Something went wrong while converting.",
+        "resultTitle": "Converted audio ready",
+        "guide": {
+            "title": "How to convert mono and stereo",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Choose Mono to downmix to one channel, or Stereo for two channels.",
+            "step3": "Click Convert, then preview and download the result."
+        },
+        "features": {
+            "title": "Why use this converter",
+            "f1": {
+                "title": "Mono Downmix",
+                "desc": "Collapse stereo to mono to shrink size or fix one-sided audio."
+            },
+            "f2": {
+                "title": "Stereo Output",
+                "desc": "Expand mono sources to a standard two-channel file."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Everything is processed in your browser — no uploads."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioLoop": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to loop",
+        "countLabel": "Repeat Count",
+        "countHint": "The clip will be repeated back-to-back this many times.",
+        "action": "Loop Audio",
+        "success": "Audio looped!",
+        "error": "Something went wrong while looping.",
+        "resultTitle": "Looped audio ready",
+        "guide": {
+            "title": "How to loop audio",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Set how many times the clip should repeat (2–20).",
+            "step3": "Click Loop Audio, then preview and download the repeated track."
+        },
+        "features": {
+            "title": "Why use this looper",
+            "f1": {
+                "title": "Seamless Repeat",
+                "desc": "The clip is joined end-to-end into one continuous file."
+            },
+            "f2": {
+                "title": "Up to 20×",
+                "desc": "Repeat anywhere from 2 to 20 times in a single click."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Runs in your browser; your audio never leaves your device."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioEqualizer": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to equalize",
+        "bassLabel": "Bass",
+        "trebleLabel": "Treble",
+        "eqHint": "Positive values boost, negative cut. Leave both at 0 for no change.",
+        "action": "Apply EQ",
+        "success": "EQ applied!",
+        "error": "Something went wrong while applying EQ.",
+        "resultTitle": "Equalized audio ready",
+        "guide": {
+            "title": "How to equalize audio",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Adjust the Bass and Treble sliders to boost or cut each band (in dB).",
+            "step3": "Click Apply EQ, then preview and download the result."
+        },
+        "features": {
+            "title": "Why use this equalizer",
+            "f1": {
+                "title": "Two-Band Tone",
+                "desc": "Shape the low and high end independently with simple controls."
+            },
+            "f2": {
+                "title": "Boost or Cut",
+                "desc": "Add warmth with bass or clarity with treble, up to ±20 dB."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Processing happens in your browser — nothing is uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
     }
 }
