@@ -970,6 +970,26 @@
         "VideoLoop": {
             "title": "Video Looper",
             "description": "Loop or repeat a video multiple times right in your browser. Choose how many times to repeat, or set a target total length, then download a single seamless MP4. 100% private, nothing is uploaded."
+        },
+        "AudioTrimmer": {
+            "title": "Audio Trimmer",
+            "description": "Cut and trim audio files to any start and end point — losslessly and instantly in your browser, nothing uploaded."
+        },
+        "AudioMerger": {
+            "title": "Audio Merger",
+            "description": "Join multiple audio files into one track in your chosen order and format — fully in your browser, no uploads."
+        },
+        "AudioVolume": {
+            "title": "Audio Volume Changer",
+            "description": "Boost, lower, or normalize the loudness of any audio file right in your browser. Private and free, nothing uploaded."
+        },
+        "AudioSpeed": {
+            "title": "Audio Speed Changer",
+            "description": "Speed up or slow down audio without changing pitch, all in your browser. No uploads, fully private."
+        },
+        "AudioFade": {
+            "title": "Audio Fade In/Out",
+            "description": "Add smooth fade-in and fade-out effects to your audio in the browser. Private, free, and no uploads."
         }
     }
 }

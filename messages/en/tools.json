@@ -6313,10 +6313,10 @@
         "resolutionLabel": "Max Resolution",
         "resolutionHint": "Downscaling reduces size further. Aspect ratio is preserved.",
         "resolution": {
-            "keep": "Keep original",
-            "1080": "1080p",
+            "480": "480p",
             "720": "720p",
-            "480": "480p"
+            "1080": "1080p",
+            "keep": "Keep original"
         },
         "action": "Compress Video",
         "download": "Download",
@@ -7188,6 +7188,237 @@
             "f4": {
                 "title": "Live Preview",
                 "desc": "Preview the looped result in the browser before downloading."
+            }
+        }
+    },
+    "AudioTrimmer": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to trim",
+        "rangeLabel": "Trim Range",
+        "startLabel": "Start (sec)",
+        "endLabel": "End (sec)",
+        "rangeHint": "Set the start and end points of the segment you want to keep.",
+        "durationLabel": "Duration",
+        "action": "Trim Audio",
+        "success": "Audio trimmed!",
+        "error": "Something went wrong while trimming.",
+        "resultTitle": "Trimmed audio ready",
+        "guide": {
+            "title": "How to trim an audio file",
+            "step1": "Upload your audio — MP3, WAV, M4A, OGG and FLAC are supported.",
+            "step2": "Set the start and end seconds for the part you want to keep.",
+            "step3": "Click Trim Audio, then preview and download your clip."
+        },
+        "features": {
+            "title": "Why use this trimmer",
+            "f1": {
+                "title": "Lossless Cut",
+                "desc": "Audio is stream-copied, so the trimmed clip keeps its original quality."
+            },
+            "f2": {
+                "title": "Instant",
+                "desc": "No re-encoding means trims finish almost immediately."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Files are processed locally in your browser and never uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, and no file-count limits."
+            }
+        }
+    },
+    "AudioMerger": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio files here",
+        "addHint": "Add two or more files — they'll be joined in order",
+        "listTitle": "{count} files",
+        "clearAll": "Clear all",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove",
+        "needTwo": "Add at least two files to merge.",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "processing": "Processing…",
+        "mergeAction": "Merge Audio",
+        "resultTitle": "Merged audio ready",
+        "download": "Download",
+        "successToast": "Audio merged!",
+        "errorToast": "Something went wrong while merging.",
+        "guide": {
+            "title": "How to merge audio files",
+            "step1": "Upload two or more audio files in any common format.",
+            "step2": "Reorder them with the arrows so they play in the order you want.",
+            "step3": "Pick an output format and click Merge Audio to download the joined track."
+        },
+        "features": {
+            "title": "Why use this merger",
+            "f1": {
+                "title": "Any Order",
+                "desc": "Drag-free reordering with arrows lets you arrange tracks exactly how you want."
+            },
+            "f2": {
+                "title": "Mixed Formats",
+                "desc": "Combine MP3, WAV, M4A and more — they're re-encoded to one clean output."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Everything runs in your browser; your files never leave your device."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, and no limits."
+            }
+        }
+    },
+    "AudioVolume": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to adjust its volume",
+        "modeLabel": "Mode",
+        "modeGain": "Gain",
+        "modeNormalize": "Normalize",
+        "gainLabel": "Volume Gain",
+        "gainHint": "Positive values make it louder, negative quieter (in decibels).",
+        "normalizeHint": "Loudness normalization (EBU R128) brings the track to a consistent, balanced level automatically.",
+        "action": "Apply Volume",
+        "success": "Volume adjusted!",
+        "error": "Something went wrong while adjusting volume.",
+        "resultTitle": "Adjusted audio ready",
+        "guide": {
+            "title": "How to change audio volume",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Choose Gain to set a precise dB boost or cut, or Normalize for automatic leveling.",
+            "step3": "Click Apply Volume, then preview and download the result."
+        },
+        "features": {
+            "title": "Why use this volume changer",
+            "f1": {
+                "title": "Precise Gain",
+                "desc": "Adjust loudness by an exact number of decibels, up or down."
+            },
+            "f2": {
+                "title": "Auto Normalize",
+                "desc": "EBU R128 loudness normalization evens out quiet and loud recordings."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Processing happens in your browser — nothing is uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioSpeed": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to change its speed",
+        "speedLabel": "Playback Speed",
+        "speedHint": "Tempo changes without altering pitch.",
+        "action": "Change Speed",
+        "success": "Speed changed!",
+        "error": "Something went wrong while changing speed.",
+        "resultTitle": "Speed-adjusted audio ready",
+        "guide": {
+            "title": "How to change audio speed",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Drag the slider to set a speed from 0.5× (slower) to 4× (faster).",
+            "step3": "Click Change Speed, then preview and download the result."
+        },
+        "features": {
+            "title": "Why use this speed changer",
+            "f1": {
+                "title": "Pitch Preserved",
+                "desc": "The atempo filter changes tempo without the chipmunk effect."
+            },
+            "f2": {
+                "title": "Wide Range",
+                "desc": "Slow down to half speed or speed up to 4× in fine steps."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Runs locally in your browser; files are never uploaded."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
+            }
+        }
+    },
+    "AudioFade": {
+        "loading": "Loading audio engine…",
+        "loadError": "Failed to load the audio engine. Please refresh and try again.",
+        "uploadTitle": "Drop your audio here",
+        "uploadHint": "MP3, WAV, M4A, OGG, FLAC",
+        "chooseFile": "Choose Audio",
+        "processing": "Processing…",
+        "download": "Download",
+        "formatLabel": "Output Format",
+        "bitrateLabel": "Audio Bitrate",
+        "losslessNote": "WAV and FLAC are lossless — bitrate does not apply.",
+        "selectPrompt": "Upload an audio file to add fades",
+        "fadeLabel": "Fade Duration",
+        "fadeInLabel": "Fade In (sec)",
+        "fadeOutLabel": "Fade Out (sec)",
+        "fadeHint": "Set how long the audio fades in at the start and out at the end.",
+        "action": "Apply Fade",
+        "success": "Fade applied!",
+        "error": "Something went wrong while applying fades.",
+        "resultTitle": "Faded audio ready",
+        "guide": {
+            "title": "How to add fades to audio",
+            "step1": "Upload your audio file in any common format.",
+            "step2": "Set the fade-in and fade-out durations in seconds.",
+            "step3": "Click Apply Fade, then preview and download the smoothed track."
+        },
+        "features": {
+            "title": "Why use this fader",
+            "f1": {
+                "title": "Smooth Transitions",
+                "desc": "Gentle fade-ins and fade-outs avoid abrupt starts and ends."
+            },
+            "f2": {
+                "title": "Independent Control",
+                "desc": "Set the fade-in and fade-out lengths separately."
+            },
+            "f3": {
+                "title": "100% Private",
+                "desc": "Everything is processed in your browser — no uploads."
+            },
+            "f4": {
+                "title": "Free Forever",
+                "desc": "No watermarks, no sign-up, no limits."
             }
         }
     }
