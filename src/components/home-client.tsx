@@ -529,7 +529,14 @@ export function HomeClient() {
                   >
                     <LayoutGrid className="mr-2 h-4 w-4" />
                     {t("Home.allTools")}
-                    <span className="ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full bg-primary-foreground/15 text-primary-foreground ring-1 ring-primary-foreground/20">
+                    <span
+                      className={cn(
+                        "ml-2 inline-flex items-center justify-center h-5 min-w-5 px-2 text-[11px] font-semibold rounded-full ring-1",
+                        selectedTag === null
+                          ? "bg-primary-foreground/15 text-primary-foreground ring-primary-foreground/20"
+                          : "bg-primary/10 text-primary ring-primary/20",
+                      )}
+                    >
                       {tools.length}
                     </span>
                   </Button>
