@@ -950,6 +950,26 @@
         "VideoFrames": {
             "title": "Video Frame Extractor",
             "description": "Extract frames from a video as PNG/JPG images locally in your browser. Choose an fps or interval, grab a thumbnail, download all as ZIP. No uploads."
+        },
+        "VideoWatermark": {
+            "title": "Video Watermark",
+            "description": "Add an image or text watermark to your video locally in your browser with WASM. No upload, fully private."
+        },
+        "ImagesToVideo": {
+            "title": "Images to Video",
+            "description": "Turn your photos into a slideshow video right in your browser. Reorder images, set timing, fps, and resolution. Free and private."
+        },
+        "VideoBoomerang": {
+            "title": "Video Boomerang Maker",
+            "description": "Turn a short clip into a seamless boomerang that plays forward then backward, just like Instagram. Loop it up to 5 times and download an MP4. 100% private — nothing is uploaded."
+        },
+        "ReplaceAudio": {
+            "title": "Replace Audio in Video",
+            "description": "Swap a video's soundtrack for your own audio, or layer background music on top — all in your browser, nothing uploaded."
+        },
+        "VideoLoop": {
+            "title": "Video Looper",
+            "description": "Loop or repeat a video multiple times right in your browser. Choose how many times to repeat, or set a target total length, then download a single seamless MP4. 100% private, nothing is uploaded."
         }
     }
 }

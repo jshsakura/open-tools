@@ -6907,5 +6907,288 @@
                 "desc": "Bundle every extracted frame into a single ZIP — all processed locally, no uploads."
             }
         }
+    },
+    "VideoWatermark": {
+        "title": "Video Watermark",
+        "description": "Overlay a logo or text watermark onto any video, right in your browser. Files never leave your device.",
+        "uploadVideo": "Drag & drop video or click to upload",
+        "chooseVideo": "Choose Video",
+        "selectFirst": "Select a video first to configure the watermark",
+        "loading": "Initializing FFmpeg (WASM)...",
+        "processing": "Applying watermark...",
+        "action": "Apply Watermark",
+        "download": "Download Result",
+        "success": "Watermark applied successfully!",
+        "resultTitle": "Watermark Applied!",
+        "type": {
+            "label": "Watermark Type",
+            "text": "Text",
+            "image": "Image"
+        },
+        "text": {
+            "label": "Watermark Text",
+            "placeholder": "Enter your watermark text",
+            "fontSize": "Font Size",
+            "color": "Color"
+        },
+        "image": {
+            "label": "Logo Image",
+            "placeholder": "Click to upload a logo (PNG recommended)",
+            "hint": "PNG with transparency works best"
+        },
+        "position": {
+            "label": "Position",
+            "top-left": "Top Left",
+            "top-center": "Top Center",
+            "top-right": "Top Right",
+            "middle-left": "Middle Left",
+            "center": "Center",
+            "middle-right": "Middle Right",
+            "bottom-left": "Bottom Left",
+            "bottom-center": "Bottom Center",
+            "bottom-right": "Bottom Right"
+        },
+        "opacity": {
+            "label": "Opacity"
+        },
+        "margin": {
+            "label": "Edge Margin"
+        },
+        "scale": {
+            "label": "Resize Watermark",
+            "hint": "Relative to original size"
+        },
+        "output": {
+            "label": "Output Format"
+        },
+        "errors": {
+            "noText": "Please enter watermark text",
+            "noLogo": "Please upload a logo image",
+            "failed": "An error occurred while applying the watermark."
+        },
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload your video. Everything runs locally in your browser, so your file is never uploaded to any server.",
+            "step2": "Choose a text or image watermark, then set its position, opacity, margin, and optional size.",
+            "step3": "Click Apply Watermark, preview the result, and download your watermarked MP4 video."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "Text or Image",
+                "desc": "Use a logo PNG or type custom text — text is rendered to a crisp transparent PNG in your browser, so no fonts are required."
+            },
+            "f2": {
+                "title": "9-Point Positioning",
+                "desc": "Place the watermark in any corner, edge, or the center, with adjustable edge margins for pixel-perfect placement."
+            },
+            "f3": {
+                "title": "Opacity & Scale",
+                "desc": "Fine-tune transparency and resize the watermark so it stays subtle without distracting from your content."
+            },
+            "f4": {
+                "title": "100% Private",
+                "desc": "Powered by FFmpeg WASM, all processing happens on your device. Your videos never leave your browser."
+            }
+        }
+    },
+    "ImagesToVideo": {
+        "title": "Images to Video",
+        "description": "Combine multiple images into a slideshow MP4 — set how long each image shows, the frame rate, and the output resolution.",
+        "dropTitle": "Drop images here",
+        "dropHint": "or click to choose multiple images (JPG, PNG, WebP)",
+        "errorNoImage": "Please add at least one image.",
+        "errorFfmpeg": "Video engine is not ready yet. Please wait a moment.",
+        "errorGenerate": "Something went wrong while building the video.",
+        "imagesCount": "Images ({count})",
+        "clearAll": "Clear all",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove",
+        "settings": "Settings",
+        "duration": "Seconds per image",
+        "durationHint": "How long each image stays on screen.",
+        "fps": "Frame rate (FPS)",
+        "fpsValue": "{fps} fps",
+        "resolution": "Resolution",
+        "res720p": "720p Landscape (1280×720)",
+        "res1080p": "1080p Landscape (1920×1080)",
+        "resSquare": "Square (1080×1080)",
+        "resVertical": "Vertical (720×1280)",
+        "generate": "Create Video",
+        "processing": "Building video…",
+        "loading": "Loading video engine…",
+        "done": "Your slideshow video is ready!",
+        "resultTitle": "Your video",
+        "download": "Download MP4",
+        "guide": {
+            "title": "How to use",
+            "step1": "Upload the images you want in your slideshow — you can add several at once.",
+            "step2": "Drag them into order with the up/down buttons, then set seconds per image, frame rate, and resolution.",
+            "step3": "Click Create Video to build the MP4 in your browser, then preview and download it."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% private",
+                "desc": "All processing happens in your browser. Your images never leave your device."
+            },
+            "f2": {
+                "title": "Full reordering",
+                "desc": "Add, remove, and rearrange images until the sequence is exactly right."
+            },
+            "f3": {
+                "title": "Custom timing",
+                "desc": "Choose how long each image appears and the output frame rate."
+            },
+            "f4": {
+                "title": "Ready-to-share MP4",
+                "desc": "Pick landscape, square, or vertical resolutions for any platform."
+            }
+        }
+    },
+    "VideoBoomerang": {
+        "loading": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection.",
+        "uploadTitle": "Drop a short video here",
+        "uploadHint": "MP4, WebM, MOV, AVI — short clips work best",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Please select a video file to start making a boomerang",
+        "shortClipWarning": "Best for short clips. Reversing buffers the entire video in memory, so long videos may be slow or fail in the browser.",
+        "loopsLabel": "Loop Count",
+        "loopsHint": "How many forward-then-backward cycles to chain together.",
+        "autoLoopLabel": "Auto-loop preview",
+        "autoLoopHint": "Continuously replay the result preview, muted.",
+        "createAction": "Create Boomerang",
+        "processing": "Creating boomerang...",
+        "done": "Boomerang created!",
+        "error": "An error occurred while creating the boomerang.",
+        "resultTitle": "Boomerang Ready!",
+        "download": "Download",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload a short video file. It is processed entirely in your browser and never uploaded to a server.",
+            "step2": "Choose how many forward-and-back loops you want (1 to 5).",
+            "step3": "Click Create Boomerang, then preview the looping result and download your MP4."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All processing runs locally via WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Seamless Loop",
+                "desc": "Plays forward then reverses smoothly for that signature Instagram boomerang effect."
+            },
+            "f3": {
+                "title": "Adjustable Loops",
+                "desc": "Repeat the boomerang up to 5 times to make a longer, hypnotic clip."
+            },
+            "f4": {
+                "title": "Instant Preview",
+                "desc": "Watch the result loop automatically before you download the MP4."
+            }
+        }
+    },
+    "ReplaceAudio": {
+        "loading": "Loading audio engine...",
+        "loadError": "Failed to load the audio engine. Please check your connection.",
+        "videoUploadTitle": "Drop a video here",
+        "videoUploadHint": "MP4, WebM, MOV, MKV",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Select a video file to start",
+        "audioLabel": "Audio Track",
+        "audioPlaceholder": "Choose an audio file",
+        "audioHint": "MP3, WAV, AAC, M4A",
+        "mixLabel": "Keep original audio & mix BGM",
+        "mixHint": "Layer the uploaded audio over the video's existing sound instead of replacing it.",
+        "bgmVolumeLabel": "BGM Volume",
+        "bgmVolumeHint": "100% keeps the original level; lower it so the BGM sits under the video's audio.",
+        "replaceAction": "Replace Audio",
+        "mixAction": "Mix Audio",
+        "processing": "Processing...",
+        "success": "Audio replaced successfully!",
+        "mixFallback": "Video had no audio, so it was fully replaced instead.",
+        "error": "Something went wrong while processing the video.",
+        "resultTitle": "Your video is ready",
+        "download": "Download",
+        "guide": {
+            "title": "How to use Replace Audio",
+            "step1": "Upload a video — it stays on your device and is never sent to a server.",
+            "step2": "Add an audio file (MP3, WAV, AAC, M4A). To keep the original sound and layer music on top, turn on \"mix BGM\" and set the volume.",
+            "step3": "Click Replace Audio, then preview the result and download your new video."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% In-Browser",
+                "desc": "Audio is replaced locally with WebAssembly — your files never leave your device."
+            },
+            "f2": {
+                "title": "Replace or Mix",
+                "desc": "Fully swap the soundtrack, or keep the original audio and layer background music over it."
+            },
+            "f3": {
+                "title": "BGM Volume Control",
+                "desc": "Dial the background music up or down so it blends naturally with the video."
+            },
+            "f4": {
+                "title": "Fast & Lossless Video",
+                "desc": "The video stream is copied without re-encoding, so output stays sharp and processing is quick."
+            }
+        }
+    },
+    "VideoLoop": {
+        "loading": "Loading FFmpeg engine...",
+        "loadError": "Failed to load FFmpeg. Please check your connection.",
+        "uploadTitle": "Drop a video here",
+        "uploadHint": "MP4, WebM, MOV, AVI",
+        "chooseVideo": "Choose Video",
+        "selectPrompt": "Please select a video file to start looping",
+        "originalDuration": "Original",
+        "resultDuration": "Result",
+        "modeLabel": "Loop Mode",
+        "modeCount": "Repeat Count",
+        "modeCountDesc": "Repeat the clip a fixed number of times (2-10).",
+        "modeDuration": "Target Length",
+        "modeDurationDesc": "Repeat until the video reaches a target total duration.",
+        "repeatLabel": "Number of repeats",
+        "repeatOption": "{count} times",
+        "repeatHint": "The clip will play back to back this many times in total.",
+        "targetLabel": "Target length (seconds)",
+        "targetHint": "Plays the clip {plays} time(s) to cover the target length.",
+        "loopAction": "Loop Video",
+        "processing": "Looping...",
+        "invalidCount": "Please choose a valid repeat count.",
+        "done": "Loop complete!",
+        "error": "An error occurred while looping the video.",
+        "resultTitle": "Loop Complete!",
+        "download": "Download",
+        "guide": {
+            "title": "How to Use",
+            "step1": "Upload a video file. It is processed entirely in your browser and never uploaded to a server.",
+            "step2": "Pick Repeat Count to loop a fixed number of times, or Target Length to loop until a total duration is reached.",
+            "step3": "Click Loop Video, then preview the seamless result and download your MP4."
+        },
+        "features": {
+            "title": "Features",
+            "f1": {
+                "title": "100% Private",
+                "desc": "All processing runs locally via WebAssembly. Your video never leaves your device."
+            },
+            "f2": {
+                "title": "Repeat or Fill",
+                "desc": "Loop a fixed number of times or automatically repeat to hit a target total length."
+            },
+            "f3": {
+                "title": "Single MP4 Output",
+                "desc": "Re-encodes with H.264/AAC so the looped clip is one clean, seekable MP4 file."
+            },
+            "f4": {
+                "title": "Live Preview",
+                "desc": "Preview the looped result in the browser before downloading."
+            }
+        }
     }
 }
